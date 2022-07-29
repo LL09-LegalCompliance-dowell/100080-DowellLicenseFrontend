@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import colors from '../../../assets/colors/colors';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './style';
 
@@ -24,7 +23,7 @@ export default IntroductionScreen = () => {
       <SafeAreaView>
         <View style = {styles.introLogoTop}>
           <Image
-            source = {require('../assets/images/logo.png')}
+            source = {require('../../../assets/images/logo.png')}
             style = {styles.topLogo}
           />
         </View>
@@ -57,7 +56,7 @@ export default IntroductionScreen = () => {
 
       <View style = {styles.introLogoSmall}>
         <Image
-          source = {require('../assets/images/logo.png')}
+          source = {require('../../../assets/images/logo.png')}
           style = {styles.smallLogo}
         />
       </View>
