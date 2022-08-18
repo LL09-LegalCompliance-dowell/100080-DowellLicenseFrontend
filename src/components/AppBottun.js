@@ -7,6 +7,7 @@ export default function AppBotton({
   onPress,
   Image,
   fontWeight,
+  borderRadius = 25,
   color = 'green',
   width = '100%',
   titleColor = 'white',
@@ -15,7 +16,12 @@ export default function AppBotton({
 }) {
   return (
     <TouchableOpacity
-      style={[styles.botton, {backgroundColor: color}, {width: width}]}
+      style={[
+        styles.botton,
+        {backgroundColor: color},
+        {width: width},
+        {borderRadius: borderRadius},
+      ]}
       onPress={onPress}>
       <Text
         style={[
@@ -23,7 +29,7 @@ export default function AppBotton({
           {color: titleColor},
           {padding: padding},
           {fontSize},
-          {fontWeight}
+          {fontWeight},
         ]}>
         {title}
         {Image}
@@ -37,7 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    borderRadius: 25,
   },
   text: {
     color: '#fff',
