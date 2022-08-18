@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName="PrivacyPolicy">
+      <Stack.Navigator initialRouteName="Introduction">
         <Stack.Screen
           name="Introduction"
           component={IntroductionScreen}

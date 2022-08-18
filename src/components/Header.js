@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 3,
     elevation: 8,
+    position: 'absolute',
+    zIndex: 1,
   },
 
   logo: {

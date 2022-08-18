@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    elevation: 5,
   },
   text: {
     color: '#fff',
