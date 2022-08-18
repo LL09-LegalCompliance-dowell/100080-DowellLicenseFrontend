@@ -19,6 +19,9 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
+    hide: {
+        display: 'none'
+    },
     horizontalLine: {
         borderBottomColor: '#737373',
         borderBottomWidth: 2,
