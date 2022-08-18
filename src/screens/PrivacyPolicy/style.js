@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
+    alignItems: 'center',
   },
 
   heading: {
@@ -20,11 +21,9 @@ const styles = StyleSheet.create({
   },
 
   icontyle: {
-    transform: [{rotate: '90deg'}],
-    marginTop: -55,
-    marginLeft: 200,
-    paddingRight: 'auto',
-    },
+    marginTop: 40,
+    
+  },
 });
 
 export default styles;
