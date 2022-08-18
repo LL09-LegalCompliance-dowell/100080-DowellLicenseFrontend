@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 
@@ -7,7 +7,7 @@ import AppBotton from '../../components/AppBottun';
 
 const Card = () => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.row1}>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.row1Text}>License</Text>
@@ -30,7 +30,7 @@ const Card = () => {
           padding={5}
         />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

@@ -33,24 +33,53 @@ const styles = StyleSheet.create({
     paddingHorizontal: 23,
     display: 'flex',
     flex: 1,
-    width: "100%",
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItem: 'center',
-    
   },
 
   singleItemContainer: {
     display: 'flex',
-    flex: 1,
-    alignItem: 'center',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
   },
-
-  itemIcon: {},
 
   itemText: {
     marginTop: 12,
+    color: colors.textDark,
+  },
+
+  // About
+  aboutText: {
+    color: colors.textDark,
+    paddingHorizontal: 23,
+  },
+
+  // Quick links
+  linkContainer: {
+    paddingHorizontal: 23,
+  },
+
+  link:{
+    color: colors.primary,
+  },
+
+  // Contact Container
+  contactContainer: {
+    paddingHorizontal: 23,
+  },
+
+  contactItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+
+  contactText: {
+    marginLeft: 20,
     color: colors.textDark,
   },
 });
