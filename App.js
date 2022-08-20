@@ -38,7 +38,9 @@ const App = () => {
 
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName="Introduction">
+      <Stack.Navigator
+        initialRouteName="SoftwereLicense"
+        screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
           component={IntroductionScreen}
@@ -62,6 +64,20 @@ const App = () => {
           name="PrivacyPolicy"
           component={PrivacyPolicy}
           options={{title: 'Privacy Policy and T&C'}}
+        />
+        <Stack.Screen
+          name="SoftwereLicense"
+          component={SoftwereLicense}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AboutUs"
+          component={AboutUs}
+          options={{
+            headerShown: true,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

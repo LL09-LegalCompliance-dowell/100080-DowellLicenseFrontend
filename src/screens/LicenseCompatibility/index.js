@@ -1,47 +1,46 @@
-import {View, Text} from 'react-native';
-import React, { useState } from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
 import styles from './style';
-import AppBottun from '../../components/AppBottun'
-
+import AppBottun from '../../components/AppBottun';
 
 const About = () => {
   const [result, setResult] = useState();
 
-  const results = () => {
-    
-  }
+  const results = () => {};
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Check license compatibility below</Text>
       <View style={styles.inputsContainer}>
-        <MyTextInput />
-        <MyTextInput />
+        <MyTextInput placeholder="License 1" style={{paddingLeft: 10}} />
+        <MyTextInput placeholder="License 2" style={{paddingLeft: 10}} />
       </View>
-      <View>
-        <Octicons
-          style={styles.icontyle}
-          name="arrow-switch"
-          size={70}
+
+      <View style={styles.iconContainer}>
+        <MaterialCommunityIcons
+          name="arrow-up-bold"
+          size={50}
+          color={colors.primary}
+        />
+        <MaterialCommunityIcons
+          style={styles.downIcontyle}
+          name="arrow-down-bold"
+          size={50}
           color={colors.primary}
         />
       </View>
-      
-      <AppBottun
-        style={styles.button}
-        title="Check"
-        padding={8}
-        width={'40%'}
-        borderRadius={17}
-        fontWeight="600"
-        fontSize={17}
-      />
+
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text}>Check</Text>
+      </TouchableOpacity>
+
       <Text style={styles.heading}>Results</Text>
-      <View>
-        <Text styles={styles.resultsText}>
+      <View styles={styles.resultsText}>
+        <Text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam nam
           nobis dignissimos ratione pariatur ad officia ut exercitationem
           deleniti! Mollitia officiis ducimus eveniet aspernatur expedita

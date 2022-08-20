@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   text: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textTransform: 'capitalize',
-    fontSize: 18,
+      color: '#fff',
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
+      fontSize: 18,
   },
 });
