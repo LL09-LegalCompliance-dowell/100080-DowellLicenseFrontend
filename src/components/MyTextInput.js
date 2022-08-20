@@ -4,9 +4,9 @@ import React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../assets/colors/colors';
 
-const MyTextInput = ({icon, paddingHorizontal = 5, iconSize, ...otherProps}) => {
+const MyTextInput = ({icon, paddingHorizontal = 5, paddingBottom= 0, iconSize, ...otherProps}) => {
   return (
-    <View style={[styles.container, {paddingHorizontal: paddingHorizontal}]}>
+    <View style={[styles.container, {paddingHorizontal: paddingHorizontal}, {paddingBottom: paddingBottom}]}>
       <TextInput style={styles.InputText} {...otherProps} />
       {icon && (
         <FontAwesome

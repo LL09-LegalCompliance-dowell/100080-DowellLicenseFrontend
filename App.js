@@ -39,7 +39,7 @@ const App = () => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="SoftwereLicense"
+        initialRouteName="AboutUs"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -76,7 +76,7 @@ const App = () => {
           name="AboutUs"
           component={AboutUs}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
