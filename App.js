@@ -14,6 +14,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import AboutUs from './src/screens/AboutUs';
 import SoftwereLicense from './src/screens/SoftwereLicense';
 import LicenseCompatibility from './src/screens/LicenseCompatibility';
+import AgreementComplience from './src/screens/AgreementComplience';
 
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
 
@@ -39,7 +40,7 @@ const App = () => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="AboutUs"
+        initialRouteName="AgreementComplience"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -75,6 +76,13 @@ const App = () => {
         <Stack.Screen
           name="AboutUs"
           component={AboutUs}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AgreementComplience"
+          component={AgreementComplience}
           options={{
             headerShown: false,
           }}
