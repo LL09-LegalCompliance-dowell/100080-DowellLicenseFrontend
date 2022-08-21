@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
 
   // cardContainer styles
   cardContainer: {
-    marginVertical: 20,
+    marginTop: 80,
+    marginBottom: 20,
     marginHorizontal: 15,
   },
 
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 23,
   },
 
-  link:{
+  link: {
     color: colors.primary,
   },
 
@@ -81,6 +82,13 @@ const styles = StyleSheet.create({
   contactText: {
     marginLeft: 20,
     color: colors.textDark,
+  },
+  //Help
+  help: {
+    position: 'absolute',
+    left: 0,
+    left: 0,
+    bottom: 0,
   },
 });
 

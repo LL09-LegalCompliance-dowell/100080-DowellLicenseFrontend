@@ -43,11 +43,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    elevation: 5,
   },
   text: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textTransform: 'capitalize',
-    fontSize: 18,
+      color: '#fff',
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
+      fontSize: 18,
   },
 });

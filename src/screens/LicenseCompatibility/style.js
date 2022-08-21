@@ -23,15 +23,47 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 
-  icontyle: {
-    transform: [{rotate: '90deg'}],
-    marginTop: -55,
-    marginLeft: 200,
-    paddingRight: 'auto',
-    },
+  downIcontyle: {
+    paddingLeft: 22,
+    marginTop: -24,
+    elevation: 15,
+  },
 
+  iconContainer: {
+    marginRight: 10,
+    position: 'absolute',
+    right: 25,
+    top: 100,
+  },
+
+  buttonContainer: {
+    marginTop: 10,
+    alignSelf: 'center',
+    borderColor: 'red',
+    borderWidth: 2,
+  },
   button: {
-    marginTop: 100,
+    marginTop: 10,
+    alignSelf: 'center',
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    elevation: 5,
+    width: '30%',
+    paddingVertical: 5,
+    borderRadius: 12,
+  },
+  text: {
+    color: '#fff',
+    fontWeight: '600',
+    textTransform: 'capitalize',
+    fontSize: 16,
+  },
+
+  resultsText: {
+    color: colors.textDark,
+    paddingHorizontal: 15,
   },
 });
 
