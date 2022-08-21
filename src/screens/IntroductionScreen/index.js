@@ -14,7 +14,7 @@ import CheckBox from '@react-native-community/checkbox';
 import styles from './style';
 
 
-export default IntroductionScreen = () => {
+export default IntroductionScreen = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   return (
@@ -44,7 +44,9 @@ export default IntroductionScreen = () => {
         <Text style={styles.policyText}>I agree to the privacy policy and terms & conditions</Text>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>{
+        navigation.navigate("Home")
+      }}>
         <View style={styles.getStarted}>
           <Text style={styles.getStartedText}>Get Started</Text>
         </View>
