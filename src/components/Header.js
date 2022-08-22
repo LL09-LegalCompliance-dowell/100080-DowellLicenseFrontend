@@ -2,8 +2,10 @@ import {
   StyleSheet,
   Image,
   View,
+  Text,
   TouchableOpacity,
   StatusBar,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -11,7 +13,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import colors from '../../assets/colors/colors';
 
-const Header = () => {
+const Header = ({title, navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -23,10 +25,16 @@ const Header = () => {
           color={colors.textDark}
         />
       </TouchableOpacity>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/images/logo.png')}
-      />
+      {title ? (
+        <Text style={styles.heading}>{title}</Text>
+      ) : (
+        <TouchableWithoutFeedback>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/images/logo.png')}
+          />
+        </TouchableWithoutFeedback>
+      )}
       <TouchableOpacity>
         <FontAwesome
           style={styles.userIcon}
@@ -68,13 +76,23 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
 
+  heading: {
+    marginRight: 'auto',
+    marginTop: 'auto',
+    marginBottom: 10,
+    marginLeft: 25,
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.textDark,
+  },
+
   menuIcon: {
     marginTop: 'auto',
     marginBottom: 10,
   },
 
   userIcon: {
-marginTop: 'auto',
+    marginTop: 'auto',
     marginBottom: 14,
-  }
+  },
 });

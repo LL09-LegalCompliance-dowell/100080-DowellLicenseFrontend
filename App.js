@@ -10,11 +10,13 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import IntroductionScreen from './src/screens/IntroductionScreen';
+import Login from './src/screens/Login';
 import HomeScreen from './src/screens/HomeScreen';
 import AboutUs from './src/screens/AboutUs';
 import SoftwereLicense from './src/screens/SoftwereLicense';
 import LicenseCompatibility from './src/screens/LicenseCompatibility';
 import AgreementComplience from './src/screens/AgreementComplience';
+
 
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
 
@@ -29,18 +31,18 @@ const App = () => {
   {
     /* Drawer */
   }
-  // const DrawerNavigation = () => {
-  //   <Drawer.Navigator screenOptions={{headerShown: false}}>
-  //     <Drawer.Screen name="Home" component={HomeScreen} />
-  //     <Drawer.Screen name="About" component={AboutUs} />
-  //     <Drawer.Screen name="SoftwereLicense" component={SoftwereLicense} />
-  //   </Drawer.Navigator>;
-  // };
+  const DrawerNavigation = () => {
+    <Drawer.Navigator screenOptions={{headerShown: false}}>
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="About" component={AboutUs} />
+      <Drawer.Screen name="SoftwereLicense" component={SoftwereLicense} />
+    </Drawer.Navigator>;
+  };
 
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="AgreementComplience"
+        initialRouteName="Home"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -49,6 +51,14 @@ const App = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            headerShown: false,
+          }}
+        />
+
         <Stack.Screen
           name="Home"
           component={HomeScreen}
