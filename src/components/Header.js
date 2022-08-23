@@ -10,21 +10,40 @@ import {
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
-const Header = ({title, navigation}) => {
+const Header = ({title, leftIcon, rightIcon}) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <TouchableOpacity>
-        <Ionicons
-          style={styles.menuIcon}
-          name="menu"
-          size={30}
-          color={colors.textDark}
-        />
-      </TouchableOpacity>
+      {leftIcon === 'menu' ? (
+        <TouchableOpacity>
+          <Ionicons
+            style={styles.menuIcon}
+            name="menu"
+            size={30}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <MaterialIcons
+            style={styles.menuIcon}
+            name="keyboard-backspace"
+            size={30}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      )}
+
       {title ? (
         <Text style={styles.heading}>{title}</Text>
       ) : (
@@ -35,14 +54,18 @@ const Header = ({title, navigation}) => {
           />
         </TouchableWithoutFeedback>
       )}
-      <TouchableOpacity>
-        <FontAwesome
-          style={styles.userIcon}
-          name="user-circle"
-          size={25}
-          color={colors.textDark}
-        />
-      </TouchableOpacity>
+      {rightIcon === 'user' ? (
+        <TouchableOpacity>
+          <FontAwesome
+            style={styles.userIcon}
+            name="user-circle"
+            size={25}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        ''
+      )}
     </View>
   );
 };

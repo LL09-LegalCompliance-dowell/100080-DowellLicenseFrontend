@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
-import HelpBot from '../HelpBot'
+import HelpBot from '../HelpBot';
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
@@ -19,7 +19,7 @@ const Home = ({navigation}) => {
         <HelpBot />
       </HelpIcon>
       {/* Header */}
-      <Header />
+      <Header leftIcon="menu" rightIcon= "user"/>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Card Component */}
         <TouchableOpacity

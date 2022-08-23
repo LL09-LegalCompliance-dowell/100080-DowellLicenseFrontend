@@ -4,12 +4,12 @@ import colors from '../../../assets/colors/colors';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
     alignItems: 'center',
+    marginTop: 60,
   },
 
   heading: {
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
 
   icontyle: {
     marginTop: 40,
-    
   },
 });
 

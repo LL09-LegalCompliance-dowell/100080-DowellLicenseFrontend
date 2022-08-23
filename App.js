@@ -16,8 +16,7 @@ import AboutUs from './src/screens/AboutUs';
 import SoftwereLicense from './src/screens/SoftwereLicense';
 import LicenseCompatibility from './src/screens/LicenseCompatibility';
 import AgreementComplience from './src/screens/AgreementComplience';
-
-
+import ApacheLicense from './src/screens/ApacheLicense';
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
 
 Icon.loadFont();
@@ -42,7 +41,7 @@ const App = () => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="LicenseCompatibility"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -69,12 +68,16 @@ const App = () => {
         <Stack.Screen
           name="LicenseCompatibility"
           component={LicenseCompatibility}
-          options={{title: 'License Compatibility'}}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="PrivacyPolicy"
           component={PrivacyPolicy}
-          options={{title: 'Privacy Policy and T&C'}}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="SoftwereLicense"
@@ -93,6 +96,13 @@ const App = () => {
         <Stack.Screen
           name="AgreementComplience"
           component={AgreementComplience}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ApacheLicense"
+          component={ApacheLicense}
           options={{
             headerShown: false,
           }}
