@@ -4,7 +4,6 @@ import colors from '../../../assets/colors/colors';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
     paddingHorizontal: 12,
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
   },
 
-  inputsContainer:{
+  inputsContainer: {
     paddingHorizontal: 13,
   },
 
@@ -59,6 +58,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textTransform: 'capitalize',
     fontSize: 16,
+  },
+
+  imageStyle: {
+    alignSelf: 'center',
+    marginBottom: 10,
   },
 });
 

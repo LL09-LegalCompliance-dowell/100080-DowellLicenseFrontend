@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
+    paddingTop: 60,
   },
 
   heading: {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     position: 'absolute',
     right: 25,
-    top: 100,
+    top: 155,
   },
 
   buttonContainer: {

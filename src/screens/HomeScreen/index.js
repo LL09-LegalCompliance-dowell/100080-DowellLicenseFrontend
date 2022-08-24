@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -9,13 +9,17 @@ import Header from '../../components/Header';
 import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
+import HelpBot from '../HelpBot';
 
 const Home = ({navigation}) => {
+  const [showHelp, setShowHelp] = useState(false);
   return (
     <View style={styles.container}>
-      <HelpIcon style={styles.help} />
+      <HelpIcon style={styles.help} onPress={() => setShowHelp(true)}>
+        <HelpBot />
+      </HelpIcon>
       {/* Header */}
-      <Header />
+      <Header leftIcon="menu" rightIcon= "user"/>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Card Component */}
         <TouchableOpacity

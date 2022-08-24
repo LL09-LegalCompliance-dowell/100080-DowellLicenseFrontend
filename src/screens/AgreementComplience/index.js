@@ -36,7 +36,6 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Privacy Policy</Text>
-            
           </View>
           <View style={styles.separator}></View>
           <View style={styles.listContainer}>
@@ -48,7 +47,6 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Terms & Conditions</Text>
-            
           </View>
           <View style={styles.separator}></View>
           <View style={styles.listContainer}>
@@ -60,10 +58,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Cookies</Text>
-            
           </View>
-          <View style={styles.separator}>
-            </View>
+          <View style={styles.separator}></View>
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <MaterialIcons
@@ -73,16 +69,16 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Disclaimer</Text>
-            <View style={styles.separator}></View>
           </View>
 
+          <View style={styles.separator}></View>
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <AntDesign name="warning" color={colors.primary} size={30} />
             </View>
             <Text style={styles.listHeading}>EULA</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -93,8 +89,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Return & Refund</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -105,8 +101,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Terms & Service</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -117,8 +113,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Terms of Use</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -129,8 +125,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>MOU</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -141,8 +137,8 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>NDA</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -153,15 +149,14 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>GDPR Privacy Policy</Text>
-            <View style={styles.separator}></View>
           </View>
+          <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <Entypo name="open-book" color={colors.primary} size={30} />
             </View>
             <Text style={styles.listHeading}>We help with</Text>
-            <View style={styles.separator}></View>
           </View>
         </ScrollView>
       </View>
