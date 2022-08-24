@@ -2,39 +2,70 @@ import {
   StyleSheet,
   Image,
   View,
+  Text,
   TouchableOpacity,
   StatusBar,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
-const Header = () => {
+const Header = ({title, leftIcon, rightIcon}) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <TouchableOpacity>
-        <Ionicons
-          style={styles.menuIcon}
-          name="menu"
-          size={30}
-          color={colors.textDark}
-        />
-      </TouchableOpacity>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/images/logo.png')}
-      />
-      <TouchableOpacity>
-        <FontAwesome
-          style={styles.userIcon}
-          name="user-circle"
-          size={25}
-          color={colors.textDark}
-        />
-      </TouchableOpacity>
+      {leftIcon === 'menu' ? (
+        <TouchableOpacity>
+          <Ionicons
+            style={styles.menuIcon}
+            name="menu"
+            size={30}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <MaterialIcons
+            style={styles.menuIcon}
+            name="keyboard-backspace"
+            size={30}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      )}
+
+      {title ? (
+        <Text style={styles.heading}>{title}</Text>
+      ) : (
+        <TouchableWithoutFeedback>
+          <Image
+            style={styles.logo}
+            source={require('../../assets/images/logo.png')}
+          />
+        </TouchableWithoutFeedback>
+      )}
+      {rightIcon === 'user' ? (
+        <TouchableOpacity>
+          <FontAwesome
+            style={styles.userIcon}
+            name="user-circle"
+            size={25}
+            color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        ''
+      )}
     </View>
   );
 };
@@ -68,13 +99,23 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
 
+  heading: {
+    marginRight: 'auto',
+    marginTop: 'auto',
+    marginBottom: 10,
+    marginLeft: 25,
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.textDark,
+  },
+
   menuIcon: {
     marginTop: 'auto',
     marginBottom: 10,
   },
 
   userIcon: {
-marginTop: 'auto',
+    marginTop: 'auto',
     marginBottom: 14,
-  }
+  },
 });

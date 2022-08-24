@@ -30,25 +30,10 @@ const styles = StyleSheet.create({
       fontFamily:'Roboto-Regular',
       fontSize: 24,
       textAlign: 'center',
-      marginTop: 25,
-    },
-    policyWrapper:{
-      flexDirection: "row",
-      marginTop: 105,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    checkbox: {
-    alignSelf: "center",
-    },
-    policyText:{
-      fontFamily:'Roboto-Regular',
-      fontSize: 17,
-      textAlign: 'center',
-      marginTop: 15,
+      marginTop: 75,
     },
     getStarted:{
-      marginTop: 15,
+      marginTop: 135,
       backgroundColor: colors.primary,
       borderRadius: 15,
       paddingVertical: 12,
