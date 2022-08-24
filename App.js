@@ -18,6 +18,7 @@ import LicenseCompatibility from './src/screens/LicenseCompatibility';
 import AgreementComplience from './src/screens/AgreementComplience';
 import ApacheLicense from './src/screens/ApacheLicense';
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
+import FAQsPrivacyPolicy from './src/screens/FAQsPrivacyPolicy';
 
 Icon.loadFont();
 
@@ -41,7 +42,7 @@ const App = () => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="LicenseCompatibility"
+        initialRouteName="FAQsPrivacyPolicy"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -103,6 +104,13 @@ const App = () => {
         <Stack.Screen
           name="ApacheLicense"
           component={ApacheLicense}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="FAQsPrivacyPolicy"
+          component={FAQsPrivacyPolicy}
           options={{
             headerShown: false,
           }}

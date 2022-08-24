@@ -1,4 +1,4 @@
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,7 +13,7 @@ const About = () => {
   return (
     <>
       <Header />
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {/* Contact Info */}
         <Text style={styles.heading}>Contact Info</Text>
         <View style={styles.contactContainer}>
@@ -37,6 +37,10 @@ const About = () => {
           </View>
         </View>
         <Text style={styles.heading}>Write to us</Text>
+        <Image
+          source={require('../../../assets/images/TheLittleThingsWorking.png')}
+          style={styles.imageStyle}
+        />
 
         <View style={styles.inputsContainer}>
           <MyTextInput placeholder="Full Name" style={{paddingLeft: 10}} />
@@ -51,7 +55,7 @@ const About = () => {
             <Text style={styles.text}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };

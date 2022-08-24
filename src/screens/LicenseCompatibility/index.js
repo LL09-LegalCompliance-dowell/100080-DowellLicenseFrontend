@@ -1,4 +1,4 @@
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Modal} from 'react-native';
 import React, {useState} from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,10 +8,11 @@ import colors from '../../../assets/colors/colors';
 import styles from './style';
 import AppBottun from '../../components/AppBottun';
 import Header from '../../components/Header';
-import HowTo from "./HowToIcon"
+import HowToIcon from './HowToIcon';
 
 const About = () => {
   const [result, setResult] = useState({});
+  const [howTo, setHowTo] = useState(false);
 
   const handleResult = () => {
     <></>;
@@ -19,8 +20,8 @@ const About = () => {
 
   return (
     <>
-    <HowTo />
-      <Header title="License Compatibility"/>
+      <HowToIcon onPress={() => setHowTo(true)} />
+      <Header title="License Compatibility" />
       <View style={styles.container}>
         <Text style={styles.heading}>Check license compatibility below</Text>
         <View style={styles.inputsContainer}>
@@ -57,6 +58,13 @@ const About = () => {
             ex?
           </Text>
         </View>
+
+        {/* How to use section */}
+        <Modal animationType="slide" transparent={false} visible={howTo}>
+          <View>
+            <Text>hamza</Text>
+          </View>
+        </Modal>
       </View>
     </>
   );

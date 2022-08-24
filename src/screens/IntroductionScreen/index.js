@@ -14,7 +14,6 @@ import CheckBox from '@react-native-community/checkbox';
 import styles from './style';
 
 export default IntroductionScreen = ({navigation}) => {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   return (
     <ScrollView>
