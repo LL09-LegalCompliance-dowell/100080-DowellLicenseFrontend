@@ -143,13 +143,13 @@ const SoftwereLicense = ({navigation}) => {
       </View>
       {/* Section 4 */}
       <ScrollView style={styles.section4}>
-        <View style={styles.section4Container}>
+        <TouchableOpacity style={styles.section4Container} onPress={()=>navigation.navigate('ApacheLicense')}>
           <Text style={styles.listHeading}>Aparche lisence</Text>
           <View style={styles.VersionDateContainer}>
             <Text>version 2.0</Text>
             <Text>January 2009</Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.separator}></View>
 
         <View style={styles.section4Container}>
