@@ -79,6 +79,7 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     marginLeft: "5%",
     marginRight: "5%",
+    
   },
   agree:{
     display: "flex",
@@ -86,7 +87,8 @@ export const styles = StyleSheet.create({
   },
   normaltext:{
     fontWeight: "normal",
-    fontSize:12
+    fontSize:12,
+    color: "gray"
   },
   boldfont:{
     fontWeight: "bold"
@@ -97,6 +99,7 @@ export const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 20,
     textDecorationLine: 'underline',
+    
   },
   section2:{
     paddingTop:20,
@@ -106,4 +109,11 @@ export const styles = StyleSheet.create({
     fontWeight:"100",
     fontSize: 12,
   },
+  optionalText:{
+    fontSize:10,
+    color:"gray",
+    position:"absolute",
+    right:10,
+    top:80
+  }
 });
