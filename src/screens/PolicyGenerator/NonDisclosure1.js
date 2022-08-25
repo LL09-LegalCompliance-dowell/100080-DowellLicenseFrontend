@@ -1,19 +1,19 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import React from "react";
 import { styles } from "./styles";
-const Term1 = () => {
+const Nondisclosure1 = () => {
   return (
     <View>
       <ScrollView>
         <View style={styles.templateImage}>
-          <Image source={require("../../../assets/images/Term1.png")} />
+          <Image source={require("../../../assets/images/nondisclosure2.png")} />
         </View>
         <View style={styles.templateImage}>
-          <Image source={require("../../../assets/images/Term1.png")} />
+          <Image source={require("../../../assets/images/nondisclosure2.png")} />
         </View>
       </ScrollView>
     </View>
   );
 };
 
-export default Term1
+export default Nondisclosure1

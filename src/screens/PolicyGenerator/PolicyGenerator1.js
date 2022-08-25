@@ -16,7 +16,7 @@ import CalendarIcon  from '../../../assets/calendar-regular.svg';
 import { radioButtonsData } from './radioButtonsData';
 
 
-const PolicyGenerator1 = () => {
+const PolicyGenerator = () => {
 
     const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
     const [isPartyTwoOpen, setIsPartyTwoOpen] = useState(false);
@@ -220,6 +220,6 @@ const PolicyGenerator1 = () => {
 }
 
 
-export default PolicyGenerator1;
+export default PolicyGenerator;
 
 
