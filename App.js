@@ -1,5 +1,6 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {useColorScheme} from 'react-native';
+import {useColorScheme, Alert} from 'react-native';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -19,6 +20,8 @@ import AgreementComplience from './src/screens/AgreementComplience';
 import ApacheLicense from './src/screens/ApacheLicense';
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
 import FAQsPrivacyPolicy from './src/screens/FAQsPrivacyPolicy';
+import screen1 from './src/screens/screen1';
+import screen2 from './src/screens/screen2';
 
 Icon.loadFont();
 
@@ -32,17 +35,64 @@ const App = () => {
     /* Drawer */
   }
   const DrawerNavigation = () => {
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="About" component={AboutUs} />
-      <Drawer.Screen name="SoftwereLicense" component={SoftwereLicense} />
+    <Drawer.Navigator
+      screenOptions={{headerShown: true}}
+      initialRouteName="Home">
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="About Us"
+        component={AboutUs}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Softwere License"
+        component={SoftwereLicense}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Agreement Complience"
+        component={AgreementComplience}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Logout"
+        component={Logout}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Drawer.Navigator>;
   };
 
+  const Logout = () => {
+    Alert.alert('Alert Title', 'My Alert Msg', [
+      {
+        text: 'Cancel',
+        // onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        // onPress: () => console.log('OK Pressed')
+      },
+    ]);
+  };
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="FAQsPrivacyPolicy"
+        initialRouteName="Introduction"
         screenOptions={{gestureEnabled: true}}>
         <Stack.Screen
           name="Introduction"
@@ -80,27 +130,7 @@ const App = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="SoftwereLicense"
-          component={SoftwereLicense}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="AboutUs"
-          component={AboutUs}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="AgreementComplience"
-          component={AgreementComplience}
-          options={{
-            headerShown: false,
-          }}
-        />
+
         <Stack.Screen
           name="ApacheLicense"
           component={ApacheLicense}
