@@ -101,20 +101,8 @@ const App = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="ApacheLicense"
-          component={ApacheLicense}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="FAQsPrivacyPolicy"
-          component={FAQsPrivacyPolicy}
-          options={{
-            headerShown: false,
-          }}
-        />
+        
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
