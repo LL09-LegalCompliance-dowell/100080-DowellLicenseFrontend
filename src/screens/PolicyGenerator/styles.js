@@ -80,30 +80,71 @@ export const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: "5%",
   },
-  agree:{
+  agree: {
     display: "flex",
-  alignItems: "flex-start",
+    alignItems: "flex-start",
   },
-  normaltext:{
+  normaltext: {
     fontWeight: "normal",
-    fontSize:12
-  },
-  boldfont:{
-    fontWeight: "bold"
-  },
-  TextStyle:{
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontStyle: 'italic',
-    fontSize: 20,
-    textDecorationLine: 'underline',
-  },
-  section2:{
-    paddingTop:20,
-  },
-  italic:{
-    fontStyle:"italic",
-    fontWeight:"100",
     fontSize: 12,
   },
+  boldfont: {
+    fontWeight: "bold",
+  },
+  TextStyle: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontStyle: "italic",
+    fontSize: 20,
+    textDecorationLine: "underline",
+  },
+  section2: {
+    paddingTop: 20,
+  },
+  italic: {
+    fontStyle: "italic",
+    fontWeight: "100",
+    fontSize: 12,
+  },
+  imageWrapper: {
+    position: "relative",
+    backgroundColor: "white",
+    height: 150,
+  },
+  centerLink: {
+    position: "absolute",
+    top: 180,
+    left: 100,
+    justifyContent:"center",
+  },
+  imageText: {
+    color: "green",
+    backgroundColor: "white",
+    width: 150,
+    textDecorationLine: 'underline'
+  },
+  disclaimer: {
+    paddingLeft: 80,
+    paddingTop:10
+  },
+  generatingText:{
+    color:"white",
+  },
+  policyButton: {
+    backgroundColor: "#489503",
+    color: "#00000",
+    paddingHorizontal: 30,
+    borderRadius: 15,
+    width: 170,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 10,
+    elevation: 3,
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  FAQtext:{
+    color:"green",
+    textDecorationLine: 'underline'
+  }
 });
