@@ -3,7 +3,6 @@ import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import { View, Text, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import PolicyGenerator from './PolicyGenerator1';
 import PolicyGenerator2 from './PolicyGenerator2';
-import PolicyGenerator3 from './policyGenerator3';
 
 
 function ProgressStepper() {
@@ -13,26 +12,23 @@ function ProgressStepper() {
         <ProgressStep >
             <View style={{ alignItems: 'center' }}>
                 <PolicyGenerator/>
-            </View> 
+            </View>
         </ProgressStep>
         <ProgressStep>
             <View style={{ alignItems: 'center' }}>
                 <PolicyGenerator2/>
             </View>
         </ProgressStep>
-        
-        <ProgressStep>
-            <View style={{ alignItems: 'center' }}>
-                <PolicyGenerator3/>
-            </View>
-        </ProgressStep>
-       
         <ProgressStep >
             <View style={{ alignItems: 'center' }}>
-                <Text>5</Text>
+                <Text>3</Text>
             </View>
         </ProgressStep>
-        
+        <ProgressStep >
+            <View style={{ alignItems: 'center' }}>
+                <Text>4</Text>
+            </View>
+        </ProgressStep>
     </ProgressSteps>
 
 </View>
