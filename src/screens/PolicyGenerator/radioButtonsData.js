@@ -1,0 +1,30 @@
+export const radioButtonsData = [{
+    id: '1',
+    label: 'Individual',
+    value: 'individual',
+    size: 18,
+    color: '#489503',
+    borderColor: '#C4C4C4',
+    selected: true
+}, {
+    id: '2',
+    label: 'Company',
+    value: 'company',
+    size: 18,
+    color: '#489503',
+    borderColor: '#C4C4C4'
+}, {
+    id: '3',
+    label: 'Partnership',
+    value: 'partnership',
+    size: 18,
+    color: '#489503',
+    borderColor: '#C4C4C4'
+}, {
+    id: '4',
+    label: 'Other',
+    value: 'other',
+    size: 18,
+    color: '#489503',
+    borderColor: '#C4C4C4'
+}];
