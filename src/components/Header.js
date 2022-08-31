@@ -20,7 +20,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
   const navigation = useNavigation();
 
   const opennDrawer = () => {
-    navigation.dispatch(DrawerActions.openDrawer());
+    navigation.dispatch(DrawerActions.toggleDrawer());
   };
 
   return (
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 25,
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: '500',
     color: colors.textDark,
   },
 

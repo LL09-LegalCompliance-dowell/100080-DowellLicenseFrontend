@@ -1,5 +1,6 @@
 import {
   View,
+  KeyboardAvoidingView,
   Text,
   ScrollView,
   TouchableHighlight,
@@ -49,9 +50,11 @@ const listData = [
 
 const SoftwereLicense = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
       {/* Header */}
-      <Header />
+      <Header title="Softwere License" leftIcon="menu" rightIcon='user'/>
       {/* section 1 */}
       <View style={styles.cardContainer}>
         <FlatList
@@ -102,16 +105,17 @@ const SoftwereLicense = ({navigation}) => {
           )}
         />
       </View>
-
       <View style={styles.miniContainer}>
         {/* section 2 */}
         <View style={styles.section2}>
           <Text style={styles.heading}>
             Check your license compatibility now
           </Text>
-          <TouchableOpacity style={styles.button} onPress={() => {
-            navigation.navigate('LicenseCompatibility');
-          }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate('LicenseCompatibility');
+            }}>
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="arrow-up-bold"
@@ -143,7 +147,9 @@ const SoftwereLicense = ({navigation}) => {
       </View>
       {/* Section 4 */}
       <ScrollView style={styles.section4}>
-        <TouchableOpacity style={styles.section4Container} onPress={()=>navigation.navigate('ApacheLicense')}>
+        <TouchableOpacity
+          style={styles.section4Container}
+          onPress={() => navigation.navigate('ApacheLicense')}>
           <Text style={styles.listHeading}>Aparche lisence</Text>
           <View style={styles.VersionDateContainer}>
             <Text>version 2.0</Text>
@@ -170,7 +176,7 @@ const SoftwereLicense = ({navigation}) => {
         </View>
         <View style={styles.separator}></View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

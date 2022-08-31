@@ -11,11 +11,11 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 
 const About = () => {
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState(true);
   const [howTo, setHowTo] = useState(false);
 
   const handleResult = () => {
-    <></>;
+    setResult(!result);
   };
 
   return (
@@ -43,21 +43,24 @@ const About = () => {
           />
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleResult}>
           <Text style={styles.text}>Check</Text>
         </TouchableOpacity>
-        <Text style={styles.heading}>Results</Text>
-        <View styles={styles.resultsText}>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            nam nobis dignissimos ratione pariatur ad officia ut exercitationem
-            deleniti! Mollitia officiis ducimus eveniet aspernatur expedita
-            laborum voluptatem et. Labore, laboriosam molestias nam nesciunt
-            quos explicabo hic? Possimus assumenda asperiores sed, quasi
-            reprehenderit dolorem mollitia neque quos dolorum eum? Provident,
-            ex?
-          </Text>
-        </View>
+        {result ? (
+          <View styles={styles.resultsText}>
+            <Text style={styles.heading}>Results</Text>
+
+            <Text style={{ paddingHorizontal: 10, color: colors.textDark}}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+              nam nobis dignissimos ratione pariatur ad officia ut
+              exercitationem deleniti! Mollitia officiis ducimus eveniet
+              aspernatur expedita laborum voluptatem et. Labore, laboriosam
+              molestias nam nesciunt quos explicabo hic? Possimus assumenda
+              asperiores sed, quasi reprehenderit dolorem mollitia neque quos
+              dolorum eum? Provident, ex?
+            </Text>
+          </View>
+        ) : null}
 
         {/* How to use section */}
         <Modal animationType="slide" transparent={false} visible={howTo}>
