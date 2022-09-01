@@ -59,7 +59,7 @@ export default IntroductionScreen = ({navigation}) => {
               }}>
               <Ionicons
                 name="md-eye-sharp"
-                size={24}
+                size={30}
                 color={isSecureEntry ? '#808080' : colors.primary}
               />
             </TouchableWithoutFeedback>
@@ -72,14 +72,14 @@ export default IntroductionScreen = ({navigation}) => {
         <Text
           style={{
             color: colors.primary,
-            fontSize: 18,
+            fontSize: 20,
             textDecorationLine: 'underline',
           }}>
           Join
         </Text>
       </TouchableOpacity>
-      {/* 
-      Policy statrts here
+      
+      {/* Policy statrts here
       <View style={styles.policyWrapper}>
         <CheckBox
           disabled={false}
@@ -87,10 +87,12 @@ export default IntroductionScreen = ({navigation}) => {
           onValueChange={newValue => setToggleCheckBox(newValue)}
           style={styles.checkbox}
         />
-        <Text style={styles.policyText}>I agree to the</Text>
-        <Text style={styles.policyText}>
-          privacy policy and {'\n'} terms & conditions
+        <Text style={styles.policyText}>I agree to the
+        <Text style={styles.policyTextLink}>
+          privacy policy and terms & conditions
         </Text>
+        </Text>
+        
       </View> */}
 
       {/* Button */}

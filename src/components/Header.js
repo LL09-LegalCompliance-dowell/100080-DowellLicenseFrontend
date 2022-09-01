@@ -55,7 +55,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
         <TouchableWithoutFeedback>
           <Image
             style={styles.logo}
-            source={require('../../assets/images/logo.png')}
+            source={require('../../assets/images/image3.png')}
           />
         </TouchableWithoutFeedback>
       )}
@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
 
   logo: {
     height: 65,
-    width: 60,
-    aspectRatio: 1.5,
+    width: 190,
+    aspectRatio: 3.8,
     marginRight: 'auto',
     marginTop: 'auto',
     marginBottom: 5,
-    marginLeft: 25,
+    marginLeft: 5,
   },
 
   heading: {
