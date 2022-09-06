@@ -42,9 +42,14 @@ const PrivacyPolicy = () => {
         </TouchableOpacity>
 
         {isOpen ? (
-          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac nunc tempus ut velit hendrerit id. Quis facilisi morbi adipiscing tellus pellentesque etiam imperdiet tincidunt vel. Odio amet nisl mi fermentum purus ac pulvinar etiam consectetur. 
-
-Dictum habitasse turpis eu dolor aliquam nunc velit. Consequat erat luctus mattis blandit sed arcu sed.</Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac nunc
+            tempus ut velit hendrerit id. Quis facilisi morbi adipiscing tellus
+            pellentesque etiam imperdiet tincidunt vel. Odio amet nisl mi
+            fermentum purus ac pulvinar etiam consectetur. Dictum habitasse
+            turpis eu dolor aliquam nunc velit. Consequat erat luctus mattis
+            blandit sed arcu sed.
+          </Text>
         ) : null}
         <View style={styles.separator}></View>
       </ScrollView>

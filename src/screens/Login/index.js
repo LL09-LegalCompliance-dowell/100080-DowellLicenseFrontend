@@ -78,20 +78,18 @@ export default IntroductionScreen = ({navigation}) => {
           Join
         </Text>
       </TouchableOpacity>
-
-      {/* Policy statrts here */}
-      {/* <View style={styles.policyWrapper}>
+      {/* 
+      Policy statrts here
+      <View style={styles.policyWrapper}>
         <CheckBox
           disabled={false}
           value={toggleCheckBox}
           onValueChange={newValue => setToggleCheckBox(newValue)}
           style={styles.checkbox}
         />
+        <Text style={styles.policyText}>I agree to the</Text>
         <Text style={styles.policyText}>
-          I agree to the
-        </Text>
-        <Text style={styles.policyText}>
-    privacy policy and {'\n'} terms & conditions
+          privacy policy and {'\n'} terms & conditions
         </Text>
       </View> */}
 

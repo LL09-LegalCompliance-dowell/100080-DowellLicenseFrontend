@@ -19,14 +19,12 @@ const Home = ({navigation}) => {
         <HelpBot />
       </HelpIcon>
       {/* Header */}
-      <Header leftIcon="menu" rightIcon= "user"/>
+      <Header leftIcon="menu" rightIcon="user" />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Card Component */}
         <TouchableOpacity
           style={styles.cardContainer}
-          onPress={() => {
-            navigation.navigate('LicenseCompatibility');
-          }}>
+          >
           <Card />
         </TouchableOpacity>
 
@@ -109,6 +107,10 @@ const Home = ({navigation}) => {
               <Text style={styles.contactText}>310-383-7872</Text>
             </View>
           </View>
+          <Text
+            style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
+            Copyright &copy; 2022 UX Living Lab
+          </Text>
         </View>
       </ScrollView>
     </View>

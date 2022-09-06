@@ -12,17 +12,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import {DrawerActions} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
 const Header = ({title, leftIcon, rightIcon}) => {
   const navigation = useNavigation();
 
+  const opennDrawer = () => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       {leftIcon === 'menu' ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={opennDrawer}>
           <Ionicons
             style={styles.menuIcon}
             name="menu"
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 25,
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: '500',
     color: colors.textDark,
   },
 

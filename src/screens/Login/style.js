@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   policyWrapper: {
     flexDirection: 'row',
-    marginTop: 50,
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
