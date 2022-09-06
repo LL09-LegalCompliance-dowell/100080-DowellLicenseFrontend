@@ -1,6 +1,6 @@
 import {StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator, DrawerContentScrollView} from '@react-navigation/drawer';
 
 import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';

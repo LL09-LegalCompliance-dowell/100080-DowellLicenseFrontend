@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '400',
     color: colors.textDark,
     paddingTop: 20,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
 
   itemText: {
-    marginTop: 12,
+    marginTop: 18,
     color: colors.textDark,
   },
 
@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
   aboutText: {
     color: colors.textDark,
     paddingHorizontal: 23,
+    fontSize: 18,
+
   },
 
   // Quick links

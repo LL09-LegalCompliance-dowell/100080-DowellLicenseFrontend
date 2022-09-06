@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     height: 68,
     position: 'absolute',
     right: 0,
-    bottom: 10,
+    top: 320,
     zIndex: 1,
     borderBottomColor: '#acacac',
     borderBottomWidth: 2,
