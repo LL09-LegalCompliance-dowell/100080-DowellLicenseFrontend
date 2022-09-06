@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   // Section 2
 
   heading: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '400',
     color: colors.textDark,
     paddingTop: 20,
@@ -114,9 +114,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     elevation: 5,
-    width: '45%',
+    width: 185,
+    height: 40,
     paddingVertical: 5,
     paddingHorizontal: 5,
     borderRadius: 12,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   listHeading: {
-    fontSize: 19,
+    fontSize: 24,
     fontWeight: '600',
     color: colors.textDark,
     paddingBottom: 3,

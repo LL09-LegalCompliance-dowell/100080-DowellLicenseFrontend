@@ -54,7 +54,7 @@ const SoftwereLicense = ({navigation}) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
       {/* Header */}
-      <Header title="Softwere License" leftIcon="menu" rightIcon='user'/>
+      <Header title="Softwere License" leftIcon="menu" rightIcon="user" />
       {/* section 1 */}
       <View style={styles.cardContainer}>
         <FlatList
@@ -89,7 +89,7 @@ const SoftwereLicense = ({navigation}) => {
                     <Text style={styles.row3Text}>T&C Apply</Text>
                     <AppBotton
                       style={styles.cardButton}
-                      title="Check Now"
+                      title="Learn More"
                       width="30%"
                       color={colors.primary}
                       fontSize={12}
@@ -139,7 +139,7 @@ const SoftwereLicense = ({navigation}) => {
             <MyTextInput
               placeholder="Search license here"
               icon={'search'}
-              iconSize={30}
+              iconSize={35}
               paddingHorizontal={12}
             />
           </View>
@@ -152,29 +152,41 @@ const SoftwereLicense = ({navigation}) => {
           onPress={() => navigation.navigate('ApacheLicense')}>
           <Text style={styles.listHeading}>Aparche lisence</Text>
           <View style={styles.VersionDateContainer}>
-            <Text>version 2.0</Text>
-            <Text>January 2009</Text>
+            <Text style={{color: colors.textDark}}>version 2.0</Text>
+            <Text style={{color: colors.textDark, paddingLeft: 5}}>
+              January 2009
+            </Text>
           </View>
         </TouchableOpacity>
         <View style={styles.separator}></View>
 
-        <View style={styles.section4Container}>
+        <TouchableOpacity
+          style={styles.section4Container}
+          onPress={() => navigation.navigate('ApacheLicense')}>
           <Text style={styles.listHeading}>Aparche lisence</Text>
           <View style={styles.VersionDateContainer}>
-            <Text>version 2.0</Text>
-            <Text>January 2009</Text>
+            <Text style={{color: colors.textDark}}>version 2.0</Text>
+            <Text style={{color: colors.textDark, paddingLeft: 5}}>
+              January 2009
+            </Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.separator}></View>
 
-        <View style={styles.section4Container}>
+
+        <TouchableOpacity
+          style={styles.section4Container}
+          onPress={() => navigation.navigate('ApacheLicense')}>
           <Text style={styles.listHeading}>Aparche lisence</Text>
           <View style={styles.VersionDateContainer}>
-            <Text>version 2.0</Text>
-            <Text style={{paddingLeft: 5}}>January 2009</Text>
+            <Text style={{color: colors.textDark}}>version 2.0</Text>
+            <Text style={{color: colors.textDark, paddingLeft: 5}}>
+              January 2009
+            </Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.separator}></View>
+
       </ScrollView>
     </KeyboardAvoidingView>
   );

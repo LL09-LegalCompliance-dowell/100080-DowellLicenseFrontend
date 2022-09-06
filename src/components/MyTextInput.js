@@ -23,9 +23,10 @@ export default MyTextInput;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#d3d3d3',
-    borderRadius: 18,
+    backgroundColor: '#D9D9D9',
+    borderRadius: 15,
     width: '100%',
+    height: 57,
     padding:5,
     marginVertical: 10,
     flexDirection: 'row',
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   InputText: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
   },
 });

@@ -39,7 +39,7 @@ const StackNavigator = () => {
         />
 
         <Stack.Screen
-          name="Home"
+          name="HomeScreen"
           component={DrawerNavigator}
           options={{
             headerShown: false,
