@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     position: 'absolute',
     right: 25,
-    top: 155,
+    top: 159,
   },
 
   buttonContainer: {
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
+    width: 143,
+    height: 41,
     elevation: 5,
     width: '30%',
     paddingVertical: 5,

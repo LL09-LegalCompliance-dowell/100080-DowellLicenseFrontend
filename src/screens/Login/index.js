@@ -78,7 +78,7 @@ export default IntroductionScreen = ({navigation}) => {
           Join
         </Text>
       </TouchableOpacity>
-      
+
       {/* Policy statrts here
       <View style={styles.policyWrapper}>
         <CheckBox
@@ -98,7 +98,7 @@ export default IntroductionScreen = ({navigation}) => {
       {/* Button */}
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Home');
+          navigation.navigate('HomeScreen');
         }}>
         <View style={styles.getStarted}>
           <Text style={styles.getStartedText}>Login</Text>

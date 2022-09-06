@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
     borderBottomLeftRadius: 45,
-    width: 65,
-    height: 68,
+    width: 69,
+    height: 73,
     position: 'absolute',
     right: 15,
     bottom: 20,
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     paddingTop: 2,
-    fontSize: 12,
+    fontSize: 14,
   },
 });
