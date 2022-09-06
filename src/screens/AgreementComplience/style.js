@@ -7,9 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    
+
     width: '100%',
-    
   },
 
   heading: {
@@ -25,8 +24,8 @@ const styles = StyleSheet.create({
 
   iconContainer: {
     backgroundColor: '#dcdcdc',
-    height: 40,
-    widht: 45,
+    height: 42,
+    widht: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
   listHeading: {
     width: '100%',
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '500',
     color: colors.textDark,
   },
 

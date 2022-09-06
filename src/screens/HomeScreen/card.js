@@ -1,13 +1,19 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import React from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
+import { useNavigation } from '@react-navigation/native';
+
 
 import colors from '../../../assets/colors/colors';
 import AppBotton from '../../components/AppBottun';
 
-const Card = () => {
+const Card = ({}) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => {
+      navigation.navigate('LicenseCompatibility');
+    }}>
       <View style={styles.row1}>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.row1Text}>License</Text>
@@ -23,6 +29,10 @@ const Card = () => {
       <View style={styles.row3}>
         <Text style={styles.row3Text}>T&C Apply</Text>
         <AppBotton
+onPress={() => {
+      navigation.navigate('LicenseCompatibility');
+    }}
+
           title="Check Now"
           width="30%"
           color={colors.primary}

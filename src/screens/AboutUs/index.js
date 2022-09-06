@@ -12,7 +12,7 @@ import MyTextInput from '../../components/MyTextInput';
 const About = () => {
   return (
     <>
-      <Header />
+      <Header title='Contact Us'/>
       <ScrollView style={styles.container}>
         {/* Contact Info */}
         <Text style={styles.heading}>Contact Info</Text>
