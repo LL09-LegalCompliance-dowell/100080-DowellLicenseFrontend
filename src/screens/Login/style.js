@@ -26,18 +26,20 @@ const styles = StyleSheet.create({
   titlesTitle: {
     color: colors.textDark,
     fontFamily: 'InriaSans-Bold',
-    fontSize: 34,
+    fontSize: 32,
     textAlign: 'center',
   },
   policyWrapper: {
     flexDirection: 'row',
     marginTop: 20,
+    marginHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
   },
   checkbox: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
+    marginBottom: 10,
   },
   policyText: {
     fontFamily: 'Roboto-Regular',
@@ -55,11 +57,13 @@ const styles = StyleSheet.create({
 
   inputsContainer: {
     width: '100%',
-    marginTop: 30,
+    marginTop: 60,
   },
 
   passwordInputsContainer: {
     backgroundColor: '#D9D9D9',
+    borderColor: '#33585858',
+    borderWidth: 1,
     borderRadius: 15,
     width: '100%',
     padding: 2,
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 17,
   },
 
   inputStyle: {

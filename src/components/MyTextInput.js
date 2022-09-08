@@ -24,6 +24,8 @@ export default MyTextInput;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#D9D9D9',
+    borderColor: '#33585858',
+    borderWidth: 1,
     borderRadius: 15,
     width: '100%',
     height: 57,

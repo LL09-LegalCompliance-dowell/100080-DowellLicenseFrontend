@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import IntroductionScreen from '../screens/IntroductionScreen';
 import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
 import AboutUs from '../screens/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import LicenseCompatibility from '../screens/LicenseCompatibility';
@@ -93,6 +94,13 @@ const StackNavigator = () => {
         <Stack.Screen
           name="SoftwereLicensePolicy"
           component={SoftwereLicensePolicy}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{
             headerShown: false,
           }}

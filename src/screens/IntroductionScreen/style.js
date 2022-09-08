@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     introLogoTop:{
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 60,
+      marginTop: 90,
     },
     topLogo:{
       width: 148,
