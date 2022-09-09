@@ -19,7 +19,7 @@ import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
 
 export default IntroductionScreen = ({navigation}) => {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [agree, setAgree] = useState(false);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   const passwordHideShow = () => {
@@ -43,7 +43,12 @@ export default IntroductionScreen = ({navigation}) => {
 
       {/* Input starts here */}
       <View style={styles.inputsContainer}>
-        <MyTextInput placeholder="Enter Username" paddingHorizontal={12} />
+        <MyTextInput
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Enter Username"
+          paddingHorizontal={17}
+        />
 
         <View style={styles.passwordContainer}>
           <View style={styles.passwordInputsContainer}>
@@ -59,7 +64,7 @@ export default IntroductionScreen = ({navigation}) => {
               }}>
               <Ionicons
                 name="md-eye-sharp"
-                size={24}
+                size={30}
                 color={isSecureEntry ? '#808080' : colors.primary}
               />
             </TouchableWithoutFeedback>
@@ -72,35 +77,49 @@ export default IntroductionScreen = ({navigation}) => {
         <Text
           style={{
             color: colors.primary,
-            fontSize: 18,
+            fontSize: 20,
             textDecorationLine: 'underline',
+          }}
+          onPress={() => {
+            navigation.navigate('SignUp');
           }}>
-          Join
+          JOIN
         </Text>
       </TouchableOpacity>
-      {/* 
-      Policy statrts here
+
+      {/* Policy statrts here */}
       <View style={styles.policyWrapper}>
         <CheckBox
           disabled={false}
-          value={toggleCheckBox}
-          onValueChange={newValue => setToggleCheckBox(newValue)}
+          value={agree}
+          onValueChange={() => setAgree(!agree)}
+          tintColor={agree ? '#078F04' : undefined}
           style={styles.checkbox}
         />
-        <Text style={styles.policyText}>I agree to the</Text>
         <Text style={styles.policyText}>
-          privacy policy and {'\n'} terms & conditions
+          {' '}
+          I agree to the{' '}
+          <Text
+            style={styles.policyTextLink}
+            onPress={() => {
+              navigation.navigate('PrivacyPolicy');
+            }}>
+            privacy policy and terms & conditions
+          </Text>
         </Text>
-      </View> */}
+      </View>
 
       {/* Button */}
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Home');
-        }}>
-        <View style={styles.getStarted}>
-          <Text style={styles.getStartedText}>Login</Text>
-        </View>
+          navigation.navigate('HomeScreen');
+        }}
+        style={[
+          styles.getStarted,
+          {backgroundColor: agree ? '#078F04' : '#a9a9a9'},
+        ]}
+        disabled={!agree}>
+        <Text style={styles.getStartedText}>Login</Text>
       </TouchableOpacity>
     </ScrollView>
   );

@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
           style={styles.icontyle}
         />
         <Text style={styles.heading}>Privacy Policy</Text>
-        <Text styles={styles.textStyle}>
+        <Text style={styles.textStyle}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam nam
           nobis dignissimos ratione pariatur ad officia ut exercitationem
           deleniti! Mollitia officiis ducimus eveniet aspernatur expedita
