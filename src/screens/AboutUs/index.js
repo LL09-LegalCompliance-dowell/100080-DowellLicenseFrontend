@@ -13,7 +13,7 @@ const About = () => {
   return (
     <>
       <Header title='Contact Us'/>
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* Contact Info */}
         <Text style={styles.heading}>Contact Info</Text>
         <View style={styles.contactContainer}>
@@ -47,7 +47,7 @@ const About = () => {
           <MyTextInput placeholder="Email Adress" style={{paddingLeft: 10}} />
           <MyTextInput
             placeholder="Message"
-            paddingBottom={60}
+            paddingBottom={10}
             style={{paddingLeft: 10}}
           />
 

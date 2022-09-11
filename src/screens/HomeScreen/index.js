@@ -33,7 +33,7 @@ const Home = ({navigation}) => {
           <Text style={styles.heading}>Priducts & Services</Text>
           <View style={styles.productItemsContainer}>
             <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
+              <AntDesign name="setting" size={40} color={colors.primary} />
               <Text style={styles.itemText}>Product</Text>
             </View>
             <View style={styles.singleItemContainer}>

@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     width: '100%',
-    paddingBottom: 300,
   },
   introLogoTop: {
     justifyContent: 'center',
@@ -25,45 +24,59 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titlesTitle: {
+    color: colors.textDark,
     fontFamily: 'InriaSans-Bold',
-    fontSize: 34,
+    fontSize: 32,
     textAlign: 'center',
   },
   policyWrapper: {
     flexDirection: 'row',
     marginTop: 20,
+    marginHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    // flexWrap: 'wrap',
   },
   checkbox: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
+    marginBottom: 10,
   },
   policyText: {
     fontFamily: 'Roboto-Regular',
-    fontSize: 17,
+    fontSize: 20,
     textAlign: 'center',
     marginTop: 15,
+    color: colors.textDark,
+  },
+
+  policyTextLink: {
+    color: colors.primary,
+    textDecorationLine: 'underline',
+    paddingLeft: 3,
   },
 
   inputsContainer: {
     width: '100%',
-    marginTop: 30,
+    marginTop: 60,
   },
 
   passwordInputsContainer: {
-    backgroundColor: '#d3d3d3',
-    borderRadius: 18,
+    backgroundColor: '#D9D9D9',
+    borderColor: '#33585858',
+    borderWidth: 1,
+    borderRadius: 15,
     width: '100%',
     padding: 2,
+    height: 57,
     marginVertical: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 17,
   },
 
   inputStyle: {
-    fontSize: 18,
+    fontSize: 20,
     width: '90%',
     textDecorationLine: 'none',
   },
@@ -72,37 +85,18 @@ const styles = StyleSheet.create({
     marginTop: 45,
     backgroundColor: colors.primary,
     borderRadius: 15,
-    paddingVertical: 12,
+    // paddingVertical: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 260,
-    height: 57,
+    width: 200,
+    height: 51,
     elevation: 3,
   },
   getStartedText: {
     color: 'white',
     fontFamily: 'Roboto-Medium',
-    fontSize: 22,
+    fontSize: 26,
     alignItems: 'center',
-  },
-  poweredWrapper: {
-    marginTop: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  poweredText: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  introLogoSmall: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  smallLogo: {
-    width: 42,
-    height: 29,
   },
 });
 

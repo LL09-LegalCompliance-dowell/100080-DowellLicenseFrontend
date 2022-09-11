@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     introLogoTop:{
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 60,
+      marginTop: 90,
     },
     topLogo:{
       width: 148,
@@ -25,18 +25,20 @@ const styles = StyleSheet.create({
       fontFamily:'InriaSans-Bold',
       fontSize: 34,
       textAlign: 'center',
+      color: colors.textDark,
     },
     titlesSubtitle:{
       fontFamily:'Roboto-Regular',
       fontSize: 24,
       textAlign: 'center',
       marginTop: 75,
+      color: colors.textDark,
     },
     getStarted:{
       marginTop: 135,
       backgroundColor: colors.primary,
       borderRadius: 15,
-      paddingVertical: 12,
+      // paddingVertical: 12,
       justifyContent: 'center',
       alignItems: 'center',
       width: 260,
@@ -57,6 +59,8 @@ const styles = StyleSheet.create({
       fontFamily:'Roboto-Regular',
       fontSize: 20,
       textAlign: 'center',
+            color: colors.textDark,
+
     },
     introLogoSmall:{
       justifyContent: 'center',
