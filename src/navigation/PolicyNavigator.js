@@ -11,7 +11,7 @@ import CompanyEntity from '../screens/PolicyGenerator/CompanyEntity';
 import Gdpr from '../screens/PolicyGenerator/GDPR';
 import Gdpr1 from '../screens/PolicyGenerator/GDPR1';
 import Gdpr2 from '../screens/PolicyGenerator/GDPR2';
-import PolicyGenerator from '../screens/PolicyGenerator/PolicyGenerator1';
+import PolicyGenerator1 from '../screens/PolicyGenerator/PolicyGenerator1';
 import PolicyGenerator2 from '../screens/PolicyGenerator/PolicyGenerator2';
 import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';
 import PolicyGenerator4 from '../screens/PolicyGenerator/PolicyGenerator4';
@@ -33,10 +33,38 @@ const Stack = createNativeStackNavigator() ;
 const PolicyNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName='PolicyGenerator5'>
+      <Stack.Navigator initialRouteName='PolicyGenerator1'>
         <Stack.Screen
-          name="PolicyGenerator"
-          component={PolicyGenerator}
+          name="PolicyGenerator1"
+          component={PolicyGenerator1}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PolicyGenerator2"
+          component={PolicyGenerator2}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PolicyGenerator3"
+          component={PolicyGenerator3}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PolicyGenerator4"
+          component={PolicyGenerator4}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PolicyGenerator5"
+          component={PolicyGenerator5}
           options={{
             headerShown: true,
           }}
@@ -72,34 +100,6 @@ const PolicyNavigator = () => {
         <Stack.Screen
           name="Gdpr2"
           component={Gdpr2}
-          options={{
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen
-          name="PolicyGenerator2"
-          component={PolicyGenerator2}
-          options={{
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen
-          name="PolicyGenerator3"
-          component={PolicyGenerator3}
-          options={{
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen
-          name="PolicyGenerator4"
-          component={PolicyGenerator4}
-          options={{
-            headerShown: true,
-          }}
-        />
-        <Stack.Screen
-          name="PolicyGenerator5"
-          component={PolicyGenerator5}
           options={{
             headerShown: true,
           }}

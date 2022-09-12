@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import {
   View,
   Text,
@@ -29,6 +31,13 @@ const PolicyGenerator = () => {
   const [selectedRadioButtonTwo, setSelectedRadioButtonTwo] =
     useState('individual');
   const [date, setDate] = useState(new Date());
+  const navigation = useNavigation();
+  const goNextPage = () =>{
+    navigation.navigate("Generate Policies", {
+      screen: 'PolicyGenerator2',
+      params: {},
+    })
+  }
 
   const togglePartyOne = e => {
     setIsPartyOneOpen(prev => !prev);
@@ -163,7 +172,7 @@ const PolicyGenerator = () => {
         </View>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
           <Text style={styles.nextText}>Next Step</Text>
         </TouchableOpacity>
       </View>

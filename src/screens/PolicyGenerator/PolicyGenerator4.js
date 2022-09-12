@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -29,7 +29,8 @@ function Chooselaw(){
   
 />
 }
-function Jurisdiction(){
+
+const Jurisdiction = () => {
   return    <RNPickerSelect 
   onValueChange={(value) => console.log(value)}
   items={[
@@ -42,7 +43,14 @@ function Jurisdiction(){
 />
 }
 
-function PolicyGenerator4() {
+const  PolicyGenerator4 = () => {
+  const navigation = useNavigation();
+  const goNextPage = () =>{
+    navigation.navigate("Generate Policies", {
+      screen: 'PolicyGenerator5',
+      params: {},
+    })
+  }
   var radio_props = [
     { label: "day / ", value: 0 },
     { label: "month ", value: 1 },
@@ -56,7 +64,7 @@ function PolicyGenerator4() {
   
   return (
     <>
-      <View style={styles.wrapper} showsVerticalScrollIndicator={false} >
+      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false} >
         <View>
           <Text style={styles.boldfont}>Agreement:</Text>
           <Text style={styles.normaltext}>
@@ -193,11 +201,11 @@ function PolicyGenerator4() {
           </View>
         </View>
         <View style={styles.center}>
-          <TouchableOpacity style={styles.nextButton}>
+          <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
             <Text style={styles.nextText}>Next Step</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
