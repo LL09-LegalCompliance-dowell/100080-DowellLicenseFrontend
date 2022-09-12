@@ -6,7 +6,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Navigation from './src/navigation/index';
-import AgreementNavigator from "./src/navigation/AgreementNavigator"
 
 Icon.loadFont();
 
@@ -18,7 +17,7 @@ const App = () => {
 
   return (
     <>
-      <AgreementNavigator />
+      <Navigation />
     </>
   );
 };

@@ -15,7 +15,7 @@ import RadioForm, {
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 
-function PolicyGenerator3() {
+const  PolicyGenerator3 = () => {
   var radio_props = [
     { label: "day", value: 0 },
     { label: "month", value: 1 },

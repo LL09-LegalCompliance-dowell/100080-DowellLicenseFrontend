@@ -9,9 +9,9 @@ import {
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 //Entities
-import IndividualEntity from './individualEntity';
-import CompanyEntity from './companyEntity';
-import PartnershipEntity from './partnershipEntity';
+import IndividualEntity from './IndividualEntity';
+import CompanyEntity from './CompanyEntity';
+import PartnershipEntity from './PartnershipEntity';
 //Styling
 import {styles} from './styles';
 // Chevron Up and Down Icons, Calendar Icon
@@ -19,7 +19,7 @@ import ChevronUp from '../../../assets/angle-up-solid.svg';
 import ChevronDown from '../../../assets/chevron-down-solid.svg';
 import CalendarIcon from '../../../assets/calendar-regular.svg';
 //Radio Buttons Data
-import {radioButtonsData} from './radioButtonsData';
+import {radioButtonsData} from './RadioButtonsData';
 
 const PolicyGenerator = () => {
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
