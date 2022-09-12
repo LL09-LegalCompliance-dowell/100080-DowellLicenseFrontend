@@ -1,7 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import {useColorScheme, Alert} from 'react-native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import IntroductionScreen from '../screens/IntroductionScreen';
 import Login from '../screens/Login';
@@ -15,12 +20,17 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
 import DrawerNavigator from './DrawerNavigator';
 import SoftwereLicensePolicy from '../screens/SoftwereLicensePolicy';
+import GDPRNavigator from './GDPRNavigator';
+import MemorandumNavigator from "./MemorandumNavigator"
+import NonDisclosureNavigator from "./NonDisclosureNavigator"
+import TermsOfUseNavigator from "./TermsOfUseNavigator"
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigator = () => {
+const RootNavigator = () => {
+  const scheme = useColorScheme();
   return (
-    <>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
         initialRouteName="IntroductionScreen"
         screenOptions={{gestureEnabled: true}}>
@@ -89,11 +99,39 @@ const StackNavigator = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="GDPR Privacy Policy"
+          component={GDPRNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MOU"
+          component={MemorandumNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="NDA"
+          component={NonDisclosureNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Terms of Use"
+          component={TermsOfUseNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
-    </>
+    </NavigationContainer>
   );
 };
 
-export default StackNavigator;
+export default RootNavigator;
 
 const styles = StyleSheet.create({});
