@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import ProgressStepper from "./progressSteps";
+import ProgressStepper from "./ProgressSteps";
 import { ScreenStackHeaderBackButtonImage } from "react-native-screens";
 import { styles } from "./styles";
 
@@ -20,7 +20,7 @@ const EndUserLincenceAgreement = () => {
         navigationOptions: ({ navigation }) => ({
           headerLeft: (
             <ScreenStackHeaderBackButtonImage
-              onPress={(_) => navigation.navigate("Somewhere")}
+              onPress={(_) => navigation.navigate()}
             />
           ),
         }),
@@ -29,7 +29,7 @@ const EndUserLincenceAgreement = () => {
   }, []);
   return (
     <View style={styles.wrapper}>
-      <Text>
+      <Text style={{padding:10, color:"#000", fontSize:20, marginVertical:10}}>
         We help with the legal requirements, so you can focus on the business.
         Below is the sample for Software License Policy Template.{" "}
       </Text>
@@ -43,11 +43,11 @@ const EndUserLincenceAgreement = () => {
         <View>
           <Text style={styles.disclaimer}>Disclaimer or Statement</Text>
         </View>
-        <View style={styles.center}>
-          <TouchableOpacity style={styles.policyButton}>
+        <TouchableOpacity style={styles.center} onPress={() => {navigation.navigate("GDPR Privacy Policy", {screen: "Gdpr1"})}}>
+          <View style={styles.policyButton}>
             <Text style={styles.generatingText}>Start generating</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
         <View style={styles.center}>
           <Text style={styles.FAQtext}>
             <QuestionMarkCircleIcon size={12} color="green" /> Generator FAQs

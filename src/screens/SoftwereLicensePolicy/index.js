@@ -32,7 +32,7 @@ const SoftwereLicensePolicy = ({navigation}) => {
         <Text style={styles.heading}>Disclaimer or Statement</Text>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('');
+            navigation.navigate('Generate Policies');
           }}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Start Generating</Text>

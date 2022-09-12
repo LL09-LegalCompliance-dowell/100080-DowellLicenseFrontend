@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
   TextInput,
-  ScrollView,
+  ScrollView, 
   TouchableOpacity,
   Br,
 } from "react-native";
 import { styles } from "./styles";
 import { ModalDatePicker } from "react-native-material-date-picker";
-import CalendarIcon from "../../../assets/calendar-regular.svg";
+import EvilIcons from "react-native-vector-icons/EvilIcons"
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 
-function PolicyGenerator2() {
+const PolicyGenerator2 = () => {
+  const navigation = useNavigation();
+  const goNextPage = () =>{
+    navigation.navigate("Generate Policies", {
+      screen: 'PolicyGenerator3',
+      params: {},
+    })
+  }
   var radio_props = [
     { label: "day", value: 0 },
     { label: "month", value: 1 },
@@ -29,7 +37,7 @@ var [date,setDate]=useState([radio_props]);
     };
   }
   return (
-    <View style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={styles.agree}>
         <Text style={styles.boldfont}>Agreement:</Text>
         <Text style={styles.normaltext}>
@@ -49,7 +57,7 @@ var [date,setDate]=useState([radio_props]);
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={25} />
               </View>
             }
             color="#489503"
@@ -115,11 +123,11 @@ var [date,setDate]=useState([radio_props]);
         </View>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
           <Text style={styles.nextText}>Next Step</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

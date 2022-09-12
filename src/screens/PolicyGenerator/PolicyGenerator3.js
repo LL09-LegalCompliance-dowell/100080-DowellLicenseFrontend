@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -8,14 +9,21 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { ModalDatePicker } from "react-native-material-date-picker";
-import CalendarIcon from "../../../assets/calendar-regular.svg";
+import EvilIcons from "react-native-vector-icons/EvilIcons"
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 
-function PolicyGenerator3() {
+const PolicyGenerator3 = () =>{
+  const navigation = useNavigation();
+  const goNextPage = () =>{
+    navigation.navigate("Generate Policies", {
+      screen: 'PolicyGenerator4',
+      params: {},
+    })
+  }
   var radio_props = [
     { label: "day", value: 0 },
     { label: "month", value: 1 },
@@ -28,7 +36,7 @@ function PolicyGenerator3() {
     };
   }
   return (
-    <View style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={styles.agree}>
         <Text style={styles.boldfont}>Agreement:</Text>
         <Text style={styles.normaltext}>
@@ -56,7 +64,7 @@ function PolicyGenerator3() {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={25} />
               </View>
             }
             color="#489503"
@@ -117,11 +125,11 @@ function PolicyGenerator3() {
         </View>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
           <Text style={styles.nextText}>Next Step</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
