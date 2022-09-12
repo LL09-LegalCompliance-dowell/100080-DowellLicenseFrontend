@@ -26,13 +26,14 @@ import Termsofuse2 from '../screens/PolicyGenerator/Termsofuse3';
 import NonDisclosure from '../screens/PolicyGenerator/NonDisclosure';
 import Nondisclosure1 from '../screens/PolicyGenerator/NonDisclosure1';
 import Nondisclosure2 from '../screens/PolicyGenerator/Nondisclosure2';
+import Test from '../screens/PolicyGenerator/Test';
 
 const Stack = createNativeStackNavigator() ;
 
 const PolicyNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName='PolicyGenerator4'>
+      <Stack.Navigator initialRouteName='PolicyGenerator5'>
         <Stack.Screen
           name="PolicyGenerator"
           component={PolicyGenerator}
@@ -43,6 +44,13 @@ const PolicyNavigator = () => {
         <Stack.Screen
           name="CompanyEntity"
           component={CompanyEntity}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Test"
+          component={Test}
           options={{
             headerShown: true,
           }}

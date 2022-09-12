@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { ModalDatePicker } from "react-native-material-date-picker";
-import CalendarIcon from "../../../assets/calendar-regular.svg";
+import EvilIcons from "react-native-vector-icons/EvilIcons"
 import RadioForm, {
   RadioButton,
   RadioButtonInput,
@@ -56,7 +56,7 @@ const  PolicyGenerator3 = () => {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={25} />
               </View>
             }
             color="#489503"
