@@ -1,6 +1,9 @@
 import {StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {createDrawerNavigator, DrawerContentScrollView} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+} from '@react-navigation/drawer';
 
 import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';
@@ -11,19 +14,15 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = ({Navigation}) => {
   const Logout = () => {
-    <TouchableOpacity
-      onPress={() => Navigation.navigate('Login')}></TouchableOpacity>;
-
-    // Alert.alert('Loguot', 'Are you sure you want to logout?', [
-    //   {
-    //     text: 'Cancel',
-    //     style: 'cancel',
-    //   },
-    //   {
-    //     text: 'OK',
-    //     onPress: () => Navigation.navigate('Login'),
-    //   },
-    // ]);
+    Alert.alert('Loguot', 'Are you sure you want to logout?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+      },
+    ]);
   };
 
   return (

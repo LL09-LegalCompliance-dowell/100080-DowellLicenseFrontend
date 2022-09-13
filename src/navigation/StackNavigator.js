@@ -2,7 +2,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import HomeScreen from '../screens/HomeScreen';
 import LicenseCompatibility from '../screens/LicenseCompatibility';
 import ApacheLicense from '../screens/ApacheLicense';
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
