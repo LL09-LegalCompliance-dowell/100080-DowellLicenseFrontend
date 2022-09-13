@@ -12,9 +12,9 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './style';
+import {StackActions} from '@react-navigation/native';
 
 export default IntroductionScreen = ({navigation}) => {
-
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -36,7 +36,7 @@ export default IntroductionScreen = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Login');
+            navigation.dispatch(StackActions.replace('Login', {}));
           }}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Get Started</Text>

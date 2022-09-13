@@ -4,7 +4,6 @@ import colors from '../../../assets/colors/colors';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1,
     alignItems: 'center',
     paddingHorizontal: 15,
     width: '100%',
@@ -97,6 +96,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     fontSize: 26,
     alignItems: 'center',
+  },
+  errors: {
+    fontSize: 14,
+    color: 'red',
+    fontWeight: 'bold',
+    marginBottom: 3,
+    marginLeft: 10,
   },
 });
 

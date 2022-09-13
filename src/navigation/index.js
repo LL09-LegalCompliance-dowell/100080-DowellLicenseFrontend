@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {useColorScheme, Alert} from 'react-native';
 import {
   NavigationContainer,
@@ -8,19 +8,12 @@ import {
 } from '@react-navigation/native';
 
 import StackNavigator from './StackNavigator';
+import AuthNavigator from './AuthNavigator';
+import {useLogin} from '../context/LoginProvider';
 
 const index = () => {
-  const scheme = useColorScheme();
-
-  return (
-    <>
-      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <StackNavigator />
-      </NavigationContainer>
-    </>
-  );
-};
-
+  const {isLoggedIn} = useLogin(); 
+return isLoggedIn ? <StackNavigator /> : <AuthNavigator />;
+   
+}
 export default index;
-
-const styles = StyleSheet.create({});
