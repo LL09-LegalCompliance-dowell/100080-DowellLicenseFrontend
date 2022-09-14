@@ -30,24 +30,10 @@ const Stack = createNativeStackNavigator();
 const RootNavigator = () => {
   const scheme = useColorScheme();
   return (
-    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+  <>
       <Stack.Navigator
-        initialRouteName="IntroductionScreen"
+        initialRouteName="HomeScreen"
         screenOptions={{gestureEnabled: true}}>
-        <Stack.Screen
-          name="IntroductionScreen"
-          component={IntroductionScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-        />
 
         <Stack.Screen
           name="HomeScreen"
@@ -59,13 +45,6 @@ const RootNavigator = () => {
         <Stack.Screen
           name="LicenseCompatibility"
           component={LicenseCompatibility}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="PrivacyPolicy"
-          component={PrivacyPolicy}
           options={{
             headerShown: false,
           }}
@@ -88,13 +67,6 @@ const RootNavigator = () => {
         <Stack.Screen
           name="SoftwereLicensePolicy"
           component={SoftwereLicensePolicy}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{
             headerShown: false,
           }}
@@ -128,7 +100,8 @@ const RootNavigator = () => {
           }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+
+      </>
   );
 };
 

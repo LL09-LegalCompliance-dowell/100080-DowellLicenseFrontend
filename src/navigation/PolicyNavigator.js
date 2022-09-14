@@ -7,7 +7,7 @@ import {
   } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // agreement compliance screens
-import CompanyEntity from '../screens/PolicyGenerator/CompanyEntity';
+import CompanyEntity from '../screens/PolicyGenerator/companyEntity';
 import PolicyGenerator1 from '../screens/PolicyGenerator/PolicyGenerator1';
 import PolicyGenerator2 from '../screens/PolicyGenerator/PolicyGenerator2';
 import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';

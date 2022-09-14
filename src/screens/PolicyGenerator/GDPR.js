@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import ProgressStepper from "./ProgressSteps";
+import ProgressStepper from "./progressSteps";
 import { ScreenStackHeaderBackButtonImage } from "react-native-screens";
 import { styles } from "./styles";
 

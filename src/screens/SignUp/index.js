@@ -1,12 +1,10 @@
 import {View, Text, ScrollView} from 'react-native';
 import React, {useState} from 'react';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import colors from '../../../assets/colors/colors';
 import styles from './style';
 import Header from '../../components/Header';
 
-const PrivacyPolicy = () => {
+const SignUp = () => {
   return (
     <>
       <Header title="Sing Up" />
@@ -18,4 +16,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default SignUp;

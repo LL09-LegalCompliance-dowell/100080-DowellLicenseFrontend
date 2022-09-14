@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import {
   View,
@@ -9,18 +9,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
-import {ModalDatePicker} from 'react-native-material-date-picker'; 
-//Entities 
-import IndividualEntity from './IndividualEntity';
-import CompanyEntity from './CompanyEntity';
-import PartnershipEntity from './PartnershipEntity';
+import {ModalDatePicker} from 'react-native-material-date-picker';
+//Entities
+import IndividualEntity from './individualEntity';
+import CompanyEntity from './companyEntity';
+import PartnershipEntity from './partnershipEntity';
 //Styling
 import {styles} from './styles';
 // Chevron Up and Down Icons, Calendar Icon
-import EvilIcons from "react-native-vector-icons/EvilIcons"
-import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //Radio Buttons Data
-import {radioButtonsData} from './RadioButtonsData';
+import {radioButtonsData} from './radioButtonsData';
 
 const PolicyGenerator = () => {
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
@@ -32,12 +32,12 @@ const PolicyGenerator = () => {
     useState('individual');
   const [date, setDate] = useState(new Date());
   const navigation = useNavigation();
-  const goNextPage = () =>{
-    navigation.navigate("Generate Policies", {
+  const goNextPage = () => {
+    navigation.navigate('Generate Policies', {
       screen: 'PolicyGenerator2',
       params: {},
-    })
-  }
+    });
+  };
 
   const togglePartyOne = e => {
     setIsPartyOneOpen(prev => !prev);
@@ -106,7 +106,7 @@ const PolicyGenerator = () => {
         <ModalDatePicker
           button={
             <View style={styles.calendarPosition}>
-              <EvilIcons name={"calendar"} size={25} />
+              <EvilIcons name={'calendar'} size={25} />
             </View>
           }
           color="#489503"
@@ -123,9 +123,17 @@ const PolicyGenerator = () => {
           <TouchableOpacity onPress={togglePartyOne}>
             <View style={styles.chevron}>
               {isPartyOneOpen ? (
-                <MaterialIcons name={"keyboard-arrow-up"} size={50} color={"#000"} />
+                <MaterialIcons
+                  name={'keyboard-arrow-up'}
+                  size={50}
+                  color={'#000'}
+                />
               ) : (
-                <MaterialIcons name={"keyboard-arrow-down"} size={50} color={"#000"} />
+                <MaterialIcons
+                  name={'keyboard-arrow-down'}
+                  size={50}
+                  color={'#000'}
+                />
               )}
             </View>
           </TouchableOpacity>
@@ -150,9 +158,17 @@ const PolicyGenerator = () => {
           <TouchableOpacity onPress={togglePartyTwo}>
             <View style={styles.chevron}>
               {isPartyTwoOpen ? (
-                <MaterialIcons name={"keyboard-arrow-up"} size={50} color={"#000"} />
+                <MaterialIcons
+                  name={'keyboard-arrow-up'}
+                  size={50}
+                  color={'#000'}
+                />
               ) : (
-                <MaterialIcons name={"keyboard-arrow-down"} size={50} color={"#000"} />
+                <MaterialIcons
+                  name={'keyboard-arrow-down'}
+                  size={50}
+                  color={'#000'}
+                />
               )}
             </View>
           </TouchableOpacity>
