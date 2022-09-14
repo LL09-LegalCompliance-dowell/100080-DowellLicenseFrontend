@@ -1,7 +1,7 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import React from "react";
 import { styles } from "./styles";
-const Gdp2 = () => {
+const Gdpr2 = () => {
   return (
     <View>
       <ScrollView>
@@ -14,4 +14,4 @@ const Gdp2 = () => {
   );
 };
 
-export default Gdp2
+export default Gdpr2

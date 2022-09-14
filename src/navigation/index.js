@@ -7,13 +7,13 @@ import {
   DarkTheme,
 } from '@react-navigation/native';
 
-import StackNavigator from './StackNavigator';
+import RootNavigator from './RootNavigator';
 import AuthNavigator from './AuthNavigator';
 import {useLogin} from '../context/LoginProvider';
 
 const index = () => {
   const {isLoggedIn} = useLogin(); 
-return isLoggedIn ? <StackNavigator /> : <AuthNavigator />;
+return isLoggedIn ? <RootNavigator /> : <AuthNavigator />;
    
 }
 export default index;

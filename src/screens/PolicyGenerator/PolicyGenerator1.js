@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+
 import {
   View,
   Text,
@@ -15,9 +17,8 @@ import PartnershipEntity from './partnershipEntity';
 //Styling
 import {styles} from './styles';
 // Chevron Up and Down Icons, Calendar Icon
-import ChevronUp from '../../../assets/angle-up-solid.svg';
-import ChevronDown from '../../../assets/chevron-down-solid.svg';
-import CalendarIcon from '../../../assets/calendar-regular.svg';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //Radio Buttons Data
 import {radioButtonsData} from './radioButtonsData';
 
@@ -30,6 +31,13 @@ const PolicyGenerator = () => {
   const [selectedRadioButtonTwo, setSelectedRadioButtonTwo] =
     useState('individual');
   const [date, setDate] = useState(new Date());
+  const navigation = useNavigation();
+  const goNextPage = () => {
+    navigation.navigate('Generate Policies', {
+      screen: 'PolicyGenerator2',
+      params: {},
+    });
+  };
 
   const togglePartyOne = e => {
     setIsPartyOneOpen(prev => !prev);
@@ -98,7 +106,7 @@ const PolicyGenerator = () => {
         <ModalDatePicker
           button={
             <View style={styles.calendarPosition}>
-              <CalendarIcon width={20} height={25} />
+              <EvilIcons name={'calendar'} size={25} />
             </View>
           }
           color="#489503"
@@ -115,9 +123,17 @@ const PolicyGenerator = () => {
           <TouchableOpacity onPress={togglePartyOne}>
             <View style={styles.chevron}>
               {isPartyOneOpen ? (
-                <ChevronUp width={17} height={17} />
+                <MaterialIcons
+                  name={'keyboard-arrow-up'}
+                  size={50}
+                  color={'#000'}
+                />
               ) : (
-                <ChevronDown width={15} height={15} />
+                <MaterialIcons
+                  name={'keyboard-arrow-down'}
+                  size={50}
+                  color={'#000'}
+                />
               )}
             </View>
           </TouchableOpacity>
@@ -142,9 +158,17 @@ const PolicyGenerator = () => {
           <TouchableOpacity onPress={togglePartyTwo}>
             <View style={styles.chevron}>
               {isPartyTwoOpen ? (
-                <ChevronUp width={17} height={17} />
+                <MaterialIcons
+                  name={'keyboard-arrow-up'}
+                  size={50}
+                  color={'#000'}
+                />
               ) : (
-                <ChevronDown width={15} height={15} />
+                <MaterialIcons
+                  name={'keyboard-arrow-down'}
+                  size={50}
+                  color={'#000'}
+                />
               )}
             </View>
           </TouchableOpacity>
@@ -164,7 +188,7 @@ const PolicyGenerator = () => {
         </View>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
           <Text style={styles.nextText}>Next Step</Text>
         </TouchableOpacity>
       </View>

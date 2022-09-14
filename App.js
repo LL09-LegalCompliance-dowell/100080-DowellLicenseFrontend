@@ -17,7 +17,6 @@ Icon.loadFont();
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-
 const App = () => {
   const scheme = useColorScheme();
 
