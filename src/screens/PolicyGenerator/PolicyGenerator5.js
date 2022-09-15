@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -9,13 +10,21 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { ModalDatePicker } from "react-native-material-date-picker";
-import CalendarIcon from "../../../assets/calendar-regular.svg";
+import EvilIcons from "react-native-vector-icons/EvilIcons"
 
 
-function PolicyGenerator5() {
+const  PolicyGenerator5 = () => {
+  const navigation = useNavigation();
+  const goToSummary = () =>{
+    console.warn("Go to Summary!")
+    // navigation.navigate("Generate Policies", {
+    //   screen: 'PolicyGenerator2',
+    //   params: {},
+    // })
+  }
 
   return (
-    <View style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={styles.agree}>
         <Text style={styles.boldfont}>Execution:</Text>
         <Text style={styles.normaltext}>
@@ -36,7 +45,7 @@ function PolicyGenerator5() {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={30} />
               </View>
             }
             color="#489503"
@@ -55,7 +64,7 @@ function PolicyGenerator5() {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={30} />
               </View>
             }
             color="#489503"
@@ -81,7 +90,7 @@ function PolicyGenerator5() {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={30} />
               </View>
             }
             color="#489503"
@@ -100,7 +109,7 @@ function PolicyGenerator5() {
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <CalendarIcon width={20} height={25} />
+                <EvilIcons name={"calendar"} size={30} />
               </View>
             }
             color="#489503"
@@ -113,11 +122,11 @@ function PolicyGenerator5() {
         </View>
       </View>
       <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={goToSummary}>
           <Text style={styles.nextText}>Next Step</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

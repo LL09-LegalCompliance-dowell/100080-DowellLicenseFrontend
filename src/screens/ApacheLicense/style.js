@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 
   heading2: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '400',
     color: colors.textDark,
     paddingTop: 2,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
 
-  //bottomContainer 
+  //bottomContainer
   bottomContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   heading3: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '400',
     paddingTop: 2,
     paddingBottom: 5,

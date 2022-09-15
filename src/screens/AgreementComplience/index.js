@@ -10,35 +10,33 @@ import Header from '../../components/Header';
 import colors from '../../../assets/colors/colors';
 import styles from './style';
 
-const About = () => {
+const AgreementComplience = ({navigation}) => {
   return (
     <>
-      <Header />
+      <Header title="Agreement Complience" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
         <Text style={styles.heading}>
           We help with legel requirements, so you can focus on the business
         </Text>
         <ScrollView style={{marginTop: 130}}>
-          <View style={styles.listContainer}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('SoftwereLicensePolicy')}>
             <View style={styles.iconContainer}>
               <MaterialIcons name="computer" color={colors.primary} size={30} />
             </View>
             <Text style={styles.listHeading}>Softwere License Policy</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <MaterialIcons name="policy" color={colors.primary} size={30} />
             </View>
             <Text style={styles.listHeading}>Privacy Policy</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="clipboard-check-outline"
@@ -47,9 +45,9 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Terms & Conditions</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="cookie-outline"
@@ -58,9 +56,9 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Cookies</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -69,18 +67,18 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Disclaimer</Text>
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.separator}></View>
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <AntDesign name="warning" color={colors.primary} size={30} />
             </View>
             <Text style={styles.listHeading}>EULA</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -89,7 +87,7 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>Return & Refund</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
@@ -116,7 +114,9 @@ const About = () => {
           </View>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() =>{
+            navigation.navigate("MOU")
+          }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -125,10 +125,12 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>MOU</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() =>{
+            navigation.navigate("NDA")
+          }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -137,10 +139,12 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>NDA</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() =>{
+            navigation.navigate("GDPR Privacy Policy")
+          }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -149,7 +153,7 @@ const About = () => {
               />
             </View>
             <Text style={styles.listHeading}>GDPR Privacy Policy</Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
           <View style={styles.listContainer}>
@@ -164,4 +168,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AgreementComplience;

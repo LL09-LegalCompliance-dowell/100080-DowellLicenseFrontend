@@ -20,7 +20,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
   const navigation = useNavigation();
 
   const opennDrawer = () => {
-    navigation.dispatch(DrawerActions.openDrawer());
+    navigation.dispatch(DrawerActions.toggleDrawer());
   };
 
   return (
@@ -55,7 +55,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
         <TouchableWithoutFeedback>
           <Image
             style={styles.logo}
-            source={require('../../assets/images/logo.png')}
+            source={require('../../assets/images/logoWithText.png')}
           />
         </TouchableWithoutFeedback>
       )}
@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
 
   logo: {
     height: 65,
-    width: 60,
-    aspectRatio: 1.5,
+    width: 170,
+    aspectRatio: 3.8,
     marginRight: 'auto',
     marginTop: 'auto',
     marginBottom: 5,
-    marginLeft: 25,
+    marginLeft: 5,
   },
 
   heading: {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 25,
     fontSize: 18,
-    fontWeight: '700',
+    fontWeight: '500',
     color: colors.textDark,
   },
 
