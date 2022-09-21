@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
+const deviceHieght = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
@@ -66,6 +68,49 @@ const styles = StyleSheet.create({
   resultsText: {
     color: colors.textDark,
     paddingHorizontal: 15,
+  },
+  Searontainer: {
+    width: '98.5%',
+    marginHorizontal: '1.5%',
+    height: deviceHieght,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    zIndex: 10,
+  },
+  separator: {
+    width: '100%',
+    backgroundColor: colors.borderLight,
+    height: 1,
+    // elevation: ,
+  },
+  serchResultContainer: {
+    borderRadius: 15,
+    borderColor: '#33585858',
+    borderWidth: 2,
+    paddingVertical: 10,
+    backgroundColor: 'white',
+  },
+  serchResultItemContainer: {
+    paddingHorizontal: 17,
+    paddingVertical: 7,
+    backgroundColor: 'white',
+  },
+  serchResultHeading: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.textDark,
+  },
+  serchResultDetails: {
+    color: colors.textDark,
+  },
+  errors: {
+    fontSize: 14,
+    color: 'red',
+    fontWeight: 'bold',
+    marginBottom: 3,
+    paddingLeft: 15,
+    marginTop: -8,
   },
 });
 
