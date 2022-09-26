@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     alignSelf: 'center',
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     width: 143,
@@ -64,12 +64,36 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     fontSize: 16,
   },
-
+  inputsStyleContainer: {
+    backgroundColor: '#D9D9D9',
+    borderColor: '#33585858',
+    borderWidth: 1,
+    borderRadius: 15,
+    width: '100%',
+    height: 57,
+    padding: 5,
+    marginVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  inputsStyleText: {
+    fontSize: 17,
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
+    marginLeft: 10,
+  },
+  inputsTitleText: {
+    fontSize: 18,
+    fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
+    marginLeft: 10,
+    color: colors.textDark,
+    fontWeight: '800',
+  },
   resultsText: {
     color: colors.textDark,
     paddingHorizontal: 15,
   },
-  Searontainer: {
+  SearchContainer: {
     width: '98.5%',
     marginHorizontal: '1.5%',
     height: deviceHieght,
@@ -77,10 +101,11 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     zIndex: 10,
+    borderRadius: 15,
   },
   separator: {
     width: '100%',
-    backgroundColor: colors.borderLight,
+    // backgroundColor: colors.borderLight,
     height: 1,
     // elevation: ,
   },
