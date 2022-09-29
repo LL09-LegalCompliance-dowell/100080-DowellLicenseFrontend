@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {View, Text} from 'react-native';
+import React from 'react';
 import {
-    NavigationContainer,
-    DefaultTheme,
-    DarkTheme,
-  } from '@react-navigation/native';
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // agreement compliance screens
 import PolicyGenerator1 from '../screens/PolicyGenerator/PolicyGenerator1';
@@ -12,14 +12,13 @@ import PolicyGenerator2 from '../screens/PolicyGenerator/PolicyGenerator2';
 import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';
 import PolicyGenerator4 from '../screens/PolicyGenerator/PolicyGenerator4';
 import PolicyGenerator5 from '../screens/PolicyGenerator/PolicyGenerator5';
-import Test from '../screens/PolicyGenerator/Test';
 
-const Stack = createNativeStackNavigator() ;
+const Stack = createNativeStackNavigator();
 
 const PolicyNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName='PolicyGenerator1'>
+      <Stack.Navigator initialRouteName="PolicyGenerator1">
         <Stack.Screen
           name="PolicyGenerator1"
           component={PolicyGenerator1}
@@ -64,7 +63,7 @@ const PolicyNavigator = () => {
         />
       </Stack.Navigator>
     </>
-  )
-}
+  );
+};
 
 export default PolicyNavigator;
