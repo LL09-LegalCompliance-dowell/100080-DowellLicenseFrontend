@@ -11,16 +11,16 @@ import {
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 //Entities
-import IndividualEntity from './individualEntity';
-import CompanyEntity from './companyEntity';
-import PartnershipEntity from './partnershipEntity';
+import IndividualEntity from './IndividualEntity';
+import CompanyEntity from './CompanyEntity';
+import PartnershipEntity from './PartnershipEntity';
 //Styling
 import {styles} from './styles';
 // Chevron Up and Down Icons, Calendar Icon
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //Radio Buttons Data
-import {radioButtonsData} from './radioButtonsData';
+import {radioButtonsData} from './RadioButtonsData';
 
 const PolicyGenerator = () => {
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
