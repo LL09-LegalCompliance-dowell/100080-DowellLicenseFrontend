@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './style';
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
+import AppLoader from '../../components/AppLoader';
 
 import {useLogin} from '../../context/LoginProvider';
 
@@ -44,29 +45,31 @@ const loginValidationSchema = yup.object().shape({
 export default IntroductionScreen = ({navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
-  const {setIsLoggedIn} = useLogin();
+  const {setIsLoggedIn, loading, setLoading} = useLogin();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const passwordHideShow = () => {
     <TouchableOpacity onPress={() => setIsSecureEntry(true)} />;
   };
 
   const handleLogin = async (values, formikActions) => {
-    const url = 'https://100014.pythonanywhere.com/api/register/';
-    const res = await axios.post(url, {...values});
+    try {
+      setLoading(true);
+      const url = 'https://100014.pythonanywhere.com/api/token/';
+      const res = await axios.post(url, {...values});
 
-    if (res.data) {
-      const signInRes = await axios.post(
-        'https://100014.pythonanywhere.com/api/token/',
-        {username: values.username, password: values.password},
-      );
-      if (signInRes.data) {
+      if (res.data) {
         setIsLoggedIn(true);
-        const token = signInRes.data.access;
+        const token = res.data.access;
         await AsyncStorage.setItem('token', token);
         await AsyncStorage.setItem('username', values.username);
         await AsyncStorage.setItem('password', values.password);
+        setLoading(false);
       }
-      return signInRes.data;
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      setErrorMessage('User does not exist with this email and password');
     }
 
     formikActions.resetForm();
@@ -95,6 +98,8 @@ export default IntroductionScreen = ({navigation}) => {
             <KeyboardAvoidingView>
               <ScrollView contentContainerStyle={styles.container}>
                 <StatusBar color="white" />
+
+                {loading ? <AppLoader /> : null}
                 <View style={styles.introLogoTop}>
                   <Image
                     source={require('../../../assets/images/logo.png')}
@@ -151,21 +156,6 @@ export default IntroductionScreen = ({navigation}) => {
                   )}
                 </View>
 
-                <Text style={styles.policyText}>Don't have an account?</Text>
-                <TouchableOpacity>
-                  <Text
-                    style={{
-                      color: colors.primary,
-                      fontSize: 20,
-                      textDecorationLine: 'underline',
-                    }}
-                    onPress={() => {
-                      navigation.navigate('SignUp');
-                    }}>
-                    JOIN
-                  </Text>
-                </TouchableOpacity>
-
                 {/* Policy statrts here */}
                 <View style={styles.policyWrapper}>
                   <CheckBox
@@ -201,6 +191,21 @@ export default IntroductionScreen = ({navigation}) => {
                   ]}
                   disabled={(!isValid, !agree)}>
                   <Text style={styles.getStartedText}>Login</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.policyText}>Don't have an account?</Text>
+                <TouchableOpacity>
+                  <Text
+                    style={{
+                      color: colors.primary,
+                      fontSize: 20,
+                      textDecorationLine: 'underline',
+                    }}
+                    onPress={() => {
+                      navigation.navigate('SignUp');
+                    }}>
+                    JOIN
+                  </Text>
                 </TouchableOpacity>
               </ScrollView>
             </KeyboardAvoidingView>
