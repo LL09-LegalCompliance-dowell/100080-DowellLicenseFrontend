@@ -54,13 +54,6 @@ const PolicyNavigator = () => {
             headerShown: true,
           }}
         />
-        <Stack.Screen
-          name="Test"
-          component={Test}
-          options={{
-            headerShown: true,
-          }}
-        />
       </Stack.Navigator>
     </>
   );
