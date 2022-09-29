@@ -53,7 +53,6 @@ export default IntroductionScreen = ({navigation}) => {
   const handleLogin = async (values, formikActions) => {
     const url = 'https://100014.pythonanywhere.com/api/register/';
     const res = await axios.post(url, {...values});
-    console.log(res.data);
 
     if (res.data) {
       const signInRes = await axios.post(

@@ -6,6 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import styles from './style';
 import Header from '../../components/Header';
+import AppLoader from '../../components/AppLoader';
 import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
@@ -22,9 +23,7 @@ const Home = ({navigation}) => {
       <Header leftIcon="menu" rightIcon="user" />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Card Component */}
-        <TouchableOpacity
-          style={styles.cardContainer}
-          >
+        <TouchableOpacity style={styles.cardContainer}>
           <Card />
         </TouchableOpacity>
 

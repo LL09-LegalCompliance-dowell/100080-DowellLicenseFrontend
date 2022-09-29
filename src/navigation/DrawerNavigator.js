@@ -10,20 +10,15 @@ import AboutUs from '../screens/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import AgreementComplience from '../screens/AgreementComplience';
 import PolicyNavigator from './PolicyNavigator';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useLogin} from '../context/LoginProvider';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = ({Navigation}) => {
+  const {setIsLoggedIn} = useLogin();
   const Logout = () => {
-    Alert.alert('Loguot', 'Are you sure you want to logout?', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-      },
-    ]);
+    setIsLoggedIn(false);
   };
 
   return (
