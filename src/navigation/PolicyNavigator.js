@@ -9,7 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // agreement compliance screens
 import PolicyGenerator1 from '../screens/PolicyGenerator/PolicyGenerator1';
 import PolicyGenerator2 from '../screens/PolicyGenerator/PolicyGenerator2';
-import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';
+// import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';
 import PolicyGenerator4 from '../screens/PolicyGenerator/PolicyGenerator4';
 import PolicyGenerator5 from '../screens/PolicyGenerator/PolicyGenerator5';
 
