@@ -3,10 +3,12 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginContext = createContext();
+const LicensesContext = createContext();
 
 const LoginProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profile, setProfile] = useState({});
+  const [licenses, setLicenses] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const fetchUser = async () => {
     const token = await AsyncStorage.getItem('token');
@@ -29,18 +31,33 @@ const LoginProvider = ({children}) => {
     }
   };
 
+  const fetchLicenses = async () => {
+    const LicensesData = await axios.get(
+      'https://100080.pythonanywhere.com/api/licenses/',
+    );
+    if (LicensesData.data) {
+      setLicenses(LicensesData.data.data);
+    }
+  };
+
   useEffect(() => {
+    fetchLicenses();
     fetchUser();
   }, []);
 
   return (
-    <LoginContext.Provider
-      value={{isLoggedIn, setIsLoggedIn, profile, setProfile}}>
-      {children}
-    </LoginContext.Provider>
+    <>
+      <LoginContext.Provider
+        value={{isLoggedIn, setIsLoggedIn, loading, setLoading}}>
+        <LicensesContext.Provider value={{licenses, setLicenses}}>
+          {children}
+        </LicensesContext.Provider>
+      </LoginContext.Provider>
+    </>
   );
 };
 
 export const useLogin = () => useContext(LoginContext);
+export const useLicenses = () => useContext(LicensesContext);
 
 export default LoginProvider;
