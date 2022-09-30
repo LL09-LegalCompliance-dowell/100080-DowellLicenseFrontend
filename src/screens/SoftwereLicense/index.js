@@ -150,7 +150,7 @@ const SoftwereLicense = ({navigation}) => {
         <TouchableOpacity
           style={styles.section4Container}
           onPress={() => navigation.navigate('ApacheLicense')}>
-          <Text style={styles.listHeading}>Aparche lisence</Text>
+          <Text style={styles.listHeading}>Apache lisence</Text>
           <View style={styles.VersionDateContainer}>
             <Text style={{color: colors.textDark}}>version 2.0</Text>
             <Text style={{color: colors.textDark, paddingLeft: 5}}>
@@ -163,7 +163,7 @@ const SoftwereLicense = ({navigation}) => {
         <TouchableOpacity
           style={styles.section4Container}
           onPress={() => navigation.navigate('ApacheLicense')}>
-          <Text style={styles.listHeading}>Aparche lisence</Text>
+          <Text style={styles.listHeading}>Apache lisence</Text>
           <View style={styles.VersionDateContainer}>
             <Text style={{color: colors.textDark}}>version 2.0</Text>
             <Text style={{color: colors.textDark, paddingLeft: 5}}>
@@ -177,7 +177,7 @@ const SoftwereLicense = ({navigation}) => {
         <TouchableOpacity
           style={styles.section4Container}
           onPress={() => navigation.navigate('ApacheLicense')}>
-          <Text style={styles.listHeading}>Aparche lisence</Text>
+          <Text style={styles.listHeading}>Apache lisence</Text>
           <View style={styles.VersionDateContainer}>
             <Text style={{color: colors.textDark}}>version 2.0</Text>
             <Text style={{color: colors.textDark, paddingLeft: 5}}>
