@@ -63,7 +63,7 @@ export default IntroductionScreen = ({navigation}) => {
         {username: values.username, password: values.password},
       );
       if (signInRes.data) {
-        setIsLoggedIn(true);
+        setIsLoggedIn(false);
         const token = signInRes.data.access;
         await AsyncStorage.setItem('token', token);
         await AsyncStorage.setItem('username', values.username);

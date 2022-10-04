@@ -1,9 +1,28 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell,
+} from 'react-native-table-component';
 
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
@@ -14,6 +33,9 @@ import {useLicenses} from '../../context/LoginProvider';
 import {useLogin} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
 
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+
 const LicenseCompatibility = () => {
   const {loading, setLoading} = useLogin();
   const [result, setResult] = useState(false);
@@ -21,6 +43,7 @@ const LicenseCompatibility = () => {
   const [feild2, setFeild2] = useState('temp');
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
+  const [isHowto, setHowto] = useState(false);
   const {setLicenses, licenses} = useLicenses();
   const [isCompatible, setIsCompatible] = useState(false);
   const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
@@ -30,18 +53,20 @@ const LicenseCompatibility = () => {
   const [licenseTwo, setLicenseTwo] = useState('');
   const [searchedData, setSearchedData] = useState(licenses);
 
+  const resultTableContent = {
+    tableHead: ['Category', licenseOne, licenseTwo],
+  };
+
   const handleSelectedLicense1 = async () => {
     const name = await AsyncStorage.getItem('licenseNname1');
     setModal1Visible(false);
     setFeild1(name);
-    console.log(name);
   };
 
   const handleSelectedLicense2 = async () => {
     const name = await AsyncStorage.getItem('licenseNname2');
     setModal2Visible(false);
     setFeild2(name);
-    console.log(name);
   };
 
   const fetchResults = async () => {
@@ -71,9 +96,15 @@ const LicenseCompatibility = () => {
         setLoading(false);
         await AsyncStorage.removeItem('licenseEventId1');
         await AsyncStorage.removeItem('licenseEventId2');
+        setFeild1('temp');
+        setFeild2('temp');
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error.error_msg);
+      Alert.alert('Error message', 'error.response', {
+        text: 'OK',
+        onPress: () => console.log('OK Pressed'),
+      });
     }
   };
 
@@ -91,13 +122,17 @@ const LicenseCompatibility = () => {
   return (
     <>
       <View>
+        {/* First Modal start here */}
+
         <Modal
+          propagateSwipe
           isVisible={isModal1Visible}
           animationIn="slideInDown"
           animationOut="slideOutUp"
           animationInTiming={1000}
           animationOutTiming={1000}
           avoidKeyboard={true}
+          backdropTransitionOutTiming={0}
           onBackdropPress={() => setModal1Visible(false)}
           onBackButtonPress={() => setModal1Visible(false)}>
           <View style={[styles.SearchContainer]}>
@@ -151,14 +186,18 @@ const LicenseCompatibility = () => {
             </View>
           </View>
         </Modal>
+        {/* First Modal end here */}
 
+        {/* Second Modal start here */}
         <Modal
+          propagateSwipe
           isVisible={isModal2Visible}
           animationIn="slideInDown"
           animationOut="slideOutUp"
           animationInTiming={1000}
           animationOutTiming={1000}
           avoidKeyboard={true}
+          backdropTransitionOutTiming={0}
           onBackdropPress={() => setModal2Visible(false)}
           onBackButtonPress={() => setModal2Visible(false)}>
           <View style={[styles.SearchContainer]}>
@@ -171,50 +210,95 @@ const LicenseCompatibility = () => {
               // autoFocus={true}
               onChangeText={text => searchLicensesFunction(text)}
             />
-            {searchedData.map(item => {
-              return (
-                <>
-                  <ScrollView
-                    key={item['_id']}
-                    style={styles.serchResultItemContainer}>
-                    <TouchableOpacity
-                      onPress={async () => {
-                        const id_2 = item['_id'];
-                        const eventId_2 = item['eventId'];
-                        const licenseNname_2 =
-                          item['softwarelicense']['license_name'];
-                        await AsyncStorage.setItem(
-                          'licenseId2',
-                          JSON.stringify(id_2),
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseEventId2',
-                          eventId_2,
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseNname2',
-                          licenseNname_2,
-                        );
-                        handleSelectedLicense2();
-                      }}>
-                      <Text style={styles.serchResultHeading}>
-                        {item['softwarelicense']['license_name']}
-                      </Text>
-                      <Text style={styles.serchResultDetails}>
-                        {item['softwarelicense']['description']}
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                  </ScrollView>
-                </>
-              );
-            })}
+            <View style={styles.serchResultContainer}>
+              {searchedData.map(item => {
+                return (
+                  <>
+                    <ScrollView
+                      key={item['_id']}
+                      style={styles.serchResultItemContainer}>
+                      <TouchableOpacity
+                        onPress={async () => {
+                          const id_2 = item['_id'];
+                          const eventId_2 = item['eventId'];
+                          const licenseNname_2 =
+                            item['softwarelicense']['license_name'];
+                          await AsyncStorage.setItem(
+                            'licenseId2',
+                            JSON.stringify(id_2),
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseEventId2',
+                            eventId_2,
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseNname2',
+                            licenseNname_2,
+                          );
+                          handleSelectedLicense2();
+                        }}>
+                        <Text style={styles.serchResultHeading}>
+                          {item['softwarelicense']['license_name']}
+                        </Text>
+                        <Text style={styles.serchResultDetails}>
+                          {item['softwarelicense']['description']}
+                        </Text>
+                        <View style={styles.separator}></View>
+                      </TouchableOpacity>
+                    </ScrollView>
+                  </>
+                );
+              })}
+            </View>
           </View>
+        </Modal>
+        {/* Second Modal end here */}
+        {/* How to Overlay start here */}
+        <Modal
+          propagateSwipe
+          isVisible={isHowto}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          avoidKeyboard={true}
+          onBackdropPress={() => setHowto(false)}
+          onBackButtonPress={() => setHowto(false)}
+          backdropTransitionOutTiming={0}
+          // deviceWidth={deviceWidth / 1.3}
+          onSwipeComplete={() => setHowto(false)}
+          swipeDirection="right"
+          customBackdrop={
+            <TouchableWithoutFeedback onPress={() => setHowto(false)}>
+              <View style={{flex: 1, backgroundColor: 'white'}} />
+            </TouchableWithoutFeedback>
+          }>
+          <>
+            <View style={{backgroundColor: 'white', flex: 1}}>
+              <ScrollView>
+                <TouchableOpacity
+                  style={{marginLeft: 'auto'}}
+                  onPress={() => setHowto(false)}>
+                  <Entypo name="cross" size={40} />
+                </TouchableOpacity>
+                <View style={{alignItems: 'center'}}>
+                  <Text style={[styles.heading, {fontSize: 24}]}>
+                    How to check license compatibility
+                  </Text>
+                  <Text style={[styles.heading]}>1. Search and select the license</Text>
+
+                </View>
+              </ScrollView>
+            </View>
+          </>
         </Modal>
       </View>
 
       {loading ? <AppLoader /> : null}
-      <HowToIcon />
+
+      {feild1 && feild2 == 'temp' ? (
+        <HowToIcon onPress={() => setHowto(true)} />
+      ) : null}
       <Header title="License Compatibility" />
       <View style={styles.container}>
         <Text style={styles.heading}>Check license compatibility below</Text>
@@ -259,11 +343,12 @@ const LicenseCompatibility = () => {
           />
         </View>
         <TouchableOpacity
-          disabled={feild2 && feild1 == 'temp'}
+          disabled={feild1 == 'temp'}
+          // disabled={feild2 == 'temp'}
           style={[
             {
               backgroundColor:
-                feild2 && feild1 == 'temp' ? '#a9a9a9' : '#078F04',
+                feild1 && feild2 == 'temp' ? '#a9a9a9' : '#078F04',
             },
             styles.button,
           ]}
@@ -271,16 +356,71 @@ const LicenseCompatibility = () => {
           <Text style={styles.text}>Check</Text>
         </TouchableOpacity>
         {result ? (
-          <View styles={styles.resultsText}>
-            <Text style={styles.heading}>Results</Text>
-            <Text style={{paddingHorizontal: 10, color: colors.textDark}}>
-              "{licenseOne}" and "{licenseTwo}" are{' '}
-              {isCompatible !== true ? 'not' : null} compatible to each others.
-              The percentage of compatibility is {compatibiltyPercentage}%.
-            </Text>
-            <Text>Disclaimer: {disclaimer}</Text>
-            <Text>Recommendation: {recommendation}</Text>
-          </View>
+          <>
+            <ScrollView>
+              <View styles={styles.resultsText}>
+                <Text style={styles.heading}>Compatibility Results for:</Text>
+                <Text
+                  style={{
+                    paddingHorizontal: 20,
+                    color: colors.textDark,
+                    fontSize: 18,
+                    // marginBottom: 10,
+                  }}>
+                  {licenseOne} and {licenseTwo}
+                </Text>
+                <Text
+                  style={[styles.heading, {textDecorationLine: 'underline'}]}>
+                  Highly recommended-
+                </Text>
+                <Text style={{
+                    paddingHorizontal: 10,
+                    paddingBottom: 10,
+                    fontSize: 18,
+                    // marginBottom: 10,
+                  }}>{compatibiltyPercentage}% compatible based on attribution and can {isCompatible !== 'false' ? 'not' : null} be used together in a project</Text>
+                <Table borderStyle={{borderWidth: 1}}>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={[styles.tableHeaderText, {color: colors.textDark}]}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={styles.tableDatarText}></Row>
+                </Table>
+              </View>
+            </ScrollView>
+            <View style={styles.readMoreContainer}>
+              <Text style={styles.readMoreText}>Read more</Text>
+              <MaterialIcons
+                style={styles.readMoreIcon}
+                name="keyboard-arrow-down"
+                size={40}
+                color={colors.primary}
+              />
+            </View>
+          </>
         ) : null}
       </View>
     </>
