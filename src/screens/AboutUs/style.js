@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
   //   Button
   button: {
-    marginTop: 30,
+    marginVertical: 30,
     alignSelf: 'center',
     backgroundColor: colors.primary,
     justifyContent: 'center',
@@ -63,6 +63,13 @@ const styles = StyleSheet.create({
   imageStyle: {
     alignSelf: 'center',
     marginBottom: 10,
+  },
+  errors: {
+    fontSize: 14,
+    color: 'red',
+    fontWeight: 'bold',
+    marginBottom: 3,
+    marginLeft: 10,
   },
 });
 

@@ -10,6 +10,7 @@ const MyTextInput = ({
   paddingBottom = 0,
   iconSize,
   marginVertical = 10,
+  height = 57,
   ...otherProps
 }) => {
   return (
@@ -19,6 +20,7 @@ const MyTextInput = ({
         {paddingHorizontal: paddingHorizontal},
         {paddingBottom: paddingBottom},
         {marginVertical: marginVertical},
+        {height: height},
       ]}>
       <TextInput style={styles.InputText} {...otherProps} />
       {icon && (
@@ -42,11 +44,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   InputText: {
     fontSize: 20,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
-    color: 'gray',
+    color: colors.textDark,
   },
 });
