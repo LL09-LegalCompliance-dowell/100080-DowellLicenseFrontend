@@ -143,6 +143,7 @@ const LicenseCompatibility = () => {
               placeholder="Search licence"
               style={{paddingLeft: 10}}
               marginVertical={3}
+              placeholderTextColor="gray"
               // autoFocus={true}
               onChangeText={text => searchLicensesFunction(text)}
             />
@@ -208,6 +209,7 @@ const LicenseCompatibility = () => {
               placeholder="Search licence"
               style={{paddingLeft: 10}}
               marginVertical={3}
+              placeholderTextColor="gray"
               // autoFocus={true}
               onChangeText={text => searchLicensesFunction(text)}
             />
@@ -478,9 +480,10 @@ const LicenseCompatibility = () => {
                 </Text>
                 <Text
                   style={{
-                    paddingHorizontal: 10,
+                    paddingHorizontal: 20,
                     paddingBottom: 10,
                     fontSize: 18,
+                    color: colors.textDark,
                     // marginBottom: 10,
                   }}>
                   {compatibiltyPercentage}% compatible based on attribution and
@@ -493,36 +496,54 @@ const LicenseCompatibility = () => {
                     flexArr={[3, 1, 1]}
                     textStyle={[
                       styles.tableHeaderText,
+                      {color: colors.textDark, fontSize: 18},
+                    ]}></Row>
+                  <Row
+                    data={resultTableContent.tableHead}
+                    flexArr={[3, 1, 1]}
+                    textStyle={[
+                      styles.tableDatarText,
                       {color: colors.textDark},
                     ]}></Row>
                   <Row
                     data={resultTableContent.tableHead}
                     flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
+                    textStyle={[
+                      styles.tableDatarText,
+                      {color: colors.textDark},
+                    ]}></Row>
                   <Row
                     data={resultTableContent.tableHead}
                     flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
+                    textStyle={[
+                      styles.tableDatarText,
+                      {color: colors.textDark},
+                    ]}></Row>
                   <Row
                     data={resultTableContent.tableHead}
                     flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
+                    textStyle={[
+                      styles.tableDatarText,
+                      {color: colors.textDark},
+                    ]}></Row>
                   <Row
                     data={resultTableContent.tableHead}
                     flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
+                    textStyle={[
+                      styles.tableDatarText,
+                      {color: colors.textDark},
+                    ]}></Row>
                   <Row
                     data={resultTableContent.tableHead}
                     flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={styles.tableDatarText}></Row>
+                    textStyle={[
+                      styles.tableDatarText,
+                      {color: colors.textDark},
+                    ]}></Row>
                 </Table>
               </View>
             </ScrollView>
-            <View style={styles.readMoreContainer}>
+            <TouchableOpacity style={styles.readMoreContainer}>
               <Text style={styles.readMoreText}>Read more</Text>
               <MaterialIcons
                 style={styles.readMoreIcon}
@@ -530,7 +551,7 @@ const LicenseCompatibility = () => {
                 size={40}
                 color={colors.primary}
               />
-            </View>
+            </TouchableOpacity>
           </>
         ) : null}
       </View>
