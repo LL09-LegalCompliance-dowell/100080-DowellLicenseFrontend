@@ -16,8 +16,8 @@ import {StackActions} from '@react-navigation/native';
 
 export default IntroductionScreen = ({navigation}) => {
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View>
         <SafeAreaView>
           <View style={styles.introLogoTop}>
             <Image
