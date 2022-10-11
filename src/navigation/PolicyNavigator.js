@@ -12,46 +12,54 @@ import PolicyGenerator2 from '../screens/PolicyGenerator/PolicyGenerator2';
 import PolicyGenerator3 from '../screens/PolicyGenerator/PolicyGenerator3';
 import PolicyGenerator4 from '../screens/PolicyGenerator/PolicyGenerator4';
 import PolicyGenerator5 from '../screens/PolicyGenerator/PolicyGenerator5';
+import PolicyIndex from '../screens/PolicyGenerator/PolicyIndex';
 
 const Stack = createNativeStackNavigator();
 
 const PolicyNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName="PolicyGenerator1">
+      <Stack.Navigator initialRouteName="PolicyIndex">
+        <Stack.Screen
+          name="PolicyIndex"
+          component={PolicyIndex}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="PolicyGenerator1"
           component={PolicyGenerator1}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="PolicyGenerator2"
           component={PolicyGenerator2}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="PolicyGenerator3"
           component={PolicyGenerator3}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="PolicyGenerator4"
           component={PolicyGenerator4}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
           name="PolicyGenerator5"
           component={PolicyGenerator5}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
