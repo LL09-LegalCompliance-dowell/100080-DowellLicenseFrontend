@@ -16,6 +16,9 @@ import RadioForm, {
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
 
+import Header from '../../components/Header';
+
+
 const PolicyGenerator3 = () =>{
   const navigation = useNavigation();
   const goNextPage = () =>{
@@ -36,6 +39,7 @@ const PolicyGenerator3 = () =>{
     };
   }
   return (
+    <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={styles.agree}>
         <Text style={styles.boldfont}>Agreement:</Text>
@@ -130,6 +134,7 @@ const PolicyGenerator3 = () =>{
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </>
   );
 }
 

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ModalDatePicker} from 'react-native-material-date-picker';
+
 //Entities
 import IndividualEntity from './IndividualEntity';
 import CompanyEntity from './CompanyEntity';
@@ -21,6 +22,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //Radio Buttons Data
 import {radioButtonsData} from './RadioButtonsData';
+import colors from '../../../assets/colors/colors';
+import Header from '../../components/Header';
 
 const PolicyGenerator = () => {
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
@@ -99,100 +102,113 @@ const PolicyGenerator = () => {
   }, [JSON.stringify(radioButtons), JSON.stringify(radioButtonsTwo)]);
 
   return (
-    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <View style={{position: 'relative', marginTop: 30}}>
-        <Text>Date of execution of Document</Text>
-        <TextInput style={styles.input} value={date} placeholder="dd/mm/yyyy" />
-        <ModalDatePicker
-          button={
-            <View style={styles.calendarPosition}>
-              <EvilIcons name={'calendar'} size={25} />
-            </View>
-          }
-          color="#489503"
-          onSelect={value => setDate(value)}
-          isHideOnSelect={true}
-          initialDate={new Date()}
-        />
-      </View>
-      <View>
-        <Text>Party Details:</Text>
-        <View style={styles.partyDetails}>
-          <Text>Party 1:</Text>
-          <View style={styles.horizontalLine} />
-          <TouchableOpacity onPress={togglePartyOne}>
-            <View style={styles.chevron}>
-              {isPartyOneOpen ? (
-                <MaterialIcons
-                  name={'keyboard-arrow-up'}
-                  size={50}
-                  color={'#000'}
-                />
-              ) : (
-                <MaterialIcons
-                  name={'keyboard-arrow-down'}
-                  size={50}
-                  color={'#000'}
-                />
-              )}
-            </View>
-          </TouchableOpacity>
+    <>
+      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <View style={{position: 'relative', marginTop: 30}}>
+          <Text style={{color: colors.textDark}}>
+            Date of execution of Document
+          </Text>
+          <TextInput
+            style={styles.input}
+            value={date}
+            placeholder="dd/mm/yyyy"
+            placeholderTextColor="gray" 
+          />
+          <ModalDatePicker
+            button={
+              <View style={styles.calendarPosition}>
+                <EvilIcons name={'calendar'} size={25} color="gray"/>
+              </View>
+            }
+            color="#489503"
+            onSelect={value => setDate(value)}
+            isHideOnSelect={true}
+            initialDate={new Date()}
+          />
         </View>
-        <View style={isPartyOneOpen ? '' : styles.hide}>
-          <View styles={styles.formGroup}>
-            <Text>Entity Type:</Text>
-            <View style={styles.radioWrapper}>
-              <RadioGroup
-                radioButtons={radioButtons}
-                onPress={onPressRadioButton}
-                containerStyle={styles.radio}
-              />
-            </View>
+        <View>
+          <Text style={{color: colors.textDark}}>Party Details:</Text>
+          <View style={styles.partyDetails}>
+            <Text style={{color: colors.textDark}}>Party 1:</Text>
+            <View style={styles.horizontalLine} />
+            <TouchableOpacity onPress={togglePartyOne}>
+              <View style={styles.chevron}>
+                {isPartyOneOpen ? (
+                  <MaterialIcons
+                    name={'keyboard-arrow-up'}
+                    size={50}
+                    color={'#000'}
+                  />
+                ) : (
+                  <MaterialIcons
+                    name={'keyboard-arrow-down'}
+                    size={50}
+                    color={'#000'}
+                  />
+                )}
+              </View>
+            </TouchableOpacity>
           </View>
-          <EntityType />
-        </View>
+          <View style={isPartyOneOpen ? '' : styles.hide}>
+            <View styles={styles.formGroup}>
+              <Text style={{color: colors.textDark}}>Entity Type:</Text>
+              <View style={styles.radioWrapper}>
+                <RadioGroup
+                  radioButtons={radioButtons}
+                  onPress={onPressRadioButton}
+                  containerStyle={styles.radio}
+                />
+              </View>
+            </View>
+            <EntityType />
+          </View>
 
-        <View style={styles.partyDetails}>
-          <Text>Party 2:</Text>
-          <View style={styles.horizontalLine} />
-          <TouchableOpacity onPress={togglePartyTwo}>
-            <View style={styles.chevron}>
-              {isPartyTwoOpen ? (
-                <MaterialIcons
-                  name={'keyboard-arrow-up'}
-                  size={50}
-                  color={'#000'}
-                />
-              ) : (
-                <MaterialIcons
-                  name={'keyboard-arrow-down'}
-                  size={50}
-                  color={'#000'}
-                />
-              )}
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={isPartyTwoOpen ? '' : styles.hide}>
-          <View styles={styles.formGroup}>
-            <Text>Entity Type:</Text>
-            <View style={styles.radioWrapper}>
-              <RadioGroup
-                radioButtons={radioButtonsTwo}
-                onPress={onPressRadioButtonTwo}
-                containerStyle={styles.radio}
-              />
-            </View>
+          <View style={styles.partyDetails}>
+            <Text style={{color: colors.textDark}}>Party 2:</Text>
+            <View style={styles.horizontalLine} />
+            <TouchableOpacity onPress={togglePartyTwo}>
+              <View style={styles.chevron}>
+                {isPartyTwoOpen ? (
+                  <MaterialIcons
+                    name={'keyboard-arrow-up'}
+                    size={50}
+                    color={'#000'}
+                  />
+                ) : (
+                  <MaterialIcons
+                    name={'keyboard-arrow-down'}
+                    size={50}
+                    color={'#000'}
+                  />
+                )}
+              </View>
+            </TouchableOpacity>
           </View>
-          <EntityTypeTwo />
+          <View style={isPartyTwoOpen ? '' : styles.hide}>
+            <View styles={styles.formGroup}>
+              <Text style={{color: colors.textDark}}>Entity Type:</Text>
+              <View style={styles.radioWrapper}>
+                <RadioGroup
+                  radioButtons={radioButtonsTwo}
+                  onPress={onPressRadioButtonTwo}
+                  containerStyle={styles.radio}
+                />
+              </View>
+            </View>
+            <EntityTypeTwo />
+          </View>
         </View>
-      </View>
-      <View style={styles.center}>
-        <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
-          <Text style={styles.nextText}>Next Step</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+        {/* <View style={styles.center}>
+          <TouchableOpacity style={styles.nextButton} onPress={goNextPage}>
+            <Text style={styles.nextText}>Next Step</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() =>{
+            navigation.navigate("SoftwereLicensePolicy")} }>
+            <Text style={styles.cancelButton}>Cancel</Text>
+          </TouchableOpacity>
+        </View> */}
+      </ScrollView>
+    </>
   );
 };
 

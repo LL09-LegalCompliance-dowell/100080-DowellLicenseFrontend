@@ -17,6 +17,9 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 import RNPickerSelect from 'react-native-picker-select';
 
+import Header from '../../components/Header';
+
+
 function Chooselaw(){
   return    <RNPickerSelect 
   onValueChange={(value) => console.log(value)}
@@ -64,6 +67,7 @@ const  PolicyGenerator4 = () => {
   
   return (
     <>
+
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false} >
         <View>
           <Text style={styles.boldfont}>Agreement:</Text>

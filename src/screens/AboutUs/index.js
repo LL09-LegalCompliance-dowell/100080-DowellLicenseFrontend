@@ -32,8 +32,8 @@ const ValidationSchema = yup.object().shape({
   message: yup
     .string()
     .min(5, 'Mesaage should be of 2 chars minimum')
-    .max(30, 'Maximum 100 characters allowed')
-    .required('Mesaage is required'),
+    .max(500, 'Maximum 100 characters allowed')
+    .required('Mesasage is required'),
 });
 
 const About = () => {
@@ -44,18 +44,20 @@ const About = () => {
       setLoading(true);
       const url = 'http://100080.pythonanywhere.com/api/contacts/';
       const res = await axios.post(url, {
-        first_name: values.fullname,
+        full_name: values.fullname,
         email: values.email,
         message: values.message,
       });
 
       if (res.data) {
-        console.log(res.data);
         setLoading(false);
+        Alert.alert(
+           'Submitted successfully',
+           'Thanks for your feedback',
+        );
       }
       return res.data;
     } catch (error) {
-      console.log(error.message);
       setLoading(false);
       Alert.alert(
         'Error message',
@@ -63,7 +65,7 @@ const About = () => {
       );
     }
 
-    formikActions.resetForm();
+    formikActions.resetForm(true);
     formikActions.setSubmitting(false);
   };
   return (
