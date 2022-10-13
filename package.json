@@ -1,6 +1,6 @@
 {
-  "name": "DowellLicensesandPolicies",
-  "version": "0.0.1",
+  "name": "legalzard",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -37,7 +37,6 @@
     "react-native-svg": "^13.1.0",
     "react-native-svg-uri": "^1.2.3",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-version": "^4.0.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
