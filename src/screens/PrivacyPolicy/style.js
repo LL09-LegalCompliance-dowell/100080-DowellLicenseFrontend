@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
   icontyle: {
     marginTop: 40,
   },
+  ContentContainer: {
+    backgroundColor: 'white',
+  },
 });
 
 export default styles;
