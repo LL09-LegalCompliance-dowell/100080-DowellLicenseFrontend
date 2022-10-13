@@ -123,6 +123,8 @@ export default IntroductionScreen = ({navigation}) => {
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
                     value={values.username}
+                    placeholderTextColor="gray" 
+
                   />
                   {errors.username && touched.username && (
                     <Text style={styles.errors}>{errors.username}</Text>
@@ -138,6 +140,8 @@ export default IntroductionScreen = ({navigation}) => {
                         onChangeText={handleChange('password')}
                         onBlur={handleBlur('password')}
                         value={values.password}
+                        placeholderTextColor="gray" 
+
                       />
                       <TouchableWithoutFeedback
                         onPress={() => {

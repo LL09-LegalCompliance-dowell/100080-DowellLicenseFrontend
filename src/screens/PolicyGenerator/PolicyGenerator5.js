@@ -12,6 +12,9 @@ import { styles } from "./styles";
 import { ModalDatePicker } from "react-native-material-date-picker";
 import EvilIcons from "react-native-vector-icons/EvilIcons"
 
+import Header from '../../components/Header';
+
+
 
 const  PolicyGenerator5 = () => {
   const navigation = useNavigation();
@@ -24,7 +27,9 @@ const  PolicyGenerator5 = () => {
   }
 
   return (
+    <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+
       <View style={styles.agree}>
         <Text style={styles.boldfont}>Execution:</Text>
         <Text style={styles.normaltext}>
@@ -127,6 +132,7 @@ const  PolicyGenerator5 = () => {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </>
   );
 }
 

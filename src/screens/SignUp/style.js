@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 15,
     width: '100%',
+    backgroundColor: 'white',
+    height: '100%',
   },
   introLogoTop: {
     justifyContent: 'center',

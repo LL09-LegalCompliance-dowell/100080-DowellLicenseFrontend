@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
+    marginBottom: 20,
     alignSelf: 'center',
     // backgroundColor: colors.primary,
     justifyContent: 'center',
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
     marginLeft: 10,
+    color: 'gray',
   },
   inputsTitleText: {
     fontSize: 18,
@@ -136,6 +138,37 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     paddingLeft: 15,
     marginTop: -8,
+  },
+  tableHeaderText: {
+    fontWeight: '800',
+    alignSelf: 'center',
+    paddingVertical: 10,
+    fontSize: 16,
+  },
+  tableDatarText: {
+    fontWeight: '500',
+    alignSelf: 'center',
+    paddingVertical: 10,
+    fontSize: 16,
+  },
+  readMoreContainer: {
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 500,
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    borderRadius: 30,
+  },
+  readMoreText: {
+    color: colors.primary,
+    fontSize: 18,
+    textDecorationLine: 'underline',
+  },
+  readMoreIcon: {
+    marginLeft: 25,
+    paddingHorizontal: -10,
   },
 });
 

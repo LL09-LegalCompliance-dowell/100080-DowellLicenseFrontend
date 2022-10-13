@@ -4,9 +4,9 @@ import IoniMaterialCommunityIconscons from 'react-native-vector-icons/MaterialCo
 
 import colors from '../../../assets/colors/colors';
 
-const HelpIcon = () => {
+const HelpIcon = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.miniContainer}>
         <IoniMaterialCommunityIconscons name="help" size={25} color={colors.primary} />
       </View>
