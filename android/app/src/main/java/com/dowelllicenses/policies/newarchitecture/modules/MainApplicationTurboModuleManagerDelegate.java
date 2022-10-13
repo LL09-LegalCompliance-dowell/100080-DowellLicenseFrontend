@@ -1,4 +1,4 @@
-package com.legalzard.licences.newarchitecture.modules;
+package com.dowelllicenses.policies.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

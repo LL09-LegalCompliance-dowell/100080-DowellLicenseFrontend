@@ -1,4 +1,4 @@
-package com.legalzard.licences.newarchitecture;
+package com.dowelllicenses.policies.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.legalzard.licences.BuildConfig;
-import com.legalzard.licences.newarchitecture.components.MainComponentsRegistry;
-import com.legalzard.licences.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.dowelllicenses.policies.BuildConfig;
+import com.dowelllicenses.policies.newarchitecture.components.MainComponentsRegistry;
+import com.dowelllicenses.policies.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
