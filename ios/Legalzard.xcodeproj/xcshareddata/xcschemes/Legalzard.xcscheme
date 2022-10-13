@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "DowellLicensesandPolicies.app"
-               BlueprintName = "DowellLicensesandPolicies"
-               ReferencedContainer = "container:DowellLicensesandPolicies.xcodeproj">
+               BuildableName = "Legalzard.app"
+               BlueprintName = "Legalzard"
+               ReferencedContainer = "container:Legalzard.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "DowellLicensesandPoliciesTests.xctest"
-               BlueprintName = "DowellLicensesandPoliciesTests"
-               ReferencedContainer = "container:DowellLicensesandPolicies.xcodeproj">
+               BuildableName = "LegalzardTests.xctest"
+               BlueprintName = "LegalzardTests"
+               ReferencedContainer = "container:Legalzard.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DowellLicensesandPolicies.app"
-            BlueprintName = "DowellLicensesandPolicies"
-            ReferencedContainer = "container:DowellLicensesandPolicies.xcodeproj">
+            BuildableName = "Legalzard.app"
+            BlueprintName = "Legalzard"
+            ReferencedContainer = "container:Legalzard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "DowellLicensesandPolicies.app"
-            BlueprintName = "DowellLicensesandPolicies"
-            ReferencedContainer = "container:DowellLicensesandPolicies.xcodeproj">
+            BuildableName = "Legalzard.app"
+            BlueprintName = "Legalzard"
+            ReferencedContainer = "container:Legalzard.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
