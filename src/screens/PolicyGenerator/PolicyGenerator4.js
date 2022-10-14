@@ -47,6 +47,8 @@ const Jurisdiction = () => {
 }
 
 const  PolicyGenerator4 = () => {
+  var [date, setDate] = useState([radio_props]);
+
   const navigation = useNavigation();
   const goNextPage = () =>{
     navigation.navigate("Generate Policies", {
@@ -58,7 +60,6 @@ const  PolicyGenerator4 = () => {
     { label: "day / ", value: 0 },
     { label: "month ", value: 1 },
   ];
-  var [date, setDate] = useState([radio_props]);
   function initState() {
     return {
       value: 0,
