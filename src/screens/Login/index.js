@@ -11,6 +11,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
@@ -68,8 +69,13 @@ export default IntroductionScreen = ({navigation}) => {
       }
       return res.data;
     } catch (error) {
-      console.log(error);
-      setErrorMessage('User does not exist with this email and password');
+      await console.log(error.response.data['detail']);
+      await setLoading(false);
+      Alert.alert(
+        'Error message',
+        `${error.response.data['detail']}`
+      );
+      // setErrorMessage('User does not exist with this email and password');
     }
 
     formikActions.resetForm();
@@ -123,8 +129,7 @@ export default IntroductionScreen = ({navigation}) => {
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
                     value={values.username}
-                    placeholderTextColor="gray" 
-
+                    placeholderTextColor="gray"
                   />
                   {errors.username && touched.username && (
                     <Text style={styles.errors}>{errors.username}</Text>
@@ -140,8 +145,7 @@ export default IntroductionScreen = ({navigation}) => {
                         onChangeText={handleChange('password')}
                         onBlur={handleBlur('password')}
                         value={values.password}
-                        placeholderTextColor="gray" 
-
+                        placeholderTextColor="gray"
                       />
                       <TouchableWithoutFeedback
                         onPress={() => {

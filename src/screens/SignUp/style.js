@@ -1,14 +1,18 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
+import {Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'center',
     paddingHorizontal: 15,
-    width: '100%',
+    width: width,
     backgroundColor: 'white',
-    height: '100%',
+    height: height,
   },
   introLogoTop: {
     justifyContent: 'center',
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
     height: 101,
   },
   titlesWrapper: {
-    marginTop: 35,
+    marginTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -32,7 +36,7 @@ const styles = StyleSheet.create({
   },
   policyWrapper: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 18,
     marginHorizontal: 30,
     justifyContent: 'center',
     alignItems: 'center',
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Regular',
     fontSize: 20,
     textAlign: 'center',
-    marginTop: 15,
+    marginTop: 14,
     color: colors.textDark,
   },
 
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
 
   inputsContainer: {
     width: '100%',
-    marginTop: 60,
+    marginTop: 45,
   },
 
   passwordInputsContainer: {
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   getStarted: {
-    marginTop: 45,
+    marginTop: 40,
     backgroundColor: colors.primary,
     borderRadius: 10,
     // paddingVertical: 12,

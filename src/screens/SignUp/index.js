@@ -11,6 +11,7 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
@@ -23,7 +24,6 @@ import styles from './style';
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
-
 
 import {useLogin} from '../../context/LoginProvider';
 
@@ -53,25 +53,36 @@ export default IntroductionScreen = ({navigation}) => {
   };
 
   const handleLogin = async (values, formikActions) => {
-    setLoading(true);
-    const url = 'https://100014.pythonanywhere.com/api/register/';
-    const res = await axios.post(url, {...values});
+    try {
+      setLoading(true);
+      const url = 'https://100014.pythonanywhere.com/api/registe/';
+      const res = await axios.post(url, {...values});
 
-    if (res.data) {
-      const signInRes = await axios.post(
-        'https://100014.pythonanywhere.com/api/token/',
-        {username: values.username, password: values.password},
-      );
-      if (signInRes.data) {
-        setIsLoggedIn(false);
-        const token = signInRes.data.access;
-        await AsyncStorage.setItem('token', token);
-        await AsyncStorage.setItem('username', values.username);
-        await AsyncStorage.setItem('password', values.password);
+      if (res.data) {
+        await navigation.navigate('Login');
         setLoading(false);
-
       }
-      return signInRes.data;
+      // if (res.data) {
+      //   const signInRes = await axios.post(
+      //     'https://100014.pythonanywhere.com/api/token/',
+      //     {username: values.username, password: values.password},
+      //   );
+      //   if (signInRes.data) {
+      //     setIsLoggedIn(false);
+      //     const token = signInRes.data.access;
+      //     await AsyncStorage.setItem('token', token);
+      //     await AsyncStorage.setItem('username', values.username);
+      //     await AsyncStorage.setItem('password', values.password);
+      //     setLoading(false);
+      //   }
+      //   return signInRes.data;
+      // }
+    } catch (error) {
+      setLoading(false);
+      Alert.alert(
+        'Error message',
+        'There is something wrong, please try again later',
+      );
     }
 
     formikActions.resetForm();
@@ -124,7 +135,7 @@ export default IntroductionScreen = ({navigation}) => {
                     onChangeText={handleChange('username')}
                     onBlur={handleBlur('username')}
                     value={values.username}
-                    placeholderTextColor="gray" 
+                    placeholderTextColor="gray"
                   />
                   {errors.username && touched.username && (
                     <Text style={styles.errors}>{errors.username}</Text>
@@ -140,7 +151,7 @@ export default IntroductionScreen = ({navigation}) => {
                         onChangeText={handleChange('password')}
                         onBlur={handleBlur('password')}
                         value={values.password}
-                        placeholderTextColor="gray" 
+                        placeholderTextColor="gray"
                       />
                       <TouchableWithoutFeedback
                         onPress={() => {
@@ -159,7 +170,6 @@ export default IntroductionScreen = ({navigation}) => {
                   )}
                 </View>
 
-                
                 {/* Policy statrts here */}
                 <View style={styles.policyWrapper}>
                   <CheckBox
@@ -209,10 +219,30 @@ export default IntroductionScreen = ({navigation}) => {
                     // },
                   ]}
                   // disabled={(!isValid, !agree)}
-                  >
+                >
                   <Text style={styles.getStartedText}>Full SignUp</Text>
                 </TouchableOpacity>
-
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                  }}>
+                  <Text style={[styles.policyText]}>Back to </Text>
+                  <TouchableOpacity>
+                    <Text
+                      style={{
+                        color: colors.primary,
+                        fontSize: 20,
+                        textDecorationLine: 'underline',
+                        marginTop: 13,
+                      }}
+                      onPress={() => {
+                        navigation.navigate('Login');
+                      }}>
+                      Login
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </ScrollView>
             </KeyboardAvoidingView>
           </>

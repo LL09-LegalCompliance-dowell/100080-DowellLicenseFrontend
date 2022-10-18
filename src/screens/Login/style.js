@@ -1,14 +1,17 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
+import {Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     alignItems: 'center',
     paddingHorizontal: 15,
-    width: '100%',
+    width: width,
     backgroundColor: 'white',
-    height: '100%',
+    height: height,
   },
   introLogoTop: {
     justifyContent: 'center',
