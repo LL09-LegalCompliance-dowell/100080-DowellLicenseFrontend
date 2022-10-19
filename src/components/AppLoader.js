@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ImageBackground: 'rgba(0,0,0, 0.3)',
-    zIndex: 1000,
+    zIndex: 10,
   },
 });
