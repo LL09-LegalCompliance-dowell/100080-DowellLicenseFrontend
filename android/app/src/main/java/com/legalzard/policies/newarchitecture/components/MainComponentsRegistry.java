@@ -1,4 +1,4 @@
-package com.dowelllicenses.policies.newarchitecture.components;
+package com.legalzard.policies.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

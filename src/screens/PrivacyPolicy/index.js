@@ -52,8 +52,8 @@ const PrivacyPolicy = () => {
           color={colors.primary}
           style={styles.icontyle}
         />
-<View style={styles.ContentContainer}>
-        <RenderHtml contentWidth={width} source={source} />
+        <View style={styles.ContentContainer}>
+          <RenderHtml contentWidth={width} source={source} />
         </View>
       </ScrollView>
     </>

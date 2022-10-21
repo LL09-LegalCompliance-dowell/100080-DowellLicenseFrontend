@@ -1,4 +1,4 @@
-package com.dowelllicenses.policies;
+package com.legalzard.policies;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

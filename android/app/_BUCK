@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.dowelllicenses.policies",
+    package = "com.legalzard.policies",
 )
 
 android_resource(
     name = "res",
-    package = "com.dowelllicenses.policies",
+    package = "com.legalzard.policies",
     res = "src/main/res",
 )
 
