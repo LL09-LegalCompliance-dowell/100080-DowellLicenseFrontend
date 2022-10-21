@@ -39,7 +39,7 @@ const LoginProvider = ({children}) => {
   };
 
   useEffect(() => {
-    fetchUserAndLicense();
+    // fetchUserAndLicense();
   }, []);
 
   return (

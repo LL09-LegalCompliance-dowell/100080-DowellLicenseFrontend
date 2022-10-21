@@ -1,40 +1,65 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Memorandum from '../screens/PolicyGenerator/MemorandumUnderstanding';
-import Memorandum1 from '../screens/PolicyGenerator/MemorandumUnderstanding1';
-import Memorandum2 from '../screens/PolicyGenerator/MemorandumUnderstanding2';
+import {View, Text} from 'react-native';
+import React from 'react';
+import MOU1 from '../screens/PolicyGenerator/MOU/MOU1';
+import MOU2 from '../screens/PolicyGenerator/MOU/MOU2';
+import MOU3 from '../screens/PolicyGenerator/MOU/MOU3';
+import MOU4 from '../screens/PolicyGenerator/MOU/MOU4';
+import MOU5 from '../screens/PolicyGenerator/MOU/MOU5';
+import MOU6 from '../screens/PolicyGenerator/MOU/MOU6';
+
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator() ;
+const Stack = createNativeStackNavigator();
 
 const MemorandumNavigator = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName='Memorandum'>
-      <Stack.Screen
-          name="Memorandum"
-          component={Memorandum}
+      <Stack.Navigator initialRouteName="MOU1">
+        <Stack.Screen
+          name="MOU1"
+          component={MOU1}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
-          name="Memorandum1"
-          component={Memorandum1}
+          name="MOU2"
+          component={MOU2}
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
         />
         <Stack.Screen
-          name="Memorandum2"
-          component={Memorandum2}
+          name="MOU3"
+          component={MOU3}
           options={{
-            headerShown: true,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MOU4"
+          component={MOU4}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MOU5"
+          component={MOU5}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MOU6"
+          component={MOU6}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
     </>
-  )
-}
+  );
+};
 
-export default MemorandumNavigator
+export default MemorandumNavigator;

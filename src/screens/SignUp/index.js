@@ -108,6 +108,7 @@ export default IntroductionScreen = ({navigation}) => {
       }) => {
         return (
           <>
+          
             <KeyboardAvoidingView>
               <ScrollView contentContainerStyle={styles.container}>
                 <StatusBar color="white" />
@@ -210,7 +211,7 @@ export default IntroductionScreen = ({navigation}) => {
                 {/*Full registration Button */}
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('SignUp');
+                    navigation.navigate('FullSignUp');
                   }}
                   style={[
                     styles.getStartedd,
