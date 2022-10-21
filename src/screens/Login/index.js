@@ -69,7 +69,7 @@ export default IntroductionScreen = ({navigation}) => {
       }
       return res.data;
     } catch (error) {
-      await console.log(error.response.data['detail']);
+      // await console.log(error.response.data['detail']);
       await setLoading(false);
       Alert.alert(
         'Error message',

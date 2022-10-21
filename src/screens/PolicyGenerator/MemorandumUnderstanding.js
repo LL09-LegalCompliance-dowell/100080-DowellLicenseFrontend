@@ -1,14 +1,11 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
-import ProgressStepper from "./ProgressSteps";
-import { ScreenStackHeaderBackButtonImage } from "react-native-screens";
-import { styles } from "./styles";
+import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useLayoutEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import ProgressStepper from './ProgressSteps';
+import {ScreenStackHeaderBackButtonImage} from 'react-native-screens';
+import {styles} from './styles';
 
-import {
-  EyeIcon,
-  QuestionMarkCircleIcon,
-} from "react-native-heroicons/outline";
+import {EyeIcon, QuestionMarkCircleIcon} from 'react-native-heroicons/outline';
 
 const Memorandum = () => {
   const navigation = useNavigation();
@@ -17,10 +14,10 @@ const Memorandum = () => {
       headerShown: true,
       SpecificRoute: {
         screen: ProgressStepper,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: ({navigation}) => ({
           headerLeft: (
             <ScreenStackHeaderBackButtonImage
-              onPress={(_) => navigation.navigate("Somewhere")}
+              onPress={_ => navigation.navigate('Somewhere')}
             />
           ),
         }),
@@ -30,11 +27,11 @@ const Memorandum = () => {
   return (
     <View style={styles.wrapper}>
       <Text>
-      We help with the legal requirements, so you can focus on the business. 
-Below is the sample for Software License Policy Template.{" "}
+        We help with the legal requirements, so you can focus on the business.
+        Below is the sample for Software License Policy Template.{' '}
       </Text>
       <View style={styles.imageWrapper}>
-        <Image source={require("../../../assets/images/imagememo.png")} />
+        <Image source={require('../../../assets/images/imagememo.png')} />
         <TouchableOpacity style={styles.centerLink}>
           <Text style={styles.imageText}>
             <EyeIcon size={20} color="green" /> View Sample
@@ -54,7 +51,7 @@ Below is the sample for Software License Policy Template.{" "}
           </Text>
         </View>
         <View style={styles.center}>
-          <Text style={{ justifyContent: "center", fontSize: 13 }}>
+          <Text style={{justifyContent: 'center', fontSize: 13}}>
             Get your documents and make your site or app compliant in minutes
           </Text>
         </View>
