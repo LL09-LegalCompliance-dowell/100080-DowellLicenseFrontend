@@ -29,7 +29,7 @@ const LoginProvider = ({children}) => {
       );
       if (signInRes.data) {
         setIsLoggedIn(true);
-        // const token = signInRes.data.access;
+        const token = signInRes.data.access;
       } else {
         setIsLoggedIn(false);
       }
@@ -39,7 +39,7 @@ const LoginProvider = ({children}) => {
   };
 
   useEffect(() => {
-    // fetchUserAndLicense();
+    fetchUserAndLicense();
   }, []);
 
   return (

@@ -1,19 +1,19 @@
-import {ScrollView, StyleSheet, Text} from 'react-native';
-import React from 'react';
+import {StyleSheet} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+
 import {WebView} from 'react-native-webview';
-import AppLoader from '../../components/AppLoader';
-import {useLogin} from '../../context/LoginProvider';
+const URL =
+  'https://100014.pythonanywhere.com/register';
 
-const FullSignUp = () => {
-  const {loading, setLoading} = useLogin();
-
+const FullSignUp = ({navigation}) => {
+  
   return (
     <>
-      {loading ? <AppLoader /> : null}
       <WebView
-        source={{uri: 'https://100014.pythonanywhere.com/register'}}
-        onLoadStart={()=>setLoading(true)}
-        onLoadEnd={()=>setLoading(false)}
+      startInLoadingState
+        source={{
+          uri: URL,
+        }}
       />
     </>
   );

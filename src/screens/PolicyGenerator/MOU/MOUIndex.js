@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import ProgressSteps from './ProgressSteps';
 
-const PolicyIndex = () => {
+const MOUIndex = () => {
   return (
     <>
       <ProgressSteps />
@@ -12,6 +12,6 @@ const PolicyIndex = () => {
   );
 };
 
-export default PolicyIndex;
+export default MOUIndex;
 
 const styles = StyleSheet.create({});
