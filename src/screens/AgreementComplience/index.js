@@ -114,9 +114,11 @@ const AgreementComplience = ({navigation}) => {
           </View>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer} onPress={() =>{
-            navigation.navigate("MOU")
-          }}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => {
+              navigation.navigate('MOU');
+            }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -128,9 +130,11 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer} onPress={() =>{
-            navigation.navigate("NDA")
-          }}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => {
+              navigation.navigate('NDA');
+            }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -142,9 +146,11 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer} onPress={() =>{
-            navigation.navigate("GDPR Privacy Policy")
-          }}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => {
+              navigation.navigate('GDPR Privacy Policy');
+            }}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"

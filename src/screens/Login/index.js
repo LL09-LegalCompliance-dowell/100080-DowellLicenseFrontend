@@ -43,15 +43,14 @@ const loginValidationSchema = yup.object().shape({
     ),
 });
 
-export default IntroductionScreen = ({navigation}) => {
+export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const {setIsLoggedIn, loading, setLoading} = useLogin();
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const passwordHideShow = () => {
-    <TouchableOpacity onPress={() => setIsSecureEntry(true)} />;
-  };
+  const {id, successValue} = route.params;
+  
+  // console.log(id);
+  // console.log(successValue);
 
   const handleLogin = async (values, formikActions) => {
     try {
@@ -71,10 +70,7 @@ export default IntroductionScreen = ({navigation}) => {
     } catch (error) {
       // await console.log(error.response.data['detail']);
       await setLoading(false);
-      Alert.alert(
-        'Error message',
-        `${error.response.data['detail']}`
-      );
+      Alert.alert('Error message', `${error.response.data['detail']}`);
       // setErrorMessage('User does not exist with this email and password');
     }
 
@@ -169,8 +165,10 @@ export default IntroductionScreen = ({navigation}) => {
                   <CheckBox
                     disabled={false}
                     value={agree}
-                    onValueChange={() => setAgree(!agree)}
-                    tintColor={agree ? '#078F04' : undefined}
+                    onValueChange={setAgree(id)}
+                    tintColor={
+                      agree && successValue == 'true' ? '#078F04' : undefined
+                    }
                     style={styles.checkbox}
                   />
                   <Text style={styles.policyText}>

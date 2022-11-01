@@ -5,7 +5,7 @@ import MOU2 from '../screens/PolicyGenerator/MOU/MOU2';
 import MOU3 from '../screens/PolicyGenerator/MOU/MOU3';
 import MOU4 from '../screens/PolicyGenerator/MOU/MOU4';
 import MOU5 from '../screens/PolicyGenerator/MOU/MOU5';
-import MOU6 from '../screens/PolicyGenerator/MOU/MOU6';
+import MOUIndex from '../screens/PolicyGenerator/MOU/MOUIndex';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -51,8 +51,8 @@ const MemorandumNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="MOU6"
-          component={MOU6}
+          name="MOUIndex"
+          component={MOUIndex}
           options={{
             headerShown: false,
           }}

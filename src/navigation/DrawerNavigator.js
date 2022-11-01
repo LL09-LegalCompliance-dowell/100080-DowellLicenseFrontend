@@ -12,6 +12,7 @@ import AgreementComplience from '../screens/AgreementComplience';
 import PolicyNavigator from './PolicyNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useLogin} from '../context/LoginProvider';
+import CustomSideBar from './CustomSideBar';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,6 +25,7 @@ const DrawerNavigation = ({Navigation}) => {
   return (
     <>
       <Drawer.Navigator
+        // drawerContent={props => <CustomSideBar {...props} />}
         screenOptions={{headerShown: true}}
         initialRouteName="Home">
         <Drawer.Screen
@@ -55,7 +57,7 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        
+
         <Drawer.Screen
           name="Contact Us"
           component={AboutUs}
