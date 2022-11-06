@@ -1,38 +1,43 @@
-import {StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Alert, ActivityIndicator} from 'react-native';
 import React, {useRef, useEffect} from 'react';
 import jwt from 'jwt-decode';
+import axios from 'axios';
+import AppLoader from '../../components/AppLoader';
+import {useLogin} from '../../context/LoginProvider';
 
 import {WebView} from 'react-native-webview';
 const URL =
-  'https://100087.pythonanywhere.com/policy/FB1010000000001665306290565391/website-privacy-policy/?redirect_url=http://127.0.0.1/callback';
+  'https://100087.pythonanywhere.com/tkr-policy/FB1010000000001665306290565391/app-privacy-policy/?redirect_url=http://127.0.0.1:8000/callbackurl&policy_request_id=FB101000000000166530629056539143455595959';
 
 const PrivacyPolicy = ({navigation}) => {
-  const webViewRef = useRef();
+  const {setIsLoggedIn, loading, setLoading} = useLogin();
 
+  const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     try {
-      const getSearchParamFromURL = (url, param) => {
-        const include = url.includes(param);
+      // const getSearchParamFromURL = (url, param) => {
+      //   const include = url.includes(param);
 
-        if (!include) return null;
+      //   if (!include) return null;
 
-        const params = url.split(/([?,=])/);
-        const index = params.indexOf(param);
-        const value = params[index + 2];
-        return value;
-      };
+      //   const params = url.split(/([?,=])/);
+      //   const index = params.indexOf(param);
+      //   const value = params[index + 2];
+      //   return value;
+      // };
 
-      if (
-        url ==
-        'http://127.0.0.1/callback?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfZXZlbnRfaWQiOiJGQjEwMTAwMDAwMDAwMDE2NjUzMDYyOTA1NjUzOTEiLCJpc1N1Y2Nlc3MiOnRydWV9.sEuCedT9mUQqtbg--7e5E6SIgWoT_MGksVMl-RLBL3c'
-      ) {
-        const token = getSearchParamFromURL(url, 'token');
-        const decodedToken = jwt(token);
+      if (url == 'http://127.0.0.1:8000/callbackurl') {
+        // const token = getSearchParamFromURL(url, 'token');
+        // const decodedToken = jwt(token);
 
-        const id = decodedToken.isSuccess;
-        const successValue = decodedToken.app_event_id;
+        // const id = decodedToken.isSuccess;
+        // const successValue = decodedToken.app_event_id;
+        // await setLoading(true);
 
-        navigation.navigate('Login', {id, successValue});
+        
+        // setLoading(false);
+        navigation.navigate('Loading');
+        // 
       }
     } catch (error) {
       Alert.alert('Error message', `${error}`);
@@ -48,9 +53,9 @@ const PrivacyPolicy = ({navigation}) => {
         }}
         startInLoadingState
         onNavigationStateChange={NavigationHandler}
-        originWhitelist={['*']}
-        javaScriptEnabledAndroid={true}
-        javaScriptEnabled={true}
+        // originWhitelist={['*']}
+        // javaScriptEnabledAndroid={true}
+        // javaScriptEnabled={true}
       />
     </>
   );

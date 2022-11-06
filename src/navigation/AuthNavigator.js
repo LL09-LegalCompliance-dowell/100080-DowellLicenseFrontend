@@ -7,7 +7,9 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
 import FullSignUp from '../screens/SignUp/FullSignUp';
+import Loading from '../screens/PrivacyPolicy/Loading';
 
+Loading;
 const Auth = createNativeStackNavigator();
 
 const AuthNavigator = () => {
@@ -47,6 +49,13 @@ const AuthNavigator = () => {
         <Auth.Screen
           name="FullSignUp"
           component={FullSignUp}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="Loading"
+          component={Loading}
           options={{
             headerShown: false,
           }}
