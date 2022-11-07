@@ -36,7 +36,7 @@ export default IntroductionScreen = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.dispatch(StackActions.replace('Login', {}));
+            navigation.dispatch(StackActions.replace('EmbededLogin', {}));
           }}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Get Started</Text>

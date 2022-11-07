@@ -8,7 +8,11 @@ const Loading = ({navigation}) => {
       'https://100087.pythonanywhere.com/api/tkr-legalpolicies/FB101000000000166530629056539143455595959/',
     );
     const {i_agree, isSuccess, policy_request_id} = res.data;
-    navigation.navigate('Login', {i_agree, isSuccess, policy_request_id});
+    navigation.navigate('EmbededLogin', {
+      i_agree,
+      isSuccess,
+      policy_request_id,
+    });
   };
 
   useEffect(() => {
