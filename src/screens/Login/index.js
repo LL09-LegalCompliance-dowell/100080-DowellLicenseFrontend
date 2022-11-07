@@ -47,10 +47,8 @@ export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
   const {setIsLoggedIn, loading, setLoading} = useLogin();
-  const {id, successValue} = route.params;
-  
-  // console.log(id);
-  // console.log(successValue);
+  const {i_agree, isSuccess, policy_request_id} = route.params;
+
 
   const handleLogin = async (values, formikActions) => {
     try {
@@ -165,10 +163,8 @@ export default IntroductionScreen = ({route, navigation}) => {
                   <CheckBox
                     disabled={false}
                     value={agree}
-                    onValueChange={setAgree(id)}
-                    tintColor={
-                      agree && successValue == 'true' ? '#078F04' : undefined
-                    }
+                    onValueChange={setAgree(i_agree)}
+                    tintColor={agree ? '#078F04' : undefined}
                     style={styles.checkbox}
                   />
                   <Text style={styles.policyText}>
