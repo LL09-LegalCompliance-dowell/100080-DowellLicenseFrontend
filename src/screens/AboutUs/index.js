@@ -102,16 +102,16 @@ const About = () => {
                         color={colors.primary}
                       />
                       <Text style={styles.contactText}>
-                        2912 Meadoebook Road Loss Angeles CA, 90017
+                        Level 42, Six Battery Road Singapore-049909
                       </Text>
                     </View>
                     <View style={styles.contactItem}>
                       <AntDesign name="mail" size={30} color={colors.primary} />
-                      <Text style={styles.contactText}>Lorem@gmail.com</Text>
+                      <Text style={styles.contactText}>livinglabfinance@dowellrsearch.sg</Text>
                     </View>
                     <View style={styles.contactItem}>
                       <Feather name="phone" size={30} color={colors.primary} />
-                      <Text style={styles.contactText}>310-383-7872</Text>
+                      <Text style={styles.contactText}>65 6232 2314</Text>
                     </View>
                   </View>
                   <Text style={styles.heading}>Write to us</Text>

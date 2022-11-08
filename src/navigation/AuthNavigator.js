@@ -10,6 +10,7 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import Loading from '../screens/PrivacyPolicy/Loading';
 import EmbededLogin from '../screens/Login/EmbededLogin';
 import WebView from '../screens/Login/WebView';
+import RootNavigator from "./RootNavigator";
 
 Loading;
 const Auth = createNativeStackNavigator();
@@ -27,13 +28,13 @@ const AuthNavigator = () => {
             headerShown: false,
           }}
         />
-        {/* <Auth.Screen
-          name="Login"
-          component={Login}
+        <Auth.Screen
+          name="RootNavigator"
+          component={RootNavigator}
           options={{
             headerShown: false,
           }}
-        /> */}
+        /> 
         <Auth.Screen
           name="PrivacyPolicy"
           component={PrivacyPolicy}
