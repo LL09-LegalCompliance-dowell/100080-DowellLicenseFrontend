@@ -3,11 +3,13 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import IntroductionScreen from '../screens/IntroductionScreen';
-import Login from '../screens/Login';
-import SignUp from '../screens/SignUp';
+// import Login from '../screens/Login';
+// import SignUp from '../screens/SignUp';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
-import FullSignUp from '../screens/SignUp/FullSignUp';
+// import FullSignUp from '../screens/SignUp/FullSignUp';
 import Loading from '../screens/PrivacyPolicy/Loading';
+import EmbededLogin from '../screens/Login/EmbededLogin';
+import WebView from '../screens/Login/WebView';
 
 Loading;
 const Auth = createNativeStackNavigator();
@@ -25,13 +27,13 @@ const AuthNavigator = () => {
             headerShown: false,
           }}
         />
-        <Auth.Screen
+        {/* <Auth.Screen
           name="Login"
           component={Login}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
         <Auth.Screen
           name="PrivacyPolicy"
           component={PrivacyPolicy}
@@ -39,23 +41,37 @@ const AuthNavigator = () => {
             headerShown: false,
           }}
         />
-        <Auth.Screen
+        {/* <Auth.Screen
           name="SignUp"
           component={SignUp}
           options={{
             headerShown: false,
           }}
-        />
-        <Auth.Screen
+        /> */}
+        {/* <Auth.Screen
           name="FullSignUp"
           component={FullSignUp}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
         <Auth.Screen
           name="Loading"
           component={Loading}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="EmbededLogin"
+          component={EmbededLogin}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="WebView"
+          component={WebView}
           options={{
             headerShown: false,
           }}

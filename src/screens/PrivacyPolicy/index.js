@@ -6,6 +6,7 @@ import AppLoader from '../../components/AppLoader';
 import {useLogin} from '../../context/LoginProvider';
 
 import {WebView} from 'react-native-webview';
+import {View} from 'react-native';
 const URL =
   'https://100087.pythonanywhere.com/tkr-policy/FB1010000000001665306290565391/app-privacy-policy/?redirect_url=http://127.0.0.1:8000/callbackurl&policy_request_id=FB101000000000166530629056539143455595959';
 
@@ -34,10 +35,9 @@ const PrivacyPolicy = ({navigation}) => {
         // const successValue = decodedToken.app_event_id;
         // await setLoading(true);
 
-        
         // setLoading(false);
         navigation.navigate('Loading');
-        // 
+        //
       }
     } catch (error) {
       Alert.alert('Error message', `${error}`);
@@ -47,16 +47,16 @@ const PrivacyPolicy = ({navigation}) => {
   return (
     <>
       <WebView
-        ref={webViewRef}
-        source={{
-          uri: URL,
-        }}
-        startInLoadingState
-        onNavigationStateChange={NavigationHandler}
-        // originWhitelist={['*']}
-        // javaScriptEnabledAndroid={true}
-        // javaScriptEnabled={true}
-      />
+          ref={webViewRef}
+          source={{
+            uri: URL,
+          }}
+          startInLoadingState
+          onNavigationStateChange={NavigationHandler}
+          // originWhitelist={['*']}
+          // javaScriptEnabledAndroid={true}
+          // javaScriptEnabled={true}
+        />
     </>
   );
 };
@@ -66,5 +66,7 @@ export default PrivacyPolicy;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
