@@ -18,24 +18,24 @@ const LoginProvider = ({children}) => {
       setLicenses(LicensesData.data.data);
     }
 
-    const token = await AsyncStorage.getItem('token');
-    const username = await AsyncStorage.getItem('username');
-    const password = await AsyncStorage.getItem('password');
+    // const token = await AsyncStorage.getItem('token');
+    // const username = await AsyncStorage.getItem('username');
+    // const password = await AsyncStorage.getItem('password');
 
-    if (token !== null) {
-      const signInRes = await axios.post(
-        'https://100014.pythonanywhere.com/api/token/',
-        {username: username, password: password},
-      );
-      if (signInRes.data) {
-        setIsLoggedIn(true);
-        const token = signInRes.data.access;
-      } else {
-        setIsLoggedIn(false);
-      }
-    } else {
-      setIsLoggedIn(false);
-    }
+    // if (token !== null) {
+    //   const signInRes = await axios.post(
+    //     'https://100014.pythonanywhere.com/api/token/',
+    //     {username: username, password: password},
+    //   );
+    //   if (signInRes.data) {
+    //     setIsLoggedIn(true);
+    //     const token = signInRes.data.access;
+    //   } else {
+    //     setIsLoggedIn(false);
+    //   }
+    // } else {
+    //   setIsLoggedIn(false);
+    // }
   };
 
   useEffect(() => {
