@@ -93,12 +93,12 @@ const LicenseCompatibility = () => {
         setIsCompatible(LicensesCompatibilityData.data['is_compatible']);
         setLicenseOne(LicensesCompatibilityData.data['license_one']);
         setLicenseTwo(LicensesCompatibilityData.data['license_two']);
-        setResult(!result);
+        setResult(true);
         setLoading(false);
-        await AsyncStorage.removeItem('licenseEventId1');
-        await AsyncStorage.removeItem('licenseEventId2');
-        setFeild1('temp');
-        setFeild2('temp');
+        // await AsyncStorage.removeItem('licenseEventId1');
+        // await AsyncStorage.removeItem('licenseEventId2');
+        // setFeild1('temp');
+        // setFeild2('temp');
       }
     } catch (error) {
       console.log(error.error_msg);
@@ -151,9 +151,10 @@ const LicenseCompatibility = () => {
               {searchedData.map(item => {
                 return (
                   <>
-                    <ScrollView style={styles.serchResultItemContainer}>
+                    <ScrollView
+                      key={item['eventId']}
+                      style={styles.serchResultItemContainer}>
                       <TouchableOpacity
-                        // key={license['_id']}
                         onPress={async () => {
                           const id_1 = item['_id'];
                           const eventId_1 = item['eventId'];
@@ -218,7 +219,7 @@ const LicenseCompatibility = () => {
                 return (
                   <>
                     <ScrollView
-                      key={item['_id']}
+                      key={item['eventId']}
                       style={styles.serchResultItemContainer}>
                       <TouchableOpacity
                         onPress={async () => {
@@ -448,7 +449,7 @@ const LicenseCompatibility = () => {
           />
         </View>
         <TouchableOpacity
-          disabled={feild1 == 'temp'}
+          disabled={feild1 && feild2 == 'temp'}
           // disabled={feild2 == 'temp'}
           style={[
             {
@@ -464,7 +465,9 @@ const LicenseCompatibility = () => {
           <>
             <ScrollView>
               <View styles={styles.resultsText}>
-                <Text style={styles.heading}>Compatibility Results for:</Text>
+                <Text style={[styles.heading, {fontWeight: '800'}]}>
+                  Compatibility Results for:
+                </Text>
                 <Text
                   style={{
                     paddingHorizontal: 20,

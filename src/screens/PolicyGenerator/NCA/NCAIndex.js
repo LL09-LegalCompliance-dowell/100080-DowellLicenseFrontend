@@ -1,14 +1,14 @@
-import { View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import ProgressSteps from './ProgressSteps';
 
-const MOUIndex = () => {
+const NCAIndex = () => {
   return (
     <>
-      <ProgressSteps />
+      {/* <ProgressSteps /> */}
       <View style={{display: 'flex', backgroundColor: 'white'}}></View>
     </>
   );
 };
 
-export default MOUIndex;
+export default NCAIndex;

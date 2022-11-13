@@ -13,7 +13,7 @@ import {useLogin} from '../context/LoginProvider';
 
 const index = () => {
   const {isLoggedIn} = useLogin();
-  return isLoggedIn ? <RootNavigator /> : <AuthNavigator />;
-  // return <RootNavigator />;
+  // return isLoggedIn ? <RootNavigator /> : <AuthNavigator />;
+  return <RootNavigator />;
 };
 export default index;
