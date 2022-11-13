@@ -78,6 +78,20 @@ export default IntroductionScreen = ({route, navigation}) => {
           disabled={!agree}>
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('RootNavigator');
+          }}
+          style={[
+            styles.getStarted,
+            {
+              backgroundColor:'#078F04',
+            },
+          ]}>
+          <Text style={{
+            color:"#fff", fontSize:20, fontWeight:"bold"
+          }}>Go to HomeScreen</Text>
+        </TouchableOpacity>
       </ScrollView>
     </>
   );

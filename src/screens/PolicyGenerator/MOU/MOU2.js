@@ -12,16 +12,16 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 
 //Entities
-import IndividualEntity from './../IndividualEntity';
-import CompanyEntity from './../CompanyEntity';
-import PartnershipEntity from './../PartnershipEntity';
+import IndividualEntity from '../IndividualEntity';
+import CompanyEntity from "../CompanyEntity"
+import PartnershipEntity from '../PartnershipEntity';
 //Styling
 import {styles} from './styles';
 // Chevron Up and Down Icons, Calendar Icon
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //Radio Buttons Data
-import {radioButtonsData} from './../RadioButtonsData';
+import {radioButtonsData} from '../RadioButtonsData';
 import colors from '../../../../assets/colors/colors';
 
 const PolicyGenerator = () => {

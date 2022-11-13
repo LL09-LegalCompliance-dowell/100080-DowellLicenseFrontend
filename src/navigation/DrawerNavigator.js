@@ -42,14 +42,14 @@ const DrawerNavigation = ({Navigation}) => {
         />
 
         <Drawer.Screen
-          name="Softwere License"
+          name="Software License"
           component={SoftwereLicense}
           options={{
             headerShown: false,
           }}
         />
         <Drawer.Screen
-          name="Agreement Complience"
+          name="Agreement Compliance"
           component={AgreementComplience}
           options={{
             headerShown: false,
@@ -70,13 +70,13 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name="Logout"
           component={Logout}
           options={{
             headerShown: true,
           }}
-        />
+        /> */}
       </Drawer.Navigator>
     </>
   );
