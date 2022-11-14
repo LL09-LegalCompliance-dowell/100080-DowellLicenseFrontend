@@ -12,8 +12,8 @@ import AuthNavigator from './AuthNavigator';
 import {useLogin} from '../context/LoginProvider';
 
 const index = () => {
-  //const {isLoggedIn} = useLogin();
-  //return isLoggedIn ? <RootNavigator /> : <AuthNavigator />;
-  return <AuthNavigator />;
+  const {isLoggedIn} = useLogin();
+  // return isLoggedIn ? <RootNavigator /> : <AuthNavigator />;
+  return <RootNavigator />;
 };
 export default index;

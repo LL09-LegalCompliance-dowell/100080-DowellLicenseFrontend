@@ -7,16 +7,9 @@ import {
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
-import IntroductionScreen from '../screens/IntroductionScreen';
-import Login from '../screens/Login';
-import SignUp from '../screens/SignUp';
-import AboutUs from '../screens/AboutUs';
-import SoftwereLicense from '../screens/SoftwereLicense';
+
 import LicenseCompatibility from '../screens/LicenseCompatibility';
-import AgreementComplience from '../screens/AgreementComplience';
 import ApacheLicense from '../screens/ApacheLicense';
-import PrivacyPolicy from '../screens/PrivacyPolicy';
 
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
 import DrawerNavigator from './DrawerNavigator';
@@ -25,6 +18,7 @@ import GDPRNavigator from './GDPRNavigator';
 import MemorandumNavigator from './MemorandumNavigator';
 import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
+import NonCompetAgreement from './NonCompetAgreement';
 
 const Stack = createNativeStackNavigator();
 
@@ -95,6 +89,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Terms of Use"
           component={TermsOfUseNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Non compete agreement"
+          component={NonCompetAgreement}
           options={{
             headerShown: false,
           }}

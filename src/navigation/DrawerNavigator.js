@@ -1,4 +1,4 @@
-import {StyleSheet, Alert, TouchableOpacity} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import {
   createDrawerNavigator,
@@ -25,8 +25,13 @@ const DrawerNavigation = ({Navigation}) => {
   return (
     <>
       <Drawer.Navigator
-        // drawerContent={props => <CustomSideBar {...props} />}
-        screenOptions={{headerShown: true}}
+        drawerContent={props => <CustomSideBar {...props} />}
+        screenOptions={{
+          headerShown: true,
+          drawerStyle: {
+            width: Dimensions.get('window').width / 1.2,
+          },
+        }}
         initialRouteName="Home">
         <Drawer.Screen
           name="Home"

@@ -162,12 +162,16 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('NCA1');
+            }}
+            style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <Entypo name="open-book" color={colors.primary} size={30} />
             </View>
-            <Text style={styles.listHeading}>We help with</Text>
-          </View>
+            <Text style={styles.listHeading}>Non Compete Agreement</Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </>
