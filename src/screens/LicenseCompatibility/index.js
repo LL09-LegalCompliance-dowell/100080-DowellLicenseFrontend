@@ -6,10 +6,11 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Alert,
+  Image,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import * as Progress from 'react-native-progress';
 import Entypo from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -463,36 +464,108 @@ const LicenseCompatibility = () => {
         </TouchableOpacity>
         {result ? (
           <>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <View styles={styles.resultsText}>
-                <Text style={[styles.heading, {fontWeight: '800'}]}>
-                  Compatibility Results for:
+                <View
+                  style={{
+                    width: '100%',
+                    height: 1,
+                    backgroundColor: '#A7A7A7',
+                    marginBottom: 15,
+                  }}></View>
+                <Text
+                  style={[
+                    styles.heading,
+                    {
+                      fontWeight: '400',
+                      alignSelf: 'center',
+                      textTransform: 'uppercase',
+                    },
+                  ]}>
+                  Compatibility Results
                 </Text>
+                {/* Logos */}
+                <View style={styles.logosConatainer}>
+                  <View style={styles.imagesContainer}>
+                    <Image
+                      resizeMode="contain"
+                      style={styles.logoStyle}
+                      source={require('./images/image1.png')}
+                    />
+                    <Text style={[styles.heading, {paddingTop: 0}]}>
+                      {licenseOne}
+                    </Text>
+                  </View>
+                  <Text style={styles.vsText}>VS</Text>
+                  <View style={styles.imagesContainer}>
+                    <Image
+                      resizeMode="contain"
+                      style={styles.logoStyle}
+                      source={require('./images/image2.png')}
+                    />
+                    <Text style={[styles.heading, {paddingTop: 0}]}>
+                      {licenseTwo}
+                    </Text>
+                  </View>
+                </View>
+                <Text
+                  style={[
+                    styles.heading,
+                    {
+                      fontWeight: '700',
+                      fontFamily: 'roboto',
+                      fontSize: 20,
+                      paddingBottom: 0,
+                    },
+                  ]}>
+                  Recommendation Percentage
+                </Text>
+                <Text style={styles.lightColor}>
+                  *Numbers are Based on Attributions.
+                </Text>
+                <View style={styles.progressBarConatainer}>
+                  <View>
+                    <Progress.Bar
+                      progress={0.5}
+                      width={313}
+                      height={20}
+                      borderRadius={20}
+                      color={colors.primary}
+                      unfilledColor={'#D3D3D3'}
+                      borderColor={'#D3D3D3'}
+                    />
+                  </View>
+                  <Text style={styles.percentage}>
+                    {compatibiltyPercentage}%
+                  </Text>
+                </View>
+
                 <Text
                   style={{
-                    paddingHorizontal: 20,
-                    color: colors.textDark,
-                    fontSize: 18,
-                    // marginBottom: 10,
-                  }}>
-                  {licenseOne} and {licenseTwo}
-                </Text>
-                <Text
-                  style={[styles.heading, {textDecorationLine: 'underline'}]}>
-                  Highly recommended-
-                </Text>
-                <Text
-                  style={{
-                    paddingHorizontal: 20,
                     paddingBottom: 10,
-                    fontSize: 18,
-                    color: colors.textDark,
-                    // marginBottom: 10,
+                    fontSize: 21,
+                    color: colors.primary,
+                    fontWeight: 'bold',
+                    fontStyle: 'italic',
+                    alignSelf: 'center',
                   }}>
-                  {compatibiltyPercentage}% compatible based on attribution and
-                  can {isCompatible !== 'false' ? 'not' : null} be used together
-                  in a project
+                  "Can {isCompatible !== 'false' ? 'not' : null} be used
+                  together in a project"
                 </Text>
+
+                <Text
+                  style={[
+                    styles.heading,
+                    {
+                      fontWeight: '700',
+                      fontFamily: 'roboto',
+                      fontSize: 20,
+                      paddingBottom: 10,
+                    },
+                  ]}>
+                  Comparison
+                </Text>
+
                 <Table borderStyle={{borderWidth: 1}}>
                   <Row
                     data={resultTableContent.tableHead}
@@ -546,7 +619,7 @@ const LicenseCompatibility = () => {
                 </Table>
               </View>
             </ScrollView>
-            <TouchableOpacity style={styles.readMoreContainer}>
+            {/* <TouchableOpacity style={styles.readMoreContainer}>
               <Text style={styles.readMoreText}>Read more</Text>
               <MaterialIcons
                 style={styles.readMoreIcon}
@@ -554,7 +627,7 @@ const LicenseCompatibility = () => {
                 size={40}
                 color={colors.primary}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </>
         ) : null}
       </View>

@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
   resultsText: {
     color: colors.textDark,
     paddingHorizontal: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   SearchContainer: {
     width: '98.5%',
@@ -140,10 +142,11 @@ const styles = StyleSheet.create({
     marginTop: -8,
   },
   tableHeaderText: {
-    fontWeight: '800',
+    fontWeight: '700',
     alignSelf: 'center',
-    paddingVertical: 10,
-    fontSize: 16,
+    padding: 2,
+
+    fontSize: 15,
   },
   tableDatarText: {
     fontWeight: '500',
@@ -169,6 +172,42 @@ const styles = StyleSheet.create({
   readMoreIcon: {
     marginLeft: 25,
     paddingHorizontal: -10,
+  },
+  logosConatainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  vsText: {
+    fontSize: 12,
+    color: '#A7A7A7',
+    marginBottom: 35,
+  },
+  imagesContainer: {
+    alignItems: 'center',
+    marginHorizontal: 25,
+  },
+  logoStyle: {
+    width: 120,
+    // height: 100,
+  },
+  lightColor: {
+    fontSize: 15,
+    color: '#A7A7A7',
+    fontWeight: '400',
+    marginBottom: 15,
+  },
+  percentage: {
+    fontSize: 24,
+    color: colors.primary,
+    fontWeight: 'bold',
+    paddingLeft: 7,
+  },
+  progressBarConatainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 15,
   },
 });
 
