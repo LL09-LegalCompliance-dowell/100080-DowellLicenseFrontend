@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './style';
 import AppLoader from '../../components/AppLoader';
@@ -19,11 +20,21 @@ import {useEffect} from 'react';
 
 export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
+  const [date, setDate] = useState('');
   const {loading} = useLogin();
-  const {i_agree, isSuccess, policy_request_id} = route.params;
+  const {i_agree, isSuccess, policy_request_id, log_datetime} = route.params;
 
+  const fetchdata = async () => {
+    const data = await AsyncStorage.getItem('previouslyAgreedDate');
+    setDate(data);
+    console.log(date);
+  };
+  //fetchdata();
+  // const data = AsyncStorage.getItem('previouslyAgreedDate');
+  // console.log(data);
   useEffect(() => {
     setAgree(i_agree);
+    setDate(log_datetime);
   });
   return (
     <>
@@ -57,7 +68,28 @@ export default IntroductionScreen = ({route, navigation}) => {
             <Text
               style={styles.policyTextLink}
               onPress={() => {
-                navigation.navigate('PrivacyPolicy');
+                // navigation.navigate('PrivacyPolicy');
+                {
+                  if(date===undefined) {navigation.navigate('PrivacyPolicy')}
+                  else{Alert.alert(
+                        'Alert',
+                        `You agreed to these terms and conditions on ${date}`,
+                        [
+                          {
+                            text: 'Visit anyway',
+                            onPress: () => navigation.navigate('PrivacyPolicy'),
+                            style: 'cancel',
+                          },
+                          {
+                            text: 'Skip',
+                            // onPress: () => Alert.alert('Cancel Pressed'),
+                            style: 'cancel',
+                          },
+                        ],
+               
+                      );
+                    }
+                }
               }}>
               privacy policy and terms & conditions
             </Text>
@@ -85,12 +117,17 @@ export default IntroductionScreen = ({route, navigation}) => {
           style={[
             styles.getStarted,
             {
-              backgroundColor:'#078F04',
+              backgroundColor: '#078F04',
             },
           ]}>
-          <Text style={{
-            color:"#fff", fontSize:20, fontWeight:"bold"
-          }}>Go to HomeScreen</Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}>
+            Go to HomeScreen
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </>

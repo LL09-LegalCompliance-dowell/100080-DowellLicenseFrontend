@@ -47,16 +47,16 @@ const PrivacyPolicy = ({navigation}) => {
   return (
     <>
       <WebView
-          ref={webViewRef}
-          source={{
-            uri: URL,
-          }}
-          startInLoadingState
-          onNavigationStateChange={NavigationHandler}
-          // originWhitelist={['*']}
-          // javaScriptEnabledAndroid={true}
-          // javaScriptEnabled={true}
-        />
+        ref={webViewRef}
+        source={{
+          uri: URL,
+        }}
+        startInLoadingState
+        onNavigationStateChange={NavigationHandler}
+        // originWhitelist={['*']}
+        // javaScriptEnabledAndroid={true}
+        // javaScriptEnabled={true}
+      />
     </>
   );
 };
