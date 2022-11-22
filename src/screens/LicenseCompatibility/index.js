@@ -16,15 +16,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 import Octicons from 'react-native-vector-icons/Octicons';
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from 'react-native-table-component';
+import {Table, Row, Rows, Cell} from 'react-native-table-component';
 
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
@@ -34,9 +26,6 @@ import HowToIcon from './HowToIcon';
 import {useLicenses} from '../../context/LoginProvider';
 import {useLogin} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
-
-const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
 
 const LicenseCompatibility = () => {
   const {loading, setLoading} = useLogin();
@@ -54,9 +43,19 @@ const LicenseCompatibility = () => {
   const [licenseOne, setLicenseOne] = useState('');
   const [licenseTwo, setLicenseTwo] = useState('');
   const [searchedData, setSearchedData] = useState(licenses);
+  var a = '.';
 
+  const yes = 'YES';
+  const no = 'NO';
   const resultTableContent = {
     tableHead: ['Category', licenseOne, licenseTwo],
+    categoryData: [
+      ['Code is Protected by Copyright', yes, no],
+      ['Code can be used in Closed source Project', yes, no],
+      ['Program that uses the Software can be sold Commercially', yes, no],
+      ['Sources to bug fix es and modification must be released', yes, no],
+      ['Provides Explicit Patent License', yes, no],
+    ],
   };
 
   const handleSelectedLicense1 = async () => {
@@ -89,6 +88,7 @@ const LicenseCompatibility = () => {
         setCompatibiltyPercentage(
           LicensesCompatibilityData.data['percentage_of_comaptibility'],
         );
+
         setDisclaimer(LicensesCompatibilityData.data['disclaimer']);
         setRecommendation(LicensesCompatibilityData.data['recommendation']);
         setIsCompatible(LicensesCompatibilityData.data['is_compatible']);
@@ -526,7 +526,7 @@ const LicenseCompatibility = () => {
                 <View style={styles.progressBarConatainer}>
                   <View>
                     <Progress.Bar
-                      progress={0.5}
+                      progress={compatibiltyPercentage / 100}
                       width={313}
                       height={20}
                       borderRadius={20}
@@ -569,59 +569,18 @@ const LicenseCompatibility = () => {
                 <Table borderStyle={{borderWidth: 1}}>
                   <Row
                     data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableHeaderText,
-                      {color: colors.textDark, fontSize: 18},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[3, 1, 1]}
-                    textStyle={[
-                      styles.tableDatarText,
-                      {color: colors.textDark},
-                    ]}></Row>
+                    flexArr={[2.8, 1.2, 1.2]}
+                    textStyle={styles.tableHeaderText}></Row>
+                  <Rows
+                    data={resultTableContent.categoryData}
+                    flexArr={[2.8, 1.2, 1.2]}
+                    textStyle={styles.tableDatarText}></Rows>
                 </Table>
               </View>
             </ScrollView>
             {/* <TouchableOpacity style={styles.readMoreContainer}>
               <Text style={styles.readMoreText}>Read more</Text>
-              <MaterialIcons
+              <MaterialIcon
                 style={styles.readMoreIcon}
                 name="keyboard-arrow-down"
                 size={40}

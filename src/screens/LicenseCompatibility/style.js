@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingTop: 20,
     paddingBottom: 15,
+    fontFamily: 'roboto',
   },
 
   inputsContainer: {
@@ -42,8 +43,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
     alignSelf: 'center',
-    borderColor: 'red',
-    borderWidth: 2,
   },
   button: {
     marginTop: 10,
@@ -64,6 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textTransform: 'capitalize',
     fontSize: 16,
+    fontFamily: 'roboto',
   },
   inputsStyleContainer: {
     backgroundColor: '#D9D9D9',
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'roboto',
   },
   SearchContainer: {
     width: '98.5%',
@@ -129,9 +130,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: colors.textDark,
+    fontFamily: 'roboto',
   },
   serchResultDetails: {
     color: colors.textDark,
+    fontFamily: 'roboto',
   },
   errors: {
     fontSize: 14,
@@ -144,18 +147,20 @@ const styles = StyleSheet.create({
   tableHeaderText: {
     fontWeight: '700',
     alignSelf: 'center',
-    padding: 2,
-
-    fontSize: 15,
+    margin: 2,
+    fontFamily: 'roboto',
+    color: colors.textDark,
+    fontSize: 18,
   },
   tableDatarText: {
     fontWeight: '500',
     alignSelf: 'center',
-    paddingVertical: 10,
+    marginVertical: 10,
     fontSize: 16,
+    fontFamily: 'roboto',
   },
   readMoreContainer: {
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 0,
     zIndex: 500,
     alignSelf: 'center',
@@ -196,12 +201,14 @@ const styles = StyleSheet.create({
     color: '#A7A7A7',
     fontWeight: '400',
     marginBottom: 15,
+    fontFamily: 'roboto',
   },
   percentage: {
     fontSize: 24,
     color: colors.primary,
     fontWeight: 'bold',
     paddingLeft: 7,
+    fontFamily: 'roboto',
   },
   progressBarConatainer: {
     flexDirection: 'row',
