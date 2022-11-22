@@ -13,10 +13,10 @@ import styles from './style';
 const AgreementComplience = ({navigation}) => {
   return (
     <>
-      <Header title="Agreement Complience" leftIcon="menu" rightIcon="user" />
+      <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
         <Text style={styles.heading}>
-          We help with legel requirements, so you can focus on the business
+          We help with legal requirements, so you can focus on the business
         </Text>
         <ScrollView style={{marginTop: 130}}>
           <TouchableOpacity

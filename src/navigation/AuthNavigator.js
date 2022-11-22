@@ -42,20 +42,6 @@ const AuthNavigator = () => {
             headerShown: false,
           }}
         />
-        {/* <Auth.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{
-            headerShown: false,
-          }}
-        /> */}
-        {/* <Auth.Screen
-          name="FullSignUp"
-          component={FullSignUp}
-          options={{
-            headerShown: false,
-          }}
-        /> */}
         <Auth.Screen
           name="Loading"
           component={Loading}
