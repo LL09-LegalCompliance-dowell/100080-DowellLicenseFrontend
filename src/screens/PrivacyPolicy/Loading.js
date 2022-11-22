@@ -9,10 +9,8 @@ const Loading = ({navigation}) => {
       'https://100087.pythonanywhere.com/api/tkr-legalpolicies/FB101000000000166530629056539143455595959/',
     );
     const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data;
-     await AsyncStorage.setItem(
-      'previouslyAgreedDate',
-      log_datetime,
-    );
+    await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
+    // await AsyncStorage.setItem('isSuccessValue', isSuccess);
     // console.log(log_datetime);
     navigation.navigate('EmbededLogin', {
       i_agree,
