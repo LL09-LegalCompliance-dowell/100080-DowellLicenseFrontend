@@ -29,12 +29,12 @@ export default IntroductionScreen = ({route, navigation}) => {
     setDate(data);
     console.log(date);
   };
-  fetchdata();
+  //fetchdata();
   // const data = AsyncStorage.getItem('previouslyAgreedDate');
   // console.log(data);
   useEffect(() => {
     setAgree(i_agree);
-    // setDate(log_datetime);
+    setDate(log_datetime);
   });
   return (
     <>
@@ -70,9 +70,8 @@ export default IntroductionScreen = ({route, navigation}) => {
               onPress={() => {
                 // navigation.navigate('PrivacyPolicy');
                 {
-                  date == ''
-                    ? navigation.navigate('PrivacyPolicy')
-                    : Alert.alert(
+                  if(date===undefined) {navigation.navigate('PrivacyPolicy')}
+                  else{Alert.alert(
                         'Alert',
                         `You agreed to these terms and conditions on ${date}`,
                         [
@@ -87,14 +86,9 @@ export default IntroductionScreen = ({route, navigation}) => {
                             style: 'cancel',
                           },
                         ],
-                        // {
-                        //   cancelable: true,
-                        //   onDismiss: () =>
-                        //     Alert.alert(
-                        //       'This alert was dismissed by tapping outside of the alert dialog.',
-                        //     ),
-                        // },
+               
                       );
+                    }
                 }
               }}>
               privacy policy and terms & conditions
