@@ -8,7 +8,7 @@ import {useLogin} from '../../context/LoginProvider';
 import {WebView} from 'react-native-webview';
 import {View} from 'react-native';
 const URL =
-  'https://100087.pythonanywhere.com/tkr-policy/FB1010000000001665306290565391/app-privacy-policy/?redirect_url=http://127.0.0.1:8000/callbackurl&policy_request_id=FB101000000000166530629056539143455595959';
+  'https://100087.pythonanywhere.com/tkr-policy/FB1010000000166626444054399016/app-privacy-policy/?redirect_url=http://127.0.0.1:8000/callbackurl&policy_request_id=FB101000000000166530629056539143455595959';
 
 const PrivacyPolicy = ({navigation}) => {
   const {setIsLoggedIn, loading, setLoading} = useLogin();

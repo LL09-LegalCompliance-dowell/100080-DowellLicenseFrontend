@@ -60,24 +60,13 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Agreement Complience');
+            navigation.navigate('Agreement Compliance');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>
             <Image style={styles.icon} source={require(ICON4)} />
           </View>
           <Text style={styles.title}>Agreement Compliance</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
-          style={styles.item}>
-          <View style={styles.iconConatainer}>
-            <Image style={styles.icon} source={require(ICON5)} />
-          </View>
-          <Text style={styles.title}>Legal APIs</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
