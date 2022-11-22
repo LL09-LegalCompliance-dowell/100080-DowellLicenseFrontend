@@ -24,7 +24,6 @@ import styles from './style';
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
-
 import {useLogin} from '../../context/LoginProvider';
 
 const loginValidationSchema = yup.object().shape({
@@ -108,7 +107,6 @@ export default IntroductionScreen = ({navigation}) => {
       }) => {
         return (
           <>
-          
             <KeyboardAvoidingView>
               <ScrollView contentContainerStyle={styles.container}>
                 <StatusBar color="white" />
