@@ -109,6 +109,54 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     marginLeft: 10,
   },
+  alertMessageText: {
+    fontSize: 18,
+    color: colors.textDark,
+    fontFamily: 'roboto',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    marginBottom: 'auto',
+  },
+  alertButtonsConatainer: {
+    flexDirection: 'row',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignSelf: 'flex-end',
+  },
+  alertButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 7,
+    marginRight: 23,
+  },
+  alertButtonText: {
+    color: 'white',
+    padding: 10,
+    fontFamily: 'roboto',
+  },
+  popup: {
+    backgroundColor: 'white',
+    width: '98.5%',
+    marginHorizontal: '1.5%',
+    height: '35%',
+    overflow: 'hidden',
+    zIndex: 10,
+    borderRadius: 15,
+    justifyContent: 'space-between',
+    paddingBottom: 13,
+  },
+  alertHeader: {
+    height: 45,
+    width: '100%',
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  alertHeaderText: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: 'white',
+    fontFamily: 'roboto',
+  },
 });
 
 export default styles;
