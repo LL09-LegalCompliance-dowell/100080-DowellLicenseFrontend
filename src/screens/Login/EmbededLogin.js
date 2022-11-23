@@ -8,9 +8,11 @@ import {
   StatusBar,
   ActivityIndicator,
   Alert,
+  Pressable,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Modal from 'react-native-modal';
 
 import styles from './style';
 import AppLoader from '../../components/AppLoader';
@@ -20,24 +22,60 @@ import {useEffect} from 'react';
 
 export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
+  // const [agreData, setAgreeData] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
   const [date, setDate] = useState('');
   const {loading} = useLogin();
   const {i_agree, isSuccess, policy_request_id, log_datetime} = route.params;
 
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
+    const successValue = await AsyncStorage.getItem('isSuccessValue');
+
     setDate(data);
-    console.log(date);
   };
-  //fetchdata();
+  fetchdata();
   // const data = AsyncStorage.getItem('previouslyAgreedDate');
   // console.log(data);
   useEffect(() => {
     setAgree(i_agree);
-    setDate(log_datetime);
   });
   return (
     <>
+      <Modal
+        propagateSwipe
+        isVisible={isModalVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        animationInTiming={1000}
+        animationOutTiming={1000}
+        avoidKeyboard={true}
+        backdropTransitionOutTiming={0}
+        onBackdropPress={() => setModalVisible(false)}
+        onBackButtonPress={() => setModalVisible(false)}>
+        <View style={styles.popup}>
+          <View style={styles.alertHeader}>
+            <Text style={styles.alertHeaderText}>Message</Text>
+          </View>
+          <Text
+            style={
+              styles.alertMessageText
+            }>{`You agreed to these terms and conditions on ${date}. Do you want to visit again?`}</Text>
+          <View style={styles.alertButtonsConatainer}>
+            <Pressable
+              onPress={() => navigation.navigate('PrivacyPolicy')}
+              style={styles.alertButton}>
+              <Text style={styles.alertButtonText}>Visit anyway</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setModalVisible(false)}
+              style={styles.alertButton}>
+              <Text style={styles.alertButtonText}>Skip</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <ScrollView contentContainerStyle={styles.container}>
         <StatusBar color="white" />
 
@@ -69,27 +107,10 @@ export default IntroductionScreen = ({route, navigation}) => {
               style={styles.policyTextLink}
               onPress={() => {
                 // navigation.navigate('PrivacyPolicy');
-                {
-                  if(date===undefined) {navigation.navigate('PrivacyPolicy')}
-                  else{Alert.alert(
-                        'Alert',
-                        `You agreed to these terms and conditions on ${date}`,
-                        [
-                          {
-                            text: 'Visit anyway',
-                            onPress: () => navigation.navigate('PrivacyPolicy'),
-                            style: 'cancel',
-                          },
-                          {
-                            text: 'Skip',
-                            // onPress: () => Alert.alert('Cancel Pressed'),
-                            style: 'cancel',
-                          },
-                        ],
-               
-                      );
-                    }
-                }
+
+                date == ''
+                  ? navigation.navigate('PrivacyPolicy')
+                  : setModalVisible(true);
               }}>
               privacy policy and terms & conditions
             </Text>
