@@ -25,22 +25,23 @@ export default IntroductionScreen = ({route, navigation}) => {
   // const [agreData, setAgreeData] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(null);
   const {loading} = useLogin();
   const {i_agree, isSuccess, policy_request_id, log_datetime} = route.params;
 
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
-    const successValue = await AsyncStorage.getItem('isSuccessValue');
-
+    const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
+    // coconst data = await AsyncStorage.remove('previouslyAgreedDate');
+    // nst iAgree = await AsyncStorage.remove('iAgree');
     setDate(data);
+    setAgree(iAgree);
+    console.log(data);
+    console.log(iAgree);
   };
-  fetchdata();
-  // const data = AsyncStorage.getItem('previouslyAgreedDate');
-  // console.log(data);
   useEffect(() => {
-    setAgree(i_agree);
-  });
+    fetchdata();
+  }, []);
   return (
     <>
       <Modal
@@ -48,8 +49,8 @@ export default IntroductionScreen = ({route, navigation}) => {
         isVisible={isModalVisible}
         animationIn="slideInRight"
         animationOut="slideOutRight"
-        animationInTiming={1000}
-        animationOutTiming={1000}
+        animationInTiming={600}
+        animationOutTiming={400}
         avoidKeyboard={true}
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModalVisible(false)}
@@ -96,7 +97,7 @@ export default IntroductionScreen = ({route, navigation}) => {
           <CheckBox
             disabled={false}
             value={agree}
-            onValueChange={() => agree}
+            onValueChange={() => setAgree(!agree)}
             tintColor={agree ? '#078F04' : undefined}
             style={styles.checkbox}
           />
@@ -108,7 +109,7 @@ export default IntroductionScreen = ({route, navigation}) => {
               onPress={() => {
                 // navigation.navigate('PrivacyPolicy');
 
-                date == ''
+                date == null
                   ? navigation.navigate('PrivacyPolicy')
                   : setModalVisible(true);
               }}>
