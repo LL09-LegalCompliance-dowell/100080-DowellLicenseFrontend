@@ -49,7 +49,6 @@ export default IntroductionScreen = ({route, navigation}) => {
   const {setIsLoggedIn, loading, setLoading} = useLogin();
   const {i_agree, isSuccess, policy_request_id} = route.params;
 
-
   const handleLogin = async (values, formikActions) => {
     try {
       setLoading(true);
