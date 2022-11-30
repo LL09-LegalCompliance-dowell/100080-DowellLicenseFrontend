@@ -7,17 +7,17 @@ import {
   ScrollView,
   Alert,
   Image,
+  FlatList,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import * as Progress from 'react-native-progress';
 import Entypo from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 import Octicons from 'react-native-vector-icons/Octicons';
-import {Table, Row, Rows, Cell} from 'react-native-table-component';
-
 import MyTextInput from '../../components/MyTextInput';
 import colors from '../../../assets/colors/colors';
 import styles from './style';
@@ -42,21 +42,11 @@ const LicenseCompatibility = () => {
   const [recommendation, setRecommendation] = useState('');
   const [licenseOne, setLicenseOne] = useState('');
   const [licenseTwo, setLicenseTwo] = useState('');
-  const [searchedData, setSearchedData] = useState(licenses);
-  var a = '.';
+  const [licenseLogo1, setLicenseLogo1] = useState('');
+  const [licenseLogo2, setLicenseLogo2] = useState('');
+  const [comparison, setComparison] = useState([]);
 
-  const yes = 'YES';
-  const no = 'NO';
-  const resultTableContent = {
-    tableHead: ['Category', licenseOne, licenseTwo],
-    categoryData: [
-      ['Code is Protected by Copyright', yes, no],
-      ['Code can be used in Closed source Project', yes, no],
-      ['Program that uses the Software can be sold Commercially', yes, no],
-      ['Sources to bug fix es and modification must be released', yes, no],
-      ['Provides Explicit Patent License', yes, no],
-    ],
-  };
+  const [searchedData, setSearchedData] = useState(licenses);
 
   const handleSelectedLicense1 = async () => {
     const name = await AsyncStorage.getItem('licenseNname1');
@@ -78,22 +68,53 @@ const LicenseCompatibility = () => {
       const LicensesCompatibilityData = await axios.post(
         'https://100080.pythonanywhere.com/api/licenses/',
         {
+          action_type: 'check-compatibility',
           license_event_id_one: id1,
           license_event_id_two: id2,
-          action_type: 'check-compatibility',
         },
       );
 
       if (LicensesCompatibilityData.data) {
         setCompatibiltyPercentage(
-          LicensesCompatibilityData.data['percentage_of_comaptibility'],
+          LicensesCompatibilityData.data['license_comparison'][
+            'percentage_of_compatibility'
+          ],
         );
 
-        setDisclaimer(LicensesCompatibilityData.data['disclaimer']);
-        setRecommendation(LicensesCompatibilityData.data['recommendation']);
+        setDisclaimer(
+          LicensesCompatibilityData.data['license_comparison']['disclaimer'],
+        );
+        setRecommendation(
+          LicensesCompatibilityData.data['license_comparison'][
+            'recommendation'
+          ],
+        );
         setIsCompatible(LicensesCompatibilityData.data['is_compatible']);
-        setLicenseOne(LicensesCompatibilityData.data['license_one']);
-        setLicenseTwo(LicensesCompatibilityData.data['license_two']);
+        setLicenseOne(
+          LicensesCompatibilityData.data['license_comparison'][
+            'license_1_name'
+          ],
+        );
+        setLicenseTwo(
+          LicensesCompatibilityData.data['license_comparison'][
+            'license_2_name'
+          ],
+        );
+        setLicenseLogo1(
+          LicensesCompatibilityData.data['license_comparison'][
+            'license_1_logo_url'
+          ],
+        );
+        setLicenseLogo2(
+          LicensesCompatibilityData.data['license_comparison'][
+            'license_2_logo_url'
+          ],
+        );
+        setComparison(
+          LicensesCompatibilityData.data['license_comparison']['comparisons'],
+        );
+
+        console.log(comparison);
         setResult(true);
         setLoading(false);
         // await AsyncStorage.removeItem('licenseEventId1');
@@ -464,129 +485,206 @@ const LicenseCompatibility = () => {
         </TouchableOpacity>
         {result ? (
           <>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <View styles={styles.resultsText}>
-                <View
-                  style={{
-                    width: '100%',
-                    height: 1,
-                    backgroundColor: '#A7A7A7',
-                    marginBottom: 15,
-                  }}></View>
-                <Text
-                  style={[
-                    styles.heading,
-                    {
-                      fontWeight: '400',
-                      alignSelf: 'center',
-                      textTransform: 'uppercase',
-                    },
-                  ]}>
-                  Compatibility Results
-                </Text>
-                {/* Logos */}
-                <View style={styles.logosConatainer}>
-                  <View style={styles.imagesContainer}>
-                    <Image
-                      resizeMode="contain"
-                      style={styles.logoStyle}
-                      source={require('./images/image1.png')}
-                    />
-                    <Text style={[styles.heading, {paddingTop: 0}]}>
-                      {licenseOne}
-                    </Text>
-                  </View>
-                  <Text style={styles.vsText}>VS</Text>
-                  <View style={styles.imagesContainer}>
-                    <Image
-                      resizeMode="contain"
-                      style={styles.logoStyle}
-                      source={require('./images/image2.png')}
-                    />
-                    <Text style={[styles.heading, {paddingTop: 0}]}>
-                      {licenseTwo}
-                    </Text>
-                  </View>
-                </View>
-                <Text
-                  style={[
-                    styles.heading,
-                    {
-                      fontWeight: '700',
-                      fontFamily: 'roboto',
-                      fontSize: 20,
-                      paddingBottom: 0,
-                    },
-                  ]}>
-                  Recommendation Percentage
-                </Text>
-                <Text style={styles.lightColor}>
-                  *Numbers are Based on Attributions.
-                </Text>
-                <View style={styles.progressBarConatainer}>
-                  <View>
-                    <Progress.Bar
-                      progress={compatibiltyPercentage / 100}
-                      width={313}
-                      height={20}
-                      borderRadius={20}
-                      color={colors.primary}
-                      unfilledColor={'#D3D3D3'}
-                      borderColor={'#D3D3D3'}
-                    />
-                  </View>
-                  <Text style={styles.percentage}>
-                    {compatibiltyPercentage}%
+            {comparison ? (
+              <ScrollView
+                nestedScrollEnabled={true}
+                showsVerticalScrollIndicator={false}>
+                <View styles={styles.resultsText}>
+                  <View
+                    style={{
+                      width: '100%',
+                      height: 1,
+                      backgroundColor: '#A7A7A7',
+                      marginBottom: 15,
+                    }}></View>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '400',
+                        alignSelf: 'center',
+                        textTransform: 'uppercase',
+                      },
+                    ]}>
+                    Compatibility Results
                   </Text>
-                </View>
+                  {/* Logos */}
+                  <View style={styles.logosConatainer}>
+                    <View style={styles.imagesContainer}>
+                      <Image
+                        resizeMode="contain"
+                        style={styles.logoStyle}
+                        source={{
+                          uri: licenseLogo1,
+                        }}
+                      />
+                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                        {licenseOne}
+                      </Text>
+                    </View>
+                    <Text style={styles.vsText}>VS</Text>
+                    <View style={styles.imagesContainer}>
+                      <Image
+                        resizeMode="contain"
+                        style={styles.logoStyle}
+                        source={{uri: licenseLogo2}}
+                      />
+                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                        {licenseTwo}
+                      </Text>
+                    </View>
+                  </View>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '700',
+                        fontFamily: 'roboto',
+                        fontSize: 20,
+                        paddingBottom: 0,
+                      },
+                    ]}>
+                    Recommendation Percentage
+                  </Text>
+                  <Text style={styles.lightColor}>
+                    *Numbers are Based on Attributions.
+                  </Text>
+                  <View style={styles.progressBarConatainer}>
+                    <View>
+                      <Progress.Bar
+                        progress={compatibiltyPercentage / 100}
+                        width={313}
+                        height={20}
+                        borderRadius={20}
+                        color={colors.primary}
+                        unfilledColor={'#D3D3D3'}
+                        borderColor={'#D3D3D3'}
+                      />
+                    </View>
+                    <Text style={styles.percentage}>
+                      {compatibiltyPercentage}%
+                    </Text>
+                  </View>
 
+                  <Text
+                    style={{
+                      paddingBottom: 10,
+                      fontSize: 21,
+                      color: isCompatible == true ? colors.primary : 'red',
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      alignSelf: 'center',
+                    }}>
+                    "Can {isCompatible !== 'false' ? 'not' : null} be used
+                    together in a project"
+                  </Text>
+
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '700',
+                        fontFamily: 'roboto',
+                        fontSize: 20,
+                        paddingBottom: 10,
+                      },
+                    ]}>
+                    Comparison
+                  </Text>
+                  {/* Table starts here */}
+
+                  <View>
+                    <View style={styles.tableHederConatainer}>
+                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                        <Text style={styles.tableHeaderText}>Category</Text>
+                      </View>
+                      <View style={styles.tableItemConatainer}>
+                        <Text style={styles.tableHeaderText}>{licenseOne}</Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.tableItemConatainer,
+                          {borderRightWidth: 0},
+                        ]}>
+                        <Text style={styles.tableHeaderText}>{licenseTwo}</Text>
+                      </View>
+                    </View>
+                    {/* Table data */}
+                    <FlatList
+                      scrollEnabled={false}
+                      data={comparison}
+                      keyExtractor={item => item._id}
+                      renderItem={item => (
+                        <View style={styles.tableDataConatainer}>
+                          <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                            <Text style={{padding: 7, color: colors.textDark}}>
+                              {item.item.category}
+                            </Text>
+                          </View>
+                          <View style={styles.tableItemConatainer}>
+                            <Text
+                              style={[
+                                styles.tableDatarText,
+                                {
+                                  color:
+                                    item.item.licence_1.comparison_value ==
+                                    'Yes'
+                                      ? 'green'
+                                      : 'red',
+                                },
+                              ]}>
+                              {item.item.licence_1.comparison_value}
+                            </Text>
+                          </View>
+                          <View
+                            style={[
+                              styles.tableItemConatainer,
+                              {borderRightWidth: 0},
+                            ]}>
+                            <Text
+                              style={[
+                                styles.tableDatarText,
+                                {
+                                  color:
+                                    item.item.licence_2.comparison_value ==
+                                    'Yes'
+                                      ? 'green'
+                                      : 'red',
+                                },
+                              ]}>
+                              {item.item.licence_2.comparison_value}
+                            </Text>
+                          </View>
+                        </View>
+                      )}
+                    />
+                  </View>
+                </View>
+                <TouchableOpacity style={styles.readMoreContainer}>
+                  <Text style={styles.readMoreText}>Read more</Text>
+                  <MaterialCommunityIcons
+                    style={styles.readMoreIcon}
+                    name="chevron-down"
+                    size={40}
+                    color={colors.primary}
+                  />
+                </TouchableOpacity>
+              </ScrollView>
+            ) : (
+              <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Text
                   style={{
-                    paddingBottom: 10,
-                    fontSize: 21,
+                    padding: 20,
                     color: colors.primary,
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    alignSelf: 'center',
+                    fontSize: 18,
+                    fontWeight: '600',
                   }}>
-                  "Can {isCompatible !== 'false' ? 'not' : null} be used
-                  together in a project"
+                  Sorry... compatibility results for this pair of licences is
+                  not availbe yet. We are working on it, you might be able to
+                  get it in the next version
                 </Text>
-
-                <Text
-                  style={[
-                    styles.heading,
-                    {
-                      fontWeight: '700',
-                      fontFamily: 'roboto',
-                      fontSize: 20,
-                      paddingBottom: 10,
-                    },
-                  ]}>
-                  Comparison
-                </Text>
-
-                <Table borderStyle={{borderWidth: 1}}>
-                  <Row
-                    data={resultTableContent.tableHead}
-                    flexArr={[2.8, 1.2, 1.2]}
-                    textStyle={styles.tableHeaderText}></Row>
-                  <Rows
-                    data={resultTableContent.categoryData}
-                    flexArr={[2.8, 1.2, 1.2]}
-                    textStyle={styles.tableDatarText}></Rows>
-                </Table>
               </View>
-            </ScrollView>
-            {/* <TouchableOpacity style={styles.readMoreContainer}>
-              <Text style={styles.readMoreText}>Read more</Text>
-              <MaterialIcon
-                style={styles.readMoreIcon}
-                name="keyboard-arrow-down"
-                size={40}
-                color={colors.primary}
-              />
-            </TouchableOpacity> */}
+            )}
           </>
         ) : null}
       </View>

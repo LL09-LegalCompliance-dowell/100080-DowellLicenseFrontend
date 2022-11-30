@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createStackNavigator,
+  TransitionPrese,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 
 import IntroductionScreen from '../screens/IntroductionScreen';
 // import Login from '../screens/Login';
@@ -10,17 +14,20 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import Loading from '../screens/PrivacyPolicy/Loading';
 import EmbededLogin from '../screens/Login/EmbededLogin';
 import WebView from '../screens/Login/WebView';
-import RootNavigator from "./RootNavigator";
+import RootNavigator from './RootNavigator';
 
 Loading;
-const Auth = createNativeStackNavigator();
+const Auth = createStackNavigator();
 
 const AuthNavigator = () => {
   return (
     <>
       <Auth.Navigator
         initialRouteName="IntroductionScreen"
-        screenOptions={{gestureEnabled: true}}>
+        screenOptions={{
+          gestureEnabled: true,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}>
         <Auth.Screen
           name="IntroductionScreen"
           component={IntroductionScreen}
@@ -34,7 +41,7 @@ const AuthNavigator = () => {
           options={{
             headerShown: false,
           }}
-        /> 
+        />
         <Auth.Screen
           name="PrivacyPolicy"
           component={PrivacyPolicy}
