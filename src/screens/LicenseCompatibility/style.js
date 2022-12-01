@@ -150,23 +150,19 @@ const styles = StyleSheet.create({
     margin: 2,
     fontFamily: 'roboto',
     color: colors.textDark,
-    fontSize: 18,
+    fontSize: 17,
   },
   tableDatarText: {
     fontWeight: '500',
     alignSelf: 'center',
-    marginVertical: 10,
+    // marginVertical: 10,
     fontSize: 16,
     fontFamily: 'roboto',
   },
   readMoreContainer: {
-    // position: 'absolute',
-    bottom: 0,
-    zIndex: 500,
     alignSelf: 'center',
-    backgroundColor: 'white',
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingTop: 25,
     borderRadius: 30,
   },
   readMoreText: {
@@ -190,11 +186,11 @@ const styles = StyleSheet.create({
   },
   imagesContainer: {
     alignItems: 'center',
-    marginHorizontal: 25,
+    marginHorizontal: 15,
   },
   logoStyle: {
-    width: 120,
-    // height: 100,
+    width: 100,
+    height: 100,
   },
   lightColor: {
     fontSize: 15,
@@ -215,6 +211,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
+  },
+  tableHederConatainer: {
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 1,
+  },
+  tableItemConatainer: {
+    borderColor: 'black',
+    borderRightWidth: 1,
+    flex: 1,
+    justifyContent: 'center',
+  },
+  tableDataConatainer: {
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderTopWidth: 0,
+    flex: 1,
   },
 });
 

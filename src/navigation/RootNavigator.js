@@ -1,6 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createStackNavigator,
+  TransitionPrese,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import {useColorScheme, Alert} from 'react-native';
 import {
   NavigationContainer,
@@ -20,7 +24,7 @@ import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const RootNavigator = () => {
   const scheme = useColorScheme();
@@ -28,7 +32,11 @@ const RootNavigator = () => {
     <>
       <Stack.Navigator
         initialRouteName="HomeScreen"
-        screenOptions={{gestureEnabled: true}}>
+        screenOptions={{
+          gestureEnabled: true,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
+        }}>
         <Stack.Screen
           name="HomeScreen"
           component={DrawerNavigator}
