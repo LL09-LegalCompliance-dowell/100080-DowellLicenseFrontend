@@ -24,10 +24,11 @@ import styles from './style';
 import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import {useLicenses} from '../../context/LoginProvider';
+import {useLogin} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
 
 const LicenseCompatibility = () => {
-  const {loading, setLoading} = useState(false);
+  const {loading, setLoading} = useLogin();
   const [result, setResult] = useState(false);
   const [feild1, setFeild1] = useState('temp');
   const [feild2, setFeild2] = useState('temp');

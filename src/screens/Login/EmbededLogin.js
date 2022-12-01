@@ -32,7 +32,7 @@ export default IntroductionScreen = ({route, navigation}) => {
   };
   useEffect(() => {
     fetchdata();
-  }, []);
+  }, [agree, date]);
   return (
     <>
       { date &&
