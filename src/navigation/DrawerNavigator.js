@@ -1,25 +1,25 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import AgreementComplience from '../screens/AgreementComplience';
 import PolicyNavigator from './PolicyNavigator';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useLogin} from '../context/LoginProvider';
 import CustomSideBar from './CustomSideBar';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = ({Navigation}) => {
-  const {setIsLoggedIn} = useLogin();
+  const navigation = useNavigation()
   const Logout = () => {
-    setIsLoggedIn(false);
+    AsyncStorage.clear();
+    navigation.navigate("Home")
   };
 
   return (
@@ -70,13 +70,13 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        {/* <Drawer.Screen
+        <Drawer.Screen
           name="Logout"
           component={Logout}
           options={{
             headerShown: true,
           }}
-        /> */}
+        />
       </Drawer.Navigator>
     </>
   );

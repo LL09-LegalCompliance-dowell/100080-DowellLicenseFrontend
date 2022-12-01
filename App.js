@@ -8,20 +8,15 @@ import {
 } from '@react-navigation/native';
 
 import Navigation from './src/navigation/index';
-import LoginProvider from './src/context/LoginProvider';
 
 const App = () => {
   const scheme = useColorScheme();
 
   return (
-    <>
-      <LoginProvider>
-        <NavigationContainer
-          theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Navigation />
-        </NavigationContainer>
-      </LoginProvider>
-    </>
+      <NavigationContainer
+        theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Navigation />
+      </NavigationContainer>
   );
 };
 
