@@ -20,7 +20,6 @@ import Header from '../../components/Header';
 import colors from '../../../assets/colors/colors';
 import MyTextInput from '../../components/MyTextInput';
 import AppLoader from '../../components/AppLoader';
-import {useLogin} from '../../context/LoginProvider';
 
 const ValidationSchema = yup.object().shape({
   fullname: yup

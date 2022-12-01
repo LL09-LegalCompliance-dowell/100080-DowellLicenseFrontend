@@ -7,14 +7,13 @@ import {
 } from '@react-navigation/stack';
 
 import IntroductionScreen from '../screens/IntroductionScreen';
-// import Login from '../screens/Login';
-// import SignUp from '../screens/SignUp';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
 // import FullSignUp from '../screens/SignUp/FullSignUp';
 import Loading from '../screens/PrivacyPolicy/Loading';
 import EmbededLogin from '../screens/Login/EmbededLogin';
 import WebView from '../screens/Login/WebView';
 import RootNavigator from './RootNavigator';
+import Saving from "../screens/Login/Saving"
 
 Loading;
 const Auth = createStackNavigator();
@@ -66,6 +65,13 @@ const AuthNavigator = () => {
         <Auth.Screen
           name="WebView"
           component={WebView}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="Saving"
+          component={Saving}
           options={{
             headerShown: false,
           }}

@@ -1,17 +1,23 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useContext} from 'react';
-import {useColorScheme, Alert} from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
-
+import React, {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigator from './RootNavigator';
 import AuthNavigator from './AuthNavigator';
-import {useLogin} from '../context/LoginProvider';
 
 const index = () => {
-  return <AuthNavigator />;
+  const [user, setUser] = useState(null)
+
+  const fetchUser = async () => {
+    try{
+      const username = await AsyncStorage.getItem('username');
+      setUser(username)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  };
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  return user? <RootNavigator /> :<AuthNavigator />;
 };
 export default index;
