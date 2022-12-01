@@ -3,19 +3,14 @@ import React, {useRef, useEffect} from 'react';
 
 import {WebView} from 'react-native-webview';
 
-const URL = "https://100014.pythonanywhere.com/";
+const URL = "https://100014.pythonanywhere.com/?redirect_url=http://127.0.0.1:8000/callbackurl";
 
 const WebWiew = ({navigation}) => {
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     try {
-
-      if (url == 'http://127.0.0.1:8000/callbackurl') {
-        // setLoading(false);
-        navigation.navigate('Loading');
-        //
-      }
+        navigation.navigate('Saving', {url});
     } catch (error) {
       Alert.alert('Error message', `${error}`);
     }
@@ -29,10 +24,7 @@ const WebWiew = ({navigation}) => {
             uri: URL,
           }}
           startInLoadingState
-        //   onNavigationStateChange={NavigationHandler}
-          // originWhitelist={['*']}
-          // javaScriptEnabledAndroid={true}
-          // javaScriptEnabled={true}
+          onNavigationStateChange={NavigationHandler}
         />
     </>
   );
