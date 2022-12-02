@@ -1,8 +1,7 @@
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Image} from 'react-native';
 import React from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
-import { useNavigation } from '@react-navigation/native';
-
+import {useNavigation} from '@react-navigation/native';
 
 import colors from '../../../assets/colors/colors';
 import AppBotton from '../../components/AppBottun';
@@ -11,15 +10,20 @@ const Card = ({}) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => {
-      navigation.navigate('LicenseCompatibility');
-    }}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate('LicenseCompatibility');
+      }}>
       <View style={styles.row1}>
         <View style={{alignItems: 'center'}}>
           <Text style={styles.row1Text}>License</Text>
           <Text style={styles.row1Text}>Compatibility</Text>
         </View>
-        <Octicons name="image" size={70} color={colors.textDark} />
+        <Image
+          source={require('../../../assets/images/CompatibilityLogo.png')}
+          
+        />
       </View>
 
       <View style={styles.row2}>
@@ -29,10 +33,9 @@ const Card = ({}) => {
       <View style={styles.row3}>
         <Text style={styles.row3Text}>T&C Apply</Text>
         <AppBotton
-onPress={() => {
-      navigation.navigate('LicenseCompatibility');
-    }}
-
+          onPress={() => {
+            navigation.navigate('LicenseCompatibility');
+          }}
           title="Check Now"
           width="30%"
           color={colors.primary}

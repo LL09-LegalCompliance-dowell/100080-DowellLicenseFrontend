@@ -13,6 +13,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './style';
 import {StackActions} from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default IntroductionScreen = ({navigation}) => {
   return (
@@ -21,7 +22,7 @@ export default IntroductionScreen = ({navigation}) => {
         <SafeAreaView>
           <View style={styles.introLogoTop}>
             <Image
-              source={require('../../../assets/images/logo.png')}
+              source={require('../../../assets/images/logo.jpg')}
               style={styles.topLogo}
             />
           </View>
@@ -40,6 +41,12 @@ export default IntroductionScreen = ({navigation}) => {
           }}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Get Started</Text>
+            <MaterialCommunityIcons
+              style={styles.menuIcon}
+              name="arrow-right"
+              size={30}
+              color="white"
+            />
           </View>
         </TouchableOpacity>
 
@@ -49,7 +56,7 @@ export default IntroductionScreen = ({navigation}) => {
 
         <View style={styles.introLogoSmall}>
           <Image
-            source={require('../../../assets/images/logo.png')}
+            source={require('../../../assets/images/logo.jpg')}
             style={styles.smallLogo}
           />
         </View>

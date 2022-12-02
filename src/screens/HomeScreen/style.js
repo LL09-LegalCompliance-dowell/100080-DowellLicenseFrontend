@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-
   itemText: {
     marginTop: 18,
     color: colors.textDark,
+    width: 80,
   },
 
   // About
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingHorizontal: 23,
     fontSize: 18,
-
   },
 
   // Quick links

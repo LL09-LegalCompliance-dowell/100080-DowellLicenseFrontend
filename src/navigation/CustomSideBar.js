@@ -22,7 +22,10 @@ const CustomSideBar = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topSection}>
-        <Image source={require('./images/logo.png')} />
+        <Image
+          style={{height: 60, width: 60, resizeMode: 'contain'}}
+          source={require('./images/logo.jpg')}
+        />
       </View>
       <View style={styles.middleSection}>
         <TouchableOpacity
