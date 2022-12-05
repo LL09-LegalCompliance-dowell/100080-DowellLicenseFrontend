@@ -6,12 +6,6 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 import {useColorScheme, Alert} from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
-
 import LicenseCompatibility from '../screens/LicenseCompatibility';
 import ApacheLicense from '../screens/ApacheLicense';
 

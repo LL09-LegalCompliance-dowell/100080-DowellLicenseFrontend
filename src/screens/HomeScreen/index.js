@@ -6,7 +6,8 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
+import * as React from 'react';
+import {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';

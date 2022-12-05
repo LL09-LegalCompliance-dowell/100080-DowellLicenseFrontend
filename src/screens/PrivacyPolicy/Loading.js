@@ -11,13 +11,9 @@ const Loading = ({navigation}) => {
     const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data;
     await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
     await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
-    navigation.navigate('EmbededLogin', {
-      i_agree,
-      isSuccess,
-      policy_request_id,
-      log_datetime,
-    });
-  };
+    navigation.navigate('EmbededLogin');
+  
+  }
 
   useEffect(() => {
     fetchIAgree();

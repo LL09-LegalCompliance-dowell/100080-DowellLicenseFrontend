@@ -9,7 +9,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import * as Progress from 'react-native-progress';
@@ -24,18 +24,18 @@ import styles from './style';
 import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import {useLicenses} from '../../context/LoginProvider';
-import {useLogin} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
 
 const LicenseCompatibility = () => {
-  const {loading, setLoading} = useLogin();
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
   const [feild1, setFeild1] = useState('temp');
   const [feild2, setFeild2] = useState('temp');
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
   const [isHowto, setHowto] = useState(false);
-  const {setLicenses, licenses} = useLicenses();
+  // const licenses = useLicenses();
+  const [licenses, setLicenses] = useState([]);
   const [isCompatible, setIsCompatible] = useState(false);
   const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
   const [disclaimer, setDisclaimer] = useState('');
@@ -45,8 +45,43 @@ const LicenseCompatibility = () => {
   const [licenseLogo1, setLicenseLogo1] = useState('');
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
-
   const [searchedData, setSearchedData] = useState(licenses);
+
+  // const fetchLicense = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const LicensesData = await axios.get(
+  //       'https://100080.pythonanywhere.com/api/licenses/',
+  //     );
+  //     if (LicensesData.data) {
+  //       setLicenses(LicensesData.data.data);
+  //       console.log('Hello ');
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  useMemo(
+    async () => {
+      try {
+        setLoading(true);
+        const LicensesData = await axios.get(
+          'https://100080.pythonanywhere.com/api/licenses/',
+        );
+        if (LicensesData.data) {
+          const data = setLicenses(LicensesData.data.data);
+          console.log(LicensesData.data.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    // console.log('hamza');
+    [],
+  );
 
   const handleSelectedLicense1 = async () => {
     const name = await AsyncStorage.getItem('licenseNname1');
@@ -140,8 +175,6 @@ const LicenseCompatibility = () => {
     setSearchedData(searchData);
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
       <View>
@@ -170,44 +203,45 @@ const LicenseCompatibility = () => {
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map(item => {
-                return (
-                  <>
-                    <ScrollView
-                      key={item['eventId']}
-                      style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        onPress={async () => {
-                          const id_1 = item['_id'];
-                          const eventId_1 = item['eventId'];
-                          const licenseNname_1 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId1',
-                            JSON.stringify(id_1),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId1',
-                            eventId_1,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname1',
-                            licenseNname_1,
-                          );
-                          handleSelectedLicense1();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </ScrollView>
-                  </>
-                );
-              })}
+              {searchedData ??
+                searchedData.map((item, index) => {
+                  return (
+                    <>
+                      <ScrollView
+                        key={item._id}
+                        style={styles.serchResultItemContainer}>
+                        <TouchableOpacity
+                          onPress={async () => {
+                            const id_1 = item._id;
+                            const eventId_1 = item.eventId;
+                            const licenseNname_1 =
+                              item.softwarelicense.license_name;
+                            await AsyncStorage.setItem(
+                              'licenseId1',
+                              JSON.stringify(id_1),
+                            );
+                            await AsyncStorage.setItem(
+                              'licenseEventId1',
+                              eventId_1,
+                            );
+                            await AsyncStorage.setItem(
+                              'licenseNname1',
+                              licenseNname_1,
+                            );
+                            handleSelectedLicense1();
+                          }}>
+                          <Text style={styles.serchResultHeading}>
+                            {item.softwarelicense.license_name}
+                          </Text>
+                          <Text style={styles.serchResultDetails}>
+                            {item.softwarelicense.description}
+                          </Text>
+                          <View style={styles.separator}></View>
+                        </TouchableOpacity>
+                      </ScrollView>
+                    </>
+                  );
+                })}
             </View>
           </View>
         </Modal>
@@ -237,44 +271,45 @@ const LicenseCompatibility = () => {
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map(item => {
-                return (
-                  <>
-                    <ScrollView
-                      key={item['eventId']}
-                      style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        onPress={async () => {
-                          const id_2 = item['_id'];
-                          const eventId_2 = item['eventId'];
-                          const licenseNname_2 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId2',
-                            JSON.stringify(id_2),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId2',
-                            eventId_2,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname2',
-                            licenseNname_2,
-                          );
-                          handleSelectedLicense2();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </ScrollView>
-                  </>
-                );
-              })}
+              {searchedData ??
+                searchedData.map((item, index) => {
+                  return (
+                    <>
+                      <ScrollView
+                        key={item._id}
+                        style={styles.serchResultItemContainer}>
+                        <TouchableOpacity
+                          onPress={async () => {
+                            const id_2 = item._id;
+                            const eventId_2 = item.eventId;
+                            const licenseNname_2 =
+                              item.softwarelicense.license_name;
+                            await AsyncStorage.setItem(
+                              'licenseId2',
+                              JSON.stringify(id_2),
+                            );
+                            await AsyncStorage.setItem(
+                              'licenseEventId2',
+                              eventId_2,
+                            );
+                            await AsyncStorage.setItem(
+                              'licenseNname2',
+                              licenseNname_2,
+                            );
+                            handleSelectedLicense2();
+                          }}>
+                          <Text style={styles.serchResultHeading}>
+                            {item.softwarelicens.license_name}
+                          </Text>
+                          <Text style={styles.serchResultDetails}>
+                            {item.softwarelicense.description}
+                          </Text>
+                          <View style={styles.separator}></View>
+                        </TouchableOpacity>
+                      </ScrollView>
+                    </>
+                  );
+                })}
             </View>
           </View>
         </Modal>
