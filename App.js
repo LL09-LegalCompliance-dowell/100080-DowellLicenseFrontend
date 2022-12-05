@@ -6,7 +6,6 @@ import {
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native';
-import {Provider} from 'react-redux';
 
 import Navigation from './src/navigation/index';
 
