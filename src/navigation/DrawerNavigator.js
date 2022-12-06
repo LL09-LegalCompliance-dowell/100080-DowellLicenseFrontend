@@ -19,7 +19,7 @@ const DrawerNavigation = ({Navigation}) => {
   const navigation = useNavigation();
   const Logout = () => {
     AsyncStorage.clear();
-    navigation.navigate('Home');
+    //navigation.navigate("Home")
   };
 
   return (

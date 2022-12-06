@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -36,7 +37,7 @@ const ValidationSchema = yup.object().shape({
 });
 
 const About = () => {
-  const {loading, setLoading} = useLogin();
+  const {loading, setLoading} = useState(false);
 
   const handleForm = async (values, formikActions) => {
     try {
