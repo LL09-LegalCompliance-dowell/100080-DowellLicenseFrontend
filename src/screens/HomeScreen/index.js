@@ -1,5 +1,13 @@
-import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  FlatList,
+} from 'react-native';
+import * as React from 'react';
+import {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -32,39 +40,28 @@ const Home = ({navigation}) => {
           <Text style={styles.heading}>Products & Services</Text>
           <View style={styles.productItemsContainer}>
             <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={40} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
+              <Image
+                source={require('./images/carbon_cloud-satellite-services.png')}
+              />
             </View>
             <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
+              <Image source={require('./images/Group5.png')} />
             </View>
             <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
+              <Image source={require('./images/Group11.png')} />
             </View>
             <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
+              <Image source={require('./images/Group8.png')} />
             </View>
           </View>
           <View style={styles.productItemsContainer}>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
+            <Text style={styles.itemText}>Software License</Text>
+
+            <Text style={styles.itemText}>Agreement Compliance</Text>
+
+            <Text style={styles.itemText}>Pricing</Text>
+
+            <Text style={styles.itemText}>Contact us</Text>
           </View>
 
           {/* About Company */}
@@ -99,7 +96,9 @@ const Home = ({navigation}) => {
             </View>
             <View style={styles.contactItem}>
               <AntDesign name="mail" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>livinglabfinance@dowellrsearch.sg</Text>
+              <Text style={styles.contactText}>
+                livinglabfinance@dowellrsearch.sg
+              </Text>
             </View>
             <View style={styles.contactItem}>
               <Feather name="phone" size={30} color={colors.primary} />
