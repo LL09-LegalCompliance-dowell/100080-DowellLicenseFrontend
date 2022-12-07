@@ -72,7 +72,7 @@ const LicenseCompatibility = () => {
         );
         if (LicensesData.data) {
           const data = setLicenses(LicensesData.data.data);
-          console.log(LicensesData.data.data);
+      
           setLoading(false);
         }
       } catch (error) {
@@ -203,19 +203,20 @@ const LicenseCompatibility = () => {
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData ??
+              {
+                //searchedData ??
                 searchedData.map((item, index) => {
                   return (
                     <>
                       <ScrollView
-                        key={item._id}
+                        key={item['_id']}
                         style={styles.serchResultItemContainer}>
                         <TouchableOpacity
                           onPress={async () => {
-                            const id_1 = item._id;
-                            const eventId_1 = item.eventId;
+                            const id_1 = item['_id'];
+                            const eventId_1 = item['eventId'];
                             const licenseNname_1 =
-                              item.softwarelicense.license_name;
+                              item['softwarelicense']['license_name'];
                             await AsyncStorage.setItem(
                               'licenseId1',
                               JSON.stringify(id_1),
@@ -231,17 +232,18 @@ const LicenseCompatibility = () => {
                             handleSelectedLicense1();
                           }}>
                           <Text style={styles.serchResultHeading}>
-                            {item.softwarelicense.license_name}
+                            {item['softwarelicense']['license_name']}
                           </Text>
-                          <Text style={styles.serchResultDetails}>
-                            {item.softwarelicense.description}
+                          <Text  numberOfLines={1} style={styles.serchResultDetails}>
+                            {item['softwarelicense']['description']}
                           </Text>
                           <View style={styles.separator}></View>
                         </TouchableOpacity>
                       </ScrollView>
                     </>
                   );
-                })}
+                })
+              }
             </View>
           </View>
         </Modal>
@@ -271,19 +273,20 @@ const LicenseCompatibility = () => {
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData ??
+              {
+                //searchedData ??
                 searchedData.map((item, index) => {
                   return (
                     <>
                       <ScrollView
-                        key={item._id}
+                        key={item['_id']}
                         style={styles.serchResultItemContainer}>
                         <TouchableOpacity
                           onPress={async () => {
-                            const id_2 = item._id;
-                            const eventId_2 = item.eventId;
+                            const id_2 = item['_id'];
+                            const eventId_2 = item['eventId'];
                             const licenseNname_2 =
-                              item.softwarelicense.license_name;
+                              item['softwarelicense']['license_name'];
                             await AsyncStorage.setItem(
                               'licenseId2',
                               JSON.stringify(id_2),
@@ -299,17 +302,20 @@ const LicenseCompatibility = () => {
                             handleSelectedLicense2();
                           }}>
                           <Text style={styles.serchResultHeading}>
-                            {item.softwarelicens.license_name}
+                            {item['softwarelicense']['license_name']}
                           </Text>
-                          <Text style={styles.serchResultDetails}>
-                            {item.softwarelicense.description}
+                          <Text
+                            numberOfLines={1}
+                            style={styles.serchResultDetails}>
+                            {item['softwarelicense']['description']}
                           </Text>
                           <View style={styles.separator}></View>
                         </TouchableOpacity>
                       </ScrollView>
                     </>
                   );
-                })}
+                })
+              }
             </View>
           </View>
         </Modal>
