@@ -47,7 +47,7 @@ const AgreementComplience = ({navigation}) => {
             <Text style={styles.listHeading}>Terms & Conditions</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('CookiesPolicy')} >
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="cookie-outline"

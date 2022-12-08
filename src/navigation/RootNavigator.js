@@ -17,6 +17,7 @@ import MemorandumNavigator from './MemorandumNavigator';
 import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
+import CookiesPolicy from '../screens/Cookies';
 
 const Stack = createStackNavigator();
 
@@ -98,6 +99,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Non compete agreement"
           component={NonCompetAgreement}
+          options={{
+            headerShown: false,
+          }}
+        />
+          <Stack.Screen
+          name="CookiesPolicy"
+          component={CookiesPolicy}
           options={{
             headerShown: false,
           }}
