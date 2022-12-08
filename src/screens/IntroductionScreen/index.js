@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   Text,
@@ -11,47 +11,11 @@ import {
 import styles from './style';
 import {StackActions} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import LoginProvider from '../../context/LoginProvider';
-import axios from 'axios';
-import AppLoader from '../../components/AppLoader';
 const IntroductionScreen = ({navigation}) => {
-  const [loading, setLoading] = useState(false);
-  const [licenses, setLicenses] = useState([]);
-
-  // const FetchUserAndLicense = async () => {
-  //   setLoading(true);
-  //   const LicensesData = await axios.get(
-  //     'https://100080.pythonanywhere.com/api/licenses/',
-  //   );
-  //   if (LicensesData.data) {
-  //     setLicenses(LicensesData.data.data);
-  //     console.log('Hello ');
-  //     console.log(LicensesData.data.data);
-
-  //     setLoading(false);
-  //   }
-  // };
-  // fetchUserAndLicense;
-  // useMemo(async () => {
-  //   setLoading(true);
-  //   const LicensesData = await axios.get(
-  //     'https://100080.pythonanywhere.com/api/licenses/',
-  //   );
-  //   if (LicensesData.data) {
-  //     setLicenses(LicensesData.data.data);
-  //     console.log('Hello ');
-  //     console.log(LicensesData.data.data);
-  //   }
-  //   setLoading(false);
-  // }, [licenses]);
-
   return (
     <>
-      {/* {loading ? <AppLoader /> : null} */}
       <ScrollView contentContainerStyle={styles.container}>
-        {/* <LoginProvider /> */}
         <View>
-          {/* <LoginProvider /> */}
           <SafeAreaView>
             <View style={styles.introLogoTop}>
               <Image
