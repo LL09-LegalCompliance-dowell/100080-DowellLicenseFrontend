@@ -41,7 +41,7 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('Contact Us');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>
@@ -52,7 +52,7 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Softwere License');
+            navigation.navigate('Software License');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>

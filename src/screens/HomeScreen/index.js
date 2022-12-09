@@ -39,31 +39,47 @@ const Home = ({navigation}) => {
           {/* Product and Services */}
           <Text style={styles.heading}>Products & Services</Text>
           <View style={styles.productItemsContainer}>
-            <View style={styles.singleItemContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Software License');
+              }}
+              style={styles.singleItemContainer}>
               <Image
+                style={styles.itemImage}
                 source={require('./images/carbon_cloud-satellite-services.png')}
               />
-            </View>
-            <View style={styles.singleItemContainer}>
-              <Image source={require('./images/Group5.png')} />
-            </View>
-            <View style={styles.singleItemContainer}>
-              <Image source={require('./images/Group11.png')} />
-            </View>
-            <View style={styles.singleItemContainer}>
-              <Image source={require('./images/Group8.png')} />
-            </View>
+              <Text style={styles.itemText}>Software License</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Agreement Compliance');
+              }}
+              style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group5.png')}
+              />
+              <Text style={styles.itemText}>Agreement Compliance</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group11.png')}
+              />
+              <Text style={styles.itemText}>Pricing</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Contact Us');
+              }}
+              style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group8.png')}
+              />
+              <Text style={styles.itemText}>Contact us</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.productItemsContainer}>
-            <Text style={styles.itemText}>Software License</Text>
-
-            <Text style={styles.itemText}>Agreement Compliance</Text>
-
-            <Text style={styles.itemText}>Pricing</Text>
-
-            <Text style={styles.itemText}>Contact us</Text>
-          </View>
-
           {/* About Company */}
           <Text style={styles.heading}>About Company</Text>
           <Text style={styles.aboutText}>

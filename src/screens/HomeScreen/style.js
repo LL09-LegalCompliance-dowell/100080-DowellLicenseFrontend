@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
   },
 
   productItemsContainer: {
-    paddingHorizontal: 23,
-    display: 'flex',
-    flex: 1,
-    width: '100%',
+    paddingHorizontal: 5,
+    // display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flex: 1,
+    // width: '100%',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
   },
 
   singleItemContainer: {
@@ -48,9 +49,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   itemText: {
-    marginTop: 18,
+    marginTop: 7,
     color: colors.textDark,
-    width: 80,
+    width: 95,
+    height: 60,
+    paddingLeft: 13,
+  },
+  itemImage: {
+    height: 33,
+    width: 33,
+    resizeMode: 'contain',
   },
 
   // About

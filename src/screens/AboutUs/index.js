@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -36,7 +36,7 @@ const ValidationSchema = yup.object().shape({
 });
 
 const About = () => {
-  const {loading, setLoading} = useLogin();
+  const [loading, setLoading] = useState();
 
   const handleForm = async (values, formikActions) => {
     try {
@@ -50,10 +50,7 @@ const About = () => {
 
       if (res.data) {
         setLoading(false);
-        Alert.alert(
-           'Submitted successfully',
-           'Thanks for your feedback',
-        );
+        Alert.alert('Submitted successfully', 'Thanks for your feedback');
       }
       return res.data;
     } catch (error) {
@@ -106,7 +103,9 @@ const About = () => {
                     </View>
                     <View style={styles.contactItem}>
                       <AntDesign name="mail" size={30} color={colors.primary} />
-                      <Text style={styles.contactText}>livinglabfinance@dowellrsearch.sg</Text>
+                      <Text style={styles.contactText}>
+                        livinglabfinance@dowellrsearch.sg
+                      </Text>
                     </View>
                     <View style={styles.contactItem}>
                       <Feather name="phone" size={30} color={colors.primary} />

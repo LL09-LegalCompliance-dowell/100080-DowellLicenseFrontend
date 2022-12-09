@@ -231,7 +231,7 @@ const LicenseCompatibility = () => {
           animationIn="slideInDown"
           animationOut="slideOutUp"
           animationInTiming={1000}
-          animationOutTiming={500}
+          animationOutTiming={1000}
           avoidKeyboard={true}
           backdropTransitionOutTiming={0}
           onBackdropPress={() => setModal2Visible(false)}
