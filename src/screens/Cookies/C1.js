@@ -15,7 +15,7 @@ const C1 = ({navigation}) => {
             Below is the sample for Cookies Policy Template. 
           </Text>
           <View style={styles.viewSampleContainer}>
-            <TouchableOpacity style={styles.viewSample} onPress={() => {}}>
+            <TouchableOpacity style={styles.viewSample} onPress={() => {navigation.navigate('policy_image')}}>
               <Ionicons name="md-eye-sharp" size={24} color={colors.primary} />
               <Text style={styles.faqq}>View Sample</Text>
             </TouchableOpacity>

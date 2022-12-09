@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
+import Policy4 from './Policy4';
 const Steps = () => {
     const nextButton = {
         backgroundColor: '#489503',
@@ -67,8 +68,18 @@ const Steps = () => {
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
     
                 previousBtnStyle={previousButton}>
-                <View style={{alignItems: 'center'}}>
+                <View >
                   <Policy3 />
+                </View>
+              </ProgressStep>
+              <ProgressStep
+                nextBtnStyle={nextButton}
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}
+                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+                finishBtnText="Done"
+                previousBtnStyle={previousButton}>
+                <View >
+                  <Policy4 />
                 </View>
               </ProgressStep>
             </ProgressSteps>

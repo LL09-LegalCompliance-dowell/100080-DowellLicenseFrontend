@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { color } from 'react-native-reanimated';
 import colors from '../../../assets/colors/colors';
 const styles = StyleSheet.create({
     container: {
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
         lineHeight:19,
         backgroundColor:"#078F04",
         opacity:0.5,
-        borderRadius:20,
+        borderRadius:25,
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
         fontSize:16,
         lineHeight:19,
         color:"#585858",
-        borderRadius:20,
+        borderRadius:25,
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15
@@ -162,7 +163,26 @@ const styles = StyleSheet.create({
         right:-290,
         marginTop:6,
         marginBottom:20
-        
+      },
+      button_p4:{
+        display:"flex",
+        flexDirection:"row",
+        borderRadius:10,
+        backgroundColor:"#C7C0C0",
+        width:213,
+        height:40,
+        alignItems:"center",
+        //justifyContent:"center",
+        paddingHorizontal:22,
+        marginBottom:24
+      },
+      text_b_p4:{
+        marginHorizontal:10,
+        fontSize:18,
+        fontWeight:"500",
+        lineHeight:21.09,
+        color:"#078F04",
+        textAlign:"center"
 
       }
 
