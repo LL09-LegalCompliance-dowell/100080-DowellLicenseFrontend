@@ -14,10 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 
 import styles from './style';
-import AppLoader from '../../components/AppLoader';
 import {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-import {selectAllLicenses} from '../../slices/licenseSlice';
 
 export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
@@ -74,7 +71,7 @@ export default IntroductionScreen = ({route, navigation}) => {
         </Modal>
       )}
       <ScrollView contentContainerStyle={styles.container}>
-        <StatusBar color="white" />
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
 
         <View style={styles.introLogoTop}>
           <Image

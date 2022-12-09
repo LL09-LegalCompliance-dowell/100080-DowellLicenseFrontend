@@ -2,14 +2,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   TouchableWithoutFeedback,
   ScrollView,
   Alert,
   Image,
   FlatList,
 } from 'react-native';
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useMemo} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import * as Progress from 'react-native-progress';
@@ -23,7 +22,6 @@ import colors from '../../../assets/colors/colors';
 import styles from './style';
 import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
-import {useLicenses} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
 
 const LicenseCompatibility = () => {
@@ -34,8 +32,8 @@ const LicenseCompatibility = () => {
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
   const [isHowto, setHowto] = useState(false);
-  // const licenses = useLicenses();
   const [licenses, setLicenses] = useState([]);
+  const [searchedData, setSearchedData] = useState(licenses);
   const [isCompatible, setIsCompatible] = useState(false);
   const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
   const [disclaimer, setDisclaimer] = useState('');
@@ -45,43 +43,23 @@ const LicenseCompatibility = () => {
   const [licenseLogo1, setLicenseLogo1] = useState('');
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
-  const [searchedData, setSearchedData] = useState(licenses);
 
-  // const fetchLicense = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const LicensesData = await axios.get(
-  //       'https://100080.pythonanywhere.com/api/licenses/',
-  //     );
-  //     if (LicensesData.data) {
-  //       setLicenses(LicensesData.data.data);
-  //       console.log('Hello ');
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  useMemo(
-    async () => {
-      try {
-        setLoading(true);
-        const LicensesData = await axios.get(
-          'https://100080.pythonanywhere.com/api/licenses/',
-        );
-        if (LicensesData.data) {
-          const data = setLicenses(LicensesData.data.data);
-      
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
+  //Fetching all licencses into the state
+  useMemo(async () => {
+    try {
+      setLoading(true);
+      const LicensesData = await axios.get(
+        'https://100080.pythonanywhere.com/api/licenses/',
+      );
+      if (LicensesData.data) {
+        setLicenses(LicensesData.data.data);
+        setSearchedData(LicensesData.data.data);
+        setLoading(false);
       }
-    },
-    // console.log('hamza');
-    [],
-  );
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const handleSelectedLicense1 = async () => {
     const name = await AsyncStorage.getItem('licenseNname1');
@@ -95,6 +73,7 @@ const LicenseCompatibility = () => {
     setFeild2(name);
   };
 
+  //Feting the compatibility results
   const fetchResults = async () => {
     setLoading(true);
     const id1 = await AsyncStorage.getItem('licenseEventId1');
@@ -165,7 +144,7 @@ const LicenseCompatibility = () => {
       });
     }
   };
-
+  // Searching functionality is being handled here
   const searchLicensesFunction = text => {
     const searchData = licenses.filter(item => {
       return item['softwarelicense']['license_name']
@@ -178,8 +157,7 @@ const LicenseCompatibility = () => {
   return (
     <>
       <View>
-        {/* First Modal start here */}
-
+        {/* First Modal starts here */}
         <Modal
           propagateSwipe
           isVisible={isModal1Visible}
@@ -199,57 +177,54 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              // autoFocus={true}
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {
-                //searchedData ??
-                searchedData.map((item, index) => {
-                  return (
-                    <>
-                      <ScrollView
-                        key={item['_id']}
-                        style={styles.serchResultItemContainer}>
-                        <TouchableOpacity
-                          onPress={async () => {
-                            const id_1 = item['_id'];
-                            const eventId_1 = item['eventId'];
-                            const licenseNname_1 =
-                              item['softwarelicense']['license_name'];
-                            await AsyncStorage.setItem(
-                              'licenseId1',
-                              JSON.stringify(id_1),
-                            );
-                            await AsyncStorage.setItem(
-                              'licenseEventId1',
-                              eventId_1,
-                            );
-                            await AsyncStorage.setItem(
-                              'licenseNname1',
-                              licenseNname_1,
-                            );
-                            handleSelectedLicense1();
-                          }}>
-                          <Text style={styles.serchResultHeading}>
-                            {item['softwarelicense']['license_name']}
-                          </Text>
-                          <Text  numberOfLines={1} style={styles.serchResultDetails}>
-                            {item['softwarelicense']['description']}
-                          </Text>
-                          <View style={styles.separator}></View>
-                        </TouchableOpacity>
-                      </ScrollView>
-                    </>
-                  );
-                })
-              }
+              {searchedData.map((item, index) => {
+                return (
+                  <>
+                    <ScrollView style={styles.serchResultItemContainer}>
+                      <TouchableOpacity
+                        key={index}
+                        onPress={async () => {
+                          const id_1 = item['_id'];
+                          const eventId_1 = item['eventId'];
+                          const licenseNname_1 =
+                            item['softwarelicense']['license_name'];
+                          await AsyncStorage.setItem(
+                            'licenseId1',
+                            JSON.stringify(id_1),
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseEventId1',
+                            eventId_1,
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseNname1',
+                            licenseNname_1,
+                          );
+                          handleSelectedLicense1();
+                        }}>
+                        <Text style={styles.serchResultHeading}>
+                          {item['softwarelicense']['license_name']}
+                        </Text>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
+                          {item['softwarelicense']['description']}
+                        </Text>
+                        <View style={styles.separator}></View>
+                      </TouchableOpacity>
+                    </ScrollView>
+                  </>
+                );
+              })}
             </View>
           </View>
         </Modal>
-        {/* First Modal end here */}
+        {/* First Modal ends here */}
 
-        {/* Second Modal start here */}
+        {/* Second Modal starts here */}
         <Modal
           propagateSwipe
           isVisible={isModal2Visible}
@@ -269,58 +244,54 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              // autoFocus={true}
               onChangeText={text => searchLicensesFunction(text)}
             />
             <View style={styles.serchResultContainer}>
-              {
-                //searchedData ??
-                searchedData.map((item, index) => {
-                  return (
-                    <>
-                      <ScrollView
-                        key={item['_id']}
-                        style={styles.serchResultItemContainer}>
-                        <TouchableOpacity
-                          onPress={async () => {
-                            const id_2 = item['_id'];
-                            const eventId_2 = item['eventId'];
-                            const licenseNname_2 =
-                              item['softwarelicense']['license_name'];
-                            await AsyncStorage.setItem(
-                              'licenseId2',
-                              JSON.stringify(id_2),
-                            );
-                            await AsyncStorage.setItem(
-                              'licenseEventId2',
-                              eventId_2,
-                            );
-                            await AsyncStorage.setItem(
-                              'licenseNname2',
-                              licenseNname_2,
-                            );
-                            handleSelectedLicense2();
-                          }}>
-                          <Text style={styles.serchResultHeading}>
-                            {item['softwarelicense']['license_name']}
-                          </Text>
-                          <Text
-                            numberOfLines={1}
-                            style={styles.serchResultDetails}>
-                            {item['softwarelicense']['description']}
-                          </Text>
-                          <View style={styles.separator}></View>
-                        </TouchableOpacity>
-                      </ScrollView>
-                    </>
-                  );
-                })
-              }
+              {searchedData.map((item, index) => {
+                return (
+                  <>
+                    <ScrollView
+                      key={item['_id']}
+                      style={styles.serchResultItemContainer}>
+                      <TouchableOpacity
+                        onPress={async () => {
+                          const id_2 = item['_id'];
+                          const eventId_2 = item['eventId'];
+                          const licenseNname_2 =
+                            item['softwarelicense']['license_name'];
+                          await AsyncStorage.setItem(
+                            'licenseId2',
+                            JSON.stringify(id_2),
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseEventId2',
+                            eventId_2,
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseNname2',
+                            licenseNname_2,
+                          );
+                          handleSelectedLicense2();
+                        }}>
+                        <Text style={styles.serchResultHeading}>
+                          {item['softwarelicense']['license_name']}
+                        </Text>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
+                          {item['softwarelicense']['description']}
+                        </Text>
+                        <View style={styles.separator}></View>
+                      </TouchableOpacity>
+                    </ScrollView>
+                  </>
+                );
+              })}
             </View>
           </View>
         </Modal>
-        {/* Second Modal end here */}
-        {/* How to Overlay start here */}
+        {/* Second Modal ends here */}
+        {/* How to Overlay starts here */}
         <Modal
           propagateSwipe
           isVisible={isHowto}
@@ -332,7 +303,6 @@ const LicenseCompatibility = () => {
           onBackdropPress={() => setHowto(false)}
           onBackButtonPress={() => setHowto(false)}
           backdropTransitionOutTiming={0}
-          // deviceWidth={deviceWidth / 1.3}
           onSwipeComplete={() => setHowto(false)}
           swipeDirection="right"
           customBackdrop={
@@ -633,7 +603,7 @@ const LicenseCompatibility = () => {
                     Comparison
                   </Text>
                   {/* Table starts here */}
-
+                  {/* Table header */}
                   <View>
                     <View style={styles.tableHederConatainer}>
                       <View style={[styles.tableItemConatainer, {flex: 2}]}>
@@ -722,7 +692,7 @@ const LicenseCompatibility = () => {
                   }}>
                   Sorry... compatibility results for this pair of licences is
                   not availbe yet. We are working on it, you might be able to
-                  get it in the next version
+                  get it in the next version, thanks.
                 </Text>
               </View>
             )}

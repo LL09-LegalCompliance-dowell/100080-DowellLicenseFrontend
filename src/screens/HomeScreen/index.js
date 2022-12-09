@@ -37,7 +37,7 @@ const Home = ({navigation}) => {
 
         <View style={styles.miniContainer}>
           {/* Product and Services */}
-          <Text style={styles.heading}>Priducts & Services</Text>
+          <Text style={styles.heading}>Products & Services</Text>
           <View style={styles.productItemsContainer}>
             <View style={styles.singleItemContainer}>
               <Image
