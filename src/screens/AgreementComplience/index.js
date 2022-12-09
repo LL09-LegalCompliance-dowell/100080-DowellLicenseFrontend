@@ -70,7 +70,7 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('Eula')}>
             <View style={styles.iconContainer}>
               <AntDesign name="warning" color={colors.primary} size={30} />
             </View>

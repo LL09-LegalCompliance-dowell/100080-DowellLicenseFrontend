@@ -18,6 +18,7 @@ import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/Cookies';
+import Eula from '../screens/EULA';
 
 const Stack = createStackNavigator();
 
@@ -103,9 +104,16 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
-          <Stack.Screen
+        <Stack.Screen
           name="CookiesPolicy"
           component={CookiesPolicy}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Eula"
+          component={Eula}
           options={{
             headerShown: false,
           }}

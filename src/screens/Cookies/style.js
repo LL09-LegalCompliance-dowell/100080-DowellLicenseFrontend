@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
         paddingTop: 80,
       },
       text: {
-        fontSize: 15,
+        fontSize: 16,
         color: colors.textDark,
-        fontWeight: '400',
+        fontWeight: '300',
       },
       heading: {
         fontSize: 18,
@@ -55,11 +55,16 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         marginTop: 30,
       },
-    
+      faq1: {
+        color: colors.primary,
+        marginRight:2,
+        marginTop: 33,
+      },
       textlight: {
-        fontSize: 15,
-        fontWeight: '400',
+        fontSize: 16,
+        fontWeight: '300',
         paddingVertical: 15,
+        textAlign:"center"
       },
     
       viewSampleContainer: {
