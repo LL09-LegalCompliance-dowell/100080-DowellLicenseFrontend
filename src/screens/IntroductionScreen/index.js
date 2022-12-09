@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 import styles from './style';
@@ -15,6 +16,8 @@ const IntroductionScreen = ({navigation}) => {
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
+
         <View>
           <SafeAreaView>
             <View style={styles.introLogoTop}>
