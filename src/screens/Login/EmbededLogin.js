@@ -25,8 +25,8 @@ export default IntroductionScreen = ({route, navigation}) => {
     const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
     setDate(data);
     setAgree(iAgree);
-    console.log(data);
-    console.log(iAgree);
+    // console.log(data);
+    // console.log(iAgree);
   };
   useEffect(() => {
     fetchdata();

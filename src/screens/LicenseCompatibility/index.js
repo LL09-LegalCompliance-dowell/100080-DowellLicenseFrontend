@@ -96,7 +96,11 @@ const LicenseCompatibility = ({navigation}) => {
         },
       );
 
-      if (LicensesCompatibilityData.data) {
+      if (
+        Object.keys(LicensesCompatibilityData.data.license_comparison).length !=
+        0
+      ) {
+        // if (LicensesCompatibilityData.data.license_comparison)
         setLicenseComaparison(
           LicensesCompatibilityData.data.license_comparison,
         );
@@ -129,20 +133,23 @@ const LicenseCompatibility = ({navigation}) => {
         );
         console.log(LicensesCompatibilityData.data);
 
-        console.log(comparison);
+        // console.log(comparison);
         setResult(true);
         setLoading(false);
         // await AsyncStorage.removeItem('licenseEventId1');
         // await AsyncStorage.removeItem('licenseEventId2');
         // setFeild1('temp');
         // setFeild2('temp');
+      } else {
+        setResult(false);
+        setLoading(false);
+        Alert.alert(
+          'Error message',
+          `Compatibility result for this pair is not available yet, you can try other licenses"`,
+        );
       }
     } catch (error) {
-      console.log(error.error_msg);
-      // Alert.alert('Error message', 'error.response', {
-      //   text: 'OK',
-      //   onPress: () => console.log('OK Pressed'),
-      // });
+      console.log(error);
     }
   };
   // Searching functionality is being handled here
@@ -507,7 +514,7 @@ const LicenseCompatibility = ({navigation}) => {
         {result ? (
           <>
             {/* {comparison ? ( */}
-            {Object.keys(licenseComaparison).length != 0 ? (
+            {/* {Object.keys(licenseComaparison).length != 0 ? ( */}
               <>
                 <FlatList
                   ListHeaderComponent={
@@ -707,7 +714,7 @@ const LicenseCompatibility = ({navigation}) => {
                   )}
                 />
               </>
-            ) : (
+            {/* ) : (
               <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Text
                   style={{
@@ -721,7 +728,7 @@ const LicenseCompatibility = ({navigation}) => {
                   get it in the next version, thanks.
                 </Text>
               </View>
-            )}
+            )} */}
           </>
         ) : null}
       </View>

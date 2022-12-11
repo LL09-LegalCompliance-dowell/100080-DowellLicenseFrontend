@@ -12,7 +12,7 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('username', username);
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
-    navigation.navigate('EmbededLogin');
+    navigation.navigate('RootNavigator');
   };
 
   useEffect(() => {
