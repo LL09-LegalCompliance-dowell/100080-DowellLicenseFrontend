@@ -35,7 +35,7 @@ const C1 = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-               navigation.navigate('cookies_policy_nav');
+               navigation.navigate('eula_policy_nav');
            }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Start Generating</Text>

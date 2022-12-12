@@ -128,6 +128,13 @@ const styles = StyleSheet.create({
         top: -50,
         elevation: 3,
       },
+      radio_hm: {
+        marginHorizontal:27,
+        marginVertical:5,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+      },
       radio: {
         marginHorizontal:-10,
         marginVertical:5,
