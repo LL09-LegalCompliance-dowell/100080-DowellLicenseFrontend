@@ -24,22 +24,28 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
 
-const LicenseCompatibility = () => {
-  const {loading, setLoading} = useState(false);
+const LicenseCompatibility = ({navigation}) => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
   const [feild1, setFeild1] = useState('temp');
   const [feild2, setFeild2] = useState('temp');
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
   const [isHowto, setHowto] = useState(false);
-  const [licenses, setLicenses] = useState([]);
-  const [searchedData, setSearchedData] = useState(licenses);
+  const [licenses1, setLicenses1] = useState([]);
+  const [licenses2, setLicenses2] = useState([]);
+
+  const [searchedData1, setSearchedData1] = useState(licenses1);
+  const [searchedData2, setSearchedData2] = useState(licenses2);
+
   const [isCompatible, setIsCompatible] = useState(false);
   const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
   const [disclaimer, setDisclaimer] = useState('');
   const [recommendation, setRecommendation] = useState('');
   const [licenseOne, setLicenseOne] = useState('');
   const [licenseTwo, setLicenseTwo] = useState('');
+  const [licenseComaparison, setLicenseComaparison] = useState({});
+  const [tableLicenseTwo, setTableLicenseTwo] = useState('');
   const [licenseLogo1, setLicenseLogo1] = useState('');
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
@@ -52,8 +58,10 @@ const LicenseCompatibility = () => {
         'https://100080.pythonanywhere.com/api/licenses/',
       );
       if (LicensesData.data) {
-        setLicenses(LicensesData.data.data);
-        setSearchedData(LicensesData.data.data);
+        setLicenses1(LicensesData.data.data);
+        setSearchedData1(LicensesData.data.data);
+        setLicenses2(LicensesData.data.data);
+        setSearchedData2(LicensesData.data.data);
         setLoading(false);
       }
     } catch (error) {
@@ -88,70 +96,79 @@ const LicenseCompatibility = () => {
         },
       );
 
-      if (LicensesCompatibilityData.data) {
+      if (
+        Object.keys(LicensesCompatibilityData.data.license_comparison).length !=
+        0
+      ) {
+        // if (LicensesCompatibilityData.data.license_comparison)
+        setLicenseComaparison(
+          LicensesCompatibilityData.data.license_comparison,
+        );
         setCompatibiltyPercentage(
-          LicensesCompatibilityData.data['license_comparison'][
-            'percentage_of_compatibility'
-          ],
+          LicensesCompatibilityData.data.license_comparison
+            ?.percentage_of_compatibility,
         );
 
         setDisclaimer(
-          LicensesCompatibilityData.data['license_comparison']['disclaimer'],
+          LicensesCompatibilityData.data.license_comparison?.disclaimer,
         );
         setRecommendation(
-          LicensesCompatibilityData.data['license_comparison'][
-            'recommendation'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.recommendation,
         );
-        setIsCompatible(LicensesCompatibilityData.data['is_compatible']);
+        setIsCompatible(LicensesCompatibilityData.data.is_compatible);
         setLicenseOne(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_1_name'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_1_name,
         );
         setLicenseTwo(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_2_name'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_2_name,
         );
         setLicenseLogo1(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_1_logo_url'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_1_logo_url,
         );
         setLicenseLogo2(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_2_logo_url'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_2_logo_url,
         );
         setComparison(
-          LicensesCompatibilityData.data['license_comparison']['comparisons'],
+          LicensesCompatibilityData.data.license_comparison?.comparisons,
         );
+        console.log(LicensesCompatibilityData.data);
 
-        console.log(comparison);
+        // console.log(comparison);
         setResult(true);
         setLoading(false);
         // await AsyncStorage.removeItem('licenseEventId1');
         // await AsyncStorage.removeItem('licenseEventId2');
         // setFeild1('temp');
         // setFeild2('temp');
+      } else {
+        setResult(false);
+        setLoading(false);
+        Alert.alert(
+          'Error message',
+          `Compatibility result for this pair is not available yet, you can try other licenses"`,
+        );
       }
     } catch (error) {
-      console.log(error.error_msg);
-      Alert.alert('Error message', 'error.response', {
-        text: 'OK',
-        onPress: () => console.log('OK Pressed'),
-      });
+      console.log(error);
     }
   };
   // Searching functionality is being handled here
-  const searchLicensesFunction = text => {
-    const searchData = licenses.filter(item => {
+  const searchLicensesFunction1 = text => {
+    const searchData = licenses1.filter(item => {
       return item['softwarelicense']['license_name']
         .toLowerCase()
         .includes(text.toLowerCase());
     });
-    setSearchedData(searchData);
+    setSearchedData1(searchData);
+  };
+
+  const searchLicensesFunction2 = text => {
+    const searchData = licenses2.filter(item => {
+      return item['softwarelicense']['license_name']
+        .toLowerCase()
+        .includes(text.toLowerCase());
+    });
+    setSearchedData2(searchData);
   };
 
   return (
@@ -177,10 +194,10 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              onChangeText={text => searchLicensesFunction(text)}
+              onChangeText={text => searchLicensesFunction1(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map((item, index) => {
+              {searchedData1.map((item, index) => {
                 return (
                   <>
                     <ScrollView style={styles.serchResultItemContainer}>
@@ -244,14 +261,14 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              onChangeText={text => searchLicensesFunction(text)}
+              onChangeText={text => searchLicensesFunction2(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map((item, index) => {
+              {searchedData2.map((item, index) => {
                 return (
                   <>
                     <ScrollView
-                      key={item['_id']}
+                      key={index}
                       style={styles.serchResultItemContainer}>
                       <TouchableOpacity
                         onPress={async () => {
@@ -312,7 +329,7 @@ const LicenseCompatibility = () => {
           }>
           <>
             <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
-              <ScrollView>
+              <ScrollView showsVerticalScrollIndicator={false}>
                 <TouchableOpacity
                   style={{marginLeft: 'auto'}}
                   onPress={() => setHowto(false)}>
@@ -496,7 +513,8 @@ const LicenseCompatibility = () => {
         </TouchableOpacity>
         {result ? (
           <>
-            {comparison ? (
+            {/* {comparison ? ( */}
+            {/* {Object.keys(licenseComaparison).length != 0 ? ( */}
               <>
                 <FlatList
                   ListHeaderComponent={
@@ -627,7 +645,19 @@ const LicenseCompatibility = () => {
                     </View>
                   }
                   ListFooterComponent={
-                    <TouchableOpacity style={styles.readMoreContainer}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate('ResultsDetailsScreen', {
+                          comparison,
+                          licenseLogo1,
+                          licenseLogo2,
+                          licenseOne,
+                          licenseTwo,
+                          compatibiltyPercentage,
+                          isCompatible,
+                        })
+                      }
+                      style={styles.readMoreContainer}>
                       <Text style={styles.readMoreText}>Read more</Text>
                       <MaterialCommunityIcons
                         style={styles.readMoreIcon}
@@ -683,12 +713,8 @@ const LicenseCompatibility = () => {
                     </View>
                   )}
                 />
-                {/* 
-                <ScrollView
-                  nestedScrollEnabled={true}
-                  showsVerticalScrollIndicator={false}></ScrollView> */}
               </>
-            ) : (
+            {/* ) : (
               <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Text
                   style={{
@@ -702,7 +728,7 @@ const LicenseCompatibility = () => {
                   get it in the next version, thanks.
                 </Text>
               </View>
-            )}
+            )} */}
           </>
         ) : null}
       </View>
