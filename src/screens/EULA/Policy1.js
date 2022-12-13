@@ -20,12 +20,13 @@ const Policy1 = () => {
   const [input7, setInput7] = useState("");
   const [input8, setInput8] = useState("");
   const [input9, setInput9] = useState("");
+  const [input10, setInput10] = useState("");
  
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       <View style={{position: 'relative', marginTop: 20,fontWeight:"400"}}>
-          <Text style={{color: colors.textDark,fontSize:20}}>
+          <Text style={styles.text_1}>
           Date of execution of the document:
           </Text>
           <TextInput
@@ -46,9 +47,9 @@ const Policy1 = () => {
             initialDate={new Date()}
           />
       </View>
-      <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400"}}>Party details:</Text>
+      <Text style={styles.text_1}>Party details:</Text>
       <View style={{paddingHorizontal:11,paddingTop:16}}>
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Full Name of the Party:</Text>
+        <Text style={styles.text_2}>Full Name of the Party:</Text>
         <TextInput
             style={styles.input_vm}
             value={input1}
@@ -57,7 +58,7 @@ const Policy1 = () => {
             onChangeText={(value)=>setInput1(value)}
         />  
         <Text style={{fontSize:12,fontWeight:"300",color:"#585858",lineHeight:14,position:"relative",right:-220,marginTop:6,marginBottom:20}}>*Include Middle Name</Text>  
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Name of the company:</Text>  
+        <Text style={styles.text_2}>Name of the company:</Text>  
         <TextInput
             style={styles.input_vm}
             value={input2}
@@ -65,7 +66,7 @@ const Policy1 = () => {
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput2(value)}
         />  
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Address of the company:</Text>
+        <Text style={styles.text_2}>Address of the company:</Text>
         <TextInput
             style={styles.input_vm}
             value={input3}
@@ -87,7 +88,7 @@ const Policy1 = () => {
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput5(value)}
         />   
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>PIN Code:</Text>
+        <Text style={styles.text_2}>PIN Code:</Text>
         <TextInput
             style={styles.input_vm}
             value={input6}
@@ -95,7 +96,7 @@ const Policy1 = () => {
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput6(value)}
         />
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>State:</Text>
+        <Text style={styles.text_2}>State:</Text>
         <TextInput
             style={styles.input_vm}
             value={input7}
@@ -103,7 +104,7 @@ const Policy1 = () => {
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput7(value)}
         /> 
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Country:</Text>
+        <Text style={styles.text_2}>Country:</Text>
         <TextInput
             style={styles.input_vm}
             value={input8}
@@ -111,20 +112,20 @@ const Policy1 = () => {
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput8(value)}
         />
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Telephone:</Text>
+        <Text style={styles.text_2}>Telephone:</Text>
         <TextInput
             style={styles.input_vm}
             value={input9}
             placeholderTextColor="gray" 
             onChangeText={(value)=>setInput9(value)}
         />
-        <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Email:</Text>
+        <Text style={styles.text_2}>Email:</Text>
         <TextInput
             style={styles.input_vm}
-            value={input9}
+            value={input10}
             placeholder="  Eg. johndoe@gmail.com"
             placeholderTextColor="gray" 
-            onChangeText={(value)=>setInput9(value)}
+            onChangeText={(value)=>setInput10(value)}
         />                             
       </View>
 

@@ -51,9 +51,9 @@ const [radioButtons, setRadioButtons] = useState([{
 return (  
 <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-    <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400"}}>Company Details::</Text>
+    <Text style={styles.text_1}>Company Details:</Text>
     <View style={{paddingHorizontal:11,paddingTop:16}}>
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Nature of the company :</Text>
+      <Text style={styles.text_2}>Nature of the company :</Text>
       <View >
           <RadioGroup
             radioButtons={radioButtons}
@@ -61,14 +61,14 @@ return (
             containerStyle={styles.radio_hm}
           />
       </View>
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Software Product License Name:</Text>
+      <Text style={styles.text_2}>Software Product License Name:</Text>
       <TextInput
             style={styles.input_vm}
             value={input1}
             onChangeText={(value)=>setInput1(value)}
       /> 
-      <Text style={{color: "#585858",fontStyle:"italic",fontSize:18,fontWeight:"300",marginBottom:12,marginTop:8}}>Remedies Under Limitation Of Liability</Text> 
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Which state laws will apply for this EULA?</Text>
+      <Text style={styles.text_3}>Remedies Under Limitation Of Liability</Text> 
+      <Text style={styles.text_2}>Which state laws will apply for this EULA?</Text>
       <TextInput
             style={styles.input_vm}
             value={input2}
@@ -76,8 +76,8 @@ return (
             placeholderTextColor="gray"
             onChangeText={(value)=>setInput2(value)}
       />
-      <Text style={{color: "#585858",fontStyle:"italic",fontSize:18,fontWeight:"300",marginBottom:12,marginTop:8}}>Applicable Law</Text>
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Which state laws will apply for this EULA?</Text>
+      <Text style={styles.text_3}>Applicable Law</Text>
+      <Text style={styles.text_2}>Which state laws will apply for this EULA?</Text>
       <SelectList 
       setSelected={(val) => setInput3(val)} 
       data={states} 
@@ -85,8 +85,8 @@ return (
       placeholder="Select State"
       boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300"}}
       />
-      <Text style={{color: "#585858",fontStyle:"italic",fontSize:18,fontWeight:"300",marginBottom:12,marginTop:8}}>Conflict</Text>
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>What will be the Jurisdiction State?</Text>
+      <Text style={styles.text_3}>Conflict</Text>
+      <Text style={styles.text_2}>What will be the Jurisdiction State?</Text>
       <SelectList 
       setSelected={(val) => setInput4(val)} 
       data={states} 
@@ -94,7 +94,7 @@ return (
       placeholder="Select State"
       boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300"}}
       />
-      <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>What will be the Jurisdiction city?</Text>
+      <Text style={styles.text_2}>What will be the Jurisdiction city?</Text>
       <SelectList 
       setSelected={(val) => setInput5(val)} 
       data={cities} 

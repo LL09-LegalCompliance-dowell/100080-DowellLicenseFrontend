@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
       },
       wrapper: {
         display: 'flex',
+        marginVertical:10,
         flex:1,
         flexDirection: 'column',
         backgroundColor: 'white',
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
         borderColor: '#C4C4C4',
         padding: 10,
         backgroundColor: '#D8D8D8',
+        fontSize:16
       },
       input_vm: {
         height: 51,
@@ -110,8 +112,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         borderColor: '#C4C4C4',
-        padding: 10,
+        padding: 12,
+        
         backgroundColor: '#D8D8D8',
+        fontSize:16
       },
       input_um: {
         height: 51,
@@ -121,6 +125,7 @@ const styles = StyleSheet.create({
         borderColor: '#C4C4C4',
         padding: 10,
         backgroundColor: '#D8D8D8',
+        fontSize:16
       },
       calendarPosition: {
         position: 'absolute',
@@ -195,8 +200,30 @@ const styles = StyleSheet.create({
         lineHeight:21.09,
         color:"#078F04",
         textAlign:"center"
+      },
+      text_1:{
+        color: colors.textDark,
+        fontSize:20,
+        fontWeight:"400",
+        lineHeight:23.44
+
+      },
+      text_2:{
+        color: colors.textDark,
+        fontSize:18,
+        fontWeight:"400",
+        lineHeight:21.09
+      },
+      text_3:{
+        color: "#585858",
+        fontStyle:"italic",
+        fontSize:18,
+        fontWeight:"300",
+        marginBottom:12,
+        marginTop:8
 
       }
+
 
 })
 export default styles;
