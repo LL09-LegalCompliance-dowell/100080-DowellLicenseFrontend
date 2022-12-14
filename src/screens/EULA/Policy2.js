@@ -3,13 +3,9 @@ import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
 import colors from '../../../assets/colors/colors'
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 import RadioGroup from 'react-native-radio-buttons-group';
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import SearchableDropdown from 'react-native-searchable-dropdown';
-import Autocomplete from 'react-native-dropdown-autocomplete-textinput';
-import { SafeAreaView } from 'react-native-safe-area-context'
+
 import { SelectList } from 'react-native-dropdown-select-list'
 
 const Policy2 = () => {

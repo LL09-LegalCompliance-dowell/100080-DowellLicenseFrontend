@@ -7,10 +7,7 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import SearchableDropdown from 'react-native-searchable-dropdown';
-import Autocomplete from 'react-native-dropdown-autocomplete-textinput';
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { SelectList } from 'react-native-dropdown-select-list'
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 const Policy3 = () => {
 
@@ -20,27 +17,8 @@ const Policy3 = () => {
 
   const [date, setDate] = useState(new Date());
   const [input1, setInput1] = useState("");
-  
-  const [radioButtons, setRadioButtons] = useState([{
-    id: '1',
-    label: 'Yes',
-    value: 'Yes',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    selected:false,
-    containerStyle:{paddingBottom:20}
-    
-  },{
-  id: '2',
-  label: 'Not Available',
-  value: 'Not Available',
-  size: 18,
-  color: '#489503',
-  borderColor: '#C4C4C4',
-  containerStyle:{paddingTop:5},
-  selected: true
-}]);
+
+  const [value3Index, setvalue3Index] = useState(1);
 
   const [radioButtons1, setRadioButtons1] = useState([{
     id: '1',
@@ -136,39 +114,85 @@ const Policy3 = () => {
           />
         </View>
         <Text style={styles.text_2}>Whether maintenance and support will be available for the app and will it be delivered over phone, via email or in person?</Text>
-        <View >
-          <RadioGroup
-            radioButtons={radioButtons}
-            onPress={(data)=>setRadioButtons(data)}
-            containerStyle={styles.radio_hm}
-          />
-        </View>{
-          console.log(radioButtons[0].selected)
-        } 
-        {radioButtons[0].selected && <View style={{flex:1 ,display:"flex",flexDirection:"row",marginVertical:15,position:"absolute",right:48,top:215}}>
-        <TouchableHighlight {...touchProps1}>
-          <View style={{display:"flex",flexDirection:"row"}}>
-            <Text>Over phone</Text>
-            <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
-          </View>
-          
-        </TouchableHighlight>
-        
-        <TouchableHighlight {...touchProps2}>
-          <View style={{display:"flex",flexDirection:"row"}}>
-            <Text>Via Email </Text>
-            <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
-          </View>
-        </TouchableHighlight>
+        <RadioForm
+          formHorizontal={false}
+          animation={true}
+          style={{marginHorizontal:27,marginVertical:7}}
+        >
+   
+              <RadioButton labelHorizontal={true} key={0} style={value3Index ===0? {marginBottom:20}:{marginBottom:4}} >
+                {/*  You can set RadioButtonLabel before RadioButtonInput */}
+                <RadioButtonInput
+                  obj={{label: 'Yes', value: 0 }}
+                  index={0}
+                  isSelected={value3Index === 0}
+                  onPress={()=>setvalue3Index(0)}
+                  borderWidth={1}
+                  buttonInnerColor={colors.primary}
+                  buttonOuterColor={"#C4C4C4"}
+                  buttonSize={9}
+                  buttonOuterSize={18}
+                  buttonWrapStyle={{marginLeft: 10}}
+                />
+                <RadioButtonLabel
+                  obj={{label: 'Yes', value: 0 }}
+                  index={0}
+                  labelHorizontal={true}
+                  onPress={()=>setvalue3Index(0)}
+                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
+                />
+              </RadioButton>
+              {value3Index===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
+              <TouchableHighlight {...touchProps1}>
+                <View style={{display:"flex",flexDirection:"row"}}>
+                  <Text>Over phone</Text>
+                  <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
+                </View>
+                
+              </TouchableHighlight>
+              
+              <TouchableHighlight {...touchProps2}>
+                <View style={{display:"flex",flexDirection:"row"}}>
+                  <Text>Via Email </Text>
+                  <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
+                </View>
+              </TouchableHighlight>
 
-        <TouchableHighlight {...touchProps3}>
-          <View style={{display:"flex",flexDirection:"row"}}>
-            <Text>In-person</Text>
-            <TouchableOpacity style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
-          </View>
-        </TouchableHighlight>
+              <TouchableHighlight {...touchProps3}>
+                <View style={{display:"flex",flexDirection:"row"}}>
+                  <Text>In-person</Text>
+                  <TouchableOpacity style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
+                </View>
+              </TouchableHighlight>
 
-  </View> }
+              </View> }
+
+              <RadioButton labelHorizontal={true} key={1} style={value3Index ===0? {marginTop:20}:{marginTop:4}} >
+                {/*  You can set RadioButtonLabel before RadioButtonInput */}
+                <RadioButtonInput
+                  obj={{label: 'Not Available', value: 1 }}
+                  index={1}
+                  isSelected={value3Index === 1}
+                  onPress={()=>setvalue3Index(1)}
+  
+                  borderWidth={1}
+                  buttonInnerColor={colors.primary}
+                  buttonOuterColor={"#C4C4C4"}
+                  buttonSize={9}
+                  buttonOuterSize={18}
+                  buttonWrapStyle={{marginLeft: 10}}
+                />
+                <RadioButtonLabel
+                  obj={{label: 'Not Available', value: 1 }}
+                  index={1}
+                  labelHorizontal={true}
+                  onPress={()=>setvalue3Index(1)}
+                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
+                />
+              </RadioButton>
+
+        </RadioForm>
+
         <Text style={styles.text_2}>Will it state how often maintenance will occur and on what schedule?</Text>
         <View >
           <RadioGroup

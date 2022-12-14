@@ -19,6 +19,7 @@ import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/Cookies';
 import Eula from '../screens/EULA';
+import TermsOfUse from '../screens/TermsOfUse';
 
 const Stack = createStackNavigator();
 
@@ -114,6 +115,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Eula"
           component={Eula}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="TermsOfUse"
+          component={TermsOfUse}
           options={{
             headerShown: false,
           }}

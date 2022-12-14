@@ -55,7 +55,7 @@ const AgreementComplience = ({navigation}) => {
                 size={30}
               />
             </View>
-            <Text style={styles.listHeading}>Cookies</Text>
+            <Text style={styles.listHeading}>Cookies Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
           <TouchableOpacity style={styles.listContainer}>
@@ -102,7 +102,7 @@ const AgreementComplience = ({navigation}) => {
           </View>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('TermsOfUse')}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -110,8 +110,8 @@ const AgreementComplience = ({navigation}) => {
                 size={30}
               />
             </View>
-            <Text style={styles.listHeading}>Terms of Use</Text>
-          </View>
+            <Text style={styles.listHeading}>Website Terms of Use</Text>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
           <TouchableOpacity
