@@ -47,7 +47,7 @@ const AgreementComplience = ({navigation}) => {
             <Text style={styles.listHeading}>Terms & Conditions</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('CookiesPolicy')} >
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="cookie-outline"
@@ -55,7 +55,7 @@ const AgreementComplience = ({navigation}) => {
                 size={30}
               />
             </View>
-            <Text style={styles.listHeading}>Cookies</Text>
+            <Text style={styles.listHeading}>Cookies Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
           <TouchableOpacity style={styles.listContainer}>
@@ -70,7 +70,7 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('Eula')}>
             <View style={styles.iconContainer}>
               <AntDesign name="warning" color={colors.primary} size={30} />
             </View>
@@ -102,7 +102,7 @@ const AgreementComplience = ({navigation}) => {
           </View>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('TermsOfUse')}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"
@@ -110,8 +110,8 @@ const AgreementComplience = ({navigation}) => {
                 size={30}
               />
             </View>
-            <Text style={styles.listHeading}>Terms of Use</Text>
-          </View>
+            <Text style={styles.listHeading}>Website Terms of Use</Text>
+          </TouchableOpacity>
           <View style={styles.separator}></View>
 
           <TouchableOpacity
