@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import { color } from 'react-native-reanimated';
-import colors from '../../../assets/colors/colors';
+import colors from '../../../../assets/colors/colors';
+const w='70%';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -117,6 +118,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#D8D8D8',
         fontSize:16
       },
+      
+      input_vm_w: {
+        width:w,
+        marginRight:4,
+        height: 51,
+        marginVertical: 12,
+        borderWidth: 1,
+        borderRadius: 15,
+        borderColor: '#C4C4C4',
+        padding: 12,
+        
+        backgroundColor: '#D8D8D8',
+        fontSize:16
+      },
       input_um: {
         height: 51,
         marginTop: 12,
@@ -214,6 +229,13 @@ const styles = StyleSheet.create({
         fontWeight:"400",
         lineHeight:21.09
       },
+      text_2_m_b:{
+        color: colors.textDark,
+        fontSize:18,
+        fontWeight:"400",
+        lineHeight:21.09,
+        marginBottom:16
+      },
       text_3:{
         color: "#585858",
         fontStyle:"italic",
@@ -221,8 +243,21 @@ const styles = StyleSheet.create({
         fontWeight:"300",
         marginBottom:12,
         marginTop:8
-
+      },
+      text_3_no_m:{
+        color: "#585858",
+        fontStyle:"italic",
+        fontSize:18,
+        fontWeight:"300",
+      },
+      text_3_m_b:{
+        color: "#585858",
+        fontStyle:"italic",
+        fontSize:18,
+        fontWeight:"300",
+        marginBottom:16
       }
+
 
 
 })

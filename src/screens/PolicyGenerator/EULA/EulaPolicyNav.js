@@ -4,7 +4,7 @@ import NavIndex from './NavIndex';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
-import Policy4 from './Policy4';
+import Policy4 from '../Cookies/Policy4';
 const Stack = createNativeStackNavigator();
 
 const EulaPolicyNav = () => {

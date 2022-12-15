@@ -2,11 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
-import colors from '../../../assets/colors/colors'
+
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import RadioGroup from 'react-native-radio-buttons-group';
-import { TouchableOpacity } from 'react-native-gesture-handler'
+
 
 
 const Policy1 = () => {

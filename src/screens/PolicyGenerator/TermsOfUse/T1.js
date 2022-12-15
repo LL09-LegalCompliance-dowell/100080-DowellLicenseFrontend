@@ -1,14 +1,14 @@
 import React from 'react'
 import { ScrollView,Text,TouchableOpacity,View,Image }  from 'react-native'
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import colors from '../../../assets/colors/colors';
-const C1 = ({navigation}) => {
+import colors from '../../../../assets/colors/colors';
+const T1 = ({navigation}) => {
   return (
     <>
-       <Header title="End User License Agreement"/>
+       <Header title="Website Terms of Use"/>
       
         <ScrollView contentContainerStyle={styles.scrollView}>
           <View>
@@ -27,7 +27,7 @@ const C1 = ({navigation}) => {
           </View>
 
           <Image
-            source={require('../../../assets/images/eula_blur.png')}
+            source={require('../../../../assets/images/terms_of_use_blur.png')}
             style={styles.blurImage}
           />
 
@@ -35,7 +35,7 @@ const C1 = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-               navigation.navigate('eula_policy_nav');
+               navigation.navigate('terms_of_use_policy_nav');
            }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Start Generating</Text>
@@ -61,5 +61,4 @@ const C1 = ({navigation}) => {
   )
 }
 
-export default C1
-
+export default T1

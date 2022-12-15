@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './style'
-import colors from '../../../assets/colors/colors'
+import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,Image,TouchableOpacity} from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react'
@@ -25,7 +25,7 @@ const Policy4 = () => {
             <Text style={{color: "#585858",fontSize:18,fontWeight:"300"}}>You will receive the policy to the entered email.</Text>
             <View style={{alignItems:"center",marginVertical:30}}>
                 <Image
-                source={require('../../../assets/images/TheLittleThingsWorking.png')}
+                source={require('../../../../assets/images/TheLittleThingsWorking.png')}
                 style={styles.blurImage}
                 />
                 <TouchableOpacity style={styles.button_p4}>

@@ -90,34 +90,34 @@
 import React from 'react'
 import { Modal } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 const images = [ {
   props: {
-      source: require('../../../assets/images/cookiesPolices/image35.png')
+      source: require('../../../../assets/images/cookiesPolices/image35.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image36.png')
+      source: require('../../../../assets/images/cookiesPolices/image36.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image37.png')
+      source: require('../../../../assets/images/cookiesPolices/image37.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image38.png')
+      source: require('../../../../assets/images/cookiesPolices/image38.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image39.png')
+      source: require('../../../../assets/images/cookiesPolices/image39.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image40.png')
+      source: require('../../../../assets/images/cookiesPolices/image40.png')
   }
 },{
   props: {
-      source: require('../../../assets/images/cookiesPolices/image41.png')
+      source: require('../../../../assets/images/cookiesPolices/image41.png')
   }
 }]
 const PolicyImage = () => {

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
-import colors from '../../../assets/colors/colors'
+
 
 import RadioGroup from 'react-native-radio-buttons-group';
 
@@ -79,7 +79,7 @@ return (
       data={states} 
       save="value"
       placeholder="Select State"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300"}}
+      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
       />
       <Text style={styles.text_3}>Conflict</Text>
       <Text style={styles.text_2}>What will be the Jurisdiction State?</Text>
@@ -88,7 +88,7 @@ return (
       data={states} 
       save="value"
       placeholder="Select State"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300"}}
+      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
       />
       <Text style={styles.text_2}>What will be the Jurisdiction city?</Text>
       <SelectList 
@@ -96,7 +96,7 @@ return (
       data={cities} 
       save="value"
       placeholder="Select City"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300"}}
+      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
       />
     </View>
    </ScrollView> 

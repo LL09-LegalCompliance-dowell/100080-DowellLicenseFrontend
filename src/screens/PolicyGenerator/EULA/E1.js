@@ -1,14 +1,14 @@
 import React from 'react'
 import { ScrollView,Text,TouchableOpacity,View,Image }  from 'react-native'
-import Header from '../../components/Header';
-import styles from './style';
+import Header from '../../../components/Header';
+import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import colors from '../../../assets/colors/colors';
+import colors from '../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-       <Header title="Cookies Policy"/>
+       <Header title="End User License Agreement"/>
       
         <ScrollView contentContainerStyle={styles.scrollView}>
           <View>
@@ -16,18 +16,18 @@ const C1 = ({navigation}) => {
             We help with the legal requirements, so you can focus on the business. 
             </Text>
             <Text style={styles.text}>
-            Below is the sample for Cookies Policy Template. 
+            Below is the sample for End User License Agreement Policy Template. 
             </Text>
           </View>
           <View style={styles.viewSampleContainer}>
-            <TouchableOpacity style={styles.viewSample} onPress={() => {navigation.navigate('policy_image')}}>
+            <TouchableOpacity style={styles.viewSample} onPress={() => {navigation.navigate('license_image')}}>
               <Ionicons name="md-eye-sharp" size={24} color={colors.primary} />
               <Text style={styles.faqq}>View Sample</Text>
             </TouchableOpacity>
           </View>
 
           <Image
-            source={require('../../../assets/images/cookies_blur.png')}
+            source={require('../../../../assets/images/eula_blur.png')}
             style={styles.blurImage}
           />
 
@@ -35,7 +35,7 @@ const C1 = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-               navigation.navigate('cookies_policy_nav');
+               navigation.navigate('eula_policy_nav');
            }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Start Generating</Text>
