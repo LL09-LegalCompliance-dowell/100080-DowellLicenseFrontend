@@ -65,6 +65,9 @@ const SoftwereLicense = ({navigation}) => {
           showsHorizontalScrollIndicator={false}
           renderItem={({item, index, separators}) => (
             <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('LicenseCompatibility');
+              }}
               style={styles.cardContainer1}
               key={item.key}
               // onPress={() => this._onPress(item)}
@@ -173,7 +176,6 @@ const SoftwereLicense = ({navigation}) => {
         </TouchableOpacity>
         <View style={styles.separator}></View>
 
-
         <TouchableOpacity
           style={styles.section4Container}
           onPress={() => navigation.navigate('ApacheLicense')}>
@@ -186,7 +188,6 @@ const SoftwereLicense = ({navigation}) => {
           </View>
         </TouchableOpacity>
         <View style={styles.separator}></View>
-
       </ScrollView>
     </KeyboardAvoidingView>
   );

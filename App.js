@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import * as React from 'react';
 import {useColorScheme} from 'react-native';
 import {
   NavigationContainer,
@@ -13,10 +13,9 @@ const App = () => {
   const scheme = useColorScheme();
 
   return (
-      <NavigationContainer
-        theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Navigation />
-      </NavigationContainer>
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Navigation />
+    </NavigationContainer>
   );
 };
 

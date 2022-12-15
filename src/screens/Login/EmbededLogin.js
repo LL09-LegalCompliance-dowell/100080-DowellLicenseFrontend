@@ -14,28 +14,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 
 import styles from './style';
-import AppLoader from '../../components/AppLoader';
 import {useEffect} from 'react';
 
 export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [date, setDate] = useState(null);
-
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
     const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
     setDate(data);
     setAgree(iAgree);
-    console.log(data);
-    console.log(iAgree);
+    // console.log(data);
+    // console.log(iAgree);
   };
   useEffect(() => {
     fetchdata();
   }, [agree, date]);
+
+  useEffect(() => {}, []);
   return (
     <>
-      { date &&
+      {date && (
         <Modal
           propagateSwipe
           isVisible={isModalVisible}
@@ -69,9 +69,9 @@ export default IntroductionScreen = ({route, navigation}) => {
             </View>
           </View>
         </Modal>
-      }
+      )}
       <ScrollView contentContainerStyle={styles.container}>
-        <StatusBar color="white" />
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
 
         <View style={styles.introLogoTop}>
           <Image
@@ -90,7 +90,9 @@ export default IntroductionScreen = ({route, navigation}) => {
             disabled={false}
             value={agree}
             onValueChange={() => {
-              if(agree===true){setDate(null)};
+              if (agree === true) {
+                setDate(null);
+              }
               setAgree(!agree);
             }}
             tintColor={agree ? '#078F04' : undefined}
