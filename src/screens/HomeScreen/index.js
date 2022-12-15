@@ -1,5 +1,13 @@
-import {View, Text, TouchableOpacity, ScrollView, FlatList} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  FlatList,
+} from 'react-native';
+import * as React from 'react';
+import {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -31,42 +39,47 @@ const Home = ({navigation}) => {
           {/* Product and Services */}
           <Text style={styles.heading}>Products & Services</Text>
           <View style={styles.productItemsContainer}>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={40} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Software License');
+              }}
+              style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/carbon_cloud-satellite-services.png')}
+              />
+              <Text style={styles.itemText}>Software License</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Agreement Compliance');
+              }}
+              style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group5.png')}
+              />
+              <Text style={styles.itemText}>Agreement Compliance</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group11.png')}
+              />
+              <Text style={styles.itemText}>Pricing</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Contact Us');
+              }}
+              style={styles.singleItemContainer}>
+              <Image
+                style={styles.itemImage}
+                source={require('./images/Group8.png')}
+              />
+              <Text style={styles.itemText}>Contact us</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.productItemsContainer}>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-            <View style={styles.singleItemContainer}>
-              <AntDesign name="setting" size={35} color={colors.primary} />
-              <Text style={styles.itemText}>Product</Text>
-            </View>
-          </View>
-
           {/* About Company */}
           <Text style={styles.heading}>About Company</Text>
           <Text style={styles.aboutText}>
@@ -99,7 +112,9 @@ const Home = ({navigation}) => {
             </View>
             <View style={styles.contactItem}>
               <AntDesign name="mail" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>livinglabfinance@dowellrsearch.sg</Text>
+              <Text style={styles.contactText}>
+                livinglabfinance@dowellrsearch.sg
+              </Text>
             </View>
             <View style={styles.contactItem}>
               <Feather name="phone" size={30} color={colors.primary} />

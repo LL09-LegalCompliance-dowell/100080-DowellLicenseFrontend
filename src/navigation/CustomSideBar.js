@@ -5,7 +5,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import * as React from 'react';
 import {Image} from 'react-native';
 
 const ICON1 = './images/home.png';
@@ -22,7 +22,10 @@ const CustomSideBar = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topSection}>
-        <Image source={require('./images/logo.png')} />
+        <Image
+          style={{height: 60, width: 60, resizeMode: 'contain'}}
+          source={require('./images/logo.jpg')}
+        />
       </View>
       <View style={styles.middleSection}>
         <TouchableOpacity
@@ -38,7 +41,7 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('Contact Us');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>
@@ -49,7 +52,7 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Softwere License');
+            navigation.navigate('Software License');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>

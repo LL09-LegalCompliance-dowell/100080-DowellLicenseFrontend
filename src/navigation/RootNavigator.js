@@ -7,6 +7,8 @@ import {
 } from '@react-navigation/stack';
 import {useColorScheme, Alert} from 'react-native';
 import LicenseCompatibility from '../screens/LicenseCompatibility';
+import ResultsDetailsScreen from '../screens/LicenseCompatibility/ResultsDetailsScreen';
+
 import ApacheLicense from '../screens/ApacheLicense';
 
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
@@ -44,6 +46,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="LicenseCompatibility"
           component={LicenseCompatibility}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ResultsDetailsScreen"
+          component={ResultsDetailsScreen}
           options={{
             headerShown: false,
           }}

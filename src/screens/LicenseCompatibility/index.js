@@ -2,14 +2,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
   TouchableWithoutFeedback,
   ScrollView,
   Alert,
   Image,
   FlatList,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useMemo} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import * as Progress from 'react-native-progress';
@@ -23,29 +22,52 @@ import colors from '../../../assets/colors/colors';
 import styles from './style';
 import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
-import {useLicenses} from '../../context/LoginProvider';
 import AppLoader from '../../components/AppLoader';
 
-const LicenseCompatibility = () => {
-  const {loading, setLoading} = useState(false);
+const LicenseCompatibility = ({navigation}) => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
   const [feild1, setFeild1] = useState('temp');
   const [feild2, setFeild2] = useState('temp');
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
   const [isHowto, setHowto] = useState(false);
-  const {setLicenses, licenses} = useLicenses();
+  const [licenses1, setLicenses1] = useState([]);
+  const [licenses2, setLicenses2] = useState([]);
+
+  const [searchedData1, setSearchedData1] = useState(licenses1);
+  const [searchedData2, setSearchedData2] = useState(licenses2);
+
   const [isCompatible, setIsCompatible] = useState(false);
   const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
   const [disclaimer, setDisclaimer] = useState('');
   const [recommendation, setRecommendation] = useState('');
   const [licenseOne, setLicenseOne] = useState('');
   const [licenseTwo, setLicenseTwo] = useState('');
+  const [licenseComaparison, setLicenseComaparison] = useState({});
+  const [tableLicenseTwo, setTableLicenseTwo] = useState('');
   const [licenseLogo1, setLicenseLogo1] = useState('');
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
 
-  const [searchedData, setSearchedData] = useState(licenses);
+  //Fetching all licencses into the state
+  useMemo(async () => {
+    try {
+      setLoading(true);
+      const LicensesData = await axios.get(
+        'https://100080.pythonanywhere.com/api/licenses/',
+      );
+      if (LicensesData.data) {
+        setLicenses1(LicensesData.data.data);
+        setSearchedData1(LicensesData.data.data);
+        setLicenses2(LicensesData.data.data);
+        setSearchedData2(LicensesData.data.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const handleSelectedLicense1 = async () => {
     const name = await AsyncStorage.getItem('licenseNname1');
@@ -59,6 +81,7 @@ const LicenseCompatibility = () => {
     setFeild2(name);
   };
 
+  //Feting the compatibility results
   const fetchResults = async () => {
     setLoading(true);
     const id1 = await AsyncStorage.getItem('licenseEventId1');
@@ -73,79 +96,85 @@ const LicenseCompatibility = () => {
         },
       );
 
-      if (LicensesCompatibilityData.data) {
+      if (
+        Object.keys(LicensesCompatibilityData.data.license_comparison).length !=
+        0
+      ) {
+        // if (LicensesCompatibilityData.data.license_comparison)
+        setLicenseComaparison(
+          LicensesCompatibilityData.data.license_comparison,
+        );
         setCompatibiltyPercentage(
-          LicensesCompatibilityData.data['license_comparison'][
-            'percentage_of_compatibility'
-          ],
+          LicensesCompatibilityData.data.license_comparison
+            ?.percentage_of_compatibility,
         );
 
         setDisclaimer(
-          LicensesCompatibilityData.data['license_comparison']['disclaimer'],
+          LicensesCompatibilityData.data.license_comparison?.disclaimer,
         );
         setRecommendation(
-          LicensesCompatibilityData.data['license_comparison'][
-            'recommendation'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.recommendation,
         );
-        setIsCompatible(LicensesCompatibilityData.data['is_compatible']);
+        setIsCompatible(LicensesCompatibilityData.data.is_compatible);
         setLicenseOne(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_1_name'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_1_name,
         );
         setLicenseTwo(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_2_name'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_2_name,
         );
         setLicenseLogo1(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_1_logo_url'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_1_logo_url,
         );
         setLicenseLogo2(
-          LicensesCompatibilityData.data['license_comparison'][
-            'license_2_logo_url'
-          ],
+          LicensesCompatibilityData.data.license_comparison?.license_2_logo_url,
         );
         setComparison(
-          LicensesCompatibilityData.data['license_comparison']['comparisons'],
+          LicensesCompatibilityData.data.license_comparison?.comparisons,
         );
+        console.log(LicensesCompatibilityData.data);
 
-        console.log(comparison);
+        // console.log(comparison);
         setResult(true);
         setLoading(false);
         // await AsyncStorage.removeItem('licenseEventId1');
         // await AsyncStorage.removeItem('licenseEventId2');
         // setFeild1('temp');
         // setFeild2('temp');
+      } else {
+        setResult(false);
+        setLoading(false);
+        Alert.alert(
+          'Error message',
+          `Compatibility result for this pair is not available yet, you can try other licenses"`,
+        );
       }
     } catch (error) {
-      console.log(error.error_msg);
-      Alert.alert('Error message', 'error.response', {
-        text: 'OK',
-        onPress: () => console.log('OK Pressed'),
-      });
+      console.log(error);
     }
   };
-
-  const searchLicensesFunction = text => {
-    const searchData = licenses.filter(item => {
+  // Searching functionality is being handled here
+  const searchLicensesFunction1 = text => {
+    const searchData = licenses1.filter(item => {
       return item['softwarelicense']['license_name']
         .toLowerCase()
         .includes(text.toLowerCase());
     });
-    setSearchedData(searchData);
+    setSearchedData1(searchData);
   };
 
-  useEffect(() => {}, []);
+  const searchLicensesFunction2 = text => {
+    const searchData = licenses2.filter(item => {
+      return item['softwarelicense']['license_name']
+        .toLowerCase()
+        .includes(text.toLowerCase());
+    });
+    setSearchedData2(searchData);
+  };
 
   return (
     <>
       <View>
-        {/* First Modal start here */}
-
+        {/* First Modal starts here */}
         <Modal
           propagateSwipe
           isVisible={isModal1Visible}
@@ -165,17 +194,15 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              // autoFocus={true}
-              onChangeText={text => searchLicensesFunction(text)}
+              onChangeText={text => searchLicensesFunction1(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map(item => {
+              {searchedData1.map((item, index) => {
                 return (
                   <>
-                    <ScrollView
-                      key={item['eventId']}
-                      style={styles.serchResultItemContainer}>
+                    <ScrollView style={styles.serchResultItemContainer}>
                       <TouchableOpacity
+                        key={index}
                         onPress={async () => {
                           const id_1 = item['_id'];
                           const eventId_1 = item['eventId'];
@@ -198,7 +225,9 @@ const LicenseCompatibility = () => {
                         <Text style={styles.serchResultHeading}>
                           {item['softwarelicense']['license_name']}
                         </Text>
-                        <Text style={styles.serchResultDetails}>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
                           {item['softwarelicense']['description']}
                         </Text>
                         <View style={styles.separator}></View>
@@ -210,9 +239,9 @@ const LicenseCompatibility = () => {
             </View>
           </View>
         </Modal>
-        {/* First Modal end here */}
+        {/* First Modal ends here */}
 
-        {/* Second Modal start here */}
+        {/* Second Modal starts here */}
         <Modal
           propagateSwipe
           isVisible={isModal2Visible}
@@ -232,15 +261,14 @@ const LicenseCompatibility = () => {
               style={{paddingLeft: 10}}
               marginVertical={3}
               placeholderTextColor="gray"
-              // autoFocus={true}
-              onChangeText={text => searchLicensesFunction(text)}
+              onChangeText={text => searchLicensesFunction2(text)}
             />
             <View style={styles.serchResultContainer}>
-              {searchedData.map(item => {
+              {searchedData2.map((item, index) => {
                 return (
                   <>
                     <ScrollView
-                      key={item['eventId']}
+                      key={index}
                       style={styles.serchResultItemContainer}>
                       <TouchableOpacity
                         onPress={async () => {
@@ -265,7 +293,9 @@ const LicenseCompatibility = () => {
                         <Text style={styles.serchResultHeading}>
                           {item['softwarelicense']['license_name']}
                         </Text>
-                        <Text style={styles.serchResultDetails}>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
                           {item['softwarelicense']['description']}
                         </Text>
                         <View style={styles.separator}></View>
@@ -277,8 +307,8 @@ const LicenseCompatibility = () => {
             </View>
           </View>
         </Modal>
-        {/* Second Modal end here */}
-        {/* How to Overlay start here */}
+        {/* Second Modal ends here */}
+        {/* How to Overlay starts here */}
         <Modal
           propagateSwipe
           isVisible={isHowto}
@@ -290,7 +320,6 @@ const LicenseCompatibility = () => {
           onBackdropPress={() => setHowto(false)}
           onBackButtonPress={() => setHowto(false)}
           backdropTransitionOutTiming={0}
-          // deviceWidth={deviceWidth / 1.3}
           onSwipeComplete={() => setHowto(false)}
           swipeDirection="right"
           customBackdrop={
@@ -300,7 +329,7 @@ const LicenseCompatibility = () => {
           }>
           <>
             <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
-              <ScrollView>
+              <ScrollView showsVerticalScrollIndicator={false}>
                 <TouchableOpacity
                   style={{marginLeft: 'auto'}}
                   onPress={() => setHowto(false)}>
@@ -484,155 +513,122 @@ const LicenseCompatibility = () => {
         </TouchableOpacity>
         {result ? (
           <>
-            {comparison ? (
-              <ScrollView
-                nestedScrollEnabled={true}
-                showsVerticalScrollIndicator={false}>
-                <View styles={styles.resultsText}>
-                  <View
-                    style={{
-                      width: '100%',
-                      height: 1,
-                      backgroundColor: '#A7A7A7',
-                      marginBottom: 15,
-                    }}></View>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {
-                        fontWeight: '400',
-                        alignSelf: 'center',
-                        textTransform: 'uppercase',
-                      },
-                    ]}>
-                    Compatibility Results
-                  </Text>
-                  {/* Logos */}
-                  <View style={styles.logosConatainer}>
-                    <View style={styles.imagesContainer}>
-                      <Image
-                        resizeMode="contain"
-                        style={styles.logoStyle}
-                        source={{
-                          uri: licenseLogo1,
-                        }}
-                      />
-                      <Text style={{paddingTop: 0, color: colors.textDark}}>
-                        {licenseOne}
-                      </Text>
-                    </View>
-                    <Text style={styles.vsText}>VS</Text>
-                    <View style={styles.imagesContainer}>
-                      <Image
-                        resizeMode="contain"
-                        style={styles.logoStyle}
-                        source={{uri: licenseLogo2}}
-                      />
-                      <Text style={{paddingTop: 0, color: colors.textDark}}>
-                        {licenseTwo}
-                      </Text>
-                    </View>
-                  </View>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {
-                        fontWeight: '700',
-                        fontFamily: 'roboto',
-                        fontSize: 20,
-                        paddingBottom: 0,
-                      },
-                    ]}>
-                    Recommendation Percentage
-                  </Text>
-                  <Text style={styles.lightColor}>
-                    *Numbers are Based on Attributions.
-                  </Text>
-                  <View style={styles.progressBarConatainer}>
-                    <View>
-                      <Progress.Bar
-                        progress={compatibiltyPercentage / 100}
-                        width={313}
-                        height={20}
-                        borderRadius={20}
-                        color={colors.primary}
-                        unfilledColor={'#D3D3D3'}
-                        borderColor={'#D3D3D3'}
-                      />
-                    </View>
-                    <Text style={styles.percentage}>
-                      {compatibiltyPercentage}%
-                    </Text>
-                  </View>
-
-                  <Text
-                    style={{
-                      paddingBottom: 10,
-                      fontSize: 21,
-                      color: isCompatible == true ? colors.primary : 'red',
-                      fontWeight: 'bold',
-                      fontStyle: 'italic',
-                      alignSelf: 'center',
-                    }}>
-                    "Can {isCompatible !== 'false' ? 'not' : null} be used
-                    together in a project"
-                  </Text>
-
-                  <Text
-                    style={[
-                      styles.heading,
-                      {
-                        fontWeight: '700',
-                        fontFamily: 'roboto',
-                        fontSize: 20,
-                        paddingBottom: 10,
-                      },
-                    ]}>
-                    Comparison
-                  </Text>
-                  {/* Table starts here */}
-
-                  <View>
-                    <View style={styles.tableHederConatainer}>
-                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                        <Text style={styles.tableHeaderText}>Category</Text>
-                      </View>
-                      <View style={styles.tableItemConatainer}>
-                        <Text style={styles.tableHeaderText}>{licenseOne}</Text>
-                      </View>
+            {/* {comparison ? ( */}
+            {/* {Object.keys(licenseComaparison).length != 0 ? ( */}
+              <>
+                <FlatList
+                  ListHeaderComponent={
+                    <View styles={styles.resultsText}>
                       <View
+                        style={{
+                          width: '100%',
+                          height: 1,
+                          backgroundColor: '#A7A7A7',
+                          marginBottom: 15,
+                        }}></View>
+                      <Text
                         style={[
-                          styles.tableItemConatainer,
-                          {borderRightWidth: 0},
+                          styles.heading,
+                          {
+                            fontWeight: '400',
+                            alignSelf: 'center',
+                            textTransform: 'uppercase',
+                          },
                         ]}>
-                        <Text style={styles.tableHeaderText}>{licenseTwo}</Text>
+                        Compatibility Results
+                      </Text>
+                      {/* Logos */}
+                      <View style={styles.logosConatainer}>
+                        <View style={styles.imagesContainer}>
+                          <Image
+                            resizeMode="contain"
+                            style={styles.logoStyle}
+                            source={{
+                              uri: licenseLogo1,
+                            }}
+                          />
+                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                            {licenseOne}
+                          </Text>
+                        </View>
+                        <Text style={styles.vsText}>VS</Text>
+                        <View style={styles.imagesContainer}>
+                          <Image
+                            resizeMode="contain"
+                            style={styles.logoStyle}
+                            source={{uri: licenseLogo2}}
+                          />
+                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                            {licenseTwo}
+                          </Text>
+                        </View>
                       </View>
-                    </View>
-                    {/* Table data */}
-                    <FlatList
-                      scrollEnabled={false}
-                      data={comparison}
-                      keyExtractor={item => item._id}
-                      renderItem={item => (
-                        <View style={styles.tableDataConatainer}>
+                      <Text
+                        style={[
+                          styles.heading,
+                          {
+                            fontWeight: '700',
+                            fontFamily: 'roboto',
+                            fontSize: 20,
+                            paddingBottom: 0,
+                          },
+                        ]}>
+                        Recommendation Percentage
+                      </Text>
+                      <Text style={styles.lightColor}>
+                        *Numbers are Based on Attributions.
+                      </Text>
+                      <View style={styles.progressBarConatainer}>
+                        <View>
+                          <Progress.Bar
+                            progress={compatibiltyPercentage / 100}
+                            width={313}
+                            height={20}
+                            borderRadius={20}
+                            color={colors.primary}
+                            unfilledColor={'#D3D3D3'}
+                            borderColor={'#D3D3D3'}
+                          />
+                        </View>
+                        <Text style={styles.percentage}>
+                          {compatibiltyPercentage}%
+                        </Text>
+                      </View>
+
+                      <Text
+                        style={{
+                          paddingBottom: 10,
+                          fontSize: 21,
+                          color: isCompatible == true ? colors.primary : 'red',
+                          fontWeight: 'bold',
+                          fontStyle: 'italic',
+                          alignSelf: 'center',
+                        }}>
+                        "Can {isCompatible !== 'false' ? 'not' : null} be used
+                        together in a project"
+                      </Text>
+
+                      <Text
+                        style={[
+                          styles.heading,
+                          {
+                            fontWeight: '700',
+                            fontFamily: 'roboto',
+                            fontSize: 20,
+                            paddingBottom: 10,
+                          },
+                        ]}>
+                        Comparison
+                      </Text>
+                      {/* Table starts here */}
+                      <View>
+                        <View style={styles.tableHederConatainer}>
                           <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                            <Text style={{padding: 7, color: colors.textDark}}>
-                              {item.item.category}
-                            </Text>
+                            <Text style={styles.tableHeaderText}>Category</Text>
                           </View>
                           <View style={styles.tableItemConatainer}>
-                            <Text
-                              style={[
-                                styles.tableDatarText,
-                                {
-                                  color:
-                                    item.item.licence_1.comparison_value ==
-                                    'Yes'
-                                      ? 'green'
-                                      : 'red',
-                                },
-                              ]}>
-                              {item.item.licence_1.comparison_value}
+                            <Text style={styles.tableHeaderText}>
+                              {licenseOne}
                             </Text>
                           </View>
                           <View
@@ -640,36 +636,85 @@ const LicenseCompatibility = () => {
                               styles.tableItemConatainer,
                               {borderRightWidth: 0},
                             ]}>
-                            <Text
-                              style={[
-                                styles.tableDatarText,
-                                {
-                                  color:
-                                    item.item.licence_2.comparison_value ==
-                                    'Yes'
-                                      ? 'green'
-                                      : 'red',
-                                },
-                              ]}>
-                              {item.item.licence_2.comparison_value}
+                            <Text style={styles.tableHeaderText}>
+                              {licenseTwo}
                             </Text>
                           </View>
                         </View>
-                      )}
-                    />
-                  </View>
-                </View>
-                <TouchableOpacity style={styles.readMoreContainer}>
-                  <Text style={styles.readMoreText}>Read more</Text>
-                  <MaterialCommunityIcons
-                    style={styles.readMoreIcon}
-                    name="chevron-down"
-                    size={40}
-                    color={colors.primary}
-                  />
-                </TouchableOpacity>
-              </ScrollView>
-            ) : (
+                      </View>
+                    </View>
+                  }
+                  ListFooterComponent={
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate('ResultsDetailsScreen', {
+                          comparison,
+                          licenseLogo1,
+                          licenseLogo2,
+                          licenseOne,
+                          licenseTwo,
+                          compatibiltyPercentage,
+                          isCompatible,
+                        })
+                      }
+                      style={styles.readMoreContainer}>
+                      <Text style={styles.readMoreText}>Read more</Text>
+                      <MaterialCommunityIcons
+                        style={styles.readMoreIcon}
+                        name="chevron-down"
+                        size={40}
+                        color={colors.primary}
+                      />
+                    </TouchableOpacity>
+                  }
+                  // scrollEnabled={false}
+                  data={comparison}
+                  keyExtractor={item => item._id}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={item => (
+                    <View style={styles.tableDataConatainer}>
+                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                        <Text style={{padding: 7, color: colors.textDark}}>
+                          {item.item.category}
+                        </Text>
+                      </View>
+                      <View style={styles.tableItemConatainer}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item.item.licence_1.comparison_value == 'Yes'
+                                  ? 'green'
+                                  : 'red',
+                            },
+                          ]}>
+                          {item.item.licence_1.comparison_value}
+                        </Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.tableItemConatainer,
+                          {borderRightWidth: 0},
+                        ]}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item.item.licence_2.comparison_value == 'Yes'
+                                  ? 'green'
+                                  : 'red',
+                            },
+                          ]}>
+                          {item.item.licence_2.comparison_value}
+                        </Text>
+                      </View>
+                    </View>
+                  )}
+                />
+              </>
+            {/* ) : (
               <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Text
                   style={{
@@ -680,10 +725,10 @@ const LicenseCompatibility = () => {
                   }}>
                   Sorry... compatibility results for this pair of licences is
                   not availbe yet. We are working on it, you might be able to
-                  get it in the next version
+                  get it in the next version, thanks.
                 </Text>
               </View>
-            )}
+            )} */}
           </>
         ) : null}
       </View>

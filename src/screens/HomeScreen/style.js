@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
   },
 
   productItemsContainer: {
-    paddingHorizontal: 23,
-    display: 'flex',
-    flex: 1,
-    width: '100%',
+    paddingHorizontal: 5,
+    // display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flex: 1,
+    // width: '100%',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
   },
 
   singleItemContainer: {
@@ -47,10 +48,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-
   itemText: {
-    marginTop: 18,
+    marginTop: 7,
     color: colors.textDark,
+    width: 95,
+    height: 60,
+    paddingLeft: 13,
+  },
+  itemImage: {
+    height: 33,
+    width: 33,
+    resizeMode: 'contain',
   },
 
   // About
@@ -58,7 +66,6 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingHorizontal: 23,
     fontSize: 18,
-
   },
 
   // Quick links

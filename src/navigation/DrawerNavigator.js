@@ -4,7 +4,7 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';
@@ -16,7 +16,7 @@ import CustomSideBar from './CustomSideBar';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = ({Navigation}) => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const Logout = () => {
     AsyncStorage.clear();
     //navigation.navigate("Home")

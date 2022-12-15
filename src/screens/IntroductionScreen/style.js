@@ -14,14 +14,15 @@ const styles = StyleSheet.create({
   introLogoTop: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 90,
+    marginTop: 60,
   },
   topLogo: {
-    width: 148,
-    height: 101,
+    width: 190,
+    height: 180,
+    resizeMode: 'contain',
   },
   titlesWrapper: {
-    marginTop: 35,
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -33,27 +34,30 @@ const styles = StyleSheet.create({
   },
   titlesSubtitle: {
     fontFamily: 'Roboto-Regular',
-    fontSize: 24,
+    fontSize: 20,
+    paddingHorizontal: 32,
     textAlign: 'center',
-    marginTop: 75,
+    marginTop: 65,
     color: colors.textDark,
   },
   getStarted: {
-    marginTop: 135,
+    marginTop: 90,
     backgroundColor: colors.primary,
     borderRadius: 15,
     // paddingVertical: 12,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: 260,
+    width: 230,
     height: 57,
+    flexDirection: 'row',
   },
   getStartedText: {
     color: 'white',
     fontFamily: 'Roboto-Medium',
-    fontSize: 26,
+    fontSize: 20,
     alignItems: 'center',
+    paddingRight: 15,
   },
   poweredWrapper: {
     marginTop: 15,
@@ -72,8 +76,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   smallLogo: {
-    width: 42,
-    height: 29,
+    width: 70,
+    height: 50,
   },
 });
 
