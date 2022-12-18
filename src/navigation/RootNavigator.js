@@ -16,13 +16,12 @@ import DrawerNavigator from './DrawerNavigator';
 import SoftwereLicensePolicy from '../screens/SoftwereLicensePolicy';
 import GDPRNavigator from './GDPRNavigator';
 import MemorandumNavigator from './MemorandumNavigator';
-import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
 import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
-
+import NDA from '../screens/PolicyGenerator/NDA';
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -95,7 +94,7 @@ const RootNavigator = () => {
         />
         <Stack.Screen
           name="NDA"
-          component={NonDisclosureNavigator}
+          component={NDA}
           options={{
             headerShown: false,
           }}

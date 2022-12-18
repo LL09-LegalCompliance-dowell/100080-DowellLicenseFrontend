@@ -256,7 +256,36 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:"300",
         marginBottom:16
-      }
+      },
+      text_4:{
+        color: "#585858",
+        fontSize:18,
+        fontWeight:"400",
+        lineHeight:21.09
+        
+      },
+      partyDetails: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 15,
+        marginHorizontal:4
+      },
+      horizontalLine: {
+        borderBottomColor: '#737373',
+        borderBottomWidth: 2,
+        width: '70%',
+      },
+      chevron: {
+        backgroundColor: '#D9D9D9',
+        width: 40,
+        height: 40,
+        borderRadius: 37,
+      },
+      hide: {
+        display: 'none',
+      },
 
 
 
