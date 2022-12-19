@@ -19,6 +19,9 @@ import MemorandumNavigator from './MemorandumNavigator';
 import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
+import CookiesPolicy from '../screens/Cookies';
+import Eula from '../screens/EULA';
+import TermsOfUse from '../screens/TermsOfUse';
 
 const Stack = createStackNavigator();
 
@@ -107,6 +110,27 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Non compete agreement"
           component={NonCompetAgreement}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CookiesPolicy"
+          component={CookiesPolicy}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Eula"
+          component={Eula}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="TermsOfUse"
+          component={TermsOfUse}
           options={{
             headerShown: false,
           }}

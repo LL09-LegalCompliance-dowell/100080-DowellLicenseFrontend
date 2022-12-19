@@ -5,12 +5,14 @@ import {WebView} from 'react-native-webview';
 
 const URL = "https://100014.pythonanywhere.com/?redirect_url=http://127.0.0.1:8000/callbackurl";
 
-const WebWiew = ({navigation}) => {
+const LoginWebView = ({navigation}) => {
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     try {
+      if (url == 'http://127.0.0.1:8000/callbackurl') {
         navigation.navigate('Saving', {url});
+      }
     } catch (error) {
       Alert.alert('Error message', `${error}`);
     }
@@ -30,4 +32,4 @@ const WebWiew = ({navigation}) => {
   );
 };
 
-export default WebWiew;
+export default LoginWebView;
