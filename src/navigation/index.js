@@ -4,20 +4,19 @@ import RootNavigator from './RootNavigator';
 import AuthNavigator from './AuthNavigator';
 
 const index = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
 
   const fetchUser = async () => {
-    try{
+    try {
       const username = await AsyncStorage.getItem('username');
-      setUser(username)
+      setUser(username);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
   };
   useEffect(() => {
     fetchUser();
   }, []);
-  return user? <RootNavigator /> :<AuthNavigator />;
+  return user ? <RootNavigator /> : <AuthNavigator />;
 };
 export default index;
