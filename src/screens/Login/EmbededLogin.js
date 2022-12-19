@@ -123,10 +123,11 @@ export default IntroductionScreen = ({route, navigation}) => {
           style={[
             styles.getStarted,
             {
-              backgroundColor: agree ? '#078F04' : '#a9a9a9',
+              backgroundColor: '#078F04',
             },
           ]}
-          disabled={!agree}>
+          disabled={agree}
+          >
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity

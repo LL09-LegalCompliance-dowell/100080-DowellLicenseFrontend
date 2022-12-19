@@ -109,10 +109,11 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 'auto',
     marginBottom: 10,
-    marginLeft: 25,
-    fontSize: 18,
-    fontWeight: '500',
+    marginLeft: 15,
+    fontSize: 24,
+    fontWeight: '400',
     color: colors.textDark,
+    lineHeight:28.13
   },
 
   menuIcon: {
