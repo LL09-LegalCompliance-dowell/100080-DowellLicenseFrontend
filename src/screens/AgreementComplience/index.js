@@ -78,7 +78,7 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity style={styles.listContainer}onPress={() => navigation.navigate('ReturnsAndRefund')}>
             <View style={styles.iconContainer}>
               <MaterialIcons
                 name="privacy-tip"

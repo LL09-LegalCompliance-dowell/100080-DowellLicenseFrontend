@@ -162,6 +162,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
       },
+      radio_1: {
+   
+
+      },
       Pressed:{
         padding:3,
         fontWeight:"300",
@@ -227,7 +231,9 @@ const styles = StyleSheet.create({
         color: colors.textDark,
         fontSize:18,
         fontWeight:"400",
-        lineHeight:21.09
+        lineHeight:21.09,
+        
+        
       },
       text_2_m_b:{
         color: colors.textDark,
