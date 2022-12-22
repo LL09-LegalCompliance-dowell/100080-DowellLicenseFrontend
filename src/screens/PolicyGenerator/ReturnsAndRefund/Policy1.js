@@ -22,6 +22,7 @@ const Policy1 = () => {
         value: 'Days',
         size: 12,
         color: '#489503',
+        labelStyle:{color:"#585858"},
         borderColor: '#C4C4C4',   
       },{
       id: '2',
@@ -31,6 +32,7 @@ const Policy1 = () => {
       color: '#489503',
       borderColor: '#C4C4C4',
       containerStyle:{marginLeft:5}  ,
+      labelStyle:{color:"#585858"},
       selected: true,
       }]);
   return (

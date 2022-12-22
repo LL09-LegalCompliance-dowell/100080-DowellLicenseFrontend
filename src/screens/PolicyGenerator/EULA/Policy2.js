@@ -35,6 +35,7 @@ const [radioButtons, setRadioButtons] = useState([{
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     selected: true
   },{
   id: '2',
@@ -43,6 +44,7 @@ const [radioButtons, setRadioButtons] = useState([{
   size: 18,
   color: '#489503',
   borderColor: '#C4C4C4',
+  labelStyle:{color:"#585858"},
 }]);
 return (  
 <>
@@ -80,6 +82,10 @@ return (
       save="value"
       placeholder="Select State"
       boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
+      inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      searchPlaceholder=""
+      search={false}
       />
       <Text style={styles.text_3}>Conflict</Text>
       <Text style={styles.text_2}>What will be the Jurisdiction State?</Text>
@@ -89,6 +95,10 @@ return (
       save="value"
       placeholder="Select State"
       boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
+      inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      searchPlaceholder=""
+      search={false}
       />
       <Text style={styles.text_2}>What will be the Jurisdiction city?</Text>
       <SelectList 
@@ -97,6 +107,10 @@ return (
       save="value"
       placeholder="Select City"
       boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
+      inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+      searchPlaceholder=""
+      search={false}
       />
     </View>
    </ScrollView> 

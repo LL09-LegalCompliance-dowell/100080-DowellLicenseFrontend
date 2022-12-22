@@ -23,6 +23,7 @@ import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
 import NDA from '../screens/PolicyGenerator/NDA';
 import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
+import WebsiteSecurityPolicy from '../screens/PolicyGenerator/WebsiteSecurityPolicy';
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -138,6 +139,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="ReturnsAndRefund"
           component={ReturnsAndRefund}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="WebsiteSecurityPolicy"
+          component={WebsiteSecurityPolicy}
           options={{
             headerShown: false,
           }}
