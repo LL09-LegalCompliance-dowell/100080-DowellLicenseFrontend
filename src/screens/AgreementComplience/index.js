@@ -18,6 +18,8 @@ import Image11 from './images/11.png';
 import Image12 from './images/12.png';
 import {Image} from 'react-native';
 
+import HowTo from '../../screens/LicenseCompatibility/HowToIcon';
+
 const AgreementComplience = ({navigation}) => {
   const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
     useState(false);
@@ -26,13 +28,15 @@ const AgreementComplience = ({navigation}) => {
     <>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
+        <HowTo />
+
         <Text style={styles.heading}>
           We help with legal requirements, so you can focus on the business
         </Text>
         <ScrollView style={{marginTop: 130}}>
           <TouchableOpacity
             style={styles.listContainer}
-            onPress={() => navigation.navigate('SoftwereLicensePolicy')}>
+            onPress={() => navigation.navigate('SLP')}>
             <View style={styles.iconContainer}>
               <Image source={Image3} />
             </View>
@@ -101,7 +105,7 @@ const AgreementComplience = ({navigation}) => {
               setDisclaimerShowOptions(!showDisclaimerOptions);
             }}>
             <View style={styles.iconContainer}>
-              <Image source={Image8} />
+              <Image source={Image11} />
             </View>
             <Text style={styles.listHeading}>Disclaimer</Text>
           </TouchableOpacity>
