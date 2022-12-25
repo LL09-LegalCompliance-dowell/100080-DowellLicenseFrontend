@@ -30,26 +30,6 @@ const Policy1 = () => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        {/* <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-          {/* <Text style={styles.text_1}>Date of execution of the document:</Text> */}
-        {/* <TextInput
-            style={styles.input}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => setDate(value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
-          /> */}
-        {/* </View>  */}
         <Text style={styles.text_1}>Party details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>When were the terms last updated?</Text>

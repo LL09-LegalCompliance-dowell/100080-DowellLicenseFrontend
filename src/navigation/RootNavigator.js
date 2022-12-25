@@ -17,7 +17,6 @@ import SoftwereLicensePolicy from '../screens/SoftwereLicensePolicy';
 import GDPRNavigator from './GDPRNavigator';
 import MemorandumNavigator from './MemorandumNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
-import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
 import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
@@ -28,6 +27,7 @@ import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
 import PPA from '../screens/PolicyGenerator/PrivacyPolicy/Application';
 import PPW from '../screens/PolicyGenerator/PrivacyPolicy/Website';
 import StatementOfWork from '../screens/PolicyGenerator/StatementOfWork';
+import NonCompetAgreement from '../screens/PolicyGenerator/NCA';
 
 const Stack = createStackNavigator();
 
@@ -114,7 +114,7 @@ const RootNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="Non compete agreement"
+          name="NonCompetAgreement"
           component={NonCompetAgreement}
           options={{
             headerShown: false,

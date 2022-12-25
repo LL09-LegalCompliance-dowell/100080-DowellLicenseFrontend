@@ -219,7 +219,7 @@ const AgreementComplience = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('NCA1');
+              navigation.navigate('NonCompetAgreement');
             }}
             style={styles.listContainer}>
             <View style={styles.iconContainer}>
