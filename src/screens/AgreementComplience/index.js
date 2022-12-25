@@ -76,7 +76,9 @@ const AgreementComplience = ({navigation}) => {
           <View style={styles.separator}></View>
           {/* Privacy Policy Options end */}
 
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('TermsAndConditions')}
+            style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <Image source={Image1} />
             </View>
