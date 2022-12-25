@@ -149,14 +149,6 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <View style={styles.listContainer}>
-            <View style={styles.iconContainer}>
-              <Image source={Image9} />
-            </View>
-            <Text style={styles.listHeading}>Terms & Service</Text>
-          </View>
-          <View style={styles.separator}></View>
-
           <TouchableOpacity
             style={styles.listContainer}
             onPress={() => navigation.navigate('TermsOfUse')}>
@@ -212,6 +204,16 @@ const AgreementComplience = ({navigation}) => {
               <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>GDPR Privacy Policy</Text>
+          </TouchableOpacity>
+          <View style={styles.separator}></View>
+          {/* Statement of work */}
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('StatementOfWork')}>
+            <View style={styles.iconContainer}>
+              <Image source={Image10} />
+            </View>
+            <Text style={styles.listHeading}>Statement of Work</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
