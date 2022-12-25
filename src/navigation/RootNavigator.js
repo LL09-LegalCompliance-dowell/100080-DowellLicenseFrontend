@@ -154,6 +154,20 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="DisclaimerForWeb"
+          component={DisclaimerForWeb}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="EmploymentContract"
+          component={EmploymentContract}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </>
   );

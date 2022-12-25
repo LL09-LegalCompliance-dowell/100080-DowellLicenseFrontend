@@ -19,7 +19,9 @@ import Image12 from './images/12.png';
 import {Image} from 'react-native';
 
 const AgreementComplience = ({navigation}) => {
-  const [showOptions, setShowOptions] = useState(false);
+  const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
+    useState(false);
+  const [showDisclaimerOptions, setDisclaimerShowOptions] = useState(false);
   return (
     <>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
@@ -40,7 +42,7 @@ const AgreementComplience = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              setShowOptions(!showOptions);
+              setPrivacyPolicyShowOptions(!showPrivacyPolicyOptions);
             }}
             style={styles.listContainer}>
             <View style={styles.iconContainer}>
@@ -49,7 +51,7 @@ const AgreementComplience = ({navigation}) => {
             <Text style={styles.listHeading}>Privacy Policy</Text>
           </TouchableOpacity>
           {/* Privacy Policy Options start */}
-          {showOptions === true ? (
+          {showPrivacyPolicyOptions === true ? (
             <View style={{paddingHorizontal: 40, paddingVertical: 5}}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('PrivacyPolicyApp')}
@@ -90,17 +92,43 @@ const AgreementComplience = ({navigation}) => {
             <Text style={styles.listHeading}>Cookies Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
+          {/* Disclaimer */}
           <TouchableOpacity
+            style={styles.listContainer}
             onPress={() => {
-              navigation.navigate('DisclaimerForWeb');
-            }}
-            style={styles.listContainer}>
+              setDisclaimerShowOptions(!showDisclaimerOptions);
+            }}>
             <View style={styles.iconContainer}>
-              <Image source={Image11} />
+              <Image source={Image8} />
             </View>
-            <Text style={styles.listHeading}>Disclaimer for website</Text>
+            <Text style={styles.listHeading}>Disclaimer</Text>
           </TouchableOpacity>
+          {/* Disclaimer Options start */}
+          {showDisclaimerOptions === true ? (
+            <View style={{paddingHorizontal: 40, paddingVertical: 5}}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PrivacyPolicyApp')}
+                style={[styles.listContainer, {height: 50}]}>
+                <View style={[styles.iconContainer, {height: 35, width: 35}]}>
+                  <Image source={Image12} />
+                </View>
+                <Text style={[styles.listHeading, {fontSize: 15}]}>App</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('DisclaimerForWeb');
+                }}
+                style={styles.listContainer}>
+                <View style={styles.iconContainer}>
+                  <Image source={Image11} />
+                </View>
+                <Text style={styles.listHeading}>Website</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
           <View style={styles.separator}></View>
+          {/* Disclaimer Options end */}
+
           <TouchableOpacity
             style={styles.listContainer}
             onPress={() => navigation.navigate('Eula')}>
@@ -143,7 +171,7 @@ const AgreementComplience = ({navigation}) => {
 
           <TouchableOpacity
             style={styles.listContainer}
-            onPress={() => navigation.navigate('employmentContract')}>
+            onPress={() => navigation.navigate('EmploymentContract')}>
             <View style={styles.iconContainer}>
               <Image source={Image10} />
             </View>
