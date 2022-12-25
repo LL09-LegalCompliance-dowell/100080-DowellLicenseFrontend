@@ -16,15 +16,15 @@ import DrawerNavigator from './DrawerNavigator';
 import SoftwereLicensePolicy from '../screens/SoftwereLicensePolicy';
 import GDPRNavigator from './GDPRNavigator';
 import MemorandumNavigator from './MemorandumNavigator';
-import NonDisclosureNavigator from './NonDisclosureNavigator';
 import TermsOfUseNavigator from './TermsOfUseNavigator';
 import NonCompetAgreement from './NonCompetAgreement';
-import CookiesPolicy from '../screens/Cookies';
-import Eula from '../screens/EULA';
-import TermsOfUse from '../screens/TermsOfUse';
+import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
+import Eula from '../screens/PolicyGenerator/EULA';
+import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
 import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
 import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
-
+import NDA from '../screens/PolicyGenerator/NDA';
+import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -97,7 +97,7 @@ const RootNavigator = () => {
         />
         <Stack.Screen
           name="NDA"
-          component={NonDisclosureNavigator}
+          component={NDA}
           options={{
             headerShown: false,
           }}
@@ -133,20 +133,6 @@ const RootNavigator = () => {
         <Stack.Screen
           name="TermsOfUse"
           component={TermsOfUse}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="employmentContract"
-          component={EmploymentContract}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="DisclaimerForWeb"
-          component={DisclaimerForWeb}
           options={{
             headerShown: false,
           }}
