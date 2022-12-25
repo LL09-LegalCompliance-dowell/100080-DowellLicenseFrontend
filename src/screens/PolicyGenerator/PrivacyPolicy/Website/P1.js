@@ -1,14 +1,14 @@
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View, Image} from 'react-native';
-import Header from '../../../components/Header';
-import styles from '../Cookies/style';
+import Header from '../../../../components/Header';
+import styles from '../../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import colors from '../../../../assets/colors/colors';
+import colors from '../../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="End User License Agreement" />
+      <Header title="App Privacy Policy" />
 
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
@@ -17,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for End User License Agreement Policy Template.
+            Below is the sample for App Privacy Policy Template.{' '}
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
@@ -32,7 +32,7 @@ const C1 = ({navigation}) => {
         </View>
 
         <Image
-          source={require('../../../../assets/images/eula_blur.png')}
+          source={require('../../../../../assets/images/eula_blur.png')}
           style={styles.blurImage}
         />
 

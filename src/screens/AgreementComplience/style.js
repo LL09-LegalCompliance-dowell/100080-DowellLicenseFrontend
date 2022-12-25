@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   },
 
   heading: {
+    fontFamily: 'roboto',
     fontSize: 16,
     fontWeight: '400',
     color: colors.textDark,
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 5,
     margin: 10,
+    marginRight: 15
   },
 
   listContainer: {
@@ -43,9 +45,10 @@ const styles = StyleSheet.create({
 
   listHeading: {
     width: '100%',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '500',
     color: colors.textDark,
+    fontFamily: 'roboto',
   },
 
   separator: {

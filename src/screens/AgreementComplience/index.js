@@ -51,7 +51,9 @@ const AgreementComplience = ({navigation}) => {
           {/* Privacy Policy Options start */}
           {showOptions === true ? (
             <View style={{paddingHorizontal: 40, paddingVertical: 5}}>
-              <TouchableOpacity style={[styles.listContainer, {height: 50}]}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PrivacyPolicyApp')}
+                style={[styles.listContainer, {height: 50}]}>
                 <View style={[styles.iconContainer, {height: 35, width: 35}]}>
                   <Image source={Image12} />
                 </View>
@@ -59,7 +61,7 @@ const AgreementComplience = ({navigation}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.listContainer, {height: 50}]}
-                onPress={() => navigation.navigate('CookiesPolicy')}>
+                onPress={() => navigation.navigate('PrivacyPolicyWeb')}>
                 <View style={[styles.iconContainer, {height: 35, width: 35}]}>
                   <Image source={Image6} />
                 </View>

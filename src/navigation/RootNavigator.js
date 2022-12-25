@@ -25,6 +25,9 @@ import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
 import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
 import NDA from '../screens/PolicyGenerator/NDA';
 import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
+import PPA from '../screens/PolicyGenerator/PrivacyPolicy/Application';
+import PPW from '../screens/PolicyGenerator/PrivacyPolicy/Website';
+
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -133,6 +136,20 @@ const RootNavigator = () => {
         <Stack.Screen
           name="TermsOfUse"
           component={TermsOfUse}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PrivacyPolicyApp"
+          component={PPA}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PrivacyPolicyWeb"
+          component={PPW}
           options={{
             headerShown: false,
           }}
