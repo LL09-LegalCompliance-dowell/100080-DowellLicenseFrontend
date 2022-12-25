@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../Cookies/style';
+import styles from '../Cookies/style';
 import colors from '../../../../assets/colors/colors';
 import {
   ScrollView,

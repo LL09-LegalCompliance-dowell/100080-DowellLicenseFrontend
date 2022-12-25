@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {ScrollView, View, Text, TextInput} from 'react-native';
-import styles from '../../Cookies/style';
+import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 

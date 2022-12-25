@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View, Image} from 'react-native';
-import styles from '../../Cookies/style';
+import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';

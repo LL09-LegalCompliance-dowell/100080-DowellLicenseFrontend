@@ -1,13 +1,7 @@
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
-import Entypo from 'react-native-vector-icons/Entypo';
 
 import Header from '../../components/Header';
-import colors from '../../../assets/colors/colors';
 import styles from './style';
 // images
 import Image1 from './images/1.png';
@@ -25,6 +19,7 @@ import Image12 from './images/12.png';
 import {Image} from 'react-native';
 
 const AgreementComplience = ({navigation}) => {
+  const [showOptions, setShowOptions] = useState(false);
   return (
     <>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
@@ -43,13 +38,40 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              setShowOptions(!showOptions);
+            }}
+            style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <Image source={Image5} />
             </View>
             <Text style={styles.listHeading}>Privacy Policy</Text>
           </TouchableOpacity>
+          {/* Privacy Policy Options start */}
+          {showOptions === true ? (
+            <View style={{paddingHorizontal: 40, paddingVertical: 5}}>
+              <TouchableOpacity style={[styles.listContainer, {height: 50}]}>
+                <View style={[styles.iconContainer, {height: 35, width: 35}]}>
+                  <Image source={Image12} />
+                </View>
+                <Text style={[styles.listHeading, {fontSize: 15}]}>App</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.listContainer, {height: 50}]}
+                onPress={() => navigation.navigate('CookiesPolicy')}>
+                <View style={[styles.iconContainer, {height: 35, width: 35}]}>
+                  <Image source={Image6} />
+                </View>
+                <Text style={[styles.listHeading, {fontSize: 15}]}>
+                  Website
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
           <View style={styles.separator}></View>
+          {/* Privacy Policy Options end */}
+
           <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
               <Image source={Image1} />
@@ -87,7 +109,9 @@ const AgreementComplience = ({navigation}) => {
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer}onPress={() => navigation.navigate('ReturnsAndRefund')}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('ReturnsAndRefund')}>
             <View style={styles.iconContainer}>
               <Image source={Image4} />
             </View>

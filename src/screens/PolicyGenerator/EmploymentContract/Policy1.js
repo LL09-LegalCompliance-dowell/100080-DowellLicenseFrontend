@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableHighlight,
 } from 'react-native';
-import styles from '../../Cookies/style';
+import styles from '../Cookies/style';
 import colors from '../../../../assets/colors/colors';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';

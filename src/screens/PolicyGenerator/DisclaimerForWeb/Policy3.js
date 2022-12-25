@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import {ScrollView, View, Text, TextInput} from 'react-native';
-import styles from '../../Cookies/style';
+import styles from '../Cookies/style';
 
 const Policy3 = () => {
   const [input1, setInput1] = useState('');
