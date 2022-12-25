@@ -1,24 +1,24 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import E1 from './E1';
-import EulaPolicyNav from './EulaPolicyNav';
+import DFW from './DFW';
+import DFWPolicyNav from './DFWPolicyNav';
 import LicenseImage from './LicenseImage';
 
 const Stack = createNativeStackNavigator();
 
-const Eula = () => {
+const DisclaimerForWeb = () => {
   return (
-    <Stack.Navigator initialRouteName="e1">
+    <Stack.Navigator initialRouteName="DFW">
       <Stack.Screen
-        name="e1"
-        component={E1}
+        name="DFW"
+        component={DFW}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="eula_policy_nav"
-        component={EulaPolicyNav}
+        name="dfw_policy_nav"
+        component={DFWPolicyNav}
         options={{
           headerShown: false,
         }}
@@ -34,4 +34,4 @@ const Eula = () => {
   );
 };
 
-export default Eula;
+export default DisclaimerForWeb;

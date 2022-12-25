@@ -22,6 +22,8 @@ import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/Cookies';
 import Eula from '../screens/EULA';
 import TermsOfUse from '../screens/TermsOfUse';
+import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
+import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
 
 const Stack = createStackNavigator();
 
@@ -131,6 +133,20 @@ const RootNavigator = () => {
         <Stack.Screen
           name="TermsOfUse"
           component={TermsOfUse}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="employmentContract"
+          component={EmploymentContract}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="DisclaimerForWeb"
+          component={DisclaimerForWeb}
           options={{
             headerShown: false,
           }}

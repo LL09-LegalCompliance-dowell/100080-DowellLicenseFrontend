@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NavIndex from './NavIndex';
 import Policy1 from './Policy1';
@@ -49,6 +49,7 @@ const EulaPolicyNav = () => {
       </Stack.Navigator>
     </>
   );
-};
 
-export default EulaPolicyNav;
+}
+
+export default EulaPolicyNav

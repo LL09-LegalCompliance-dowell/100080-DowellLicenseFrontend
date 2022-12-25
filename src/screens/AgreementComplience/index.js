@@ -9,6 +9,20 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Header from '../../components/Header';
 import colors from '../../../assets/colors/colors';
 import styles from './style';
+// images
+import Image1 from './images/1.png';
+import Image2 from './images/2.png';
+import Image3 from './images/3.png';
+import Image4 from './images/4.png';
+import Image5 from './images/5.png';
+import Image6 from './images/6.png';
+import Image7 from './images/7.png';
+import Image8 from './images/8.png';
+import Image9 from './images/9.png';
+import Image10 from './images/10.png';
+import Image11 from './images/11.png';
+import Image12 from './images/12.png';
+import {Image} from 'react-native';
 
 const AgreementComplience = ({navigation}) => {
   return (
@@ -23,7 +37,7 @@ const AgreementComplience = ({navigation}) => {
             style={styles.listContainer}
             onPress={() => navigation.navigate('SoftwereLicensePolicy')}>
             <View style={styles.iconContainer}>
-              <MaterialIcons name="computer" color={colors.primary} size={30} />
+              <Image source={Image3} />
             </View>
             <Text style={styles.listHeading}>Softwere License Policy</Text>
           </TouchableOpacity>
@@ -31,48 +45,43 @@ const AgreementComplience = ({navigation}) => {
 
           <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <MaterialIcons name="policy" color={colors.primary} size={30} />
+              <Image source={Image5} />
             </View>
             <Text style={styles.listHeading}>Privacy Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
           <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <MaterialCommunityIcons
-                name="clipboard-check-outline"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>Terms & Conditions</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('CookiesPolicy')} >
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('CookiesPolicy')}>
             <View style={styles.iconContainer}>
-              <MaterialCommunityIcons
-                name="cookie-outline"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image8} />
             </View>
             <Text style={styles.listHeading}>Cookies Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('DisclaimerForWeb');
+            }}
+            style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image11} />
             </View>
-            <Text style={styles.listHeading}>Disclaimer</Text>
+            <Text style={styles.listHeading}>Disclaimer for website</Text>
           </TouchableOpacity>
-
           <View style={styles.separator}></View>
-          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('Eula')}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('Eula')}>
             <View style={styles.iconContainer}>
-              <AntDesign name="warning" color={colors.primary} size={30} />
+              <Image source={Image2} />
             </View>
             <Text style={styles.listHeading}>EULA</Text>
           </TouchableOpacity>
@@ -80,11 +89,7 @@ const AgreementComplience = ({navigation}) => {
 
           <TouchableOpacity style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image4} />
             </View>
             <Text style={styles.listHeading}>Return & Refund</Text>
           </TouchableOpacity>
@@ -92,25 +97,31 @@ const AgreementComplience = ({navigation}) => {
 
           <View style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <Fontisto
-                name="arrow-return-left"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image9} />
             </View>
             <Text style={styles.listHeading}>Terms & Service</Text>
           </View>
           <View style={styles.separator}></View>
 
-          <TouchableOpacity style={styles.listContainer} onPress={() => navigation.navigate('TermsOfUse')}>
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('TermsOfUse')}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image2} />
             </View>
             <Text style={styles.listHeading}>Website Terms of Use</Text>
+          </TouchableOpacity>
+          <View style={styles.separator}></View>
+
+          {/* Employment contardct starts here */}
+
+          <TouchableOpacity
+            style={styles.listContainer}
+            onPress={() => navigation.navigate('employmentContract')}>
+            <View style={styles.iconContainer}>
+              <Image source={Image10} />
+            </View>
+            <Text style={styles.listHeading}>Employment Contract</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
 
@@ -120,11 +131,7 @@ const AgreementComplience = ({navigation}) => {
               navigation.navigate('MOU');
             }}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>MOU</Text>
           </TouchableOpacity>
@@ -136,11 +143,7 @@ const AgreementComplience = ({navigation}) => {
               navigation.navigate('NDA');
             }}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>NDA</Text>
           </TouchableOpacity>
@@ -152,11 +155,7 @@ const AgreementComplience = ({navigation}) => {
               navigation.navigate('GDPR Privacy Policy');
             }}>
             <View style={styles.iconContainer}>
-              <MaterialIcons
-                name="privacy-tip"
-                color={colors.primary}
-                size={30}
-              />
+              <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>GDPR Privacy Policy</Text>
           </TouchableOpacity>
@@ -168,7 +167,7 @@ const AgreementComplience = ({navigation}) => {
             }}
             style={styles.listContainer}>
             <View style={styles.iconContainer}>
-              <Entypo name="open-book" color={colors.primary} size={30} />
+              <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>Non Compete Agreement</Text>
           </TouchableOpacity>
