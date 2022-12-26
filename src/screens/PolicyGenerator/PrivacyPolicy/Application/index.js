@@ -1,24 +1,24 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import E1 from './E1';
-import EulaPolicyNav from './EulaPolicyNav';
+import P1 from './P1';
+import PrivacyPolicyNav from './PrivacyPolicyNav';
 import LicenseImage from './LicenseImage';
 
 const Stack = createNativeStackNavigator();
 
-const Eula = () => {
+const PPA = () => {
   return (
-    <Stack.Navigator initialRouteName="e1">
+    <Stack.Navigator initialRouteName="P1">
       <Stack.Screen
-        name="e1"
-        component={E1}
+        name="P1"
+        component={P1}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
         name="eula_policy_nav"
-        component={EulaPolicyNav}
+        component={PrivacyPolicyNav}
         options={{
           headerShown: false,
         }}
@@ -34,4 +34,4 @@ const Eula = () => {
   );
 };
 
-export default Eula;
+export default PPA;

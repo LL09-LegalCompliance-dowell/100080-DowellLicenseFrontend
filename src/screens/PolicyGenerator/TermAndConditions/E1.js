@@ -8,7 +8,7 @@ import colors from '../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="End User License Agreement" />
+      <Header title="Terms and Conditions" />
 
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>

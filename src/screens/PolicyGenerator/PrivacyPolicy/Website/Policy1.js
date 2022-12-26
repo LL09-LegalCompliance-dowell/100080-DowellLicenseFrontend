@@ -1,7 +1,13 @@
 import React from 'react';
 import {useState} from 'react';
-import {ScrollView, View, Text, TextInput} from 'react-native';
-import styles from '../Cookies/style';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+} from 'react-native';
+import styles from '../../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -22,8 +28,11 @@ const Policy1 = () => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text style={styles.text_1}>Date:</Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-          <Text style={styles.text_1}>Date of execution of the document:</Text>
+          <Text style={[styles.text_1, {fontSize: 16}]}>
+            Privacy Policy Last updated:
+          </Text>
           <TextInput
             style={styles.input}
             value={date.toLocaleDateString()}
@@ -42,97 +51,85 @@ const Policy1 = () => {
             initialDate={new Date()}
           />
         </View>
-        <Text style={styles.text_1}>Party details:</Text>
+        <Text style={styles.text_1}>Company information:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-          <Text style={styles.text_2}>Full Name of the Party:</Text>
+          <Text style={[styles.text_1, {fontSize: 17}]}>Company Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={input1}
-            placeholder="  Eg. John Smith Doe"
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => setInput1(value)}
           />
-          <Text
-            style={{
-              fontSize: 12,
-              fontWeight: '300',
-              color: '#585858',
-              lineHeight: 14,
-              position: 'relative',
-              right: -220,
-              marginTop: 6,
-              marginBottom: 20,
-            }}>
-            *Include Middle Name
+
+          <Text style={[styles.text_1, {fontSize: 17}]}>Company Address:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={input1}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => setInput1(value)}
+          />
+
+          <Text style={[styles.text_1, {fontSize: 17}]}>
+            Registration number:
           </Text>
-          <Text style={styles.text_2}>Name of the company:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={input1}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => setInput1(value)}
+          />
+
+          <Text style={[styles.text_1, {fontSize: 17}]}>Country:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={input1}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => setInput1(value)}
+          />
+
+          <Text style={styles.text_1}>Details:</Text>
+          <Text style={[styles.text_1, {fontSize: 17}]}>App Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={input2}
-            placeholder="  Eg. 202002"
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => setInput2(value)}
           />
-          <Text style={styles.text_2}>Address of the company:</Text>
+          <Text style={[styles.text_1, {fontSize: 17}]}>App URL:</Text>
+
           <TextInput
             style={styles.input_vm}
             value={input3}
-            placeholder="  Address Line 1"
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => setInput3(value)}
           />
+          <Text style={[styles.text_1, {fontSize: 17}]}>
+            Website Contact Page URL:
+          </Text>
+
           <TextInput
             style={styles.input_vm}
-            value={input4}
-            placeholder="  Address Line 2"
+            value={input3}
+            placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => setInput4(value)}
+            onChangeText={value => setInput3(value)}
           />
+          <Text style={[styles.text_1, {fontSize: 17}]}>
+            Website Contact Email:
+          </Text>
+
           <TextInput
             style={styles.input_vm}
-            value={input5}
-            placeholder="  Address Line 3"
+            value={input3}
+            placeholder="example@gmail.com"
             placeholderTextColor="gray"
-            onChangeText={value => setInput5(value)}
-          />
-          <Text style={styles.text_2}>PIN Code:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input6}
-            placeholder="  Eg. 202002"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput6(value)}
-          />
-          <Text style={styles.text_2}>State:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input7}
-            placeholder="  Eg. Maharashtra"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput7(value)}
-          />
-          <Text style={styles.text_2}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input8}
-            placeholder="  Eg. India"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput8(value)}
-          />
-          <Text style={styles.text_2}>Telephone:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input9}
-            placeholderTextColor="gray"
-            onChangeText={value => setInput9(value)}
-          />
-          <Text style={styles.text_2}>Email:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input10}
-            placeholder="  Eg. johndoe@gmail.com"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput10(value)}
+            onChangeText={value => setInput3(value)}
           />
         </View>
       </ScrollView>

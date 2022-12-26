@@ -8,8 +8,7 @@ import colors from '../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="End User License Agreement" />
-
+      <Header title="Softwere License Policy" />
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Text style={styles.text}>

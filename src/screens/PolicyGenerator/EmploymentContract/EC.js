@@ -1,11 +1,11 @@
 import React from 'react';
 import {ScrollView, Text, TouchableOpacity, View, Image} from 'react-native';
-import Header from '../../../components/Header';
 import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
-const C1 = ({navigation}) => {
+import Header from '../../../components/Header';
+const EC = ({navigation}) => {
   return (
     <>
       <Header title="End User License Agreement" />
@@ -40,7 +40,7 @@ const C1 = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('eula_policy_nav');
+            navigation.navigate('ec_policy_nav');
           }}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Start Generating</Text>
@@ -64,4 +64,4 @@ const C1 = ({navigation}) => {
   );
 };
 
-export default C1;
+export default EC;
