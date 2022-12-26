@@ -10,7 +10,6 @@ import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import AgreementComplience from '../screens/AgreementComplience';
-import PolicyNavigator from './PolicyNavigator';
 import CustomSideBar from './CustomSideBar';
 
 const Drawer = createDrawerNavigator();
@@ -55,13 +54,13 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name="Generate Policies"
           component={PolicyNavigator}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
 
         <Drawer.Screen
           name="Contact Us"

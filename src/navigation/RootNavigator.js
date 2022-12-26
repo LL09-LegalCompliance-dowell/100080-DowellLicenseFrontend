@@ -10,20 +10,24 @@ import LicenseCompatibility from '../screens/LicenseCompatibility';
 import ResultsDetailsScreen from '../screens/LicenseCompatibility/ResultsDetailsScreen';
 
 import ApacheLicense from '../screens/ApacheLicense';
-
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
 import DrawerNavigator from './DrawerNavigator';
-import SoftwereLicensePolicy from '../screens/SoftwereLicensePolicy';
-import GDPRNavigator from './GDPRNavigator';
-import MemorandumNavigator from './MemorandumNavigator';
-import TermsOfUseNavigator from './TermsOfUseNavigator';
-import NonCompetAgreement from './NonCompetAgreement';
 import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
 import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
+import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
+import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
 import NDA from '../screens/PolicyGenerator/NDA';
 import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
 import WebsiteSecurityPolicy from '../screens/PolicyGenerator/WebsiteSecurityPolicy';
+import PPA from '../screens/PolicyGenerator/PrivacyPolicy/Application';
+import PPW from '../screens/PolicyGenerator/PrivacyPolicy/Website';
+import StatementOfWork from '../screens/PolicyGenerator/StatementOfWork';
+import NonCompetAgreement from '../screens/PolicyGenerator/NCA';
+import TermsAndConditions from '../screens/PolicyGenerator/TermAndConditions';
+import MOU from '../screens/PolicyGenerator/MOU';
+import SLP from '../screens/PolicyGenerator/SLP';
+import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -74,22 +78,15 @@ const RootNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="SoftwereLicensePolicy"
-          component={SoftwereLicensePolicy}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="GDPR Privacy Policy"
-          component={GDPRNavigator}
+          name="SLP"
+          component={SLP}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
           name="MOU"
-          component={MemorandumNavigator}
+          component={MOU}
           options={{
             headerShown: false,
           }}
@@ -102,14 +99,7 @@ const RootNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="Terms of Use"
-          component={TermsOfUseNavigator}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Non compete agreement"
+          name="NonCompetAgreement"
           component={NonCompetAgreement}
           options={{
             headerShown: false,
@@ -137,8 +127,43 @@ const RootNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="ReturnsAndRefund"
-          component={ReturnsAndRefund}
+          name="PrivacyPolicyApp"
+          component={PPA}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PrivacyPolicyWeb"
+          component={PPW}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="DisclaimerForWeb"
+          component={DisclaimerForWeb}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="EmploymentContract"
+          component={EmploymentContract}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="StatementOfWork"
+          component={StatementOfWork}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="TermsAndConditions"
+          component={TermsAndConditions}
           options={{
             headerShown: false,
           }}
@@ -146,6 +171,20 @@ const RootNavigator = () => {
         <Stack.Screen
           name="WebsiteSecurityPolicy"
           component={WebsiteSecurityPolicy}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ReturnsAndRefund"
+          component={ReturnsAndRefund}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AppDisclaimer"
+          component={AppDisclaimer}
           options={{
             headerShown: false,
           }}

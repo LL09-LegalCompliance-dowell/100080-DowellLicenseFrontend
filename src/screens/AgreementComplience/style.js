@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    fontSize: 16,
+    fontFamily: 'roboto',
+    fontSize: 15,
     fontWeight: '400',
     color: colors.textDark,
     paddingTop: 20,
@@ -23,14 +24,15 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    backgroundColor: '#dcdcdc',
-    height: 42,
-    widht: 50,
+    backgroundColor: '#D9D9D9',
+    height: 40,
+    widht: 40,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
     padding: 5,
     margin: 10,
+    marginRight: 15,
   },
 
   listContainer: {
@@ -43,9 +45,10 @@ const styles = StyleSheet.create({
 
   listHeading: {
     width: '100%',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '500',
     color: colors.textDark,
+    fontFamily: 'roboto',
   },
 
   separator: {

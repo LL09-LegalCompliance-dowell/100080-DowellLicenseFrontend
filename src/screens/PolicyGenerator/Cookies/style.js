@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
         color:"#585858"
       },
-    
+
       viewSampleContainer: {
         backgroundColor: 'white',
         height: 50,
@@ -116,12 +116,12 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderColor: '#C4C4C4',
         padding: 12,
-        
+
         backgroundColor: '#D8D8D8',
         fontSize:16,
         color:"#585858"
       },
-      
+
       input_vm_w: {
         width:w,
         marginRight:4,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderColor: '#C4C4C4',
         padding: 12,
-        
+
         backgroundColor: '#D8D8D8',
         fontSize:16,
         color:"#585858"
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
       },
       radio_1: {
    
-
       },
       Pressed:{
         padding:3,
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
         borderWidth:1,
         marginRight:15,
         color:"#585858",
-        
+
 
       },
       Normal:{
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15,
-        
+
       },
       textoptional:{
         fontSize:12,
@@ -233,7 +232,6 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:"400",
         lineHeight:23.44
-
       },
       text_2:{
         color: colors.textDark,
@@ -300,11 +298,5 @@ const styles = StyleSheet.create({
       hide: {
         display: 'none',
       },
-
-
-
 })
 export default styles;
-
-
-
