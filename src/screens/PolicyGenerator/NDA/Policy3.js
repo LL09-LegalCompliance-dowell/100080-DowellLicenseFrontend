@@ -19,6 +19,7 @@ const Policy3 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     selected: true,   
   },{
   id: '2',
@@ -26,6 +27,7 @@ const Policy3 = () => {
   value: 'No',
   size: 18,
   color: '#489503',
+  labelStyle:{color:"#585858"},
   borderColor: '#C4C4C4',
   
   }]);
@@ -35,6 +37,7 @@ const Policy3 = () => {
     value: 'Yes, Exclusive',
     size: 18,
     color: '#489503',
+    labelStyle:{color:"#585858"},
     borderColor: '#C4C4C4',
        
   },{
@@ -44,6 +47,7 @@ const Policy3 = () => {
   size: 18,
   color: '#489503',
   borderColor: '#C4C4C4',
+  labelStyle:{color:"#585858"},
   selected: true,
   
   }]);
@@ -54,6 +58,7 @@ const Policy3 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     selected: true,   
   },{
   id: '2',
@@ -61,6 +66,7 @@ const Policy3 = () => {
   value: 'Mutual agreement',
   size: 18,
   color: '#489503',
+  labelStyle:{color:"#585858"},
   borderColor: '#C4C4C4',
   },{
     id: '3',
@@ -68,6 +74,7 @@ const Policy3 = () => {
     value: 'Other',
     size: 18,
     color: '#489503',
+    labelStyle:{color:"#585858"},
     borderColor: '#C4C4C4',
     
     }]);
@@ -77,6 +84,7 @@ const Policy3 = () => {
     value: 'Days',
     size: 12,
     color: '#489503',
+    labelStyle:{color:"#585858"},
     borderColor: '#C4C4C4',   
   },{
   id: '2',
@@ -86,6 +94,7 @@ const Policy3 = () => {
   color: '#489503',
   borderColor: '#C4C4C4',
   containerStyle:{marginLeft:5}  ,
+  labelStyle:{color:"#585858"},
   selected: true,
   },{
     id: '3',
@@ -94,6 +103,7 @@ const Policy3 = () => {
     size: 12,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     containerStyle:{marginLeft:5}  
     }]);
   return (

@@ -21,6 +21,7 @@ const Policy2 = () => {
     size: 12,
     color: '#489503',
     borderColor: '#C4C4C4',   
+    labelStyle:{color:"#585858"},
   },{
   id: '2',
   label: 'Months',
@@ -29,6 +30,7 @@ const Policy2 = () => {
   color: '#489503',
   borderColor: '#C4C4C4',
   containerStyle:{marginLeft:5}  ,
+  labelStyle:{color:"#585858"},
   selected: true,
   },{
     id: '3',
@@ -37,7 +39,8 @@ const Policy2 = () => {
     size: 12,
     color: '#489503',
     borderColor: '#C4C4C4',
-    containerStyle:{marginLeft:5}  
+    containerStyle:{marginLeft:5},
+    labelStyle:{color:"#585858"},  
     }]);
   return (
     <>

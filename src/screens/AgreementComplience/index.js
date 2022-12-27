@@ -113,7 +113,7 @@ const AgreementComplience = ({navigation}) => {
           {showDisclaimerOptions === true ? (
             <View style={{paddingHorizontal: 40, paddingVertical: 5}}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('PrivacyPolicyApp')}
+                onPress={() => navigation.navigate('AppDisclaimer')}
                 style={[styles.listContainer, {height: 50}]}>
                 <View style={[styles.iconContainer, {height: 35, width: 35}]}>
                   <Image source={Image12} />
@@ -233,6 +233,20 @@ const AgreementComplience = ({navigation}) => {
             </View>
             <Text style={styles.listHeading}>Non Compete Agreement</Text>
           </TouchableOpacity>
+          <View style={styles.separator}></View>
+
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('WebsiteSecurityPolicy');
+            }}
+            style={styles.listContainer}>
+            <View style={styles.iconContainer}>
+  
+              <Image source={Image1} />
+            </View>
+            <Text style={styles.listHeading}>Website Security Policy</Text>
+          </TouchableOpacity>
+
         </ScrollView>
       </View>
     </>

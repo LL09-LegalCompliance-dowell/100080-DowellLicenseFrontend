@@ -24,13 +24,15 @@ const Policy1 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
-    selected: true
+    selected: true,
+    labelStyle:{color:"#585858"},
   },{
   id: '2',
   label: 'No',
   value: 'No',
   size: 18,
   color: '#489503',
+  labelStyle:{color:"#585858"},
   borderColor: '#C4C4C4',
   }]);
   const [radioButtons1, setRadioButtons1] = useState([{
@@ -40,6 +42,7 @@ const Policy1 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     selected: true
   },{
   id: '2',
@@ -47,6 +50,7 @@ const Policy1 = () => {
   value: 'No',
   size: 18,
   color: '#489503',
+  labelStyle:{color:"#585858"},
   borderColor: '#C4C4C4',
   }]);
   var touchProps1 = {                               
@@ -116,7 +120,7 @@ const Policy1 = () => {
         <View style={{flex:1 ,display:"flex",flexDirection:"row",marginVertical:19}}>
           <TouchableHighlight {...touchProps1}>
              <View style={{display:"flex",flexDirection:"row"}}>
-              <Text>Via Website Chat Services </Text>
+              <Text style={{color:"#585858"}}>Via Website Chat Services </Text>
               <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
              </View>
             
@@ -124,7 +128,7 @@ const Policy1 = () => {
           
           <TouchableHighlight {...touchProps2}>
             <View style={{display:"flex",flexDirection:"row"}}>
-              <Text>Via Email </Text>
+              <Text style={{color:"#585858"}}>Via Email </Text>
               <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
@@ -142,7 +146,7 @@ const Policy1 = () => {
         <View style={{flex:1 ,display:"flex",flexDirection:"row",marginVertical:19}}>
           <TouchableHighlight {...touchProps3}>
              <View style={{display:"flex",flexDirection:"row"}}>
-              <Text>Address </Text>
+              <Text style={{color:"#585858"}}>Address </Text>
               <TouchableOpacity  style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
              </View>
             
@@ -150,13 +154,13 @@ const Policy1 = () => {
           
           <TouchableHighlight {...touchProps4}>
             <View style={{display:"flex",flexDirection:"row"}}>
-              <Text>Contact Details </Text>
+              <Text style={{color:"#585858"}}>Contact Details </Text>
               <TouchableOpacity style={isPress4 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress4(false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
           <TouchableHighlight {...touchProps5}>
             <View style={{display:"flex",flexDirection:"row"}}>
-              <Text>IP Addresses </Text>
+              <Text style={{color:"#585858"}}>IP Addresses </Text>
               <TouchableOpacity style={isPress5 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress5(false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
