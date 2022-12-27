@@ -23,6 +23,9 @@ const Saving = ({navigation, route}) => {
       phonecode,
       profile_image,
     } = response.data;
+    if(!username | !email | !first_name){
+      navigation.navigate("webView")
+    }
     await AsyncStorage.setItem('username', username);
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
