@@ -276,6 +276,10 @@ const styles = StyleSheet.create({
         lineHeight:21.09
         
       },
+      text_warning:{
+        color:"red"
+
+      },
       partyDetails: {
         display: 'flex',
         flexDirection: 'row',

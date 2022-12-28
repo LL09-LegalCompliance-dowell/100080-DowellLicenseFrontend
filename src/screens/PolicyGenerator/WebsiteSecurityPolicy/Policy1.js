@@ -5,6 +5,7 @@ import styles from '../Cookies/style'
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { email_validation } from '../validations/email_validation';
 
 
 const Policy1 = () => {
@@ -14,6 +15,7 @@ const [input_2, setInput_2] = useState("");
 const [input_3, setInput_3] = useState("");
 const [input_4, setInput_4] = useState("");
 const [input_5, setInput_5] = useState("");
+const [valid_email , setValid_email]=useState(true);
 return (
 <>
 <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -85,8 +87,18 @@ return (
               value={input_5}
               placeholder="  johndoe@gmail.com"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_5(value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_email(true)
+                }
+                else{
+                    email_validation(value)?setValid_email(true):setValid_email(false)
+                }
+                setInput_5(value)
+                
+            }}
         />
+        <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
     </View>
 </ScrollView>
 </>

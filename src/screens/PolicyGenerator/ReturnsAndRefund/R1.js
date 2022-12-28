@@ -16,7 +16,7 @@ const R1 = ({navigation}) => {
                 We help with the legal requirements, so you can focus on the business. 
                 </Text>
                 <Text style={styles.text}>
-                Below is the sample for End User License Agreement Policy Template. 
+                Below is the sample for Return and Refund Policy Template. . 
                 </Text>
               </View>
               <View style={styles.viewSampleContainer}>
