@@ -279,6 +279,10 @@ const styles = StyleSheet.create({
         color:"red"
 
       },
+      text_warning:{
+        color:"red"
+
+      },
       partyDetails: {
         display: 'flex',
         flexDirection: 'row',
