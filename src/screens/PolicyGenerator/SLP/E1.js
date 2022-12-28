@@ -5,6 +5,7 @@ import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
+
 const C1 = ({navigation}) => {
   return (
     <>

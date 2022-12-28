@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     paddingVertical: 15,
     textAlign: 'center',
+    color: '#585858',
   },
 
   viewSampleContainer: {
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#D8D8D8',
     fontSize: 16,
-    color: 'gray',
+    color: '#585858',
   },
   input_vm: {
     height: 51,
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: '#D8D8D8',
     fontSize: 16,
+    color: '#585858',
   },
 
   input_vm_w: {
@@ -130,6 +132,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: '#D8D8D8',
     fontSize: 16,
+    color: '#585858',
   },
   input_um: {
     height: 51,
@@ -140,6 +143,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#D8D8D8',
     fontSize: 16,
+    color: '#585858',
   },
   calendarPosition: {
     position: 'absolute',
@@ -173,6 +177,7 @@ const styles = StyleSheet.create({
     borderColor: '#585858',
     borderWidth: 1,
     marginRight: 15,
+    color: '#585858',
   },
   Normal: {
     padding: 3,

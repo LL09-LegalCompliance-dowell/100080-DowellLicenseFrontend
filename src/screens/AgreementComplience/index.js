@@ -18,18 +18,20 @@ import Image11 from './images/11.png';
 import Image12 from './images/12.png';
 import {Image} from 'react-native';
 
-import HowTo from '../../screens/LicenseCompatibility/HowToIcon';
+import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
+import HowToModel from './HowToModel';
 
 const AgreementComplience = ({navigation}) => {
   const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
     useState(false);
   const [showDisclaimerOptions, setDisclaimerShowOptions] = useState(false);
+  const [isHowto, setHowto] = useState(false);
   return (
     <>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
-        <HowTo />
-
+        {isHowto === 'true' ? <HowToModel /> : null}
+        <HowToIcon onPress={() => setHowto(true)} />
         <Text style={styles.heading}>
           We help with legal requirements, so you can focus on the business
         </Text>
