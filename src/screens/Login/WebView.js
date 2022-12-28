@@ -9,10 +9,11 @@ const LoginWebView = ({navigation}) => {
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
+    console.log(url)
     try {
-      if (url == 'http://127.0.0.1:8000/callbackurl') {
-        navigation.navigate('Saving', {url});
-      }
+      //if (url == 'http://127.0.0.1:8000/callbackurl') {
+      navigation.navigate('Saving', {url});
+      //}
     } catch (error) {
       Alert.alert('Error message', `${error}`);
     }

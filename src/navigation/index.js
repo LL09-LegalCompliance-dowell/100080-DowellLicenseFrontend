@@ -17,6 +17,7 @@ const index = () => {
   useEffect(() => {
     fetchUser();
   }, []);
-  return user ? <RootNavigator /> : <AuthNavigator />;
+  //return user ? <RootNavigator /> : <AuthNavigator />;
+  return <AuthNavigator/>
 };
 export default index;

@@ -38,7 +38,10 @@ const Policy2 = () => {
             setSelected={(val) => setInput2(val)} 
             data={cuurency} 
             save="value"
-            
+            inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+            dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+            searchPlaceholder=""
+            search={false}
             boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
             />
         </View>
@@ -58,7 +61,10 @@ const Policy2 = () => {
             setSelected={(val) => setInput4(val)} 
             data={cuurency} 
             save="value"
-            
+            inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+             dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
+            searchPlaceholder=""
+            search={false}
             boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
             />
         </View>

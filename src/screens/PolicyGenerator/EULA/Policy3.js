@@ -25,7 +25,7 @@ const Policy3 = () => {
     label: 'Yes',
     value: 'Yes',
     size: 18,
-    color: '#489503',
+    labelStyle:{color:"#585858"},
     borderColor: '#C4C4C4',
     
   },{
@@ -35,6 +35,7 @@ const Policy3 = () => {
   size: 18,
   color: '#489503',
   borderColor: '#C4C4C4',
+  labelStyle:{color:"#585858"},
   selected: true
   }]);
   const [radioButtons2, setRadioButtons2] = useState([{
@@ -44,7 +45,7 @@ const Policy3 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
-    
+    labelStyle:{color:"#585858"},
   },{
   id: '2',
   label: 'When they open the package',
@@ -52,6 +53,7 @@ const Policy3 = () => {
   size: 18,
   color: '#489503',
   borderColor: '#C4C4C4',
+  labelStyle:{color:"#585858"},
   selected: true
   }]);
   const [radioButtons3, setRadioButtons3] = useState([{
@@ -61,6 +63,7 @@ const Policy3 = () => {
     size: 18,
     color: '#489503',
     borderColor: '#C4C4C4',
+    labelStyle:{color:"#585858"},
     
   },{
   id: '2',
@@ -70,6 +73,7 @@ const Policy3 = () => {
   color: '#489503',
   borderColor: '#C4C4C4',
   selected: true,
+  labelStyle:{color:"#585858"},
   
   }]);
   var touchProps1 = {                               
@@ -145,7 +149,7 @@ const Policy3 = () => {
               {value3Index===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
               <TouchableHighlight {...touchProps1}>
                 <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Over phone</Text>
+                  <Text style={{color:"#585858"}}>Over phone</Text>
                   <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
                 </View>
                 
@@ -153,14 +157,14 @@ const Policy3 = () => {
               
               <TouchableHighlight {...touchProps2}>
                 <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Via Email </Text>
+                  <Text style={{color:"#585858"}}>Via Email </Text>
                   <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
                 </View>
               </TouchableHighlight>
 
               <TouchableHighlight {...touchProps3}>
                 <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>In-person</Text>
+                  <Text style={{color:"#585858"}}>In-person</Text>
                   <TouchableOpacity style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
                 </View>
               </TouchableHighlight>
