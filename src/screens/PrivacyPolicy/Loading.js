@@ -4,14 +4,16 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Loading = ({navigation}) => {
+  const session_id = "ayaquq6jdyqvaq9h6dlm9ysu3wkykyx0ssdfs"
   const fetchIAgree = async () => {
     const res = await axios.get(
-      'https://100087.pythonanywhere.com/api/tkr-legalpolicies/FB101000000000166530629056539143455595959/',
+      `https://100087.pythonanywhere.com/api/legalpolicies/${session_id}/iagreestatus/`
     );
-    const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data;
-    await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
-    await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
-    navigation.navigate('EmbededLogin');
+    console.log(res.data)
+    // const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data;
+    // await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
+    // await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
+    // navigation.navigate('EmbededLogin');
   
   }
 
