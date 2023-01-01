@@ -4,12 +4,13 @@ import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,Image,TouchableOpacity} from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react'
+import { email_validation } from '../validations';
 
-const Policy4 = () => {
-  const [input_1, setInput_1] = useState("");
-
+const Policy4 = ({list}) => {
+  const [valid_email , setValid_email]=useState(true);
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          
           <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
           Finish Up:
           </Text>
@@ -17,11 +18,21 @@ const Policy4 = () => {
             <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Enter Your Email address to receive the policy:</Text>
             <TextInput
             style={styles.input}
-            value={input_1}
+            value={list[0]}
             placeholder="Eg. johndoe@mail.com"
             placeholderTextColor="gray"            
-            onChangeText={(value)=>setInput_1(value)}
+            onChangeText={(value)=>{
+              if(value===""){
+                  setValid_email(true)
+              }
+              else{
+                  email_validation(value)?setValid_email(true):setValid_email(false)
+              }
+              list[1](value)
+              
+          }}
             /> 
+            <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
             <Text style={{color: "#585858",fontSize:18,fontWeight:"300"}}>You will receive the policy to the entered email.</Text>
             <View style={{alignItems:"center",marginVertical:30}}>
                 <Image
