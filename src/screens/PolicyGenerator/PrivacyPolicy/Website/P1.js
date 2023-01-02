@@ -8,7 +8,7 @@ import colors from '../../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="App Privacy Policy" />
+      <Header title="Website Privacy Policy" />
 
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
@@ -17,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for App Privacy Policy Template.{' '}
+            Below is the sample for Website Privacy Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>

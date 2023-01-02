@@ -17,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for End User License Agreement Policy Template.
+            Below is the sample for Terms and Conditions Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
