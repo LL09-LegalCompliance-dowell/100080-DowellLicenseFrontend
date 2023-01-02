@@ -1,32 +1,25 @@
-import React from 'react';
-import {useState} from 'react';
+import {React,useState} from 'react';
+
 import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { email_validation } from '../validations';
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
-  const [input5, setInput5] = useState('');
-  const [input6, setInput6] = useState('');
-  const [input7, setInput7] = useState('');
-  const [input8, setInput8] = useState('');
-  const [input9, setInput9] = useState('');
-  const [input10, setInput10] = useState('');
+const Policy1 = ({list}) => {
 
+  const [valid_email , setValid_email]=useState(true);
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text style={list[22]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
+        <Text style={valid_email?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Enter Valid Email  </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
           <TextInput
             style={styles.input}
-            value={date.toLocaleDateString()}
+            value={list[0].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
           />
@@ -37,7 +30,7 @@ const Policy1 = () => {
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[1](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
@@ -47,10 +40,10 @@ const Policy1 = () => {
           <Text style={styles.text_2}>Full Name of the Party:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[2]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[3](value)}
           />
           <Text
             style={{
@@ -68,72 +61,82 @@ const Policy1 = () => {
           <Text style={styles.text_2}>Name of the company:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input2}
+            value={list[4]}
             placeholder="  Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => setInput2(value)}
+            onChangeText={value => list[5](value)}
           />
           <Text style={styles.text_2}>Address of the company:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input3}
+            value={list[6]}
             placeholder="  Address Line 1"
             placeholderTextColor="gray"
-            onChangeText={value => setInput3(value)}
+            onChangeText={value => list[7](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input4}
+            value={list[8]}
             placeholder="  Address Line 2"
             placeholderTextColor="gray"
-            onChangeText={value => setInput4(value)}
+            onChangeText={value => list[9](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input5}
+            value={list[10]}
             placeholder="  Address Line 3"
             placeholderTextColor="gray"
-            onChangeText={value => setInput5(value)}
+            onChangeText={value => list[11](value)}
           />
           <Text style={styles.text_2}>PIN Code:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input6}
+            value={list[12]}
             placeholder="  Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => setInput6(value)}
+            onChangeText={value => list[13](value)}
           />
           <Text style={styles.text_2}>State:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input7}
+            value={list[14]}
             placeholder="  Eg. Maharashtra"
             placeholderTextColor="gray"
-            onChangeText={value => setInput7(value)}
+            onChangeText={value => list[15](value)}
           />
           <Text style={styles.text_2}>Country:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input8}
+            value={list[16]}
             placeholder="  Eg. India"
             placeholderTextColor="gray"
-            onChangeText={value => setInput8(value)}
+            onChangeText={value => list[17](value)}
           />
           <Text style={styles.text_2}>Telephone:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input9}
+            value={list[18]}
             placeholderTextColor="gray"
-            onChangeText={value => setInput9(value)}
+            onChangeText={value => list[19](value)}
           />
           <Text style={styles.text_2}>Email:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input10}
+            value={list[20]}
             placeholder="  Eg. johndoe@gmail.com"
             placeholderTextColor="gray"
-            onChangeText={value => setInput10(value)}
+            onChangeText={(value)=>{
+              if(value===""){
+                  setValid_email(true)
+              }
+              else{
+                  email_validation(value)?setValid_email(true):setValid_email(false)
+              }
+              list[21](value)
+              
+          }}
           />
+          <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
         </View>
       </ScrollView>
     </>

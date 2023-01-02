@@ -5,7 +5,7 @@ import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
-const Steps = ({navigation}) => {
+const Steps = () => {
     const nextButton = {
         backgroundColor: '#489503',
         paddingHorizontal: 5,
@@ -47,7 +47,7 @@ const Steps = ({navigation}) => {
       const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,input_5,handle_input_5,empty_validationn]
       const inputs= [input_1,input_2,input_3,input_4,input_5]
 
-      const [error_2, setError_2] = useState(false);
+      
       const [input_1_1, setInput_1_1] = useState("");
       const handle_input_1_1 = (state)=> setInput_1_1(state);
       const states_1= [input_1_1,handle_input_1_1,]
@@ -73,8 +73,9 @@ const Steps = ({navigation}) => {
                 errors={error_1}
                 onNext={()=>{
                   setempty_validation(empty_validation(inputs))
+                  const x=(empty_validation(inputs))
                   const y= email_validation(input_5)
-                  setError_1(!(empty_validationn & y) )
+                  setError_1(!(x & y) )
                   
                 }}
                 > 
@@ -88,11 +89,9 @@ const Steps = ({navigation}) => {
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
-                errors={error_2}
                 onSubmit={()=>{
-                  const x= empty_validation(input_1_1)
                   const y= email_validation(input_1_1)
-                  const z= (!(x & y) )
+                  const z= ( !y)
                   if (z){
                     alert("please enter valid email")
                   }
