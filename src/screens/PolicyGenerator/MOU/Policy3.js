@@ -89,11 +89,11 @@ const Policy3 = () => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text style={styles.text_1}>Maintenance and Support</Text>
+      <Text style={styles.text_1}>Company Details:</Text>
       <View style={{paddingHorizontal:11,paddingTop:16}}>
         <View style={{position: 'relative',fontWeight:"400"}}>
           <Text style={styles.text_2}>
-          What will be the commencement date?
+          Which state of laws will be used as the governing laws?
           </Text>
           <TextInput
             style={styles.input_vm}
@@ -113,7 +113,7 @@ const Policy3 = () => {
             initialDate={new Date()}
           />
         </View>
-        <Text style={styles.text_2}>Whether maintenance and support will be available for the app and will it be delivered over phone, via email or in person?</Text>
+        <Text style={styles.text_2}>Should this MOU include a confidentiality clause?</Text>
         <RadioForm
           formHorizontal={false}
           animation={true}
