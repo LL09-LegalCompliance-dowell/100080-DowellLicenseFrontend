@@ -17,7 +17,7 @@ const EC = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for End User License Agreement Policy Template.
+            Below is the sample for Disclaimer for Website Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
