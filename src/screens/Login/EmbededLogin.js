@@ -20,13 +20,14 @@ export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [date, setDate] = useState(null);
+  
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
     const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
     setDate(data);
     setAgree(iAgree);
-    // console.log(data);
-    // console.log(iAgree);
+    console.log(data);
+    console.log(iAgree);
   };
   useEffect(() => {
     fetchdata();
@@ -90,10 +91,11 @@ export default IntroductionScreen = ({route, navigation}) => {
             disabled={false}
             value={agree}
             onValueChange={() => {
-              if (agree === true) {
+              if (agree === false) {
                 setDate(null);
-              }
-              setAgree(!agree);
+              }else{
+                setAgree(agree);
+              }              
             }}
             tintColor={agree ? '#078F04' : undefined}
             style={styles.checkbox}
@@ -104,9 +106,7 @@ export default IntroductionScreen = ({route, navigation}) => {
             <Text
               style={styles.policyTextLink}
               onPress={() => {
-                // navigation.navigate('PrivacyPolicy');
-
-                date == null
+                date === null
                   ? navigation.navigate('PrivacyPolicy')
                   : setModalVisible(true);
               }}>

@@ -8,8 +8,9 @@ const PrivacyPolicy = ({navigation}) => {
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
+    console.log(url, "URL")
     try {
-      if (url == 'http://127.0.0.1:8000/callbackurl') {
+      if (url == `http://127.0.0.1:8000/callbackurl`) {
         navigation.navigate('Loading');
       }
     } catch (error) {
