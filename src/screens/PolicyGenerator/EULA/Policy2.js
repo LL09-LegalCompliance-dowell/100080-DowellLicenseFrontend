@@ -2,12 +2,9 @@ import React, { Fragment } from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
-
-
 import RadioGroup from 'react-native-radio-buttons-group';
-
 import { SelectList } from 'react-native-dropdown-select-list'
-
+import { number_validation } from '../validations';
 const Policy2 = ({list}) => {
 
 
@@ -51,8 +48,18 @@ return (
             value={list[4]}
             placeholder="  Enter Amount(₹)"
             placeholderTextColor="gray"
-            onChangeText={(value)=>list[5](value)}
-      />
+            onChangeText={(value)=>{
+              if(value===""){
+                list[14](true)
+              }
+              else{
+                number_validation(value)?list[14](true):list[14](false)
+              }
+              list[5](value)
+              
+          }}
+          />
+      <Text  style={list[13] ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
       <Text style={styles.text_3}>Applicable Law</Text>
       <Text style={styles.text_2}>Which state laws will apply for this EULA?</Text>
       <SelectList 
