@@ -12,18 +12,18 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 const Policy3 = ({list}) => {
 
   
-  var touchProps1 = {                               
-    style: list[12] ? styles.Pressed : styles.Normal, 
-    onPress: () => list[13](true),                 
-  };
-  var touchProps2 = {                               
-    style: list[14] ? styles.Pressed : styles.Normal, 
-    onPress: () => list[15](true),                 
-  };
-  var touchProps3 = {                               
-    style: list[16] ? styles.Pressed : styles.Normal, 
-    onPress: () => list[17](true),                 
-  };  
+  // var touchProps1 = {                               
+  //   style: list[12] ? styles.Pressed : styles.Normal, 
+  //   onPress: () => list[13](true),                 
+  // };
+  // var touchProps2 = {                               
+  //   style: list[14] ? styles.Pressed : styles.Normal, 
+  //   onPress: () => list[15](true),                 
+  // };
+  // var touchProps3 = {                               
+  //   style: list[16] ? styles.Pressed : styles.Normal, 
+  //   onPress: () => list[17](true),                 
+  // };  
 
 
   return (
@@ -61,7 +61,7 @@ const Policy3 = ({list}) => {
           style={{marginHorizontal:27,marginVertical:7}}
         >
    
-              <RadioButton labelHorizontal={true} key={0} style={list[10] ===0? {marginBottom:20}:{marginBottom:4}} >
+              <RadioButton labelHorizontal={true} key={0}  >
                 {/*  You can set RadioButtonLabel before RadioButtonInput */}
                 <RadioButtonInput
                   obj={{label: 'Yes', value: 0 }}
@@ -83,7 +83,7 @@ const Policy3 = ({list}) => {
                   labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
                 />
               </RadioButton>
-              {list[10]===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
+              {/* {list[10]===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
               <TouchableHighlight {...touchProps1}>
                 <View style={{display:"flex",flexDirection:"row"}}>
                   <Text style={{color:"#585858"}}>Over phone</Text>
@@ -106,9 +106,9 @@ const Policy3 = ({list}) => {
                 </View>
               </TouchableHighlight>
 
-              </View> }
+              </View> } */}
 
-              <RadioButton labelHorizontal={true} key={1} style={list[10] ===0? {marginTop:20}:{marginTop:4}} >
+              <RadioButton labelHorizontal={true} key={1} style={{marginTop:6}} >
                 {/*  You can set RadioButtonLabel before RadioButtonInput */}
                 <RadioButtonInput
                   obj={{label: 'Not Available', value: 1 }}
