@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 51,
     elevation: 3,
+    cursor:"pointer",
   },
   getStartedText: {
     color: 'white',

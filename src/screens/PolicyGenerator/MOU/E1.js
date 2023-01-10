@@ -8,7 +8,7 @@ import colors from '../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="End User License Agreement" />
+      <Header title="Memorandum of Understanding" />
 
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
@@ -17,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for End User License Agreement Policy Template.
+            Below is the sample for Memorandum of Understanding Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>

@@ -274,7 +274,10 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:"400",
         lineHeight:21.09
-        
+      },
+      text_warning:{
+        color:"red"
+
       },
       text_warning:{
         color:"red"

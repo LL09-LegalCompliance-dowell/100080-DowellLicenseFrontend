@@ -5,6 +5,7 @@ import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
+
 const C1 = ({navigation}) => {
   return (
     <>
@@ -16,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for End User License Agreement Policy Template.
+            Below is the sample for Software License Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>

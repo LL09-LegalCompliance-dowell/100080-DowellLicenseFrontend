@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 10,
     marginRight: 15,
+    flex:1
   },
 
   listContainer: {
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: colors.textDark,
     fontFamily: 'roboto',
+    flex:11
   },
 
   separator: {

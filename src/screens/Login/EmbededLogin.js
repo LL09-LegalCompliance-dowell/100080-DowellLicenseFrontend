@@ -20,17 +20,19 @@ export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [date, setDate] = useState(null);
+  
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
     const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
     setDate(data);
     setAgree(iAgree);
-    // console.log(data);
-    // console.log(iAgree);
+    console.log(data);
+    console.log(iAgree);
   };
   useEffect(() => {
     fetchdata();
   }, [agree, date]);
+  //console.log(agree)
 
   useEffect(() => {}, []);
   return (
@@ -90,10 +92,11 @@ export default IntroductionScreen = ({route, navigation}) => {
             disabled={false}
             value={agree}
             onValueChange={() => {
-              if (agree === true) {
+              if (agree === false) {
                 setDate(null);
-              }
-              setAgree(!agree);
+              }else{
+                setAgree(agree);
+              }              
             }}
             tintColor={agree ? '#078F04' : undefined}
             style={styles.checkbox}
@@ -104,9 +107,7 @@ export default IntroductionScreen = ({route, navigation}) => {
             <Text
               style={styles.policyTextLink}
               onPress={() => {
-                // navigation.navigate('PrivacyPolicy');
-
-                date == null
+                date === null
                   ? navigation.navigate('PrivacyPolicy')
                   : setModalVisible(true);
               }}>
@@ -123,10 +124,10 @@ export default IntroductionScreen = ({route, navigation}) => {
           style={[
             styles.getStarted,
             {
-              backgroundColor: '#078F04',
+              backgroundColor: agree?'#078F04':"#e7e7e7",
             },
           ]}
-          disabled={agree}
+          disabled={!agree}
           >
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
@@ -145,6 +146,7 @@ export default IntroductionScreen = ({route, navigation}) => {
               color: '#fff',
               fontSize: 20,
               fontWeight: 'bold',
+              cursor:"pointer"
             }}>
             Go to HomeScreen
           </Text>
