@@ -7,10 +7,11 @@ const Saving = ({navigation, route}) => {
   const url= route.params.url;
   const session_id = url.substring(45);
   const fetchUser = async () => {
-    const response = await axios.post(
-      'https://100014.pythonanywhere.com/api/profile/',
-      {key: session_id},
-    );
+    try{
+      const response = await axios.post(
+        'https://100014.pythonanywhere.com/api/profile/',
+        {key: session_id},
+      );
     console.log("response from API",response.data)
     const {
       id,
@@ -30,11 +31,22 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('username', username);
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
+    await AsyncStorage.setItem('session_id', session_id);
     navigation.navigate('RootNavigator');
+    
+  }catch(error){console.log(error)}
   };
 
+  const fetchPortfolio = async () => {
+    try{
+      const response = await axios.post("https://100093.pythonanywhere.com/api/userinfo/", {key: session_id});
+      console.log("Portfolio Data",response.data)
+    }catch(error){console.log(error)}
+    
+  }
   useEffect(() => {
     fetchUser();
+    fetchPortfolio();
   });
   return (
     <View style={styles.container}>

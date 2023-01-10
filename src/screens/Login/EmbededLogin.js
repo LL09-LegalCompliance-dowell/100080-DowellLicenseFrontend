@@ -124,7 +124,7 @@ export default IntroductionScreen = ({route, navigation}) => {
           style={[
             styles.getStarted,
             {
-              backgroundColor: '#078F04',
+              backgroundColor: agree?'#078F04':"#e7e7e7",
             },
           ]}
           disabled={!agree}
