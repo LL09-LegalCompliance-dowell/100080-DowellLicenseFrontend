@@ -4,13 +4,14 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Saving = ({navigation, route}) => {
-  const url = route.params.url;
+  const url= route.params.url;
   const session_id = url.substring(45);
   const fetchUser = async () => {
     const response = await axios.post(
       'https://100014.pythonanywhere.com/api/profile/',
       {key: session_id},
     );
+    console.log("response from API",response.data)
     const {
       id,
       username,

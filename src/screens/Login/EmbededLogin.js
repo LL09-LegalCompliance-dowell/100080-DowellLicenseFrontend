@@ -32,6 +32,7 @@ export default IntroductionScreen = ({route, navigation}) => {
   useEffect(() => {
     fetchdata();
   }, [agree, date]);
+  //console.log(agree)
 
   useEffect(() => {}, []);
   return (
@@ -126,7 +127,7 @@ export default IntroductionScreen = ({route, navigation}) => {
               backgroundColor: '#078F04',
             },
           ]}
-          disabled={agree}
+          disabled={!agree}
           >
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
@@ -145,6 +146,7 @@ export default IntroductionScreen = ({route, navigation}) => {
               color: '#fff',
               fontSize: 20,
               fontWeight: 'bold',
+              cursor:"pointer"
             }}>
             Go to HomeScreen
           </Text>
