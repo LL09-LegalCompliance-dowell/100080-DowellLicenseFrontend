@@ -9,11 +9,11 @@ const Loading = ({navigation}) => {
     const res = await axios.get(
       `https://100087.pythonanywhere.com/api/legalpolicies/${session_id}/iagreestatus/`
     );
-    console.log(res.data)
-    // const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data;
-    // await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
-    // await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
-    // navigation.navigate('EmbededLogin');
+    //console.log(res.data.data[0])
+    const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data.data[0];
+    await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
+    await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
+    navigation.navigate('IntroductionScreen');
   
   }
 

@@ -5,20 +5,16 @@ import styles from '../Cookies/style'
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import { email_validation } from '../validations/email_validation';
+import { email_validation } from '../validations';
 
 
-const Policy1 = () => {
-const [date, setDate] = useState(new Date());
-const [input_1, setInput_1] = useState("");
-const [input_2, setInput_2] = useState("");
-const [input_3, setInput_3] = useState("");
-const [input_4, setInput_4] = useState("");
-const [input_5, setInput_5] = useState("");
+const Policy1 = ({list}) => {
 const [valid_email , setValid_email]=useState(true);
 return (
 <>
 <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <Text style={list[12]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
+    <Text style={valid_email?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Enter Valid Email  </Text>
     <Text style={styles.text_1}>Date:</Text>
     <View style={{paddingHorizontal:11,paddingTop:16}}>
         <View >
@@ -27,7 +23,7 @@ return (
                 </Text>
                 <TextInput
                     style={styles.input_vm}
-                    value={date.toLocaleDateString()}
+                    value={list[0].toLocaleDateString()}
                     placeholder="dd/mm/yyyy"
                     placeholderTextColor="gray" 
                 />
@@ -38,7 +34,7 @@ return (
                     </View>
                     }
                     color="#489503"
-                    onSelect={value => setDate(value)}
+                    onSelect={value => list[1](value)}
                     isHideOnSelect={true}
                     initialDate={new Date()}
                 />
@@ -49,10 +45,10 @@ return (
         <Text style={styles.text_2}>Company Name:</Text>
         <TextInput
               style={styles.input_vm}
-              value={input_1}
+              value={list[2]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_1(value)}
+              onChangeText={(value)=>list[3](value)}
               />
     </View>
     <Text style={styles.text_1}>Details:</Text>
@@ -60,31 +56,31 @@ return (
         <Text style={styles.text_2}>Website/App Name:</Text>
         <TextInput
               style={styles.input_vm}
-              value={input_2}
+              value={list[4]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_2(value)}
+              onChangeText={(value)=>list[5](value)}
         />
         <Text style={styles.text_2}>Jurisdiction:</Text>
         <TextInput
               style={styles.input_vm}
-              value={input_3}
+              value={list[6]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_3(value)}
+              onChangeText={(value)=>list[7](value)}
         />
         <Text style={styles.text_2}>Website URL:</Text>
         <TextInput
               style={styles.input_vm}
-              value={input_4}
+              value={list[8]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_4(value)}
+              onChangeText={(value)=>list[9](value)}
         />
         <Text style={styles.text_2}>Website Contact Email:</Text>
         <TextInput
               style={styles.input_vm}
-              value={input_5}
+              value={list[10]}
               placeholder="  johndoe@gmail.com"
               placeholderTextColor="gray"            
               onChangeText={(value)=>{
@@ -94,7 +90,7 @@ return (
                 else{
                     email_validation(value)?setValid_email(true):setValid_email(false)
                 }
-                setInput_5(value)
+                list[11](value)
                 
             }}
         />

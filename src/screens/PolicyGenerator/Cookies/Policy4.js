@@ -4,12 +4,17 @@ import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,Image,TouchableOpacity} from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react'
+import { email_validation } from '../validations';
+import { post_agreement_compliance } from '../Api';
+import { Linking } from 'react-native';
 
-const Policy4 = () => {
-  const [input_1, setInput_1] = useState("");
-
+const Policy4 = ({list,object}) => {
+  const [valid_email , setValid_email]=useState(true);
+  const [flag , setFlag]=useState(true);
+  
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          
           <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
           Finish Up:
           </Text>
@@ -17,11 +22,21 @@ const Policy4 = () => {
             <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Enter Your Email address to receive the policy:</Text>
             <TextInput
             style={styles.input}
-            value={input_1}
+            value={list[0]}
             placeholder="Eg. johndoe@mail.com"
             placeholderTextColor="gray"            
-            onChangeText={(value)=>setInput_1(value)}
+            onChangeText={(value)=>{
+              if(value===""){
+                  setValid_email(true)
+              }
+              else{
+                  email_validation(value)?setValid_email(true):setValid_email(false)
+              }
+              list[1](value)
+              
+          }}
             /> 
+            <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
             <Text style={{color: "#585858",fontSize:18,fontWeight:"300"}}>You will receive the policy to the entered email.</Text>
             <View style={{alignItems:"center",marginVertical:30}}>
                 <Image
@@ -32,10 +47,23 @@ const Policy4 = () => {
                     <AntDesign name="download" size={24} color={colors.primary} />
                     <Text style={styles.text_b_p4}>Download Policy</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button_p4}>
+                <TouchableOpacity style={styles.button_p4} onPress={async() =>{
+                  try{
+                    setFlag(false)
+                    const result =await post_agreement_compliance(object)
+                    setFlag(true)
+                    const preview_link=result.data[0].agreement.html_doc_url
+                    Linking.openURL(preview_link)
+                  }
+                  catch(error){
+                    console.error(error);
+                  }
+                  
+                }}>
                     <AntDesign name="eye" size={24} color={colors.primary} />
                     <Text style={styles.text_b_p4}>Preview Policy</Text>
                 </TouchableOpacity>
+                <Text style={flag?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please wait while generating policy </Text>
             </View>
           </View>
     </ScrollView>
