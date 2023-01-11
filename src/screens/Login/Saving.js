@@ -1,7 +1,8 @@
-import {StyleSheet, View, ActivityIndicator, Text, Alert} from 'react-native';
+import {View, ActivityIndicator, Text, Alert} from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './style';
 
 const Saving = ({navigation, route}) => {
   const url= route.params.url;
@@ -58,21 +59,18 @@ const Saving = ({navigation, route}) => {
     fetchUser();
   });
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="#00ff00" />
-      <Text>Logging In...</Text>
+    <View style={[styles.container, {
+        alignItems: 'center',
+        justifyContent: 'center',
+        ImageBackground: 'white',
+        zIndex: 10,
+        flex: 1,
+      },]}>
+      <ActivityIndicator size="large" color="#00ff00" style={styles.activityIndicator} />
+      <Text style={styles.policyText}>Logging In...</Text>
+      <Text style={styles.policyText}>Checking your Portfolio...</Text>
     </View>
   );
 };
 
 export default Saving;
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    ImageBackground: 'white',
-    zIndex: 10,
-    flex: 1,
-  },
-});

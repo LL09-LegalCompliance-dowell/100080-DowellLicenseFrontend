@@ -185,6 +185,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'roboto',
   },
+  activityIndicator:{
+    padding: 12,
+    backgroundColor: '#555',
+    borderRadius: 12,
+    font:100,
+  }
 });
 
 export default styles;

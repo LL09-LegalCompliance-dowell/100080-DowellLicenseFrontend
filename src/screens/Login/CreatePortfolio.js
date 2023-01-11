@@ -8,16 +8,9 @@ const CreatePortfolio = ({navigation, route}) => {
   const URL = `https://100093.pythonanywhere.com/new/?session_id=${session_id}`
 
   const webViewRef = useRef();
-  const NavigationHandler = async ({url}) => {
-    console.log("URL:",url)
-    try {
-      if (url == `http://127.0.0.1:8000/callbackurl`) {
-        navigation.navigate('Loading');
-      }
-    } catch (error) {
-      Alert.alert('Error message', `${error}`);
-    }
-  };
+  const gotToMainScreen = () => {
+    navigation.navigate("RootNavigator")
+  }
 
   return (
     <>
@@ -27,9 +20,9 @@ const CreatePortfolio = ({navigation, route}) => {
           uri: URL,
         }}
         startInLoadingState
-        onNavigationStateChange={NavigationHandler}
+        //onNavigationStateChange={NavigationHandler}
       />
-      <TouchableOpacity style={styles.createPortfolio}>
+      <TouchableOpacity style={[styles.createPortfolio, {marginTop: 0,}]} onPress={gotToMainScreen}>
         <Text style={[styles.createPortfolioText, {fontSize:16}]}>Done Creating Portfolio</Text>
       </TouchableOpacity>      
     </>
