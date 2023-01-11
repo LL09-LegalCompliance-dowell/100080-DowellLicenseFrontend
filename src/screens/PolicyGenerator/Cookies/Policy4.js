@@ -50,6 +50,7 @@ const Policy4 = ({list,object}) => {
                 <TouchableOpacity style={styles.button_p4} onPress={async() =>{
                   try{
                     setFlag(false)
+                    console.log(object)
                     const result =await post_agreement_compliance(object)
                     setFlag(true)
                     const preview_link=result.data[0].agreement.html_doc_url
