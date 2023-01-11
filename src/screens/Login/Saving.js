@@ -1,4 +1,4 @@
-import {StyleSheet, View, ActivityIndicator, Text} from 'react-native';
+import {StyleSheet, View, ActivityIndicator, Text, Alert} from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,7 +12,7 @@ const Saving = ({navigation, route}) => {
         'https://100014.pythonanywhere.com/api/profile/',
         {key: session_id},
       );
-    console.log("response from API",response.data)
+    //console.log("response from API",response.data)
     const {
       id,
       username,
@@ -32,21 +32,30 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
     await AsyncStorage.setItem('session_id', session_id);
-    navigation.navigate('RootNavigator');
+    fetchPortfolio();
+    
     
   }catch(error){console.log(error)}
   };
 
   const fetchPortfolio = async () => {
     try{
-      const response = await axios.post("https://100093.pythonanywhere.com/api/userinfo/", {key: session_id});
-      console.log("Portfolio Data",response.data)
+      const response = await axios.post("https://100014.pythonanywhere.com/api/userinfo/", {session_id});
+      //console.log("Portfolio Data",response.data)
+      const {portfolio_info, userinfo} = response.data
+      console.log("Portfolio", portfolio_info, portfolio_info.length)
+      if(!portfolio_info.length){
+        const username = await AsyncStorage.getItem('username');
+        navigation.navigate("NoPortfolio", {"username":username, "session_id":session_id})
+        //Alert.alert("You do not have a portfolio. Need to create one!")
+      }else{
+        navigation.navigate('RootNavigator');
+      }
     }catch(error){console.log(error)}
     
   }
   useEffect(() => {
     fetchUser();
-    fetchPortfolio();
   });
   return (
     <View style={styles.container}>
