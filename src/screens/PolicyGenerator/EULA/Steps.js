@@ -168,9 +168,9 @@ const Steps = () => {
     // var [ isPress1, setIsPress1 ] = useState(false);
     // var [ isPress2, setIsPress2 ] = useState(false);
     // var [ isPress3, setIsPress3 ] = useState(false);
-    const handle_isPress1 = (state)=> setIsPress1(state);
-    const handle_isPress2 = (state)=> setIsPress2(state);
-    const handle_isPress3 = (state)=> setIsPress3(state);
+    // const handle_isPress1 = (state)=> setIsPress1(state);
+    // const handle_isPress2 = (state)=> setIsPress2(state);
+    // const handle_isPress3 = (state)=> setIsPress3(state);
     const handle_radiobuttons1 = (state)=> setRadioButtons1(state);
     const handle_radiobuttons2 = (state)=> setRadioButtons2(state);
     const handle_radiobuttons3 = (state)=> setRadioButtons3(state);
@@ -239,7 +239,6 @@ const Steps = () => {
       party_details_address_line_1:input_3,
       party_details_address_line_2: input_4,
       party_details_address_line_3: input_5,
-      party_details_city: "Mobai",
       party_details_country: input_8,
       party_details_state: input_7,
       party_details_zipcode: input_6,
