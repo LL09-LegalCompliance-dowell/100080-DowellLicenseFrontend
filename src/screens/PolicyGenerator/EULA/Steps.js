@@ -7,6 +7,11 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
+import { post_agreement_compliance } from '../Api';
+const generate_date = (date)=>{
+ const temp = date.split("/")
+ return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
+}
 const Steps = () => {
     const nextButton = {
         backgroundColor: '#489503',
@@ -77,6 +82,7 @@ const Steps = () => {
         color: '#489503',
         borderColor: '#C4C4C4',
         labelStyle:{color:"#585858"},
+        selected: false
       }]);
       const handle_radiobuttons = (state)=> setRadioButtons(state);
       const [input_1_1, setInput_1_1] = useState('');
@@ -91,7 +97,9 @@ const Steps = () => {
       const handle_input_5_1 = (state)=> setInput_5_1(state);
       const [error_2, setError_2] = useState(false);
       const [empty_validationn_1, setempty_validation_1] = useState(true);
-      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1]
+      const [valid_number , setValid_number]=useState(true);
+      const handle_valid_number = (state)=> setValid_number(state);
+      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number]
       const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1]
      //3
      const [date_2, setDate_2] = useState(new Date());
@@ -157,12 +165,12 @@ const Steps = () => {
    
     const [first_radio_button, setFirst_radio_button] = useState(1);
     const handle_first_radio_button = (state)=> setFirst_radio_button(state);
-    var [ isPress1, setIsPress1 ] = useState(false);
-    var [ isPress2, setIsPress2 ] = useState(false);
-    var [ isPress3, setIsPress3 ] = useState(false);
-    const handle_isPress1 = (state)=> setIsPress1(state);
-    const handle_isPress2 = (state)=> setIsPress2(state);
-    const handle_isPress3 = (state)=> setIsPress3(state);
+    // var [ isPress1, setIsPress1 ] = useState(false);
+    // var [ isPress2, setIsPress2 ] = useState(false);
+    // var [ isPress3, setIsPress3 ] = useState(false);
+    // const handle_isPress1 = (state)=> setIsPress1(state);
+    // const handle_isPress2 = (state)=> setIsPress2(state);
+    // const handle_isPress3 = (state)=> setIsPress3(state);
     const handle_radiobuttons1 = (state)=> setRadioButtons1(state);
     const handle_radiobuttons2 = (state)=> setRadioButtons2(state);
     const handle_radiobuttons3 = (state)=> setRadioButtons3(state);
@@ -170,12 +178,87 @@ const Steps = () => {
     const handle_input_1_2 = (state)=> {setInput_1_2(state)};
     const [error_3, setError_3] = useState(false);
     const [empty_validationn_2, setempty_validation_2] = useState(true);
-    const states_2= [date_2,handle_date_2,radioButtons1,handle_radiobuttons1,radioButtons2,handle_radiobuttons2,radioButtons3,handle_radiobuttons3,input_1_2,handle_input_1_2,first_radio_button,handle_first_radio_button,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,empty_validationn_2]
+
+    const states_2= [date_2,handle_date_2,radioButtons1,handle_radiobuttons1,radioButtons2,handle_radiobuttons2,radioButtons3,handle_radiobuttons3,input_1_2,handle_input_1_2,first_radio_button,handle_first_radio_button,empty_validationn_2]
     
     //4
     const [input_1_4, setInput_1_4] = useState("");
     const handle_input_1_4 = (state)=> setInput_1_4(state);
     const states_4= [input_1_4,handle_input_1_4]
+    
+    let nature_of_company=""
+    if(radioButtons[0].selected===true){
+      nature_of_company="Individual"
+    }
+    else{
+      nature_of_company="Entity"
+    }
+
+/////////////////////////////////
+    let maintenance= false
+
+    if(first_radio_button ===1){
+      maintenance=false
+    }
+    else{
+      maintenance=true
+    }
+
+//////////////////////////////////////
+    let x= false
+
+    if(radioButtons1[0].selected ===true){
+      x=true
+    }
+    else{
+      x=false
+    }
+//////////////////////////////////
+    let y= ""
+
+    if(radioButtons2[0].selected ===true){
+      y="When they download"
+    }
+    else{
+      y="When they open the package"
+    }
+/////////////////////////////
+    let z= false
+
+    if(radioButtons3[0].selected ===true){
+      z=true
+    }
+    else{
+      z=false
+    }
+    const request_object={
+      agreement_compliance_type: "eula",
+      date_of_execution_of_document: generate_date(date.toLocaleDateString()),
+      party_details_full_name: input_1,
+      party_details_company_name:input_2,
+      party_details_address_line_1:input_3,
+      party_details_address_line_2: input_4,
+      party_details_address_line_3: input_5,
+      party_details_country: input_8,
+      party_details_state: input_7,
+      party_details_zipcode: input_6,
+      party_details_phone: input_9,
+      party_details_email: input_10,
+      company_details_nature_of_company: nature_of_company ,
+      software_product: "Sample 2",
+      software_product_license_name: input_1_1,
+      software_product_license_name_uc: "",
+      liability_remedy_amount: parseFloat(input_2_1),
+      state_law_applies:input_3_1,
+      jurisdiction_city:input_5_1,
+      jurisdiction_state: input_4_1,
+      date_of_commencement: generate_date(date_2.toLocaleDateString()),
+      is_maintenance_or_support_available_for_app: maintenance,
+      will_it_state_number_of_maintenance_and_schedules: x,
+      at_which_point_will_users_be_bound_by_terms: y,
+      will_users_be_able_to_install_app_on_multiple_device: z,
+      violations_that_enable_app_provider_to_cancel_agreement: input_1_2
+  }
 
       return (
         <>
@@ -215,7 +298,7 @@ const Steps = () => {
                 onNext={()=>{
                   setempty_validation_1(empty_validation(inputs_1))
                   const y=(empty_validation(inputs_1))
-                  setError_2(! y )
+                  setError_2(!( valid_number&y) )
                   
                 }}>
                 <View >
@@ -256,7 +339,7 @@ const Steps = () => {
                   
                 }}>
                 <View >
-                  <Policy4 list={states_4} />
+                  <Policy4 list={states_4} object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

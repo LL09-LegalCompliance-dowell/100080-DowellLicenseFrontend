@@ -27,7 +27,7 @@ import NonCompetAgreement from '../screens/PolicyGenerator/NCA';
 import TermsAndConditions from '../screens/PolicyGenerator/TermAndConditions';
 import MOU from '../screens/PolicyGenerator/MOU';
 import SLP from '../screens/PolicyGenerator/SLP';
-import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
+import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer';
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
