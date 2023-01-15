@@ -1,4 +1,4 @@
-import { bool } from "yup"
+import { bool, number } from "yup"
 
 export const email_validation= (email )=>{
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
@@ -19,4 +19,7 @@ export const empty_validation= (inputs )=>{
   }
   return flag
   
+}
+export const number_validation=(number)=>{
+  return !isNaN(number)
 }

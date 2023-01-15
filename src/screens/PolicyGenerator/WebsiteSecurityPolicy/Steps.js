@@ -5,6 +5,10 @@ import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
+const generate_date = (date)=>{
+  const temp = date.split("/")
+  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
+ }
 const Steps = () => {
     const nextButton = {
         backgroundColor: '#489503',
@@ -52,7 +56,16 @@ const Steps = () => {
       const handle_input_1_1 = (state)=> setInput_1_1(state);
       const states_1= [input_1_1,handle_input_1_1,]
   
-      
+      const request_object={
+        
+          agreement_compliance_type: "website-security-policy",
+          last_updated: generate_date(date.toLocaleDateString()),
+          company_name: input_1,
+          website_name: input_2,
+          jurisdiction: input_3,
+          website_url: input_4 ,
+          website_contact_email:input_5
+      }
     return (
         <>
           <Header title="Generator" />
@@ -103,7 +116,7 @@ const Steps = () => {
                 >
                   
                 <View >
-                  <Policy4 list={states_1} />
+                  <Policy4 list={states_1} object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

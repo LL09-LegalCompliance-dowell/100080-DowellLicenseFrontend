@@ -1,16 +1,19 @@
-import {StyleSheet, View, ActivityIndicator, Text} from 'react-native';
+import {View, ActivityIndicator, Text, Alert} from 'react-native';
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './style';
 
 const Saving = ({navigation, route}) => {
-  const url = route.params.url;
+  const url= route.params.url;
   const session_id = url.substring(45);
   const fetchUser = async () => {
-    const response = await axios.post(
-      'https://100014.pythonanywhere.com/api/profile/',
-      {key: session_id},
-    );
+    try{
+      const response = await axios.post(
+        'https://100014.pythonanywhere.com/api/profile/',
+        {key: session_id},
+      );
+    //console.log("response from API",response.data)
     const {
       id,
       username,
@@ -29,28 +32,45 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('username', username);
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
-    navigation.navigate('RootNavigator');
+    await AsyncStorage.setItem('session_id', session_id);
+    fetchPortfolio();
+    
+    
+  }catch(error){console.log(error)}
   };
 
+  const fetchPortfolio = async () => {
+    try{
+      const response = await axios.post("https://100014.pythonanywhere.com/api/userinfo/", {session_id});
+      //console.log("Portfolio Data",response.data)
+      const {portfolio_info, userinfo} = response.data
+      console.log("Portfolio", portfolio_info, portfolio_info.length)
+      if(!portfolio_info.length){
+        const username = await AsyncStorage.getItem('username');
+        navigation.navigate("NoPortfolio", {"username":username, "session_id":session_id})
+        //Alert.alert("You do not have a portfolio. Need to create one!")
+      }else{
+        navigation.navigate('RootNavigator');
+      }
+    }catch(error){console.log(error)}
+    
+  }
   useEffect(() => {
     fetchUser();
   });
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="#00ff00" />
-      <Text>Logging In...</Text>
+    <View style={[styles.container, {
+        alignItems: 'center',
+        justifyContent: 'center',
+        ImageBackground: 'white',
+        zIndex: 10,
+        flex: 1,
+      },]}>
+      <ActivityIndicator size="large" color="#00ff00" style={styles.activityIndicator} />
+      <Text style={styles.policyText}>Logging In...</Text>
+      <Text style={styles.policyText}>Checking your Portfolio...</Text>
     </View>
   );
 };
 
 export default Saving;
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    ImageBackground: 'white',
-    zIndex: 10,
-    flex: 1,
-  },
-});
