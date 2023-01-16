@@ -7,7 +7,7 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
-import { post_agreement_compliance } from '../Api';
+
 const generate_date = (date)=>{
  const temp = date.split("/")
  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
