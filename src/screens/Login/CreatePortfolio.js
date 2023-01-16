@@ -6,6 +6,7 @@ import styles from './style';
 const CreatePortfolio = ({navigation, route}) => {
   const {session_id}= route.params;
   const URL = `https://100093.pythonanywhere.com/new/?session_id=${session_id}`
+  console.log(URL)
 
   const webViewRef = useRef();
   const gotToMainScreen = () => {
