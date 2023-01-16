@@ -184,7 +184,7 @@ const Policy1 = ({list}) => {
         <View style={isPartyTwoOpen ? {paddingHorizontal: 11} : styles.hide}>
           <Text style={styles.text_2}>Full Name of the Individual:</Text>
           <TextInput
-            style={styles.input_um}
+            style={styles.input_vm}
             value={list[14]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
@@ -227,7 +227,7 @@ const Policy1 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[20]}
-            placeholder=" Eg. 202002"
+            placeholder="  Eg. 202002"
             placeholderTextColor="gray"
             onChangeText={value => list[21](value)}
           />

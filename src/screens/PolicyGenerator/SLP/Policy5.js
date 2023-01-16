@@ -11,13 +11,17 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-crop-picker';
 import colors from '../../../../assets/colors/colors';
+import AppLoader from '../../../components/AppLoader';
 
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
+  const [scanedImage, setScanedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
+      {loading ? <AppLoader /> : null}
       {/* Model start 1*/}
       <Modal
         propagateSwipe
@@ -33,7 +37,7 @@ const Policy5 = ({list}) => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal1Visible(false)}
         onBackButtonPress={() => setModal1Visible(false)}>
-        <View style={{position: 'absolute', top: 50, width: '100%'}}>
+        <View style={{position: 'absolute', top: 150, width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Pressable
               onPress={() => {}}
@@ -49,14 +53,56 @@ const Policy5 = ({list}) => {
               <Text style={{color: 'white', fontSize: 16}}>Take photo</Text>
             </Pressable>
             <Pressable
-              onPress={() => {
+              onPress={async () => {
                 ImagePicker.openPicker({
                   width: 300,
                   height: 400,
                   cropping: true,
-                }).then(image => {
+                }).then(async image => {
+                  setLoading(true);
                   console.log(image);
+                  setScanedImage(image);
                   setModal1Visible(false);
+
+                  const data = new FormData();
+                  data.append('file', {
+                    filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
+                    actual_filename: 'AFL.png',
+                    file_extension: 'png',
+                    url: 'https://100080.pythonanywhere.com/media/img/img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
+                  });
+                  let res = await fetch(
+                    'https://100080.pythonanywhere.com/api/attachments/',
+                    {
+                      method: 'post',
+                      body: data,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    },
+                  );
+                  let responseJson = await res.json();
+                  console.log(responseJson);
+                  setLoading(false);
+
+                  // let res = await fetch(
+                  //   'http://localhost//webservice/user/uploadImage',
+                  //   {
+                  //     method: 'post',
+                  //     body: data,
+                  //     headers: {
+                  //       'Content-Type': 'multipart/form-data; ',
+                  //     },
+                  //   }
+                  // );
+                  //   let responseJson = await res.json();
+                  //   if (responseJson.status == 1) {
+                  //     alert('Upload Successful');
+                  //   }
+                  // } else {
+                  //   //if no file selected the show alert
+                  //   alert('Please Select File first');
+                  // }
                 });
               }}
               style={{
@@ -131,12 +177,23 @@ const Policy5 = ({list}) => {
             <Text style={{color: 'gray', fontSize: 16}}>
               E-signature scanned copy
             </Text>
-            <MaterialCommunityIcons
-              // style={styles.userIcon}
-              name="image-plus"
-              size={35}
-              // color={colors.textDark}
-            />
+            {scanedImage == null ? (
+              <>
+                <MaterialCommunityIcons
+                  // style={styles.userIcon}
+                  name="image-plus"
+                  size={35}
+                  color="gray"
+                />
+              </>
+            ) : (
+              <MaterialCommunityIcons
+                // style={styles.userIcon}
+                name="check-bold"
+                size={25}
+                color={colors.primary}
+              />
+            )}
           </Pressable>
 
           <Text style={styles.text_2}>
