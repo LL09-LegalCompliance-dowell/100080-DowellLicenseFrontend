@@ -18,6 +18,6 @@ const index = () => {
     fetchUser();
   }, []);
   //return user ? <RootNavigator /> : <AuthNavigator />;
-  return <AuthNavigator/>
+  return <AuthNavigator />;
 };
 export default index;
