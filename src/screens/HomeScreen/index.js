@@ -81,15 +81,18 @@ const Home = ({navigation}) => {
             </TouchableOpacity>
           </View>
           {/* About Company */}
-          <Text style={styles.heading}>About Company</Text>
+          <Text style={styles.heading}>About Legalzard and Company</Text>
           <Text style={styles.aboutText}>
-            Here we can matter for company. We can give in-depth information
-            about company. If required we can also provied information about the
-            services and products which we provide
+            Legalzard is a product of DoWell Research services that aims at helping programmers to compare compatibility of different software licenses.
+          </Text>
+          <Text style={styles.aboutText}>
+            This app also helps in generating different kinds of policies 
           </Text>
 
+
+
           {/* Quik Links */}
-          <Text style={styles.heading}>Quik Links</Text>
+          <Text style={styles.heading}>Quick Links</Text>
           <View style={styles.linkContainer}>
             <Text style={styles.link}>Quik link 1 with the label</Text>
             <Text style={styles.link}>Quik link 1 with the label</Text>
