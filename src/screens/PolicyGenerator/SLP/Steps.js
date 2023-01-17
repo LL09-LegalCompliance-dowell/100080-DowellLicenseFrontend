@@ -658,10 +658,14 @@ const Steps = () => {
   const [empty_validationn_4, setempty_validation_4] = useState(true);
   const [input_1_4, setInput_1_4] = useState('');
   const handle_input_1_4 = state => setInput_1_4(state);
+  const [scanedCopy1, setScanedCopy1] = useState(null);
+  const handle_scanedCopy1 = state => setScanedCopy1(state);
   const states_4 = [
     empty_validationn_4,
     input_1_4,
     handle_input_1_4, 
+    // scanedCopy1,
+    handle_scanedCopy1
     
   ];
   const inputs_4 = []
