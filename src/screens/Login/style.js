@@ -103,6 +103,25 @@ const styles = StyleSheet.create({
     fontSize: 26,
     alignItems: 'center',
   },
+  createPortfolio: {
+    marginTop: 45,
+    backgroundColor: colors.primary,
+    borderRadius: 15,
+    alignSelf:"center",
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 200,
+    height: 51,
+    elevation: 3,
+    cursor:"pointer",
+  },
+  createPortfolioText: {
+    color: 'white',
+    fontFamily: 'Roboto-Medium',
+    fontSize: 26,
+    alignItems: 'center',
+  },
+  
   errors: {
     fontSize: 14,
     color: 'red',
@@ -144,6 +163,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'space-between',
     paddingBottom: 13,
+  },
+  noPortfolioText:{
+    fontSize: 20,
+    fontWeight: '400',
+    color: colors.textDark,
+    paddingBottom: 10,
+    alignSelf:'center'
   },
   alertHeader: {
     height: 45,
