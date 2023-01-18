@@ -2,38 +2,27 @@ import React from 'react'
 import { useEffect } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
-import { SelectList } from 'react-native-dropdown-select-list'
+import SelectDropdown from 'react-native-select-dropdown'
 import { number_validation } from '../validations'
+import { SelectList } from 'react-native-dropdown-select-list'
 
 const Policy2 = ({list}) => {
+  
   const cuurency = [
-    {key:'1', value:'EUR'},
-    {key:'2', value:'GBP'},
-    {key:'3', value:'CAD'},
-    {key:'4', value:'JPY'},
-    {key:'5', value:'CHF'},
-    {key:'6', value:'JPY'}
+    'EUR',
+    'GBP',
+    'CAD',
+    'JPY',
+    'CHF',
+    'JPY'
 ]
 const findcurrency=(cvalue)=>{
   for (let index = 0; index < cuurency.length; index++) {
-    if(cuurency[index].value===cvalue){
-      console.log("omair")
-      return index
-      
+    if(cuurency[index]===cvalue){
+      return index 
     }
-    
   }
 }
-let x
-let y
-useEffect(()=>{
-   x=findcurrency(list[11])
-console.log (x)
-   y=findcurrency(list[12])
-
-},)
-
-
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -61,8 +50,8 @@ console.log (x)
             }}
             />
             
-          <SelectList 
-            defaultOption={cuurency[0]}
+          {/* <SelectList 
+            defaultOption={{key:'0', value:list[11]}}
             setSelected={(val) => list[2](val)} 
             data={cuurency} 
             save="value"
@@ -71,6 +60,16 @@ console.log (x)
             searchPlaceholder=""
             search={false}
             boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
+            /> */}
+          <SelectDropdown
+              data={cuurency}
+              onSelect={(selectedItem, index) => {
+                list[2](selectedItem)
+              }}
+              buttonStyle={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51,width:"25%"}}
+              buttonTextStyle={{color:"#585858",fontSize:16,fontWeight:"300"}}
+              dropdownStyle={{borderRadius: 15}}
+              defaultValueByIndex={findcurrency(list[11])}
             />
         </View>
         <Text  style={list[7] ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
@@ -94,8 +93,8 @@ console.log (x)
                 
             }}
           />
-          <SelectList 
-            defaultOption={cuurency[0]}
+          {/* <SelectList 
+            defaultOption={{key:'0', value:list[12]}}
             setSelected={(val) => list[5](val)} 
             data={cuurency} 
             save="value"
@@ -104,6 +103,16 @@ console.log (x)
             searchPlaceholder=""
             search={false}
             boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
+            /> */}
+          <SelectDropdown
+              data={cuurency}
+              onSelect={(selectedItem, index) => {
+                list[5](selectedItem)
+              }}
+              buttonStyle={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51,width:"25%"}}
+              buttonTextStyle={{color:"#585858",fontSize:16,fontWeight:"300"}}
+              dropdownStyle={{borderRadius: 15}}
+              defaultValueByIndex={findcurrency(list[12])}
             />
         </View>
         <Text  style={list[9] ? styles.hide: styles.text_warning}>Please Enter valid number</Text>

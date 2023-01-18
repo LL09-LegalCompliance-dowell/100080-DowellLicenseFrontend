@@ -52,13 +52,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     color: colors.textDark,
   },
-  noPortfolioText: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 20,
-    textAlign: 'center',
-    marginTop: 15,
-    color: colors.textDark,
-  },
 
   policyTextLink: {
     color: colors.primary,
@@ -110,26 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     alignItems: 'center',
   },
-  createPortfolio: {
-    marginTop: 45,
-    backgroundColor: colors.primary,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf:"center",
-    width: 200,
-    height: 51,
-    elevation: 3,
-    cursor:"pointer",
-  },
-  createPortfolioText: {
-    color: 'white',
-    fontFamily: 'Roboto-Medium',
-    fontSize: 22,
-    alignItems: 'center',
-  },
-  
-  
   errors: {
     fontSize: 14,
     color: 'red',
@@ -185,12 +158,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'roboto',
   },
-  activityIndicator:{
-    padding: 12,
-    backgroundColor: '#555',
-    borderRadius: 12,
-    font:100,
-  }
 });
 
 export default styles;

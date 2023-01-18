@@ -5,7 +5,6 @@ import {
   Image,
   ScrollView,
   FlatList,
-  Button,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -20,8 +19,6 @@ import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
 import HelpBot from '../HelpBot';
-import axios from 'axios';
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
@@ -84,18 +81,15 @@ const Home = ({navigation}) => {
             </TouchableOpacity>
           </View>
           {/* About Company */}
-          <Text style={styles.heading}>About Legalzard and Company</Text>
+          <Text style={styles.heading}>About Company</Text>
           <Text style={styles.aboutText}>
-            Legalzard is a product of DoWell Research services that aims at helping programmers to compare compatibility of different software licenses.
+            Here we can matter for company. We can give in-depth information
+            about company. If required we can also provied information about the
+            services and products which we provide
           </Text>
-          <Text style={styles.aboutText}>
-            This app also helps in generating different kinds of policies 
-          </Text>
-
-
 
           {/* Quik Links */}
-          <Text style={styles.heading}>Quick Links</Text>
+          <Text style={styles.heading}>Quik Links</Text>
           <View style={styles.linkContainer}>
             <Text style={styles.link}>Quik link 1 with the label</Text>
             <Text style={styles.link}>Quik link 1 with the label</Text>
@@ -131,8 +125,6 @@ const Home = ({navigation}) => {
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
             Copyright &copy; 2022 UX Living Lab
           </Text>
-
-          
         </View>
       </ScrollView>
     </View>
