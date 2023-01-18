@@ -39,7 +39,6 @@ const Policy5 = ({list}) => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal1Visible(false)}
         onBackButtonPress={() => setModal1Visible(false)}>
-        <View style={{position: 'absolute', top: 100, width: '100%'}}>
         <View style={{position: 'absolute', top: 150, width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Pressable

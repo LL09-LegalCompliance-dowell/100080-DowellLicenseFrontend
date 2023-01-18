@@ -6,7 +6,7 @@ const AppLoader = () => {
   return (
     <>
       <View style={[StyleSheet.absoluteFillObject, styles.container]}>
-        <StatusBar backgroundColor="rgba(0,0,0, 0.2)" barStyle="dark-content" />
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
 
         <Lottie source={require('../../assets/loading.json')} autoPlay loop />
       </View>
@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0, 0.2)',
+    flex:1,
     zIndex: 20,
+    height:'100%'
   },
 });
