@@ -53,6 +53,7 @@ const Policy4 = ({list,object}) => {
                     console.log(object)
                     const result =await post_agreement_compliance(object)
                     setFlag(true)
+                    
                     const preview_link=result.data[0].agreement.html_doc_url
                     Linking.openURL(preview_link)
                   }
