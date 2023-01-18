@@ -39,7 +39,7 @@ const CustomSideBar = ({navigation}) => {
           <Text style={styles.title}>Home</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             navigation.navigate('Contact Us');
           }}
@@ -48,18 +48,9 @@ const CustomSideBar = ({navigation}) => {
             <Image style={styles.icon} source={require(ICON2)} />
           </View>
           <Text style={styles.title}>About Us</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Software License');
-          }}
-          style={styles.item}>
-          <View style={styles.iconConatainer}>
-            <Image style={styles.icon} source={require(ICON3)} />
-          </View>
-          <Text style={styles.title}>Software license</Text>
-        </TouchableOpacity>
+        
 
         <TouchableOpacity
           onPress={() => {
@@ -74,6 +65,17 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
+            navigation.navigate('Software License');
+          }}
+          style={styles.item}>
+          <View style={styles.iconConatainer}>
+            <Image style={styles.icon} source={require(ICON3)} />
+          </View>
+          <Text style={styles.title}>Software license</Text>
+        </TouchableOpacity>
+
+        {/* <TouchableOpacity
+          onPress={() => {
             navigation.navigate('Home');
           }}
           style={styles.item}>
@@ -81,7 +83,7 @@ const CustomSideBar = ({navigation}) => {
             <Image style={styles.icon} source={require(ICON6)} />
           </View>
           <Text style={styles.title}>Other Legal compliance</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           onPress={() => {

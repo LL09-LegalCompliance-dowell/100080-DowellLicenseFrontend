@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 34,
     textAlign: 'center',
     color: colors.textDark,
+    marginHorizontal:20
   },
   titlesSubtitle: {
     fontFamily: 'Roboto-Regular',

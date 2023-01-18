@@ -50,7 +50,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
       )}
 
       {title ? (
-        <Text style={styles.heading}>{title}</Text>
+        <Text numberOfLines={1} style={styles.heading}>{title}</Text>
       ) : (
         <TouchableWithoutFeedback>
           <Image

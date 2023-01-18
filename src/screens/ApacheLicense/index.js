@@ -1,84 +1,99 @@
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import React, {useState} from 'react';
-import Octicons from 'react-native-vector-icons/Octicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View, Text, Image,  ScrollView} from 'react-native';
+import React from 'react';
 import {Linking} from 'react-native';
 
-import MyTextInput from '../../components/MyTextInput';
-import colors from '../../../assets/colors/colors';
 import styles from './style';
-import AppBottun from '../../components/AppBottun';
 import Header from '../../components/Header';
 
-const ApacheLicense = () => {
-  const [result, setResult] = useState();
+const ApacheLicense = ({route}) => {
+  const {item} = route.params;
 
-  const results = () => {};
   return (
     <>
-      <Header title="Apache License" />
+      <Header title={item.softwarelicense.license_name} />
 
       <ScrollView style={styles.container}>
         {/* Upper Container */}
         <View style={styles.upperContainer}>
-          <Image source={require('../../../assets/images/apache.png')} />
-          <Text style={styles.heading}>Apache License</Text>
-          <Text style={styles.heading1}>Version 2.0, January 2004</Text>
-          <Text>
-            The 2.0 version of the Apache License, approved by the ASF in 2004,
-            All packages produced by the ASF are implicitly licensed under the
-            Apache License, Version 2.0, unless otherwise explicitly stated.
-          </Text>
+          <Image
+            style={{height: 150, width: 150, resizeMode: 'contain'}}
+            source={{uri: item.softwarelicense?.logo_detail?.url}}
+          />
+          {item.softwarelicense?.license_name ? (
+            <Text style={styles.heading}>
+              {item.softwarelicense?.license_name}
+            </Text>
+          ) : null}
+          {item.softwarelicense?.description ? (
+            <Text style={[styles.heading1, {marginHorizontal: 40}]}>
+              {item.softwarelicense?.description}
+            </Text>
+          ) : null}
+          {item.softwarelicense?.short_description ? (
+            <Text>{item.softwarelicense?.short_description}</Text>
+          ) : null}
         </View>
         {/* Lower Container */}
         <View style={styles.middleContainer}>
-          <Text style={styles.heading1}>1. Text Version</Text>
+          <Text style={styles.heading1}>1.Text Version</Text>
           <Text
             style={styles.link}
-            onPress={() =>
-              Linking.openURL('https://www.apache.org/licenses/LICENSE-2.0.txt')
-            }>
-            Apache License
+            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
+            {item.softwarelicense.license_url}
           </Text>
-          <Text style={styles.heading2}>SPDX short identifier:</Text>
-          <Text
-            style={styles.link}
-            onPress={() =>
-              Linking.openURL('https://www.apache.org/licenses/LICENSE-2.0.txt')
-            }>
-            Apache License 2.0 | Software Package Data Exchange (SPDX)
-          </Text>
-          <Text style={styles.heading2}>OSI Approved License:</Text>
+          <View style={{paddingHorizontal: 20, paddingBottom: 25}}>
+            {item.softwarelicense?.other_links?.map((item1, index) => {
+              return (
+                // console.log(item1)
+                <>
+                  <Text key={index} style={styles.heading4}>{item1?.description}</Text>
+                  <Text
+                    style={[styles.link, {marginLeft: 20}]}
+                    onPress={() => Linking.openURL(item1?.url)}>
+                    {item1?.url}
+                  </Text>
+                </>
+              );
+            })}
+          </View>
 
-          <Text style={styles.heading1}>2. Category</Text>
-          <Text style={styles.heading2}>Permissive</Text>
-
-          <Text style={styles.heading1}>3. Disclaimer</Text>
+          <Text style={styles.heading1}>2.Category</Text>
           <Text style={styles.heading2}>
-            Copyright [yyyy] [name of copyright owner] Licensed under the Apache
-            License, Version 2.0 (the "License"); you may not use this file
-            except in compliance with the License. You may obtain a copy of the
-            License at http://www.apache.org/licenses/LICENSE-2.0 Unless
-            required by applicable law or agreed to in writing, software
-            distributed under the License is distributed on an "AS IS" BASIS,
-            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-            implied. See the License for the specific language governing
-            permissions and limitations under the License.
+            {item.softwarelicense?.type_of_license}
+          </Text>
+
+          <Text style={styles.heading1}>3.Disclaimer</Text>
+          <Text style={styles.heading2}>
+            {item.softwarelicense?.disclaimer}
+          </Text>
+
+          <Text style={styles.heading1}>4.Attributions</Text>
+          <Text style={[styles.heading4, {paddingTop:0, paddingLeft:20}]}> {item.softwarelicense?.license_attributes?.heading}</Text>
+          <Text style={styles.heading2}>
+           
+            {item.softwarelicense?.license_attributes?.attributes.map(
+              (attribute, index) => {
+                return (
+                  // console.log(item1)
+                  <>
+                    <View>
+                      <Text
+                      key={index}
+                        style={[
+                          styles.heading4,
+                          {marginLeft: 20},
+                        ]}>
+                        {attribute}
+                      </Text>
+                    </View>
+                  </>
+                );
+              },
+            )}
           </Text>
 
           <Text style={styles.heading1}>
-            4. Attributions of Permissive license{' '}
-          </Text>
-          <Text style={styles.heading2}>
-            TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-            Definitions. Grant of Copyright License. Grant of Patent License.
-            Redistribution. Submission of Contributions. Trademarks. Disclaimer
-            of Warranty. Limitation of Liability. Accepting Warranty or
-            Additional Liability
-          </Text>
-
-          <Text style={styles.heading1}>
-            5. Permissions, Conditions & Limitations:{' '}
+            5.Permissions, Conditions & Limitations:
           </Text>
           <Text style={styles.heading2}>
             One thing to consider is that you cannot combine Apache License 2.0
@@ -87,70 +102,79 @@ const ApacheLicense = () => {
           </Text>
 
           <Text style={styles.heading1}>
-            6. Risks for choosing Apache License 2.0
+            6.Risks for choosing Apache License 2.0
           </Text>
           <Text style={styles.heading2}>
-            One thing to consider is that you cannot combine Apache License 2.0
-            with GPL v2 Another aspect to consider is that a “contributor can
-            modify the code and then sell it as proprietary software” .
+            {item.softwarelicense?.risk_for_choosing_license}
           </Text>
 
-          <Text style={styles.heading1}>3. Disclaimer</Text>
+          <Text style={styles.heading1}>6.Recommendations (%)</Text>
           <Text style={styles.heading2}>
-            Copyright [yyyy] [name of copyright owner] Licensed under the Apache
-            License, Version 2.0 (the "License"); you may not use this file
-            except in compliance with the License. You may obtain a copy of the
-            License at http://www.apache.org/licenses/LICENSE-2.0 Unless
-            required by applicable law or agreed to in writing, software
-            distributed under the License is distributed on an "AS IS" BASIS,
-            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-            implied. See the License for the specific language governing
-            permissions and limitations under the License.
+            {item.softwarelicense?.recommendation}
           </Text>
 
-          <Text style={styles.heading1}>7. Compatible Licenses</Text>
-          <Text style={styles.heading2}>GPL V3</Text>
+          <Text style={styles.heading1}>7.Compatible Licenses</Text>
+          {item.softwarelicense?.license_compatible_with_lookup.map(
+            compatibleLicense => {
+              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
+            },
+          )}
 
-          <Text style={styles.heading1}>8. Non- Compatible Licenses</Text>
-          <Text style={styles.heading2}>GPL/LGPL v1 and v2</Text>
+          <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
+          {item.softwarelicense?.license_not_compatible_with_lookup.map(
+            compatibleLicense => {
+              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
+            },
+          )}
 
-          <Text style={styles.heading1}>9. Limitation of Liability.</Text>
+          <Text style={styles.heading1}>9.Limitation of Liability.</Text>
           <Text style={styles.heading2}>
-            In no event and under no legal theory, whether in tort (including
-            negligence), contract, or otherwise, unless required by applicable
-            law (such as deliberate and grossly negligent acts) or agreed to in
-            writing, shall any Contributor be liable to You for damages,
-            including any direct, indirect, special, incidental, or
-            consequential damages of any character arising as a result of this
-            License or out of the use or inability to use the Work (including
-            but not limited to damages for loss of goodwill, work stoppage,
-            computer failure or malfunction, or any and all other commercial
-            damages or losses), even if such Contributor has been advised of the
-            possibility of such damages.
+            {item.softwarelicense?.limitation_of_liability}
+          </Text>
+          <Text style={styles.heading1}>
+            For more details visit the below link:
+          </Text>
+          <Text
+            style={[styles.link, {marginHorizontal: 15}]}
+            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
+            {item.softwarelicense?.license_url}
           </Text>
         </View>
         <View style={styles.bottomContainer}>
-          <Text style={styles.heading1}>DISCLAIMER</Text>
+          <Text
+            style={[
+              styles.heading1,
+              {textDecorationLine: 'underline', marginVertical: 10},
+            ]}>
+            DISCLAIMER
+          </Text>
           <Text style={styles.heading3}>
             You may reproduce and distribute copies of the Work or Derivative
             Works thereof in any medium, with or without modifications, and in
             Source or Object form, provided that You meet the following
             conditions:
           </Text>
+          <View style={styles.separator}></View>
           <Text style={styles.heading3}>
             You must give any other recipients of the Work or Derivative Works a
             copy of this License; and
           </Text>
+          <View style={styles.separator}></View>
+
           <Text style={styles.heading3}>
             You must cause any modified files to carry prominent notices stating
             that You changed the files; and
           </Text>
+          <View style={styles.separator}></View>
+
           <Text style={styles.heading3}>
             You must retain, in the Source form of any Derivative Works that You
             distribute, all copyright, patent, trademark, and attribution
             notices from the Source form of the Work, excluding those notices
             that do not pertain to any part of the Derivative Works; and
           </Text>
+          <View style={styles.separator}></View>
+
           <Text style={styles.heading3}>
             If the Work includes a "NOTICE" text file as part of its
             distribution, then any Derivative Works that You distribute must
@@ -168,6 +192,7 @@ const ApacheLicense = () => {
             Work, provided that such additional attribution notices cannot be
             construed as modifying the License.
           </Text>
+          <View style={styles.separator}></View>
 
           <Text style={styles.heading3}>
             You may add Your own copyright statement to Your modifications and
@@ -177,6 +202,7 @@ const ApacheLicense = () => {
             and distribution of the Work otherwise complies with the conditions
             stated in this License.
           </Text>
+
         </View>
       </ScrollView>
     </>
