@@ -5,7 +5,6 @@ import {
   Image,
   ScrollView,
   FlatList,
-  Button,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -20,8 +19,6 @@ import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
 import HelpBot from '../HelpBot';
-import axios from 'axios';
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
@@ -128,8 +125,6 @@ const Home = ({navigation}) => {
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
             Copyright &copy; 2022 UX Living Lab
           </Text>
-
-          
         </View>
       </ScrollView>
     </View>

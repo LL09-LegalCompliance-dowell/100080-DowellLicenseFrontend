@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useState} from 'react';
 import {
   ScrollView,
   View,
@@ -11,11 +12,27 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import RadioGroup from 'react-native-radio-buttons-group';
 
-const Policy1 = ({list}) => {
+const Policy1 = () => {
+  const [date, setDate] = useState(new Date());
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
   const [isPartyTwoOpen, setIsPartyTwoOpen] = useState(false);
+  const [input_1, setInput_1] = useState('');
+  const [input_2, setInput_2] = useState('');
+  const [input_3, setInput_3] = useState('');
+  const [input_4, setInput_4] = useState('');
+  const [input_5, setInput_5] = useState('');
+  const [input_6, setInput_6] = useState('');
+  const [input_7, setInput_7] = useState('');
+  const [input_8, setInput_8] = useState('');
+  const [input_9, setInput_9] = useState('');
+  const [input_10, setInput_10] = useState('');
+  const [input_11, setInput_11] = useState('');
+  const [input_12, setInput_12] = useState('');
+  const [input_13, setInput_13] = useState('');
+  const [input_14, setInput_14] = useState('');
+  const [input_15, setInput_15] = useState('');
+  const [input_16, setInput_16] = useState('');
 
   const togglePartyOne = e => {
     setIsPartyOneOpen(prev => !prev);
@@ -28,19 +45,11 @@ const Policy1 = ({list}) => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <Text
-          style={
-            list[30]
-              ? styles.hide
-              : {color: 'red', textAlign: 'center', fontSize: 20}
-          }>
-          Please Check your inputs... You must fill all fields
-        </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
           <TextInput
             style={styles.input}
-            value={list[0].toLocaleDateString()}
+            value={date.toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
           />
@@ -51,12 +60,11 @@ const Policy1 = ({list}) => {
               </View>
             }
             color="#489503"
-            onSelect={value => list[1](value)}
+            onSelect={value => setDate(value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
         </View>
-
         <Text style={styles.text_1}>Party details:</Text>
         <View style={styles.partyDetails}>
           <Text style={styles.text_4}>Party 1:</Text>
@@ -80,23 +88,13 @@ const Policy1 = ({list}) => {
           </TouchableOpacity>
         </View>
         <View style={isPartyOneOpen ? {paddingHorizontal: 11} : styles.hide}>
-          <Text style={styles.text_2}>Entity Type:</Text>
-
-          <RadioGroup
-            radioButtons={list[31]}
-            onPress={(data)=>list[32](data)}
-            containerStyle={styles.radio_hm}
-          />
-
-          <Text style={[styles.text_2, {marginTop: 10}]}>
-            Full Name of the Individual:
-          </Text>
+          <Text style={styles.text_2}>Full Name of the Individual:</Text>
           <TextInput
-            style={styles.input_vm}
-            value={list[2]}
+            style={styles.input_um}
+            value={input_1}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => list[3](value)}
+            onChangeText={value => setInput_1(value)}
           />
           <Text
             style={{
@@ -114,50 +112,50 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>Postal Address: </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[4]}
+            value={input_2}
             placeholder=" Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => list[5](value)}
+            onChangeText={value => setInput_2(value)}
           />
           <Text style={styles.text_2}>
             In which jurisdiction is the party incorporated?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[6]}
+            value={input_3}
             placeholder=" Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[7](value)}
+            onChangeText={value => setInput_3(value)}
           />
           <Text style={styles.text_2}>
             What is the registration number of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[8]}
+            value={input_4}
             placeholder=" Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => list[9](value)}
+            onChangeText={value => setInput_4(value)}
           />
           <Text style={styles.text_2}>
             What is the registered office address of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[10]}
+            value={input_5}
             placeholder=" Eg. "
             placeholderTextColor="gray"
-            onChangeText={value => list[11](value)}
+            onChangeText={value => setInput_5(value)}
           />
           <Text style={styles.text_2}>
             Where is the principal place of business of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[12]}
+            value={input_6}
             placeholder=" Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[13](value)}
+            onChangeText={value => setInput_6(value)}
           />
         </View>
         <View style={styles.partyDetails}>
@@ -185,10 +183,10 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>Full Name of the Individual:</Text>
           <TextInput
             style={styles.input_vm}
-            value={list[14]}
+            value={input_1}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => list[15](value)}
+            onChangeText={value => setInput_1(value)}
           />
           <Text
             style={{
@@ -206,50 +204,50 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>Postal Address: </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[16]}
+            value={input_2}
             placeholder=" Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => list[17](value)}
+            onChangeText={value => setInput_2(value)}
           />
           <Text style={styles.text_2}>
             In which jurisdiction is the party incorporated?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[18]}
+            value={input_3}
             placeholder=" Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[19](value)}
+            onChangeText={value => setInput_3(value)}
           />
           <Text style={styles.text_2}>
             What is the registration number of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[20]}
+            value={input_4}
             placeholder="  Eg. 202002"
             placeholderTextColor="gray"
-            onChangeText={value => list[21](value)}
+            onChangeText={value => setInput_4(value)}
           />
           <Text style={styles.text_2}>
             What is the registered office address of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[22]}
+            value={input_5}
             placeholder=" Eg. "
             placeholderTextColor="gray"
-            onChangeText={value => list[23](value)}
+            onChangeText={value => setInput_5(value)}
           />
           <Text style={styles.text_2}>
             Where is the principal place of business of the party?
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[24]}
-            placeholder=" Eg. "
+            value={input_6}
+            placeholder=" Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[25](value)}
+            onChangeText={value => setInput_6(value)}
           />
         </View>
       </ScrollView>

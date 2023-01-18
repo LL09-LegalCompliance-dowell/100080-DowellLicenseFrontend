@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
-import Policy4 from './Policy4';
-import Policy5 from './Policy5';
-
-import {empty_validation, email_validation} from '../validations';
-
+import Policy4 from '../Cookies/Policy4';
 const Steps = () => {
   const nextButton = {
     backgroundColor: '#489503',
@@ -666,109 +662,63 @@ const Steps = () => {
     handle_input_1_4, 
     // scanedCopy1,
     handle_scanedCopy1
+  ]
+      
+    return (
+        <>
+          <Header title="Generator" />
+          <View
+            style={{
+              flex: 1,
+              paddingTop: 45,
+              backgroundColor: 'white',
+              paddingHorizontal:15,
+            }}>
+            <ProgressSteps
+              style={{width: '100px'}}
+              marginBottom={15}
+              nextBtnTextStyle={{color: 'white', fontSize: 18}}>
+              <ProgressStep
+                nextBtnStyle={nextButton}
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}>
+                <View >
+                  <Policy1 />
+                </View>
+              </ProgressStep>
+              <ProgressStep
+                nextBtnStyle={nextButton}
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}
+                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
     
-  ];
-  const inputs_4 = []
-  return (
-    <>
-      <Header title="Generator" />
-      <View
-        style={{
-          flex: 1,
-          paddingTop: 45,
-          backgroundColor: 'white',
-          paddingHorizontal: 15,
-        }}>
-        <ProgressSteps
-          style={{width: '100px'}}
-          marginBottom={15}
-          nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            errors={error_1}
-            onNext={() => {
-              setempty_validation(empty_validation(inputs));
-              const x = empty_validation(inputs);
-              setError_1(!x);
-            }}>
-            <View>
-              <Policy1 list={states} />
-            </View>
-          </ProgressStep>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            previousBtnStyle={previousButton}
-            errors={error_2}
-            onNext={() => {
-              setempty_validation_1(empty_validation(inputs_1));
-              const y = empty_validation(inputs_1);
-              setError_2(!y);
-            }}>
-            <View>
-              <Policy2 list={states_1}/>
-            </View>
-          </ProgressStep>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            previousBtnStyle={previousButton}
-            errors={error_3}
-            onNext={() => {
-              setempty_validation_2(empty_validation(inputs_2));
-              const y = empty_validation(inputs_2);
-              setError_3(!y);
-            }}>
-            <View>
-              <Policy3 list={states_2}/>
-            </View>
-          </ProgressStep>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            previousBtnStyle={previousButton}
-            errors={error_4}
-            onNext={() => {
-              setempty_validation_3(empty_validation(inputs_3));
-              const y = empty_validation(inputs_3);
-              setError_4(!y);
-            }}>
-            <View>
-              <Policy4 list={states_3}/>
-            </View>
-          </ProgressStep>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            previousBtnStyle={previousButton}
-            errors={error_5}
-            onNext={() => {
-              setempty_validation_4(empty_validation(inputs_4));
-              const y = empty_validation(inputs_4);
-              setError_5(!y);
-            }}>
-            <View>
-              <Policy5 list={states_4}/>
-            </View>
-          </ProgressStep>
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            previousBtnStyle={previousButton}>
-            <View>
-              <Policy5 />
-            </View>
-          </ProgressStep>
-        </ProgressSteps>
-      </View>
-    </>
-  );
-};
+                previousBtnStyle={previousButton}>
+                <View >
+                  <Policy2 />
+                </View>
+              </ProgressStep>
+              <ProgressStep
+                nextBtnStyle={nextButton}
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}
+                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+    
+                previousBtnStyle={previousButton}>
+                <View >
+                  <Policy3 />
+                </View>
+              </ProgressStep>
+              <ProgressStep
+                nextBtnStyle={nextButton}
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}
+                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+                finishBtnText="Done"
+                previousBtnStyle={previousButton}>
+                <View >
+                  <Policy4 />
+                </View>
+              </ProgressStep>
+            </ProgressSteps>
+          </View>
+        </>
+      );
+}
 
-export default Steps;
+export default Steps
