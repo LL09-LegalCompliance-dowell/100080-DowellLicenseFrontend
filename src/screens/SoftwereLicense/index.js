@@ -64,13 +64,13 @@ const SoftwereLicense = ({navigation}) => {
 
   return (
     <>
-      
+      {loading ? <AppLoader /> : null}
         <Header title="Softwere Licenses" leftIcon="menu" rightIcon="user" />
         <ScrollView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.container}>
           {/* Header */}
-          {loading ? <AppLoader /> : null}
+          
           
 
           {/* section 1 */}
