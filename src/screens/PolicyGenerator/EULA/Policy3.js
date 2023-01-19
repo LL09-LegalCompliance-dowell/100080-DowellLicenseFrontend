@@ -29,7 +29,7 @@ const Policy3 = ({list}) => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text style={list[18]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
+      <Text style={list[12]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
       <Text style={styles.text_1}>Maintenance and Support</Text>
       <View style={{paddingHorizontal:11,paddingTop:16}}>
         <View style={{position: 'relative',fontWeight:"400"}}>

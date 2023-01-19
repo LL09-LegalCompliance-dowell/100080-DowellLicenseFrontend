@@ -2,42 +2,35 @@ import React from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight,TouchableOpacity} from 'react-native'
 import styles from '../Cookies/style'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../../../assets/colors/colors';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
+import { email_validation,number_validation } from '../validations';
+import SelectDropdown from 'react-native-select-dropdown'
 
-const Policy1 = () => {
-    const [date, setDate] = useState(new Date());
-    const [input_1, setInput_1] = useState("");
-    const [input_2, setInput_2] = useState("");
-    const [input_3, setInput_3] = useState("");
-    const [input_4, setInput_4] = useState("");
-    const [input_5, setInput_5] = useState("");
-    const [input_6, setInput_6] = useState("");
-    const [radioButtons, setRadioButtons] = useState([{
-        id: '1',
-        label: 'Days',
-        value: 'Days',
-        size: 12,
-        color: '#489503',
-        labelStyle:{color:"#585858"},
-        borderColor: '#C4C4C4',   
-      },{
-      id: '2',
-      label: 'Months',
-      value: 'Months',
-      size: 12,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      containerStyle:{marginLeft:5}  ,
-      labelStyle:{color:"#585858"},
-      selected: true,
-      }]);
+const Policy1 = ({list}) => {
+  const [valid_email  , setValid_email ] =  useState(true);
+  const [valid_number  ,  setValid_number ] =  useState(true); 
+  const [valid_number1  , setValid_number1 ] =  useState(true); 
+  const cuurency = [
+    'EUR',
+    'GBP',
+    'CAD',
+    'JPY',
+    'CHF',
+    'JPY'
+]
+const findcurrency=(cvalue)=>{
+  for (let index = 0; index < cuurency.length; index++) {
+    if(cuurency[index]===cvalue){
+      return index 
+    }
+  }
+}
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text style={list[16]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <Text style={styles.text_1}>Details:</Text>
         <View style={{paddingHorizontal:11,paddingTop:16}}>
             <View >
@@ -46,7 +39,7 @@ const Policy1 = () => {
                 </Text>
                 <TextInput
                     style={styles.input_vm}
-                    value={date.toLocaleDateString()}
+                    value={list[0].toLocaleDateString()}
                     placeholder="dd/mm/yyyy"
                     placeholderTextColor="gray" 
                 />
@@ -57,7 +50,7 @@ const Policy1 = () => {
                     </View>
                     }
                     color="#489503"
-                    onSelect={value => setDate(value)}
+                    onSelect={value => list[1](value)}
                     isHideOnSelect={true}
                     initialDate={new Date()}
                 />
@@ -65,59 +58,98 @@ const Policy1 = () => {
             <Text style={styles.text_2}>Website/App Name:</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_1}
+              value={list[2]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_1(value)}
+              onChangeText={(value)=>list[3](value)}
               />
             <Text style={styles.text_2}>Company Information:</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_2}
+              value={list[4]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_2(value)}
+              onChangeText={(value)=>list[5](value)}
               />
             <Text style={styles.text_2}>Website URL:</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_3}
+              value={list[6]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_3(value)}
+              onChangeText={(value)=>list[7](value)}
               />
             <Text style={styles.text_2}>Cancellation rights  of Order within days(in number):</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_4}
+              value={list[8]}
               placeholder="  Enter number"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_4(value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_number(true)
+                }
+                else{
+                    number_validation(value)?setValid_number(true):setValid_number(false)
+                }
+                list[9](value)
+            }}
               maxLength={15}
-              />
+            />
+            <Text  style={valid_number ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
             <View style ={{position:"absolute",top:465,left:155}} >
             <RadioGroup
-              radioButtons={radioButtons}
-              onPress={(data)=>setRadioButtons(data)}
+              radioButtons={list[10]}
+              onPress={(data)=>list[11](data)}
               layout='row'
             />
             </View>
             <Text style={styles.text_2}>Reimbursement of cancellation Money:</Text>
+            <View style={{display:"flex",flexDirection:"row"}}>
             <TextInput
-              style={styles.input_vm}
-              value={input_5}
+              style={styles.input_vm_w}
+              value={list[12]}
               placeholder="  Enter Amount(₹)"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_5(value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_number1(true)
+                }
+                else{
+                    number_validation(value)?setValid_number1(true):setValid_number1(false)
+                }
+                list[13](value)
+            }}
               />
+              <SelectDropdown
+              data={cuurency}
+              onSelect={(selectedItem, index) => {
+                list[18](selectedItem)
+              }}
+              buttonStyle={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51,width:"25%"}}
+              buttonTextStyle={{color:"#585858",fontSize:16,fontWeight:"300"}}
+              dropdownStyle={{borderRadius: 15}}
+              defaultValueByIndex={findcurrency(list[17])}
+            />
+            </View>
+            <Text  style={valid_number1 ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
             <Text style={styles.text_2}>Website Contact Email:</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_6}
+              value={list[14]}
               placeholder="  johndoe@gmail.com"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_6(value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_email(true)
+                }
+                else{
+                    email_validation(value)?setValid_email(true):setValid_email(false)
+                }
+                list[15](value)
+            }}
               />  
+              <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
         </View>
     </ScrollView>
     </>

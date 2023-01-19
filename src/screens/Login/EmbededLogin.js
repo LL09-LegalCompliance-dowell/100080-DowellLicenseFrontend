@@ -86,6 +86,42 @@ export default IntroductionScreen = ({route, navigation}) => {
           <Text style={styles.titlesTitle}>DoWell Research Services</Text>
         </View>
 
+        {/* Button */}
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('WebView');
+          }}
+          style={[
+            styles.getStarted,
+            {
+              backgroundColor: '#078F04',
+            },
+          ]}
+          //disabled={!agree}
+          >
+          <Text style={styles.getStartedText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('RootNavigator');
+          }}
+          style={[
+            styles.getStarted,
+            {
+              backgroundColor: '#078F04',
+            },
+          ]}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 20,
+              fontWeight: 'bold',
+              cursor:"pointer"
+            }}>
+            Go to HomeScreen
+          </Text>
+        </TouchableOpacity>
+        
         {/* Policy statrts here */}
         <View style={[styles.policyWrapper, {marginTop: 120}]}>
           <CheckBox
@@ -115,42 +151,6 @@ export default IntroductionScreen = ({route, navigation}) => {
             </Text>
           </Text>
         </View>
-
-        {/* Button */}
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('WebView');
-          }}
-          style={[
-            styles.getStarted,
-            {
-              backgroundColor: agree?'#078F04':"#e7e7e7",
-            },
-          ]}
-          disabled={!agree}
-          >
-          <Text style={styles.getStartedText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('RootNavigator');
-          }}
-          style={[
-            styles.getStarted,
-            {
-              backgroundColor: '#078F04',
-            },
-          ]}>
-          <Text
-            style={{
-              color: '#fff',
-              fontSize: 20,
-              fontWeight: 'bold',
-              cursor:"pointer"
-            }}>
-            Go to HomeScreen
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     </>
   );

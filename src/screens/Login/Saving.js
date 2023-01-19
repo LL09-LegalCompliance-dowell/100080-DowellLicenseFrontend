@@ -32,26 +32,36 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
     await AsyncStorage.setItem('session_id', session_id);
-    navigation.navigate('RootNavigator');
+    fetchPortfolio();
     
   }catch(error){console.log(error)}
   };
 
   const fetchPortfolio = async () => {
     try{
-      const response = await axios.post("https://100093.pythonanywhere.com/api/userinfo/", {key: session_id});
+      const response = await axios.post("https://100014.pythonanywhere.com/api/userinfo/", {session_id: session_id});
       console.log("Portfolio Data",response.data)
-    }catch(error){console.log(error)}
+      const portfolio = response.data.portfolio_info;
+      console.log(portfolio, portfolio.length)
+      const username = await AsyncStorage.getItem("username");
+
+      if(!portfolio.length){
+        navigation.navigate("NoPortfolio", {"session_id":session_id, "username":username})
+      }else{
+        navigation.navigate("RootNavigator")
+      }
+
+    }catch(error){console.log("Fetching portfolio Error!",error)}
     
   }
   useEffect(() => {
     fetchUser();
-    fetchPortfolio();
   });
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color="#00ff00" />
+      <ActivityIndicator style={styles.indicator} size="large" color="#00ff00" />
       <Text>Logging In...</Text>
+      <Text>Checking Portfolio...</Text>
     </View>
   );
 };
@@ -65,5 +75,10 @@ const styles = StyleSheet.create({
     ImageBackground: 'white',
     zIndex: 10,
     flex: 1,
+  },
+  indicator: {
+    padding: 15,
+    backgroundColor: '#000',
+    borderRadius: 12
   },
 });

@@ -1,9 +1,14 @@
-import React from 'react'
+import {React,useState} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
+import { email_validation,empty_validation, number_validation } from '../validations';
+const generate_date = (date)=>{
+  const temp = date.split("/")
+  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
+ }
 const Steps = () => {
     const nextButton = {
         backgroundColor: '#489503',
@@ -29,6 +34,75 @@ const Steps = () => {
         paddingVertical: 5,
         alignSelf: 'center',
       };
+      /////////////////////////////////1
+      const [date, setDate] = useState(new Date());
+      const handle_date = (state)=> setDate(state);
+      const [input_1, setInput_1] = useState("");
+      const handle_input_1 = (state)=> setInput_1(state);
+      const [input_2, setInput_2] = useState("");
+      const handle_input_2 = (state)=> setInput_2(state);
+      const [input_3, setInput_3] = useState("");
+      const handle_input_3 = (state)=> setInput_3(state);
+      const [input_4, setInput_4] = useState("");
+      const handle_input_4 = (state)=> setInput_4(state);
+      const [input_5, setInput_5] = useState("");
+      const handle_input_5 = (state)=> setInput_5(state);
+      const [input_6, setInput_6] = useState("");
+      const handle_input_6 = (state)=> setInput_6(state);
+      const [input_7, setInput_7] = useState('EUR');
+      const handle_input_7 = (state)=> setInput_7(state);
+      const [radioButtons, setRadioButtons] = useState([{
+          id: '1',
+          label: 'Days',
+          value: 'Days',
+          size: 12,
+          color: '#489503',
+          labelStyle:{color:"#585858"},
+          borderColor: '#C4C4C4',   
+        },{
+        id: '2',
+        label: 'Months',
+        value: 'Months',
+        size: 12,
+        color: '#489503',
+        borderColor: '#C4C4C4',
+        containerStyle:{marginLeft:5}  ,
+        labelStyle:{color:"#585858"},
+        selected: true,
+        }]);
+        const handle_radiobuttons = (state)=> setRadioButtons(state);
+
+        const [error_1, setError_1] = useState(false);
+        const [empty_validationn, setempty_validation] = useState(true);
+        const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,radioButtons,handle_radiobuttons,input_5,handle_input_5,input_6,handle_input_6,empty_validationn,input_7,handle_input_7]
+        const inputs=[input_1,input_2,input_3,input_4,input_5,input_6]
+
+      /////////////////////////////////4
+      const [input_1_4, setInput_1_4] = useState("");
+      const handle_input_1_4 = (state)=> setInput_1_4(state);
+      const states_4= [input_1_4,handle_input_1_4]
+
+      let x
+      if(radioButtons[0].selected ===true){
+      x="Days"
+      }
+      else{
+        x="Months"
+      }
+      const request_object={
+        
+          agreement_compliance_type: "return-and-refund",
+          date: generate_date(date.toLocaleDateString()),
+          website_or_app_name: input_1,
+          company_info: input_2,
+          website_url: input_3,
+          cancellation_right_of_order: parseFloat(input_4),
+          cancellation_right_of_order_unit: x,
+          reimbursement_of_cancellation_money: parseFloat(input_5),
+          reimbursement_of_cancellation_money_currency: input_7,
+          website_contact_email: input_6
+      }
+      
     return (
         <>
           <Header title="Generator" />
@@ -45,9 +119,20 @@ const Steps = () => {
               nextBtnTextStyle={{color: 'white', fontSize: 18}}>
               <ProgressStep
                 nextBtnStyle={nextButton}
-                nextBtnTextStyle={{color: 'white', fontSize: 18}}>
+                nextBtnTextStyle={{color: 'white', fontSize: 18}}
+                errors={error_1}
+                onNext={()=>{
+                  setempty_validation(empty_validation(inputs))
+                  const x=(empty_validation(inputs))
+                  const y= email_validation(input_6)
+                  const z= number_validation(input_4)
+                  const l= number_validation(input_5)
+
+                  setError_1(!(x & y & z & l) )
+                  
+                }}>
                 <View >
-                  <Policy1 />
+                  <Policy1 list={states} />
                 </View>
               </ProgressStep>
               <ProgressStep
@@ -55,9 +140,20 @@ const Steps = () => {
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
-                previousBtnStyle={previousButton}>
+                previousBtnStyle={previousButton}
+                onSubmit={()=>{
+                  const y= email_validation(input_1_4)
+                  const z= ( !y)
+                  if (z){
+                    alert("please enter valid email")
+                  }
+                  else{
+                    //api
+                  }
+                  
+                }}>
                 <View >
-                  <Policy4 />
+                  <Policy4 list={states_4} object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

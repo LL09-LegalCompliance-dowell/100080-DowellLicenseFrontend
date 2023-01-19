@@ -276,11 +276,8 @@ const styles = StyleSheet.create({
         lineHeight:21.09
       },
       text_warning:{
-        color:"red"
-
-      },
-      text_warning:{
-        color:"red"
+        color:"red",
+        marginBottom:5
 
       },
       partyDetails: {

@@ -62,6 +62,7 @@ const Policy4 = ({list, object}) => {
           <TouchableOpacity
             onPress={async () => {
               setLoading(true);
+              try{
               const result = await post_agreement_compliance(object);
               const html_link = result.data[0].agreement.html_doc_url;
               
@@ -81,6 +82,9 @@ const Policy4 = ({list, object}) => {
                 'PDF saved to following location',
                 file.filePath
               );
+              }catch (error) {
+                console.error(error);
+              }
             }}
             style={styles.button_p4}>
             <AntDesign name="download" size={24} color={colors.primary} />
