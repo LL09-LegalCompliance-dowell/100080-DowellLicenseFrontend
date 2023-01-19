@@ -4,12 +4,10 @@ import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import { useState } from 'react'
 
-const Policy2 = () => {
-  const [input_1, setInput_1] = useState("");
-  const [input_2, setInput_2] = useState("");
-  const [input_3, setInput_3] = useState("");
+const Policy2 = ({list}) => {
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text style={list[6]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please provide the situations </Text>
           <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
           Other Details:
           </Text>
@@ -17,22 +15,22 @@ const Policy2 = () => {
             <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>List the types of personal information which may be obtained and stored and why?</Text>
             <TextInput
             style={styles.input_um}
-            value={input_1}
-            onChangeText={(value)=>setInput_1(value)}
+            value={list[0]}
+            onChangeText={(value)=>list[1](value)}
             /> 
             <Text style={styles.textoptional}>*Optional</Text>
             <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>List the name and location of all privacy documents which the website holds for example the privacy policy and privacy notice.</Text>
             <TextInput
             style={styles.input_um}
-            value={input_2}
-            onChangeText={(value)=>setInput_2(value)}
+            value={list[2]}
+            onChangeText={(value)=>list[3](value)}
             /> 
             <Text style={styles.textoptional}>*Optional</Text>
             <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Provide the situations where cookies may be collected without the consent of website users.</Text>
             <TextInput
             style={styles.input_vm}
-            value={input_3}
-            onChangeText={(value)=>setInput_3(value)}
+            value={list[4]}
+            onChangeText={(value)=>list[5](value)}
             /> 
           </View>
     </ScrollView>

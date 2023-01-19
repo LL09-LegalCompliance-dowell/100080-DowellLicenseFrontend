@@ -95,22 +95,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '400',
     color: colors.textDark,
-    paddingTop: 20,
     paddingBottom: 15,
   },
   section2: {
-    marginTop: 20,
+    marginTop: 10,
     alignItems: 'center',
-    paddingBottom: 35,
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 1,
     alevation: 2,
   },
-
   button: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 10,
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
@@ -140,7 +136,7 @@ const styles = StyleSheet.create({
 
   // Section 3
   setion3: {
-    paddingVertical: 30,
+    paddingVertical: 10,
   },
   searchInput: {
     width: '90%',
@@ -156,8 +152,8 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   listHeading: {
-    fontSize: 24,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '500',
     color: colors.textDark,
     paddingBottom: 3,
   },
@@ -171,6 +167,28 @@ const styles = StyleSheet.create({
     height: 1,
     elevation: 1,
   },
+  serchResultItemContainer: {
+    paddingHorizontal: 17,
+    paddingVertical: 12,
+    backgroundColor: 'white',
+  },
+  serchResultHeading: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.textDark,
+    fontFamily: 'roboto',
+  },
+  serchResultDetails: {
+    color: colors.textDark,
+    fontFamily: 'roboto',
+  },
+  // separator: {
+  //   width: '100%',
+  //   backgroundColor: colors.borderLight,
+  //   height: 1,
+  //   marginTop: 10,
+  //   // elevation: ,
+  // },
 });
 
 export default styles;

@@ -25,17 +25,23 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingTop: 20,
     paddingBottom: 15,
+    fontFamily:'roboto',
   },
 
   heading1: {
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: '600',
     color: colors.textDark,
     paddingTop: 2,
     paddingBottom: 5,
+    fontFamily:'roboto',
+    letterSpacing: 1.2,
+
   },
 
   heading2: {
+    letterSpacing: 1.4,
+
     fontSize: 15,
     fontWeight: '400',
     color: colors.textDark,
@@ -43,7 +49,18 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 15,
     paddingTop: 5,
+    fontFamily:'roboto',
     paddingBottom: 20,
+  },
+  heading4: {
+    letterSpacing: 1.5,
+    fontSize: 15,
+    fontFamily:'roboto',
+    fontWeight: '400',
+    color: colors.textDark,
+    paddingTop: 2,
+    paddingBottom: 5,
+    paddingTop: 25,
   },
   // Bottom container
   middleContainer: {},
@@ -60,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 20,
+    paddingBottom: 200,
   },
   heading3: {
     fontSize: 15,
@@ -70,6 +87,12 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingTop: 5,
     paddingBottom: 20,
+    fontFamily:'roboto',
+  },
+  separator: {
+    width: '100%',
+    backgroundColor: 'gray',
+    height: 1,
   },
 });
 

@@ -712,21 +712,7 @@ const LicenseCompatibility = ({navigation}) => {
                 )}
               />
             </>
-            {/* ) : (
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <Text
-                  style={{
-                    padding: 20,
-                    color: colors.primary,
-                    fontSize: 18,
-                    fontWeight: '600',
-                  }}>
-                  Sorry... compatibility results for this pair of licences is
-                  not availbe yet. We are working on it, you might be able to
-                  get it in the next version, thanks.
-                </Text>
-              </View>
-            )} */}
+            
           </>
         ) : null}
       </View>

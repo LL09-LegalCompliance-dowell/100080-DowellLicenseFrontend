@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from './style'
@@ -9,80 +9,47 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
-  const [name_entity, setName_entity] = useState("");
-  var [ isPress1, setIsPress1 ] = useState(false);
-  var [ isPress2, setIsPress2 ] = useState(false);
-  var [ isPress3, setIsPress3 ] = useState(false);
-  var [ isPress4, setIsPress4 ] = useState(false);
-  var [ isPress5, setIsPress5 ] = useState(false);
-  const [radioButtons, setRadioButtons] = useState([{
-    id: '1',
-    label: 'Yes',
-    value: 'Yes',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    selected: true,
-    labelStyle:{color:"#585858"},
-  },{
-  id: '2',
-  label: 'No',
-  value: 'No',
-  size: 18,
-  color: '#489503',
-  labelStyle:{color:"#585858"},
-  borderColor: '#C4C4C4',
-  }]);
-  const [radioButtons1, setRadioButtons1] = useState([{
-    id: '1',
-    label: 'Yes',
-    value: 'Yes',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    labelStyle:{color:"#585858"},
-    selected: true
-  },{
-  id: '2',
-  label: 'No',
-  value: 'No',
-  size: 18,
-  color: '#489503',
-  labelStyle:{color:"#585858"},
-  borderColor: '#C4C4C4',
-  }]);
+const Policy1 = ({list}) => {
+  const [flag, setFlag] = useState(true);
   var touchProps1 = {                               
-    style: isPress1 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress1(true),                 
+    style: list[4] ? styles.Pressed : styles.Normal, 
+    onPress: () => list[5](true),                 
   };
   var touchProps2 = {                               
-    style: isPress2 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress2(true),                 
+    style: list[6] ? styles.Pressed : styles.Normal, 
+    onPress: () => list[7](true),                 
   };
   var touchProps3 = {                               
-    style: isPress3 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress3(true),                 
+    style: list[8] ? styles.Pressed : styles.Normal, 
+    onPress: () => list[9](true),                 
   };
   var touchProps4 = {                               
-    style: isPress4 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress4(true),                 
+    style: list[10] ? styles.Pressed : styles.Normal, 
+    onPress: () => list[11](true),                 
   };
   var touchProps5 = {                               
-    style: isPress5 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress5(true),                 
+    style: list[12] ? styles.Pressed : styles.Normal, 
+    onPress: () => list[13](true),                 
   };
+  useEffect(()=>{
+    if (list[18][0].selected=== true){
+      setFlag(true)
+    }
+    else{
+      setFlag(false)
+    }
+  },)
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <Text style={list[20]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please enter name of the entity  </Text>
       <View style={{position: 'relative', marginTop: 20,fontWeight:"400"}}>
           <Text style={{color: colors.textDark,fontSize:20}}>
           Date of execution of the document:
           </Text>
           <TextInput
             style={styles.input}
-            value={date.toLocaleDateString()}
+            value={list[0].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray" 
           />
@@ -93,7 +60,7 @@ const Policy1 = () => {
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[1](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
@@ -103,16 +70,16 @@ const Policy1 = () => {
         <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Full Name of the entity that owns and runs the website:</Text>
         <TextInput
             style={styles.input_vm}
-            value={name_entity}
+            value={list[2]}
             placeholder="Eg. John Smith Doe"
             placeholderTextColor="gray" 
-            onChangeText={(value)=>setName_entity(value)}
+            onChangeText={(value)=>list[3](value)}
           />  
         <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Check the box if the website has a data protection officer</Text>  
         <View >
           <RadioGroup
-            radioButtons={radioButtons}
-            onPress={(data)=>setRadioButtons(data)}
+            radioButtons={list[14]}
+            onPress={(data)=>list[15](data)}
             containerStyle={styles.radio}
           />
         </View>
@@ -121,7 +88,7 @@ const Policy1 = () => {
           <TouchableHighlight {...touchProps1}>
              <View style={{display:"flex",flexDirection:"row"}}>
               <Text style={{color:"#585858"}}>Via Website Chat Services </Text>
-              <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
+              <TouchableOpacity  style={list[4] ? {display:"flex"} : {display:"none"}} onPress={()=>list[5](false)}><Text > x  </Text></TouchableOpacity>
              </View>
             
           </TouchableHighlight>
@@ -129,7 +96,7 @@ const Policy1 = () => {
           <TouchableHighlight {...touchProps2}>
             <View style={{display:"flex",flexDirection:"row"}}>
               <Text style={{color:"#585858"}}>Via Email </Text>
-              <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
+              <TouchableOpacity style={list[6] ? {display:"flex"} : {display:"none"}} onPress={()=>list[7](false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
 
@@ -137,17 +104,35 @@ const Policy1 = () => {
         <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Check the box if the website uses other similar Technologies to perform some of the functions which are usually achieved via cookie use</Text>
         <View >
           <RadioGroup
-            radioButtons={radioButtons1}
-            onPress={(data)=>setRadioButtons1(data)}
+            radioButtons={list[16]}
+            onPress={(data)=>list[17](data)}
             containerStyle={styles.radio}
           />
         </View>
         <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Will the cookies store personal information that have been provided by users via the website</Text>
-        <View style={{flex:1 ,display:"flex",flexDirection:"row",marginVertical:19}}>
+        <View >
+          <RadioGroup
+            radioButtons={list[18]}
+            onPress={(data)=>{
+              list[19](data)
+              if(data[0].selected== true){
+                setFlag(true)
+              }
+              else {
+                setFlag(false)
+                list[9](false)
+                list[11](false)
+                list[13](false)
+              }
+          }}
+            containerStyle={styles.radio}
+          />
+        </View>
+        <View style={flag?{flex:1 ,display:"flex",flexDirection:"row",marginVertical:10}:styles.hide}>
           <TouchableHighlight {...touchProps3}>
              <View style={{display:"flex",flexDirection:"row"}}>
               <Text style={{color:"#585858"}}>Address </Text>
-              <TouchableOpacity  style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
+              <TouchableOpacity  style={list[8] ? {display:"flex"} : {display:"none"}} onPress={()=>list[9](false)}><Text> x  </Text></TouchableOpacity>
              </View>
             
           </TouchableHighlight>
@@ -155,13 +140,13 @@ const Policy1 = () => {
           <TouchableHighlight {...touchProps4}>
             <View style={{display:"flex",flexDirection:"row"}}>
               <Text style={{color:"#585858"}}>Contact Details </Text>
-              <TouchableOpacity style={isPress4 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress4(false)}><Text> x  </Text></TouchableOpacity>
+              <TouchableOpacity style={list[10] ? {display:"flex"} : {display:"none"}} onPress={()=>list[11](false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
           <TouchableHighlight {...touchProps5}>
             <View style={{display:"flex",flexDirection:"row"}}>
-              <Text style={{color:"#585858"}}>IP Addresses </Text>
-              <TouchableOpacity style={isPress5 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress5(false)}><Text> x  </Text></TouchableOpacity>
+              <Text style={{color:"#585858"}}>IP Addresses</Text>
+              <TouchableOpacity style={list[12] ? {display:"flex"} : {display:"none"}} onPress={()=>list[13](false)}><Text> x  </Text></TouchableOpacity>
              </View>
           </TouchableHighlight>
 
