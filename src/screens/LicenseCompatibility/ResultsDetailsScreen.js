@@ -25,6 +25,7 @@ const ResultsDetailsScreen = ({route}) => {
     licenseTwo,
     compatibiltyPercentage,
     isCompatible,
+    disclaimer,
   } = route.params;
   return (
     <View
@@ -155,6 +156,39 @@ const ResultsDetailsScreen = ({route}) => {
               </View>
             </View>
           }
+          ListFooterComponent={
+            <>
+              {disclaimer === '' ? (
+                <>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '700',
+                        fontFamily: 'roboto',
+                        fontSize: 20,
+                        paddingBottom: 10,
+                      },
+                    ]}>
+                    Disclaimer
+                  </Text>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '700',
+                        fontFamily: 'roboto',
+                        fontSize: 20,
+                        paddingBottom: 10,
+                      },
+                    ]}>
+                    {disclaimer}
+                  </Text>
+                </>
+              ) : null}
+            </>
+          }
+          // scrollEnabled={false}
           data={comparison}
           keyExtractor={item => item._id}
           showsVerticalScrollIndicator={false}
@@ -197,21 +231,6 @@ const ResultsDetailsScreen = ({route}) => {
           )}
         />
       </>
-      {/* ) : (
-        <View style={{alignItems: 'center', justifyContent: 'center'}}>
-          <Text
-            style={{
-              padding: 20,
-              color: colors.primary,
-              fontSize: 18,
-              fontWeight: '600',
-            }}>
-            Sorry... compatibility results for this pair of licences is not
-            availbe yet. We are working on it, you might be able to get it in
-            the next version, thanks.
-          </Text>
-        </View>
-      )} */}
     </View>
   );
 };
