@@ -1,31 +1,9 @@
 import React from 'react';
-import {Modal, StyleSheets,Dimensions, View} from 'react-native';
-import ImageViewer from 'react-native-image-zoom-viewer';
+import {Dimensions, View} from 'react-native';
 import Header from '../../../components/Header';
 import Pdf from 'react-native-pdf';
 
-const images = [
-  {
-    props: {
-      source: require('../../../../assets/images/EULA/image3.png'),
-    },
-  },
-  {
-    props: {
-      source: require('../../../../assets/images/EULA/image2.png'),
-    },
-  },
-  {
-    props: {
-      source: require('../../../../assets/images/EULA/image4.png'),
-    },
-  },
-  {
-    props: {
-      source: require('../../../../assets/images/EULA/image5.png'),
-    },
-  },
-];
+
 const PolicyImage = () => {
   const source = {
     uri: 'https://100080.pythonanywhere.com/media/doc/software-license-agreement.pdf',

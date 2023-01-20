@@ -26,7 +26,7 @@ const Policy4 = ({list, object}) => {
 
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-          
+          {loading ? <AppLoader /> : null}
           <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
           Finish Up:
           </Text>
@@ -70,7 +70,7 @@ const Policy4 = ({list, object}) => {
 
               let options = {
                 html: res.data,
-                fileName: 'Policy',
+                fileName: result.data[0].agreement.agreement_compliance_type,
                 directory: 'Documents',
               };
 
