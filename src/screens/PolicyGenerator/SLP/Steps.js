@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
