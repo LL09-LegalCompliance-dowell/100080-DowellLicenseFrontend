@@ -176,7 +176,7 @@ const SoftwereLicense = ({navigation}) => {
             {searchedTerm.map((item, index) => {
               return (
                 <>
-                  <View style={styles.serchResultItemContainer}>
+                  <View style={styles.serchResultItemContainer} key={item['_id']}>
                     <TouchableOpacity
                       key={index}
                       onPress={() => {
