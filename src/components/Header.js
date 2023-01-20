@@ -55,7 +55,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
         <TouchableWithoutFeedback>
           <Image
             style={styles.logo}
-            source={require('../../assets/images/logo.jpg')}
+            source={require('../../assets/images/logo.png')}
           />
         </TouchableWithoutFeedback>
       )}

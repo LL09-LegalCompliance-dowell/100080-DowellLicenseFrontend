@@ -22,7 +22,7 @@ const IntroductionScreen = ({navigation}) => {
           <SafeAreaView>
             <View style={styles.introLogoTop}>
               <Image
-                source={require('../../../assets/images/logo.jpg')}
+                source={require('../../../assets/images/logo.png')}
                 style={styles.topLogo}
               />
             </View>
@@ -56,7 +56,7 @@ const IntroductionScreen = ({navigation}) => {
 
           <View style={styles.introLogoSmall}>
             <Image
-              source={require('../../../assets/images/logo.jpg')}
+              source={require('../../../assets/images/logo.png')}
               style={styles.smallLogo}
             />
           </View>
