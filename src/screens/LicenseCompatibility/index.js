@@ -50,6 +50,11 @@ const LicenseCompatibility = ({navigation}) => {
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
 
+  let firstFive = comparison.slice(0, 5);
+  if(firstFive.length < 5){
+    firstFive = comparison.slice(0, comparison.length);
+  }
+
   //Fetching all licencses into the state
   useMemo(async () => {
     try {
@@ -105,15 +110,15 @@ const LicenseCompatibility = ({navigation}) => {
           LicensesCompatibilityData.data.license_comparison,
         );
         setCompatibiltyPercentage(
-          LicensesCompatibilityData.data.license_comparison
+          LicensesCompatibilityData.data?.license_comparison
             ?.percentage_of_compatibility,
         );
 
         setDisclaimer(
-          LicensesCompatibilityData.data.license_comparison?.disclaimer,
+          LicensesCompatibilityData.data?.license_comparison?.disclaimer,
         );
         setRecommendation(
-          LicensesCompatibilityData.data.license_comparison?.recommendation,
+          LicensesCompatibilityData.data?.license_comparison?.recommendation,
         );
         setIsCompatible(LicensesCompatibilityData.data.is_compatible);
         setLicenseOne(
@@ -653,6 +658,7 @@ const LicenseCompatibility = ({navigation}) => {
                         licenseTwo,
                         compatibiltyPercentage,
                         isCompatible,
+                        disclaimer
                       })
                     }
                     style={styles.readMoreContainer}>
@@ -666,7 +672,7 @@ const LicenseCompatibility = ({navigation}) => {
                   </TouchableOpacity>
                 }
                 // scrollEnabled={false}
-                data={comparison}
+                data={firstFive}
                 keyExtractor={item => item._id}
                 showsVerticalScrollIndicator={false}
                 renderItem={item => (
