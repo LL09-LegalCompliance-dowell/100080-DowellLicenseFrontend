@@ -2,7 +2,6 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NavIndex from './NavIndex';
 import Policy1 from './Policy1';
-import Policy2 from './Policy2';
 import Policy4 from '../../Cookies/Policy4';
 const Stack = createNativeStackNavigator();
 
@@ -20,13 +19,6 @@ const EulaPolicyNav = () => {
         <Stack.Screen
           name="Policy1"
           component={Policy1}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Policy2"
-          component={Policy2}
           options={{
             headerShown: false,
           }}
