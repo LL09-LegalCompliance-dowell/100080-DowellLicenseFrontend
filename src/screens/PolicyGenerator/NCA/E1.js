@@ -17,7 +17,7 @@ const C1 = ({navigation}) => {
             business.
           </Text>
           <Text style={styles.text}>
-            Below is the sample for Non-Disclosure Agreement Policy Template.{' '}
+            Below is the sample for Non Compete Agreement Policy Template.{' '}
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
