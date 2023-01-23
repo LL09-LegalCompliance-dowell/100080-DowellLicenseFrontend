@@ -2,17 +2,13 @@ import React from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight,TouchableOpacity} from 'react-native'
 import styles from '../Cookies/style'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../../../assets/colors/colors';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import RadioGroup from 'react-native-radio-buttons-group';
-const Policy1 = () => {
-    const [date, setDate] = useState(new Date());
-    const [input_1, setInput_1] = useState("");
+const Policy1 = ({list}) => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text style={list[4]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please enter name of the app  </Text>
         <Text style={styles.text_1}>Date:</Text>
         <View style={{paddingHorizontal:11,paddingTop:16}}>
             <View >
@@ -21,7 +17,7 @@ const Policy1 = () => {
                 </Text>
                 <TextInput
                     style={styles.input_vm}
-                    value={date.toLocaleDateString()}
+                    value={list[0].toLocaleDateString()}
                     placeholder="dd/mm/yyyy"
                     placeholderTextColor="gray" 
                 />
@@ -32,7 +28,7 @@ const Policy1 = () => {
                     </View>
                     }
                     color="#489503"
-                    onSelect={value => setDate(value)}
+                    onSelect={value => list[1](value)}
                     isHideOnSelect={true}
                     initialDate={new Date()}
                 />
@@ -43,10 +39,10 @@ const Policy1 = () => {
             <Text style={styles.text_2}>Name of the App:</Text>
             <TextInput
               style={styles.input_vm}
-              value={input_1}
+              value={list[2]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>setInput_1(value)}
+              onChangeText={(value)=>list[3](value)}
               />
         </View>
 
