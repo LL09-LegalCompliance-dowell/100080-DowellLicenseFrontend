@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, View} from 'react-native';
-import Header from '../../../components/Header';
+// import Header from '../../../components/Header';
 import Pdf from 'react-native-pdf';
 
 
@@ -11,7 +11,7 @@ const PolicyImage = () => {
   };
   return (
     <>
-    <Header title="Policy Template" />
+    {/* <Header title="Policy Template" /> */}
       <View
         style={{
           flex: 1,

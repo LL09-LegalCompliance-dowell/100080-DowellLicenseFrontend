@@ -5,7 +5,6 @@ const PolicyImage = () => {
   return (
   <>
     <Samplegenerator sourcelink="https://100080.pythonanywhere.com/media/doc/non-disclosure-agreement.pdf"/>
-   
   </>
 )
 }
