@@ -60,7 +60,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
         </TouchableWithoutFeedback>
       )}
       {rightIcon === 'user' ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
           <FontAwesome
             style={styles.userIcon}
             name="user-circle"
