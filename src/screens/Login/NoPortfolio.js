@@ -35,10 +35,12 @@ const NoPortfolio = ({navigation, route}) => {
       <TouchableOpacity style={styles.createPortfolio} onPress={goToCreatePortfolio}>
         <Text style={styles.createPortfolioText}>Create One</Text>
     </TouchableOpacity>
-    <Text style={[styles.noPortfolioText, {marginVertical:30, paddingBottom:0}]}>OR</Text>
+    <Text style={[styles.noPortfolioText, {marginVertical:0, paddingBottom:0}]}>OR</Text>
     <TouchableOpacity style={styles.createPortfolio} onPress={goToBrowser}>
         <Text style={styles.createPortfolioText}>Go to Browser</Text>
     </TouchableOpacity>
+      <Text style={styles.noPortfolioText}>Copy Paste Link in Your Browser </Text>
+      <Text style={styles.noPortfolioText}>{url}</Text>
     </View>
   )
 }
