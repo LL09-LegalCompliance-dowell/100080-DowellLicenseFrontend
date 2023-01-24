@@ -16,6 +16,7 @@ import RootNavigator from './RootNavigator';
 import Saving from "../screens/Login/Saving"
 import CreatePortfolio from "../screens/Login/CreatePortfolio"
 import NoPortfolio from "../screens/Login/NoPortfolio"
+import Profile from "../screens/Login/Profile"
 
 Loading;
 const Auth = createStackNavigator();
@@ -88,6 +89,13 @@ const AuthNavigator = () => {
          <Auth.Screen
           name="CreatePortfolio"
           component={CreatePortfolio}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="Profile"
+          component={Profile}
           options={{
             headerShown: false,
           }}

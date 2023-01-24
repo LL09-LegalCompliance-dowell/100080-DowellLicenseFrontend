@@ -103,37 +103,6 @@ const Policy1 = () => {
             placeholderTextColor="gray"
             onChangeText={value => setInput6(value)}
           />
-          <Text style={styles.text_2}>State:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input7}
-            placeholder="  Eg. Maharashtra"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput7(value)}
-          />
-          <Text style={styles.text_2}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input8}
-            placeholder="  Eg. India"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput8(value)}
-          />
-          <Text style={styles.text_2}>Telephone:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input9}
-            placeholderTextColor="gray"
-            onChangeText={value => setInput9(value)}
-          />
-          <Text style={styles.text_2}>Email:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input10}
-            placeholder="  Eg. johndoe@gmail.com"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput10(value)}
-          />
         </View>
       </ScrollView>
     </>

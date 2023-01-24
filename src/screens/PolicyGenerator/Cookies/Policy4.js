@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './style'
+import React from 'react';
+import styles from './style';
 import colors from '../../../../assets/colors/colors';
 import {
   ScrollView,
@@ -8,7 +8,7 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  Alert
+  Alert,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState} from 'react';
@@ -18,34 +18,47 @@ import {Linking} from 'react-native';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import AppLoader from '../../../components/AppLoader';
 import axios from 'axios';
+import PolicyWebView from '../PolicyWebView';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Policy4 = ({list, object}) => {
   const [valid_email, setValid_email] = useState(true);
   const [loading, setLoading] = useState(false);
   const [flag, setFlag] = useState(true);
+  const navigation = useNavigation();
+
 
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-          {loading ? <AppLoader /> : null}
-          <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
-          Finish Up:
-          </Text>
-          <View style={{paddingHorizontal:11,paddingTop:16}}>
-            <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Enter Your Email address to receive the policy:</Text>
-            <TextInput
-            style={styles.input}
-            value={list[0]}
-            placeholder="Eg. johndoe@mail.com"
-            placeholderTextColor="gray"            
-            onChangeText={(value)=>{
-              if(value===""){
-                  setValid_email(true)
-              }
-              else{
-                  email_validation(value)?setValid_email(true):setValid_email(false)
-              }
-              list[1](value)
-              
+      {loading ? <AppLoader /> : null}
+      <Text
+        style={{
+          color: colors.textDark,
+          fontSize: 20,
+          fontWeight: '400',
+          marginTop: 20,
+        }}>
+        Finish Up:
+      </Text>
+      <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+        <Text style={{color: colors.textDark, fontSize: 18, fontWeight: '400'}}>
+          Enter Your Email address to receive the policy:
+        </Text>
+        <TextInput
+          style={styles.input}
+          value={list[0]}
+          placeholder="Eg. johndoe@mail.com"
+          placeholderTextColor="gray"
+          onChangeText={value => {
+            if (value === '') {
+              setValid_email(true);
+            } else {
+              email_validation(value)
+                ? setValid_email(true)
+                : setValid_email(false);
+            }
+            list[1](value);
           }}
         />
         <Text style={valid_email ? styles.hide : styles.text_warning}>
@@ -62,27 +75,24 @@ const Policy4 = ({list, object}) => {
           <TouchableOpacity
             onPress={async () => {
               setLoading(true);
-              try{
-              const result = await post_agreement_compliance(object);
-              const html_link = result.data[0].agreement.html_doc_url;
-              
-              let res = await axios.get(html_link);
+              try {
+                const result = await post_agreement_compliance(object);
+                const html_link = result.data[0].agreement.html_doc_url;
 
-              let options = {
-                html: res.data,
-                fileName: result.data[0].agreement.agreement_compliance_type,
-                directory: 'Documents',
-              };
+                let res = await axios.get(html_link);
 
-              let file = await RNHTMLtoPDF.convert(options);
-              // console.log(file.filePath);
-              setLoading(false);
-              // alert(file.filePath);
-              Alert.alert(
-                'PDF saved to following location',
-                file.filePath
-              );
-              }catch (error) {
+                let options = {
+                  html: res.data,
+                  fileName: result.data[0].agreement.agreement_compliance_type,
+                  directory: 'Documents',
+                };
+
+                let file = await RNHTMLtoPDF.convert(options);
+                // console.log(file.filePath);
+                setLoading(false);
+                // alert(file.filePath);
+                Alert.alert('PDF saved to following location', file.filePath);
+              } catch (error) {
                 console.error(error);
               }
             }}
@@ -93,14 +103,19 @@ const Policy4 = ({list, object}) => {
           <TouchableOpacity
             style={styles.button_p4}
             onPress={async () => {
+              setLoading(true);
               try {
-                setFlag(false);
+                // setFlag(false);
                 console.log(object);
                 const result = await post_agreement_compliance(object);
-                console.log(result)
-                setFlag(true);
+                console.log(result);
+                
                 const preview_link = result.data[0].agreement.html_doc_url;
-                Linking.openURL(preview_link);
+                // Linking.openURL(preview_link);
+                // <PolicyWebView url={preview_link}/>
+                navigation.navigate('PolicyWebView', {url:preview_link})
+                // setFlag(true);
+                setLoading(false);
               } catch (error) {
                 console.error(error);
               }
@@ -108,18 +123,18 @@ const Policy4 = ({list, object}) => {
             <AntDesign name="eye" size={24} color={colors.primary} />
             <Text style={styles.text_b_p4}>Preview Policy</Text>
           </TouchableOpacity>
-          <Text
+          {/* <Text
             style={
               flag
                 ? styles.hide
                 : {color: 'red', textAlign: 'center', fontSize: 20}
             }>
             Please wait while generating policy{' '}
-          </Text>
+          </Text> */}
         </View>
       </View>
     </ScrollView>
-  )
-}
+  );
+};
 
-export default Policy4
+export default Policy4;
