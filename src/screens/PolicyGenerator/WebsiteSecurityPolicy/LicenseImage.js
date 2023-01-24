@@ -1,5 +1,5 @@
 import React from 'react'
-import Samplegenerator from '../samplegenerator';
+import Samplegenerator from '../Samplegenerator';
 
 const PolicyImage = () => {
   return (

@@ -28,6 +28,8 @@ import TermsAndConditions from '../screens/PolicyGenerator/TermAndConditions';
 import MOU from '../screens/PolicyGenerator/MOU';
 import SLP from '../screens/PolicyGenerator/SLP';
 import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
+import PolicyWebView from '../screens/PolicyGenerator/PolicyWebView'
+
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -189,6 +191,14 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="PolicyWebView"
+          component={PolicyWebView}
+          options={{
+            headerShown: false,
+          }}
+        />
+        
       </Stack.Navigator>
     </>
   );
