@@ -1,11 +1,38 @@
 import {StyleSheet, Image, Text, View, StatusBar} from 'react-native';
-import React, {useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
 
 const Profile = () => {
   const [loading, setLoading] = useState();
+  const [username, setUsername] = useState("Null")
+  const [email, setEmail] = useState("Null")
+  const [org, setOrg] = useState("Null")
+  const [member, setMember] = useState("Null")
+  const [portfolio, setPortfolio] = useState("Null")
+  const [role, setRole] = useState("Null")
+
+  const getDetails = async () => {
+    const username = await AsyncStorage.getItem("username");
+    const email = await AsyncStorage.getItem("email");
+    const member = await AsyncStorage.getItem("member_type");
+    const org = await AsyncStorage.getItem("org_name");
+    const portfolio = await AsyncStorage.getItem("portfolio_name");
+    const role = await AsyncStorage.getItem("role");
+    setUsername(username)
+    setEmail(email)
+    setMember(member)
+    setOrg(org)
+    setPortfolio(portfolio)
+    setRole(role)
+  }
+
+  useEffect(() => {
+    getDetails();
+  }, [])
+
   return (
     <View style={styles.container}>
       {loading ? <AppLoader /> : null}
@@ -16,24 +43,28 @@ const Profile = () => {
           source={require('./profileIcon.png')}
           style={styles.profileIcon}
         />
-        <Text style={styles.label}>Full Name</Text>
-        <Text style={styles.feildData}>John S. Doe</Text>
+        <Text style={styles.label}>Username</Text>
+        <Text style={styles.feildData}>{username}</Text>
         <View style={styles.separator}></View>
 
         <Text style={styles.label}>Email</Text>
-        <Text style={styles.feildData}>johnsdoe@gmail.com</Text>
+        <Text style={styles.feildData}>{email}</Text>
         <View style={styles.separator}></View>
 
-        <Text style={styles.label}>Date of Birth</Text>
-        <Text style={styles.feildData}>24/10/1997</Text>
+        <Text style={styles.label}>Organization</Text>
+        <Text style={styles.feildData}>{org}</Text>
         <View style={styles.separator}></View>
 
-        <Text style={styles.label}>Phone</Text>
-        <Text style={styles.feildData}>+91 | 8457486514</Text>
+        <Text style={styles.label}>Member Type</Text>
+        <Text style={styles.feildData}>{member}</Text>
         <View style={styles.separator}></View>
 
-        <Text style={styles.label}>Gender</Text>
-        <Text style={styles.feildData}>Male</Text>
+        <Text style={styles.label}>portfolio</Text>
+        <Text style={styles.feildData}>{portfolio}</Text>
+        <View style={styles.separator}></View>
+
+        <Text style={styles.label}>Role</Text>
+        <Text style={styles.feildData}>{role}</Text>
         <View style={styles.separator}></View>
       </View>
     </View>
