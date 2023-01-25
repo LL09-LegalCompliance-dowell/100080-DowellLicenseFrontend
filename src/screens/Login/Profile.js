@@ -13,6 +13,7 @@ const Profile = () => {
   const [member, setMember] = useState("Null")
   const [portfolio, setPortfolio] = useState("Null")
   const [role, setRole] = useState("Null")
+  const [profile_image, setProfileImage] = useState("Null")
 
   const getDetails = async () => {
     const username = await AsyncStorage.getItem("username");
@@ -21,18 +22,20 @@ const Profile = () => {
     const org = await AsyncStorage.getItem("org_name");
     const portfolio = await AsyncStorage.getItem("portfolio_name");
     const role = await AsyncStorage.getItem("role");
+    const profile_image = await AsyncStorage.getItem("profile_image");
     setUsername(username)
     setEmail(email)
     setMember(member)
     setOrg(org)
     setPortfolio(portfolio)
     setRole(role)
+    profile_image && setProfileImage(profile_image)
   }
 
   useEffect(() => {
     getDetails();
   }, [])
-
+  console.log(profile_image)
   return (
     <View style={styles.container}>
       {loading ? <AppLoader /> : null}
@@ -40,6 +43,7 @@ const Profile = () => {
       <Header title="Account Details" />
       <View style={styles.innerContainer}>
         <Image
+          // profile_image? {uri:profile_image} :
           source={require('./profileIcon.png')}
           style={styles.profileIcon}
         />
