@@ -103,7 +103,8 @@ const Policy4 = ({list, object}) => {
                   marginTop: 10,
                   alignItems: 'center',
                 }}>
-                <Text numberOfLines={1} style={{marginHorizontal: 10}}>
+                  
+                <Text numberOfLines={1} style={{marginHorizontal: 10, flex:9}}>
                   {flag}
                 </Text>
                 <TouchableOpacity
@@ -112,6 +113,7 @@ const Policy4 = ({list, object}) => {
                     // borderLeftWidth: 0.9,
                     // padding: 6,
                     // alignSelf: 'center',
+                    flex:1.5,
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginHorizontal: 15,
