@@ -17,11 +17,8 @@ import { SelectList } from 'react-native-dropdown-select-list'
 const Policy2 = () => {
   const [date, setDate] = useState(new Date());
   const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
-  const [input5, setInput5] = useState('');
-
+  const [country, setCountry] = useState(null);
+  const [state, setState] = useState(null);
   const cities = [
     {key: '1', value: 'Mumbai'},
     {key: '2', value: 'Kolkata'},
@@ -181,27 +178,17 @@ const Policy2 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
+            value={input1}
+            placeholder="Eg. 7 days/months"
             placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => setDate(value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
+            onChangeText={value => setInput1(value)}
           />
         </View>
 
         <Text style={styles.text_2}>What will be the governing laws?</Text>
         <SelectList
           // setSelected={(val) => list[6](val)}
-          data={states}
+          // data={states}
           save="value"
           // placeholder={list[9]}
           boxStyles={{
