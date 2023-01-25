@@ -32,6 +32,7 @@ const Saving = ({navigation, route}) => {
     await AsyncStorage.setItem('email', email);
     await AsyncStorage.setItem('first_name', first_name);
     await AsyncStorage.setItem('session_id', session_id);
+    profile_image && await AsyncStorage.setItem('profile_image', profile_image);
     fetchPortfolio();
     
   }catch(error){console.log(error)}
@@ -40,9 +41,15 @@ const Saving = ({navigation, route}) => {
   const fetchPortfolio = async () => {
     try{
       const response = await axios.post("https://100014.pythonanywhere.com/api/userinfo/", {session_id: session_id});
-      console.log("Portfolio Data",response.data)
+      //console.log("Portfolio Data",response.data)
       const portfolio = response.data.portfolio_info;
-      console.log(portfolio, portfolio.length)
+      //console.log(portfolio, portfolio.length)
+      const {member_type, org_name, portfolio_name, role} = portfolio[0];
+      console.log(member_type, org_name, portfolio_name, role)
+      await AsyncStorage.setItem('member_type', member_type);
+      await AsyncStorage.setItem('org_name', org_name);
+      await AsyncStorage.setItem('portfolio_name', portfolio_name);
+      await AsyncStorage.setItem('role', role);
       const username = await AsyncStorage.getItem("username");
 
       if(!portfolio.length){

@@ -75,7 +75,7 @@ export default IntroductionScreen = ({route, navigation}) => {
       <ScrollView contentContainerStyle={styles.container}>
         <StatusBar backgroundColor="white" barStyle="dark-content" />
 
-        <View style={styles.introLogoTop}>
+        <View style={styles.art}>
           <Image
             source={require('../../../assets/images/logo.png')}
             style={styles.topLogo}
