@@ -3,7 +3,6 @@ import React from 'react';
 import {WebView} from 'react-native-webview';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
-import {color} from 'react-native-reanimated';
 
 const PolicyWebView = ({route}) => {
   const {url} = route.params;
