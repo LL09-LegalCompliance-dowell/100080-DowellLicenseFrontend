@@ -42,14 +42,14 @@ const Saving = ({navigation, route}) => {
     try{
       const response = await axios.post("https://100014.pythonanywhere.com/api/userinfo/", {session_id: session_id});
       //console.log("Portfolio Data",response.data)
-      const portfolio = response.data.portfolio_info;
-      //console.log(portfolio, portfolio.length)
+      const portfolio = response.data.portfolio_info.filter((item) => item.product === "Legalzard")
+      console.log("Portfolio",portfolio)
       const {member_type, org_name, portfolio_name, role} = portfolio[0];
       console.log(member_type, org_name, portfolio_name, role)
-      await AsyncStorage.setItem('member_type', member_type);
-      await AsyncStorage.setItem('org_name', org_name);
-      await AsyncStorage.setItem('portfolio_name', portfolio_name);
-      await AsyncStorage.setItem('role', role);
+      member_type && await AsyncStorage.setItem('member_type', member_type);
+      org_name && await AsyncStorage.setItem('org_name', org_name);
+      portfolio_name && await AsyncStorage.setItem('portfolio_name', portfolio_name);
+      role && await AsyncStorage.setItem('role', role);
       const username = await AsyncStorage.getItem("username");
 
       if(!portfolio.length){

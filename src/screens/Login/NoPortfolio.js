@@ -1,6 +1,7 @@
-import {Text, View, StatusBar,Image, Linking, Alert } from 'react-native'
+import {Text, View, StatusBar,Image, Linking, Alert, Button, Share } from 'react-native'
 import React, {useCallback} from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+//import Foundation from "react-native-vector-icons/Foundation"
 import styles from './style';
 
 const NoPortfolio = ({navigation, route}) => {
@@ -15,6 +16,25 @@ const NoPortfolio = ({navigation, route}) => {
       Alert.alert(`Unable to open this URL: ${url}`);
     }
   }
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:url,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
 
   const goToCreatePortfolio = () => {
     navigation.navigate("CreatePortfolio", {"session_id":session_id})
@@ -34,13 +54,15 @@ const NoPortfolio = ({navigation, route}) => {
       <Text style={styles.noPortfolioText}>You do not have a portfolio </Text>
       <TouchableOpacity style={styles.createPortfolio} onPress={goToCreatePortfolio}>
         <Text style={styles.createPortfolioText}>Create One</Text>
-    </TouchableOpacity>
-    <Text style={[styles.noPortfolioText, {marginVertical:0, paddingBottom:0}]}>OR</Text>
-    <TouchableOpacity style={styles.createPortfolio} onPress={goToBrowser}>
-        <Text style={styles.createPortfolioText}>Go to Browser</Text>
-    </TouchableOpacity>
-      <Text style={styles.noPortfolioText}>Copy Paste Link in Your Browser </Text>
-      <Text style={styles.noPortfolioText}>{url}</Text>
+      </TouchableOpacity>
+      <Text style={[styles.noPortfolioText, {marginVertical:0, paddingBottom:0}]}>OR</Text>
+      <TouchableOpacity style={styles.createPortfolio} onPress={goToBrowser}>
+          <Text style={styles.createPortfolioText}>Go to Browser</Text>
+      </TouchableOpacity>
+        <Text style={[styles.noPortfolioText, {marginLeft:10, marginTop:30, fontSize:22, fontWeight:"bold"}]}>Copy Paste Link in Your Browser </Text>
+      <View style={{marginTop: 40, height:100}}>
+        <Button onPress={onShare} title="Copy/Share Link" />
+      </View>
     </View>
   )
 }
