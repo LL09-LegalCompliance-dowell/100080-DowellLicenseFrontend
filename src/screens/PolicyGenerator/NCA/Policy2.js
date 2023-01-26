@@ -12,13 +12,15 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import RadioGroup from 'react-native-radio-buttons-group';
-import { SelectList } from 'react-native-dropdown-select-list'
+import CountryPicker from 'react-native-country-picker-modal';
+
+
 
 const Policy2 = () => {
   const [date, setDate] = useState(new Date());
   const [input1, setInput1] = useState('');
   const [country, setCountry] = useState(null);
-  const [state, setState] = useState(null);
+
   const cities = [
     {key: '1', value: 'Mumbai'},
     {key: '2', value: 'Kolkata'},
@@ -110,6 +112,7 @@ const Policy2 = () => {
 
   return (
     <>
+     
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <Text style={styles.text_1}>Company Details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
@@ -183,58 +186,56 @@ const Policy2 = () => {
             placeholderTextColor="gray"
             onChangeText={value => setInput1(value)}
           />
-        </View>
 
-        <Text style={styles.text_2}>What will be the governing laws?</Text>
-        <SelectList
-          // setSelected={(val) => list[6](val)}
-          // data={states}
-          save="value"
-          // placeholder={list[9]}
-          boxStyles={{
-            backgroundColor: '#D9D9D9',
-            marginVertical: 12,
-            color: '#585858',
-            fontSize: 16,
-            fontWeight: '300',
-            borderWidth: 1,
-            borderRadius: 15,
-            borderColor: '#C4C4C4',
-            height: 51,
-          }}
-          inputStyles={{color: '#585858', fontSize: 16, fontWeight: '300'}}
-          dropdownTextStyles={{
-            color: '#585858',
-            fontSize: 16,
-            fontWeight: '300',
-          }}
-          searchPlaceholder=""
-          search={false}
-        />
-        <Text style={styles.text_2}>
-          In case of dispute resolution will there be a litigation matter or
-          arbitration and which state should abide these disputes?
-        </Text>
-        <View>
-          <RadioGroup
-            radioButtons={radioButtons1}
-            onPress={data => setRadioButtons1(data)}
-            containerStyle={styles.radio_hm}
-          />
-        </View>
-        <Text style={styles.text_2}>Will electronic notices be allowed?</Text>
-        <View>
-          <RadioGroup
-            radioButtons={radioButtons2}
-            onPress={data => setRadioButtons2(data)}
-            containerStyle={styles.radio_hm}
-          />
+          <Text style={styles.text_2}>What will be the governing laws?</Text>
+          <View style={styles.input_vm}>
+            <CountryPicker
+              // countryCode={country}
+              withFilter
+              withFlag
+              withCountryNameButton={country}
+              withCallingCode
+              onSelect={value => setCountry(value)}
+            />
+            {console.log(country)}
+          </View>
+
+          <Text style={styles.text_2}>
+            What will be the duration for solicit:
+          </Text>
           <TextInput
             style={styles.input_vm}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="Mention Others:"
+            value={input1}
+            placeholder="Eg. 7 days/months"
+            placeholderTextColor="gray"
+            onChangeText={value => setInput1(value)}
           />
+
+          <Text style={styles.text_2}>
+            In case of dispute resolution will there be a litigation matter or
+            arbitration and which state should abide these disputes?
+          </Text>
+          <View>
+            <RadioGroup
+              radioButtons={radioButtons1}
+              onPress={data => setRadioButtons1(data)}
+              containerStyle={styles.radio_hm}
+            />
+          </View>
+          <Text style={styles.text_2}>Will electronic notices be allowed?</Text>
+          <View>
+            <RadioGroup
+              radioButtons={radioButtons2}
+              onPress={data => setRadioButtons2(data)}
+              containerStyle={styles.radio_hm}
+            />
+            <TextInput
+              style={styles.input_vm}
+              value={date.toLocaleDateString()}
+              placeholder="dd/mm/yyyy"
+              placeholderTextColor="Mention Others:"
+            />
+          </View>
         </View>
       </ScrollView>
     </>

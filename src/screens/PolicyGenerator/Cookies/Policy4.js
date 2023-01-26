@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {email_validation} from '../validations';
 import {post_agreement_compliance} from '../Api';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
@@ -25,13 +25,33 @@ const Policy4 = ({list, object}) => {
   const [valid_email, setValid_email] = useState(true);
   const [loading, setLoading] = useState(false);
   const [flag, setFlag] = useState('');
+  const [html_link, setHtml_link] = useState('');
   const [link, setLink] = useState('');
+  const [policyName, setPolicyName] = useState('')
   const navigation = useNavigation();
 
   const copyToClipboard = () => {
     Clipboard.setString(flag);
     setLink(flag);
   };
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      console.lo
+      const result = await post_agreement_compliance(object);
+      setHtml_link(result.data[0].agreement.html_doc_url);
+      setPolicyName(result.data[0].agreement.agreement_compliance_type)
+      setFlag(result.data[0].agreement.html_doc_url)
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  },[]);
 
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -120,7 +140,9 @@ const Policy4 = ({list, object}) => {
                   {link === '' ? (
                     <Fontisto name="copy" size={20} color="black" />
                   ) : (
-                    <Text style={{color:colors.primary, fontFamily:'roboto'}}>Copied</Text>
+                    <Text style={{color: colors.primary, fontFamily: 'roboto'}}>
+                      Copied
+                    </Text>
                   )}
                 </TouchableOpacity>
               </View>
@@ -131,22 +153,14 @@ const Policy4 = ({list, object}) => {
             onPress={async () => {
               setLoading(true);
               try {
-                const result = await post_agreement_compliance(object);
-                const html_link = result.data[0].agreement.html_doc_url;
-
                 let res = await axios.get(html_link);
-
                 let options = {
                   html: res.data,
-                  fileName: result.data[0].agreement.agreement_compliance_type,
+                  fileName: policyName,
                   directory: 'Documents',
                 };
-
                 let file = await RNHTMLtoPDF.convert(options);
-                // console.log(file.filePath);
-                // setFlag(html_link);
                 setLoading(false);
-                // alert(file.filePath);
                 Alert.alert('PDF saved to following location', file.filePath);
               } catch (error) {
                 console.error(error);
@@ -161,13 +175,7 @@ const Policy4 = ({list, object}) => {
             onPress={async () => {
               setLoading(true);
               try {
-                console.log(object);
-                const result = await post_agreement_compliance(object);
-                console.log(result);
-
-                const preview_link = result.data[0].agreement.html_doc_url;
-                navigation.navigate('PolicyWebView', {url: preview_link});
-                setFlag(preview_link);
+                navigation.navigate('PolicyWebView', {url: html_link});
                 setLoading(false);
               } catch (error) {
                 console.error(error);
