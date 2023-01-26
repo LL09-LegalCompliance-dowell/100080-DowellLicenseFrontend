@@ -7,13 +7,13 @@ import Header from '../../components/Header';
 
 const Profile = () => {
   const [loading, setLoading] = useState();
-  const [username, setUsername] = useState("Null")
-  const [email, setEmail] = useState("Null")
-  const [org, setOrg] = useState("Null")
-  const [member, setMember] = useState("Null")
-  const [portfolio, setPortfolio] = useState("Null")
-  const [role, setRole] = useState("Null")
-  const [profile_image, setProfileImage] = useState("Null")
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [org, setOrg] = useState("")
+  const [member, setMember] = useState("")
+  const [portfolio, setPortfolio] = useState("")
+  const [role, setRole] = useState("")
+  const [profile_image, setProfileImage] = useState("")
 
   const getDetails = async () => {
     const username = await AsyncStorage.getItem("username");
