@@ -14,55 +14,9 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 import CountryPicker from 'react-native-country-picker-modal';
 
+const Policy2 = ({list}) => {
 
 
-const Policy2 = () => {
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
-  const [country, setCountry] = useState(null);
-
-  const cities = [
-    {key: '1', value: 'Mumbai'},
-    {key: '2', value: 'Kolkata'},
-    {key: '3', value: 'Banglore'},
-    {key: '4', value: 'Delhi'},
-  ];
-
-  const [radioButtons, setRadioButtons] = useState([
-    {
-      id: '1',
-      label: 'Sole proprietorship',
-      value: 'Sole proprietorship',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-    {
-      id: '2',
-      label: 'Partnership',
-      value: 'Partnership',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '3',
-      label: 'Limited liability company',
-      value: 'Limited liability company',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '4',
-      label: 'Corporation',
-      value: 'Corporation',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-  ]);
   const [radioButtons1, setRadioButtons1] = useState([
     {
       id: '1',
@@ -112,15 +66,22 @@ const Policy2 = () => {
 
   return (
     <>
-     
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text
+          style={
+            list[0]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
         <Text style={styles.text_1}>Company Details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>Type of company :</Text>
           <View>
             <RadioGroup
-              radioButtons={radioButtons}
-              onPress={data => setRadioButtons(data)}
+              radioButtons={list[1]}
+              onPress={data => list[2](data)}
               containerStyle={styles.radio_hm}
             />
           </View>
@@ -133,10 +94,10 @@ const Policy2 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[3]}
             placeholder="Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[4](value)}
           />
           <Text
             style={{
@@ -160,7 +121,7 @@ const Policy2 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={date.toLocaleDateString()}
+            value={list[5].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
           />
@@ -171,7 +132,7 @@ const Policy2 = () => {
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[6](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
@@ -179,13 +140,33 @@ const Policy2 = () => {
           <Text style={styles.text_2}>
             What will be the duration for solicit:
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Eg. 7 days/months"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+          <View
+            style={[
+              styles.input_vm,
+              {
+                margin: 0,
+                padding: 0,
+                paddingLeft: 5,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}>
+            <TextInput
+              value={list[7]}
+              placeholder="Enter number"
+              placeholderTextColor="gray"
+              onChangeText={value => list[8](value)}
+            />
+            <View>
+              <RadioGroup
+                radioButtons={list[9]}
+                onPress={data => list[10](data)}
+                containerStyle={styles.radio_hm}
+                layout='row'
+              />
+            </View>
+          </View>
 
           <Text style={styles.text_2}>What will be the governing laws?</Text>
           <View style={styles.input_vm}>
@@ -193,23 +174,12 @@ const Policy2 = () => {
               // countryCode={country}
               withFilter
               withFlag
-              withCountryNameButton={country}
+              withCountryNameButton={list[11]}
               withCallingCode
-              onSelect={value => setCountry(value)}
+              onSelect={value => list[12](value)}
             />
-            {console.log(country)}
+            {/* {console.log(country)} */}
           </View>
-
-          <Text style={styles.text_2}>
-            What will be the duration for solicit:
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Eg. 7 days/months"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
 
           <Text style={styles.text_2}>
             In case of dispute resolution will there be a litigation matter or
@@ -217,23 +187,24 @@ const Policy2 = () => {
           </Text>
           <View>
             <RadioGroup
-              radioButtons={radioButtons1}
-              onPress={data => setRadioButtons1(data)}
+              radioButtons={list[13]}
+              onPress={(data)=>list[14](data)}
               containerStyle={styles.radio_hm}
             />
           </View>
+          <TextInput
+            style={styles.input_vm}
+            value={list[15]}
+            placeholder="Stete"
+            placeholderTextColor="gray"
+            onChangeText={value => list[16](value)}
+          />
           <Text style={styles.text_2}>Will electronic notices be allowed?</Text>
           <View>
             <RadioGroup
-              radioButtons={radioButtons2}
-              onPress={data => setRadioButtons2(data)}
+              radioButtons={list[17]}
+              onPress={data => list[18](data)}
               containerStyle={styles.radio_hm}
-            />
-            <TextInput
-              style={styles.input_vm}
-              value={date.toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="Mention Others:"
             />
           </View>
         </View>

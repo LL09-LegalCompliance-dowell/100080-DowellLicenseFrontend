@@ -1,6 +1,12 @@
 import React, {Fragment} from 'react';
-import {useState} from 'react';
-import {ScrollView, View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {useState, useEffect} from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 
 import styles from '../Cookies/style';
 import colors from '../../../../assets/colors/colors';
@@ -9,10 +15,31 @@ import AppLoader from '../../../components/AppLoader';
 import Modal from 'react-native-modal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Policy3 = () => {
+const Policy3 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [scanedImage, setScanedImage] = useState(null);
+
+  // useEffect(() => {
+  //   requestPermission()
+  // }, [])
+
+  // const requestPermission = async () => {
+  //   try {
+  //     console.log('asking for permission')
+  //     const granted = await PermissionsAndroid.requestMultiple(
+  //       [PermissionsAndroid.PERMISSIONS.CAMERA,
+  //       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE]
+  //     )
+  //     if (granted['android.permission.CAMERA'] && granted['android.permission.WRITE_EXTERNAL_STORAGE']) {
+  //       console.log("You can use the camera");
+  //     } else {
+  //       console.log("Camera permission denied");
+  //     }
+  //   } catch (error) {
+  //     console.log('permission error', error)
+  //   }
+  // }
 
   return (
     <>
@@ -21,8 +48,8 @@ const Policy3 = () => {
       <Modal
         propagateSwipe
         isVisible={isModal1Visible}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
+        animationIn="slideInDown"
+        animationOut="slideOutUp"
         coverScreen={false}
         backdropColor="white"
         backdropOpacity={1}
@@ -32,24 +59,21 @@ const Policy3 = () => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal1Visible(false)}
         onBackButtonPress={() => setModal1Visible(false)}>
-        <View style={{position: 'absolute', top: 150, width: '100%'}}>
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+            }}>
             <TouchableOpacity
-              onPress={() => {}}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Take photo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={async () => {
-                ImagePicker.openPicker({
+              onPress={() => {
+                ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
@@ -58,7 +82,6 @@ const Policy3 = () => {
 
                   // console.log(image);
                   setScanedImage(image);
-                  setModal1Visible(false);
 
                   const data = new FormData();
                   data.append('file', {
@@ -77,9 +100,56 @@ const Policy3 = () => {
                     },
                   );
                   let responseJson = await res.json();
-                  // list[3](responseJson.file_data);
-                  // console.log(list[3]);
+                  list[4](responseJson.file_data);
+                  // console.log(list[4]);
                   setLoading(false);
+                  setModal1Visible(false);
+                });
+              }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={async () => {
+                ImagePicker.openPicker({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                }).then(async image => {
+                  setLoading(true);
+
+                  // console.log(image);
+                  setScanedImage(image);
+                  const data = new FormData();
+                  data.append('file', {
+                    uri: image.path,
+                    type: image.mime,
+                    name: 'photo.jpg',
+                  });
+                  let res = await fetch(
+                    'https://100080.pythonanywhere.com/api/attachments/',
+                    {
+                      method: 'post',
+                      body: data,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    },
+                  );
+                  let responseJson = await res.json();
+                  list[4](responseJson.file_data);
+                  // console.log(list[4]);
+                  setLoading(false);
+                  setModal1Visible(false);
                 });
               }}
               style={{
@@ -116,6 +186,14 @@ const Policy3 = () => {
       {/* Model 1 end */}
 
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text
+          style={
+            list[0]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
         <Text style={styles.text_1}>Company Details:</Text>
         <View style={{marginHorizontal: 15}}>
           <Text style={[styles.text_1, {fontSize: 15}]}>
@@ -123,10 +201,10 @@ const Policy3 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            // value={input1}
+            value={list[1]}
             placeholder=" Name of signatory"
             placeholderTextColor="gray"
-            // onChangeText={value => setInput1(value)}
+            onChangeText={value => list[2](value)}
           />
 
           {/* Scaned copy 1*/}
