@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   createDrawerNavigator,
@@ -18,7 +18,8 @@ const DrawerNavigation = ({Navigation}) => {
   const navigation = useNavigation();
   const Logout = () => {
     AsyncStorage.clear();
-    //navigation.navigate("Home")
+    navigation.navigate("AuthNavigator")
+    Alert.alert("Logged out successfully!")
   };
 
   return (
