@@ -22,7 +22,9 @@ const Header = ({title, leftIcon, rightIcon}) => {
   const opennDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
-
+  const gotoProfile = () => {
+    navigation.navigate('AuthNavigator',{screen:"Profile"})
+  }
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -60,7 +62,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
         </TouchableWithoutFeedback>
       )}
       {rightIcon === 'user' ? (
-        <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
+        <TouchableOpacity onPress={gotoProfile}>
           <FontAwesome
             style={styles.userIcon}
             name="user-circle"

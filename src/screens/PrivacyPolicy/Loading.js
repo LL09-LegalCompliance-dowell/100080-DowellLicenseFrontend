@@ -9,9 +9,9 @@ const Loading = ({navigation, route}) => {
     const res = await axios.get(
       `https://100087.pythonanywhere.com/api/legalpolicies/${session_id}/iagreestatus/`
     );
-    console.log("API response",res.data.data[0])
-    const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data.data[0];
-    await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
+    console.log("API response",res.data.data)
+    const {i_agree, isSuccess, policy_request_id, i_agreed_datetime} = res.data.data.filter((item) => item.legal_policy_type === "app-privacy-policy" )[0];
+    await AsyncStorage.setItem('previouslyAgreedDate', i_agreed_datetime);
     await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
     navigation.navigate('IntroductionScreen');
   
