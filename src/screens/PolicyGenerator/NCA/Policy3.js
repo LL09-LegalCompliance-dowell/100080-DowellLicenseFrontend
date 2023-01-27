@@ -1,107 +1,199 @@
 import React, {Fragment} from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   ScrollView,
   View,
   Text,
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
+
 import styles from '../Cookies/style';
 import colors from '../../../../assets/colors/colors';
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import RadioGroup from 'react-native-radio-buttons-group';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel,
-} from 'react-native-simple-radio-button';
+import ImagePicker from 'react-native-image-crop-picker';
+import AppLoader from '../../../components/AppLoader';
+import Modal from 'react-native-modal';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Policy3 = () => {
-  var [isPress1, setIsPress1] = useState(false);
-  var [isPress2, setIsPress2] = useState(false);
-  var [isPress3, setIsPress3] = useState(false);
+const Policy3 = ({list}) => {
+  const [isModal1Visible, setModal1Visible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [scanedImage, setScanedImage] = useState(null);
 
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
+  // useEffect(() => {
+  //   requestPermission()
+  // }, [])
 
-  const [value3Index, setvalue3Index] = useState(1);
-
-  const [radioButtons1, setRadioButtons1] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons2, setRadioButtons2] = useState([
-    {
-      id: '1',
-      label: 'When they download ',
-      value: 'When they download ',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'When they open the package',
-      value: 'When they open the package',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons3, setRadioButtons3] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  var touchProps1 = {
-    style: isPress1 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress1(true),
-  };
-  var touchProps2 = {
-    style: isPress2 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress2(true),
-  };
-  var touchProps3 = {
-    style: isPress3 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress3(true),
-  };
+  // const requestPermission = async () => {
+  //   try {
+  //     console.log('asking for permission')
+  //     const granted = await PermissionsAndroid.requestMultiple(
+  //       [PermissionsAndroid.PERMISSIONS.CAMERA,
+  //       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE]
+  //     )
+  //     if (granted['android.permission.CAMERA'] && granted['android.permission.WRITE_EXTERNAL_STORAGE']) {
+  //       console.log("You can use the camera");
+  //     } else {
+  //       console.log("Camera permission denied");
+  //     }
+  //   } catch (error) {
+  //     console.log('permission error', error)
+  //   }
+  // }
 
   return (
     <>
+      {loading ? <AppLoader /> : null}
+      {/* Model start 1*/}
+      <Modal
+        propagateSwipe
+        isVisible={isModal1Visible}
+        animationIn="slideInDown"
+        animationOut="slideOutUp"
+        coverScreen={false}
+        backdropColor="white"
+        backdropOpacity={1}
+        animationInTiming={700}
+        animationOutTiming={700}
+        avoidKeyboard={true}
+        backdropTransitionOutTiming={0}
+        onBackdropPress={() => setModal1Visible(false)}
+        onBackButtonPress={() => setModal1Visible(false)}>
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                ImagePicker.openCamera({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                }).then(async image => {
+                  setLoading(true);
+
+                  // console.log(image);
+                  setScanedImage(image);
+
+                  const data = new FormData();
+                  data.append('file', {
+                    uri: image.path,
+                    type: image.mime,
+                    name: 'photo.jpg',
+                  });
+                  let res = await fetch(
+                    'https://100080.pythonanywhere.com/api/attachments/',
+                    {
+                      method: 'post',
+                      body: data,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    },
+                  );
+                  let responseJson = await res.json();
+                  list[4](responseJson.file_data);
+                  // console.log(list[4]);
+                  setLoading(false);
+                  setModal1Visible(false);
+                });
+              }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={async () => {
+                ImagePicker.openPicker({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                }).then(async image => {
+                  setLoading(true);
+
+                  // console.log(image);
+                  setScanedImage(image);
+                  const data = new FormData();
+                  data.append('file', {
+                    uri: image.path,
+                    type: image.mime,
+                    name: 'photo.jpg',
+                  });
+                  let res = await fetch(
+                    'https://100080.pythonanywhere.com/api/attachments/',
+                    {
+                      method: 'post',
+                      body: data,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    },
+                  );
+                  let responseJson = await res.json();
+                  list[4](responseJson.file_data);
+                  // console.log(list[4]);
+                  setLoading(false);
+                  setModal1Visible(false);
+                });
+              }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>
+                Choose from gallery
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setModal1Visible(false);
+              }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      {/* Model 1 end */}
+
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text
+          style={
+            list[0]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
         <Text style={styles.text_1}>Company Details:</Text>
         <View style={{marginHorizontal: 15}}>
           <Text style={[styles.text_1, {fontSize: 15}]}>
@@ -109,19 +201,51 @@ const Policy3 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[1]}
             placeholder=" Name of signatory"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[2](value)}
           />
 
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="E-signature scanned copy"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+          {/* Scaned copy 1*/}
+          <TouchableOpacity
+            onPress={async () => {
+              setModal1Visible(true);
+            }}
+            style={[
+              styles.input_vm,
+              {
+                flexDirection: 'row',
+                justifyContent: scanedImage == null ? 'space-between' : null,
+              },
+            ]}>
+            {scanedImage == null ? (
+              <Text style={{color: 'gray', fontSize: 16}}>
+                E-signature scanned copy
+              </Text>
+            ) : (
+              <Text style={{color: 'black', fontSize: 16, marginRight: 5}}>
+                Uploaded
+              </Text>
+            )}
+            {scanedImage == null ? (
+              <>
+                <MaterialCommunityIcons
+                  // style={styles.userIcon}
+                  name="image-plus"
+                  size={35}
+                  color="gray"
+                />
+              </>
+            ) : (
+              <MaterialCommunityIcons
+                // style={styles.userIcon}
+                name="check-bold"
+                size={25}
+                color={colors.primary}
+              />
+            )}
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
