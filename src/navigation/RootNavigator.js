@@ -12,6 +12,7 @@ import ResultsDetailsScreen from '../screens/LicenseCompatibility/ResultsDetails
 import ApacheLicense from '../screens/ApacheLicense';
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
 import DrawerNavigator from './DrawerNavigator';
+import AuthNavigator from './AuthNavigator';
 import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
 import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
@@ -46,6 +47,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="HomeScreen"
           component={DrawerNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AuthNavigator"
+          component={AuthNavigator}
           options={{
             headerShown: false,
           }}
