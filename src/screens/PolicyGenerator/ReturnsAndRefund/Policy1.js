@@ -32,7 +32,7 @@ const findcurrency=(cvalue)=>{
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <Text style={list[16]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <Text style={styles.text_1}>Details:</Text>
-        <View style={{paddingHorizontal:11,paddingTop:16}}>
+        <View style={{paddingHorizontal:11,paddingTop:16,position:"relative"}}>
             <View >
                 <Text style={styles.text_2}>
                 Date:
@@ -97,7 +97,7 @@ const findcurrency=(cvalue)=>{
               maxLength={15}
             />
             <Text  style={valid_number ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
-            <View style ={{position:"absolute",top:465,left:155}} >
+            <View style ={{position:"absolute",top:492,left:170}} >
             <RadioGroup
               radioButtons={list[10]}
               onPress={(data)=>list[11](data)}

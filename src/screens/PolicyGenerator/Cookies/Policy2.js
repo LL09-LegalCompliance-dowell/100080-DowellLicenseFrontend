@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './style'
 import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,TouchableHighlight,TouchableOpacity} from 'react-native'
@@ -7,6 +7,7 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import { email_validation } from '../validations';
 
 const Policy2 = ({list}) => {
+ 
   const [valid_email , setValid_email]=useState(true);
   var touchProps1 = {                               
     style: list[4] ? styles.Pressed : styles.Normal, 
@@ -48,7 +49,7 @@ const Policy2 = ({list}) => {
               <TouchableHighlight {...touchProps1}>
                 <View style={{display:"flex",flexDirection:"row"}}>
                   <Text style={{color:"#585858"}}>Via Email</Text>
-                  <TouchableOpacity  style={list[4] ? {display:"flex"} : {display:"none"}} onPress={()=>list[5](false)}><Text style ={{color:"#585858"}} > x  </Text></TouchableOpacity>
+                  <TouchableOpacity  style={list[4] ? {display:"flex"} : {display:"none"}} onPress={()=>{list[5](false);setValid_email(true)}}><Text style ={{color:"#585858"}} > x  </Text></TouchableOpacity>
                 </View>
                 
               </TouchableHighlight>
