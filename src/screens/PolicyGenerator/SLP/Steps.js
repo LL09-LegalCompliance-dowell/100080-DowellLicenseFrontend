@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
-import Policy4 from '../Cookies/Policy4';
+import Policy4 from './Policy4';
+import Policy5 from './Policy5';
+import Policy6 from '../Cookies/Policy4';
+import {empty_validation, email_validation} from '../validations';
+
 const Steps = () => {
   const nextButton = {
     backgroundColor: '#489503',
@@ -80,8 +84,57 @@ const Steps = () => {
       },
     },
   ]);
+  const [radioButtons2, setRadioButtons2] = useState([
+    {
+      id: '1',
+      label: 'Individual',
+      value: 'Individual',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'Company',
+      value: 'Company',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Partnership',
+      value: 'Partnership',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '4',
+      label: 'Other',
+      value: 'Other',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+  const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
+  const handle_radiobuttons = state => setRadioButtons(state);
   const [input_1, setInput_1] = useState('');
   const handle_input_1 = state => setInput_1(state);
   const [input_2, setInput_2] = useState('');
@@ -98,6 +151,9 @@ const Steps = () => {
   const handle_input_7 = state => setInput_7(state);
   const [input_8, setInput_8] = useState('');
   const handle_input_8 = state => setInput_8(state);
+  // perty 2 starts here
+
+  const handle_radiobuttons2 = state => setRadioButtons2(state);
   const [input_9, setInput_9] = useState('');
   const handle_input_9 = state => setInput_9(state);
   const [input_10, setInput_10] = useState('');
@@ -110,13 +166,18 @@ const Steps = () => {
   const handle_input_13 = state => setInput_13(state);
   const [input_14, setInput_14] = useState('');
   const handle_input_14 = state => setInput_14(state);
+  const [input_15, setInput_15] = useState('');
+  const handle_input_15 = state => setInput_15(state);
+  const [input_16, setInput_16] = useState('');
+  const handle_input_16 = state => setInput_16(state);
   const [error_1, setError_1] = useState(false);
-  const [empty_validationn, setempty_validation] = useState(true);
-  const handle_radiobuttons = state => setRadioButtons(state);
 
   const states = [
+    empty_validationn,
     date,
     handle_date,
+    radioButtons,
+    handle_radiobuttons,
     input_1,
     handle_input_1,
     input_2,
@@ -133,6 +194,8 @@ const Steps = () => {
     handle_input_7,
     input_8,
     handle_input_8,
+    radioButtons2,
+    handle_radiobuttons2,
     input_9,
     handle_input_9,
     input_10,
@@ -145,9 +208,10 @@ const Steps = () => {
     handle_input_13,
     input_14,
     handle_input_14,
-    empty_validationn,
-    radioButtons,
-    handle_radiobuttons,
+    input_15,
+    handle_input_15,
+    input_16,
+    handle_input_16,
   ];
   const inputs = [
     input_1,
@@ -162,15 +226,17 @@ const Steps = () => {
     input_10,
     input_11,
     input_12,
-    // input_13,
-    // input_14,
+    input_13,
+    input_14,
+    input_15,
+    input_16,
   ];
   //2
   const [radioButtons_1, setRadioButtons_1] = useState([
     {
       id: '1',
-      label: 'Yes',
-      value: 'true',
+      label: 'Days',
+      value: 'days',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -181,8 +247,19 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'No',
-      value: 'false',
+      label: 'Months',
+      value: 'months',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Years',
+      value: 'years',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -269,6 +346,92 @@ const Steps = () => {
       },
     },
   ]);
+  const [radioButtons_5_2, setRadioButtons_5_2] = useState([
+    {
+      id: '1',
+      label: 'Yes',
+      value: 'true',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'No',
+      value: 'false',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+  const [radioButtons_6_2, setRadioButtons_6_2] = useState([
+    {
+      id: '1',
+      label: 'Days',
+      value: 'days',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'Months',
+      value: 'months',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Years',
+      value: 'years',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+  const [radioButtons_7_2, setRadioButtons_7_2] = useState([
+    {
+      id: '1',
+      label: 'Yes',
+      value: 'true',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'No',
+      value: 'false',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
   const [error_2, setError_2] = useState(false);
   const [empty_validationn_1, setempty_validation_1] = useState(true);
   const [input_1_1, setInput_1_1] = useState('');
@@ -291,39 +454,62 @@ const Steps = () => {
   const [input_7_1, setInput_7_1] = useState('');
   const handle_input_7_1 = state => setInput_7_1(state);
   const handle_radiobuttons_4 = state => setRadioButtons_4(state);
+  const handle_radiobuttons_5_2 = state => setRadioButtons_5_2(state);
   const [input_8_1, setInput_8_1] = useState('');
   const handle_input_8_1 = state => setInput_8_1(state);
+  // const [input_9_1, setInput_9_1] = useState('');
+  // const handle_input_9_1 = state => setInput_9_1(state);
+  const handle_radiobuttons_6_2 = state => setRadioButtons_6_2(state);
+  const handle_radiobuttons_7_2 = state => setRadioButtons_7_2(state);
 
   const states_1 = [
     empty_validationn_1,
     input_1_1,
-    handle_input_1_1,  
+    handle_input_1_1,
     input_2_1,
-    handle_input_2_1,  
+    handle_input_2_1,
     date_1,
     handle_date_1,
     input_3_1,
     handle_input_3_1,
     radioButtons_1,
     handle_radiobuttons_1,
-    input_4_1,
-    handle_input_4_1,
     radioButtons_2,
     handle_radiobuttons_2,
-    input_5_1,
-    handle_input_5_1,
+    input_4_1,
+    handle_input_4_1,
     radioButtons_3,
     handle_radiobuttons_3,
+    input_5_1,
+    handle_input_5_1,
+    radioButtons_4,
+    handle_radiobuttons_4,
     input_6_1,
     handle_input_6_1,
     input_7_1,
     handle_input_7_1,
-    radioButtons_4,
-    handle_radiobuttons_4,
+    radioButtons_5_2,
+    handle_radiobuttons_5_2,
     input_8_1,
     handle_input_8_1,
+    radioButtons_6_2,
+    handle_radiobuttons_6_2,
+    // input_9_1,
+    // handle_input_9_1,
+    // radioButtons_7_2,
+    // handle_radiobuttons_7_2,
   ];
-  const inputs_1 = [input_1_1, input_2_1, input_3_1, input_4_1, input_5_1, input_6_1, input_7_1, input_8_1];
+  const inputs_1 = [
+    input_1_1,
+    input_2_1,
+    input_3_1,
+    input_4_1,
+    input_5_1,
+    input_6_1,
+    input_7_1,
+    input_8_1,
+    // input_9_1,
+  ];
   //3
   const [radioButtons_5, setRadioButtons_5] = useState([
     {
@@ -354,8 +540,8 @@ const Steps = () => {
   const [radioButtons_6, setRadioButtons_6] = useState([
     {
       id: '1',
-      label: 'Yes',
-      value: 'true',
+      label: 'Term is Indefinite',
+      value: 'Term is Indefinite',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -366,8 +552,19 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'No',
-      value: 'false',
+      label: 'End upon a agreed date',
+      value: 'End upon a agreed date',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'End upon occurrence of a defined event',
+      value: 'End upon occurrence of a defined event',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -377,10 +574,87 @@ const Steps = () => {
     },
   ]);
 
-  const [error_3, setError_3] = useState(false);
+  const [radioButtons_6_3, setRadioButtons_6_3] = useState([
+    {
+      id: '1',
+      label: 'Days',
+      value: 'days',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'Months',
+      value: 'months',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Years',
+      value: 'years',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+
+  const [radioButtons_7_3, setRadioButtons_7_3] = useState([
+    {
+      id: '1',
+      label: 'Days',
+      value: 'days',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'Months',
+      value: 'months',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Years',
+      value: 'years',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+
+
   const [empty_validationn_2, setempty_validation_2] = useState(true);
+  const [error_3, setError_3] = useState(false);
   const handle_radiobuttons_5 = state => setRadioButtons_5(state);
   const handle_radiobuttons_6 = state => setRadioButtons_6(state);
+  const handle_radiobuttons_6_3 = state => setRadioButtons_6_3(state);
+  const handle_radiobuttons_7_3 = state => setRadioButtons_7_3(state);
   const [date_2, setDate_2] = useState(new Date());
   const handle_date_2 = state => setDate_2(state);
   const [input_1_2, setInput_1_2] = useState('');
@@ -414,34 +688,45 @@ const Steps = () => {
     handle_radiobuttons_5,
     radioButtons_6,
     handle_radiobuttons_6,
+    input_1_2,
+    handle_input_1_2,
+    input_2_2,
+    handle_input_2_2,
+    input_3_2,
+    handle_input_3_2,
+    radioButtons_6_3,
+    handle_radiobuttons_6_3,
+    input_4_2,
+    handle_input_4_2,
+    input_5_2,
+    handle_input_5_2,
+    input_6_2,
+    handle_input_6_2,
     date_2,
     handle_date_2,
-    input_1_2,
-    handle_input_1_2,  
-    input_2_2,
-    handle_input_2_2,  
-    input_3_2,
-    handle_input_3_2,  
-    input_4_2,
-    handle_input_4_2,  
-    input_5_2,
-    handle_input_5_2, 
-    input_6_2,
-    handle_input_6_2, 
     input_7_2,
-    handle_input_7_2, 
+    handle_input_7_2,
+    radioButtons_7_3,
+    handle_radiobuttons_7_3,
     date_3,
     handle_date_3,
     input_8_2,
-    handle_input_8_2, 
-    date_4,
-    handle_date_4,
+    handle_input_8_2,
     input_9_2,
-    handle_input_9_2, 
-    input_10_2,
-    handle_input_10_2, 
+    handle_input_9_2,
   ];
-  const inputs_2 = [input_1_2, input_2_2, input_3_2, input_4_2, input_5_2, input_6_2, input_7_2, input_8_2, input_9_2, input_10_2];
+  const inputs_2 = [
+    input_1_2,
+    input_2_2,
+    input_3_2,
+    input_4_2,
+    input_5_2,
+    input_6_2,
+    input_7_2,
+    input_8_2,
+    input_9_2,
+    // input_10_2,
+  ];
   //4
   const [radioButtons_7, setRadioButtons_7] = useState([
     {
@@ -573,7 +858,6 @@ const Steps = () => {
     },
   ]);
 
-
   const [error_4, setError_4] = useState(false);
   const [empty_validationn_3, setempty_validation_3] = useState(true);
   const [input_1_3, setInput_1_3] = useState('');
@@ -608,13 +892,12 @@ const Steps = () => {
   const [input_13_3, setInput_13_3] = useState('');
   const handle_input_13_3 = state => setInput_13_3(state);
 
-
   const states_3 = [
     empty_validationn_3,
     input_1_3,
-    handle_input_1_3, 
+    handle_input_1_3,
     radioButtons_7,
-    handle_radiobuttons_7, 
+    handle_radiobuttons_7,
     input_2_3,
     handle_input_2_3,
     input_3_3,
@@ -624,7 +907,7 @@ const Steps = () => {
     input_5_3,
     handle_input_5_3,
     radioButtons_8,
-    handle_radiobuttons_8, 
+    handle_radiobuttons_8,
     radioButtons_9,
     handle_radiobuttons_9,
     input_6_3,
@@ -648,7 +931,21 @@ const Steps = () => {
     input_13_3,
     handle_input_13_3,
   ];
-  const inputs_3 = [input_1_3, input_2_3, input_3_3, input_4_3, input_5_3, input_6_3, input_7_3, input_8_3, input_9_3, input_10_3, input_11_3, input_12_3, input_13_3];
+  const inputs_3 = [
+    input_1_3,
+    input_2_3,
+    input_3_3,
+    input_4_3,
+    input_5_3,
+    input_6_3,
+    input_7_3,
+    input_8_3,
+    input_9_3,
+    input_10_3,
+    input_11_3,
+    input_12_3,
+    input_13_3,
+  ];
   //5
   const [error_5, setError_5] = useState(false);
   const [empty_validationn_4, setempty_validation_4] = useState(true);
@@ -659,66 +956,98 @@ const Steps = () => {
   const states_4 = [
     empty_validationn_4,
     input_1_4,
-    handle_input_1_4, 
+    handle_input_1_4,
     // scanedCopy1,
-    handle_scanedCopy1
-  ]
-      
-    return (
-        <>
-          <Header title="Generator" />
-          <View
-            style={{
-              flex: 1,
-              paddingTop: 45,
-              backgroundColor: 'white',
-              paddingHorizontal:15,
-            }}>
-            <ProgressSteps
-              style={{width: '100px'}}
-              marginBottom={15}
-              nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-              <ProgressStep
-                nextBtnStyle={nextButton}
-                nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-                <View >
-                  <Policy1 />
-                </View>
-              </ProgressStep>
-              <ProgressStep
-                nextBtnStyle={nextButton}
-                nextBtnTextStyle={{color: 'white', fontSize: 18}}
-                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-    
-                previousBtnStyle={previousButton}>
-                <View >
-                  <Policy2 />
-                </View>
-              </ProgressStep>
-              <ProgressStep
-                nextBtnStyle={nextButton}
-                nextBtnTextStyle={{color: 'white', fontSize: 18}}
-                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-    
-                previousBtnStyle={previousButton}>
-                <View >
-                  <Policy3 />
-                </View>
-              </ProgressStep>
-              <ProgressStep
-                nextBtnStyle={nextButton}
-                nextBtnTextStyle={{color: 'white', fontSize: 18}}
-                previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-                finishBtnText="Done"
-                previousBtnStyle={previousButton}>
-                <View >
-                  <Policy4 />
-                </View>
-              </ProgressStep>
-            </ProgressSteps>
-          </View>
-        </>
-      );
-}
+    handle_scanedCopy1,
+  ];
 
-export default Steps
+  return (
+    <>
+      <Header title="Generator" />
+      <View
+        style={{
+          flex: 1,
+          paddingTop: 45,
+          backgroundColor: 'white',
+          paddingHorizontal: 15,
+        }}>
+        <ProgressSteps
+          style={{width: '100px'}}
+          marginBottom={15}
+          nextBtnTextStyle={{color: 'white', fontSize: 18}}>
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            errors={error_1}
+            onNext={() => {
+              setempty_validation(empty_validation(inputs));
+              const x = empty_validation(inputs);
+              setError_1(!x);
+            }}>
+            <View>
+              <Policy1 list={states} />
+            </View>
+          </ProgressStep>
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_2}
+            onNext={() => {
+              setempty_validation_1(empty_validation(inputs_1));
+              const x = empty_validation(inputs_1);
+              setError_2(!x);
+            }}>
+            <View>
+              <Policy2 list={states_1} />
+            </View>
+          </ProgressStep>
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_3}
+            onNext={() => {
+              setempty_validation_2(empty_validation(inputs_2));
+              const x = empty_validation(inputs_2);
+              setError_3(!x);
+            }}>
+            <View>
+              <Policy3 list={states_2} />
+            </View>
+          </ProgressStep>
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_4}
+            onNext={() => {
+              setempty_validation_3(empty_validation(inputs_3));
+              const x = empty_validation(inputs_3);
+              setError_4(!x);
+            }}>
+            <View>
+              <Policy4 list={states_3} />
+            </View>
+          </ProgressStep>
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_5}
+            onNext={() => {
+              setempty_validation_4(empty_validation(inputs_4));
+              const x = empty_validation(inputs_4);
+              setError_5(!x);
+            }}>
+            <View>
+              <Policy5 list={states_4} />
+            </View>
+          </ProgressStep>
+        </ProgressSteps>
+      </View>
+    </>
+  );
+};
+
+export default Steps;

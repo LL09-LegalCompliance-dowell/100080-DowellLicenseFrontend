@@ -48,7 +48,7 @@ const Policy4 = ({list}) => {
             onPress={(data)=>list[4](data)}
             containerStyle={styles.radio_hm}
           />
-
+<Text style={styles.text_3}>Clause 9.3</Text>
           <Text style={styles.text_2}>
             For what period will this warranty apply?
           </Text>
@@ -60,7 +60,7 @@ const Policy4 = ({list}) => {
             onChangeText={value => list[6](value)}
           />
 
-          <Text style={styles.text_3}>Clause 9.3</Text>
+          <Text style={styles.text_3}>Clause 9.4</Text>
           <Text style={styles.text_2}>What is the scope of this warranty?</Text>
           <TextInput
             style={styles.input_vm}
@@ -70,7 +70,7 @@ const Policy4 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
-          <Text style={styles.text_3}>Clause 9.4</Text>
+          <Text style={styles.text_3}>Clause 9.5</Text>
           <Text style={styles.text_2}>
             What is the jurisdictional coverage of the warranty?
           </Text>
