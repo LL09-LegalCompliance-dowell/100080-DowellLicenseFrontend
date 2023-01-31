@@ -288,6 +288,19 @@ const Steps = () => {
       else{
         m="Other"
       }
+      let n = 0
+      if (input_1_2 !==""){
+        n=input_1_2
+      }
+      const witness_2 = witness.map((item)=>{
+        return {
+          full_name : item.name ,
+          address_line_1: item.address_1,
+          address_line_2: item.address_2,
+          address_line_3: item.address_3
+        }
+      })
+      console.log(witness_2)
       const request_object={
         agreement_compliance_type: "nda",
         party_1_full_name: input_1,
@@ -311,18 +324,11 @@ const Steps = () => {
         what_shall_be_the_governing_this_law_this_agrement: input_2_1,
         date_of_execution_of_document: generate_date(date.toLocaleDateString()),
         number_of_witness: parseFloat(input_3_1),
-        "witness_1_full_name": "Witness name",
-        "witness_1_address_line_1": "Witness Street",
-        "witness_1_address_line_2": "",
-        "witness_1_address_line_3": "",
-        "witness_2_full_name": "Witness name",
-        "witness_2_address_line_1": "Witness Street",
-        "witness_2_address_line_2": "",
-        "witness_2_address_line_3": "",
+        witnesses: witness_2,
         will_the_obligations_of_confidentiality_subsist_after_expiry: y,
         what_will_be_the_date_for_termination_of_this_nda: generate_date(date_1.toLocaleDateString()),
         will_the_party_be_allow_to_enter_into_similar_arragements_with_other_party: z,
-        the_period_a_party_is_entitle_to_enter_into_similar_arragement_with_other_party:parseFloat(input_1_2),
+        the_period_a_party_is_entitle_to_enter_into_similar_arragement_with_other_party:parseFloat(n),
         the_period_a_party_is_entitle_to_enter_into_similar_arragement_with_other_party_unit:l,
         how_will_the_agreement_be_terminated: m,
         other_medium_agreement_can_be_terminated: input_2_2
