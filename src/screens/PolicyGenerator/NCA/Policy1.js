@@ -9,7 +9,7 @@ const Policy1 = ({list}) => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text
+        <Text
           style={
             list[0]
               ? styles.hide
