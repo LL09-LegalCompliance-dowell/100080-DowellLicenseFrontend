@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
+import { useNavigation } from '@react-navigation/native';
 
 const generate_date = date => {
   const temp = date.split('/');
@@ -12,6 +13,8 @@ const generate_date = date => {
 };
 
 const Steps = () => {
+  const navigation = useNavigation()
+
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
@@ -111,13 +114,14 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              const y = email_validation(input_1_4);
-              const z = !y;
-              if (z) {
-                alert('please enter valid email');
-              } else {
-                //api
-              }
+              navigation.navigate('HomeScreen')
+              // const y = email_validation(input_1_4);
+              // const z = !y;
+              // if (z) {
+              //   alert('please enter valid email');
+              // } else {
+              //   //api
+              // }
             }}>
             <View>
               <Policy4 list={states_4} object={request_object} />

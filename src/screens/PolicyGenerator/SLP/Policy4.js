@@ -48,7 +48,39 @@ const Policy4 = ({list}) => {
             onPress={(data)=>list[4](data)}
             containerStyle={styles.radio_hm}
           />
-<Text style={styles.text_3}>Clause 9.3</Text>
+           <Text style={styles.text_3}>Clause 9.3</Text>
+          <Text style={styles.text_2}>
+          For what period will this warranty apply?
+          </Text>
+          <View
+            style={[
+              styles.input_vm,
+              {
+                margin: 0,
+                padding: 0,
+                paddingLeft: 5,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}>
+            <TextInput
+              style={styles.input_vm}
+              value={list[21]}
+              placeholder="Enter number"
+              placeholderTextColor="gray"
+              onChangeText={value => list[22](value)}
+            />
+            <View>
+              <RadioGroup
+                radioButtons={list[23]}
+                onPress={data => list[24](data)}
+                containerStyle={styles.radio_hm}
+                // layout="row"
+              />
+            </View>
+          </View>
+<Text style={styles.text_3}>Clause 9.4</Text>
           <Text style={styles.text_2}>
             For what period will this warranty apply?
           </Text>
@@ -60,7 +92,7 @@ const Policy4 = ({list}) => {
             onChangeText={value => list[6](value)}
           />
 
-          <Text style={styles.text_3}>Clause 9.4</Text>
+          <Text style={styles.text_3}>Clause 9.5</Text>
           <Text style={styles.text_2}>What is the scope of this warranty?</Text>
           <TextInput
             style={styles.input_vm}
@@ -70,7 +102,7 @@ const Policy4 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
-          <Text style={styles.text_3}>Clause 9.5</Text>
+          <Text style={styles.text_3}>Clause 9.6</Text>
           <Text style={styles.text_2}>
             What is the jurisdictional coverage of the warranty?
           </Text>
