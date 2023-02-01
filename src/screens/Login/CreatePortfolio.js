@@ -8,7 +8,7 @@ import styles from './style';
 const CreatePortfolio = ({navigation, route}) => {
   const [loading, setLoading] = useState(false)
   const {session_id}= route.params;
-  const URL = `https://100093.pythonanywhere.com/new/?session_id=${session_id}`
+  const URL = `https://100093.pythonanywhere.com/?session_id=${session_id}`
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     console.log(url)

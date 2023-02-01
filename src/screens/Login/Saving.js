@@ -45,7 +45,7 @@ const Saving = ({navigation, route}) => {
       const portfolio = response.data.portfolio_info.filter((item) => item.product === "Legalzard")
       const username = await AsyncStorage.getItem("username");
       console.log("Portfolio",portfolio)
-      !portfolio.length && navigation.navigate("NoPortfolio", {"session_id":session_id, "username":username})
+      portfolio.length && navigation.navigate("NoPortfolio", {"session_id":session_id, "username":username})
       const {member_type, org_name, portfolio_name, role} = portfolio[0];
       console.log(member_type, org_name, portfolio_name, role)
       member_type && await AsyncStorage.setItem('member_type', member_type);
