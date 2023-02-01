@@ -64,29 +64,9 @@ export default IntroductionScreen = ({route, navigation}) => {
           >
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('RootNavigator');
-          }}
-          style={[
-            styles.getStarted,
-            {
-              backgroundColor: '#078F04',
-            },
-          ]}>
-          <Text
-            style={{
-              color: '#fff',
-              fontSize: 20,
-              fontWeight: 'bold',
-              cursor:"pointer"
-            }}>
-            Go to HomeScreen
-          </Text>
-        </TouchableOpacity>
         
         {/* Policy statrts here */}
-        <View style={[styles.policyWrapper, {marginTop: 120}]}>
+        <View style={[styles.policyWrapper, {marginTop: 50}]}>
           {/* <CheckBox
             disabled={false}
             value={agree}

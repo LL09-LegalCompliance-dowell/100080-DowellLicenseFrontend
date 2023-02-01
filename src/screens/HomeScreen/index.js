@@ -95,7 +95,9 @@ const Home = ({navigation}) => {
           <View style={styles.linkContainer}>
             <Text style={styles.link}>Check compatibility</Text>
             <Text style={styles.link}>Generate Policies</Text>
-            <Text style={styles.link}>View Privacy Policy</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('AuthNavigator', {screen:'PrivacyPolicy'} )}>
+              <Text style={styles.link}>View Privacy Policy</Text>
+            </TouchableOpacity>            
           </View>
 
           {/* Contact Info */}

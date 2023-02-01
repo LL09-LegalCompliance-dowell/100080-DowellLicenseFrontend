@@ -21,6 +21,9 @@ const LoginWebView = ({navigation}) => {
       console.log("Session_Id",session_id)
       setSession_id(session_id)
       }
+      if (url === "https://100093.pythonanywhere.com/" || url === "https://100093.pythonanywhere.com/home") {
+      navigation.navigate('WebView');
+      }
       if (url.startsWith("https://play.google.com/store/apps/details?id=com.legalzard.policies")) {
         setLoading(true)
         getPortfolio();
