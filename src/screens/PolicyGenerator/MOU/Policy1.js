@@ -9,31 +9,14 @@ import {
 } from 'react-native';
 import styles from '../Cookies/style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import RadioGroup from 'react-native-radio-buttons-group';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
+const Policy1 = ({list}) => {
   const [isPartyOneOpen, setIsPartyOneOpen] = useState(true);
   const [isPartyTwoOpen, setIsPartyTwoOpen] = useState(false);
-  const [input_1, setInput_1] = useState('');
-  const [input_2, setInput_2] = useState('');
-  const [input_3, setInput_3] = useState('');
-  const [input_4, setInput_4] = useState('');
-  const [input_5, setInput_5] = useState('');
-  const [input_6, setInput_6] = useState('');
-  const [input_7, setInput_7] = useState('');
-  const [input_8, setInput_8] = useState('');
-  const [input_9, setInput_9] = useState('');
-  const [input_10, setInput_10] = useState('');
-  const [input_11, setInput_11] = useState('');
-  const [input_12, setInput_12] = useState('');
-  const [input_13, setInput_13] = useState('');
-  const [input_14, setInput_14] = useState('');
-  const [input_15, setInput_15] = useState('');
-  const [input_16, setInput_16] = useState('');
-
   const togglePartyOne = e => {
     setIsPartyOneOpen(prev => !prev);
   };
@@ -45,11 +28,19 @@ const Policy1 = () => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text
+          style={
+            list[0]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
           <TextInput
             style={styles.input}
-            value={date.toLocaleDateString()}
+            value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
           />
@@ -60,7 +51,7 @@ const Policy1 = () => {
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[2](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
@@ -88,13 +79,21 @@ const Policy1 = () => {
           </TouchableOpacity>
         </View>
         <View style={isPartyOneOpen ? {paddingHorizontal: 11} : styles.hide}>
+          <Text style={styles.text_2}>Entity Type:</Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[3]}
+              onPress={data => list[4](data)}
+              containerStyle={styles.radio_hm}
+            />
+          </View>
           <Text style={styles.text_2}>Full Name of the Individual:</Text>
           <TextInput
             style={styles.input_um}
-            value={input_1}
+            value={list[5]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => setInput_1(value)}
+            onChangeText={value => list[6](value)}
           />
           <Text
             style={{
@@ -109,63 +108,86 @@ const Policy1 = () => {
             }}>
             *Include Middle Name
           </Text>
+
           <Text style={styles.text_2}>Address of the company: </Text>
           <TextInput
             style={styles.input_vm}
-            value={input_2}
-            placeholder=" Address Line 1"
+            value={list[7]}
+            placeholder=" Address Line 1 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[8](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input_2}
-            placeholder=" Address Line 2"
+            value={list[9]}
+            placeholder=" Address Line 2 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[10](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input_2}
+            value={list[11]}
             placeholder=" Address Line 3"
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[12](value)}
           />
           <Text style={styles.text_2}>PIN Code:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_3}
-            placeholder=" Eg. 202002"
+            value={list[13]}
+            placeholder=" Eg. 202002 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_3(value)}
+            onChangeText={value => list[14](value)}
           />
+
           <Text style={styles.text_2}>State:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_4}
-            placeholder=" Eg. Maharashtra"
+            value={list[15]}
+            placeholder=" Select State "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_4(value)}
+            onChangeText={value => list[16](value)}
           />
           <Text style={styles.text_2}>Country:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_5}
-            placeholder=" Eg. India"
+            value={list[17]}
+            placeholder=" Select Country "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_5(value)}
+            onChangeText={value => list[18](value)}
           />
-          <Text style={styles.text_2}>
-            What shall be the period mentioned?{' '}
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input_6}
-            placeholder=" Eg."
-            placeholderTextColor="gray"
-            onChangeText={value => setInput_6(value)}
-          />
+          <Text style={styles.text_3}>Under the terms of understanding</Text>
+          <Text style={styles.text_2}>What shall be the period mentioned?</Text>
+          <View
+            style={[
+              styles.input_vm,
+              {
+                margin: 0,
+                padding: 0,
+                paddingLeft: 5,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}>
+            <TextInput
+              style={styles.input_vm}
+              value={list[19]}
+              placeholder="Enter number"
+              placeholderTextColor="gray"
+              onChangeText={value => list[20](value)}
+            />
+            <View>
+              <RadioGroup
+                radioButtons={list[21]}
+                onPress={data => list[22](data)}
+                containerStyle={styles.radio_hm}
+                // layout="row"
+              />
+            </View>
+          </View>
         </View>
+
         <View style={styles.partyDetails}>
           <Text style={styles.text_4}>Party 2:</Text>
           <View style={styles.horizontalLine} />
@@ -187,14 +209,22 @@ const Policy1 = () => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={isPartyTwoOpen ? {paddingHorizontal: 11} : styles.hide}>
+        <View style={isPartyOneOpen ? {paddingHorizontal: 11} : styles.hide}>
+          <Text style={styles.text_2}>Entity Type:</Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[23]}
+              onPress={data => list[24](data)}
+              containerStyle={styles.radio_hm}
+            />
+          </View>
           <Text style={styles.text_2}>Full Name of the Individual:</Text>
           <TextInput
             style={styles.input_um}
-            value={input_1}
+            value={list[25]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => setInput_1(value)}
+            onChangeText={value => list[26](value)}
           />
           <Text
             style={{
@@ -209,62 +239,84 @@ const Policy1 = () => {
             }}>
             *Include Middle Name
           </Text>
+
           <Text style={styles.text_2}>Address of the company: </Text>
           <TextInput
             style={styles.input_vm}
-            value={input_2}
-            placeholder=" Address Line 1"
+            value={list[27]}
+            placeholder=" Address Line 1 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[28](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input_2}
-            placeholder=" Address Line 2"
+            value={list[29]}
+            placeholder=" Address Line 2 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[30](value)}
           />
           <TextInput
             style={styles.input_vm}
-            value={input_2}
+            value={list[31]}
             placeholder=" Address Line 3"
             placeholderTextColor="gray"
-            onChangeText={value => setInput_2(value)}
+            onChangeText={value => list[32](value)}
           />
           <Text style={styles.text_2}>PIN Code:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_3}
-            placeholder=" Eg. 202002"
+            value={list[33]}
+            placeholder=" Eg. 202002 "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_3(value)}
+            onChangeText={value => list[34](value)}
           />
+
           <Text style={styles.text_2}>State:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_4}
-            placeholder=" Eg. Maharashtra"
+            value={list[35]}
+            placeholder=" Select State "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_4(value)}
+            onChangeText={value => list[36](value)}
           />
           <Text style={styles.text_2}>Country:</Text>
           <TextInput
             style={styles.input_vm}
-            value={input_5}
-            placeholder=" Eg. India"
+            value={list[37]}
+            placeholder=" Select Country "
             placeholderTextColor="gray"
-            onChangeText={value => setInput_5(value)}
+            onChangeText={value => list[38](value)}
           />
-          <Text style={styles.text_2}>
-            What shall be the period mentioned?{' '}
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input_6}
-            placeholder=" Eg."
-            placeholderTextColor="gray"
-            onChangeText={value => setInput_6(value)}
-          />
+          <Text style={styles.text_3}>Under the terms of understanding</Text>
+          <Text style={styles.text_2}>What shall be the period mentioned?</Text>
+          <View
+            style={[
+              styles.input_vm,
+              {
+                margin: 0,
+                padding: 0,
+                paddingLeft: 5,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}>
+            <TextInput
+              style={styles.input_vm}
+              value={list[39]}
+              placeholder="Enter number"
+              placeholderTextColor="gray"
+              onChangeText={value => list[40](value)}
+            />
+            <View>
+              <RadioGroup
+                radioButtons={list[41]}
+                onPress={data => list[42](data)}
+                containerStyle={styles.radio_hm}
+                // layout="row"
+              />
+            </View>
+          </View>
         </View>
       </ScrollView>
     </>

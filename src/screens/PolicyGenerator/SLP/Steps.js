@@ -857,6 +857,42 @@ const Steps = () => {
       },
     },
   ]);
+  const [radioButtons_7_4, setRadioButtons_7_4] = useState([
+    {
+      id: '1',
+      label: 'Days',
+      value: 'days',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'Months',
+      value: 'months',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '3',
+      label: 'Years',
+      value: 'years',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
 
   const [error_4, setError_4] = useState(false);
   const [empty_validationn_3, setempty_validation_3] = useState(true);
@@ -877,6 +913,7 @@ const Steps = () => {
   const handle_input_6_3 = state => setInput_6_3(state);
   const handle_radiobuttons_10 = state => setRadioButtons_10(state);
   const handle_radiobuttons_11 = state => setRadioButtons_11(state);
+  const handle_radiobuttons_7_4 = state => setRadioButtons_7_4(state);
   const [input_7_3, setInput_7_3] = useState('');
   const handle_input_7_3 = state => setInput_7_3(state);
   const [input_8_3, setInput_8_3] = useState('');
@@ -900,6 +937,8 @@ const Steps = () => {
     handle_radiobuttons_7,
     input_2_3,
     handle_input_2_3,
+    radioButtons_7_4,
+    handle_radiobuttons_7_4,
     input_3_3,
     handle_input_3_3,
     input_4_3,
@@ -912,14 +951,15 @@ const Steps = () => {
     handle_radiobuttons_9,
     input_6_3,
     handle_input_6_3,
+    input_7_3,
+    handle_input_7_3,
     radioButtons_10,
     handle_radiobuttons_10,
     radioButtons_11,
     handle_radiobuttons_11,
-    input_7_3,
-    handle_input_7_3,
     input_8_3,
     handle_input_8_3,
+    
     input_9_3,
     handle_input_9_3,
     input_10_3,

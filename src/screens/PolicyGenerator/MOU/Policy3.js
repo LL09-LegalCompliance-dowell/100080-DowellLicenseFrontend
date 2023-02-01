@@ -9,7 +9,7 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
-const Policy3 = () => {
+const Policy3 = ({list}) => {
 
   var [ isPress1, setIsPress1 ] = useState(false);
   var [ isPress2, setIsPress2 ] = useState(false);
@@ -89,6 +89,14 @@ const Policy3 = () => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+    <Text
+          style={
+            list[0]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
       <Text style={styles.text_1}>Company Details:</Text>
       <View style={{paddingHorizontal:11,paddingTop:16}}>
         <View style={{position: 'relative',fontWeight:"400"}}>
@@ -97,132 +105,91 @@ const Policy3 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={date.toLocaleDateString()}
+            value={list[1]}
+            placeholder="  Select State"
+            placeholderTextColor="gray"
+            onChangeText={value => list[2](value)}
+          />
+          <Text style={styles.text_2}>
+          Which state laws shall be the governing laws in case of reimbursement?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[3]}
+            placeholder="  Select State"
+            placeholderTextColor="gray"
+            onChangeText={value => list[4](value)}
+          />
+          <Text style={styles.text_2}>
+          How many parties will enter this MOU?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[5]}
+            placeholder="  Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[6](value)}
+          />
+        </View>
+        <Text style={styles.text_2}>Should this MOU include a confidentiality clause?</Text>
+        <View >
+          <RadioGroup
+            radioButtons={list[7]}
+            onPress={(data)=>list[8](data)}
+            containerStyle={styles.radio_hm}
+          />
+        </View>
+
+        <Text style={styles.text_2}>Does this MOU restrict working with competitors for an ascertain period of time after leaving this project? If yes, then what is the period?</Text>
+        <View >
+          <RadioGroup
+            radioButtons={list[9]}
+            onPress={(data)=>list[10](data)}
+            containerStyle={styles.radio_hm}
+          />
+        </View>
+        <Text style={styles.text_2}>Date for this legally binding definitive agreement.</Text>
+        <TextInput
+            style={styles.input}
+            value={list[11].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray" 
+            placeholderTextColor="gray"
           />
           <ModalDatePicker
             button={
               <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray"/>
+                <EvilIcons name={'calendar'} size={35} color="gray" />
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[12](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
-        </View>
-        <Text style={styles.text_2}>Should this MOU include a confidentiality clause?</Text>
-        <RadioForm
-          formHorizontal={false}
-          animation={true}
-          style={{marginHorizontal:27,marginVertical:7}}
-        >
-   
-              <RadioButton labelHorizontal={true} key={0} style={value3Index ===0? {marginBottom:20}:{marginBottom:4}} >
-                {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                <RadioButtonInput
-                  obj={{label: 'Yes', value: 0 }}
-                  index={0}
-                  isSelected={value3Index === 0}
-                  onPress={()=>setvalue3Index(0)}
-                  borderWidth={1}
-                  buttonInnerColor={colors.primary}
-                  buttonOuterColor={"#C4C4C4"}
-                  buttonSize={9}
-                  buttonOuterSize={18}
-                  buttonWrapStyle={{marginLeft: 10}}
-                />
-                <RadioButtonLabel
-                  obj={{label: 'Yes', value: 0 }}
-                  index={0}
-                  labelHorizontal={true}
-                  onPress={()=>setvalue3Index(0)}
-                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
-                />
-              </RadioButton>
-              {value3Index===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
-              <TouchableHighlight {...touchProps1}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Over phone</Text>
-                  <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
-                </View>
-                
-              </TouchableHighlight>
-              
-              <TouchableHighlight {...touchProps2}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Via Email </Text>
-                  <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
-                </View>
-              </TouchableHighlight>
-
-              <TouchableHighlight {...touchProps3}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>In-person</Text>
-                  <TouchableOpacity style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
-                </View>
-              </TouchableHighlight>
-
-              </View> }
-
-              <RadioButton labelHorizontal={true} key={1} style={value3Index ===0? {marginTop:20}:{marginTop:4}} >
-                {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                <RadioButtonInput
-                  obj={{label: 'Not Available', value: 1 }}
-                  index={1}
-                  isSelected={value3Index === 1}
-                  onPress={()=>setvalue3Index(1)}
-  
-                  borderWidth={1}
-                  buttonInnerColor={colors.primary}
-                  buttonOuterColor={"#C4C4C4"}
-                  buttonSize={9}
-                  buttonOuterSize={18}
-                  buttonWrapStyle={{marginLeft: 10}}
-                />
-                <RadioButtonLabel
-                  obj={{label: 'Not Available', value: 1 }}
-                  index={1}
-                  labelHorizontal={true}
-                  onPress={()=>setvalue3Index(1)}
-                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
-                />
-              </RadioButton>
-
-        </RadioForm>
-
-        <Text style={styles.text_2}>Will it state how often maintenance will occur and on what schedule?</Text>
+        <Text style={styles.text_2}>Should the parties agree to refrain from negotiating with any third parties while this MOU is in effect. (Will it be exclusive or non exclusive?)</Text> 
         <View >
           <RadioGroup
-            radioButtons={radioButtons1}
-            onPress={(data)=>setRadioButtons1(data)}
+            radioButtons={list[13]}
+            onPress={(data)=>list[14](data)}
             containerStyle={styles.radio_hm}
           />
         </View>
-        <Text style={styles.text_2}>What will be the start date for the users to be bound by the terms and conditions?</Text>
+        <Text style={styles.text_2}>Will this MOU agreement be terminated in case of force majeure?</Text>
         <View >
           <RadioGroup
-            radioButtons={radioButtons2}
-            onPress={(data)=>setRadioButtons2(data)}
+            radioButtons={list[15]}
+            onPress={(data)=>list[16](data)}
             containerStyle={styles.radio_hm}
           />
         </View>
-        <Text style={styles.text_2}>Will the user be able to install the software on more than one device?</Text> 
+        <Text style={styles.text_2}>Are there any other contracts entered between the parties together with this MOU?</Text>
         <View >
           <RadioGroup
-            radioButtons={radioButtons3}
-            onPress={(data)=>setRadioButtons3(data)}
+            radioButtons={list[17]}
+            onPress={(data)=>list[18](data)}
             containerStyle={styles.radio_hm}
           />
         </View>
-        <Text style={styles.text_2}>What violations give the software provider the rights to cancel the agreement?</Text>
-        <TextInput
-            style={styles.input_vm}
-            value={input1}
-            onChangeText={(value)=>setInput1(value)}
-        /> 
       </View>
 
 
