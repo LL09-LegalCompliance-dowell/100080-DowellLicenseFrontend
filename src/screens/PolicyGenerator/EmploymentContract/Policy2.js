@@ -94,7 +94,7 @@ const Policy2 = ({list}) => {
             />
           </View>
           <Text style={list[9] ? styles.hide : styles.text_warning}>
-            Please Enter valid number
+          Please enter only numbers
           </Text>
 
           <Text style={{paddingVertical: 7}}>Clause 7.3</Text>
@@ -157,7 +157,7 @@ const Policy2 = ({list}) => {
             />
           </View>
           <Text style={list[11] ? styles.hide : styles.text_warning}>
-            Please Enter valid number
+            Please enter only numbers
           </Text>
         </View>
       </ScrollView>

@@ -30,7 +30,7 @@ const Policy3 = ({list}) => {
                 list[1](value)
             }}
           />
-          <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
+          <Text  style={valid_email ? styles.hide: styles.text_warning}>Please enter valid email</Text>
         </View>
 
       </ScrollView>
