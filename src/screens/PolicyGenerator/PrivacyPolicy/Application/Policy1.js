@@ -91,7 +91,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_url1 ? styles.hide : styles.text_warning}>
-            Please Enter valid website url
+            Please enter valid website url
           </Text>
           <Text style={[styles.text_1, {fontSize: 17}]}>
             Website Contact Page URL:
@@ -114,7 +114,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_url ? styles.hide : styles.text_warning}>
-            Please Enter valid website url
+            Please enter valid website url
           </Text>
 
 
