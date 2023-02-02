@@ -16,54 +16,6 @@ import CountryPicker from 'react-native-country-picker-modal';
 
 const Policy2 = ({list}) => {
 
-
-  const [radioButtons1, setRadioButtons1] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'true',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'false',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-  ]);
-  const [radioButtons2, setRadioButtons2] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'true',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'false',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '3',
-      label: 'Other',
-      value: 'Other',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-  ]);
-
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>

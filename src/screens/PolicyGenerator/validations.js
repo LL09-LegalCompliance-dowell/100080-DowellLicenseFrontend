@@ -10,6 +10,11 @@ export const email_validation= (email )=>{
     }  
 }
 
+export const url_validation = (url)=>{
+  var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+  return (res !== null)
+}
+
 export const empty_validation= (inputs )=>{
   let flag=true
   for (let index = 0; index < inputs.length; index++) {
