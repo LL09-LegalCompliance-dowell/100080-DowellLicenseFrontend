@@ -97,7 +97,7 @@ const Steps = () => {
     country_name: input_1,
     company_name: input_2,
     website_or_app_name: input_3,
-    website_url: "http://websiteexample.com/",
+    website_url: input_4,
     support_email: input_5
 
 }
