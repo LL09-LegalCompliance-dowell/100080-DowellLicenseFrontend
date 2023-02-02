@@ -19,7 +19,6 @@ const Policy1 = ({list}) => {
   const [valid_url, setValid_url] = useState(true);
   const [valid_url1, setValid_url1] = useState(true);
 
-
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -95,13 +94,12 @@ const Policy1 = ({list}) => {
                 withFlag
                 withCountryNameButton={list[9]}
                 withCallingCode
-                onSelect={value => {list[10](value.name)}}
+                onSelect={value => {
+                  list[10](value.name);
+                }}
               />
             ) : (
-              <Text style={[styles.text_1, {fontSize: 17}]}>
-                {list[9]}
-              </Text>
-              // console.log(list[9].name)
+              <Text style={[styles.text_1, {fontSize: 17}]}>{list[9]}</Text>
             )}
           </View>
 
@@ -133,7 +131,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_url1 ? styles.hide : styles.text_warning}>
-            Please Enter valid website url
+            Please enter valid website url
           </Text>
           <Text style={[styles.text_1, {fontSize: 17}]}>
             Website Contact Page URL:
@@ -156,7 +154,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_url ? styles.hide : styles.text_warning}>
-            Please Enter valid website url
+            Please enter valid website url
           </Text>
 
           <Text style={[styles.text_1, {fontSize: 17}]}>
@@ -180,7 +178,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_email ? styles.hide : styles.text_warning}>
-            Please Enter valid email
+            Please enter valid email
           </Text>
         </View>
       </ScrollView>

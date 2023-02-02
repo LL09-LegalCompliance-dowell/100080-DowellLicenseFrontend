@@ -8,13 +8,15 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from '../../Cookies/style';
-import {email_validation} from '../../validations';
+import {email_validation, url_validation} from '../../validations';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
+  const [valid_url, setValid_url] = useState(true);
+  const [valid_url1, setValid_url1] = useState(true);
 
   return (
     <>
@@ -26,14 +28,6 @@ const Policy1 = ({list}) => {
               : {color: 'red', textAlign: 'center', fontSize: 20}
           }>
           Please Check your inputs... You must fill all{' '}
-        </Text>
-        <Text
-          style={
-            valid_email
-              ? styles.hide
-              : {color: 'red', textAlign: 'center', fontSize: 20}
-          }>
-          Please Enter Valid Email{' '}
         </Text>
         <Text style={styles.text_1}>Date:</Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
@@ -85,8 +79,20 @@ const Policy1 = ({list}) => {
             value={list[7]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => list[8](value)}
+            onChangeText={value => {
+              if (value === '') {
+                setValid_url1(true);
+              } else {
+                url_validation(value)
+                  ? setValid_url1(true)
+                  : setValid_url1(false);
+              }
+              list[8](value);
+            }}
           />
+          <Text style={valid_url1 ? styles.hide : styles.text_warning}>
+            Please Enter valid website url
+          </Text>
           <Text style={[styles.text_1, {fontSize: 17}]}>
             Website Contact Page URL:
           </Text>
@@ -96,8 +102,22 @@ const Policy1 = ({list}) => {
             value={list[9]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => list[10](value)}
+            onChangeText={value => {
+              if (value === '') {
+                setValid_url(true);
+              } else {
+                url_validation(value)
+                  ? setValid_url(true)
+                  : setValid_url(false);
+              }
+              list[10](value);
+            }}
           />
+          <Text style={valid_url ? styles.hide : styles.text_warning}>
+            Please Enter valid website url
+          </Text>
+
+
           <Text style={[styles.text_1, {fontSize: 17}]}>
             Website Contact Email:
           </Text>
@@ -118,6 +138,9 @@ const Policy1 = ({list}) => {
               list[12](value);
             }}
           />
+          <Text style={valid_email ? styles.hide : styles.text_warning}>
+            Please Enter valid email
+          </Text>
         </View>
       </ScrollView>
     </>
