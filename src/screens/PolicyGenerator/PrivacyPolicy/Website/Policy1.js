@@ -12,6 +12,7 @@ import styles from '../../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {email_validation} from '../../validations';
+import CountryPicker from 'react-native-country-picker-modal';
 
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
@@ -91,16 +92,24 @@ const Policy1 = ({list}) => {
           />
 
           <Text style={[styles.text_1, {fontSize: 17}]}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[9]}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => list[10](value)}
-          />
+          <View style={styles.input_vm}>
+            { list[9] === "" ? (<CountryPicker
+              // countryCode={country}
+              withFilter
+              withFlag
+              withCountryNameButton={list[9]}
+              withCallingCode
+              onSelect={value => list[10](value)}
+            />):(
+            // <Text>{list[10]}</Text>
+            console.log(list[10])
+            )}
+          
+          </View>
+          
 
           <Text style={styles.text_1}>Details:</Text>
-          <Text style={[styles.text_1, {fontSize: 17}]}>App Name:</Text>
+          <Text style={[styles.text_1, {fontSize: 17}]}>Website Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[11]}
@@ -108,7 +117,7 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[12](value)}
           />
-          <Text style={[styles.text_1, {fontSize: 17}]}>App URL:</Text>
+          <Text style={[styles.text_1, {fontSize: 17}]}>Website URL:</Text>
 
           <TextInput
             style={styles.input_vm}
