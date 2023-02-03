@@ -73,10 +73,10 @@ const Steps = () => {
 
   const request_object = {
     agreement_compliance_type: 'discliamer-for-website',
-    last_updated: generate_date(date.toLocaleDateString()),
+    last_update: generate_date(date.toLocaleDateString()),
     website_name: input_1,
     website_url: input_2,
-    website_contact_email: input_3,
+    website_contact_email: input_3
   };
 
   return (

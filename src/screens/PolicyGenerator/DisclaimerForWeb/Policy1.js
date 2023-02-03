@@ -4,12 +4,12 @@ import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import {email_validation} from '../validations';
+import {email_validation, url_validation} from '../validations';
 
 
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
-
+  const [valid_url, setValid_url] = useState(true);
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -21,19 +21,11 @@ const Policy1 = ({list}) => {
           }>
           Please Check your inputs... You must fill all{' '}
         </Text>
-        <Text
-          style={
-            valid_email
-              ? styles.hide
-              : {color: 'red', textAlign: 'center', fontSize: 20}
-          }>
-          Please Enter Valid Email{' '}
-        </Text>
         <Text style={styles.text_1}>Details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>Website Disclaimer Last updated:</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -64,8 +56,20 @@ const Policy1 = ({list}) => {
             value={list[5]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => list[6](value)}
+            onChangeText={value => {
+              if (value === '') {
+                setValid_url(true);
+              } else {
+                url_validation(value)
+                  ? setValid_url(true)
+                  : setValid_url(false);
+              }
+              list[6](value);
+            }}
           />
+          <Text style={valid_url ? styles.hide : styles.text_warning}>
+            Please enter valid website url
+          </Text>
           <Text style={styles.text_2}>
             Enter your Support Email ID for contact us information:
           </Text>
@@ -85,6 +89,9 @@ const Policy1 = ({list}) => {
               list[8](value);
             }}
           />
+          <Text style={valid_email ? styles.hide : styles.text_warning}>
+            Please enter valid email
+          </Text>
         </View>
       </ScrollView>
     </>

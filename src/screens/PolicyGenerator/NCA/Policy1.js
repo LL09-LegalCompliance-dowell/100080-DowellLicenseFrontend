@@ -64,7 +64,7 @@ const Policy1 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[5]}
-            placeholder="  Eg. 202002"
+            placeholder="  Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[6](value)}
           />

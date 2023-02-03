@@ -78,32 +78,35 @@ const Policy3 = ({list}) => {
                   height: 400,
                   cropping: true,
                 }).then(async image => {
-                  setLoading(true);
+                  try {
+                    setLoading(true);
 
-                  // console.log(image);
-                  setScanedImage(image);
-
-                  const data = new FormData();
-                  data.append('file', {
-                    uri: image.path,
-                    type: image.mime,
-                    name: 'photo.jpg',
-                  });
-                  let res = await fetch(
-                    'https://100080.pythonanywhere.com/api/attachments/',
-                    {
-                      method: 'post',
-                      body: data,
-                      headers: {
-                        'Content-Type': 'multipart/form-data; ',
+                    // console.log(image);
+                    setScanedImage(image);
+                    const data = new FormData();
+                    data.append('file', {
+                      uri: image.path,
+                      type: image.mime,
+                      name: 'photo.jpg',
+                    });
+                    let res = await fetch(
+                      'https://100080.pythonanywhere.com/api/attachments/',
+                      {
+                        method: 'post',
+                        body: data,
+                        headers: {
+                          'Content-Type': 'multipart/form-data; ',
+                        },
                       },
-                    },
-                  );
-                  let responseJson = await res.json();
-                  list[4](responseJson.file_data);
-                  // console.log(list[4]);
-                  setLoading(false);
-                  setModal1Visible(false);
+                    );
+                    let responseJson = await res.json();
+                    list[4](responseJson.file_data);
+                    console.log(responseJson);
+                    setLoading(false);
+                    setModal1Visible(false);
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
               }}
               style={{
@@ -125,31 +128,35 @@ const Policy3 = ({list}) => {
                   height: 400,
                   cropping: true,
                 }).then(async image => {
-                  setLoading(true);
+                  try {
+                    setLoading(true);
 
-                  // console.log(image);
-                  setScanedImage(image);
-                  const data = new FormData();
-                  data.append('file', {
-                    uri: image.path,
-                    type: image.mime,
-                    name: 'photo.jpg',
-                  });
-                  let res = await fetch(
-                    'https://100080.pythonanywhere.com/api/attachments/',
-                    {
-                      method: 'post',
-                      body: data,
-                      headers: {
-                        'Content-Type': 'multipart/form-data; ',
+                    // console.log(image);
+                    setScanedImage(image);
+                    const data = new FormData();
+                    data.append('file', {
+                      uri: image.path,
+                      type: image.mime,
+                      name: 'photo.jpg',
+                    });
+                    let res = await fetch(
+                      'https://100080.pythonanywhere.com/api/attachments/',
+                      {
+                        method: 'post',
+                        body: data,
+                        headers: {
+                          'Content-Type': 'multipart/form-data; ',
+                        },
                       },
-                    },
-                  );
-                  let responseJson = await res.json();
-                  list[4](responseJson.file_data);
-                  // console.log(list[4]);
-                  setLoading(false);
-                  setModal1Visible(false);
+                    );
+                    let responseJson = await res.json();
+                    list[4](responseJson.file_data);
+                    console.log(responseJson);
+                    setLoading(false);
+                    setModal1Visible(false);
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
               }}
               style={{
