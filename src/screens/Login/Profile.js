@@ -14,6 +14,7 @@ const Profile = () => {
   const [portfolio, setPortfolio] = useState("")
   const [role, setRole] = useState("")
   const [profile_image, setProfileImage] = useState("")
+  const [data_type, setData_type] = useState("")
 
   const getDetails = async () => {
     const username = await AsyncStorage.getItem("username");
@@ -22,6 +23,8 @@ const Profile = () => {
     const org = await AsyncStorage.getItem("org_name");
     const portfolio = await AsyncStorage.getItem("portfolio_name");
     const role = await AsyncStorage.getItem("role");
+    const data_type = await AsyncStorage.getItem("data_type");
+
     const profile_image = await AsyncStorage.getItem("profile_image");
     setUsername(username)
     setEmail(email)
@@ -29,6 +32,7 @@ const Profile = () => {
     setOrg(org)
     setPortfolio(portfolio)
     setRole(role)
+    setData_type(data_type)
     profile_image && setProfileImage(profile_image)
   }
 
@@ -69,6 +73,10 @@ const Profile = () => {
 
         <Text style={styles.label}>Role</Text>
         <Text style={styles.feildData}>{role}</Text>
+        <View style={styles.separator}></View>
+
+        <Text style={styles.label}>Data Type</Text>
+        <Text style={styles.feildData}>{data_type}</Text>
         <View style={styles.separator}></View>
       </View>
     </View>

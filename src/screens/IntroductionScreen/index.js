@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import styles from './style';
-import {StackActions} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const IntroductionScreen = ({navigation}) => {
   return (
@@ -37,7 +36,7 @@ const IntroductionScreen = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.dispatch(StackActions.replace('WebView', {}));
+              navigation.navigate('WebView', {});
             }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Get Started</Text>
