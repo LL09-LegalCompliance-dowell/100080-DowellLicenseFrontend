@@ -37,7 +37,7 @@ const IntroductionScreen = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.dispatch(StackActions.replace('EmbededLogin', {}));
+              navigation.dispatch(StackActions.replace('WebView', {}));
             }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Get Started</Text>

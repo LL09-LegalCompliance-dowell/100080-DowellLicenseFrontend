@@ -1,15 +1,17 @@
-import { Alert, ActivityIndicator} from 'react-native';
+import { Alert, StyleSheet, SafeAreaView, View} from 'react-native';
 import React, {useRef, useEffect, useState}from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {WebView} from 'react-native-webview';
 import AppLoader from '../../components/AppLoader';
+import Loading from '../../components/Loading';
 
 const URL = "https://100014.pythonanywhere.com/?redirect_url=https://100093.pythonanywhere.com/";
 
 const LoginWebView = ({navigation}) => {
   const [session_id, setSession_id] = useState("")
   const [loading, setLoading] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
@@ -70,22 +72,37 @@ const LoginWebView = ({navigation}) => {
   }
   if(loading){
     return(
-    <AppLoader/>
+    <Loading/>
     )
   }
 
   return (
-    <>
-      <WebView
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <WebView
+          style={{ flex: 1 }}
           ref={webViewRef}
-          source={{
-            uri: URL,
-          }}
-          startInLoadingState
+          renderLoading={<Loading/>}
+          //Loading URL
+          source={{ uri: URL }}
+          //Enable Javascript support
+          javaScriptEnabled={true}
+          //For the Cache
+          domStorageEnabled={true}
+          tartInLoadingState
           onNavigationStateChange={NavigationHandler}
+          onLoadStart={() => setVisible(true)}
+          onLoad={() => setVisible(false)}
         />
-    </>
-  );
+        {visible ? <Loading /> : null}
+      </View>
+    </SafeAreaView>
+  )  
 };
-
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F5FCFF',
+    flex: 1,
+  },
+});
 export default LoginWebView;
