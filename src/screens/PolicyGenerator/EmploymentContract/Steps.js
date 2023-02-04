@@ -87,7 +87,7 @@ const Steps = () => {
         agreement_compliance_type: "employment-contract",
         last_update: generate_date(date.toLocaleDateString()),
         party_full_name: input_1,
-        website_url: "http://app.com/app",
+        website_url: input_2,
         email: input_3,
         email_use_for_acquiring_written_permission: input_4,
         liability_limit_amount: input_1_1,

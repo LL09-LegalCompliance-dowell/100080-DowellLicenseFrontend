@@ -10,7 +10,6 @@ import {
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-
 import RadioGroup from 'react-native-radio-buttons-group';
 import CountryPicker from 'react-native-country-picker-modal';
 
@@ -106,6 +105,7 @@ const Policy2 = ({list}) => {
             ]}>
             <TextInput
               value={list[7]}
+              keyboardType='numeric'
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[8](value)}
@@ -114,7 +114,7 @@ const Policy2 = ({list}) => {
               <RadioGroup
                 radioButtons={list[9]}
                 onPress={data => list[10](data)}
-                containerStyle={styles.radio_hm}
+                // containerStyle={styles.radio_hm}
                 layout='row'
               />
             </View>
@@ -122,15 +122,20 @@ const Policy2 = ({list}) => {
 
           <Text style={styles.text_2}>What will be the governing laws?</Text>
           <View style={styles.input_vm}>
-            <CountryPicker
-              // countryCode={country}
-              withFilter
-              withFlag
-              withCountryNameButton={list[11]}
-              withCallingCode
-              onSelect={value => list[12](value)}
-            />
-            {/* {console.log(country)} */}
+            {list[11] === '' ? (
+              <CountryPicker
+                // countryCode={country}
+                withFilter
+                withFlag
+                withCountryNameButton={list[11]}
+                withCallingCode
+                onSelect={value => {
+                  list[12](value.name);
+                }}
+              />
+            ) : (
+              <Text style={[styles.text_1, {fontSize: 17}]}>{list[11]}</Text>
+            )}
           </View>
 
           <Text style={styles.text_2}>
@@ -147,7 +152,7 @@ const Policy2 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[15]}
-            placeholder="Stete"
+            placeholder="Enter stete name"
             placeholderTextColor="gray"
             onChangeText={value => list[16](value)}
           />

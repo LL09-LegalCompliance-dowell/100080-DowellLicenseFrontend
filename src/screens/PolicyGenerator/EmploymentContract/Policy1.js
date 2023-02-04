@@ -12,11 +12,12 @@ import colors from '../../../../assets/colors/colors';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-import {email_validation} from '../validations';
+import {email_validation, url_validation} from '../validations';
 
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
   const [valid_email1, setValid_email1] = useState(true);
+  const [valid_url, setValid_url] = useState(true);
 
   return (
     <>
@@ -35,7 +36,7 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>When were the terms last updated?</Text>
 
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -69,8 +70,20 @@ const Policy1 = ({list}) => {
             value={list[5]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => list[6](value)}
+            onChangeText={value => {
+              if (value === '') {
+                setValid_url(true);
+              } else {
+                url_validation(value)
+                  ? setValid_url(true)
+                  : setValid_url(false);
+              }
+              list[6](value);
+            }}
           />
+          <Text style={valid_url ? styles.hide : styles.text_warning}>
+            Please enter valid website url
+          </Text>
           <Text style={{paddingVertical: 7}}>Clause 4.2b</Text>
           <Text style={styles.text_2}>Enter your Email ID:</Text>
           <TextInput
@@ -90,7 +103,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_email ? styles.hide : styles.text_warning}>
-            Please Enter valid email
+            Please enter valid email
           </Text>
 
           <Text style={styles.text_2}>Written Permission:</Text>
@@ -116,7 +129,7 @@ const Policy1 = ({list}) => {
             }}
           />
           <Text style={valid_email1 ? styles.hide : styles.text_warning}>
-            Please Enter valid email
+            Please enter valid email
           </Text>
         </View>
       </ScrollView>

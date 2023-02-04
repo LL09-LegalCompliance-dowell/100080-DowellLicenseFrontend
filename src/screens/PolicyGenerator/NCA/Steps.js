@@ -7,9 +7,15 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
-import RadioGroup from 'react-native-radio-buttons-group';
+import {useNavigation} from '@react-navigation/native';
 
+const generate_date = date => {
+  const temp = date.split('/');
+  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+};
 const Steps = () => {
+  const navigation = useNavigation();
+
   const nextButton = {
     backgroundColor: '#489503',
     paddingHorizontal: 5,
@@ -68,25 +74,8 @@ const Steps = () => {
     handle_input_5,
     input_6,
     handle_input_6,
-    // input_7,
-    // handle_input_7,
-    // input_8,
-    // handle_input_8,
-    // input_9,
-    // handle_input_9,
   ];
-  const inputs = [
-    input_1,
-    input_2,
-    input_3,
-    input_4,
-    input_5,
-    input_6,
-    // input_7,
-    // input_8,
-    // input_9,
-    // 10
-  ];
+  const inputs = [input_1, input_2, input_3, input_4, input_5, input_6];
   //2
   const [radioButtons, setRadioButtons] = useState([
     {
@@ -123,6 +112,16 @@ const Steps = () => {
       borderColor: '#C4C4C4',
     },
   ]);
+  let y;
+  if (radioButtons[0].selected === true) {
+    y = 'Sole proprietorship';
+  } else if (radioButtons[1].selected === true) {
+    y = 'Partnership';
+  } else if (radioButtons[2].selected === true) {
+    y = 'Limited liability company';
+  } else {
+    y = 'Corporation';
+  }
 
   const [radioButtons1, setRadioButtons1] = useState([
     {
@@ -144,6 +143,13 @@ const Steps = () => {
     },
   ]);
 
+  let x;
+  if (radioButtons1[0].selected === true) {
+    x = 'days';
+  } else {
+    x = 'months';
+  }
+
   const [radioButtons2, setRadioButtons2] = useState([
     {
       id: '1',
@@ -163,6 +169,13 @@ const Steps = () => {
       borderColor: '#C4C4C4',
     },
   ]);
+
+  let z;
+  if (radioButtons2[0].selected === true) {
+    z = true;
+  } else {
+    z = false;
+  }
 
   const [radioButtons3, setRadioButtons3] = useState([
     {
@@ -192,6 +205,15 @@ const Steps = () => {
     },
   ]);
 
+  let a;
+  if (radioButtons3[0].selected === true) {
+    a = 'yes';
+  } else if (radioButtons3[1].selected === true) {
+    a = 'no';
+  } else {
+    a = 'others';
+  }
+
   const [empty_validationn_1, setempty_validation_1] = useState(true);
   const handle_radiobuttons = state => setRadioButtons(state);
   const [input_1_1, setInput_1_1] = useState('');
@@ -207,8 +229,8 @@ const Steps = () => {
   const [input_4_1, setInput_4_1] = useState('');
   const handle_input_4_1 = state => setInput_4_1(state);
   const handle_radiobuttons3 = state => setRadioButtons3(state);
-  const [input_5_1, setInput_5_1] = useState('');
-  const handle_input_5_1 = state => setInput_5_1(state);
+  // const [input_5_1, setInput_5_1] = useState('');
+  // const handle_input_5_1 = state => setInput_5_1(state);
   const [error_2, setError_2] = useState(false);
   const [valid_number, setValid_number] = useState(true);
   const handle_valid_number = state => setValid_number(state);
@@ -232,9 +254,6 @@ const Steps = () => {
     handle_input_4_1,
     radioButtons3,
     handle_radiobuttons3,
-    input_5_1,
-    handle_input_5_1,
-    empty_validationn_1,
     valid_number,
     handle_valid_number,
   ];
@@ -261,27 +280,27 @@ const Steps = () => {
 
   const request_object = {
     agreement_compliance_type: 'non-compete-agreement',
-    date_of_execution_of_document: '2025-10-20',
-    party_full_name: 'Individual and Company',
-    company_name: 'Dowell Research 1',
-    company_address_line_1: 'P.O.BOX 45, India',
-    company_address_line_2: 'sample law',
-    company_address_line_3: 'RS5428888',
-    company_zipcode: 'India',
-    type_of_company: 'India',
-    restricted_area: 'RT455',
-    date_of_termination: '2025-10-20',
-    duration_for_solicit: 54,
-    duration_for_solicit_unit: 'Days',
-    governing_laws_country: 'Sample 2',
-    will_there_be_a_litigation_matter_in_case_of_dispute: false,
-    which_state_should_abide_litigation_matter: '',
-    will_electronic_notices_be_allowed: 'yes',
-    name_of_witnesses: 'Seth',
+    date_of_execution_of_document: generate_date(date.toLocaleDateString()),
+    party_full_name: input_1,
+    company_name: input_2,
+    company_address_line_1: input_3,
+    company_address_line_2: input_4,
+    company_address_line_3: input_5,
+    company_zipcode: input_6,
+    type_of_company: y,
+    restricted_area: input_1_1,
+    date_of_termination: generate_date(date1.toLocaleDateString()),
+    duration_for_solicit: input_2_1,
+    duration_for_solicit_unit: x,
+    governing_laws_country: input_3_1,
+    will_there_be_a_litigation_matter_in_case_of_dispute: z,
+    which_state_should_abide_litigation_matter: input_4_1,
+    will_electronic_notices_be_allowed: a,
+    name_of_witnesses: input_1_2,
     signature_of_witnesses_detail: {
-      filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
-      actual_filename: 'AFL.png',
-      file_extension: 'png',
+      filename: input_2_2.filename,
+      actual_filename: input_2_2.actual_filename,
+      file_extension: input_2_2.file_extension,
     },
   };
 
@@ -347,7 +366,17 @@ const Steps = () => {
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
             previousBtnTextStyle={{color: '#489503', fontSize: 18}}
             finishBtnText="Done"
-            previousBtnStyle={previousButton}>
+            previousBtnStyle={previousButton}
+            onSubmit={() => {
+              navigation.navigate('HomeScreen');
+              // const y = email_validation(input_1_4);
+              // const z = !y;
+              // if (z) {
+              //   alert('please enter valid email');
+              // } else {
+              //   //api
+              // }
+            }}>
             <View>
               <Policy4 list={states_3} object={request_object} />
             </View>
