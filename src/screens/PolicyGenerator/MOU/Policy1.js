@@ -10,6 +10,7 @@ import {
 import styles from '../Cookies/style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
+import CountryPicker from 'react-native-country-picker-modal';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -39,7 +40,7 @@ const Policy1 = ({list}) => {
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -149,13 +150,22 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[16](value)}
           />
           <Text style={styles.text_2}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[17]}
-            placeholder=" Select Country "
-            placeholderTextColor="gray"
-            onChangeText={value => list[18](value)}
-          />
+          <View style={styles.input_vm}>
+            {list[17] === '' ? (
+              <CountryPicker
+                // countryCode={country}
+                withFilter
+                withFlag
+                withCountryNameButton={list[17]}
+                withCallingCode
+                onSelect={value => {
+                  list[18](value.name);
+                }}
+              />
+            ) : (
+              <Text style={[styles.text_1, {fontSize: 17}]}>{list[17]}</Text>
+            )}
+          </View>
           <Text style={styles.text_3}>Under the terms of understanding</Text>
           <Text style={styles.text_2}>What shall be the period mentioned?</Text>
           <View
@@ -171,18 +181,19 @@ const Policy1 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
+              // style={styles.input_vm}
               value={list[19]}
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[20](value)}
+              keyboardType='numeric'
             />
             <View>
               <RadioGroup
                 radioButtons={list[21]}
                 onPress={data => list[22](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>
@@ -280,13 +291,22 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[36](value)}
           />
           <Text style={styles.text_2}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[37]}
-            placeholder=" Select Country "
-            placeholderTextColor="gray"
-            onChangeText={value => list[38](value)}
-          />
+          <View style={styles.input_vm}>
+            {list[37] === '' ? (
+              <CountryPicker
+                // countryCode={country}
+                withFilter
+                withFlag
+                withCountryNameButton={list[37]}
+                withCallingCode
+                onSelect={value => {
+                  list[38](value.name);
+                }}
+              />
+            ) : (
+              <Text style={[styles.text_1, {fontSize: 17}]}>{list[37]}</Text>
+            )}
+          </View>
           <Text style={styles.text_3}>Under the terms of understanding</Text>
           <Text style={styles.text_2}>What shall be the period mentioned?</Text>
           <View
@@ -302,18 +322,19 @@ const Policy1 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
+              // style={styles.input_vm}
               value={list[39]}
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[40](value)}
+              keyboardType='numeric'
             />
             <View>
               <RadioGroup
                 radioButtons={list[41]}
                 onPress={data => list[42](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>
