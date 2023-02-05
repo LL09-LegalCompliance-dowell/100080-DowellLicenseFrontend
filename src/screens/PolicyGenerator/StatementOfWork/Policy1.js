@@ -13,39 +13,38 @@ import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
-  var [isPress1, setIsPress1] = useState(false);
-  var [isPress2, setIsPress2] = useState(false);
-  var [isPress3, setIsPress3] = useState(false);
+const Policy1 = ({list}) => {
+  
+  
 
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
-  const [input5, setInput5] = useState('');
-  const [input6, setInput6] = useState('');
-  const [input7, setInput7] = useState('');
-  const [input8, setInput8] = useState('');
-  const [input9, setInput9] = useState('');
-  const [input10, setInput10] = useState('');
+ 
+  
+  
+  
+  
 
   var touchProps1 = {
-    style: isPress1 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress1(true),
+    style: list[10] ? styles.Pressed : styles.Normal,
+    onPress: () => list[11](true),
   };
   var touchProps2 = {
-    style: isPress2 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress2(true),
+    style: list[12] ? styles.Pressed : styles.Normal,
+    onPress: () => list[13](true),
   };
   var touchProps3 = {
-    style: isPress3 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress3(true),
+    style: list[14] ? styles.Pressed : styles.Normal,
+    onPress: () => list[15](true),
+  };
+
+  var touchProps4 = {
+    style: list[16] ? styles.Pressed : styles.Normal,
+    onPress: () => list[17](true),
   };
 
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text style={list[22]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Client details:</Text>
           {/* Details start here */}
@@ -55,10 +54,10 @@ const Policy1 = () => {
             </Text>
             <TextInput
               style={styles.input_vm}
-              value={input1}
+              value={list[0]}
               placeholder="  Eg. John Smith Doe"
               placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
+              onChangeText={value => list[1](value)}
             />
             <Text
               style={{
@@ -79,10 +78,10 @@ const Policy1 = () => {
             </Text>
             <TextInput
               style={styles.input_vm}
-              value={input1}
+              value={list[2]}
               placeholder="Enter here"
               placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
+              onChangeText={value => list[3](value)}
             />
 
             <Text style={[styles.text_1, {fontSize: 15}]}>
@@ -90,10 +89,10 @@ const Policy1 = () => {
             </Text>
             <TextInput
               style={styles.input_vm}
-              value={input1}
+              value={list[4]}
               placeholder="Enter here"
               placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
+              onChangeText={value => list[5](value)}
             />
             <Text style={[styles.text_1, {fontSize: 15}]}>
               When is the Effective Date?
@@ -101,7 +100,7 @@ const Policy1 = () => {
           </View>
           <TextInput
             style={styles.input}
-            value={date.toLocaleDateString()}
+            value={list[6].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
           />
@@ -112,7 +111,7 @@ const Policy1 = () => {
               </View>
             }
             color="#489503"
-            onSelect={value => setDate(value)}
+            onSelect={value => list[7](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
           />
@@ -127,10 +126,10 @@ const Policy1 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[8]}
             placeholder="Eg. John Smith Doe"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[9](value)}
           />
           <Text
             style={{
@@ -162,10 +161,10 @@ const Policy1 = () => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Via Website Chat Services </Text>
+              <Text style={{color: 'gray'}}>Client’s web hosting account (AWS) </Text>
               <TouchableOpacity
-                style={isPress1 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress1(false)}>
+                style={list[10] ? {display: 'flex'} : {display: 'none'}}
+                onPress={() => list[11](false)}>
                 <Text> x </Text>
               </TouchableOpacity>
             </View>
@@ -179,10 +178,10 @@ const Policy1 = () => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Via Email </Text>
+              <Text style={{color: 'gray'}}>Client’s source code repository (GitHub)</Text>
               <TouchableOpacity
-                style={isPress2 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress2(false)}>
+                style={list[12] ? {display: 'flex'} : {display: 'none'}}
+                onPress={() => list[13](false)}>
                 <Text> x </Text>
               </TouchableOpacity>
             </View>
@@ -196,10 +195,27 @@ const Policy1 = () => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Via Email </Text>
+              <Text style={{color: 'gray'}}>Client’s project management tool (Jira)</Text>
               <TouchableOpacity
-                style={isPress3 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress3(false)}>
+                style={list[14] ? {display: 'flex'} : {display: 'none'}}
+                onPress={() => list[15](false)}>
+                <Text> x </Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight {...touchProps4}>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginVertical: 10,
+              }}>
+              <Text style={{color: 'gray'}}>Client’s time management took (Everhour)</Text>
+              <TouchableOpacity
+                style={list[16] ? {display: 'flex'} : {display: 'none'}}
+                onPress={() => list[17](false)}>
                 <Text> x </Text>
               </TouchableOpacity>
             </View>
@@ -214,10 +230,10 @@ const Policy1 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[18]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[19](value)}
           />
 
           <Text style={[styles.text_1, {fontSize: 15}]}>
@@ -225,10 +241,10 @@ const Policy1 = () => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={input1}
+            value={list[20]}
             placeholder="Enter here"
             placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
+            onChangeText={value => list[21](value)}
           />
         </View>
       </ScrollView>
