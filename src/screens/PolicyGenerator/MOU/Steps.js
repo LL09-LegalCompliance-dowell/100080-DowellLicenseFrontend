@@ -9,14 +9,14 @@ import Policy3 from './Policy3';
 // import Policy5 from './Policy5';
 import Policy4 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
-import { useNavigation } from '@react-navigation/native';
-const generate_date = (date)=>{
-  const temp = date.split("/")
-  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
- }
+import {useNavigation} from '@react-navigation/native';
+const generate_date = date => {
+  const temp = date.split('/');
+  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+};
 
 const Steps = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -91,6 +91,18 @@ const Steps = () => {
       },
     },
   ]);
+
+  let a;
+  if (radioButtons[0].selected === true) {
+    a = 'Individual';
+  } else if (radioButtons[1].selected === true) {
+    a = 'Company';
+  } else if (radioButtons[1].selected === true) {
+    a = 'Partnership';
+  } else {
+    a = 'Other';
+  }
+
   const [radioButtons2, setRadioButtons2] = useState([
     {
       id: '1',
@@ -138,10 +150,21 @@ const Steps = () => {
       },
     },
   ]);
+
+  let b;
+  if (radioButtons2[0].selected === true) {
+    b = 'Individual';
+  } else if (radioButtons2[1].selected === true) {
+    b = 'Company';
+  } else if (radioButtons2[1].selected === true) {
+    b = 'Partnership';
+  } else {
+    b = 'Other';
+  }
   const [radioButtons2_2, setRadioButtons2_2] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -153,7 +176,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -164,7 +187,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -174,10 +197,18 @@ const Steps = () => {
       },
     },
   ]);
+  let c;
+  if (radioButtons2_2[0].selected === true) {
+    c = 'days';
+  } else if (radioButtons2_2[1].selected === true) {
+    c = 'months';
+  } else {
+    c = 'years';
+  }
   const [radioButtons2_3, setRadioButtons2_3] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -189,7 +220,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -200,7 +231,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -210,6 +241,14 @@ const Steps = () => {
       },
     },
   ]);
+  let d;
+  if (radioButtons2_3[0].selected === true) {
+    d = 'days';
+  } else if (radioButtons2_3[1].selected === true) {
+    d = 'months';
+  } else {
+    d = 'years';
+  }
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
@@ -321,7 +360,7 @@ const Steps = () => {
   const [radioButtons_1, setRadioButtons_1] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -333,7 +372,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -344,7 +383,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -354,7 +393,14 @@ const Steps = () => {
       },
     },
   ]);
-
+  let e;
+  if (radioButtons_1[0].selected === true) {
+    e = 'days';
+  } else if (radioButtons_1[1].selected === true) {
+    e = 'months';
+  } else {
+    e = 'years';
+  }
   const [error_2, setError_2] = useState(false);
   const [empty_validationn_1, setempty_validation_1] = useState(true);
   const [input_1_1, setInput_1_1] = useState('');
@@ -384,11 +430,7 @@ const Steps = () => {
     radioButtons_1,
     handle_radiobuttons_1,
   ];
-  const inputs_1 = [
-    input_1_1,
-    input_2_1,
-    input_3_1
-  ];
+  const inputs_1 = [input_1_1, input_2_1, input_3_1];
   //3
   const [radioButtons_5, setRadioButtons_5] = useState([
     {
@@ -415,12 +457,18 @@ const Steps = () => {
       },
     },
   ]);
+  let f;
+  if (radioButtons_5[0].selected === true) {
+    f = true;
+  } else {
+    f = false;
+  }
 
   const [radioButtons_6, setRadioButtons_6] = useState([
     {
       id: '1',
-      label: 'Term is Indefinite',
-      value: 'Term is Indefinite',
+      label: 'Yes',
+      value: 'true',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -431,19 +479,8 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'End upon a agreed date',
-      value: 'End upon a agreed date',
-      size: 18,
-      color: '#489503',
-      borderColor: '##585858',
-      labelStyle: {
-        color: '#585858',
-      },
-    },
-    {
-      id: '3',
-      label: 'End upon occurrence of a defined event',
-      value: 'End upon occurrence of a defined event',
+      label: 'No',
+      value: 'false',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -452,12 +489,18 @@ const Steps = () => {
       },
     },
   ]);
+  let g;
+  if (radioButtons_5[0].selected === true) {
+    g = true;
+  } else {
+    g = false;
+  }
 
   const [radioButtons_6_3, setRadioButtons_6_3] = useState([
     {
       id: '1',
-      label: 'Days',
-      value: 'days',
+      label: 'Yes',
+      value: 'true',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -468,19 +511,8 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
-      value: 'months',
-      size: 18,
-      color: '#489503',
-      borderColor: '##585858',
-      labelStyle: {
-        color: '#585858',
-      },
-    },
-    {
-      id: '3',
-      label: 'Years',
-      value: 'years',
+      label: 'No',
+      value: 'false',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -489,12 +521,18 @@ const Steps = () => {
       },
     },
   ]);
+  let h;
+  if (radioButtons_5[0].selected === true) {
+    h = true;
+  } else {
+    h = false;
+  }
 
   const [radioButtons_7_3, setRadioButtons_7_3] = useState([
     {
       id: '1',
-      label: 'Days',
-      value: 'days',
+      label: 'Yes',
+      value: 'true',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -505,19 +543,8 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
-      value: 'months',
-      size: 18,
-      color: '#489503',
-      borderColor: '##585858',
-      labelStyle: {
-        color: '#585858',
-      },
-    },
-    {
-      id: '3',
-      label: 'Years',
-      value: 'years',
+      label: 'No',
+      value: 'false',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -526,12 +553,18 @@ const Steps = () => {
       },
     },
   ]);
+  let i;
+  if (radioButtons_5[0].selected === true) {
+    i = true;
+  } else {
+    i = false;
+  }
 
   const [radioButtons_8_3, setRadioButtons_8_3] = useState([
     {
       id: '1',
-      label: 'Days',
-      value: 'days',
+      label: 'Yes',
+      value: 'true',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -542,19 +575,8 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
-      value: 'months',
-      size: 18,
-      color: '#489503',
-      borderColor: '##585858',
-      labelStyle: {
-        color: '#585858',
-      },
-    },
-    {
-      id: '3',
-      label: 'Years',
-      value: 'years',
+      label: 'No',
+      value: 'false',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -563,7 +585,12 @@ const Steps = () => {
       },
     },
   ]);
-
+  let j;
+  if (radioButtons_5[0].selected === true) {
+    j = true;
+  } else {
+    j = false;
+  }
 
   const [empty_validationn_2, setempty_validation_2] = useState(true);
   const [error_3, setError_3] = useState(false);
@@ -602,60 +629,56 @@ const Steps = () => {
     radioButtons_8_3,
     handle_radiobuttons_8_3,
   ];
-  const inputs_2 = [
-    input_1_2,
-    input_2_2,
-    input_3_2,
-  ];
+  const inputs_2 = [input_1_2, input_2_2, input_3_2];
   //4
   const [input_1_4, setInput_1_4] = useState('');
   const handle_input_1_4 = state => setInput_1_4(state);
   const states_4 = [input_1_4, handle_input_1_4];
 
-
   const request_object = {
-    agreement_compliance_type: "mou",
+    agreement_compliance_type: 'mou',
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
-    party_1_entity_type: "Organization",
-    party_1_full_name: "Software Own",
-    party_1_address_line_1: "P.O.BOX 45, India",
-    party_1_address_line_2: "sample law",
-    party_1_address_line_3: "RS5428888",
-    party_1_zipcode: "Mobai",
-    party_1_state: "India",
-    party_1_country: "India",
-    party_1_period_mentioned: "Days",
-    party_2_entity_type: "Individual",
-    party_2_full_name: "sample",
-    party_2_address_line_1: "Individual",
-    party_2_address_line_2: "Sample 2",
-    party_2_address_line_3: "Sample Mix",
-    party_2_zipcode: "+254",
-    party_2_state: "India",
-    party_2_country: "India",
-    party_2_period_mentioned: "Months",
-    what_will_be_the_purpose_of_this_mou: "India",
-    what_is_the_objective_of_this_mou: "contract",
-    date_of_commencement: "2025-10-20",
-    date_of_termination: "2025-10-20",
-    period_for_notice_in_case_of_cancellation_or_amendment: "Days",
-    state_of_laws_use_as_governing_laws: "India",
-    state_of_laws_for_governing_laws_in_case_of_reimbursement: "India",
+    party_1_entity_type: a,
+    party_1_full_name: input_1,
+    party_1_address_line_1: input_2,
+    party_1_address_line_2: input_3,
+    party_1_address_line_3: input_4,
+    party_1_zipcode: input_5,
+    party_1_state: input_6,
+    party_1_country: input_7,
+    party_1_period_mentioned: 'Days',
+    party_2_entity_type: b,
+    party_2_full_name: input_9,
+    party_2_address_line_1: input_10,
+    party_2_address_line_2: input_11,
+    party_2_address_line_3: input_12,
+    party_2_zipcode: input_13,
+    party_2_state: input_14,
+    party_2_country: input_15,
+    party_2_period_mentioned: 'Months',
+    what_will_be_the_purpose_of_this_mou: input_1_1,
+    what_is_the_objective_of_this_mou: input_2_1,
+    date_of_commencement: generate_date(date_1.toLocaleDateString()),
+    date_of_termination: generate_date(date_1_1.toLocaleDateString()),
+    period_for_notice_in_case_of_cancellation_or_amendment: 'Days',
+    state_of_laws_use_as_governing_laws: input_1_2,
+    state_of_laws_for_governing_laws_in_case_of_reimbursement: input_2_2,
     number_of_parties_enter_this_mou: 5,
-    mou_include_confidentiality: true,
-    mou_retrict_working_with_competitors: false,
-    date_for_legally_binding_definitive_agreement: "2025-10-20",
-    should_the_parties_agree_to_refrain_from_negotiating_with_third_parties: false,
-    will_mou_agreement_be_terminated_in_case_of_force_majeure: true,
-    any_other_contracts_entered_between_parties_together_with_this_mou: true,
-    state_of_laws_used_as_the_governing_laws_2: "India",
-    state_of_laws_to_be_used_as_the_governing_laws_in_case_of_reimbursement_2: "India",
+    mou_include_confidentiality: f,
+    mou_retrict_working_with_competitors: g,
+    date_for_legally_binding_definitive_agreement: generate_date(date_2.toLocaleDateString()),
+    should_the_parties_agree_to_refrain_from_negotiating_with_third_parties: h,
+    will_mou_agreement_be_terminated_in_case_of_force_majeure: i,
+    any_other_contracts_entered_between_parties_together_with_this_mou: j,
+    state_of_laws_used_as_the_governing_laws_2: 'India',
+    state_of_laws_to_be_used_as_the_governing_laws_in_case_of_reimbursement_2:
+      'India',
     number_of_parties_entered_this_mou_2: 5,
     does_this_mou_restrict_working_with_competitors_for_period_of_time_2: false,
     number_of_time_to_restrict_from_working_with_competitors_2: 5,
-    number_of_time_to_restrict_from_working_with_competitors_unit_2: "Months",
-    date_for_legally_binding_definitive_agreement_2: "2025-10-20"
-}
+    number_of_time_to_restrict_from_working_with_competitors_unit_2: 'Months',
+    date_for_legally_binding_definitive_agreement_2: '2025-10-20',
+  };
 
   return (
     <>
@@ -719,7 +742,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              navigation.navigate('HomeScreen')
+              navigation.navigate('HomeScreen');
               // const y = email_validation(input_1_4);
               // const z = !y;
               // if (z) {
@@ -729,7 +752,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy4 list={states_4} object={request_object}/>
+              <Policy4 list={states_4} object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>
