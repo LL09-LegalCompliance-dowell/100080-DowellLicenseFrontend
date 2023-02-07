@@ -7,11 +7,13 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
+import {useNavigation} from '@react-navigation/native';
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
         paddingHorizontal: 5,
@@ -169,7 +171,7 @@ const Steps = () => {
                     alert("please enter valid email")
                   }
                   else{
-                    //api
+                    navigation.navigate('HomeScreen');
                   }
                   
                 }}>

@@ -20,6 +20,7 @@ import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
 import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
 import NDA from '../screens/PolicyGenerator/NDA';
 import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
+import GDPR from '../screens/PolicyGenerator/GDPR';
 import WebsiteSecurityPolicy from '../screens/PolicyGenerator/WebsiteSecurityPolicy';
 import PPA from '../screens/PolicyGenerator/PrivacyPolicy/Application';
 import PPW from '../screens/PolicyGenerator/PrivacyPolicy/Website';
@@ -181,6 +182,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="WebsiteSecurityPolicy"
           component={WebsiteSecurityPolicy}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="GDPR"
+          component={GDPR}
           options={{
             headerShown: false,
           }}

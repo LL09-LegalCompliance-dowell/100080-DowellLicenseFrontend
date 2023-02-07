@@ -27,7 +27,7 @@ const W1 = ({navigation}) => {
               </View>
     
               <Image
-                source={require('../../../../assets/images/website_security_policy_blur.png')}
+               source={require('../../../../assets/images/eula_blur.png')}
                 style={styles.blurImage}
               />
     
