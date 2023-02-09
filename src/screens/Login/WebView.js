@@ -48,7 +48,7 @@ const LoginWebView = ({navigation}) => {
       const response = await axios.post("https://100093.pythonanywhere.com/api/userinfo/", {session_id: session_id});
       const responseUser = await axios.post('https://100014.pythonanywhere.com/api/profile/', {key: session_id});
       console.log("Portfolio Data",response.data)
-      console.log("User Details",responseUser.data)
+      //console.log("User Details",responseUser.data)
       const {username,email, first_name} = responseUser.data;
       username && await AsyncStorage.setItem('username', username);
       email && await AsyncStorage.setItem('email', email);
@@ -58,11 +58,12 @@ const LoginWebView = ({navigation}) => {
       if(!portfolio.length){
         Alert.alert("No portfolio detected. Try to refresh. Or try Click connect in the Legalzard Icon")
       }
-      const {member_type, data_type, org_name, portfolio_name, role} = portfolio[0];
-      console.log(member_type, org_name, portfolio_name, role)
+      const {member_type, data_type, org_id, org_name, portfolio_name, role} = portfolio[0];
+      console.log(member_type, org_name, portfolio_name, role, org_id)
       member_type && await AsyncStorage.setItem('member_type', member_type);
       data_type && await AsyncStorage.setItem('data_type', data_type);
       org_name && await AsyncStorage.setItem('org_name', org_name);
+      org_id && await AsyncStorage.setItem('org_id', org_id);
       portfolio_name && await AsyncStorage.setItem('portfolio_name', portfolio_name);
       role && await AsyncStorage.setItem('role', role);
       navigation.navigate("RootNavigator")
