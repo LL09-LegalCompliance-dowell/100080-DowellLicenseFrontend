@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     backgroundColor: 'white',
+    marginTop:60
   },
 
   // cardContainer styles
@@ -165,12 +166,12 @@ const styles = StyleSheet.create({
   separator: {
     width: '100%',
     backgroundColor: colors.borderLight,
-    height: 1,
-    elevation: 1,
+    height: 0.7,
+    // elevation: 1,
   },
   serchResultItemContainer: {
     paddingHorizontal: 17,
-    paddingVertical: 12,
+    paddingVertical: 5,
     backgroundColor: 'white',
   },
   serchResultHeading: {
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
   serchResultDetails: {
     color: colors.textDark,
     fontFamily: 'roboto',
+    paddingBottom:4
   },
   // separator: {
   //   width: '100%',
