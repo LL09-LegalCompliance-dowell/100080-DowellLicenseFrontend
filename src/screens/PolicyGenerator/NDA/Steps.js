@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -8,11 +8,19 @@ import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation, number_validation,email_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
   const navigation = useNavigation();
   const [input_1, setInput_1] = useState("");
   const handle_input_1 = (state)=> setInput_1(state);
@@ -305,6 +313,7 @@ const Steps = () => {
       console.log(witness_2)
       const request_object={
         agreement_compliance_type: "nda",
+        organization_id: orgId,
         party_1_full_name: input_1,
         party_1_address_line_1: input_2,
         party_1_address_line_2: input_3,

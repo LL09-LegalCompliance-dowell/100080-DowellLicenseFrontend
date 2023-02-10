@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -6,12 +6,21 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { empty_validation,email_validation,number_validation } from '../validations';
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
+
     const nextButton = {
         backgroundColor: '#489503',
         paddingHorizontal: 5,
@@ -167,6 +176,7 @@ const Steps = () => {
       const request_object=
       {
         agreement_compliance_type: "statement-of-work",
+        organization_id: orgId,
         client_full_name: input1,
         jurisdiction: input2,
         project_name: input3,

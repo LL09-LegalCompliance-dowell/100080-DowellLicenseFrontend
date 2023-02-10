@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
 import Header from '../../../components/Header';
@@ -6,13 +6,26 @@ import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import {empty_validation, email_validation, url_validation} from '../validations';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const generate_date = date => {
   const temp = date.split('/');
   return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
 };
 
+
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
+
+
+
   const navigation = useNavigation()
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
@@ -81,18 +94,9 @@ const Steps = () => {
     alignSelf: 'center',
   };
 
-  // const request_object = {
-  //   agreement_compliance_type: 'terms-and-conditions',
-  //   last_update: generate_date(date.toLocaleDateString()),
-  //   country_name: input_1,
-  //   company_name: input_2,
-  //   website_or_app_name: input_3,
-  //   website_url: input_4,
-  //   support_email: input_5,
-  // };
-
  const request_object = {
     agreement_compliance_type: "terms-and-conditions",
+    organization_id: orgId,
     last_update: generate_date(date.toLocaleDateString()),
     country_name: input_1,
     company_name: input_2,
