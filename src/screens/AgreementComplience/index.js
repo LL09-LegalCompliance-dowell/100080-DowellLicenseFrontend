@@ -206,7 +206,7 @@ const AgreementComplience = ({navigation}) => {
           <TouchableOpacity
             style={styles.listContainer}
             onPress={() => {
-              navigation.navigate('GDPR Privacy Policy');
+              navigation.navigate('GDPR');
             }}>
             <View style={styles.iconContainer}>
               <Image source={Image1} />

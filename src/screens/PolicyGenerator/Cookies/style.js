@@ -284,6 +284,13 @@ const styles = StyleSheet.create({
         fontWeight:"300",
         marginBottom:16
       },
+      text_3_big_m_b:{
+        color: "#585858",
+        fontStyle:"italic",
+        fontSize:18,
+        fontWeight:"300",
+        marginBottom:40
+      },
       text_4:{
         color: "#585858",
         fontSize:18,
