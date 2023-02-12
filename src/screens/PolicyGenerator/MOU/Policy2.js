@@ -48,7 +48,7 @@ const Policy2 = ({list}) => {
             What will be the date of commencement?
           </Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[5].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -69,7 +69,7 @@ const Policy2 = ({list}) => {
             What will be the date for termination?
           </Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[7].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -101,18 +101,19 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
+              // style={styles.input_vm}
               value={list[9]}
               placeholder="Enter number"
               placeholderTextColor="gray"
+              keyboardType='numeric'
               onChangeText={value => list[10](value)}
             />
             <View>
               <RadioGroup
                 radioButtons={list[11]}
                 onPress={data => list[12](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>

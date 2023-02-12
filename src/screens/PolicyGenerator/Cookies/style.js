@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15,
+        marginBottom:15,
         color:"#585858",
       },
       Pressed_flex:{
@@ -210,6 +211,8 @@ const styles = StyleSheet.create({
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15,
+        marginBottom:15,
+        marginBottom:15,
 
       },
       textoptional:{
@@ -283,6 +286,13 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:"300",
         marginBottom:16
+      },
+      text_3_big_m_b:{
+        color: "#585858",
+        fontStyle:"italic",
+        fontSize:18,
+        fontWeight:"300",
+        marginBottom:40
       },
       text_4:{
         color: "#585858",

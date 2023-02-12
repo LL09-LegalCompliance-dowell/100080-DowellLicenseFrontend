@@ -129,6 +129,7 @@ const Policy3 = ({list}) => {
             placeholder="  Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[6](value)}
+            keyboardType='numeric'
           />
         </View>
         <Text style={styles.text_2}>Should this MOU include a confidentiality clause?</Text>
@@ -150,7 +151,7 @@ const Policy3 = ({list}) => {
         </View>
         <Text style={styles.text_2}>Date for this legally binding definitive agreement.</Text>
         <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[11].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"

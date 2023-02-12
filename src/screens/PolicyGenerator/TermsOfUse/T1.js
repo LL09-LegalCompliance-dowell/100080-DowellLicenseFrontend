@@ -27,7 +27,7 @@ const T1 = ({navigation}) => {
           </View>
 
           <Image
-            source={require('../../../../assets/images/terms_of_use_blur.png')}
+            source={require('../../../../assets/images/eula_blur.png')}
             style={styles.blurImage}
           />
 
