@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
       },
       input: {
         height: 51,
-        margin: 12,
+        margin: 15,
         borderWidth: 1,
         borderRadius: 15,
         borderColor: '#C4C4C4',
@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15,
+        marginBottom:15,
         color:"#585858",
       },
       Pressed_flex:{
@@ -210,6 +211,8 @@ const styles = StyleSheet.create({
         borderColor:"#585858",
         borderWidth:1,
         marginRight:15,
+        marginBottom:15,
+        marginBottom:15,
 
       },
       textoptional:{
