@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigator from './RootNavigator';
 import AuthNavigator from './AuthNavigator';
+import Loading from '../components/Loading';
 
 const index = () => {
   const [loading, setLoading] = useState();
@@ -23,29 +24,31 @@ const index = () => {
       const org_id = await AsyncStorage.getItem('org_id');
       const portfolio = await AsyncStorage.getItem('portfolio_name');
       const role = await AsyncStorage.getItem('role');
-      setUsername(username);
-      setEmail(email);
-      setSession_id(session_id);
-      setOrg(org);
-      setOrgId(org_id);
-      setPortfolio(portfolio);
-      setRole(role);
+      username && setUsername(username);
+      email && setEmail(email);
+      session_id && setSession_id(session_id);
+      org && setOrg(org);
+      org_id && setOrgId(org_id);
+      portfolio && setPortfolio(portfolio);
+      role && setRole(role);
+      setLoading(false)
+      //console.log("User Found!")
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
   useEffect(() => {
     fetchUser();
   }, []);
-  if(!username || !email || session_id){
+  if(loading){
+    <Loading />
+  }else if (!username || !email || !session_id){
     return <AuthNavigator />;
   }else if (!portfolio || !org ||!org_id){
     return <AuthNavigator />;
   }else{
     return <RootNavigator />
   }
-  // if (!username || !email || session_id) {
-  //   return <RootNavigator />;
-  // }
 };
 export default index;
