@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -6,11 +6,20 @@ import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
+
   const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
@@ -62,6 +71,7 @@ const Steps = () => {
         
           agreement_compliance_type: "website-security-policy",
           last_updated: generate_date(date.toLocaleDateString()),
+          organization_id: orgId,
           company_name: input_1,
           website_name: input_2,
           jurisdiction: input_3,

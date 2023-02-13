@@ -1,4 +1,4 @@
-import {React,useEffect,useState} from 'react'
+import {React,useEffect,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -8,6 +8,8 @@ import Policy3 from './Policy3';
 import Policy4 from './Policy4';
 import { empty_validation,email_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
@@ -15,6 +17,12 @@ const generate_date = (date)=>{
 
 const Steps = () => {
   const navigation = useNavigation();
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
        //////////////////////////////////////////////////////////////////////////1
        const [date, setDate] = useState(new Date());
        const handle_date = (state)=> setDate(state);
@@ -401,6 +409,7 @@ useEffect(()=>{
     }
   const request_object={
     agreement_compliance_type: "cookie-policy",
+    organization_id: orgId,
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_full_name: name_entity,
     will_the_cookie_store_personal_information: x,

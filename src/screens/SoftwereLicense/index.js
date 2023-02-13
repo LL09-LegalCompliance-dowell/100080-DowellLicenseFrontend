@@ -66,7 +66,7 @@ const SoftwereLicense = ({navigation}) => {
     <>
       {loading ? <AppLoader /> : null}
         <Header title="Softwere Licenses" leftIcon="menu" rightIcon="user" />
-        <ScrollView
+        <View
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.container}>
           {/* Header */}
@@ -74,7 +74,7 @@ const SoftwereLicense = ({navigation}) => {
           
 
           {/* section 1 */}
-          <View style={styles.cardContainer}>
+          {/* <View style={styles.cardContainer}>
             <FlatList
               data={listData}
               ketExtractor={item => item.id}
@@ -129,7 +129,7 @@ const SoftwereLicense = ({navigation}) => {
                 </TouchableOpacity>
               )}
             />
-          </View>
+          </View> */}
           <View style={styles.miniContainer}>
             {/* section 2 */}
             <View style={styles.section2}>
@@ -172,7 +172,7 @@ const SoftwereLicense = ({navigation}) => {
             </View>
           </View>
           {/* Section 4 */}
-          <View style={styles.section4}>
+          <ScrollView style={styles.section4}>
             {searchedTerm.map((item, index) => {
               return (
                 <>
@@ -198,8 +198,8 @@ const SoftwereLicense = ({navigation}) => {
                 </>
               );
             })}
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
     </>
   );
 };

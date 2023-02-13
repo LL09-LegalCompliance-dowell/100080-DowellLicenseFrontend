@@ -1,9 +1,10 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { email_validation,empty_validation, number_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 const generate_date = (date)=>{
@@ -11,6 +12,12 @@ const generate_date = (date)=>{
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
   const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
@@ -94,6 +101,7 @@ const Steps = () => {
       const request_object={
         
           agreement_compliance_type: "return-and-refund",
+          organization_id: orgId,
           date: generate_date(date.toLocaleDateString()),
           website_or_app_name: input_1,
           company_info: input_2,

@@ -928,6 +928,8 @@ const Steps = () => {
   const handle_input_12_3 = state => setInput_12_3(state);
   const [input_13_3, setInput_13_3] = useState('');
   const handle_input_13_3 = state => setInput_13_3(state);
+  const [input_14_3, setInput_14_3] = useState('');
+  const handle_input_14_3 = state => setInput_14_3(state);
 
   const states_3 = [
     empty_validationn_3,
@@ -945,12 +947,13 @@ const Steps = () => {
     handle_input_4_3,
     input_5_3,
     handle_input_5_3,
+    input_6_3,
+    handle_input_6_3,
     radioButtons_8,
     handle_radiobuttons_8,
     radioButtons_9,
     handle_radiobuttons_9,
-    input_6_3,
-    handle_input_6_3,
+    
     input_7_3,
     handle_input_7_3,
     radioButtons_10,
@@ -970,6 +973,8 @@ const Steps = () => {
     handle_input_12_3,
     input_13_3,
     handle_input_13_3,
+    input_14_3,
+    handle_input_14_3,
   ];
   const inputs_3 = [
     input_1_3,
@@ -987,19 +992,160 @@ const Steps = () => {
     input_13_3,
   ];
   //5
+  const [radioButtons_1_5, setRadioButtons_1_5] = useState([
+    {
+      id: '1',
+      label: 'Yes',
+      value: 'true',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'No',
+      value: 'false',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
+  const [radioButtons_2_5, setRadioButtons_2_5] = useState([
+    {
+      id: '1',
+      label: 'Yes',
+      value: 'true',
+      size: 18,
+      color: '#489503',
+      borderColor: '#585858',
+      selected: true,
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+    {
+      id: '2',
+      label: 'No',
+      value: 'false',
+      size: 18,
+      color: '#489503',
+      borderColor: '##585858',
+      labelStyle: {
+        color: '#585858',
+      },
+    },
+  ]);
   const [error_5, setError_5] = useState(false);
   const [empty_validationn_4, setempty_validation_4] = useState(true);
+  const handle_radiobuttons_2_5 = state => setRadioButtons_2_5(state);
   const [input_1_4, setInput_1_4] = useState('');
   const handle_input_1_4 = state => setInput_1_4(state);
-  const [scanedCopy1, setScanedCopy1] = useState(null);
-  const handle_scanedCopy1 = state => setScanedCopy1(state);
+  const [input_2_4, setInput_2_4] = useState('');
+  const handle_input_2_4 = state => setInput_1_4(state);
+  const [input_3_4, setInput_3_4] = useState('');
+  const handle_input_3_4 = state => setInput_3_4(state);
+  const [date_5, setDate_5] = useState(new Date());
+  const handle_date_5 = state => setDate_5(state);
+  const [input_4_4, setInput_4_4] = useState('');
+  const handle_input_4_4 = state => setInput_4_4(state);
+  const [date_6, setDate_6] = useState(new Date());
+  const handle_date_6 = state => setDate_6(state);
+  const handle_radiobuttons_1_5 = state => setRadioButtons_1_5(state);
+  const [input_5_4, setInput_5_4] = useState('');
+  const handle_input_5_4 = state => setInput_5_4(state);
+  const [input_6_4, setInput_6_4] = useState('');
+  const handle_input_6_4 = state => setInput_6_4(state);
+  const [input_7_4, setInput_7_4] = useState('');
+  const handle_input_7_4 = state => setInput_7_4(state);
+  const [date_7, setDate_7] = useState(new Date());
+  const handle_date_7 = state => setDate_7(state);
+  const [input_8_4, setInput_8_4] = useState('');
+  const handle_input_8_4 = state => setInput_8_4(state);
+  const [date_8, setDate_8] = useState(new Date());
+  const handle_date_8 = state => setDate_8(state);
+  
   const states_4 = [
     empty_validationn_4,
+    radioButtons_2_5,
+    handle_radiobuttons_2_5,
     input_1_4,
     handle_input_1_4,
-    // scanedCopy1,
-    handle_scanedCopy1,
+    input_1_4,
+    handle_input_2_4,
+    input_3_4,
+    handle_input_3_4,
+    date_5,
+    handle_date_5,
+    input_4_4,
+    handle_input_4_4,
+    date_6,
+    handle_date_6,
+    radioButtons_1_5,
+    handle_radiobuttons_1_5,
+    input_5_4,
+    handle_input_5_4,
+    input_6_4,
+    handle_input_6_4,
+    input_7_4,
+    handle_input_7_4,
+    date_7,
+    handle_date_7,
+    input_8_4,
+    handle_input_8_4,
+    date_8,
+    handle_date_8,
+    
   ];
+  const inputs_4 = [
+    input_1_4,
+    input_2_4,
+    input_3_4,
+    input_4_4,
+    input_5_4,
+    input_6_4,
+    input_7_4,
+    input_8_4,
+  ];
+
+  // 6
+  const [input_1_6, setInput_1_6] = useState('');
+  const handle_input_1_6 = state => setInput_1_6(state);
+  const states_6 = [input_1_6, handle_input_1_6];
+  const request_object=
+  {
+    // agreement_compliance_type: "statement-of-work",
+    // client_full_name: input1,
+    // jurisdiction: input2,
+    // project_name: input3,
+    // effective_date: generate_date(date.toLocaleDateString()),
+    // freelancers_full_name:input4,
+    // freelancer_access:freelancer_access,
+    // what_is_the_goal_of_this_project: input5,
+    // deliverables_expected_in_this_scope_of_work: input6,
+    // mode_of_communication_between_the_parties: input1_2,
+    // when_will_the_freelancer_share_his_status_on_deliverables:  generate_date(date_2.toLocaleDateString()),
+    // when_will_the_progress_meetings_occur:  generate_date(date1_2.toLocaleDateString()),
+    // what_is_the_minimum_time_required_to_complete_this_project:  parseFloat(input2_2),
+    // what_is_the_minimum_time_required_to_complete_this_project_unit: x,
+    // what_is_value_in_respect_to_time_required: parseFloat(input3_2),
+    // what_is_value_in_respect_to_time_required_currency:input4_2 ,
+    // what_is_the_billing_rate: parseFloat(input5_2),
+    // what_is_the_billing_rate_currency: input6_2,
+    // what_is_the_charges_for_rush_work:  parseFloat(input7_2),
+    // what_is_the_charges_for_rush_work_currency:input8_2,
+    // whom_should_the_invoices_be_submitted_to: input9_2,
+    // whom_should_the_invoices_be_submitted_to_department_name: "nil",
+    // when_should_the_invoices_be_submitted:  generate_date(date2_2.toLocaleDateString()),
+    // when_will_the_invoices_be_payable_by_after_receipt:  generate_date(date3_2.toLocaleDateString())
+
+}
 
   return (
     <>
@@ -1015,6 +1161,20 @@ const Steps = () => {
           style={{width: '100px'}}
           marginBottom={15}
           nextBtnTextStyle={{color: 'white', fontSize: 18}}>
+            <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_5}
+            onNext={() => {
+              setempty_validation_4(empty_validation(inputs_4));
+              const x = empty_validation(inputs_4);
+              setError_5(!x);
+            }}>
+            <View>
+              <Policy5 list={states_4} />
+            </View>
+          </ProgressStep>
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
@@ -1070,18 +1230,25 @@ const Steps = () => {
               <Policy4 list={states_3} />
             </View>
           </ProgressStep>
+          
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
             previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            errors={error_5}
-            onNext={() => {
-              setempty_validation_4(empty_validation(inputs_4));
-              const x = empty_validation(inputs_4);
-              setError_5(!x);
+            finishBtnText="Done"
+            previousBtnStyle={previousButton}
+            onSubmit={() => {
+              navigation.navigate('HomeScreen')
+              // const y = email_validation(input_1_4);
+              // const z = !y;
+              // if (z) {
+              //   alert('please enter valid email');
+              // } else {
+              //   //api
+              // }
             }}>
             <View>
-              <Policy5 list={states_4} />
+              <Policy5 list={states_6} object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>

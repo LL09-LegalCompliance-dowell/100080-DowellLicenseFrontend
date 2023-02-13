@@ -18,7 +18,7 @@ const Policy4 = ({list}) => {
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text
+        <Text
           style={
             list[0]
               ? styles.hide
@@ -45,12 +45,12 @@ const Policy4 = ({list}) => {
           </Text>
           <RadioGroup
             radioButtons={list[3]}
-            onPress={(data)=>list[4](data)}
+            onPress={data => list[4](data)}
             containerStyle={styles.radio_hm}
           />
-           <Text style={styles.text_3}>Clause 9.3</Text>
+          <Text style={styles.text_3}>Clause 9.3</Text>
           <Text style={styles.text_2}>
-          For what period will this warranty apply?
+            For what period will this warranty apply?
           </Text>
           <View
             style={[
@@ -65,46 +65,24 @@ const Policy4 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
-              value={list[21]}
+              // style={styles.input_vm}
+              value={list[5]}
               placeholder="Enter number"
               placeholderTextColor="gray"
-              onChangeText={value => list[22](value)}
+              onChangeText={value => list[6](value)}
             />
             <View>
               <RadioGroup
-                radioButtons={list[23]}
-                onPress={data => list[24](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                radioButtons={list[7]}
+                onPress={data => list[8](data)}
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>
-<Text style={styles.text_3}>Clause 9.4</Text>
+          <Text style={styles.text_3}>Clause 9.4</Text>
           <Text style={styles.text_2}>
             For what period will this warranty apply?
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[5]}
-            placeholder="  Eg."
-            placeholderTextColor="gray"
-            onChangeText={value => list[6](value)}
-          />
-
-          <Text style={styles.text_3}>Clause 9.5</Text>
-          <Text style={styles.text_2}>What is the scope of this warranty?</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[7]}
-            placeholder="  Eg."
-            placeholderTextColor="gray"
-            onChangeText={value => list[8](value)}
-          />
-
-          <Text style={styles.text_3}>Clause 9.6</Text>
-          <Text style={styles.text_2}>
-            What is the jurisdictional coverage of the warranty?
           </Text>
           <TextInput
             style={styles.input_vm}
@@ -115,10 +93,7 @@ const Policy4 = ({list}) => {
           />
 
           <Text style={styles.text_3}>Clause 9.5</Text>
-          <Text style={styles.text_2}>
-            In what circumstances may the Licensor exercise its rights under
-            this provision?
-          </Text>
+          <Text style={styles.text_2}>What is the scope of this warranty?</Text>
           <TextInput
             style={styles.input_vm}
             value={list[11]}
@@ -127,14 +102,39 @@ const Policy4 = ({list}) => {
             onChangeText={value => list[12](value)}
           />
 
+          <Text style={styles.text_3}>Clause 9.6</Text>
+          <Text style={styles.text_2}>
+            What is the jurisdictional coverage of the warranty?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[13]}
+            placeholder="  Eg."
+            placeholderTextColor="gray"
+            onChangeText={value => list[14](value)}
+          />
+
+          <Text style={styles.text_3}>Clause 9.5</Text>
+          <Text style={styles.text_2}>
+            In what circumstances may the Licensor exercise its rights under
+            this provision?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[15]}
+            placeholder="  Eg."
+            placeholderTextColor="gray"
+            onChangeText={value => list[16](value)}
+          />
+
           <Text style={styles.text_2}>
             Should there be an express requirement for the Licensor to act
             reasonably in relation to the exercise of its rights under this
             provision?
           </Text>
           <RadioGroup
-            radioButtons={list[13]}
-            onPress={(data)=>list[14](data)}
+            radioButtons={list[17]}
+            onPress={data => list[18](data)}
             containerStyle={styles.radio_hm}
           />
 
@@ -142,8 +142,8 @@ const Policy4 = ({list}) => {
             Are there any express limitations on this right to modify?
           </Text>
           <RadioGroup
-            radioButtons={list[15]}
-            onPress={(data)=>list[16](data)}
+            radioButtons={list[19]}
+            onPress={data => list[20](data)}
             containerStyle={styles.radio_hm}
           />
 
@@ -152,10 +152,10 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[17]}
+            value={list[21]}
             placeholder="  Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[18](value)}
+            onChangeText={value => list[22](value)}
           />
 
           <Text style={styles.text_3}>Clause 12: Termination</Text>
@@ -163,8 +163,8 @@ const Policy4 = ({list}) => {
 
           <Text style={styles.text_2}>What notice period will apply?</Text>
           <RadioGroup
-            radioButtons={list[19]}
-            onPress={(data)=>list[20](data)}
+            radioButtons={list[23]}
+            onPress={data => list[24](data)}
             containerStyle={styles.radio_hm}
           />
 
@@ -173,18 +173,18 @@ const Policy4 = ({list}) => {
             or on some particular day?
           </Text>
           <RadioGroup
-            radioButtons={list[21]}
-            onPress={(data)=>list[22](data)}
+            radioButtons={list[25]}
+            onPress={data => list[26](data)}
             containerStyle={styles.radio_hm}
           />
 
           <Text style={styles.text_2}>Specify the relevant period.</Text>
           <TextInput
             style={styles.input_vm}
-            value={list[23]}
+            value={list[27]}
             placeholder="  Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[24](value)}
+            onChangeText={value => list[28](value)}
           />
 
           <Text style={styles.text_3}>Clause 12.3</Text>
@@ -193,10 +193,10 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[25]}
+            value={list[29]}
             placeholder="  Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[26](value)}
+            onChangeText={value => list[30](value)}
           />
 
           <Text style={styles.text_3}>Clause 14: Notices </Text>
@@ -205,10 +205,10 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[27]}
+            value={list[31]}
             placeholder="  Eg."
             placeholderTextColor="gray"
-            onChangeText={value => list[28](value)}
+            onChangeText={value => list[32](value)}
           />
 
           <Text style={styles.text_3}>Clause 14.2</Text>
@@ -218,10 +218,10 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[29]}
+            value={list[33]}
             placeholder="  Address, contact details, etc"
             placeholderTextColor="gray"
-            onChangeText={value => list[30](value)}
+            onChangeText={value => list[34](value)}
           />
 
           <Text style={styles.text_2}>
@@ -230,20 +230,20 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[31]}
+            value={list[35]}
             placeholder="  Address, contact details, etc"
             placeholderTextColor="gray"
-            onChangeText={value => list[32](value)}
+            onChangeText={value => list[36](value)}
           />
 
           <Text style={styles.text_3}>Clause 15.7</Text>
           <Text style={styles.text_2}>Which law will govern the document?</Text>
           <TextInput
             style={styles.input_vm}
-            value={list[33]}
+            value={list[37]}
             placeholder="  Address, contact details, etc"
             placeholderTextColor="gray"
-            onChangeText={value => list[34](value)}
+            onChangeText={value => list[38](value)}
           />
 
           <Text style={styles.text_3}>Clause 15.8</Text>
@@ -254,10 +254,10 @@ const Policy4 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            value={list[35]}
+            value={list[39]}
             placeholder="  Address, contact details, etc"
             placeholderTextColor="gray"
-            onChangeText={value => list[36](value)}
+            onChangeText={value => list[40](value)}
           />
         </View>
       </ScrollView>

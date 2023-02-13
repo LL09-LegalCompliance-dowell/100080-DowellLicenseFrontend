@@ -81,7 +81,7 @@ const Policy2 = ({list}) => {
             When will the contract come into force?
           </Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {marginHorizontal:0}]}
             value={list[5].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -112,7 +112,7 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-             style={styles.input_vm}
+            //  style={styles.input_vm}
               value={list[7]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -122,7 +122,7 @@ const Policy2 = ({list}) => {
               <RadioGroup
                 radioButtons={list[9]}
                 onPress={data => list[10](data)}
-                containerStyle={styles.radio_hm}
+                // containerStyle={styles.radio_hm}
                 layout="row"
               />
             </View>
@@ -234,7 +234,7 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-             style={styles.input_vm}
+            //  style={styles.input_vm}
               value={list[27]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -244,8 +244,8 @@ const Policy2 = ({list}) => {
               <RadioGroup
                 radioButtons={list[29]}
                 onPress={data => list[30](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {useState} from 'react';
-import {ScrollView, View, Text, TextInput, Pressable} from 'react-native';
+import {ScrollView, View, Text, TextInput, Pressable, } from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
@@ -12,12 +12,14 @@ import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-crop-picker';
 import colors from '../../../../assets/colors/colors';
 import AppLoader from '../../../components/AppLoader';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
 
-  const [scanedImage, setScanedImage] = useState(null);
+  const [scanedImage1, setScanedImage1] = useState(null);
+  const [scanedImage2, setScanedImage2] = useState(null);
   const [loading, setLoading] = useState(false);
 
   return (
@@ -39,25 +41,12 @@ const Policy5 = ({list}) => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal1Visible(false)}
         onBackButtonPress={() => setModal1Visible(false)}>
-
-        <View style={{position: 'absolute', top: 100, width: '100%'}}>
+        <View style={{width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Pressable
-              onPress={() => {}}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Take photo</Text>
-            </Pressable>
+            
             <Pressable
               onPress={async () => {
-                ImagePicker.openPicker({
+                ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
@@ -65,7 +54,7 @@ const Policy5 = ({list}) => {
                   setLoading(true);
 
                   // console.log(image);
-                  setScanedImage(image);
+                  setScanedImage1(image);
                   setModal1Visible(false);
 
                   const data = new FormData();
@@ -85,9 +74,10 @@ const Policy5 = ({list}) => {
                     },
                   );
                   let responseJson = await res.json();
-                  list[3](responseJson.file_data);
-                  console.log(list[3]);
+                  list[6](responseJson.file_data);
+                  console.log(responseJson);
                   setLoading(false);
+                  setModal1Visible(false);
                 });
               }}
               style={{
@@ -100,13 +90,56 @@ const Policy5 = ({list}) => {
                 justifyContent: 'center',
               }}>
               <Text style={{color: 'white', fontSize: 16}}>
-                Choose from gallery
+              Camera
               </Text>
             </Pressable>
             <Pressable
               onPress={() => {
-                setModal1Visible(false);
+                ImagePicker.openPicker({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                }).then(async image => {
+                  setLoading(true);
+                  // console.log(image);
+                  setScanedImage1(image);
+                  setModal1Visible(false);
+                  const data = new FormData();
+                  data.append('file', {
+                    uri: image.path,
+                    type: image.mime,
+                    name: 'photo.jpg',
+                  });
+                  let res = await fetch(
+                    'https://100080.pythonanywhere.com/api/attachments/',
+                    {
+                      method: 'post',
+                      body: data,
+                      headers: {
+                        'Content-Type': 'multipart/form-data; ',
+                      },
+                    },
+                  );
+                  let responseJson = await res.json();
+                  list[6](responseJson.file_data);
+                  console.log(responseJson);
+                  setLoading(false);
+                  setModal1Visible(false);
+                });
               }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>Choose from gallery</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {setModal1Visible(false);}}
               style={{
                 backgroundColor: colors.primary,
                 marginVertical: 10,
@@ -126,7 +159,7 @@ const Policy5 = ({list}) => {
       {/* Model start 2*/}
       <Modal
         propagateSwipe
-        isVisible={isModal1Visible}
+        isVisible={isModal2Visible}
         animationIn="slideInUp"
         animationOut="slideOutDown"
         coverScreen={false}
@@ -151,11 +184,11 @@ const Policy5 = ({list}) => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Text style={{color: 'white', fontSize: 16}}>Take photo</Text>
+              <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
             </Pressable>
             <Pressable
               onPress={async () => {
-                ImagePicker.openPicker({
+                ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
@@ -163,7 +196,7 @@ const Policy5 = ({list}) => {
                   setLoading(true);
 
                   // console.log(image);
-                  setScanedImage(image);
+                  setScanedImage2(image);
                   setModal2Visible(false);
 
                   const data = new FormData();
@@ -183,9 +216,10 @@ const Policy5 = ({list}) => {
                     },
                   );
                   let responseJson = await res.json();
-                  list[3](responseJson.file_data);
-                  console.log(list[3]);
+                  list[20](responseJson.file_data);
+                  console.log(responseJson);
                   setLoading(false);
+                  setModal2Visible(false);
                 });
               }}
               style={{
@@ -242,12 +276,20 @@ const Policy5 = ({list}) => {
             individual, or a person on behalf of the (first-party) contracting
             entity?
           </Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[1]}
+              onPress={data => list[2](data)}
+              containerStyle={styles.radio_hm}
+              // layout="row"
+            />
+          </View>
           <TextInput
             style={styles.input_vm}
-            value={list[1]}
+            value={list[3]}
             placeholder="  Name of signatory"
             placeholderTextColor="gray"
-            onChangeText={value => list[2](value)}
+            onChangeText={value => list[4](value)}
           />
           {/* Scaned copy 1*/}
           <Pressable
@@ -258,10 +300,10 @@ const Policy5 = ({list}) => {
               styles.input_vm,
               {
                 flexDirection: 'row',
-                justifyContent: scanedImage == null ? 'space-between' : null,
+                justifyContent: scanedImage1 == null ? 'space-between' : null,
               },
             ]}>
-            {scanedImage == null ? (
+            {scanedImage1 == null ? (
               <Text style={{color: 'gray', fontSize: 16}}>
                 E-signature scanned copy
               </Text>
@@ -270,7 +312,7 @@ const Policy5 = ({list}) => {
                 Uploaded
               </Text>
             )}
-            {scanedImage == null ? (
+            {scanedImage1 == null ? (
               <>
                 <MaterialCommunityIcons
                   // style={styles.userIcon}
@@ -294,10 +336,10 @@ const Policy5 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            // value={list[2  ]}
+            value={list[7]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            // onChangeText={value => list[3](value)}
+            onChangeText={value => list[8](value)}
           />
 
           <Text style={styles.text_2}>
@@ -307,7 +349,7 @@ const Policy5 = ({list}) => {
             style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
             <TextInput
               style={styles.input}
-              // value={list[5].toLocaleDateString()}
+              value={list[9].toLocaleDateString()}
               placeholder="dd/mm/yyyy"
               placeholderTextColor="gray"
             />
@@ -318,7 +360,7 @@ const Policy5 = ({list}) => {
                 </View>
               }
               color="#489503"
-              // onSelect={value => list[6](value)}
+              onSelect={value => list[10](value)}
               isHideOnSelect={true}
               initialDate={new Date()}
             />
@@ -330,19 +372,20 @@ const Policy5 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            // value={list[2]}
+            value={list[11]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            // onChangeText={value => list[3](value)}
+            onChangeText={value => list[12](value)}
           />
           <Text style={styles.text_2}>
-          On what date is the contract being signed on behalf of the first party?
+            On what date is the contract being signed on behalf of the first
+            party?
           </Text>
           <View
             style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
             <TextInput
               style={styles.input}
-              // value={list[5].toLocaleDateString()}
+              value={list[13].toLocaleDateString()}
               placeholder="dd/mm/yyyy"
               placeholderTextColor="gray"
             />
@@ -353,13 +396,11 @@ const Policy5 = ({list}) => {
                 </View>
               }
               color="#489503"
-              // onSelect={value => list[6](value)}
+              onSelect={value => list[14](value)}
               isHideOnSelect={true}
               initialDate={new Date()}
             />
           </View>
-
-          
 
           <Text style={styles.text_3}>
             Subsection: Execution of contract by a second party (individual,
@@ -368,14 +409,22 @@ const Policy5 = ({list}) => {
           <Text style={styles.text_2}>
             Will the contract be signed by the (second party) contracting
             individual, or by a person on behalf of the (second party)
-            contracting entity?{' '}
+            contracting entity?
           </Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[15]}
+              onPress={data => list[16](data)}
+              containerStyle={styles.radio_hm}
+              // layout="row"
+            />
+          </View>
           <TextInput
             style={styles.input_vm}
-            // value={list[2]}
+            value={list[17]}
             placeholder="  Name of signatory"
             placeholderTextColor="gray"
-            // onChangeText={value => list[3](value)}
+            onChangeText={value => list[18](value)}
           />
 
           {/* Scaned copy 2*/}
@@ -387,10 +436,10 @@ const Policy5 = ({list}) => {
               styles.input_vm,
               {
                 flexDirection: 'row',
-                justifyContent: scanedImage == null ? 'space-between' : null,
+                justifyContent: scanedImage2 == null ? 'space-between' : null,
               },
             ]}>
-            {scanedImage == null ? (
+            {scanedImage2 == null ? (
               <Text style={{color: 'gray', fontSize: 16}}>
                 E-signature scanned copy
               </Text>
@@ -399,7 +448,7 @@ const Policy5 = ({list}) => {
                 Uploaded
               </Text>
             )}
-            {scanedImage == null ? (
+            {scanedImage2 == null ? (
               <>
                 <MaterialCommunityIcons
                   // style={styles.userIcon}
@@ -423,10 +472,10 @@ const Policy5 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            // value={list[2]}
+            value={list[21]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            // onChangeText={value => list[3](value)}
+            onChangeText={value => list[22](value)}
           />
 
           <Text style={styles.text_2}>
@@ -436,7 +485,7 @@ const Policy5 = ({list}) => {
             style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
             <TextInput
               style={styles.input}
-              // value={list[5].toLocaleDateString()}
+              value={list[23].toLocaleDateString()}
               placeholder="dd/mm/yyyy"
               placeholderTextColor="gray"
             />
@@ -447,7 +496,7 @@ const Policy5 = ({list}) => {
                 </View>
               }
               color="#489503"
-              // onSelect={value => list[6](value)}
+              onSelect={value => list[24](value)}
               isHideOnSelect={true}
               initialDate={new Date()}
             />
@@ -459,10 +508,10 @@ const Policy5 = ({list}) => {
           </Text>
           <TextInput
             style={styles.input_vm}
-            // value={list[2]}
+            value={list[25]}
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
-            // onChangeText={value => list[3](value)}
+            onChangeText={value => list[26](value)}
           />
 
           <Text style={styles.text_2}>
@@ -473,7 +522,7 @@ const Policy5 = ({list}) => {
             style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
             <TextInput
               style={styles.input}
-              // value={list[5].toLocaleDateString()}
+              value={list[27].toLocaleDateString()}
               placeholder="dd/mm/yyyy"
               placeholderTextColor="gray"
             />
@@ -484,7 +533,7 @@ const Policy5 = ({list}) => {
                 </View>
               }
               color="#489503"
-              // onSelect={value => list[6](value)}
+              onSelect={value => list[28](value)}
               isHideOnSelect={true}
               initialDate={new Date()}
             />
