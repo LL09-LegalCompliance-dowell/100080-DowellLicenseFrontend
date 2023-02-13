@@ -46,7 +46,11 @@ const Policy4 = ({list, object}) => {
       setFlag(result.data[0].agreement.html_doc_url)
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      //  console.error(error);
+      setLoading(false);
+      alert('Something went wrong, please try again later')
+     
+      
     }
   };
 

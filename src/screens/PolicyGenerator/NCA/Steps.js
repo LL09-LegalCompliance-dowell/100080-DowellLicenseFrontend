@@ -307,9 +307,9 @@ const Steps = () => {
     will_electronic_notices_be_allowed: a,
     name_of_witnesses: input_1_2,
     signature_of_witnesses_detail: {
-      filename: input_2_2.filename,
-      actual_filename: input_2_2.actual_filename,
-      file_extension: input_2_2.file_extension,
+      filename: input_2_2,
+      // actual_filename: input_2_2,
+      // file_extension: input_2_2.file_extension,
     },
   };
 

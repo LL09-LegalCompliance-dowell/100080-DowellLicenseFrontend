@@ -20,27 +20,6 @@ const Policy3 = ({list}) => {
   const [loading, setLoading] = useState(false);
   const [scanedImage, setScanedImage] = useState(null);
 
-  // useEffect(() => {
-  //   requestPermission()
-  // }, [])
-
-  // const requestPermission = async () => {
-  //   try {
-  //     console.log('asking for permission')
-  //     const granted = await PermissionsAndroid.requestMultiple(
-  //       [PermissionsAndroid.PERMISSIONS.CAMERA,
-  //       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE]
-  //     )
-  //     if (granted['android.permission.CAMERA'] && granted['android.permission.WRITE_EXTERNAL_STORAGE']) {
-  //       console.log("You can use the camera");
-  //     } else {
-  //       console.log("Camera permission denied");
-  //     }
-  //   } catch (error) {
-  //     console.log('permission error', error)
-  //   }
-  // }
-
   return (
     <>
       {loading ? <AppLoader /> : null}
@@ -77,31 +56,14 @@ const Policy3 = ({list}) => {
                   width: 300,
                   height: 400,
                   cropping: true,
+                  includeBase64: true,
                 }).then(async image => {
                   try {
                     setLoading(true);
 
-                    // console.log(image);
+                    console.log(image.data);
                     setScanedImage(image);
-                    const data = new FormData();
-                    data.append('file', {
-                      uri: image.path,
-                      type: image.mime,
-                      name: 'photo.jpg',
-                    });
-                    let res = await fetch(
-                      'https://100080.pythonanywhere.com/api/attachments/',
-                      {
-                        method: 'post',
-                        body: data,
-                        headers: {
-                          'Content-Type': 'multipart/form-data; ',
-                        },
-                      },
-                    );
-                    let responseJson = await res.json();
-                    list[4](responseJson.file_data);
-                    console.log(responseJson);
+                    list[4](image.data);
                     setLoading(false);
                     setModal1Visible(false);
                   } catch (error) {
