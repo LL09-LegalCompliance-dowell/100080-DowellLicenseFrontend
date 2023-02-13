@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation,get_org_id } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 const generate_date = (date)=>{
   const temp = date.split("/")
@@ -49,11 +49,19 @@ const Steps = () => {
       const [input_1_4, setInput_1_4] = useState("");
       const handle_input_1_4 = (state)=> setInput_1_4(state);
       const states_4= [input_1_4,handle_input_1_4]
-      const request_object={
-        agreement_compliance_type: "app-disclaimer",
-        last_update: generate_date(date.toLocaleDateString()),
-        app_name: input_1
-    }
+
+          
+      request_object={
+            agreement_compliance_type: "app-disclaimer",
+            organization_id: org_id,
+            last_update: generate_date(date.toLocaleDateString()),
+            app_name: input_1
+        }
+       
+      
+   
+      
+      
         
     return (
         <>

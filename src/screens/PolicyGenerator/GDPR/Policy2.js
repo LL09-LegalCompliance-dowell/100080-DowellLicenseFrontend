@@ -31,6 +31,7 @@ const Policy2 = ({list}) => {
               }
               else {
                 list[25](false)
+                list[7]("")
               }
             }}
             containerStyle={styles.radio_hm}
@@ -55,6 +56,7 @@ const Policy2 = ({list}) => {
               }
               else {
                 list[27](false)
+                list[11]("")
               }
             }}
             containerStyle={styles.radio_hm}
