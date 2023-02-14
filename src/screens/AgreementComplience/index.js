@@ -1,5 +1,12 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import Modal from 'react-native-modal';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -20,14 +27,117 @@ import {Image} from 'react-native';
 
 import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
 import HowToModel from './HowToModel';
+import {useIsFocused} from '@react-navigation/native';
 
 const AgreementComplience = ({navigation}) => {
+  const isFocused = useIsFocused();
+  const [isModal1Visible, setModal1Visible] = useState(true);
+  useEffect(() => {
+    console.log(isModal1Visible);
+  }, [isFocused]);
+
   const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
     useState(false);
   const [showDisclaimerOptions, setDisclaimerShowOptions] = useState(false);
   const [isHowto, setHowto] = useState(false);
   return (
     <>
+      {/* How to Overlay starts here */}
+      <Modal
+        propagateSwipe
+        isVisible={isModal1Visible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        animationInTiming={500}
+        animationOutTiming={500}
+        avoidKeyboard={true}
+        onBackdropPress={() => setHowto(false)}
+        onBackButtonPress={() => setHowto(false)}
+        backdropTransitionOutTiming={0}
+        onSwipeComplete={() => setHowto(false)}
+        swipeDirection="right">
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: 370,
+            width: '100%',
+            padding: 5,
+            borderRadius: 10,
+          }}>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 17,
+              fontFamily: 'roboto',
+              fontWeight: '700',
+            }}>
+            Notice
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 16,
+              fontFamily: 'roboto',
+              textAlign: 'justify',
+            }}>
+            We and selected third parties use cookies or similar technologies
+            for technical purposes and, with your consent, for other purposes as
+            specified in the cookie policy.
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 16,
+              fontFamily: 'roboto',
+              textAlign: 'justify',
+            }}>
+            We and selected third parties use cookies or similar technologies
+            for technical purposes and, with your consent, for other purposes as
+            specified in the cookie policy.
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingHorizontal: 50,
+              marginTop: 70,
+              borderTopColor: '#959595',
+              borderTopWidth: 1,
+            }}>
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 40,
+              }}
+              onPress={() => {   
+                  navigation.goBack();        
+              }}>
+              <Text style={{fontSize: 17, fontFamily: 'roboto', color: 'red', paddingTop:5}}>
+                Reject
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 40,
+              }}
+              onPress={() => setModal1Visible(false)}>
+              <Text
+                style={{fontSize: 17, fontFamily: 'roboto', color: 'green', paddingTop:5}}>
+                Accept
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
         {isHowto === 'true' ? <HowToModel /> : null}
@@ -243,12 +353,10 @@ const AgreementComplience = ({navigation}) => {
             }}
             style={styles.listContainer}>
             <View style={styles.iconContainer}>
-  
               <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>Website Security Policy</Text>
           </TouchableOpacity>
-
         </ScrollView>
       </View>
     </>
