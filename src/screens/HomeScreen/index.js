@@ -80,15 +80,7 @@ const Home = ({navigation}) => {
               <Text style={styles.itemText}>Contact us</Text>
             </TouchableOpacity>
           </View>
-          {/* About Company */}
-          <Text style={styles.heading}>About Legalzard and Company</Text>
-          <Text style={styles.aboutText}>
-            Legalzard is a product of DoWell services that helps in checking the compatibility of software licenses. 
-          </Text>
-          <Text style={styles.aboutText}>
-          This app also helps in generating different kinds of policies required for both websites and mobile applications.
-          </Text>
-
+          
 
           {/* Quik Links */}
           <Text style={styles.heading}>Quik Links</Text>
@@ -98,31 +90,6 @@ const Home = ({navigation}) => {
             <TouchableOpacity onPress={() => navigation.navigate('AuthNavigator', {screen:'PrivacyPolicy'} )}>
               <Text style={styles.link}>View Privacy Policy</Text>
             </TouchableOpacity>            
-          </View>
-
-          {/* Contact Info */}
-          <Text style={styles.heading}>Contact Info</Text>
-          <View style={styles.contactContainer}>
-            <View style={styles.contactItem}>
-              <Ionicons
-                name="location-outline"
-                size={30}
-                color={colors.primary}
-              />
-              <Text style={styles.contactText}>
-                Level 42, Six Battery Road Singapore-049909
-              </Text>
-            </View>
-            <View style={styles.contactItem}>
-              <AntDesign name="mail" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>
-                livinglabfinance@dowellrsearch.sg
-              </Text>
-            </View>
-            <View style={styles.contactItem}>
-              <Feather name="phone" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>65 6232 2314</Text>
-            </View>
           </View>
           <Text
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>

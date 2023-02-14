@@ -16,7 +16,7 @@ const ApacheLicense = ({route}) => {
         {/* Upper Container */}
         <View style={styles.upperContainer}>
           <Image
-            style={{height: 150, width: 150, resizeMode: 'contain'}}
+            style={{height: 100, width: 100, resizeMode: 'contain'}}
             source={{uri: item.softwarelicense?.logo_detail?.url}}
           />
           {item.softwarelicense?.license_name ? (
@@ -30,7 +30,7 @@ const ApacheLicense = ({route}) => {
             </Text>
           ) : null}
           {item.softwarelicense?.short_description ? (
-            <Text>{item.softwarelicense?.short_description}</Text>
+            <Text style={{textAlign:'justify'}}>{item.softwarelicense?.short_description}</Text>
           ) : null}
         </View>
         {/* Lower Container */}

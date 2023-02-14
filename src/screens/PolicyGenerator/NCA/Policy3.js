@@ -61,7 +61,7 @@ const Policy3 = ({list}) => {
                   try {
                     setLoading(true);
 
-                    console.log(image.data);
+                    console.log(image);
                     setScanedImage(image);
                     list[4](image.data);
                     setLoading(false);
