@@ -70,11 +70,17 @@ const Steps = () => {
       const handle_input5 = (state)=> setInput5(state);
       const [input6, setInput6] = useState('');
       const handle_input6 = (state)=> setInput6(state);
-    
+      const [input7, setInput7] = useState([]);
+      const handle_input7_1 = (state)=> {
+        setInput7([...input7,state])
+      };
+      const handle_input7_22 = (state)=> {
+        setInput7(input7.filter((item)=>item!==state))
+      };
       const [error_1, setError_1] = useState(false);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,empty_validationn]
-      const inputs= [input1,input2,input3,input4,input5,input6]
+      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,input7,handle_input7_1,handle_input7_22,empty_validationn]
+      const inputs= [input1,input2,input3,input4,input5]
 
       ///////////////////////////////////////////////////////2
       const [input1_2, setInput1_2] = useState('');
@@ -184,7 +190,7 @@ const Steps = () => {
         freelancers_full_name:input4,
         freelancer_access:freelancer_access,
         what_is_the_goal_of_this_project: input5,
-        deliverables_expected_in_this_scope_of_work: input6,
+        deliverables_expected_in_this_scope_of_work: input7,
         mode_of_communication_between_the_parties: input1_2,
         when_will_the_freelancer_share_his_status_on_deliverables:  generate_date(date_2.toLocaleDateString()),
         when_will_the_progress_meetings_occur:  generate_date(date1_2.toLocaleDateString()),
