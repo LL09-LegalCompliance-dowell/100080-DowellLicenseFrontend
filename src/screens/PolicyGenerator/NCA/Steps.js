@@ -308,8 +308,6 @@ const Steps = () => {
     name_of_witnesses: input_1_2,
     signature_of_witnesses_detail: {
       filename: input_2_2,
-      // actual_filename: input_2_2,
-      // file_extension: input_2_2.file_extension,
     },
   };
 
