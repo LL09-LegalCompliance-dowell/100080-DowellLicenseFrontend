@@ -81,9 +81,9 @@ const ApacheLicense = ({route}) => {
                       key={index}
                         style={[
                           styles.heading4,
-                          {marginLeft: 20},
+                          {marginLeft: 20, width:'100%'},
                         ]}>
-                        {attribute}
+                        {`${attribute}`}
                       </Text>
                     </View>
                   </>

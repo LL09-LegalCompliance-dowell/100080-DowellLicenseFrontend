@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
 
   heading2: {
-    letterSpacing: 1.4,
+    textAlign:'justify',
     fontSize: 15,
     fontWeight: '400',
     color: colors.textDark,
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   heading4: {
-    letterSpacing: 1.5,
     fontSize: 15,
     fontFamily:'roboto',
     fontWeight: '400',
