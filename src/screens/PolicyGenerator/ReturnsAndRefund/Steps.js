@@ -5,7 +5,7 @@ import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { email_validation,empty_validation, number_validation } from '../validations';
+import { email_validation,empty_validation, number_validation,url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 const generate_date = (date)=>{
   const temp = date.split("/")
@@ -137,8 +137,9 @@ const Steps = () => {
                   const y= email_validation(input_6)
                   const z= number_validation(input_4)
                   const l= number_validation(input_5)
+                  const m= url_validation(input_3)
 
-                  setError_1(!(x & y & z & l) )
+                  setError_1(!(x & y & z & l &m) )
                   
                 }}>
                 <View >

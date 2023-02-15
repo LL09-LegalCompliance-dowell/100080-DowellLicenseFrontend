@@ -78,6 +78,7 @@ const Policy3 = ({list}) => {
             style={styles.input_vm}
             value={list[6]}
             placeholder="  Enter number"
+            keyboardType='numeric'
             placeholderTextColor="gray" 
             onChangeText={(value)=>{
               if(value===""){

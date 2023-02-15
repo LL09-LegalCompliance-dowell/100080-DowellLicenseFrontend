@@ -5,13 +5,14 @@ import styles from '../Cookies/style'
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-import { email_validation,number_validation } from '../validations';
+import { email_validation,number_validation,url_validation } from '../validations';
 import SelectDropdown from 'react-native-select-dropdown'
 
 const Policy1 = ({list}) => {
   const [valid_email  , setValid_email ] =  useState(true);
   const [valid_number  ,  setValid_number ] =  useState(true); 
   const [valid_number1  , setValid_number1 ] =  useState(true); 
+  const [valid_url , setValid_url]=useState(true);
   const cuurency = [
     'EUR',
     'GBP',
@@ -32,7 +33,7 @@ const findcurrency=(cvalue)=>{
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <Text style={list[16]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <Text style={styles.text_1}>Details:</Text>
-        <View style={{paddingHorizontal:11,paddingTop:16,position:"relative"}}>
+        <View style={{paddingHorizontal:11,paddingTop:16}}>
             <View >
                 <Text style={styles.text_2}>
                 Date:
@@ -77,13 +78,24 @@ const findcurrency=(cvalue)=>{
               value={list[6]}
               placeholder="  Enter here"
               placeholderTextColor="gray"            
-              onChangeText={(value)=>list[7](value)}
-              />
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_url(true)
+                }
+                else{
+                    url_validation(value)?setValid_url(true):setValid_url(false)
+                }
+                list[7](value)
+                
+            }}
+            />
+            <Text  style={valid_url ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
             <Text style={styles.text_2}>Cancellation rights  of Order within days(in number):</Text>
             <TextInput
               style={styles.input_vm}
               value={list[8]}
               placeholder="  Enter number"
+              keyboardType='numeric'
               placeholderTextColor="gray"            
               onChangeText={(value)=>{
                 if(value===""){
@@ -97,7 +109,7 @@ const findcurrency=(cvalue)=>{
               maxLength={15}
             />
             <Text  style={valid_number ? styles.hide: styles.text_warning}>Please Enter valid number</Text>
-            <View style ={{position:"absolute",top:492,left:170}} >
+            <View style ={valid_url?{position:"absolute",top:490,left:170}:{position:"absolute",top:515,left:170}} >
             <RadioGroup
               radioButtons={list[10]}
               onPress={(data)=>list[11](data)}
@@ -110,6 +122,7 @@ const findcurrency=(cvalue)=>{
               style={styles.input_vm_w}
               value={list[12]}
               placeholder="  Enter Amount(₹)"
+              keyboardType='numeric'
               placeholderTextColor="gray"            
               onChangeText={(value)=>{
                 if(value===""){

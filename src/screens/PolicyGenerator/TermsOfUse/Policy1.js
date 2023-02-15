@@ -5,11 +5,12 @@ import styles from '../Cookies/style'
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import { email_validation } from '../validations';
+import { email_validation,url_validation } from '../validations';
 
 const Policy1 = ({list}) => {
   const [valid_email  , setValid_email ] =  useState(true);
   const [valid_email1 , setValid_email1] =  useState(true);
+  const [valid_url , setValid_url]=useState(true);
   return (
   <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -54,8 +55,18 @@ const Policy1 = ({list}) => {
             value={list[4]}
             placeholder="  Enter here"
             placeholderTextColor="gray" 
-            onChangeText={(value)=>list[5](value)}
-        />
+            onChangeText={(value)=>{
+              if(value===""){
+                  setValid_url(true)
+              }
+              else{
+                  url_validation(value)?setValid_url(true):setValid_url(false)
+              }
+              list[5](value)
+              
+          }}
+          />
+          <Text  style={valid_url ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
         <Text style={styles.text_3_m_b}>Clause 4.2b</Text>  
         <Text style={styles.text_2}>Enter your Email ID:</Text>
         <TextInput

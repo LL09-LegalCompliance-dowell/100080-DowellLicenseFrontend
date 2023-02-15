@@ -297,7 +297,7 @@ const Policy1 = ({list}) => {
           
 
           </View>
-          <View style={{flex:1 ,display:"flex",flexDirection:"column",marginVertical:20,marginHorizontal:30}}>
+          <View style={{flex:1 ,display:"flex",flexDirection:"column",marginVertical:5,marginHorizontal:30}}>
                 {list[22].map((item,index)=>{
                   return<TouchableHighlight style={styles.Pressed}key={index}>
                   <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10}}>

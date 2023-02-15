@@ -1,11 +1,12 @@
-import React from 'react'
+import {React,useState} from 'react'
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ScrollView, View, Text,TouchableHighlight,TouchableOpacity,TextInput} from 'react-native';
-import { number_validation_1 } from '../validations';
+import { number_validation_1 ,url_validation} from '../validations';
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const Policy7 = ({list}) => {
+  const [valid_url , setValid_url]=useState(true);
   var touchProps1 = {                               
     style: list[12] ? styles.Pressed : styles.Normal, 
     onPress: () => list[13](true),                 
@@ -85,9 +86,10 @@ const Policy7 = ({list}) => {
                 
               }}
               placeholder="Enter number of Months"
+              keyboardType='numeric'
               placeholderTextColor="gray" 
           />
-          <Text style={list[4]?{}:styles.text_warning}>Please Enter valid number between 1 and 120</Text>
+          <Text style={list[4]?styles.hide:styles.text_warning}>Please Enter valid number between 1 and 120</Text>
           <Text style={styles.text_2}>Is the person or company responsible for the protection of personal information (data protection officer, or DPO) different from the one that operates the mobile app?</Text>
           <RadioGroup
               radioButtons={list[6]}
@@ -206,10 +208,20 @@ const Policy7 = ({list}) => {
             <TextInput
               style={styles.input}
               value={list[36]}
-              onChangeText={(value)=>list[37](value)}
               placeholder=" e.g. https://www.website.com/contact/"
               placeholderTextColor="gray" 
-            /> 
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_url(true)
+                }
+                else{
+                    url_validation(value)?setValid_url(true):setValid_url(false)
+                }
+                list[37](value)
+                
+            }}
+            />
+            <Text  style={valid_url ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
           </View>
           <View style={list[32] ? {} : {display:"none"}}>
             <Text style={styles.text_2}>What is your email address?</Text>

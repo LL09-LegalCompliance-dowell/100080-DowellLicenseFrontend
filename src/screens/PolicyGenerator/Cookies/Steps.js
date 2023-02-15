@@ -6,7 +6,7 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from './Policy4';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation,url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -484,9 +484,16 @@ useEffect(()=>{
                   }
                   const x=y & z & l
                   setempty_validation_1(x)
-                  const o= email_validation(input_1)
-                  if (isPress1){
-                    setError_2(!(x&o) )
+                  let o= email_validation(input_1)
+                  let m= url_validation(input_2)
+                  if (!isPress1) {
+                    o=true
+                  }
+                  if (!isPress2) {
+                    m=true
+                  }
+                  if (isPress1 || isPress2){
+                    setError_2(!(x&o&m) )
                   }
                   else{
                     setError_2(!(x) )

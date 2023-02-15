@@ -7,6 +7,7 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 
 import { empty_validation,email_validation,number_validation } from '../validations';
 const generate_date = (date)=>{
@@ -14,6 +15,7 @@ const generate_date = (date)=>{
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const navigation = useNavigation();
   const [ orgId, setOrgId ] = useState("");
   const getOrgId = async () => {
     const org_id = await AsyncStorage.getItem("org_id");
@@ -277,7 +279,17 @@ const Steps = () => {
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
-                previousBtnStyle={previousButton}>
+                previousBtnStyle={previousButton}
+                onSubmit={() => {
+                  
+                  const y = email_validation(input_1_4);
+                  const z = !y;
+                  if (z) {
+                    alert('please enter valid email');
+                  } else {
+                    navigation.navigate('HomeScreen')
+                  }
+                }}>
                 <View >
                   <Policy4  list={states_4} object={request_object} />
                 </View>

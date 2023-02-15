@@ -6,7 +6,7 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation, url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -127,7 +127,8 @@ const Steps = () => {
                   const x=(empty_validation(inputs))
                   const y= email_validation(input_3)
                   const z= email_validation(input_4)
-                  setError_1(!(x & y & z) )
+                  const l= url_validation(input_2)
+                  setError_1(!(x & y & z & l) )
                   
                 }}>
                 <View >
