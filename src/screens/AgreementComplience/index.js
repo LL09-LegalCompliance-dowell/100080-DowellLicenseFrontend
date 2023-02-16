@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Modal from 'react-native-modal';
 
 import Header from '../../components/Header';
@@ -27,14 +27,20 @@ import {Image} from 'react-native';
 
 import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
 import HowToModel from './HowToModel';
-import {useIsFocused} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AgreementComplience = ({navigation}) => {
-  const isFocused = useIsFocused();
-  const [isModal1Visible, setModal1Visible] = useState(true);
-  useEffect(() => {
-    console.log(isModal1Visible);
-  }, [isFocused]);
+  const [isModal1Visible, setModal1Visible] = useState(false);
+  const [agreeDisclaimer, setAgreeDisclaimer] = useState('');
+
+  useMemo(async () => {
+    const agreeSatus = await AsyncStorage.getItem('agree');
+    console.log(agreeSatus);
+
+    if (agreeSatus == null) {
+      setModal1Visible(true);
+    }
+  }, []);
 
   const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
     useState(false);
@@ -97,9 +103,9 @@ const AgreementComplience = ({navigation}) => {
               fontFamily: 'roboto',
               textAlign: 'justify',
             }}>
-            We and selected third parties use cookies or similar technologies
-            for technical purposes and, with your consent, for other purposes as
-            specified in the cookie policy.
+            You can consent to the use of such technologies by using the
+            "Accept" button. By closing this notice, you continue without
+            accepting.
           </Text>
           <View
             style={{
@@ -116,11 +122,19 @@ const AgreementComplience = ({navigation}) => {
                 justifyContent: 'center',
                 height: 40,
               }}
-              onPress={() => {   
-                  navigation.goBack();        
+              onPress={async () => {
+                // setAgreeDisclaimer('agree');
+                await AsyncStorage.setItem('agree', "agree");
+                setModal1Visible(false);
               }}>
-              <Text style={{fontSize: 17, fontFamily: 'roboto', color: 'red', paddingTop:5}}>
-                Reject
+              <Text
+                style={{
+                  fontSize: 17,
+                  fontFamily: 'roboto',
+                  color: 'red',
+                  paddingTop: 5,
+                }}>
+                Close
               </Text>
             </Pressable>
             <Pressable
@@ -129,9 +143,18 @@ const AgreementComplience = ({navigation}) => {
                 justifyContent: 'center',
                 height: 40,
               }}
-              onPress={() => setModal1Visible(false)}>
+              onPress={async () => {
+                // setAgreeDisclaimer('agree');
+                await AsyncStorage.setItem('agree', "agree");
+                setModal1Visible(false);
+              }}>
               <Text
-                style={{fontSize: 17, fontFamily: 'roboto', color: 'green', paddingTop:5}}>
+                style={{
+                  fontSize: 17,
+                  fontFamily: 'roboto',
+                  color: 'green',
+                  paddingTop: 5,
+                }}>
                 Accept
               </Text>
             </Pressable>
