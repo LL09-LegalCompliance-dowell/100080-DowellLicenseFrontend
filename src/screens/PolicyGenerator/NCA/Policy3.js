@@ -60,7 +60,6 @@ const Policy3 = ({list}) => {
                 }).then(async image => {
                   try {
                     setLoading(true);
-
                     console.log(image);
                     setScanedImage(image);
                     list[4](image.data);
@@ -89,6 +88,7 @@ const Policy3 = ({list}) => {
                   width: 300,
                   height: 400,
                   cropping: true,
+                  includeBase64: true,
                 }).then(async image => {
                   try {
                     setLoading(true);

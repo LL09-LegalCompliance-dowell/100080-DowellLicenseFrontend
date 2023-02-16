@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useMemo} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
 import Header from '../../../components/Header';
@@ -7,7 +7,7 @@ import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {empty_validation, email_validation} from '../validations';
 const generate_date = date => {
   const temp = date.split('/');
@@ -15,6 +15,12 @@ const generate_date = date => {
 };
 const Steps = () => {
   const navigation = useNavigation();
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -219,24 +225,44 @@ const Steps = () => {
     date2,
     handle_date2,
   ];
+  const inputs_2 = [input_1_2, input_2_2,input_3_2,input_4_2,input_5_2,input_6_2,input_7_2];
   /////////////////////////////////////////////////////////////////////////////4
   const [input_1_3, setInput_1_3] = useState('');
   const handle_input_1_3 = state => setInput_1_3(state);
   const states_3 = [input_1_3, handle_input_1_3];
 
   const request_object = {
-    // agreement_compliance_type: 'employment-contract',
-    // last_update: generate_date(date.toLocaleDateString()),
-    // party_full_name: input_1,
-    // website_url: input_2,
-    // email: input_3,
-    // email_use_for_acquiring_written_permission: input_4,
-    // liability_limit_amount: input_1_1,
-    // liability_limit_amount_currency: input_2_1,
-    // liability_must_not_exceed_amount: input_3_1,
-    // liability_must_not_exceed_amount_currency: input_4_1,
-    // email_for_requesting_access_to_personal_information: input_1_2,
-  };
+    agreement_compliance_type: "employment-contract",
+    organization_id: orgId,
+    company_name: input_1,
+    company_address_line_1: input_2,
+    company_address_line_2: input_3,
+    company_address_line_3: input_4,
+    employee_full_name: input_5,
+    type_of_business_the_company_engaged: input_6,
+    start_date: generate_date(date.toLocaleDateString()),
+    company_state: input_7,
+    company_country: input_8,
+    duties_of_employee: input_1_1,
+    time_frame_of_the_compensation: a,
+    amount: input_3_1,
+    amount_currency: input_4_1,
+    full_name_of_company_signatory: input_4_2,
+    company_signatory_scanned_copy_detail: {
+        filename: input_5_2,
+    },
+    company_signatory_date: generate_date(date1.toLocaleDateString()),
+    full_name_of_employee_signatory: input_6_2,
+    employee_signatory_scanned_copy_detail: {
+      filename: input_7_2,
+    },
+    employee_signatory_date: null,
+    jurisdiction: input_1_2,
+    employee_state: input_2_2,
+    employee_country: input_3_2
+
+
+};
   return (
     <>
       <Header title="Generator" />
@@ -289,9 +315,9 @@ const Steps = () => {
             errors={error_3}
             onNext={() => {
               setempty_validation_2(empty_validation([input_1_2]));
-              const x = empty_validation([input_1_2]);
-              const y = email_validation(input_1_2);
-              setError_3(!(x & y));
+              const x = empty_validation(inputs_2);
+              // const y = email_validation(input_1_2);
+              setError_3(!(x));
             }}>
             <View>
               <Policy3 list={states_2} />
