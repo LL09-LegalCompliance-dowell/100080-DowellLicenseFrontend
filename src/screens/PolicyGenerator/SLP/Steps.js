@@ -10,6 +10,11 @@ import Policy5 from './Policy5';
 import Policy6 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
 
+const generate_date = date => {
+  const temp = date.split('/');
+  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+};
+
 const Steps = () => {
   const nextButton = {
     backgroundColor: '#489503',
@@ -84,6 +89,16 @@ const Steps = () => {
       },
     },
   ]);
+  let x;
+  if (radioButtons[0].selected === true) {
+    x= 'Individual';
+  } else if (radioButtons[1].selected === true) {
+    x = 'Company';
+  } else if (radioButtons[2].selected === true) {
+    x = 'Partnership';
+  } else {
+    x = 'Other';
+  }
   const [radioButtons2, setRadioButtons2] = useState([
     {
       id: '1',
@@ -131,6 +146,16 @@ const Steps = () => {
       },
     },
   ]);
+  let y;
+  if (radioButtons[0].selected === true) {
+    y= 'Individual';
+  } else if (radioButtons[1].selected === true) {
+    y = 'Company';
+  } else if (radioButtons[2].selected === true) {
+    y = 'Partnership';
+  } else {
+    y = 'Other';
+  }
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
@@ -235,7 +260,7 @@ const Steps = () => {
   const [radioButtons_1, setRadioButtons_1] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -247,7 +272,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -258,7 +283,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -268,6 +293,14 @@ const Steps = () => {
       },
     },
   ]);
+  let z;
+  if (radioButtons[0].selected === true) {
+    z= 'days';
+  } else if (radioButtons[1].selected === true) {
+    z = 'months';
+  } else {
+    z = 'years';
+  }
 
   const [radioButtons_2, setRadioButtons_2] = useState([
     {
@@ -294,6 +327,12 @@ const Steps = () => {
       },
     },
   ]);
+  let a;
+  if (radioButtons[0].selected === true) {
+    a= 'Yes';
+  } else {
+    a = 'No';
+  }
 
   const [radioButtons_3, setRadioButtons_3] = useState([
     {
@@ -320,6 +359,12 @@ const Steps = () => {
       },
     },
   ]);
+  let b;
+  if (radioButtons[0].selected === true) {
+    b= 'Yes';
+  } else {
+    b = 'No';
+  }
 
   const [radioButtons_4, setRadioButtons_4] = useState([
     {
@@ -346,6 +391,12 @@ const Steps = () => {
       },
     },
   ]);
+  let c;
+  if (radioButtons[0].selected === true) {
+    c= 'Yes';
+  } else {
+    c = 'No';
+  }
   const [radioButtons_5_2, setRadioButtons_5_2] = useState([
     {
       id: '1',
@@ -371,10 +422,16 @@ const Steps = () => {
       },
     },
   ]);
+  let d;
+  if (radioButtons[0].selected === true) {
+    d= 'Yes';
+  } else {
+    d = 'No';
+  }
   const [radioButtons_6_2, setRadioButtons_6_2] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -386,7 +443,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -397,7 +454,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -407,6 +464,14 @@ const Steps = () => {
       },
     },
   ]);
+  let e;
+  if (radioButtons[0].selected === true) {
+    e= 'days';
+  } else if (radioButtons[1].selected === true) {
+    e = 'months';
+  } else {
+    e = 'years';
+  }
   const [radioButtons_7_2, setRadioButtons_7_2] = useState([
     {
       id: '1',
@@ -432,6 +497,12 @@ const Steps = () => {
       },
     },
   ]);
+  let f;
+  if (radioButtons[0].selected === true) {
+    f= 'Yes';
+  } else {
+    f = 'No';
+  }
   const [error_2, setError_2] = useState(false);
   const [empty_validationn_1, setempty_validation_1] = useState(true);
   const [input_1_1, setInput_1_1] = useState('');
@@ -577,7 +648,7 @@ const Steps = () => {
   const [radioButtons_6_3, setRadioButtons_6_3] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -589,7 +660,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -600,7 +671,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -614,7 +685,7 @@ const Steps = () => {
   const [radioButtons_7_3, setRadioButtons_7_3] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -626,7 +697,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mon',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -637,7 +708,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -860,7 +931,7 @@ const Steps = () => {
   const [radioButtons_7_4, setRadioButtons_7_4] = useState([
     {
       id: '1',
-      label: 'Days',
+      label: 'Day',
       value: 'days',
       size: 18,
       color: '#489503',
@@ -872,7 +943,7 @@ const Steps = () => {
     },
     {
       id: '2',
-      label: 'Months',
+      label: 'Mont',
       value: 'months',
       size: 18,
       color: '#489503',
@@ -883,7 +954,7 @@ const Steps = () => {
     },
     {
       id: '3',
-      label: 'Years',
+      label: 'Year',
       value: 'years',
       size: 18,
       color: '#489503',
@@ -1077,7 +1148,7 @@ const Steps = () => {
     handle_radiobuttons_2_5,
     input_1_4,
     handle_input_1_4,
-    input_1_4,
+    input_2_4,
     handle_input_2_4,
     input_3_4,
     handle_input_3_4,
@@ -1120,30 +1191,108 @@ const Steps = () => {
   const states_6 = [input_1_6, handle_input_1_6];
   const request_object=
   {
-    // agreement_compliance_type: "statement-of-work",
-    // client_full_name: input1,
-    // jurisdiction: input2,
-    // project_name: input3,
-    // effective_date: generate_date(date.toLocaleDateString()),
-    // freelancers_full_name:input4,
-    // freelancer_access:freelancer_access,
-    // what_is_the_goal_of_this_project: input5,
-    // deliverables_expected_in_this_scope_of_work: input6,
-    // mode_of_communication_between_the_parties: input1_2,
-    // when_will_the_freelancer_share_his_status_on_deliverables:  generate_date(date_2.toLocaleDateString()),
-    // when_will_the_progress_meetings_occur:  generate_date(date1_2.toLocaleDateString()),
-    // what_is_the_minimum_time_required_to_complete_this_project:  parseFloat(input2_2),
-    // what_is_the_minimum_time_required_to_complete_this_project_unit: x,
-    // what_is_value_in_respect_to_time_required: parseFloat(input3_2),
-    // what_is_value_in_respect_to_time_required_currency:input4_2 ,
-    // what_is_the_billing_rate: parseFloat(input5_2),
-    // what_is_the_billing_rate_currency: input6_2,
-    // what_is_the_charges_for_rush_work:  parseFloat(input7_2),
-    // what_is_the_charges_for_rush_work_currency:input8_2,
-    // whom_should_the_invoices_be_submitted_to: input9_2,
-    // whom_should_the_invoices_be_submitted_to_department_name: "nil",
-    // when_should_the_invoices_be_submitted:  generate_date(date2_2.toLocaleDateString()),
-    // when_will_the_invoices_be_payable_by_after_receipt:  generate_date(date3_2.toLocaleDateString())
+    agreement_compliance_type: "software-license-policy",
+    organization_id: "ROD345OS443345OS443OSS",
+    date_of_execution_of_document: generate_date(date.toLocaleDateString()),
+    party_1_entity_type: x,
+    party_1_full_name: input_1,
+    party_1_postal_address: input_2,
+    party_1_jurisdiction_incorporated: input_3,
+    party_1_registration_number: input_4,
+    party_1_registrar_office_address_1: input_5,
+    party_1_registrar_office_address_2: input_6,
+    party_1_registrar_office_address_3: input_7,
+    party_1_principal_place_of_business: input_8,
+    party_2_entity_type: y,
+    party_2_full_name: input_9,
+    party_2_postal_address: input_10,
+    party_2_jurisdiction_incorporated: input_11,
+    party_2_registration_number: input_12,
+    party_2_registrar_office_address_1: input_13,
+    party_2_registrar_office_address_2: input_14,
+    party_2_registrar_office_address_3: input_15,
+    party_2_principal_place_of_business: input_16,
+    // second screen starts here 
+    charges_payable: input_1_1,
+    software_document_identification: input_2_1,
+    contract_effective_date: generate_date(date_1.toLocaleDateString()),
+    minimum_terms_apply: input_3_1,
+    minimum_terms_apply_unit: z,
+    is_software_form_specified: a,
+    software_form: input_4_1,
+    is_non_material_defects_count_as_software_defects: b,
+    ways_defect_affect_software: input_5_1,
+    is_set_of_exclusions_included: c,
+    exclusions_apply: input_6_1,
+    software_specification: input_7_1,
+    can_software_specification_be_varied_by_the_parties: d,
+    terms_of_contract_duration: input_8_1,
+    terms_of_contract_duration_unit: e,
+    is_inline_copy_right_remove: false,
+    is_term_of_contract_indefinite: false,
+    contract_termination_date: "2022-10-20",
+    events_that_will_cause_contract_to_be_terminated: "Nil",
+    number_of_license_to_be_deliver: 4,
+    number_of_license_to_be_deliver_unit: "pcs",
+    software_delivery_channel: "Email",
+    within_what_period_must_software_be_delivered: 12,
+    within_what_period_must_software_be_delivered_unit: "Days",
+    what_did_licensor_supply_to_the_licensee: "software",
+    purpose_by_reference_to_which_sub_licensing_is_permitted: "Use For",
+    when_should_invoice_be_issued: "Nil",
+    invoicing_date: "2022-10-20",
+    period_for_payment_of_invoices: 85,
+    period_for_payment_of_invoices_unit: "Days",
+    effective_date_for_invoice_payment: "2022-10-20",
+    invoice_payment_method: "Nil",
+    interest_rate_apply_to_late_payment: 2450.55,
+    optional_element: "",
+    is_warranty_relate_to_a_specific_period: true,
+    scope_of_warranty: "Nil",
+    jurisdictional_coverage_of_warranty: "Nil",
+    period_apply_to_warranty: 3,
+    period_apply_to_warranty_unit: "Months",
+    circumstances_in_which_licensor_may_exercise_its_rights: "Nil",
+    should_there_be_an_express_requirement_for_licensor_to_act_reasonably: false,
+    are_there_limitations_on_right_to_modify: false,
+    limitations_on_right_to_modify_specification: "Nil",
+    termination_notice_period_apply: 3,
+    termination_notice_period_apply_unit: "Months",
+    is_termination_period_expirable: false,
+    relevant_termination_period: 0,
+    relevant_termination_period_unit: "Days",
+    relevant_termination_period_date: "2022-10-20",
+    circumstances_in_which_a_party_may_terminate_for_breach: "Nil",
+    time_frame_for_the_notice_period: 0,
+    time_frame_for_the_notice_period_unit: "Months",
+    sent_contractual_notices_to_the_licensor_name: "Nil",
+    sent_contractual_notices_to_the_licensor_address_1: "Nil",
+    sent_contractual_notices_to_the_licensor_address_2: "Nil",
+    sent_contractual_notices_to_the_licensor_address_3: "Nil",
+    sent_contractual_notices_to_the_licensor_contact_detai: "Nil",
+    sent_contractual_notices_to_the_licensee_name: "Nil",
+    sent_contractual_notices_to_the_licensee_address_1: "Nil",
+    sent_contractual_notices_to_the_licensee_address_2: "Nil",
+    sent_contractual_notices_to_the_licensee_address_3: "Nil",
+    sent_contractual_notices_to_the_licensee_contact_details: "Nil",
+    law_governs_document: "Nil",
+    court_of_jurisdiction_which_has_exclusive_right_to_adjudicate_disputes_on_document: "Nil",
+    which_entity_will_sign_contract_on_behalf_of_party_1: "Contractor",
+    party_1_signatory_scanned_copy_detail: {
+        filename: "img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png"
+    },
+    full_name_of_party_1_signatory: "party 1 name",
+    party_1_date_of_signing_contract: "2022-11-02",
+    full_name_of_the_person_sign_on_behalf_of_party_1: "witness 1 name",
+    date_contract_was_sign_on_behalf_of_party_1: "2022-11-02",
+    which_entity_will_sign_contract_on_behalf_of_party_2: "Contractor",
+    party_2_signatory_scanned_copy_detail: {
+        filename: "img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png",
+    },
+    full_name_of_party_2_signatory: "party 2 name",
+    party_2_date_of_signing_contract: "2022-11-05",
+    full_name_of_the_person_sign_on_behalf_of_party_2: "witness 2 name",
+    date_contract_was_sign_on_behalf_of_party_2: "2022-11-05"
 
 }
 
@@ -1161,20 +1310,7 @@ const Steps = () => {
           style={{width: '100px'}}
           marginBottom={15}
           nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-            <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            errors={error_5}
-            onNext={() => {
-              setempty_validation_4(empty_validation(inputs_4));
-              const x = empty_validation(inputs_4);
-              setError_5(!x);
-            }}>
-            <View>
-              <Policy5 list={states_4} />
-            </View>
-          </ProgressStep>
+            
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
@@ -1230,6 +1366,21 @@ const Steps = () => {
               <Policy4 list={states_3} />
             </View>
           </ProgressStep>
+
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_5}
+            onNext={() => {
+              setempty_validation_4(empty_validation(inputs_4));
+              const x = empty_validation(inputs_4);
+              setError_5(!x);
+            }}>
+            <View>
+              <Policy5 list={states_4} />
+            </View>
+          </ProgressStep>
           
           <ProgressStep
             nextBtnStyle={nextButton}
@@ -1248,7 +1399,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy5 list={states_6} object={request_object} />
+              <Policy6 list={states_6} object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>

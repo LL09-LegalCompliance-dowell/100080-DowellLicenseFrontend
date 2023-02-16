@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {useState} from 'react';
-import {ScrollView, View, Text, TextInput, Pressable, } from 'react-native';
+import {ScrollView, View, Text, TextInput, Pressable} from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
@@ -12,7 +12,7 @@ import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-crop-picker';
 import colors from '../../../../assets/colors/colors';
 import AppLoader from '../../../components/AppLoader';
-import RBSheet from "react-native-raw-bottom-sheet";
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
@@ -43,39 +43,45 @@ const Policy5 = ({list}) => {
         onBackButtonPress={() => setModal1Visible(false)}>
         <View style={{width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            
             <Pressable
               onPress={async () => {
                 ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
+                  includeBase64: true,
                 }).then(async image => {
                   setLoading(true);
-
-                  // console.log(image);
+                  console.log(image);
                   setScanedImage1(image);
+                  list[4](image.data);
+                  setLoading(false);
                   setModal1Visible(false);
-
-                  const data = new FormData();
-                  data.append('file', {
-                    uri: image.path,
-                    type: image.mime,
-                    name: 'photo.jpg',
-                  });
-                  let res = await fetch(
-                    'https://100080.pythonanywhere.com/api/attachments/',
-                    {
-                      method: 'post',
-                      body: data,
-                      headers: {
-                        'Content-Type': 'multipart/form-data; ',
-                      },
-                    },
-                  );
-                  let responseJson = await res.json();
-                  list[6](responseJson.file_data);
-                  console.log(responseJson);
+                });
+              }}
+              style={{
+                backgroundColor: colors.primary,
+                marginVertical: 10,
+                width: '70%',
+                borderRadius: 30,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                ImagePicker.openPicker({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                  includeBase64: true,
+                }).then(async image => {
+                  setLoading(true);
+                  console.log(image);
+                  setScanedImage1(image);
+                  list[6](image.data);
                   setLoading(false);
                   setModal1Visible(false);
                 });
@@ -90,56 +96,13 @@ const Policy5 = ({list}) => {
                 justifyContent: 'center',
               }}>
               <Text style={{color: 'white', fontSize: 16}}>
-              Camera
+                Choose from gallery
               </Text>
             </Pressable>
             <Pressable
               onPress={() => {
-                ImagePicker.openPicker({
-                  width: 300,
-                  height: 400,
-                  cropping: true,
-                }).then(async image => {
-                  setLoading(true);
-                  // console.log(image);
-                  setScanedImage1(image);
-                  setModal1Visible(false);
-                  const data = new FormData();
-                  data.append('file', {
-                    uri: image.path,
-                    type: image.mime,
-                    name: 'photo.jpg',
-                  });
-                  let res = await fetch(
-                    'https://100080.pythonanywhere.com/api/attachments/',
-                    {
-                      method: 'post',
-                      body: data,
-                      headers: {
-                        'Content-Type': 'multipart/form-data; ',
-                      },
-                    },
-                  );
-                  let responseJson = await res.json();
-                  list[6](responseJson.file_data);
-                  console.log(responseJson);
-                  setLoading(false);
-                  setModal1Visible(false);
-                });
+                setModal1Visible(false);
               }}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Choose from gallery</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => {setModal1Visible(false);}}
               style={{
                 backgroundColor: colors.primary,
                 marginVertical: 10,
@@ -174,7 +137,21 @@ const Policy5 = ({list}) => {
         <View style={{position: 'absolute', top: 150, width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Pressable
-              onPress={() => {}}
+              onPress={async () => {
+                ImagePicker.openCamera({
+                  width: 300,
+                  height: 400,
+                  cropping: true,
+                  includeBase64: true,
+                }).then(async image => {
+                  setLoading(true);
+                  console.log(image);
+                  setScanedImage2(image);
+                  list[20](image.data);
+                  setLoading(false);
+                  setModal2Visible(false);
+                });
+              }}
               style={{
                 backgroundColor: colors.primary,
                 marginVertical: 10,
@@ -188,48 +165,19 @@ const Policy5 = ({list}) => {
             </Pressable>
             <Pressable
               onPress={async () => {
-                ImagePicker.openCamera({
+                ImagePicker.openPicker({
                   width: 300,
                   height: 400,
                   cropping: true,
+                  includeBase64: true,
                 }).then(async image => {
                   setLoading(true);
-
-                  // console.log(image);
+                  console.log(image);
                   setScanedImage2(image);
-                  setModal2Visible(false);
-
-                  const data = new FormData();
-                  data.append('file', {
-                    uri: image.path,
-                    type: image.mime,
-                    name: 'photo.jpg',
-                  });
-                  let res = await fetch(
-                    'https://100080.pythonanywhere.com/api/attachments/',
-                    {
-                      method: 'post',
-                      body: data,
-                      headers: {
-                        'Content-Type': 'multipart/form-data; ',
-                      },
-                    },
-                  );
-                  let responseJson = await res.json();
-                  list[20](responseJson.file_data);
-                  console.log(responseJson);
+                  list[20](image.data);
                   setLoading(false);
                   setModal2Visible(false);
                 });
-              }}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
               }}>
               <Text style={{color: 'white', fontSize: 16}}>
                 Choose from gallery
@@ -445,7 +393,7 @@ const Policy5 = ({list}) => {
               </Text>
             ) : (
               <Text style={{color: 'black', fontSize: 16, marginRight: 5}}>
-                Uploaded
+                Image selected
               </Text>
             )}
             {scanedImage2 == null ? (
