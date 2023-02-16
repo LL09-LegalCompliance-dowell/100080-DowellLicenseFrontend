@@ -117,6 +117,7 @@ const Policy2 = ({list}) => {
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[8](value)}
+              keyboardType='numeric'
             />
             <View>
               <RadioGroup
