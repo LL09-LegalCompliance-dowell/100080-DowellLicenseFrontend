@@ -21,6 +21,7 @@ const Policy2 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[0]}
+            keyboardType='numeric'
             placeholder="Enter number"
             placeholderTextColor="gray" 
             onChangeText={(value)=>{
@@ -80,6 +81,7 @@ const Policy2 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[4]}
+            keyboardType='numeric'
             onChangeText={(value)=>{
               if (value!==""){
                 if (number_validation(value)===true) {

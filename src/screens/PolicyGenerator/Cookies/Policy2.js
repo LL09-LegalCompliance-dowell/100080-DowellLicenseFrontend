@@ -4,11 +4,12 @@ import colors from '../../../../assets/colors/colors';
 import { ScrollView ,View,Text,TextInput,TouchableHighlight,TouchableOpacity} from 'react-native'
 import { useState } from 'react'
 import RadioGroup from 'react-native-radio-buttons-group';
-import { email_validation } from '../validations';
+import { email_validation,url_validation } from '../validations';
 
 const Policy2 = ({list}) => {
  
   const [valid_email , setValid_email]=useState(true);
+  const [valid_url , setValid_url]=useState(true);
   var touchProps1 = {                               
     style: list[4] ? styles.Pressed : styles.Normal, 
     onPress: () => list[5](true),                 
@@ -57,7 +58,7 @@ const Policy2 = ({list}) => {
               <TouchableHighlight {...touchProps2}>
                 <View style={{display:"flex",flexDirection:"row"}}>
                   <Text style={{color:"#585858"}}>Via website chat services</Text>
-                  <TouchableOpacity style={list[6] ? {display:"flex",} : {display:"none"}} onPress={()=>list[7](false)}><Text style ={{color:"#585858"}}> x  </Text></TouchableOpacity>
+                  <TouchableOpacity style={list[6] ? {display:"flex",} : {display:"none"}} onPress={()=>{list[7](false);setValid_url(true)}}><Text style ={{color:"#585858"}}> x  </Text></TouchableOpacity>
                 </View>
               </TouchableHighlight>
             </View>
@@ -83,8 +84,18 @@ const Policy2 = ({list}) => {
               value={list[10]}
               placeholder="Enter Website Chat URL here"
               placeholderTextColor="gray" 
-              onChangeText={(value)=>list[11](value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_url(true)
+                }
+                else{
+                    url_validation(value)?setValid_url(true):setValid_url(false)
+                }
+                list[11](value)
+                
+            }}
             />
+            <Text  style={valid_url ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
              <Text style={styles.text_2}>Provide the situations where cookies may be collected without the consent of website users.</Text>
              <TextInput
               style={styles.input_vm}
