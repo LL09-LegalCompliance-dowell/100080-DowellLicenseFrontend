@@ -63,9 +63,7 @@ const Steps = () => {
       const inputs= [input_1,input_2,input_3,input_4,input_5]
 
       
-      const [input_1_1, setInput_1_1] = useState("");
-      const handle_input_1_1 = (state)=> setInput_1_1(state);
-      const states_1= [input_1_1,handle_input_1_1,]
+      
   
       const request_object={
         
@@ -116,20 +114,13 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_1)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
+                 
                 }}
                 >
                   
                 <View >
-                  <Policy4 list={states_1} object={request_object} />
+                  <Policy4 l object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

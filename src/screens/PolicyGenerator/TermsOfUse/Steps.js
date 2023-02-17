@@ -86,10 +86,7 @@ const Steps = () => {
       const [empty_validationn_2, setempty_validation_2] = useState(true);
       const states_2= [input_1_2,handle_input_1_2,empty_validationn_2]
       /////////////////////////////////////////////////////////////////////////////4
-      const [input_1_3, setInput_1_3] = useState("");
-      const handle_input_1_3 = (state)=> setInput_1_3(state);
-      const states_3= [input_1_3,handle_input_1_3,]
-      
+    
       const request_object={
         agreement_compliance_type: "website-terms-of-use",
         organization_id: orgId,
@@ -176,18 +173,10 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_3)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_3} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

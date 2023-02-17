@@ -54,9 +54,6 @@ const Steps = () => {
       const states= [date,handle_date,input_1,handle_input_1,empty_validationn]
 
       ///////////////////////////////////////////////////////////////////////////4
-      const [input_1_4, setInput_1_4] = useState("");
-      const handle_input_1_4 = (state)=> setInput_1_4(state);
-      const states_4= [input_1_4,handle_input_1_4]
       
       const request_object={
         agreement_compliance_type: "app-disclaimer",
@@ -98,18 +95,10 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_4} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

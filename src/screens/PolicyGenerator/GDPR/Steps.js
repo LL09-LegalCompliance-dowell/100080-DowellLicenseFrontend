@@ -1191,9 +1191,6 @@ const [date, setDate] = useState(new Date());
 const handle_date = (state)=> setDate(state);
 const states_6=[radioButtons_1_6,handle_radiobuttons_1_6,input_1_6,handle_input_1_6,validno,handlevalidno,radioButtons_2_6,handle_radiobuttons_2_6,flag_1_6,handle_flag_1_6,input_2_6,handle_input_2_6,isPress1_6,handle_isPress1_6,isPress2_6,handle_isPress2_6,isPress3_6,handle_isPress3_6,input_3_6,handle_input_3_6,radioButtons_3_6,handle_radiobuttons_3_6,isPress4_6,handle_isPress4_6,isPress5_6,handle_isPress5_6,isPress6_6,handle_isPress6_6,isPress7_6,handle_isPress7_6,isPress8_6,handle_isPress8_6,isPress9_6,handle_isPress9_6,isPress10_6,handle_isPress10_6,input_4_6,handle_input_4_6,input_5_6,handle_input_5_6,input_6_6,handle_input_6_6,isPress11_6,handle_isPress11_6,isPress12_6,handle_isPress12_6,isPress13_6,handle_isPress13_6,date,handle_date]
 //////////////////////////////////////////////////7
-const [input_1_4, setInput_1_4] = useState("");
-const handle_input_1_4 = (state)=> setInput_1_4(state);
-const states_7= [input_1_4,handle_input_1_4] 
 const request_object={
 
 }
@@ -1299,19 +1296,11 @@ return (
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}
                 >
                 <View >
-                  <Policy4  list={states_7} object={request_object}/>
+                  <Policy4 object={request_object}/>
                 </View>
               </ProgressStep>
             </ProgressSteps>
