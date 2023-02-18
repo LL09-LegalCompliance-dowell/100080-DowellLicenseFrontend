@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
 import AboutUs from '../screens/AboutUs';
+import ActualAboutUs from '../screens/AboutUs/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import AgreementComplience from '../screens/AgreementComplience';
 import CustomSideBar from './CustomSideBar';
@@ -55,13 +56,13 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        {/* <Drawer.Screen
-          name="Generate Policies"
-          component={PolicyNavigator}
+        <Drawer.Screen
+          name="ActualAboutUs"
+          component={ActualAboutUs}
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
 
         <Drawer.Screen
           name="Contact Us"

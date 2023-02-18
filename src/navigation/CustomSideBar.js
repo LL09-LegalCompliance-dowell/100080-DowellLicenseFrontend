@@ -38,18 +38,6 @@ const CustomSideBar = ({navigation}) => {
           </View>
           <Text style={styles.title}>Home</Text>
         </TouchableOpacity>
-
-        {/* <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Contact Us');
-          }}
-          style={styles.item}>
-          <View style={styles.iconConatainer}>
-            <Image style={styles.icon} source={require(ICON2)} />
-          </View>
-          <Text style={styles.title}>About Us</Text>
-        </TouchableOpacity> */}
-
         
 
         <TouchableOpacity
@@ -94,6 +82,17 @@ const CustomSideBar = ({navigation}) => {
             <Image style={styles.icon} source={require(ICON7)} />
           </View>
           <Text style={styles.title}>Pricing</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('ActualAboutUs');
+          }}
+          style={styles.item}>
+          <View style={styles.iconConatainer}>
+            <Image style={styles.icon} source={require(ICON2)} />
+          </View>
+          <Text style={styles.title}>About Us</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

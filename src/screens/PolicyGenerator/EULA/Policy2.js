@@ -47,6 +47,7 @@ return (
             style={styles.input_vm}
             value={list[4]}
             placeholder="  Enter Amount(₹)"
+            keyboardType='numeric'
             placeholderTextColor="gray"
             onChangeText={(value)=>{
               if(value===""){

@@ -1,4 +1,4 @@
-import {View, Text, Image,  ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {Linking} from 'react-native';
 
@@ -16,7 +16,7 @@ const ApacheLicense = ({route}) => {
         {/* Upper Container */}
         <View style={styles.upperContainer}>
           <Image
-            style={{height: 150, width: 150, resizeMode: 'contain'}}
+            style={{height: 100, width: 100, resizeMode: 'contain'}}
             source={{uri: item.softwarelicense?.logo_detail?.url}}
           />
           {item.softwarelicense?.license_name ? (
@@ -30,7 +30,9 @@ const ApacheLicense = ({route}) => {
             </Text>
           ) : null}
           {item.softwarelicense?.short_description ? (
-            <Text>{item.softwarelicense?.short_description}</Text>
+            <Text style={{textAlign: 'justify'}}>
+              {item.softwarelicense?.short_description}
+            </Text>
           ) : null}
         </View>
         {/* Lower Container */}
@@ -46,7 +48,9 @@ const ApacheLicense = ({route}) => {
               return (
                 // console.log(item1)
                 <>
-                  <Text key={index} style={styles.heading4}>{item1?.description}</Text>
+                  <Text key={index} style={styles.heading4}>
+                    {item1?.description}
+                  </Text>
                   <Text
                     style={[styles.link, {marginLeft: 20}]}
                     onPress={() => Linking.openURL(item1?.url)}>
@@ -68,9 +72,11 @@ const ApacheLicense = ({route}) => {
           </Text>
 
           <Text style={styles.heading1}>4.Attributions</Text>
-          <Text style={[styles.heading4, {paddingTop:0, paddingLeft:20}]}> {item.softwarelicense?.license_attributes?.heading}</Text>
+          <Text style={[styles.heading4, {paddingTop: 0, paddingLeft: 20}]}>
+            {' '}
+            {item.softwarelicense?.license_attributes?.heading}
+          </Text>
           <Text style={styles.heading2}>
-           
             {item.softwarelicense?.license_attributes?.attributes.map(
               (attribute, index) => {
                 return (
@@ -78,12 +84,12 @@ const ApacheLicense = ({route}) => {
                   <>
                     <View>
                       <Text
-                      key={index}
+                        key={index}
                         style={[
                           styles.heading4,
-                          {marginLeft: 20},
+                          {marginLeft: 20, width: '100%'},
                         ]}>
-                        {attribute}
+                        {`${attribute}`}
                       </Text>
                     </View>
                   </>
@@ -202,7 +208,6 @@ const ApacheLicense = ({route}) => {
             and distribution of the Work otherwise complies with the conditions
             stated in this License.
           </Text>
-
         </View>
       </ScrollView>
     </>

@@ -1,5 +1,12 @@
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
+import React, {useEffect, useMemo, useState} from 'react';
+import Modal from 'react-native-modal';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -20,14 +27,140 @@ import {Image} from 'react-native';
 
 import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
 import HowToModel from './HowToModel';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AgreementComplience = ({navigation}) => {
+  const [isModal1Visible, setModal1Visible] = useState(false);
+  const [agreeDisclaimer, setAgreeDisclaimer] = useState('');
+
+  useMemo(async () => {
+    const agreeSatus = await AsyncStorage.getItem('agree');
+    console.log(agreeSatus);
+
+    if (agreeSatus == null) {
+      setModal1Visible(true);
+    }
+  }, []);
+
   const [showPrivacyPolicyOptions, setPrivacyPolicyShowOptions] =
     useState(false);
   const [showDisclaimerOptions, setDisclaimerShowOptions] = useState(false);
   const [isHowto, setHowto] = useState(false);
   return (
     <>
+      {/* How to Overlay starts here */}
+      <Modal
+        propagateSwipe
+        isVisible={isModal1Visible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        animationInTiming={500}
+        animationOutTiming={500}
+        avoidKeyboard={true}
+        onBackdropPress={() => setHowto(false)}
+        onBackButtonPress={() => setHowto(false)}
+        backdropTransitionOutTiming={0}
+        onSwipeComplete={() => setHowto(false)}
+        swipeDirection="right">
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: 370,
+            width: '100%',
+            padding: 5,
+            borderRadius: 10,
+          }}>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 17,
+              fontFamily: 'roboto',
+              fontWeight: '700',
+            }}>
+            Notice
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 16,
+              fontFamily: 'roboto',
+              textAlign: 'justify',
+            }}>
+            We and selected third parties use cookies or similar technologies
+            for technical purposes and, with your consent, for other purposes as
+            specified in the cookie policy.
+          </Text>
+          <Text
+            style={{
+              color: 'black',
+              alignSelf: 'center',
+              paddingTop: 20,
+              fontSize: 16,
+              fontFamily: 'roboto',
+              textAlign: 'justify',
+            }}>
+            You can consent to the use of such technologies by using the
+            "Accept" button. By closing this notice, you continue without
+            accepting.
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingHorizontal: 50,
+              marginTop: 70,
+              borderTopColor: '#959595',
+              borderTopWidth: 1,
+            }}>
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 40,
+              }}
+              onPress={async () => {
+                // setAgreeDisclaimer('agree');
+                await AsyncStorage.setItem('agree', "agree");
+                setModal1Visible(false);
+              }}>
+              <Text
+                style={{
+                  fontSize: 17,
+                  fontFamily: 'roboto',
+                  color: 'red',
+                  paddingTop: 5,
+                }}>
+                Close
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: 40,
+              }}
+              onPress={async () => {
+                // setAgreeDisclaimer('agree');
+                await AsyncStorage.setItem('agree', "agree");
+                setModal1Visible(false);
+              }}>
+              <Text
+                style={{
+                  fontSize: 17,
+                  fontFamily: 'roboto',
+                  color: 'green',
+                  paddingTop: 5,
+                }}>
+                Accept
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
         {isHowto === 'true' ? <HowToModel /> : null}
@@ -243,12 +376,10 @@ const AgreementComplience = ({navigation}) => {
             }}
             style={styles.listContainer}>
             <View style={styles.iconContainer}>
-  
               <Image source={Image1} />
             </View>
             <Text style={styles.listHeading}>Website Security Policy</Text>
           </TouchableOpacity>
-
         </ScrollView>
       </View>
     </>

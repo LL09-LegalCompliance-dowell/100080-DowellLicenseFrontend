@@ -1,4 +1,4 @@
-import {React,useEffect,useState} from 'react'
+import {React,useEffect,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -6,8 +6,10 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from './Policy4';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation,url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
@@ -15,6 +17,12 @@ const generate_date = (date)=>{
 
 const Steps = () => {
   const navigation = useNavigation();
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
        //////////////////////////////////////////////////////////////////////////1
        const [date, setDate] = useState(new Date());
        const handle_date = (state)=> setDate(state);
@@ -266,10 +274,7 @@ const Steps = () => {
        const [empty_validationn_2, setempty_validation_2] = useState(true);
        const inputs=[input_2_1,input_3_1]
        const states_2=[input_2_1,handle_input_2_1,input_3_1,handle_input_3_1,empty_validationn_2]
-       ///////////////////////////////////////////////////////////4
-         const [input_1_4, setInput_1_4] = useState("");
-         const handle_input_1_4 = (state)=> setInput_1_4(state);
-         const states_4= [input_1_4,handle_input_1_4]
+      
   useEffect(()=>{
     if(isPress1===false){
     setInput_1("")
@@ -401,6 +406,7 @@ useEffect(()=>{
     }
   const request_object={
     agreement_compliance_type: "cookie-policy",
+    organization_id: orgId,
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_full_name: name_entity,
     will_the_cookie_store_personal_information: x,
@@ -475,9 +481,16 @@ useEffect(()=>{
                   }
                   const x=y & z & l
                   setempty_validation_1(x)
-                  const o= email_validation(input_1)
-                  if (isPress1){
-                    setError_2(!(x&o) )
+                  let o= email_validation(input_1)
+                  let m= url_validation(input_2)
+                  if (!isPress1) {
+                    o=true
+                  }
+                  if (!isPress2) {
+                    m=true
+                  }
+                  if (isPress1 || isPress2){
+                    setError_2(!(x&o&m) )
                   }
                   else{
                     setError_2(!(x) )
@@ -513,18 +526,10 @@ useEffect(()=>{
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_4} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
 import Header from '../../../../components/Header';
@@ -6,6 +6,7 @@ import Policy1 from './Policy1';
 import Policy4 from '../../Cookies/Policy4';
 import {empty_validation, email_validation} from '../../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const generate_date = date => {
   const temp = date.split('/');
@@ -13,6 +14,12 @@ const generate_date = date => {
 };
 
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
   const navigation = useNavigation();
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
@@ -76,6 +83,7 @@ const Steps = () => {
 
   const request_object = {
     agreement_compliance_type: 'app-privacy-policy',
+    organization_id: orgId,
     last_update: generate_date(date.toLocaleDateString()),
     company_name: input_1,
     app_name: input_2,

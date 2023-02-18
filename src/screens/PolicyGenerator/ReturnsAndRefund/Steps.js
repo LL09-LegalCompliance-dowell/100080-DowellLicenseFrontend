@@ -1,16 +1,23 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
-import { email_validation,empty_validation, number_validation } from '../validations';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { email_validation,empty_validation, number_validation,url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
   const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
@@ -80,10 +87,6 @@ const Steps = () => {
         const inputs=[input_1,input_2,input_3,input_4,input_5,input_6]
 
       /////////////////////////////////4
-      const [input_1_4, setInput_1_4] = useState("");
-      const handle_input_1_4 = (state)=> setInput_1_4(state);
-      const states_4= [input_1_4,handle_input_1_4]
-
       let x
       if(radioButtons[0].selected ===true){
       x="Days"
@@ -94,6 +97,7 @@ const Steps = () => {
       const request_object={
         
           agreement_compliance_type: "return-and-refund",
+          organization_id: orgId,
           date: generate_date(date.toLocaleDateString()),
           website_or_app_name: input_1,
           company_info: input_2,
@@ -129,8 +133,9 @@ const Steps = () => {
                   const y= email_validation(input_6)
                   const z= number_validation(input_4)
                   const l= number_validation(input_5)
+                  const m= url_validation(input_3)
 
-                  setError_1(!(x & y & z & l) )
+                  setError_1(!(x & y & z & l &m) )
                   
                 }}>
                 <View >
@@ -144,18 +149,10 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_4} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

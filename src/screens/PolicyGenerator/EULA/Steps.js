@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -8,12 +8,20 @@ import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const generate_date = (date)=>{
  const temp = date.split("/")
  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
 }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
+
   const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
@@ -184,9 +192,6 @@ const Steps = () => {
     const states_2= [date_2,handle_date_2,radioButtons1,handle_radiobuttons1,radioButtons2,handle_radiobuttons2,radioButtons3,handle_radiobuttons3,input_1_2,handle_input_1_2,first_radio_button,handle_first_radio_button,empty_validationn_2]
     
     //4
-    const [input_1_4, setInput_1_4] = useState("");
-    const handle_input_1_4 = (state)=> setInput_1_4(state);
-    const states_4= [input_1_4,handle_input_1_4]
     
     let nature_of_company=""
     if(radioButtons[0].selected===true){
@@ -235,6 +240,7 @@ const Steps = () => {
     }
     const request_object={
       agreement_compliance_type: "eula",
+      organization_id: orgId,
       date_of_execution_of_document: generate_date(date.toLocaleDateString()),
       party_details_full_name: input_1,
       party_details_company_name:input_2,
@@ -330,18 +336,10 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_4} object={request_object} />
+                  <Policy4  object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

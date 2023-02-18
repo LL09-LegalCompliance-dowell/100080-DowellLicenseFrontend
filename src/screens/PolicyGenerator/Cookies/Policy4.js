@@ -21,8 +21,8 @@ import {useNavigation} from '@react-navigation/native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Clipboard from '@react-native-clipboard/clipboard';
 
-const Policy4 = ({list, object}) => {
-  const [valid_email, setValid_email] = useState(true);
+const Policy4 = ({object}) => {
+ 
   const [loading, setLoading] = useState(false);
   const [flag, setFlag] = useState('');
   const [html_link, setHtml_link] = useState('');
@@ -46,7 +46,11 @@ const Policy4 = ({list, object}) => {
       setFlag(result.data[0].agreement.html_doc_url)
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      //  console.error(error);
+      setLoading(false);
+      alert('Something went wrong, please try again later')
+     
+      
     }
   };
 
@@ -67,7 +71,7 @@ const Policy4 = ({list, object}) => {
         Finish Up:
       </Text>
       <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-        <Text style={{color: colors.textDark, fontSize: 18, fontWeight: '400'}}>
+        {/* <Text style={{color: colors.textDark, fontSize: 18, fontWeight: '400'}}>
           Enter Your Email address to receive the policy:
         </Text>
         <TextInput
@@ -91,7 +95,7 @@ const Policy4 = ({list, object}) => {
         </Text>
         <Text style={{color: '#585858', fontSize: 18, fontWeight: '300'}}>
           You will receive the policy to the entered email.
-        </Text>
+        </Text> */}
         <View style={{alignItems: 'center', marginVertical: 30}}>
           <Image
             source={require('../../../../assets/images/TheLittleThingsWorking.png')}

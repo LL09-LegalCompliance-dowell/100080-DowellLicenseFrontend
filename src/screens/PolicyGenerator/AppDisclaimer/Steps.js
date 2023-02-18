@@ -1,17 +1,25 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation,get_org_id } from '../validations';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
   const navigation = useNavigation();
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
     const nextButton = {
         backgroundColor: '#489503',
         paddingHorizontal: 5,
@@ -46,11 +54,10 @@ const Steps = () => {
       const states= [date,handle_date,input_1,handle_input_1,empty_validationn]
 
       ///////////////////////////////////////////////////////////////////////////4
-      const [input_1_4, setInput_1_4] = useState("");
-      const handle_input_1_4 = (state)=> setInput_1_4(state);
-      const states_4= [input_1_4,handle_input_1_4]
+      
       const request_object={
         agreement_compliance_type: "app-disclaimer",
+        organization_id: orgId,
         last_update: generate_date(date.toLocaleDateString()),
         app_name: input_1
     }
@@ -88,18 +95,10 @@ const Steps = () => {
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
                 onSubmit={()=>{
-                  const y= email_validation(input_1_4)
-                  const z= ( !y)
-                  if (z){
-                    alert("please enter valid email")
-                  }
-                  else{
                     navigation.navigate('HomeScreen');
-                  }
-                  
                 }}>
                 <View >
-                  <Policy4 list={states_4} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>

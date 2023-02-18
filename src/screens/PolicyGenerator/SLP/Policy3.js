@@ -105,7 +105,7 @@ const Policy3 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
+              // style={styles.input_vm}
               value={list[9]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -115,8 +115,8 @@ const Policy3 = ({list}) => {
               <RadioGroup
                 radioButtons={list[11]}
                 onPress={data => list[12](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>
@@ -193,7 +193,7 @@ const Policy3 = ({list}) => {
               },
             ]}>
             <TextInput
-              style={styles.input_vm}
+              // style={styles.input_vm}
               value={list[21]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -203,8 +203,8 @@ const Policy3 = ({list}) => {
               <RadioGroup
                 radioButtons={list[23]}
                 onPress={data => list[24](data)}
-                containerStyle={styles.radio_hm}
-                // layout="row"
+                // containerStyle={styles.radio_hm}
+                layout="row"
               />
             </View>
           </View>

@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import Header from '../../../components/Header';
@@ -6,12 +6,23 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+
 import { empty_validation,email_validation,number_validation } from '../validations';
 const generate_date = (date)=>{
   const temp = date.split("/")
   return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
  }
 const Steps = () => {
+  const navigation = useNavigation();
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+  useMemo(()=>getOrgId(),[])
+
     const nextButton = {
         backgroundColor: '#489503',
         paddingHorizontal: 5,
@@ -61,11 +72,17 @@ const Steps = () => {
       const handle_input5 = (state)=> setInput5(state);
       const [input6, setInput6] = useState('');
       const handle_input6 = (state)=> setInput6(state);
-    
+      const [input7, setInput7] = useState([]);
+      const handle_input7_1 = (state)=> {
+        setInput7([...input7,state])
+      };
+      const handle_input7_22 = (state)=> {
+        setInput7(input7.filter((item)=>item!==state))
+      };
       const [error_1, setError_1] = useState(false);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,empty_validationn]
-      const inputs= [input1,input2,input3,input4,input5,input6]
+      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,input7,handle_input7_1,handle_input7_22,empty_validationn]
+      const inputs= [input1,input2,input3,input4,input5]
 
       ///////////////////////////////////////////////////////2
       const [input1_2, setInput1_2] = useState('');
@@ -167,6 +184,7 @@ const Steps = () => {
       const request_object=
       {
         agreement_compliance_type: "statement-of-work",
+        organization_id: orgId,
         client_full_name: input1,
         jurisdiction: input2,
         project_name: input3,
@@ -174,7 +192,7 @@ const Steps = () => {
         freelancers_full_name:input4,
         freelancer_access:freelancer_access,
         what_is_the_goal_of_this_project: input5,
-        deliverables_expected_in_this_scope_of_work: input6,
+        deliverables_expected_in_this_scope_of_work: input7,
         mode_of_communication_between_the_parties: input1_2,
         when_will_the_freelancer_share_his_status_on_deliverables:  generate_date(date_2.toLocaleDateString()),
         when_will_the_progress_meetings_occur:  generate_date(date1_2.toLocaleDateString()),
@@ -261,7 +279,17 @@ const Steps = () => {
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
-                previousBtnStyle={previousButton}>
+                previousBtnStyle={previousButton}
+                onSubmit={() => {
+                  
+                  const y = email_validation(input_1_4);
+                  const z = !y;
+                  if (z) {
+                    alert('please enter valid email');
+                  } else {
+                    navigation.navigate('HomeScreen')
+                  }
+                }}>
                 <View >
                   <Policy4  list={states_4} object={request_object} />
                 </View>

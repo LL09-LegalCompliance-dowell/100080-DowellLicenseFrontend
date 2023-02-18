@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
+  Button
 } from 'react-native';
 import styles from '../Cookies/style';
 
@@ -18,8 +19,6 @@ const Policy1 = ({list}) => {
   
 
  
-  
-  
   
   
 
@@ -41,10 +40,27 @@ const Policy1 = ({list}) => {
     onPress: () => list[17](true),
   };
 
+  const onPress=()=>{
+    if(list[20]!==""){
+      let flag=true
+      for (let index = 0; index < list[22].length; index++) {
+        if (list[20] ===list[22][index]){
+          flag=false
+        }
+      }
+      if (flag==true) {
+        list[23](list[20])
+      }
+      list[21]("")
+      
+    }
+    
+  }
+
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <Text style={list[22]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
+        <Text style={list[list.length-1]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Client details:</Text>
           {/* Details start here */}
@@ -239,13 +255,65 @@ const Policy1 = ({list}) => {
           <Text style={[styles.text_1, {fontSize: 15}]}>
             What are the deliverables expected in this scope of work?
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[20]}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => list[21](value)}
-          />
+          <View style={{display:"flex",flexDirection:"row"}}>
+            <TextInput
+                    value={list[20]}
+                    placeholder="Enter here"
+                    placeholderTextColor="gray"
+                    style = {{
+                      height: 51,
+                      marginVertical: 15,
+                      borderWidth: 1,
+                      borderRadius: 15,
+                      borderColor: '#C4C4C4',
+                      padding: 12,
+                      width:"75%",
+                      backgroundColor: '#D8D8D8',
+                      fontSize:16,
+                      color:"#585858"
+                      
+    
+                    }}
+                    onChangeText={value =>list[21](value)}
+            />
+            <TouchableOpacity onPress={onPress} style = {{
+                      height: 51,
+                      marginVertical: 15,
+                      marginLeft:5,
+                      borderWidth: 1,
+                      borderRadius: 15,
+                      borderColor: '#C4C4C4',
+                      padding: 12,
+                      width:"20%",
+                      backgroundColor: '#D8D8D8',
+                      fontSize:16,
+                      
+                    }}>
+              <Text style={{color:"gray",padding:5}}>Add</Text>
+              
+            </TouchableOpacity>
+            
+            
+          
+
+          </View>
+          <View style={{flex:1 ,display:"flex",flexDirection:"column",marginVertical:5,marginHorizontal:30}}>
+                {list[22].map((item,index)=>{
+                  return<TouchableHighlight style={styles.Pressed}key={index}>
+                  <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10}}>
+                    <Text style={{width:"90%",color:"#585858"}}>{item}</Text>
+                    <TouchableOpacity  onPress={()=>list[24](item)}><Text style ={{color:"#585858"}}> x  </Text></TouchableOpacity>
+                  </View>
+                </TouchableHighlight>
+                }
+                )}
+                
+                 
+
+            </View>
+          
+                
+          
         </View>
       </ScrollView>
     </>

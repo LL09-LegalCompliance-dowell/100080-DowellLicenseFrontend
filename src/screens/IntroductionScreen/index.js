@@ -28,7 +28,7 @@ const IntroductionScreen = ({navigation}) => {
           </SafeAreaView>
 
           <View style={styles.titlesWrapper}>
-            <Text style={styles.titlesTitle}>DoWell Research Services</Text>
+            <Text style={styles.titlesTitle}>Legalzard Services</Text>
             <Text style={styles.titlesSubtitle}>
               App info, scanner and other related information
             </Text>

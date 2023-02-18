@@ -38,6 +38,7 @@ const findcurrency=(cvalue)=>{
               value={list[0]}
               placeholder="  Enter Amount"
               placeholderTextColor="gray" 
+              keyboardType='numeric'
               onChangeText={(value)=>{
                 if(value===""){
                   list[8](true)
@@ -82,6 +83,7 @@ const findcurrency=(cvalue)=>{
               value={list[3]}
               placeholder="  Enter Amount"
               placeholderTextColor="gray" 
+              keyboardType='numeric'
               onChangeText={(value)=>{
                 if(value===""){
                   list[10](true)

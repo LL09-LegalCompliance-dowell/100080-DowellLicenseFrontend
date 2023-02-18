@@ -1,6 +1,6 @@
 import React from 'react'
 import RadioGroup from 'react-native-radio-buttons-group';
-import {ScrollView, View, Text, TextInput,TouchableHighlight,TouchableOpacity} from 'react-native';
+import {ScrollView, View, Text,TouchableHighlight,TouchableOpacity} from 'react-native';
 import styles from '../Cookies/style';
 
 const Policy3 = ({list}) => {
