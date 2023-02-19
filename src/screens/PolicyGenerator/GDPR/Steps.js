@@ -9,7 +9,7 @@ import Policy4 from '../Cookies/Policy4';
 import Policy5 from './Policy5';
 import Policy6 from './Policy6';
 import Policy7 from './Policy7';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation, number_validation_1, url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 
 const generate_date = (date)=>{
@@ -1189,7 +1189,9 @@ const handle_isPress12_6 = (state)=> setIsPress12_6(state);
 const handle_isPress13_6 = (state)=> setIsPress13_6(state);
 const [date, setDate] = useState(new Date());
 const handle_date = (state)=> setDate(state);
-const states_6=[radioButtons_1_6,handle_radiobuttons_1_6,input_1_6,handle_input_1_6,validno,handlevalidno,radioButtons_2_6,handle_radiobuttons_2_6,flag_1_6,handle_flag_1_6,input_2_6,handle_input_2_6,isPress1_6,handle_isPress1_6,isPress2_6,handle_isPress2_6,isPress3_6,handle_isPress3_6,input_3_6,handle_input_3_6,radioButtons_3_6,handle_radiobuttons_3_6,isPress4_6,handle_isPress4_6,isPress5_6,handle_isPress5_6,isPress6_6,handle_isPress6_6,isPress7_6,handle_isPress7_6,isPress8_6,handle_isPress8_6,isPress9_6,handle_isPress9_6,isPress10_6,handle_isPress10_6,input_4_6,handle_input_4_6,input_5_6,handle_input_5_6,input_6_6,handle_input_6_6,isPress11_6,handle_isPress11_6,isPress12_6,handle_isPress12_6,isPress13_6,handle_isPress13_6,date,handle_date]
+const [error_6, setError_6] = useState(false);
+const [empty_validationn_6, setempty_validation_6] = useState(true);
+const states_6=[radioButtons_1_6,handle_radiobuttons_1_6,input_1_6,handle_input_1_6,validno,handlevalidno,radioButtons_2_6,handle_radiobuttons_2_6,flag_1_6,handle_flag_1_6,input_2_6,handle_input_2_6,isPress1_6,handle_isPress1_6,isPress2_6,handle_isPress2_6,isPress3_6,handle_isPress3_6,input_3_6,handle_input_3_6,radioButtons_3_6,handle_radiobuttons_3_6,isPress4_6,handle_isPress4_6,isPress5_6,handle_isPress5_6,isPress6_6,handle_isPress6_6,isPress7_6,handle_isPress7_6,isPress8_6,handle_isPress8_6,isPress9_6,handle_isPress9_6,isPress10_6,handle_isPress10_6,input_4_6,handle_input_4_6,input_5_6,handle_input_5_6,input_6_6,handle_input_6_6,isPress11_6,handle_isPress11_6,isPress12_6,handle_isPress12_6,isPress13_6,handle_isPress13_6,date,handle_date,empty_validationn_6]
 //////////////////////////////////////////////////7
 const request_object={
 
@@ -1284,6 +1286,34 @@ return (
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 previousBtnStyle={previousButton}
+                errors={error_6}
+                onNext={()=>{
+                  const x=(number_validation_1(input_1_6))
+                  let y =true
+                  if (input_1_6 ==="" || (radioButtons_2_6[0].selected===true && input_2_6==="" ) || (radioButtons_2_6[0].selected===true && input_3_6==="" ) || (isPress8_6===true && input_4_6==="" ) || (isPress9_6===true && input_5_6==="" ) || (isPress10_6===true && input_6_6==="" )) {
+                    setempty_validation_6(false)
+                    y=false  
+                  }else{
+                    setempty_validation_6(true)
+                    y=true
+                  }
+                  let z= true
+                  if ((isPress8_6===true && url_validation(input_4_6)=== false )) {
+                    z= false
+                  }
+                  else{
+                    z= true
+                  }
+                  let l= true
+                  if ((isPress9_6===true && email_validation(input_5_6)=== false )) {
+                    l= false
+                  }
+                  else{
+                    l= true
+                  }
+                  setError_6(!(x&y&z&l) )
+                  
+                }}
                 >
                 <View >
                   <Policy7 list={states_6}  />
@@ -1295,6 +1325,7 @@ return (
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                 }}
