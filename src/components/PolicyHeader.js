@@ -29,17 +29,25 @@ const Header = ({title, leftIcon, rightIcon}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      {leftIcon === 'menu' ? (
-        <TouchableOpacity onPress={opennDrawer}>
-          <Ionicons
-            style={styles.menuIcon}
-            name="menu"
-            size={30}
-            color={colors.textDark}
-          />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+      
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert(
+              'Important',
+              'Are you sure you want to go back? By clicking "Yes", you will lose the work you have done so far.',
+              [
+                {
+                  text: 'No',
+                  onPress: () => console.log('User clicked No'),
+                  style: 'cancel',
+                },
+                {
+                  text: 'Yes',
+                  onPress: () => navigation.goBack(),
+                },
+              ],
+            );
+          }}>
           <MaterialIcons
             style={styles.menuIcon}
             name="keyboard-backspace"
@@ -47,7 +55,6 @@ const Header = ({title, leftIcon, rightIcon}) => {
             color={colors.textDark}
           />
         </TouchableOpacity>
-      )}
 
       {title ? (
         <Text numberOfLines={1} style={styles.heading}>
@@ -60,18 +67,6 @@ const Header = ({title, leftIcon, rightIcon}) => {
             source={require('../../assets/images/logo.png')}
           />
         </TouchableWithoutFeedback>
-      )}
-      {rightIcon === 'user' ? (
-        <TouchableOpacity onPress={gotoProfile}>
-          <FontAwesome
-            style={styles.userIcon}
-            name="user-circle"
-            size={25}
-            color={colors.textDark}
-          />
-        </TouchableOpacity>
-      ) : (
-        ''
       )}
     </View>
   );

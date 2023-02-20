@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
-import Header from '../../../../components/Header';
+import PolicyHeader from '../../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../../Cookies/Policy4';
 import {empty_validation, email_validation} from '../../validations';
@@ -51,10 +51,6 @@ const Steps = () => {
     handle_input_5,
   ];
   const inputs = [input_1, input_2, input_3, input_4, input_5];
-  // 4
-  // const [input_1_4, setInput_1_4] = useState('');
-  // const handle_input_1_4 = state => setInput_1_4(state);
-  // const states_4 = [input_1_4, handle_input_1_4];
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -94,7 +90,7 @@ const Steps = () => {
 
   return (
     <>
-      <Header title="Generator" />
+      <PolicyHeader title="Generator" />
       <View
         style={{
           flex: 1,
@@ -128,13 +124,6 @@ const Steps = () => {
             previousBtnStyle={previousButton}
             onSubmit={() => {
               navigation.navigate('HomeScreen');
-              // const y = email_validation(input_1_4);
-              // const z = !y;
-              // if (z) {
-              //   alert('please enter valid email');
-              // } else {
-              //   //api
-              // }
             }}>
             <View>
               <Policy4 object={request_object} />
