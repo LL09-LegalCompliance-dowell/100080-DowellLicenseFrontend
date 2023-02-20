@@ -100,11 +100,12 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   section2: {
-    marginTop: 10,
+    marginTop: 20,
     alignItems: 'center',
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 1,
     alevation: 2,
+    paddingBottom:20
   },
   button: {
     display: 'flex',
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
   },
   serchResultItemContainer: {
     paddingHorizontal: 17,
-    paddingVertical: 5,
+    paddingVertical: 3,
     backgroundColor: 'white',
   },
   serchResultHeading: {
