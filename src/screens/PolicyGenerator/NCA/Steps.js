@@ -281,10 +281,6 @@ const Steps = () => {
     handle_input_2_2,
   ];
   const inputs_2 = [input_1_2, input_2_2];
-  //4
-  const [input_1_4, setInput_1_4] = useState('');
-  const handle_input_1_4 = state => setInput_1_4(state);
-  const states_3 = [input_1_4, handle_input_1_4];
 
   const request_object = {
     agreement_compliance_type: 'non-compete-agreement',
@@ -385,7 +381,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy4 list={states_3} object={request_object} />
+              <Policy4 object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>

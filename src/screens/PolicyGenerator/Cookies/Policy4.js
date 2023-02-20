@@ -61,7 +61,7 @@ const Policy4 = ({object}) => {
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
       {loading ? <AppLoader /> : null}
-      <Text
+      {/* <Text
         style={{
           color: colors.textDark,
           fontSize: 20,
@@ -69,7 +69,7 @@ const Policy4 = ({object}) => {
           marginTop: 20,
         }}>
         Finish Up:
-      </Text>
+      </Text> */}
       <View style={{paddingHorizontal: 11, paddingTop: 16}}>
         {/* <Text style={{color: colors.textDark, fontSize: 18, fontWeight: '400'}}>
           Enter Your Email address to receive the policy:

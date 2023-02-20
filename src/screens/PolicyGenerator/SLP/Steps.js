@@ -1185,10 +1185,6 @@ const Steps = () => {
     input_8_4,
   ];
 
-  // 6
-  const [input_1_6, setInput_1_6] = useState('');
-  const handle_input_1_6 = state => setInput_1_6(state);
-  const states_6 = [input_1_6, handle_input_1_6];
   const request_object=
   {
     agreement_compliance_type: "software-license-policy",
@@ -1399,7 +1395,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy6 list={states_6} object={request_object} />
+              <Policy6 object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>
