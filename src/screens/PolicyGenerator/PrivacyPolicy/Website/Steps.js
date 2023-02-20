@@ -74,9 +74,9 @@ const Steps = () => {
     input_8,
   ];
   // 4
-  const [input_1_4, setInput_1_4] = useState('');
-  const handle_input_1_4 = state => setInput_1_4(state);
-  const states_4 = [input_1_4, handle_input_1_4];
+  // const [input_1_4, setInput_1_4] = useState('');
+  // const handle_input_1_4 = state => setInput_1_4(state);
+  // const states_4 = [input_1_4, handle_input_1_4];
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -162,7 +162,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy4 list={states_4} object={request_object} />
+              <Policy4 object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>

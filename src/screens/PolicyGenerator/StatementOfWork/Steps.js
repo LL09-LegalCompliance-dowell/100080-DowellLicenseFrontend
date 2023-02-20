@@ -154,11 +154,6 @@ const Steps = () => {
       const states_3= [input1_3,handle_input1_3,input2_3,handle_input2_3,empty_validationn_3]
       const inputs_3= [input1_3,input2_3]
 
-      ///////////////////////////////////////////////////////4
-      const [input_1_4, setInput_1_4] = useState("");
-      const handle_input_1_4 = (state)=> setInput_1_4(state);
-      const states_4= [input_1_4,handle_input_1_4]
-
 
       const freelancer_access=[]
       if (isPress1=== true){
@@ -291,7 +286,7 @@ const Steps = () => {
                   }
                 }}>
                 <View >
-                  <Policy4  list={states_4} object={request_object} />
+                  <Policy4 object={request_object} />
                 </View>
               </ProgressStep>
             </ProgressSteps>
