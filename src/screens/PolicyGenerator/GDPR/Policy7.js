@@ -1,12 +1,13 @@
 import {React,useState} from 'react'
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ScrollView, View, Text,TouchableHighlight,TouchableOpacity,TextInput} from 'react-native';
-import { number_validation_1 ,url_validation} from '../validations';
+import { email_validation, number_validation_1 ,url_validation} from '../validations';
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const Policy7 = ({list}) => {
   const [valid_url , setValid_url]=useState(true);
+  const [valid_email , setvalid_email]=useState(true);
   var touchProps1 = {                               
     style: list[12] ? styles.Pressed : styles.Normal, 
     onPress: () => list[13](true),                 
@@ -62,6 +63,7 @@ const Policy7 = ({list}) => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+      <Text style={list[list.length-1]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
       <Text style={styles.text_1}>Policy Details:</Text>
       <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>How long will you store personal information you’ve collected from your users?</Text>
@@ -228,10 +230,20 @@ const Policy7 = ({list}) => {
             <TextInput
               style={styles.input}
               value={list[38]}
-              onChangeText={(value)=>list[39](value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setvalid_email(true)
+                }
+                else{
+                    email_validation(value)?setvalid_email(true):setvalid_email(false)
+                }
+                list[39](value)
+                
+            }}
               placeholder=" e.g.support@website.com"
               placeholderTextColor="gray" 
             /> 
+            <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
           </View>
           <View style={list[34] ? {} : {display:"none"}}>
             <Text style={styles.text_2}>What is your business address?</Text>
