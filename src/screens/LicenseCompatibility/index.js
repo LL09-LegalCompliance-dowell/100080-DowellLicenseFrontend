@@ -317,8 +317,8 @@ const LicenseCompatibility = ({navigation}) => {
           isVisible={isHowto}
           animationIn="slideInRight"
           animationOut="slideOutRight"
-          animationInTiming={1000}
-          animationOutTiming={1000}
+          animationInTiming={500}
+          animationOutTiming={500}
           avoidKeyboard={true}
           onBackdropPress={() => setHowto(false)}
           onBackButtonPress={() => setHowto(false)}
@@ -332,12 +332,12 @@ const LicenseCompatibility = ({navigation}) => {
           }>
           <>
             <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
+              <TouchableOpacity
+                style={{marginLeft:'auto'}}
+                onPress={() => setHowto(false)}>
+                <Entypo name="cross" size={40} color="darkgray" />
+              </TouchableOpacity>
               <ScrollView showsVerticalScrollIndicator={false}>
-                <TouchableOpacity
-                  style={{marginLeft: 'auto'}}
-                  onPress={() => setHowto(false)}>
-                  <Entypo name="cross" size={40} color="darkgray" />
-                </TouchableOpacity>
                 <View flex={1} onStartShouldSetResponder={() => true}>
                   <Text
                     style={[
