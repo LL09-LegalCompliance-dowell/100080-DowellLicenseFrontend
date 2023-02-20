@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     width: '100%',
-    height: 57,
+    height: 50,
     padding: 5,
     marginVertical: 10,
     flexDirection: 'row',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   InputText: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
     color: colors.textDark,
   },
