@@ -15,7 +15,7 @@ const Home = () => {
       <Header title={'My Profile'} />
       <TouchableOpacity
         style={styles.listContainer}
-        // onPress={() => navigation.navigate('SLP')}
+        onPress={()=>navigation.navigate('AuthNavigator', {screen: 'Profile'})}
       >
         <View style={styles.iconContainer}>
           <Image source={Image2} />

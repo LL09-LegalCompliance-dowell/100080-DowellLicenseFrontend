@@ -20,7 +20,7 @@ const Profile = () => {
     <View style={styles.container}>
       {loading ? <AppLoader /> : null}
       <StatusBar color="white" />
-      <Header title="Account Details" />
+      <Header title="Organization Details" />
       <View style={styles.innerContainer}>
         <Image source={require('./orgIcon.png')} style={styles.profileIcon} />
         <Text style={styles.label}>Organization Name</Text>

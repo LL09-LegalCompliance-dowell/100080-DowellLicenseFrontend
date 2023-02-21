@@ -4,10 +4,8 @@ import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
-import {useNavigation} from '@react-navigation/native';
 
 const Profile = () => {
-  const navigation = useNavigation();
 
   const [loading, setLoading] = useState();
   const [username, setUsername] = useState('');
@@ -54,10 +52,6 @@ const Profile = () => {
           source={require('./profileIcon.png')}
           style={styles.profileIcon}
         />
-        <Button
-          title="Organization Details"
-          onPress={() => navigation.navigate('ProfileHome')}></Button>
-
         <Text style={styles.label}>Username</Text>
         <Text style={styles.feildData}>{username}</Text>
         <View style={styles.separator}></View>
