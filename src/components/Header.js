@@ -24,7 +24,8 @@ const Header = ({title, leftIcon, rightIcon}) => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
   const gotoProfile = () => {
-     navigation.navigate('AuthNavigator', {screen: 'Profile'});
+     navigation.navigate('ProfileHome');
+    //  navigation.navigate('AuthNavigator', {screen: 'Profile'});
   };
   return (
     <View style={styles.container}>
