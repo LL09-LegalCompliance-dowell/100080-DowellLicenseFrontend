@@ -31,6 +31,9 @@ import MOU from '../screens/PolicyGenerator/MOU';
 import SLP from '../screens/PolicyGenerator/SLP';
 import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
 import PolicyWebView from '../screens/PolicyGenerator/PolicyWebView'
+import OrgDetails from '../screens/OrganizationDeatils'
+import ProfileHome from '../screens/OrganizationDeatils/Home'
+
 
 const Stack = createStackNavigator();
 
@@ -210,6 +213,20 @@ const RootNavigator = () => {
         <Stack.Screen
           name="PolicyWebView"
           component={PolicyWebView}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="OrgDetails"
+          component={OrgDetails}
+          options={{
+            headerShown: false,
+          }}
+        />
+         <Stack.Screen
+          name="ProfileHome"
+          component={ProfileHome}
           options={{
             headerShown: false,
           }}

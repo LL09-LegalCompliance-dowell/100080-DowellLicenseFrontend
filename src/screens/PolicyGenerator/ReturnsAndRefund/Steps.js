@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
-import Header from '../../../components/Header';
+import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -111,7 +111,7 @@ const Steps = () => {
       
     return (
         <>
-          <Header title="Generator" />
+          <PolicyHeader title="Generator" />
           <View
             style={{
               flex: 1,

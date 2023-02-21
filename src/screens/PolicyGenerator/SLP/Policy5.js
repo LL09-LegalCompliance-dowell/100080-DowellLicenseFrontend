@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {useState} from 'react';
-import {ScrollView, View, Text, TextInput, Pressable} from 'react-native';
+import {ScrollView, View, Text, TextInput, Pressable, Dimensions} from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
@@ -13,6 +13,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import colors from '../../../../assets/colors/colors';
 import AppLoader from '../../../components/AppLoader';
 import RBSheet from 'react-native-raw-bottom-sheet';
+
+const windowHeight = Dimensions.get('window').height;
 
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
@@ -28,7 +30,7 @@ const Policy5 = ({list}) => {
 
       {/* Model start 1*/}
       <Modal
-        propagateSwipe
+        // propagateSwipe
         isVisible={isModal1Visible}
         animationIn="slideInUp"
         animationOut="slideOutDown"
@@ -41,7 +43,7 @@ const Policy5 = ({list}) => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal1Visible(false)}
         onBackButtonPress={() => setModal1Visible(false)}>
-        <View style={{width: '100%'}}>
+        <View style={{width: '100%', height:windowHeight}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Pressable
               onPress={async () => {
@@ -134,7 +136,7 @@ const Policy5 = ({list}) => {
         backdropTransitionOutTiming={0}
         onBackdropPress={() => setModal2Visible(false)}
         onBackButtonPress={() => setModal2Visible(false)}>
-        <View style={{position: 'absolute', top: 150, width: '100%'}}>
+        <View style={{height:windowHeight, width: '100%'}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Pressable
               onPress={async () => {

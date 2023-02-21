@@ -65,7 +65,7 @@ const SoftwereLicense = ({navigation}) => {
   return (
     <>
       {loading ? <AppLoader /> : null}
-        <Header title="Softwere Licenses" leftIcon="menu" rightIcon="user" />
+        <Header title="Software Licenses" leftIcon="menu" rightIcon="user" />
         <View
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.container}>
@@ -178,6 +178,7 @@ const SoftwereLicense = ({navigation}) => {
                 <>
                   <View style={styles.serchResultItemContainer} key={item['_id']}>
                     <TouchableOpacity
+                    style={{justifyContent:'center'}}
                       key={index}
                       onPress={() => {
                         const id = item['_id'];

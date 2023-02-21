@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StatusBar,
   TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -23,8 +24,8 @@ const Header = ({title, leftIcon, rightIcon}) => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
   const gotoProfile = () => {
-    navigation.navigate('AuthNavigator',{screen:"Profile"})
-  }
+     navigation.navigate('AuthNavigator', {screen: 'Profile'});
+  };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -38,10 +39,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
           />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <MaterialIcons
             style={styles.menuIcon}
             name="keyboard-backspace"
@@ -52,7 +50,9 @@ const Header = ({title, leftIcon, rightIcon}) => {
       )}
 
       {title ? (
-        <Text numberOfLines={1} style={styles.heading}>{title}</Text>
+        <Text numberOfLines={1} style={styles.heading}>
+          {title}
+        </Text>
       ) : (
         <TouchableWithoutFeedback>
           <Image
