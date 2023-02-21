@@ -1,4 +1,12 @@
-import {StyleSheet,TouchableOpacity, Image, Text, View, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text,
+  View,
+  StatusBar,
+  ScrollView,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
@@ -22,6 +30,7 @@ const Profile = () => {
           Agreement Compliance Policies:
         </Text>
         <View style={styles.separator1}></View>
+
         <TouchableOpacity style={styles.itemContainer}>
           <Text style={styles.feildData2}>Software License Policy</Text>
           <View style={styles.counterContainer}>
@@ -120,13 +129,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 20,
     height: 22,
-    width:22,
-    alignItems:'center',
-    justifyContent:'center',
-    marginTop:3
+    width: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 3,
   },
   counterText: {
     color: 'white',
-   
   },
 });

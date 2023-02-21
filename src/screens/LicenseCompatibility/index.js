@@ -24,6 +24,12 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
 
+import Image1 from './Compatibility1.png';
+import Image2 from './Compatibility2.png';
+import Image3 from './Compatibility3.png';
+import Image4 from './Compatibility4.png';
+import Image5 from './Compatibility5.png';
+
 const LicenseCompatibility = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
@@ -333,7 +339,7 @@ const LicenseCompatibility = ({navigation}) => {
           <>
             <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
               <TouchableOpacity
-                style={{marginLeft:'auto'}}
+                style={{marginLeft: 'auto'}}
                 onPress={() => setHowto(false)}>
                 <Entypo name="cross" size={40} color="darkgray" />
               </TouchableOpacity>
@@ -359,15 +365,14 @@ const LicenseCompatibility = ({navigation}) => {
                     the license. Then search the second license name and select
                     the license.
                   </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image1}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 1
-                  </Text>
+                  <Image
+                    source={Image2}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
+                  />
 
                   <Text style={[styles.heading]}>
                     2. Click check button to view results
@@ -380,45 +385,19 @@ const LicenseCompatibility = ({navigation}) => {
                     After the two licenses are selected, now click the “Check”
                     button to view the compatibility results.
                   </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image3}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 2
-                  </Text>
 
                   <Text style={[styles.heading]}>
                     3. Check the compatibility results
                   </Text>
-                  <Text style={[styles.heading, {alignSelf: 'center'}]}>
-                    Check the compatibility results.
-                  </Text>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {
-                        alignSelf: 'center',
-                        fontSize: 16,
-                        color: 'red',
-                        paddingTop: 0,
-                      },
-                    ]}>
-                    **here we can provide more descriptive manner of how the
-                    results are shown and on what factors the compatibility is
-                    done
-                  </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image4}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%', marginTop:-620, marginBottom:-600}}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 3
-                  </Text>
+
                   <View
                     style={{
                       height: 2,
@@ -426,13 +405,6 @@ const LicenseCompatibility = ({navigation}) => {
                       backgroundColor: 'gray',
                       marginVertical: 30,
                     }}></View>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {alignSelf: 'center', fontSize: 22},
-                    ]}>
-                    OR{' '}
-                  </Text>
                   <Text
                     style={[
                       styles.heading,

@@ -91,7 +91,7 @@ const Steps = () => {
   ]);
   let x;
   if (radioButtons[0].selected === true) {
-    x= 'Individual';
+    x = 'Individual';
   } else if (radioButtons[1].selected === true) {
     x = 'Company';
   } else if (radioButtons[2].selected === true) {
@@ -148,7 +148,7 @@ const Steps = () => {
   ]);
   let y;
   if (radioButtons[0].selected === true) {
-    y= 'Individual';
+    y = 'Individual';
   } else if (radioButtons[1].selected === true) {
     y = 'Company';
   } else if (radioButtons[2].selected === true) {
@@ -295,7 +295,7 @@ const Steps = () => {
   ]);
   let z;
   if (radioButtons[0].selected === true) {
-    z= 'days';
+    z = 'days';
   } else if (radioButtons[1].selected === true) {
     z = 'months';
   } else {
@@ -329,7 +329,7 @@ const Steps = () => {
   ]);
   let a;
   if (radioButtons[0].selected === true) {
-    a= 'Yes';
+    a = 'Yes';
   } else {
     a = 'No';
   }
@@ -361,7 +361,7 @@ const Steps = () => {
   ]);
   let b;
   if (radioButtons[0].selected === true) {
-    b= 'Yes';
+    b = 'Yes';
   } else {
     b = 'No';
   }
@@ -393,7 +393,7 @@ const Steps = () => {
   ]);
   let c;
   if (radioButtons[0].selected === true) {
-    c= 'Yes';
+    c = 'Yes';
   } else {
     c = 'No';
   }
@@ -424,7 +424,7 @@ const Steps = () => {
   ]);
   let d;
   if (radioButtons[0].selected === true) {
-    d= 'Yes';
+    d = 'Yes';
   } else {
     d = 'No';
   }
@@ -466,7 +466,7 @@ const Steps = () => {
   ]);
   let e;
   if (radioButtons[0].selected === true) {
-    e= 'days';
+    e = 'days';
   } else if (radioButtons[1].selected === true) {
     e = 'months';
   } else {
@@ -499,7 +499,7 @@ const Steps = () => {
   ]);
   let f;
   if (radioButtons[0].selected === true) {
-    f= 'Yes';
+    f = 'Yes';
   } else {
     f = 'No';
   }
@@ -718,7 +718,6 @@ const Steps = () => {
       },
     },
   ]);
-
 
   const [empty_validationn_2, setempty_validation_2] = useState(true);
   const [error_3, setError_3] = useState(false);
@@ -1024,7 +1023,7 @@ const Steps = () => {
     handle_radiobuttons_8,
     radioButtons_9,
     handle_radiobuttons_9,
-    
+
     input_7_3,
     handle_input_7_3,
     radioButtons_10,
@@ -1033,7 +1032,7 @@ const Steps = () => {
     handle_radiobuttons_11,
     input_8_3,
     handle_input_8_3,
-    
+
     input_9_3,
     handle_input_9_3,
     input_10_3,
@@ -1141,7 +1140,7 @@ const Steps = () => {
   const handle_input_8_4 = state => setInput_8_4(state);
   const [date_8, setDate_8] = useState(new Date());
   const handle_date_8 = state => setDate_8(state);
-  
+
   const states_4 = [
     empty_validationn_4,
     radioButtons_2_5,
@@ -1172,7 +1171,6 @@ const Steps = () => {
     handle_input_8_4,
     date_8,
     handle_date_8,
-    
   ];
   const inputs_4 = [
     input_1_4,
@@ -1185,10 +1183,9 @@ const Steps = () => {
     input_8_4,
   ];
 
-  const request_object=
-  {
-    agreement_compliance_type: "software-license-policy",
-    organization_id: "ROD345OS443345OS443OSS",
+  const request_object = {
+    agreement_compliance_type: 'software-license-policy',
+    organization_id: 'ROD345OS443345OS443OSS',
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_1_entity_type: x,
     party_1_full_name: input_1,
@@ -1208,7 +1205,7 @@ const Steps = () => {
     party_2_registrar_office_address_2: input_14,
     party_2_registrar_office_address_3: input_15,
     party_2_principal_place_of_business: input_16,
-    // second screen starts here 
+    // second screen starts here
     charges_payable: input_1_1,
     software_document_identification: input_2_1,
     contract_effective_date: generate_date(date_1.toLocaleDateString()),
@@ -1226,71 +1223,71 @@ const Steps = () => {
     terms_of_contract_duration_unit: e,
     is_inline_copy_right_remove: false,
     is_term_of_contract_indefinite: false,
-    contract_termination_date: "2022-10-20",
-    events_that_will_cause_contract_to_be_terminated: "Nil",
+    contract_termination_date: '2022-10-20',
+    events_that_will_cause_contract_to_be_terminated: 'Nil',
     number_of_license_to_be_deliver: 4,
-    number_of_license_to_be_deliver_unit: "pcs",
-    software_delivery_channel: "Email",
+    number_of_license_to_be_deliver_unit: 'pcs',
+    software_delivery_channel: 'Email',
     within_what_period_must_software_be_delivered: 12,
-    within_what_period_must_software_be_delivered_unit: "Days",
-    what_did_licensor_supply_to_the_licensee: "software",
-    purpose_by_reference_to_which_sub_licensing_is_permitted: "Use For",
-    when_should_invoice_be_issued: "Nil",
-    invoicing_date: "2022-10-20",
+    within_what_period_must_software_be_delivered_unit: 'Days',
+    what_did_licensor_supply_to_the_licensee: 'software',
+    purpose_by_reference_to_which_sub_licensing_is_permitted: 'Use For',
+    when_should_invoice_be_issued: 'Nil',
+    invoicing_date: '2022-10-20',
     period_for_payment_of_invoices: 85,
-    period_for_payment_of_invoices_unit: "Days",
-    effective_date_for_invoice_payment: "2022-10-20",
-    invoice_payment_method: "Nil",
+    period_for_payment_of_invoices_unit: 'Days',
+    effective_date_for_invoice_payment: '2022-10-20',
+    invoice_payment_method: 'Nil',
     interest_rate_apply_to_late_payment: 2450.55,
-    optional_element: "",
+    optional_element: '',
     is_warranty_relate_to_a_specific_period: true,
-    scope_of_warranty: "Nil",
-    jurisdictional_coverage_of_warranty: "Nil",
+    scope_of_warranty: 'Nil',
+    jurisdictional_coverage_of_warranty: 'Nil',
     period_apply_to_warranty: 3,
-    period_apply_to_warranty_unit: "Months",
-    circumstances_in_which_licensor_may_exercise_its_rights: "Nil",
+    period_apply_to_warranty_unit: 'Months',
+    circumstances_in_which_licensor_may_exercise_its_rights: 'Nil',
     should_there_be_an_express_requirement_for_licensor_to_act_reasonably: false,
     are_there_limitations_on_right_to_modify: false,
-    limitations_on_right_to_modify_specification: "Nil",
+    limitations_on_right_to_modify_specification: 'Nil',
     termination_notice_period_apply: 3,
-    termination_notice_period_apply_unit: "Months",
+    termination_notice_period_apply_unit: 'Months',
     is_termination_period_expirable: false,
     relevant_termination_period: 0,
-    relevant_termination_period_unit: "Days",
-    relevant_termination_period_date: "2022-10-20",
-    circumstances_in_which_a_party_may_terminate_for_breach: "Nil",
+    relevant_termination_period_unit: 'Days',
+    relevant_termination_period_date: '2022-10-20',
+    circumstances_in_which_a_party_may_terminate_for_breach: 'Nil',
     time_frame_for_the_notice_period: 0,
-    time_frame_for_the_notice_period_unit: "Months",
-    sent_contractual_notices_to_the_licensor_name: "Nil",
-    sent_contractual_notices_to_the_licensor_address_1: "Nil",
-    sent_contractual_notices_to_the_licensor_address_2: "Nil",
-    sent_contractual_notices_to_the_licensor_address_3: "Nil",
-    sent_contractual_notices_to_the_licensor_contact_detai: "Nil",
-    sent_contractual_notices_to_the_licensee_name: "Nil",
-    sent_contractual_notices_to_the_licensee_address_1: "Nil",
-    sent_contractual_notices_to_the_licensee_address_2: "Nil",
-    sent_contractual_notices_to_the_licensee_address_3: "Nil",
-    sent_contractual_notices_to_the_licensee_contact_details: "Nil",
-    law_governs_document: "Nil",
-    court_of_jurisdiction_which_has_exclusive_right_to_adjudicate_disputes_on_document: "Nil",
-    which_entity_will_sign_contract_on_behalf_of_party_1: "Contractor",
+    time_frame_for_the_notice_period_unit: 'Months',
+    sent_contractual_notices_to_the_licensor_name: 'Nil',
+    sent_contractual_notices_to_the_licensor_address_1: 'Nil',
+    sent_contractual_notices_to_the_licensor_address_2: 'Nil',
+    sent_contractual_notices_to_the_licensor_address_3: 'Nil',
+    sent_contractual_notices_to_the_licensor_contact_detai: 'Nil',
+    sent_contractual_notices_to_the_licensee_name: 'Nil',
+    sent_contractual_notices_to_the_licensee_address_1: 'Nil',
+    sent_contractual_notices_to_the_licensee_address_2: 'Nil',
+    sent_contractual_notices_to_the_licensee_address_3: 'Nil',
+    sent_contractual_notices_to_the_licensee_contact_details: 'Nil',
+    law_governs_document: 'Nil',
+    court_of_jurisdiction_which_has_exclusive_right_to_adjudicate_disputes_on_document:
+      'Nil',
+    which_entity_will_sign_contract_on_behalf_of_party_1: 'Contractor',
     party_1_signatory_scanned_copy_detail: {
-        filename: "img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png"
+      filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
     },
-    full_name_of_party_1_signatory: "party 1 name",
-    party_1_date_of_signing_contract: "2022-11-02",
-    full_name_of_the_person_sign_on_behalf_of_party_1: "witness 1 name",
-    date_contract_was_sign_on_behalf_of_party_1: "2022-11-02",
-    which_entity_will_sign_contract_on_behalf_of_party_2: "Contractor",
+    full_name_of_party_1_signatory: 'party 1 name',
+    party_1_date_of_signing_contract: '2022-11-02',
+    full_name_of_the_person_sign_on_behalf_of_party_1: 'witness 1 name',
+    date_contract_was_sign_on_behalf_of_party_1: '2022-11-02',
+    which_entity_will_sign_contract_on_behalf_of_party_2: 'Contractor',
     party_2_signatory_scanned_copy_detail: {
-        filename: "img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png",
+      filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
     },
-    full_name_of_party_2_signatory: "party 2 name",
-    party_2_date_of_signing_contract: "2022-11-05",
-    full_name_of_the_person_sign_on_behalf_of_party_2: "witness 2 name",
-    date_contract_was_sign_on_behalf_of_party_2: "2022-11-05"
-
-}
+    full_name_of_party_2_signatory: 'party 2 name',
+    party_2_date_of_signing_contract: '2022-11-05',
+    full_name_of_the_person_sign_on_behalf_of_party_2: 'witness 2 name',
+    date_contract_was_sign_on_behalf_of_party_2: '2022-11-05',
+  };
 
   return (
     <>
@@ -1306,7 +1303,21 @@ const Steps = () => {
           style={{width: '100px'}}
           marginBottom={15}
           nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-            
+          <ProgressStep
+            nextBtnStyle={nextButton}
+            nextBtnTextStyle={{color: 'white', fontSize: 18}}
+            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
+            errors={error_5}
+            onNext={() => {
+              setempty_validation_4(empty_validation(inputs_4));
+              const x = empty_validation(inputs_4);
+              setError_5(!x);
+            }}>
+            <View>
+              <Policy5 list={states_4} />
+            </View>
+          </ProgressStep>
+
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
@@ -1377,7 +1388,7 @@ const Steps = () => {
               <Policy5 list={states_4} />
             </View>
           </ProgressStep>
-          
+
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
@@ -1385,7 +1396,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              navigation.navigate('HomeScreen')
+              navigation.navigate('HomeScreen');
               // const y = email_validation(input_1_4);
               // const z = !y;
               // if (z) {
