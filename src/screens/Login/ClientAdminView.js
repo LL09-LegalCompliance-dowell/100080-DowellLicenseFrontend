@@ -5,28 +5,25 @@ import axios from 'axios';
 import {WebView} from 'react-native-webview';
 import Loading from '../../components/Loading';
 
-const URL = "https://100014.pythonanywhere.com/?redirect_url=https://100093.pythonanywhere.com/";
 
-const LoginWebView = ({navigation}) => {
-  const [session_id, setSession_id] = useState("")
+const ClientAdminView = ({navigation, route}) => {
+  const {session_id} = route.params;
+  console.log("client admin view", session_id)
   const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(false);
+  const URL = `https://100093.pythonanywhere.com/?session_id=${session_id}`;
+  console.log("URL",URL)
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     console.log(url)
     try {
-      if (url.startsWith("https://100093.pythonanywhere.com/?session_id=")) {
-      //navigation.navigate('Saving', {url});
-      const session_id = await url.substring(46, 78);
-      console.log("Session_Id",session_id)
-      setSession_id(session_id)
-      }
-      if (url === "https://100093.pythonanywhere.com/" || url === "https://100093.pythonanywhere.com/home") {
-      if(!session_id){
-        Alert.alert("Some Error Occured. Try Again!")
-        navigation.navigate("IntroductionScreen")
-      }
+      if (url === "https://100093.pythonanywhere.com/" || url === "https://100093.pythonanywhere.com/home"
+          || url === "https://100093.pythonanywhere.com/admintest/") {
+        if(!session_id){
+          Alert.alert("Some Error Occured. Try Again!")
+          navigation.navigate("IntroductionScreen")
+        }
       }
       if (url.startsWith("https://play.google.com/store/apps/details?id=com.legalzard.policies")) {
         setLoading(true)
@@ -104,4 +101,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default LoginWebView;
+export default ClientAdminView;
