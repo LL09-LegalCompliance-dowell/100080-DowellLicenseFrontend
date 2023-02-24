@@ -112,7 +112,7 @@ const AgreementComplience = ({navigation}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               paddingHorizontal: 50,
-              marginTop: 70,
+              marginTop: 90,
               borderTopColor: '#959595',
               borderTopWidth: 1,
             }}>
