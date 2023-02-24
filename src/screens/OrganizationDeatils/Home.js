@@ -8,15 +8,16 @@ import Image1 from './Accountbalance.png';
 import Image2 from './Accountcircle.png';
 
 const Home = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <Header title={'My Profile'} />
       <TouchableOpacity
         style={styles.listContainer}
-        onPress={()=>navigation.navigate('AuthNavigator', {screen: 'Profile'})}
-      >
+        onPress={() =>
+          navigation.navigate('AuthNavigator', {screen: 'Profile'})
+        }>
         <View style={styles.iconContainer}>
           <Image source={Image2} />
         </View>
@@ -25,15 +26,13 @@ const Home = () => {
       <View style={styles.separator}></View>
       <TouchableOpacity
         style={styles.listContainer}
-        onPress={() => navigation.navigate('OrgDetails')}
-      >
+        onPress={() => navigation.navigate('OrgDetails')}>
         <View style={styles.iconContainer}>
           <Image source={Image1} />
         </View>
         <Text style={styles.listHeading}> Organization Details</Text>
       </TouchableOpacity>
       <View style={styles.separator}></View>
-
     </View>
   );
 };
@@ -43,6 +42,8 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     paddingTop: 60,
+    backgroundColor:'white',
+    flex:1
   },
   heading: {
     fontFamily: 'roboto',

@@ -6,7 +6,6 @@ import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
 
 const Profile = () => {
-
   const [loading, setLoading] = useState();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
