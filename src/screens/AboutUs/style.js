@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingTop: 20,
     paddingBottom: 15,
+    fontFamily:'roboto'
   },
 
   // Contact Container
@@ -71,6 +72,10 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     marginLeft: 10,
   },
+  aboutText:{
+    color: colors.textDark,
+    fontFamily:'roboto'
+  }
 });
 
 export default styles;

@@ -91,7 +91,10 @@ const ApacheLicense = ({route}) => {
                 <>
                   <Text
                     key={index}
-                    style={[styles.heading4, {paddingLeft: 20, flex: 1, paddingTop:4}]}>
+                    style={[
+                      styles.heading4,
+                      {paddingLeft: 20, flex: 1, paddingTop: 4},
+                    ]}>
                     {`${index + 1})  ${attribute}`}
                   </Text>
                 </>
