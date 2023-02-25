@@ -15,10 +15,12 @@ const ApacheLicense = ({route}) => {
       <ScrollView style={styles.container}>
         {/* Upper Container */}
         <View style={styles.upperContainer}>
-          <Image
-            style={{height: 100, width: 100, resizeMode: 'contain'}}
-            source={{uri: item.softwarelicense?.logo_detail?.url}}
-          />
+          {item.softwarelicense?.logo_detail?.url !== '' ? (
+            <Image
+              style={{height: 100, width: 100, resizeMode: 'contain'}}
+              source={{uri: item.softwarelicense?.logo_detail?.url}}
+            />
+          ) : null}
           {item.softwarelicense?.license_name ? (
             <Text style={styles.heading}>
               {item.softwarelicense?.license_name}
@@ -30,7 +32,7 @@ const ApacheLicense = ({route}) => {
             </Text>
           ) : null}
           {item.softwarelicense?.short_description ? (
-            <Text style={{textAlign: 'justify'}}>
+            <Text style={{textAlign: 'justify', color: 'gray'}}>
               {item.softwarelicense?.short_description}
             </Text>
           ) : null}
@@ -65,38 +67,37 @@ const ApacheLicense = ({route}) => {
           <Text style={styles.heading2}>
             {item.softwarelicense?.type_of_license}
           </Text>
+          {item.softwarelicense?.disclaimer !== '' ? (
+            <>
+              <Text style={styles.heading1}>3.Disclaimer</Text>
+              <Text style={styles.heading2}>
+                {item.softwarelicense?.disclaimer}
+              </Text>
+            </>
+          ) : null}
+          {item.softwarelicense?.license_attributes !== {} ? (
+            <>
+              <Text style={styles.heading1}>4.Attributions</Text>
+              <Text style={[styles.heading4, {paddingTop: 0, paddingLeft: 20}]}>
+                {item.softwarelicense?.license_attributes?.heading}
+              </Text>
+            </>
+          ) : null}
 
-          <Text style={styles.heading1}>3.Disclaimer</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.disclaimer}
-          </Text>
-
-          <Text style={styles.heading1}>4.Attributions</Text>
-          <Text style={[styles.heading4, {paddingTop: 0, paddingLeft: 20}]}>
-            {' '}
-            {item.softwarelicense?.license_attributes?.heading}
-          </Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.license_attributes?.attributes.map(
-              (attribute, index) => {
-                return (
-                  // console.log(item1)
-                  <>
-                    <View>
-                      <Text
-                        key={index}
-                        style={[
-                          styles.heading4,
-                          {marginLeft: 20, width: '100%'},
-                        ]}>
-                        {`${attribute}`}
-                      </Text>
-                    </View>
-                  </>
-                );
-              },
-            )}
-          </Text>
+          {item.softwarelicense?.license_attributes?.attributes.map(
+            (attribute, index) => {
+              return (
+                // console.log(item1)
+                <>
+                  <Text
+                    key={index}
+                    style={[styles.heading4, {paddingLeft: 20, flex: 1, paddingTop:4}]}>
+                    {`${index + 1})  ${attribute}`}
+                  </Text>
+                </>
+              );
+            },
+          )}
 
           <Text style={styles.heading1}>
             5.Permissions, Conditions & Limitations:
@@ -107,44 +108,71 @@ const ApacheLicense = ({route}) => {
             modify the code and then sell it as proprietary software” .
           </Text>
 
-          <Text style={styles.heading1}>
-            6.Risks for choosing Apache License 2.0
-          </Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.risk_for_choosing_license}
-          </Text>
-
-          <Text style={styles.heading1}>6.Recommendations (%)</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.recommendation}
-          </Text>
-
-          <Text style={styles.heading1}>7.Compatible Licenses</Text>
-          {item.softwarelicense?.license_compatible_with_lookup.map(
-            compatibleLicense => {
-              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
-            },
-          )}
-
-          <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
-          {item.softwarelicense?.license_not_compatible_with_lookup.map(
-            compatibleLicense => {
-              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
-            },
-          )}
-
-          <Text style={styles.heading1}>9.Limitation of Liability.</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.limitation_of_liability}
-          </Text>
-          <Text style={styles.heading1}>
-            For more details visit the below link:
-          </Text>
-          <Text
-            style={[styles.link, {marginHorizontal: 15}]}
-            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
-            {item.softwarelicense?.license_url}
-          </Text>
+          {item.softwarelicense?.risk_for_choosing_license !== '' ? (
+            <>
+              <Text style={styles.heading1}>
+                6.Risks for choosing Apache License 2.0
+              </Text>
+              <Text style={styles.heading2}>
+                {item.softwarelicense?.risk_for_choosing_license}
+              </Text>
+            </>
+          ) : null}
+          {item.softwarelicense?.recommendation !== '' ? (
+            <>
+              <Text style={styles.heading1}>6.Recommendations (%)</Text>
+              <Text style={styles.heading2}>
+                {item.softwarelicense?.recommendation}
+              </Text>
+            </>
+          ) : null}
+          {item.softwarelicense?.license_compatible_with_lookup.length !== 0 ? (
+            <>
+              <Text style={styles.heading1}>7.Compatible Licenses</Text>
+              {item.softwarelicense?.license_compatible_with_lookup.map(
+                compatibleLicense => {
+                  return (
+                    <Text style={styles.heading2}>{compatibleLicense}</Text>
+                  );
+                },
+              )}
+            </>
+          ) : null}
+          {item.softwarelicense?.license_not_compatible_with_lookup.length !=
+          0 ? (
+            <>
+              <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
+              {item.softwarelicense?.license_not_compatible_with_lookup.map(
+                compatibleLicense => {
+                  return (
+                    <Text style={styles.heading2}>{compatibleLicense}</Text>
+                  );
+                },
+              )}
+            </>
+          ) : null}
+          {item.softwarelicense?.limitation_of_liability !== '' ? (
+            <>
+              <Text style={styles.heading1}>9.Limitation of Liability.</Text>
+              <Text style={styles.heading2}>
+                {item.softwarelicense?.limitation_of_liability}
+              </Text>
+            </>
+          ) : null}
+          {item.softwarelicense?.license_url !== '' ? (
+            <>
+              <Text style={styles.heading1}>
+                For more details visit the below link:
+              </Text>
+              <Text
+                style={[styles.link, {marginHorizontal: 15}]}
+                onPress={() =>
+                  Linking.openURL(item.softwarelicense?.license_url)
+                }>
+                {item.softwarelicense?.license_url}
+              </Text>
+            </>
+          ) : null}
         </View>
         <View style={styles.bottomContainer}>
           <Text
