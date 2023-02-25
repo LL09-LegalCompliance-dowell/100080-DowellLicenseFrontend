@@ -218,41 +218,36 @@ const LicenseCompatibility = ({navigation}) => {
             <ScrollView style={styles.serchResultContainer}>
               {searchedData1.map((item, index) => {
                 return (
-                  <>
-                    <View style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        key={index}
-                        onPress={async () => {
-                          const id_1 = item['_id'];
-                          const eventId_1 = item['eventId'];
-                          const licenseNname_1 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId1',
-                            JSON.stringify(id_1),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId1',
-                            eventId_1,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname1',
-                            licenseNname_1,
-                          );
-                          handleSelectedLicense1();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text
-                          numberOfLines={1}
-                          style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </View>
-                  </>
+                  <View style={styles.serchResultItemContainer} key={index}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        const id_1 = item['_id'];
+                        const eventId_1 = item['eventId'];
+                        const licenseNname_1 =
+                          item['softwarelicense']['license_name'];
+                        await AsyncStorage.setItem(
+                          'licenseId1',
+                          JSON.stringify(id_1),
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseEventId1',
+                          eventId_1,
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseNname1',
+                          licenseNname_1,
+                        );
+                        handleSelectedLicense1();
+                      }}>
+                      <Text style={styles.serchResultHeading}>
+                        {item['softwarelicense']['license_name']}
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        {item['softwarelicense']['description']}
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                  </View>
                 );
               })}
             </ScrollView>
@@ -285,7 +280,7 @@ const LicenseCompatibility = ({navigation}) => {
             <ScrollView style={styles.serchResultContainer}>
               {searchedData2.map((item, index) => {
                 return (
-                  <>
+
                     <View key={index} style={styles.serchResultItemContainer}>
                       <TouchableOpacity
                         onPress={async () => {
@@ -318,7 +313,7 @@ const LicenseCompatibility = ({navigation}) => {
                         <View style={styles.separator}></View>
                       </TouchableOpacity>
                     </View>
-                  </>
+
                 );
               })}
             </ScrollView>
@@ -538,7 +533,12 @@ const LicenseCompatibility = ({navigation}) => {
                           <Text style={{paddingTop: 0, color: colors.textDark}}>
                             {licenseOne}
                           </Text>
-                          <Text style={{paddingTop: 0, color: colors.textDark, alignSelf:'center'}}>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              alignSelf: 'center',
+                            }}>
                             {license1Version}
                           </Text>
                         </View>
@@ -551,10 +551,15 @@ const LicenseCompatibility = ({navigation}) => {
                           source={{uri: licenseLogo2}}
                         />
                         <View>
-                        <Text style={{paddingTop: 0, color: colors.textDark}}>
-                          {licenseTwo}
-                        </Text>
-                        <Text style={{paddingTop: 0, color: colors.textDark, alignSelf:'center'}}>
+                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                            {licenseTwo}
+                          </Text>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              alignSelf: 'center',
+                            }}>
                             {license2Version}
                           </Text>
                         </View>
