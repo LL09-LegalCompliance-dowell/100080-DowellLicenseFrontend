@@ -22,7 +22,7 @@ const MyTextInput = ({
         {marginVertical: marginVertical},
         {height: height},
       ]}>
-      <TextInput style={styles.InputText} {...otherProps} />
+      <TextInput placeholderTextColor='gray' style={styles.InputText} {...otherProps} />
       {icon && (
         <FontAwesome name={icon} size={iconSize} color={colors.textDark} />
       )}

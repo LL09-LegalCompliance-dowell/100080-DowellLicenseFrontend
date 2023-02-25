@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     paddingTop: 15,
     fontFamily: 'roboto',
+    color: 'black',
+
   },
   feildData: {
     paddingLeft: 17,

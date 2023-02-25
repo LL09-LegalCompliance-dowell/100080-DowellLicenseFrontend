@@ -9,14 +9,11 @@ import {
 } from 'react-native';
 import React, {useState, useMemo} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Octicons from 'react-native-vector-icons/Octicons';
 import axios from 'axios';
 
 import Header from '../../components/Header';
 import styles from './style';
-import colors from '../../../assets/colors/colors';
 import MyTextInput from '../../components/MyTextInput';
-import AppBotton from '../../components/AppBottun';
 import AppLoader from '../../components/AppLoader';
 
 const listData = [
@@ -65,16 +62,14 @@ const SoftwereLicense = ({navigation}) => {
   return (
     <>
       {loading ? <AppLoader /> : null}
-        <Header title="Software Licenses" leftIcon="menu" rightIcon="user" />
-        <View
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.container}>
-          {/* Header */}
-          
-          
+      <Header title="Software Licenses" leftIcon="menu" rightIcon="user" />
+      <View
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+        {/* Header */}
 
-          {/* section 1 */}
-          {/* <View style={styles.cardContainer}>
+        {/* section 1 */}
+        {/* <View style={styles.cardContainer}>
             <FlatList
               data={listData}
               ketExtractor={item => item.id}
@@ -130,77 +125,74 @@ const SoftwereLicense = ({navigation}) => {
               )}
             />
           </View> */}
-          <View style={styles.miniContainer}>
-            {/* section 2 */}
-            <View style={styles.section2}>
-              <Text style={styles.heading}>
-                Check your license compatibility now
-              </Text>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  navigation.navigate('LicenseCompatibility');
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcons
-                    name="arrow-up-bold"
-                    size={20}
-                    color={'white'}
-                  />
-                  <MaterialCommunityIcons
-                    style={styles.downIcontyle}
-                    name="arrow-down-bold"
-                    size={20}
-                    color={'white'}
-                  />
-                </View>
-                <Text style={styles.buttonText}>Check here!</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* section 3 */}
-            <View style={styles.setion3}>
-              <View style={styles.searchInput}>
-                <MyTextInput
-                  placeholder="Search license here"
-                  icon={'search'}
-                  iconSize={35}
-                  paddingHorizontal={12}
-                  onChangeText={text => searchLicensesFunction(text)}
+        <View style={styles.miniContainer}>
+          {/* section 2 */}
+          <View style={styles.section2}>
+            <Text style={styles.heading}>
+              Check your license compatibility now
+            </Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                navigation.navigate('LicenseCompatibility');
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcons
+                  name="arrow-up-bold"
+                  size={20}
+                  color={'white'}
+                />
+                <MaterialCommunityIcons
+                  style={styles.downIcontyle}
+                  name="arrow-down-bold"
+                  size={20}
+                  color={'white'}
                 />
               </View>
+              <Text style={styles.buttonText}>Check here!</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* section 3 */}
+          <View style={styles.setion3}>
+            <View style={styles.searchInput}>
+              <MyTextInput
+                placeholder="Search license here"
+                icon={'search'}
+                iconSize={35}
+                paddingHorizontal={12}
+                onChangeText={text => searchLicensesFunction(text)}
+              />
             </View>
           </View>
-          {/* Section 4 */}
-          <ScrollView style={styles.section4}>
-            {searchedTerm.map((item, index) => {
-              return (
-                <>
-                  <View style={styles.serchResultItemContainer} key={item['_id']}>
-                    <TouchableOpacity
-                    style={{justifyContent:'center'}}
-                      key={index}
-                      onPress={() => {
-                        const id = item['_id'];
-                        const eventId = item['eventId'];
-                        const licenseNname =
-                          item['softwarelicense']['license_name'];
-                        navigation.navigate('ApacheLicense', {item});
-                      }}>
-                      <Text style={styles.serchResultHeading}>
-                        {item['softwarelicense']['license_name']}
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        {item['softwarelicense']['description']}
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                  </View>
-                </>
-              );
-            })}
-          </ScrollView>
         </View>
+        {/* Section 4 */}
+        <ScrollView style={styles.section4}>
+          {searchedTerm.map((item, index) => {
+            return (
+              <View style={styles.serchResultItemContainer} key={index}>
+                <TouchableOpacity
+                  style={{justifyContent: 'center'}}
+                  onPress={() => {
+                    const id = item['_id'];
+                    const eventId = item['eventId'];
+                    const licenseNname =
+                      item['softwarelicense']['license_name'];
+                    navigation.navigate('ApacheLicense', {item});
+                  }}>
+                  <Text style={styles.serchResultHeading}>
+                    {item['softwarelicense']['license_name']}
+                  </Text>
+                  <Text numberOfLines={1} style={styles.serchResultDetails}>
+                    {item['softwarelicense']['description']}
+                  </Text>
+                  <View style={styles.separator}></View>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </ScrollView>
+      </View>
     </>
   );
 };
