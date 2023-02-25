@@ -395,7 +395,13 @@ const LicenseCompatibility = ({navigation}) => {
                   </Text>
                   <Image
                     source={Image4}
-                    style={{resizeMode: 'contain', flex: 1, width: '100%', marginTop:-620, marginBottom:-600}}
+                    style={{
+                      resizeMode: 'contain',
+                      flex: 1,
+                      width: '100%',
+                      marginTop: -620,
+                      marginBottom: -600,
+                    }}
                   />
 
                   <View
@@ -572,12 +578,13 @@ const LicenseCompatibility = ({navigation}) => {
                       style={{
                         paddingBottom: 10,
                         fontSize: 21,
-                        color: isCompatible == true ? colors.primary : 'red',
+                        color:
+                          compatibiltyPercentage > 50 ? colors.primary : 'red',
                         fontWeight: 'bold',
                         fontStyle: 'italic',
                         alignSelf: 'center',
                       }}>
-                      "Can {isCompatible !== 'false' ? 'not' : null} be used
+                      "Can {compatibiltyPercentage < 50 ? 'not' : null}be used
                       together in a project"
                     </Text>
 
