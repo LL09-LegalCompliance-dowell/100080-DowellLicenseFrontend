@@ -280,40 +280,36 @@ const LicenseCompatibility = ({navigation}) => {
             <ScrollView style={styles.serchResultContainer}>
               {searchedData2.map((item, index) => {
                 return (
-
-                    <View key={index} style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        onPress={async () => {
-                          const id_2 = item['_id'];
-                          const eventId_2 = item['eventId'];
-                          const licenseNname_2 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId2',
-                            JSON.stringify(id_2),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId2',
-                            eventId_2,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname2',
-                            licenseNname_2,
-                          );
-                          handleSelectedLicense2();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text
-                          numberOfLines={1}
-                          style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </View>
-
+                  <View key={index} style={styles.serchResultItemContainer}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        const id_2 = item['_id'];
+                        const eventId_2 = item['eventId'];
+                        const licenseNname_2 =
+                          item['softwarelicense']['license_name'];
+                        await AsyncStorage.setItem(
+                          'licenseId2',
+                          JSON.stringify(id_2),
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseEventId2',
+                          eventId_2,
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseNname2',
+                          licenseNname_2,
+                        );
+                        handleSelectedLicense2();
+                      }}>
+                      <Text style={styles.serchResultHeading}>
+                        {item['softwarelicense']['license_name']}
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        {item['softwarelicense']['description']}
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                  </View>
                 );
               })}
             </ScrollView>
