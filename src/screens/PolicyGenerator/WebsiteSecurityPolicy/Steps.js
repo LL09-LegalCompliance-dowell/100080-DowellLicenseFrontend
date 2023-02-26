@@ -76,6 +76,7 @@ const Steps = () => {
           website_url: input_4 ,
           website_contact_email:input_5
       }
+     
     return (
         <>
           <PolicyHeader title="Generator" />
