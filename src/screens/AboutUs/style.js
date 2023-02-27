@@ -21,7 +21,12 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     fontFamily:'roboto'
   },
-
+  contactText:{
+    fontSize: 18,
+    fontWeight: '400',
+    color: colors.textDark,
+    marginHorizontal:20,
+  },
   // Contact Container
   contactContainer: {
     paddingHorizontal: 13,

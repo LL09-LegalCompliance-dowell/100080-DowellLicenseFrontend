@@ -46,7 +46,8 @@ const ClientAdminView = ({navigation, route}) => {
       const responseUser = await axios.post('https://100014.pythonanywhere.com/api/profile/', {key: session_id});
       console.log("Portfolio Data",response.data)
       //console.log("User Details",responseUser.data)
-      const {username,email, first_name} = responseUser.data;
+      const {username,email, first_name, id} = responseUser.data;
+      id && await AsyncStorage.setItem('user_id', id);
       username && await AsyncStorage.setItem('username', username);
       email && await AsyncStorage.setItem('email', email);
       first_name && await AsyncStorage.setItem('first_name', first_name);
