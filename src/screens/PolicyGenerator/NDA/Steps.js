@@ -305,7 +305,7 @@ const Steps = () => {
           address_line_3: item.address_3
         }
       })
-      console.log(witness_2)
+      
       const request_object={
         agreement_compliance_type: "nda",
         organization_id: orgId,
