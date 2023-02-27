@@ -130,33 +130,31 @@ const About = () => {
                       onBlur={handleBlur('fullname')}
                       value={values.fullname}
                       placeholderTextColor="gray"
+                      height={50}
                     />
                     {errors.fullname && touched.fullname && (
                       <Text style={styles.errors}>{errors.fullname}</Text>
                     )}
 
-                    {/* Input starts here */}
-
                     <MyTextInput
                       autoCapitalize="none"
                       autoCorrect={false}
                       placeholder="Email"
-                      paddingHorizontal={17}
+                      paddingHorizontal={13}
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
                       value={values.email}
                       placeholderTextColor="gray"
+                      height={50}
                     />
                     {errors.email && touched.email && (
                       <Text style={styles.errors}>{errors.email}</Text>
                     )}
 
-                    {/* Input starts here */}
-
                     <MyTextInput
                       autoCapitalize="none"
                       autoCorrect={false}
-                      placeholder="Your message"
+                      placeholder="Your message..."
                       paddingHorizontal={17}
                       onChangeText={handleChange('message')}
                       onBlur={handleBlur('message')}

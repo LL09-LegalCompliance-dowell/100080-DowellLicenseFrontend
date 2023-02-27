@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
-import Header from '../../../components/Header';
+import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
@@ -305,7 +305,7 @@ const Steps = () => {
           address_line_3: item.address_3
         }
       })
-      console.log(witness_2)
+      
       const request_object={
         agreement_compliance_type: "nda",
         organization_id: orgId,
@@ -341,7 +341,7 @@ const Steps = () => {
     }
     return (
         <>
-          <Header title="Generator" />
+          <PolicyHeader title="Generator" />
           <View
             style={{
               flex: 1,
@@ -430,6 +430,7 @@ const Steps = () => {
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');                  
                 }}>

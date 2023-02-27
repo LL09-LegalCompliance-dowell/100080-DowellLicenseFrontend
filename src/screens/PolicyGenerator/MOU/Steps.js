@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
-import Header from '../../../components/Header';
+import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
@@ -638,10 +638,6 @@ const Steps = () => {
     handle_radiobuttons_8_3,
   ];
   const inputs_2 = [input_1_2, input_2_2, input_3_2];
-  //4
-  const [input_1_4, setInput_1_4] = useState('');
-  const handle_input_1_4 = state => setInput_1_4(state);
-  const states_4 = [input_1_4, handle_input_1_4];
 
   const request_object = {
     agreement_compliance_type: 'mou',
@@ -691,7 +687,7 @@ const Steps = () => {
 
   return (
     <>
-      <Header title="Generator" />
+      <PolicyHeader title="Generator" />
       <View
         style={{
           flex: 1,
@@ -761,7 +757,7 @@ const Steps = () => {
               // }
             }}>
             <View>
-              <Policy4 list={states_4} object={request_object} />
+              <Policy4 object={request_object} />
             </View>
           </ProgressStep>
         </ProgressSteps>

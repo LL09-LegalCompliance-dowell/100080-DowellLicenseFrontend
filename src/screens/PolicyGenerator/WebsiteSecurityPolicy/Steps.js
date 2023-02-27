@@ -1,7 +1,7 @@
 import {React,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
-import Header from '../../../components/Header';
+import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import { empty_validation,email_validation, url_validation } from '../validations';
@@ -76,9 +76,10 @@ const Steps = () => {
           website_url: input_4 ,
           website_contact_email:input_5
       }
+     
     return (
         <>
-          <Header title="Generator" />
+          <PolicyHeader title="Generator" />
           <View
             style={{
               flex: 1,
@@ -113,6 +114,7 @@ const Steps = () => {
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                  

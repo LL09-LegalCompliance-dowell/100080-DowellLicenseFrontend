@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 20,
     fontFamily:'roboto',
+    color:'gray',
+    textAlign:'justify'
   },
   separator: {
     width: '100%',

@@ -24,6 +24,12 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
 
+import Image1 from './images/Compatibility1.jpg';
+import Image2 from './images/Compatibility2.jpg';
+import Image3 from './images/Compatibility3.jpg';
+import Image4 from './images/Compatibility4.jpg';
+import Image5 from './images/Compatibility5.jpg';
+
 const LicenseCompatibility = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
@@ -49,6 +55,8 @@ const LicenseCompatibility = ({navigation}) => {
   const [licenseLogo1, setLicenseLogo1] = useState('');
   const [licenseLogo2, setLicenseLogo2] = useState('');
   const [comparison, setComparison] = useState([]);
+  const [license1Version, setLicense1Version] = useState('');
+  const [license2Version, setLicense2Version] = useState('');
 
   let firstFive = comparison.slice(0, 5);
   if (firstFive.length < 5) {
@@ -136,6 +144,12 @@ const LicenseCompatibility = ({navigation}) => {
         setComparison(
           LicensesCompatibilityData.data.license_comparison?.comparisons,
         );
+        setLicense1Version(
+          LicensesCompatibilityData.data.license_comparison?.license_1_version,
+        );
+        setLicense2Version(
+          LicensesCompatibilityData.data.license_comparison?.license_2_version,
+        );
         console.log(LicensesCompatibilityData.data);
 
         // console.log(comparison);
@@ -204,41 +218,36 @@ const LicenseCompatibility = ({navigation}) => {
             <ScrollView style={styles.serchResultContainer}>
               {searchedData1.map((item, index) => {
                 return (
-                  <>
-                    <View style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        key={index}
-                        onPress={async () => {
-                          const id_1 = item['_id'];
-                          const eventId_1 = item['eventId'];
-                          const licenseNname_1 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId1',
-                            JSON.stringify(id_1),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId1',
-                            eventId_1,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname1',
-                            licenseNname_1,
-                          );
-                          handleSelectedLicense1();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text
-                          numberOfLines={1}
-                          style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </View>
-                  </>
+                  <View style={styles.serchResultItemContainer} key={index}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        const id_1 = item['_id'];
+                        const eventId_1 = item['eventId'];
+                        const licenseNname_1 =
+                          item['softwarelicense']['license_name'];
+                        await AsyncStorage.setItem(
+                          'licenseId1',
+                          JSON.stringify(id_1),
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseEventId1',
+                          eventId_1,
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseNname1',
+                          licenseNname_1,
+                        );
+                        handleSelectedLicense1();
+                      }}>
+                      <Text style={styles.serchResultHeading}>
+                        {item['softwarelicense']['license_name']}
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        {item['softwarelicense']['description']}
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                  </View>
                 );
               })}
             </ScrollView>
@@ -271,40 +280,36 @@ const LicenseCompatibility = ({navigation}) => {
             <ScrollView style={styles.serchResultContainer}>
               {searchedData2.map((item, index) => {
                 return (
-                  <>
-                    <View key={index} style={styles.serchResultItemContainer}>
-                      <TouchableOpacity
-                        onPress={async () => {
-                          const id_2 = item['_id'];
-                          const eventId_2 = item['eventId'];
-                          const licenseNname_2 =
-                            item['softwarelicense']['license_name'];
-                          await AsyncStorage.setItem(
-                            'licenseId2',
-                            JSON.stringify(id_2),
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseEventId2',
-                            eventId_2,
-                          );
-                          await AsyncStorage.setItem(
-                            'licenseNname2',
-                            licenseNname_2,
-                          );
-                          handleSelectedLicense2();
-                        }}>
-                        <Text style={styles.serchResultHeading}>
-                          {item['softwarelicense']['license_name']}
-                        </Text>
-                        <Text
-                          numberOfLines={1}
-                          style={styles.serchResultDetails}>
-                          {item['softwarelicense']['description']}
-                        </Text>
-                        <View style={styles.separator}></View>
-                      </TouchableOpacity>
-                    </View>
-                  </>
+                  <View key={index} style={styles.serchResultItemContainer}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        const id_2 = item['_id'];
+                        const eventId_2 = item['eventId'];
+                        const licenseNname_2 =
+                          item['softwarelicense']['license_name'];
+                        await AsyncStorage.setItem(
+                          'licenseId2',
+                          JSON.stringify(id_2),
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseEventId2',
+                          eventId_2,
+                        );
+                        await AsyncStorage.setItem(
+                          'licenseNname2',
+                          licenseNname_2,
+                        );
+                        handleSelectedLicense2();
+                      }}>
+                      <Text style={styles.serchResultHeading}>
+                        {item['softwarelicense']['license_name']}
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        {item['softwarelicense']['description']}
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                  </View>
                 );
               })}
             </ScrollView>
@@ -317,8 +322,8 @@ const LicenseCompatibility = ({navigation}) => {
           isVisible={isHowto}
           animationIn="slideInRight"
           animationOut="slideOutRight"
-          animationInTiming={1000}
-          animationOutTiming={1000}
+          animationInTiming={500}
+          animationOutTiming={500}
           avoidKeyboard={true}
           onBackdropPress={() => setHowto(false)}
           onBackButtonPress={() => setHowto(false)}
@@ -332,12 +337,12 @@ const LicenseCompatibility = ({navigation}) => {
           }>
           <>
             <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
+              <TouchableOpacity
+                style={{marginLeft: 'auto'}}
+                onPress={() => setHowto(false)}>
+                <Entypo name="cross" size={40} color="darkgray" />
+              </TouchableOpacity>
               <ScrollView showsVerticalScrollIndicator={false}>
-                <TouchableOpacity
-                  style={{marginLeft: 'auto'}}
-                  onPress={() => setHowto(false)}>
-                  <Entypo name="cross" size={40} color="darkgray" />
-                </TouchableOpacity>
                 <View flex={1} onStartShouldSetResponder={() => true}>
                   <Text
                     style={[
@@ -359,15 +364,14 @@ const LicenseCompatibility = ({navigation}) => {
                     the license. Then search the second license name and select
                     the license.
                   </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image1}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 1
-                  </Text>
+                  <Image
+                    source={Image2}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
+                  />
 
                   <Text style={[styles.heading]}>
                     2. Click check button to view results
@@ -380,45 +384,25 @@ const LicenseCompatibility = ({navigation}) => {
                     After the two licenses are selected, now click the “Check”
                     button to view the compatibility results.
                   </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image3}
+                    style={{resizeMode: 'contain', flex: 1, width: '100%'}}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 2
-                  </Text>
 
                   <Text style={[styles.heading]}>
                     3. Check the compatibility results
                   </Text>
-                  <Text style={[styles.heading, {alignSelf: 'center'}]}>
-                    Check the compatibility results.
-                  </Text>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {
-                        alignSelf: 'center',
-                        fontSize: 16,
-                        color: 'red',
-                        paddingTop: 0,
-                      },
-                    ]}>
-                    **here we can provide more descriptive manner of how the
-                    results are shown and on what factors the compatibility is
-                    done
-                  </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <Image
+                    source={Image4}
+                    style={{
+                      resizeMode: 'contain',
+                      flex: 1,
+                      width: '100%',
+                      marginTop: -620,
+                      marginBottom: -600,
+                    }}
                   />
-                  <Text style={{alignSelf: 'center', color: 'gray'}}>
-                    *Image describing step 3
-                  </Text>
+
                   <View
                     style={{
                       height: 2,
@@ -426,13 +410,6 @@ const LicenseCompatibility = ({navigation}) => {
                       backgroundColor: 'gray',
                       marginVertical: 30,
                     }}></View>
-                  <Text
-                    style={[
-                      styles.heading,
-                      {alignSelf: 'center', fontSize: 22},
-                    ]}>
-                    OR{' '}
-                  </Text>
                   <Text
                     style={[
                       styles.heading,
@@ -548,9 +525,19 @@ const LicenseCompatibility = ({navigation}) => {
                             uri: licenseLogo1,
                           }}
                         />
-                        <Text style={{paddingTop: 0, color: colors.textDark}}>
-                          {licenseOne}
-                        </Text>
+                        <View>
+                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                            {licenseOne}
+                          </Text>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              alignSelf: 'center',
+                            }}>
+                            {license1Version}
+                          </Text>
+                        </View>
                       </View>
                       <Text style={styles.vsText}>VS</Text>
                       <View style={styles.imagesContainer}>
@@ -559,9 +546,19 @@ const LicenseCompatibility = ({navigation}) => {
                           style={styles.logoStyle}
                           source={{uri: licenseLogo2}}
                         />
-                        <Text style={{paddingTop: 0, color: colors.textDark}}>
-                          {licenseTwo}
-                        </Text>
+                        <View>
+                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                            {licenseTwo}
+                          </Text>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              alignSelf: 'center',
+                            }}>
+                            {license2Version}
+                          </Text>
+                        </View>
                       </View>
                     </View>
                     <Text
@@ -595,19 +592,40 @@ const LicenseCompatibility = ({navigation}) => {
                         {compatibiltyPercentage}%
                       </Text>
                     </View>
+                    {compatibiltyPercentage < 70 ? (
+                      <Text
+                        style={{
+                          paddingBottom: 10,
+                          fontSize: 21,
+                          color:
+                            compatibiltyPercentage > 50
+                              ? colors.primary
+                              : 'red',
+                          fontWeight: 'bold',
+                          fontStyle: 'italic',
+                          alignSelf: 'center',
+                        }}>
+                        "Can {compatibiltyPercentage < 50 ? 'not' : null}be used
+                        together in a project"
+                      </Text>
+                    ) : null}
 
-                    <Text
-                      style={{
-                        paddingBottom: 10,
-                        fontSize: 21,
-                        color: isCompatible == true ? colors.primary : 'red',
-                        fontWeight: 'bold',
-                        fontStyle: 'italic',
-                        alignSelf: 'center',
-                      }}>
-                      "Can {isCompatible !== 'false' ? 'not' : null} be used
-                      together in a project"
-                    </Text>
+                    {compatibiltyPercentage >= 70 ? (
+                      <Text
+                        style={{
+                          paddingBottom: 10,
+                          fontSize: 21,
+                          color:
+                            compatibiltyPercentage > 50
+                              ? colors.primary
+                              : 'red',
+                          fontWeight: 'bold',
+                          fontStyle: 'italic',
+                          alignSelf: 'center',
+                        }}>
+                        "Highly recommended to use together in a project""
+                      </Text>
+                    ) : null}
 
                     <Text
                       style={[

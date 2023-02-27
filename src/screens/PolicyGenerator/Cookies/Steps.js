@@ -1,7 +1,7 @@
 import {React,useEffect,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
-import Header from '../../../components/Header';
+import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
@@ -430,10 +430,11 @@ useEffect(()=>{
     owner_of_third_party_cookies: input_3_1
 
 }
+
    
     return (
         <>
-          <Header title="Generator" />
+          <PolicyHeader title="Generator" />
           <View
             style={{
               flex: 1,
@@ -525,6 +526,7 @@ useEffect(()=>{
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                 }}>
