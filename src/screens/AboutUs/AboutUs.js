@@ -9,7 +9,7 @@ const AboutUs = () => {
     <>
       <Header title="About Us" />
 
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={[styles.container, {flex:1}]}>
         {/* About Company */}
         <Text style={styles.heading}>About Legalzard and Company</Text>
         <Text style={styles.aboutText}>
