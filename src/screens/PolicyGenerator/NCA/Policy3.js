@@ -196,6 +196,27 @@ const Policy3 = ({list}) => {
               />
             )}
           </TouchableOpacity>
+          
+          <Text style={[styles.text_1, {fontSize: 15}]}>
+          Company nature of work:
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[5]}
+            placeholder=" "
+            placeholderTextColor="gray"
+            onChangeText={value => list[6](value)}
+          />
+          <Text style={[styles.text_1, {fontSize: 15}]}>
+          Employee job title:
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[7]}
+            placeholder=" "
+            placeholderTextColor="gray"
+            onChangeText={value => list[8](value)}
+          />
         </View>
       </ScrollView>
     </>
