@@ -15,6 +15,21 @@ import Header from '../../components/Header';
 
 const Profile = () => {
   const [loading, setLoading] = useState();
+  const [org, setOrg] = useState("")
+
+  const getOrgDetails = async() => {
+    try{
+      const org = await AsyncStorage.getItem("org_name")
+      org && setOrg(org)
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getOrgDetails()
+  }, [])
+  
 
   return (
     <View style={styles.container}>
@@ -24,7 +39,7 @@ const Profile = () => {
       <View style={styles.innerContainer}>
         <Image source={require('./orgIcon.png')} style={styles.profileIcon} />
         <Text style={styles.label}>Organization Name</Text>
-        <Text style={styles.feildData}>DoWell Research Labs</Text>
+        <Text style={styles.feildData}>{org}</Text>
         <View style={styles.separator}></View>
         <Text style={[styles.feildData1, {paddingTop: 50}]}>
           Agreement Compliance Policies:

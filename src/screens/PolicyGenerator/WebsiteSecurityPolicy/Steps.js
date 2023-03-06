@@ -76,6 +76,7 @@ const Steps = () => {
           website_url: input_4 ,
           website_contact_email:input_5
       }
+     
     return (
         <>
           <PolicyHeader title="Generator" />
@@ -113,6 +114,7 @@ const Steps = () => {
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                  

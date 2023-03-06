@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
+    height:"100%",
     paddingTop: 65,
+    alignSelf:"center"
   },
 
   heading: {
@@ -19,7 +21,12 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     fontFamily:'roboto'
   },
-
+  contactText:{
+    fontSize: 18,
+    fontWeight: '400',
+    color: colors.textDark,
+    marginHorizontal:20,
+  },
   // Contact Container
   contactContainer: {
     paddingHorizontal: 13,
@@ -31,10 +38,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
-
-  contactText: {
+  description: {
     marginLeft: 20,
-    color: colors.textDark,
+  },
+
+  aboutText: {
+    marginLeft: 20,
   },
 
   inputsContainer: {

@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useMemo} from 'react'
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import { View } from 'react-native';
 import PolicyHeader from '../../../components/PolicyHeader';
@@ -9,14 +9,20 @@ import Policy4 from '../Cookies/Policy4';
 import Policy5 from './Policy5';
 import Policy6 from './Policy6';
 import Policy7 from './Policy7';
-import { empty_validation,email_validation } from '../validations';
+import { empty_validation,email_validation, number_validation_1, url_validation } from '../validations';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const generate_date = (date)=>{
  const temp = date.split("/")
  return "20"+temp[2]+"-"+temp[0]+"-"+temp[1]
 }
 const Steps = () => {
+  const [ orgId, setOrgId ] = useState("");
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem("org_id");
+    setOrgId(org_id)
+  }
+   useMemo(()=>getOrgId(),[])
   const navigation = useNavigation();
     const nextButton = {
         backgroundColor: '#489503',
@@ -743,8 +749,8 @@ selected: true
 const handle_radiobuttons_6_4 = (state)=> setRadioButtons_6_4(state);
 const [radioButtons_7_4, setRadioButtons_7_4] = useState([{
   id: '1',
-  label: 'Yes, users can opt to receive push notifications from us.',
-  value: 'Yes, users can opt to receive push notifications from us.',
+  label: 'Yes, we use a third-party provider to send push notifications.',
+  value: 'Yes, we use a third-party provider to send push notifications.',
   size: 18,
   color: '#489503',
   borderColor: '#C4C4C4',
@@ -752,8 +758,8 @@ const [radioButtons_7_4, setRadioButtons_7_4] = useState([{
   selected: false
 },{
 id: '2',
-label: 'No, we don’t send push notifications.',
-value: 'No, we don’t send push notifications.',
+label: 'No, we send push notifications using our own servers.',
+value: 'No, we send push notifications using our own servers.',
 size: 18,
 color: '#489503',
 borderColor: '#C4C4C4',
@@ -1189,11 +1195,668 @@ const handle_isPress12_6 = (state)=> setIsPress12_6(state);
 const handle_isPress13_6 = (state)=> setIsPress13_6(state);
 const [date, setDate] = useState(new Date());
 const handle_date = (state)=> setDate(state);
-const states_6=[radioButtons_1_6,handle_radiobuttons_1_6,input_1_6,handle_input_1_6,validno,handlevalidno,radioButtons_2_6,handle_radiobuttons_2_6,flag_1_6,handle_flag_1_6,input_2_6,handle_input_2_6,isPress1_6,handle_isPress1_6,isPress2_6,handle_isPress2_6,isPress3_6,handle_isPress3_6,input_3_6,handle_input_3_6,radioButtons_3_6,handle_radiobuttons_3_6,isPress4_6,handle_isPress4_6,isPress5_6,handle_isPress5_6,isPress6_6,handle_isPress6_6,isPress7_6,handle_isPress7_6,isPress8_6,handle_isPress8_6,isPress9_6,handle_isPress9_6,isPress10_6,handle_isPress10_6,input_4_6,handle_input_4_6,input_5_6,handle_input_5_6,input_6_6,handle_input_6_6,isPress11_6,handle_isPress11_6,isPress12_6,handle_isPress12_6,isPress13_6,handle_isPress13_6,date,handle_date]
+const [input_7_6, setInput_7_6] = useState('');
+const handle_input_7_6 = (state)=> setInput_7_6(state);
+const [input_8_6, setInput_8_6] = useState('');
+const handle_input_8_6 = (state)=> setInput_8_6(state);
+const [input_9_6, setInput_9_6] = useState('');
+const handle_input_9_6 = (state)=> setInput_9_6(state);
+const [input_10_6, setInput_10_6] = useState('');
+const handle_input_10_6 = (state)=> setInput_10_6(state);
+const [error_6, setError_6] = useState(false);
+const [empty_validationn_6, setempty_validation_6] = useState(true);
+const states_6=[radioButtons_1_6,handle_radiobuttons_1_6,input_1_6,handle_input_1_6,validno,handlevalidno,radioButtons_2_6,handle_radiobuttons_2_6,flag_1_6,handle_flag_1_6,input_2_6,handle_input_2_6,isPress1_6,handle_isPress1_6,isPress2_6,handle_isPress2_6,isPress3_6,handle_isPress3_6,input_3_6,handle_input_3_6,radioButtons_3_6,handle_radiobuttons_3_6,isPress4_6,handle_isPress4_6,isPress5_6,handle_isPress5_6,isPress6_6,handle_isPress6_6,isPress7_6,handle_isPress7_6,isPress8_6,handle_isPress8_6,isPress9_6,handle_isPress9_6,isPress10_6,handle_isPress10_6,input_4_6,handle_input_4_6,input_5_6,handle_input_5_6,input_6_6,handle_input_6_6,isPress11_6,handle_isPress11_6,isPress12_6,handle_isPress12_6,isPress13_6,handle_isPress13_6,date,handle_date,input_7_6,handle_input_7_6,input_8_6,handle_input_8_6,input_9_6,handle_input_9_6,input_10_6,handle_input_10_6,empty_validationn_6]
 //////////////////////////////////////////////////7
-const request_object={
-
+let x =""
+if (radioButtons[0].selected=== true) {
+  x="Mobile App"
+}else if(radioButtons[1].selected=== true){
+  x="Website"
 }
+else{
+  x="Both"
+}
+
+let y=""
+if (radioButtons_1[0].selected=== true) {
+  y="Yes, I would like to create a premium privacy policy."
+}
+else{
+  y="No, basic policy is fine."
+}
+
+let z=""
+if (radioButtons_2[0].selected=== true) {
+  z="Yes, it’s operated under a company name."
+}
+else{
+  z="No, it’s operated by an individual."
+}
+
+let l=""
+if (radioButtons_3[0].selected=== true) {
+  l="Yes, the company has a different short or trade name."
+}
+else{
+  l="No, the company doesn’t have a trade name."
+}
+
+let m=""
+if (radioButtons_4[0].selected=== true) {
+  m="Yes, users can sign up for an account."
+}
+else{
+  m="No, users can’t sign up or create an account."
+}
+
+let n=""
+if (radioButtons_5[0].selected=== true) {
+  n="Yes, users can sign up using third-party services."
+}
+else{
+  n="No, users can’t sign up using third-party services."
+}
+
+let o=""
+if (radioButtons_6[0].selected=== true) {
+  o="Yes, users have full access to their personal information."
+}
+else{
+  o="No, users don’t have access to their information."
+}
+
+let p=""
+if (radioButtons_7[0].selected=== true) {
+  p="Yes, users can delete their accounts and personal information at any time."
+}
+else{
+  p="No, user accounts and personal information cannot be deleted."
+}
+
+let q=""
+if (radioButtons_8[0].selected=== true) {
+  q="They can log in to their account settings page to delete it."
+}
+else if (radioButtons_8[1].selected=== true){
+  q="They can contact us to submit a deletion request."
+}
+else{
+  q=""
+}
+
+let r=""
+if (radioButtons_9[0].selected=== true) {
+  r="Yes, users can submit and publish their own content."
+}
+else{
+  r="No, users can’t publish anything."
+}
+
+let s=""
+if (radioButtons_1_3[0].selected=== true) {
+  s="Yes, content can be shared on social networks."
+}
+else{
+  s="No, users can’t share content on social networks."
+}
+
+let t=""
+if (radioButtons_2_3[0].selected=== true) {
+  t="Yes, users can interact with each other (via comments, messages, etc)."
+}
+else{
+  t="No, users cannot interact with each other."
+}
+
+let u=""
+if (radioButtons_3_3[0].selected=== true) {
+  u="Yes, personally identifiable information may be displayed."
+}
+else{
+  u="No, users remain completely anonymous."
+}
+
+let v=""
+if (radioButtons_4_3[0].selected=== true) {
+  v="Yes, our target audience or users may include residents of California (required for the CCPA compliance)."
+}
+else{
+  v="No, we don’t target anyone in California."
+}
+let w=""
+if (radioButtons_5_3[0].selected=== true) {
+  w="Yes, our target audience or users may include residents in the European Union (required for the GDPR compliance)."
+}
+else{
+  w="No, we don’t target anyone in the European Union."
+}
+
+let a=""
+if (radioButtons_6_3[0].selected=== true) {
+  a="Yes, our target audience or users may include those under the age of 18."
+}
+else{
+  a="No, we don’t target anyone under the age of 18."
+}
+
+let b=""
+if (radioButtons_7_3[0].selected=== true) {
+  b="Yes, our target audience or users may include children under the age of 13."
+}
+else if (radioButtons_7_3[0].selected=== true){
+  b="No, we don’t target anyone under the age of 13."
+}
+else{
+  b=""
+}
+
+let c=""
+if (radioButtons_8_3[0].selected=== true) {
+  c="Yes, we may collect certain information from children."
+}
+else if (radioButtons_8_3[0].selected=== true){
+  c="No, we don’t collect anything from children."
+}
+else{
+  c=""
+}
+
+let d=""
+if (radioButtons_9_3[0].selected=== true) {
+  d="Yes, submitted information will be publicly available to anyone."
+}
+else if (radioButtons_9_3[0].selected=== true){
+  d="No, submitted information will not be publicly available."
+}
+else{
+  d=""
+}
+
+let e=""
+if (radioButtons_10_3[0].selected=== true) {
+  e="Yes, submitted information can be hidden from public access."
+}
+else if (radioButtons_10_3[0].selected=== true){
+  e="No, there’s no such option available."
+}
+else{
+  e=""
+}
+
+let list_1=[]
+if(isPress1=== true){
+  list_1.push("We don’t require a child to disclose more information than is necessary to use the mobile app.")
+}
+if(isPress2=== true){
+  list_1.push("Parents can review their child’s information, delete it, and refuse to allow any further collection or use of such information.")
+}
+if(isPress3=== true){
+  list_1.push("Parents have an easy method for giving consent.")
+}
+
+let f=""
+if (radioButtons_11_3[0].selected=== true) {
+  f="Yes, we sell products or services or plan to sell in the future."
+}
+else{
+  f="No, we do not and will not sell anything."
+}
+
+let g=""
+if (radioButtons_12_3[0].selected=== true) {
+  g="Yes, we offer products or services provided by third-party companies."
+}
+else{
+  g="No, all products and services are provided by us."
+}
+
+let h=""
+if (radioButtons_13_3[0].selected=== true) {
+  h="Yes, we’ve taken all the necessary measures to keep sensitive payment information secure."
+}
+else{
+  h="No, some of the sensitive payment information may not be processed or stored securely (not recommended)."
+}
+
+let i=""
+if (radioButtons_14_3[0].selected=== true) {
+  i="Yes, we may store payment information for future purchases or recurring billing (such as credit card numbers or tokens)."
+}
+else{
+  i="No, we don’t store any sensitive payment information."
+}
+
+let j=""
+if (radioButtons_15_3[0].selected=== true) {
+  j="Yes, we may perform credit checks."
+}
+else{
+  j="No, we don’t perform credit checks."
+}
+
+let k=""
+if (radioButtons_16_3[0].selected=== true) {
+  k="Yes, we use third-party analytics tools."
+}
+else{
+  k="No, we don’t use any third-party analytics tools."
+}
+
+let aa=""
+if (radioButtons_1_4[0].selected=== true) {
+  aa="Yes, user’s personal information is anonymized to prevent analytics tools from linking it to an individual person."
+}
+else{
+  aa="No, analytics tools are able to link user’s personal information to an individual person."
+}
+
+let ab=""
+if (radioButtons_2_4[0].selected=== true) {
+  ab="Yes, there may be affiliate links."
+}
+else{
+  ab="No, there are no affiliate links."
+}
+
+let ac=""
+if (radioButtons_3_4[0].selected=== true) {
+  ac="Yes, there may be ads displayed."
+}
+else{
+  ac="No, there are no ads."
+}
+
+let ad=""
+if (radioButtons_4_4[0].selected=== true) {
+  ad="Yes, we may do targeted advertising to users based on collected data."
+}
+else{
+  ad="No, we don’t collect user data for remarketing."
+}
+
+let ae=""
+if (radioButtons_5_4[0].selected=== true) {
+  ae="Yes, users can opt to receive email newsletters from us."
+}
+else{
+  ae="No, we don’t send any newsletters."
+}
+
+let af=""
+if (radioButtons_6_4[0].selected=== true) {
+  af="Yes, users can opt to receive push notifications from us."
+}
+else{
+  af="No, we don’t send push notifications."
+}
+
+let ag=""
+if (radioButtons_7_4[0].selected=== true) {
+  ag="Yes, we use a third-party provider to send push notifications."
+}
+else{
+  ag="No, we send push notifications using our own servers."
+}
+let list_2=[]
+if (isPress1_4 === true) {
+  list_2.push("Account details (such as user name, unique user ID, password, etc)")
+}
+if (isPress2_4 === true) {
+  list_2.push("Contact information (such as email address, phone number, etc)")
+}
+if (isPress3_4 === true) {
+  list_2.push("Basic personal information (such as name, country of residence, etc)")
+}
+if (isPress4_4 === true) {
+  list_2.push("Sensitive personal information (ethnicity, religious beliefs, mental health, etc)")
+}
+if (isPress5_4 === true) {
+  list_2.push("Biometric information (facial recognition, fingerprints, etc)")
+}
+if (isPress6_4 === true) {
+  list_2.push("Proof of identity (such as photocopy of a government ID)")
+}
+if (isPress7_4 === true) {
+  list_2.push("Payment information (such as credit card details, bank details, etc)")
+}
+if (isPress8_4 === true) {
+  list_2.push("Information about other individuals (such as your family members, friends, etc)")
+}
+if (isPress9_4 === true) {
+  list_2.push("Any other materials you willingly submit to us (such as articles, images, feedback, etc)")
+}
+
+let ah=""
+if (radioButtons_8_4[0].selected=== true) {
+  ah="Yes, we may request access to geolocation."
+}
+else{
+  ah="No, we won’t be requesting access to geolocation."
+}
+
+let ai=""
+if (radioButtons_9_4[0].selected=== true) {
+  ai="Yes, we may request access to certain features."
+}
+else{
+  ai="No, we won’t be requesting access to any features."
+}
+
+let aj=""
+if (radioButtons_10_4[0].selected=== true) {
+  aj="Yes, we may collect derivative data of our users."
+}
+else{
+  aj="No, we don’t collect any derivative data."
+}
+
+let ak=""
+if (radioButtons_1_5[0].selected=== true) {
+  ak="Yes, we may collect personal information from third parties."
+}
+else{
+  ak="No, we don’t collect any personal information from third parties"
+}
+
+let list_3=[]
+if (isPress1_5 === true) {
+  list_3.push("Create and manage user accounts")
+}
+if (isPress2_5 === true) {
+  list_3.push("Fulfill and manage orders")
+}
+if (isPress3_5 === true) {
+  list_3.push("Deliver products or services")
+}
+if (isPress4_5 === true) {
+  list_3.push("Improve products and services")
+}
+if (isPress5_5 === true) {
+  list_3.push("Send administrative information")
+}
+if (isPress6_5 === true) {
+  list_3.push("Send marketing and promotional communications")
+}
+if (isPress7_5 === true) {
+  list_3.push("Send product and service updates")
+}
+if (isPress8_5 === true) {
+  list_3.push("Respond to inquiries and offer support")
+}
+if (isPress9_5 === true) {
+  list_3.push("Request user feedback")
+}
+if (isPress10_5 === true) {
+  list_3.push("Improve user experience")
+}
+if (isPress11_5 === true) {
+  list_3.push("Post customer testimonials")
+}
+if (isPress12_5 === true) {
+  list_3.push("Deliver targeted advertising")
+}
+if (isPress13_5 === true) {
+  list_3.push("Administer prize draws and competitions")
+}
+if (isPress14_5 === true) {
+  list_3.push("Enforce terms and conditions and policies")
+}
+if (isPress15_5 === true) {
+  list_3.push("Protect from abuse and malicious users")
+}
+if (isPress16_5 === true) {
+  list_3.push("Respond to legal requests and prevent harm")
+}
+let al=""
+if (radioButtons_2_5[0].selected=== true) {
+  al="Yes, we combine different bits of personal information to create consumer profiles."
+}
+else{
+  al="No, no we don’t combine any personal information."
+}
+
+let am=""
+if (radioButtons_3_5[0].selected=== true) {
+  am="Yes, we may disclose personal information to business affiliates."
+}
+else{
+  am="No, personal information will not be disclosed to business affiliates."
+}
+
+let an=""
+if (radioButtons_4_5[0].selected=== true) {
+  an="Yes, we may disclose personal information to third parties."
+}
+else{
+  an="No, personal information will not be disclosed."
+}
+let list_4=[]
+if (isPress1_5_) {
+  list_4.push("Advertising networks")
+}
+if (isPress2_5_) {
+  list_4.push("Affiliate programs")
+}
+if (isPress3_5_) {
+  list_4.push("Cloud computing services")
+}
+if (isPress4_5_) {
+  list_4.push("Communication and collaboration services")
+}
+if (isPress5_5_) {
+  list_4.push("Data analytics services")
+}
+if (isPress6_5_) {
+  list_4.push("Data storage services")
+}
+if (isPress7_5_) {
+  list_4.push("Financial services")
+}
+if (isPress8_5_) {
+  list_4.push("Government agencies")
+}
+if (isPress9_5_) {
+  list_4.push("Order fulfillment services")
+}
+if (isPress10_5_) {
+  list_4.push("Payment processors")
+}
+if (isPress11_5_) {
+  list_4.push("Performance monitoring services")
+}
+if (isPress12_5_) {
+  list_4.push("Product engineering and design services")
+}
+if (isPress13_5_) {
+  list_4.push("Sales and marketing services")
+}
+if (isPress14_5_) {
+  list_4.push("Social networks")
+}
+if (isPress15_5_) {
+  list_4.push("User authentication services")
+}
+if (isPress16_5_) {
+  list_4.push("Website hosting service providers")
+}
+let ao=""
+if (radioButtons_5_5[0].selected=== true) {
+  ao="Yes, some personally identifiable information may be disclosed."
+}
+else{
+  ao="No, only aggregate data and non-personally identifiable information may be disclosed."
+}
+
+let ap=""
+if (radioButtons_6_5[0].selected=== true) {
+  ap="Yes, we will disclose personal information with the purchaser."
+}
+else{
+  ap="No, we will retain and not disclose personal information."
+}
+
+let aq=""
+if (radioButtons_7_5[0].selected=== true) {
+  aq="Yes, we’ll disclose personal information upon lawful request."
+}
+else{
+  aq="No, we will never disclose anything."
+}
+
+let ar=""
+if (radioButtons_1_6[0].selected=== true) {
+  ar="As long as necessary to comply with the regulations."
+}
+else if (radioButtons_1_6[1].selected=== true){
+  ar="As long as the user account remains active."
+}
+else if (radioButtons_1_6[2].selected=== true){
+  ar="Until the purchase order or services are fulfilled."
+}
+else if (radioButtons_1_6[3].selected=== true){
+  ar="Until our or our partners’ obligations are fulfilled."
+}else{
+  ar="All information will be deleted after a certain time."
+}
+
+let as=""
+if (radioButtons_2_6[0].selected=== true) {
+  as="Yes, a different person or company is responsible for it."
+}
+else{
+  as="No, it’s the same person or company."
+}
+let list_5=[]
+if (isPress1_6 === true) {
+  list_5.push("Contact form")
+}
+if (isPress2_6 === true) {
+  list_5.push("Email address")
+}
+if (isPress3_6 === true) {
+  list_5.push("Business address")
+}
+
+let at=""
+if (radioButtons_3_6[0].selected=== true) {
+  at="Yes, we’ve taken all the necessary measures to keep personal information secure."
+}
+else{
+  at="No, some of the personal information may not be processed or stored securely (not recommended)."
+}
+
+let list_6=[]
+if (isPress4_6 === true) {
+  list_6.push("Post notifications in the mobile app.")
+}
+if (isPress5_6 === true) {
+  list_6.push("Notify users via email.")
+}
+if (isPress6_6 === true) {
+  list_6.push("Notify users via phone call.")
+}
+if (isPress7_6 === true) {
+  list_6.push("Send users a letter.")
+}
+
+let list_7=[]
+if (isPress8_6 === true) {
+  list_7.push("Contact form")
+}
+if (isPress9_6 === true) {
+  list_7.push("Email address")
+}
+if (isPress10_6 === true) {
+  list_7.push("Business address")
+}
+
+let list_8=[]
+if (isPress11_6 === true) {
+  list_8.push("Update the modification date at the bottom of the privacy policy page.")
+}
+if (isPress12_6 === true) {
+  list_8.push("Post notifications in the mobile app.")
+}
+if (isPress13_6 === true) {
+  list_8.push("Notify users via email.")
+}
+
+
+const request_object={
+  agreement_compliance_type: "gdpr-privacy-policy",
+  organization_id: orgId,
+  location: input_1,
+  jurisdictional_laws: input_2,
+  privacy_policy_will_be_used_for:x ,
+  would_you_like_to_create_a_premium_privacy_policy:y ,
+  do_you_operate_your_app_under_a_company_name: z,
+  company_name:input_1_2 ,
+  does_your_company_have_a_short_or_trade_name: l,
+  short_or_trade_name_of_your_company: input_2_2,
+  can_users_sign_up_and_create_account_in_your_app: m,
+  can_users_sign_up_using_social_media_and_other_third_party_service: n,
+  can_users_view_and_change_their_personal_information: o,
+  can_users_delete_their_account_and_personal_information: p,
+  how_can_users_delete_their_account_and_personal_information: q,
+  can_users_publish_anything_in_your_app:r,
+  can_users_share_content_available_in_your_app: s,
+  can_users_interact_with_each_other_in_your_app: t,
+  when_users_interact_can_they_see_other_users_personally_identifiable_information: u,
+  does_your_target_audience_include_resident_of_california_usa: v,
+  does_your_target_audience_include_resident_of_european_union: w,
+  does_your_target_audience_include_those_under_the_age_of_18: a,
+  does_your_target_audience_include_those_under_the_age_of_13: b,
+  do_you_collect_any_information_from_children: c,
+  will_information_submitted_by_children_be_publicly_available: d,
+  is_there_an_option_to_keep_submitted_information_private: e,
+  items_apply_to_children_using_the_app: list_1,
+  do_you_currently_sell_or_plan_on_selling_products_or_services_in_your_app: f,
+  do_you_offer_products_or_services_provided_by_third_party_companies: g,
+  do_you_have_security_measures_in_place_to_protect_sensitive_payment_information: h,
+  do_you_store_any_sensitive_payment_information: i,
+  do_you_perform_credit_checks_on_your_customers_members_of_their_household: j,
+  do_you_use_third_party_analytics_or_tracking_tools: k,
+  do_you_anonymize_users_personal_information: aa,
+  do_you_have_affiliate_links_in_your_app:ab,
+  do_you_display_ads_in_your_app: ac,
+  do_you_collect_users_data_for_remarketing: ad,
+  do_you_send_email_newsletters_to_users: ae,
+  do_you_send_push_notifications_to_your_users: af,
+  do_you_use_third_party_provider_to_send_push_notification: ag,
+  what_kind_of_information_do_you_collect_from_your_users: list_2,
+  will_you_be_requesting_access_to_the_geolocation_of_your_users: ah,
+  will_you_be_requesting_access_to_various_features_on_yours_users_device: ai,
+  do_you_collect_any_derivative_data_from_your_users: aj,
+  do_you_collect_users_personal_information_from_third_party_source: ak,
+  what_will_you_do_with_the_information_you_collect: list_3,
+  do_you_combine_different_bits_of_personal_information: al,
+  will_you_disclose_personal_information_to_business_affiliates:am,
+  will_you_disclose_personal_information_to_third_parties: an,
+  what_are_the_categories_of_third_parties_you_may_disclose_personal_information_to: list_4,
+  will_the_information_disclosed_to_third_parties_contain_any_personally_identifiable_details: ao,
+  will_you_disclose_personal_information_in_the_event_of_a_business_sale_or_merger: ap,
+  will_you_disclose_personal_information_to_law_enforcement_agencies_upon_lawful_requests: aq,
+  how_long_will_you_store_your_users_personal_information: ar,
+  what_is_the_maximum_time_you_will_store_users_personal_information: parseFloat(input_1_6),
+  is_the_person_or_company_responsible_for_the_protection_of_personal_information: as,
+  what_is_your_dpos_name: input_2_6,
+  how_can_users_contact_your_dpo: list_5,
+  what_is_your_dpos_email_address: input_3_6,
+  do_you_have_security_measures_in_place_to_project_personal_information: at,
+  what_kind_of_responsive_action_will_you_take_if_you_have_a_data_breach: list_6,
+  how_can_users_contact_you_regarding_this_policy: list_7,
+  what_is_the_url_of_your_contact_form: input_4_6,
+  what_is_your_email_address: input_5_6,
+  what_is_your_business_address: input_6_6,
+  how_will_you_notify_users_of_the_updates_to_this_policy: list_8,
+  last_update: generate_date(date.toLocaleDateString()),
+  website_or_app_name: input_7_6,
+  website_or_app_url: input_8_6,
+  website_or_app_contact_page_url: input_9_6,
+  website_or_app_contact_email: input_10_6
+}
+
+console.log(request_object)
 return (
         <>
           <PolicyHeader title="Generator" />
@@ -1284,6 +1947,62 @@ return (
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 previousBtnStyle={previousButton}
+                errors={error_6}
+                onNext={()=>{
+                  const x=(number_validation_1(input_1_6))
+                  let y =true
+                  if (input_1_6 ==="" || input_7_6===""  || input_8_6===""  || input_9_6===""  || input_10_6==="" || (radioButtons_2_6[0].selected===true && input_2_6==="" ) || (radioButtons_2_6[0].selected===true && input_3_6==="" ) || (isPress8_6===true && input_4_6==="" ) || (isPress9_6===true && input_5_6==="" ) || (isPress10_6===true && input_6_6==="" )) {
+                    setempty_validation_6(false)
+                    y=false  
+                  }else{
+                    setempty_validation_6(true)
+                    y=true
+                  }
+                  let z= true
+                  if ((isPress8_6===true && url_validation(input_4_6)=== false )) {
+                    z= false
+                  }
+                  else{
+                    z= true
+                  }
+                  let l= true
+                  if ((isPress9_6===true && email_validation(input_5_6)=== false )) {
+                    l= false
+                  }
+                  else{
+                    l= true
+                  }
+                  let m= true
+                  if ((flag_1_6===true && email_validation(input_3_6)=== false )) {
+                    m= false
+                  }
+                  else{
+                    m= true
+                  }
+                  let n= true
+                  if (( url_validation(input_8_6)=== false )) {
+                    n= false
+                  }
+                  else{
+                    n= true
+                  }
+                  let o= true
+                  if (( url_validation(input_9_6)=== false )) {
+                    o= false
+                  }
+                  else{
+                    o= true
+                  }
+                  let p= true
+                  if (( email_validation(input_10_6)=== false )) {
+                    p= false
+                  }
+                  else{
+                    p= true
+                  }
+                  setError_6(!(x&y&z&l&m&n&o&p) )
+                  
+                }}
                 >
                 <View >
                   <Policy7 list={states_6}  />
@@ -1295,6 +2014,7 @@ return (
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                 }}
