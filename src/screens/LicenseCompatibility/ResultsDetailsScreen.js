@@ -29,14 +29,13 @@ const ResultsDetailsScreen = ({route}) => {
   } = route.params;
   return (
     <>
-     <Header title="Full In-Depth Comparison" />
+      <Header title="Full In-Depth Comparison" />
       <View
         style={{
           backgroundColor: 'white',
           paddingHorizontal: 10,
           paddingBottom: 30,
         }}>
-       
         {/* {comparison ? ( */}
         <>
           <FlatList
@@ -118,18 +117,36 @@ const ResultsDetailsScreen = ({route}) => {
                   </Text>
                 </View>
 
-                <Text
-                  style={{
-                    paddingBottom: 10,
-                    fontSize: 21,
-                    color: isCompatible == true ? colors.primary : 'red',
-                    fontWeight: 'bold',
-                    fontStyle: 'italic',
-                    alignSelf: 'center',
-                  }}>
-                  "Can {isCompatible !== 'false' ? 'not' : null} be used
-                  together in a project"
-                </Text>
+                {compatibiltyPercentage < 70 ? (
+                  <Text
+                    style={{
+                      paddingBottom: 10,
+                      fontSize: 21,
+                      color:
+                        compatibiltyPercentage > 50 ? colors.primary : 'red',
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      alignSelf: 'center',
+                    }}>
+                    "Can {compatibiltyPercentage < 50 ? 'not' : null}be used
+                    together in a project"
+                  </Text>
+                ) : null}
+
+                {compatibiltyPercentage >= 70 ? (
+                  <Text
+                    style={{
+                      paddingBottom: 10,
+                      fontSize: 21,
+                      color:
+                        compatibiltyPercentage > 50 ? colors.primary : 'red',
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      alignSelf: 'center',
+                    }}>
+                    "Highly recommended to use together in a project""
+                  </Text>
+                ) : null}
 
                 <Text
                   style={[

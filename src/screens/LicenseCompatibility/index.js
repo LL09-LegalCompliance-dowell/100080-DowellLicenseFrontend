@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import React, {useState, useMemo} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import * as Progress from 'react-native-progress';
 import Entypo from 'react-native-vector-icons/Entypo';
 import axios from 'axios';
