@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 60,
+    flex: 1,
   },
 
   // Upper Container
@@ -44,6 +45,8 @@ const styles = StyleSheet.create({
   textStyle: {
     marginLeft: 20,
     paddingBottom: 30,
+    color:'black'
+
   },
 });
 
