@@ -23,11 +23,11 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
 
-import Image1 from './Compatibility1.png';
-import Image2 from './Compatibility2.png';
-import Image3 from './Compatibility3.png';
-import Image4 from './Compatibility4.png';
-import Image5 from './Compatibility5.png';
+import Image1 from './images/Compatibility1.jpg';
+import Image2 from './images/Compatibility2.jpg';
+import Image3 from './images/Compatibility3.jpg';
+import Image4 from './images/Compatibility4.jpg';
+import Image5 from './images/Compatibility5.jpg';
 
 const LicenseCompatibility = ({navigation}) => {
   const [loading, setLoading] = useState(false);

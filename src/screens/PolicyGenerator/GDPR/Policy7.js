@@ -1,12 +1,17 @@
 import {React,useState} from 'react'
 import RadioGroup from 'react-native-radio-buttons-group';
 import {ScrollView, View, Text,TouchableHighlight,TouchableOpacity,TextInput} from 'react-native';
-import { number_validation_1 ,url_validation} from '../validations';
+import { email_validation, number_validation_1 ,url_validation} from '../validations';
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const Policy7 = ({list}) => {
   const [valid_url , setValid_url]=useState(true);
+  const [valid_url_1 , setValid_url_1]=useState(true);
+  const [valid_url_2 , setValid_url_2]=useState(true);
+  const [valid_email , setvalid_email]=useState(true);
+  const [valid_email_1 , setvalid_email_1]=useState(true);
+  const [valid_email_2 , setvalid_email_2]=useState(true);
   var touchProps1 = {                               
     style: list[12] ? styles.Pressed : styles.Normal, 
     onPress: () => list[13](true),                 
@@ -62,6 +67,7 @@ const Policy7 = ({list}) => {
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+      <Text style={list[list.length-1]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
       <Text style={styles.text_1}>Policy Details:</Text>
       <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>How long will you store personal information you’ve collected from your users?</Text>
@@ -72,7 +78,7 @@ const Policy7 = ({list}) => {
           />
           <Text style={styles.text_2}>What is the maximum time (no. of months) you will store personal information for before deleting it?</Text>
           <TextInput
-              style={styles.input}
+              style={styles.input_vm}
               value={list[2]}
               onChangeText={(value)=>{
                 if (value === '') {
@@ -143,12 +149,22 @@ const Policy7 = ({list}) => {
             <TextInput
               style={styles.input_vm}
               value={list[18]}
-              onChangeText={(value)=>list[19](value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                  setvalid_email_1(true)
+                }
+                else{
+                    email_validation(value)? setvalid_email_1(true): setvalid_email_1(false)
+                }
+                list[19](value)
+                
+            }}
               placeholder=" Enter here"
               placeholderTextColor="gray" 
             /> 
 
           </View>
+          <Text  style={valid_email_1 ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
           <Text style={styles.text_2}>Do you have security measures in place to protect personal information and keep it secure?</Text>
           <RadioGroup
               radioButtons={list[20]}
@@ -228,10 +244,20 @@ const Policy7 = ({list}) => {
             <TextInput
               style={styles.input}
               value={list[38]}
-              onChangeText={(value)=>list[39](value)}
+              onChangeText={(value)=>{
+                if(value===""){
+                    setvalid_email(true)
+                }
+                else{
+                    email_validation(value)?setvalid_email(true):setvalid_email(false)
+                }
+                list[39](value)
+                
+            }}
               placeholder=" e.g.support@website.com"
               placeholderTextColor="gray" 
             /> 
+            <Text  style={valid_email ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
           </View>
           <View style={list[34] ? {} : {display:"none"}}>
             <Text style={styles.text_2}>What is your business address?</Text>
@@ -286,6 +312,68 @@ const Policy7 = ({list}) => {
               initialDate={new Date()}
             />
           </View>
+          <Text style={styles.text_2}>website_or_app_name</Text>
+          <TextInput
+              style={styles.input_vm}
+              value={list[50]}
+              onChangeText={(value)=>list[51](value)}
+              placeholder=""
+              placeholderTextColor="gray" 
+            /> 
+          <Text style={styles.text_2}>website_or_app_url</Text>
+          <TextInput
+              style={styles.input_vm}
+              value={list[52]}
+              placeholder=" e.g. https://www.website.com/contact/"
+              placeholderTextColor="gray" 
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_url_1(true)
+                }
+                else{
+                    url_validation(value)?setValid_url_1(true):setValid_url_1(false)
+                }
+                list[53](value)
+                
+            }}
+            />
+          <Text  style={valid_url_1 ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
+          <Text style={styles.text_2}>website_or_app_contact_page_url</Text>
+          <TextInput
+              style={styles.input_vm}
+              value={list[54]}
+              placeholder=" e.g. https://www.website.com/contact/"
+              placeholderTextColor="gray" 
+              onChangeText={(value)=>{
+                if(value===""){
+                    setValid_url_2(true)
+                }
+                else{
+                    url_validation(value)?setValid_url_2(true):setValid_url_2(false)
+                }
+                list[55](value)
+                
+            }}
+            />
+          <Text  style={valid_url_2 ? styles.hide: styles.text_warning}>Please Enter valid URL</Text>
+          <Text style={styles.text_2}>website_or_app_contact_email</Text>
+          <TextInput
+              style={styles.input_vm}
+              value={list[56]}
+              onChangeText={(value)=>{
+                if(value===""){
+                  setvalid_email_2(true)
+                }
+                else{
+                    email_validation(value)?setvalid_email_2(true):setvalid_email_2(false)
+                }
+                list[57](value)
+                
+            }}
+              placeholder=" e.g.support@website.com"
+              placeholderTextColor="gray" 
+            /> 
+            <Text  style={valid_email_2 ? styles.hide: styles.text_warning}>Please Enter valid email</Text>
           
       </View>
       

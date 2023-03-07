@@ -430,6 +430,7 @@ useEffect(()=>{
     owner_of_third_party_cookies: input_3_1
 
 }
+
    
     return (
         <>
@@ -525,6 +526,7 @@ useEffect(()=>{
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
                 finishBtnText="Done"
                 previousBtnStyle={previousButton}
+                previousBtnDisabled={true}
                 onSubmit={()=>{
                     navigation.navigate('HomeScreen');
                 }}>
