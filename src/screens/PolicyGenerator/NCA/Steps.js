@@ -272,6 +272,10 @@ const Steps = () => {
   const handle_input_1_2 = state => setInput_1_2(state);
   const [input_2_2, setInput_2_2] = useState('');
   const handle_input_2_2 = state => setInput_2_2(state);
+  const [input_3_2, setInput_3_2] = useState('');
+  const handle_input_3_2 = state => setInput_3_2(state);
+  const [input_4_2, setInput_4_2] = useState('');
+  const handle_input_4_2 = state => setInput_4_2(state);
   const [error_3, setError_3] = useState(false);
   const states_2 = [
     empty_validationn_2,
@@ -279,8 +283,12 @@ const Steps = () => {
     handle_input_1_2,
     input_2_2,
     handle_input_2_2,
+    input_3_2,
+    handle_input_3_2,
+    input_4_2,
+    handle_input_4_2
   ];
-  const inputs_2 = [input_1_2, input_2_2];
+  const inputs_2 = [input_1_2, input_2_2,input_3_2,input_4_2];
 
   const request_object = {
     agreement_compliance_type: 'non-compete-agreement',
@@ -305,6 +313,8 @@ const Steps = () => {
     signature_of_witnesses_detail: {
       filename: input_2_2,
     },
+    company_nature_of_work: input_3_2 ,
+    employee_job_title: input_4_2
   };
 
   return (
