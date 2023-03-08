@@ -35,7 +35,7 @@ const HowToModel = () => {
               <View flex={1} onStartShouldSetResponder={() => true}>
                 <Text
                   style={[styles.heading, {fontSize: 24, alignSelf: 'center'}]}>
-                  How to check license compatibility
+                 
                 </Text>
                 <Text style={[styles.heading]}>
                   1. Search and select the license
