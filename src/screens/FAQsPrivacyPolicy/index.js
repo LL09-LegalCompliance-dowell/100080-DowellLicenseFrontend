@@ -8,7 +8,7 @@ import Header from '../../components/Header';
 
 const PrivacyPolicy = () => {
   const [questionIcon, setQuestionIcon] = useState('caretup');
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   //iconChange
   const handleIcon = () => {
@@ -42,7 +42,7 @@ const PrivacyPolicy = () => {
         </TouchableOpacity>
 
         {isOpen ? (
-          <Text>
+          <Text style={styles.textStyle}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac nunc
             tempus ut velit hendrerit id. Quis facilisi morbi adipiscing tellus
             pellentesque etiam imperdiet tincidunt vel. Odio amet nisl mi
