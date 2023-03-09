@@ -4,12 +4,15 @@ import {
   ScrollView,
   TouchableOpacity,
   Pressable,
+  TouchableWithoutFeedback
 } from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import Modal from 'react-native-modal';
-
+import Entypo from 'react-native-vector-icons/Entypo';
 import Header from '../../components/Header';
 import styles from './style';
+import Octicons from 'react-native-vector-icons/Octicons';
+import colors from '../../../assets/colors/colors';
 // images
 import Image1 from './images/1.png';
 import Image2 from './images/2.png';
@@ -23,6 +26,11 @@ import Image9 from './images/9.png';
 import Image10 from './images/10.png';
 import Image11 from './images/11.png';
 import Image12 from './images/12.png';
+import Image13 from './images/howto_1.png';
+import Image14 from './images/howto_2.png';
+import Image15 from './images/howto_3.png';
+import Image16 from './images/howto_4.png';
+import Image17 from './images/howto_5.png';
 import {Image} from 'react-native';
 
 import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
@@ -49,6 +57,7 @@ const AgreementComplience = ({navigation}) => {
   return (
     <>
       {/* How to Overlay starts here */}
+      <View>
       <Modal
         propagateSwipe
         isVisible={isModal1Visible}
@@ -161,9 +170,85 @@ const AgreementComplience = ({navigation}) => {
           </View>
         </View>
       </Modal>
+      <Modal
+          propagateSwipe
+          isVisible={isHowto}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          animationInTiming={500}
+          animationOutTiming={500}
+          avoidKeyboard={true}
+          onBackdropPress={() => setHowto(false)}
+          onBackButtonPress={() => setHowto(false)}
+          backdropTransitionOutTiming={0}
+          onSwipeComplete={() => setHowto(false)}
+          swipeDirection="right"
+          customBackdrop={
+            <TouchableWithoutFeedback onPress={() => setHowto(false)}>
+              <View style={{flex: 1, backgroundColor: 'white'}} />
+            </TouchableWithoutFeedback>
+          }>
+          <>
+            <View style={{backgroundColor: 'white', flex: 1, padding: 10}}>
+              <TouchableOpacity
+                style={{marginLeft: 'auto'}}
+                onPress={() => setHowto(false)}>
+                <Entypo name="cross" size={40} color="darkgray" />
+              </TouchableOpacity>
+              <ScrollView showsVerticalScrollIndicator={false} >
+                <View flex={1} onStartShouldSetResponder={() => true}>
+                <Text style={ {fontSize: 26, alignSelf: 'center',margin:20,color:"#000000"}}>
+                  How to generate a Policy
+                </Text>
+                <View style={{margin:5}}>
+                  <Text style={{fontSize:18,color:"#000000",}} >
+                      1.Select the policy you want to generate
+                  </Text>
+                  <Image
+                      source={Image13}
+                      style={{width: '100%',alignSelf:"center",marginTop:20}}
+                  />
+                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
+                      2.You can view a sample of each generated policy from this button
+                  </Text>
+                  <Image
+                      source={Image14}
+                      style={{ width: '80%',alignSelf:"center",marginTop:20}}
+                  />
+                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
+                      3.You can find frequently asked questions from here
+                  </Text>
+                  <Image
+                      source={Image15}
+                      style={{ width: '80%',alignSelf:"center",marginTop:10}}
+                  />
+                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
+                      4.You can start generating policy from here and then fill each input 
+                  </Text>
+                  <Image
+                      source={Image16}
+                      style={{ width: '80%',alignSelf:"center",marginTop:10}}
+                  /> 
+                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
+                      5.After you click on "done" you have 2 options either to download policy or preview in app, you will aslo have a link to the generated policy 
+                  </Text>
+                  <Image
+                      source={Image17}
+                      style={{ resizeMode:'contain',alignSelf:"center",marginTop:10}}
+                  /> 
+                </View>
+                </View>
+                
+              </ScrollView>
+              
+              
+            </View>
+          </>
+        </Modal>
+      </View>
       <Header title="Agreement Compliance" leftIcon="menu" rightIcon="user" />
       <View style={styles.container}>
-        {isHowto === 'true' ? <HowToModel /> : null}
+        {/* {isHowto === true ? <HowToModel /> : null} */}
         <HowToIcon onPress={() => setHowto(true)} />
         <Text style={styles.heading}>
           We help with legal requirements, so you can focus on the business

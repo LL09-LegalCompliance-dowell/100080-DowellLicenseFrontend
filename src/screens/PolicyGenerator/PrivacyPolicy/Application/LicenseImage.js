@@ -6,7 +6,7 @@ import Pdf from 'react-native-pdf';
 
 const PolicyImage = () => {
   const source = {
-    uri: 'https://100080.pythonanywhere.com/media/doc/privacy-policy.pdf',
+    uri: 'https://100080.pythonanywhere.com/media/doc/app-privacy-policy.pdf',
     cache: true,
   };
   return (
