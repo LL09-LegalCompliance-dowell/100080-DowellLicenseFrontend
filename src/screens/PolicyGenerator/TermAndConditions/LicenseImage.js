@@ -11,7 +11,7 @@ const PolicyImage = () => {
   };
   return (
     <>
-    {/* <Header title="Policy Template" /> */}
+    <Header title="Policy Template" />
       <View
         style={{
           flex: 1,

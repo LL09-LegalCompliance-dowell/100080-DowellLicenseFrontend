@@ -1303,7 +1303,8 @@ const Steps = () => {
           style={{width: '100px'}}
           marginBottom={15}
           nextBtnTextStyle={{color: 'white', fontSize: 18}}>
-          <ProgressStep
+
+<ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
             previousBtnTextStyle={{color: '#489503', fontSize: 18}}
@@ -1317,7 +1318,6 @@ const Steps = () => {
               <Policy5 list={states_4} />
             </View>
           </ProgressStep>
-
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
