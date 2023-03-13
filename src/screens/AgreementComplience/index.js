@@ -195,7 +195,8 @@ const AgreementComplience = ({navigation}) => {
                 onPress={() => setHowto(false)}>
                 <Entypo name="cross" size={40} color="darkgray" />
               </TouchableOpacity>
-              <ScrollView >
+              <ScrollView showsVerticalScrollIndicator={false} >
+                <View flex={1} onStartShouldSetResponder={() => true}>
                 <Text style={ {fontSize: 26, alignSelf: 'center',margin:20,color:"#000000"}}>
                   How to generate a Policy
                 </Text>
@@ -229,12 +230,13 @@ const AgreementComplience = ({navigation}) => {
                       style={{ width: '80%',alignSelf:"center",marginTop:10}}
                   /> 
                   <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
-                      5.After you click on "done" you have 2 options either to download policy or preview in app, you will aslo have link to generated policy 
+                      5.After you click on "done" you have 2 options either to download policy or preview in app, you will aslo have a link to the generated policy 
                   </Text>
                   <Image
                       source={Image17}
                       style={{ resizeMode:'contain',alignSelf:"center",marginTop:10}}
                   /> 
+                </View>
                 </View>
                 
               </ScrollView>
