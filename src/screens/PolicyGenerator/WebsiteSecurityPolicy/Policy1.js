@@ -1,16 +1,31 @@
 import React from 'react'
 import { useState } from 'react'
-import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
+import { ScrollView ,View,Text,TextInput,} from 'react-native'
 import styles from '../Cookies/style'
-
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { email_validation,url_validation } from '../validations';
+import SelectDropdown from 'react-native-select-dropdown'
 
 
 const Policy1 = ({list}) => {
 const [valid_email , setValid_email]=useState(true);
 const [valid_url , setValid_url]=useState(true);
+const Jurisdiction = [
+    'Jurisdiction option 1',
+    'Jurisdiction option 2',
+    'Jurisdiction option 3',
+    'Jurisdiction option 4',
+    'Jurisdiction option 5',
+    
+]
+const findJurisdiction=(cvalue)=>{
+  for (let index = 0; index < Jurisdiction.length; index++) {
+    if(Jurisdiction[index]===cvalue){
+      return index 
+    }
+  }
+}
 return (
 <>
 <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -63,13 +78,17 @@ return (
               onChangeText={(value)=>list[5](value)}
         />
         <Text style={styles.text_2}>Jurisdiction:</Text>
-        <TextInput
-              style={styles.input_vm}
-              value={list[6]}
-              placeholder="  Enter here"
-              placeholderTextColor="gray"            
-              onChangeText={(value)=>list[7](value)}
+        <SelectDropdown
+              data={Jurisdiction}
+              onSelect={(selectedItem) => {
+                list[7](selectedItem)
+              }}
+              buttonStyle={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51,width:"100%"}}
+              buttonTextStyle={{color:"#585858",fontSize:16,fontWeight:"300"}}
+              dropdownStyle={{borderRadius: 15}}
+              defaultValueByIndex={findJurisdiction(list[6])}
         />
+        
         <Text style={styles.text_2}>Website URL:</Text>
         <TextInput
               style={styles.input_vm}
