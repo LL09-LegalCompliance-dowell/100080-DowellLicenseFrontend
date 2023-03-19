@@ -416,7 +416,7 @@ useEffect(()=>{
     does_your_website_or_app_use_any_perfomance_and_functionality_cookies: z,
     does_your_website_or_app_use_marketing_cookies: l,
     does_your_website_or_app_use_analytic_and_customization_cookies: m,
-    does_your_website_or_app_use_marketing_social_media_cookies: n,
+    does_your_website_or_app_use_social_media_cookies: n,
     does_your_website_or_app_use_third_party_cookies: o,
     personal_information_store_by_third_party_cookies: selected1,
     does_your_website_or_app_show_ads: p,

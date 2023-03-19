@@ -42,6 +42,7 @@ const Policy4 = ({object}) => {
       console.log(object)
       const result = await post_agreement_compliance(object);
       setHtml_link(result.data[0].agreement.html_doc_url);
+      console.log(result.data[0].agreement.html_doc_url)
       setPolicyName(result.data[0].agreement.agreement_compliance_type)
       setFlag(result.data[0].agreement.html_doc_url)
       setLoading(false);
