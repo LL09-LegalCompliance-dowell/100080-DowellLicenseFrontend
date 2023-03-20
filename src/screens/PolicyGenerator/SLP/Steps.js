@@ -1306,21 +1306,6 @@ const Steps = () => {
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
-            previousBtnTextStyle={{color: '#489503', fontSize: 18}}
-            errors={error_5}
-            onNext={() => {
-              setempty_validation_4(empty_validation(inputs_4));
-              const x = empty_validation(inputs_4);
-              setError_5(!x);
-            }}>
-            <View>
-              <Policy5 list={states_4} />
-            </View>
-          </ProgressStep>
-
-          <ProgressStep
-            nextBtnStyle={nextButton}
-            nextBtnTextStyle={{color: 'white', fontSize: 18}}
             errors={error_1}
             onNext={() => {
               setempty_validation(empty_validation(inputs));
