@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {
   ScrollView,
   View,
@@ -12,47 +12,44 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ImagePicker from 'react-native-image-crop-picker';
 import AppLoader from '../../../components/AppLoader';
-import Modal from 'react-native-modal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../../../assets/colors/colors';
 import CountryPicker from 'react-native-country-picker-modal';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 const Policy3 = ({list}) => {
-  const [isModal1Visible, setModal1Visible] = useState(false);
-  const [isModal2Visible, setModal2Visible] = useState(false);
   const [scanedImage, setScanedImage] = useState(null);
   const [scanedImage1, setScanedImage1] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const refBottomSheet1 = useRef();
+  const refBottomSheet2 = useRef();
+
   return (
     <>
       {loading ? <AppLoader /> : null}
-      {/* Model start 1*/}
-      <Modal
-        propagateSwipe
-        isVisible={isModal1Visible}
-        animationIn="slideInDown"
-        animationOut="slideOutUp"
-        coverScreen={false}
-        backdropColor="white"
-        backdropOpacity={1}
-        animationInTiming={700}
-        animationOutTiming={700}
-        avoidKeyboard={true}
-        backdropTransitionOutTiming={0}
-        onBackdropPress={() => setModal1Visible(false)}
-        onBackButtonPress={() => setModal1Visible(false)}>
+
+      <RBSheet
+        ref={refBottomSheet1}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
         <View
           style={{
-            position: 'absolute',
-            top: 0,
             width: '100%',
           }}>
           <View
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              height: '100%',
+              marginTop: 25,
             }}>
             <TouchableOpacity
               onPress={() => {
@@ -68,7 +65,7 @@ const Policy3 = ({list}) => {
                     setScanedImage(image);
                     list[10](image.data);
                     setLoading(false);
-                    setModal1Visible(false);
+                    refBottomSheet1.current.close();
                   } catch (error) {
                     console.log(error);
                   }
@@ -100,7 +97,7 @@ const Policy3 = ({list}) => {
                     setScanedImage(image);
                     list[10](image.data);
                     setLoading(false);
-                    setModal1Visible(false);
+                    refBottomSheet1.current.close();
                   } catch (error) {
                     console.log(error);
                   }
@@ -119,51 +116,31 @@ const Policy3 = ({list}) => {
                 Choose from gallery
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setModal1Visible(false);
-              }}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Cancel</Text>
-            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-      {/* Model 1 end */}
-      {/* Model start 2*/}
-      <Modal
-        propagateSwipe
-        isVisible={isModal2Visible}
-        animationIn="slideInDown"
-        animationOut="slideOutUp"
-        coverScreen={false}
-        backdropColor="white"
-        backdropOpacity={1}
-        animationInTiming={700}
-        animationOutTiming={700}
-        avoidKeyboard={true}
-        backdropTransitionOutTiming={0}
-        onBackdropPress={() => setModal2Visible(false)}
-        onBackButtonPress={() => setModal2Visible(false)}>
+      </RBSheet>
+      {/* Sheet  2 start */}
+      <RBSheet
+        ref={refBottomSheet2}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
         <View
           style={{
-            position: 'absolute',
-            top: 0,
             width: '100%',
           }}>
           <View
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              height: '100%',
+              marginTop: 25,
             }}>
             <TouchableOpacity
               onPress={() => {
@@ -179,7 +156,7 @@ const Policy3 = ({list}) => {
                     setScanedImage1(image);
                     list[16](image.data);
                     setLoading(false);
-                    setModal2Visible(false);
+                    refBottomSheet2.current.close();
                   } catch (error) {
                     console.log(error);
                   }
@@ -211,7 +188,7 @@ const Policy3 = ({list}) => {
                     setScanedImage1(image);
                     list[16](image.data);
                     setLoading(false);
-                    setModal2Visible(false);
+                    refBottomSheet2.current.close();
                   } catch (error) {
                     console.log(error);
                   }
@@ -230,25 +207,10 @@ const Policy3 = ({list}) => {
                 Choose from gallery
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setModal2Visible(false);
-              }}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Cancel</Text>
-            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-      {/* Model 2 end */}
+      </RBSheet>
+
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <Text
           style={
@@ -286,7 +248,6 @@ const Policy3 = ({list}) => {
           <View style={styles.input_vm}>
             {list[5] === '' ? (
               <CountryPicker
-                // countryCode={country}
                 withFilter
                 withFlag
                 withCountryNameButton={list[5]}
@@ -314,11 +275,10 @@ const Policy3 = ({list}) => {
               list[8](value);
             }}
           />
-          {/* Image will be there */}
           {/* Scaned copy 1*/}
           <TouchableOpacity
-            onPress={async () => {
-              setModal1Visible(true);
+            onPress={() => {
+              refBottomSheet1.current.open();
             }}
             style={[
               styles.input_vm,
@@ -392,7 +352,7 @@ const Policy3 = ({list}) => {
           {/* Scaned copy 1*/}
           <TouchableOpacity
             onPress={async () => {
-              setModal2Visible(true);
+              refBottomSheet2.current.open();
             }}
             style={[
               styles.input_vm,

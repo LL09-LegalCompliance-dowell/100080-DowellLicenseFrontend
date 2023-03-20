@@ -26,6 +26,10 @@ const ResultsDetailsScreen = ({route}) => {
     compatibiltyPercentage,
     isCompatible,
     disclaimer,
+    recommendation_details,
+    license1Version,
+    license2Version,
+    recommendation,
   } = route.params;
   return (
     <>
@@ -69,9 +73,19 @@ const ResultsDetailsScreen = ({route}) => {
                         uri: licenseLogo1,
                       }}
                     />
-                    <Text style={{paddingTop: 0, color: colors.textDark}}>
-                      {licenseOne}
-                    </Text>
+                    <View>
+                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                        {licenseOne}
+                      </Text>
+                      <Text
+                        style={{
+                          paddingTop: 0,
+                          color: colors.textDark,
+                          alignSelf: 'center',
+                        }}>
+                        {license1Version}
+                      </Text>
+                    </View>
                   </View>
                   <Text style={styles.vsText}>VS</Text>
                   <View style={styles.imagesContainer}>
@@ -80,9 +94,19 @@ const ResultsDetailsScreen = ({route}) => {
                       style={styles.logoStyle}
                       source={{uri: licenseLogo2}}
                     />
-                    <Text style={{paddingTop: 0, color: colors.textDark}}>
-                      {licenseTwo}
-                    </Text>
+                    <View>
+                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                        {licenseTwo}
+                      </Text>
+                      <Text
+                        style={{
+                          paddingTop: 0,
+                          color: colors.textDark,
+                          alignSelf: 'center',
+                        }}>
+                        {license2Version}
+                      </Text>
+                    </View>
                   </View>
                 </View>
                 <Text
@@ -148,6 +172,28 @@ const ResultsDetailsScreen = ({route}) => {
                   </Text>
                 ) : null}
 
+                {/* Recommendation Details */}
+
+                {recommendation_details ? (
+                  <>
+                    <Text
+                      style={[
+                        styles.heading,
+                        {
+                          fontWeight: '700',
+                          fontFamily: 'roboto',
+                          fontSize: 20,
+                          paddingBottom: 10,
+                        },
+                      ]}>
+                      Recommendation Details
+                    </Text>
+                    <Text style={{color: 'black'}}>
+                      {recommendation_details}
+                    </Text>
+                  </>
+                ) : null}
+
                 <Text
                   style={[
                     styles.heading,
@@ -182,7 +228,25 @@ const ResultsDetailsScreen = ({route}) => {
             }
             ListFooterComponent={
               <>
-                {disclaimer === '' ? (
+                {recommendation ? (
+                  <>
+                    <Text
+                      style={[
+                        styles.heading,
+                        {
+                          fontWeight: '700',
+                          fontFamily: 'roboto',
+                          fontSize: 20,
+                          paddingBottom: 10,
+                        },
+                      ]}>
+                      Recommendation
+                    </Text>
+                    <Text style={{color: 'black'}}>{recommendation}</Text>
+                  </>
+                ) : null}
+
+                {disclaimer ? (
                   <>
                     <Text
                       style={[
@@ -196,18 +260,7 @@ const ResultsDetailsScreen = ({route}) => {
                       ]}>
                       Disclaimer
                     </Text>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '700',
-                          fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 10,
-                        },
-                      ]}>
-                      {disclaimer}
-                    </Text>
+                    <Text style={{color: 'black'}}>{disclaimer}</Text>
                   </>
                 ) : null}
               </>

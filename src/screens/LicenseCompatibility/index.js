@@ -56,7 +56,20 @@ const LicenseCompatibility = ({navigation}) => {
   const [comparison, setComparison] = useState([]);
   const [license1Version, setLicense1Version] = useState('');
   const [license2Version, setLicense2Version] = useState('');
+  const [recommendation_details, setRecommendation_details] = useState('');
 
+
+  
+
+  // Get organization ID from local storage
+  const [orgId, setOrgId] = useState('');
+  const getOrgId = async () => {
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
+
+  // Display first 5 table resutls on main page
   let firstFive = comparison.slice(0, 5);
   if (firstFive.length < 5) {
     firstFive = comparison.slice(0, comparison.length);
@@ -105,6 +118,8 @@ const LicenseCompatibility = ({navigation}) => {
           action_type: 'check-compatibility',
           license_event_id_one: id1,
           license_event_id_two: id2,
+          user_id: 4585,
+          organization_id: orgId,
         },
       );
 
@@ -149,9 +164,12 @@ const LicenseCompatibility = ({navigation}) => {
         setLicense2Version(
           LicensesCompatibilityData.data.license_comparison?.license_2_version,
         );
-        console.log(LicensesCompatibilityData.data);
+        setRecommendation_details(
+          LicensesCompatibilityData.data.license_comparison?.recommendation_details,
+        );
+        // console.log(LicensesCompatibilityData.data);
 
-        // console.log(comparison);
+        // console.log(recommendation_details);
         setResult(true);
         setLoading(false);
         // await AsyncStorage.removeItem('licenseEventId1');
@@ -674,6 +692,10 @@ const LicenseCompatibility = ({navigation}) => {
                         compatibiltyPercentage,
                         isCompatible,
                         disclaimer,
+                        recommendation_details,
+                        license1Version,
+                        license2Version,
+                        recommendation
                       })
                     }
                     style={styles.readMoreContainer}>
