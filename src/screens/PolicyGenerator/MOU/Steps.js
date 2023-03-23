@@ -498,7 +498,7 @@ const Steps = () => {
     },
   ]);
   let g;
-  if (radioButtons_5[0].selected === true) {
+  if (radioButtons_5[0].selected === false) {
     g = true;
   } else {
     g = false;
@@ -651,7 +651,8 @@ const Steps = () => {
     party_1_zipcode: input_5,
     party_1_state: input_6,
     party_1_country: input_7,
-    party_1_period_mentioned: 'Days',
+    party_1_period_mentioned: input_8,
+    party_1_period_mentioned_unit: c,
     party_2_entity_type: b,
     party_2_full_name: input_9,
     party_2_address_line_1: input_10,
@@ -660,29 +661,28 @@ const Steps = () => {
     party_2_zipcode: input_13,
     party_2_state: input_14,
     party_2_country: input_15,
-    party_2_period_mentioned: 'Months',
+    party_2_period_mentioned: input_16,
+    party_2_period_mentioned_unit: d,
     what_will_be_the_purpose_of_this_mou: input_1_1,
     what_is_the_objective_of_this_mou: input_2_1,
     date_of_commencement: generate_date(date_1.toLocaleDateString()),
     date_of_termination: generate_date(date_1_1.toLocaleDateString()),
-    period_for_notice_in_case_of_cancellation_or_amendment: 'Days',
+    period_mou_retrict_working_with_competitors:input_3_1,
+    period_mou_retrict_working_with_competitors_unit: e,
     state_of_laws_use_as_governing_laws: input_1_2,
     state_of_laws_for_governing_laws_in_case_of_reimbursement: input_2_2,
-    number_of_parties_enter_this_mou: 5,
+    number_of_parties_enter_this_mou: input_3_2,
     mou_include_confidentiality: f,
     mou_retrict_working_with_competitors: g,
+
+    period_mou_retrict_working_with_competitors: 50,
+    period_mou_retrict_working_with_competitors_unit: "Days",
     date_for_legally_binding_definitive_agreement: generate_date(date_2.toLocaleDateString()),
     should_the_parties_agree_to_refrain_from_negotiating_with_third_parties: h,
     will_mou_agreement_be_terminated_in_case_of_force_majeure: i,
     any_other_contracts_entered_between_parties_together_with_this_mou: j,
-    state_of_laws_used_as_the_governing_laws_2: 'India',
-    state_of_laws_to_be_used_as_the_governing_laws_in_case_of_reimbursement_2:
-      'India',
-    number_of_parties_entered_this_mou_2: 5,
-    does_this_mou_restrict_working_with_competitors_for_period_of_time_2: false,
-    number_of_time_to_restrict_from_working_with_competitors_2: 5,
-    number_of_time_to_restrict_from_working_with_competitors_unit_2: 'Months',
-    date_for_legally_binding_definitive_agreement_2: '2025-10-20',
+    project_name: "",
+    project_detail: "",
   };
 
   return (

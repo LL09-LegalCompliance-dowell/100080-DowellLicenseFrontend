@@ -58,14 +58,14 @@ const LicenseCompatibility = ({navigation}) => {
   const [license2Version, setLicense2Version] = useState('');
   const [recommendation_details, setRecommendation_details] = useState('');
 
-
-  
-
   // Get organization ID from local storage
   const [orgId, setOrgId] = useState('');
+  const [userId, setUserId] = useState('');
   const getOrgId = async () => {
     const org_id = await AsyncStorage.getItem('org_id');
+    const user_id = await AsyncStorage.getItem('user_id');
     setOrgId(org_id);
+    setUserId(user_id);
   };
   useMemo(() => getOrgId(), []);
 
@@ -118,7 +118,7 @@ const LicenseCompatibility = ({navigation}) => {
           action_type: 'check-compatibility',
           license_event_id_one: id1,
           license_event_id_two: id2,
-          user_id: 4585,
+          user_id: userId,
           organization_id: orgId,
         },
       );
@@ -165,7 +165,8 @@ const LicenseCompatibility = ({navigation}) => {
           LicensesCompatibilityData.data.license_comparison?.license_2_version,
         );
         setRecommendation_details(
-          LicensesCompatibilityData.data.license_comparison?.recommendation_details,
+          LicensesCompatibilityData.data.license_comparison
+            ?.recommendation_details,
         );
         // console.log(LicensesCompatibilityData.data);
 
@@ -695,7 +696,7 @@ const LicenseCompatibility = ({navigation}) => {
                         recommendation_details,
                         license1Version,
                         license2Version,
-                        recommendation
+                        recommendation,
                       })
                     }
                     style={styles.readMoreContainer}>

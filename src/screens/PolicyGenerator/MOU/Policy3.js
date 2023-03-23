@@ -106,7 +106,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[1]}
-            placeholder="  Select State"
+            placeholder=" State name"
             placeholderTextColor="gray"
             onChangeText={value => list[2](value)}
           />
@@ -116,7 +116,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[3]}
-            placeholder="  Select State"
+            placeholder=" State name"
             placeholderTextColor="gray"
             onChangeText={value => list[4](value)}
           />
