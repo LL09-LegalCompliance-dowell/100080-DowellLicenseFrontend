@@ -19,12 +19,12 @@ const generate_date = date => {
 
 const Steps = () => {
   const navigation = useNavigation();
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -173,7 +173,7 @@ const Steps = () => {
     {
       id: '1',
       label: 'Day',
-      value: 'days',
+      value: 'Days',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -185,7 +185,7 @@ const Steps = () => {
     {
       id: '2',
       label: 'Mon',
-      value: 'months',
+      value: 'Months',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -196,7 +196,7 @@ const Steps = () => {
     {
       id: '3',
       label: 'Year',
-      value: 'years',
+      value: 'Years',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -207,17 +207,17 @@ const Steps = () => {
   ]);
   let c;
   if (radioButtons2_2[0].selected === true) {
-    c = 'days';
+    c = 'Days';
   } else if (radioButtons2_2[1].selected === true) {
-    c = 'months';
+    c = 'Months';
   } else {
-    c = 'years';
+    c = 'Years';
   }
   const [radioButtons2_3, setRadioButtons2_3] = useState([
     {
       id: '1',
       label: 'Day',
-      value: 'days',
+      value: 'Days',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -229,7 +229,7 @@ const Steps = () => {
     {
       id: '2',
       label: 'Mon',
-      value: 'months',
+      value: 'Months',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -240,7 +240,7 @@ const Steps = () => {
     {
       id: '3',
       label: 'Year',
-      value: 'years',
+      value: 'Years',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -251,11 +251,11 @@ const Steps = () => {
   ]);
   let d;
   if (radioButtons2_3[0].selected === true) {
-    d = 'days';
+    d = 'Days';
   } else if (radioButtons2_3[1].selected === true) {
-    d = 'months';
+    d = 'Months';
   } else {
-    d = 'years';
+    d = 'Years';
   }
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
@@ -369,7 +369,7 @@ const Steps = () => {
     {
       id: '1',
       label: 'Day',
-      value: 'days',
+      value: 'Days',
       size: 18,
       color: '#489503',
       borderColor: '#585858',
@@ -381,7 +381,7 @@ const Steps = () => {
     {
       id: '2',
       label: 'Mon',
-      value: 'months',
+      value: 'Months',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -392,7 +392,7 @@ const Steps = () => {
     {
       id: '3',
       label: 'Year',
-      value: 'years',
+      value: 'Years',
       size: 18,
       color: '#489503',
       borderColor: '##585858',
@@ -403,11 +403,11 @@ const Steps = () => {
   ]);
   let e;
   if (radioButtons_1[0].selected === true) {
-    e = 'days';
+    e = 'Days';
   } else if (radioButtons_1[1].selected === true) {
-    e = 'months';
+    e = 'Months';
   } else {
-    e = 'years';
+    e = 'Years';
   }
   const [error_2, setError_2] = useState(false);
   const [empty_validationn_1, setempty_validation_1] = useState(true);
@@ -615,6 +615,10 @@ const Steps = () => {
   const handle_input_2_2 = state => setInput_2_2(state);
   const [input_3_2, setInput_3_2] = useState('');
   const handle_input_3_2 = state => setInput_3_2(state);
+  const [input_4_2, setInput_4_2] = useState('');
+  const handle_input_4_2 = state => setInput_4_2(state);
+  const [input_5_2, setInput_5_2] = useState('');
+  const handle_input_5_2 = state => setInput_5_2(state);
 
   const states_2 = [
     empty_validationn_2,
@@ -636,8 +640,12 @@ const Steps = () => {
     handle_radiobuttons_7_3,
     radioButtons_8_3,
     handle_radiobuttons_8_3,
+    input_4_2,
+    handle_input_4_2,
+    input_5_2,
+    handle_input_5_2,
   ];
-  const inputs_2 = [input_1_2, input_2_2, input_3_2];
+  const inputs_2 = [input_1_2, input_2_2, input_3_2, input_4_2, input_5_2];
 
   const request_object = {
     agreement_compliance_type: 'mou',
@@ -652,7 +660,8 @@ const Steps = () => {
     party_1_state: input_6,
     party_1_country: input_7,
     party_1_period_mentioned: input_8,
-    party_1_period_mentioned_unit: c,
+    // party_1_period_mentioned_unit: c,
+    party_1_period_mentioned_unit: 'Days',
     party_2_entity_type: b,
     party_2_full_name: input_9,
     party_2_address_line_1: input_10,
@@ -662,27 +671,33 @@ const Steps = () => {
     party_2_state: input_14,
     party_2_country: input_15,
     party_2_period_mentioned: input_16,
-    party_2_period_mentioned_unit: d,
+    party_2_period_mentioned_unit: 'Days',
+    // party_2_period_mentioned_unit: d,
+    // screen 2
     what_will_be_the_purpose_of_this_mou: input_1_1,
     what_is_the_objective_of_this_mou: input_2_1,
     date_of_commencement: generate_date(date_1.toLocaleDateString()),
     date_of_termination: generate_date(date_1_1.toLocaleDateString()),
-    period_mou_retrict_working_with_competitors:input_3_1,
-    period_mou_retrict_working_with_competitors_unit: e,
+    period_for_notice_in_case_of_cancellation_or_amendment: input_3_1,
+    // period_for_notice_in_case_of_cancellation_or_amendment_unit: e,
+    period_for_notice_in_case_of_cancellation_or_amendment_unit: 'Days',
+    // screen 3
     state_of_laws_use_as_governing_laws: input_1_2,
     state_of_laws_for_governing_laws_in_case_of_reimbursement: input_2_2,
-    number_of_parties_enter_this_mou: input_3_2,
+    // number_of_parties_enter_this_mou: input_3_2,
+    number_of_parties_enter_this_mou: 3,
     mou_include_confidentiality: f,
     mou_retrict_working_with_competitors: g,
-
     period_mou_retrict_working_with_competitors: 50,
-    period_mou_retrict_working_with_competitors_unit: "Days",
-    date_for_legally_binding_definitive_agreement: generate_date(date_2.toLocaleDateString()),
+    period_mou_retrict_working_with_competitors_unit: 'Days',
+    date_for_legally_binding_definitive_agreement: generate_date(
+      date_2.toLocaleDateString(),
+    ),
     should_the_parties_agree_to_refrain_from_negotiating_with_third_parties: h,
     will_mou_agreement_be_terminated_in_case_of_force_majeure: i,
     any_other_contracts_entered_between_parties_together_with_this_mou: j,
-    project_name: "",
-    project_detail: "",
+    project_name: input_4_2,
+    project_detail: input_4_2,
   };
 
   return (

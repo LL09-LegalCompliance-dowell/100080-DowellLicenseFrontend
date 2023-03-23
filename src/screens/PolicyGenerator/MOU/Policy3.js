@@ -191,6 +191,28 @@ const Policy3 = ({list}) => {
             containerStyle={styles.radio_hm}
           />
         </View>
+
+        <Text style={styles.text_2}>
+        Project name
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[19]}
+            placeholder=" Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[20](value)}
+          />
+
+<Text style={styles.text_2}>
+Project details
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[21]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[22](value)}
+          />
       </View>
 
 

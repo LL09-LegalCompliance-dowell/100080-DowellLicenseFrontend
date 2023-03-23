@@ -220,7 +220,7 @@ const Policy1 = ({list}) => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={isPartyOneOpen ? {paddingHorizontal: 11} : styles.hide}>
+        <View style={isPartyTwoOpen ? {paddingHorizontal: 11} : styles.hide}>
           <Text style={styles.text_2}>What is the nature of the entity of the party?  </Text>
           <View>
             <RadioGroup
