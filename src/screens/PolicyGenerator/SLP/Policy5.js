@@ -289,7 +289,7 @@ const Policy5 = ({list}) => {
             )}
           </Pressable>
 
-          <Text style={styles.text_2}>
+          {/* <Text style={styles.text_2}>
             What is the full name of the first party signatory?
           </Text>
           <TextInput
@@ -298,7 +298,7 @@ const Policy5 = ({list}) => {
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
             onChangeText={value => list[8](value)}
-          />
+          /> */}
 
           <Text style={styles.text_2}>
             On what date is the first party signing the contract?
@@ -425,7 +425,7 @@ const Policy5 = ({list}) => {
             )}
           </Pressable>
 
-          <Text style={styles.text_2}>
+          {/* <Text style={styles.text_2}>
             What is the full name of the second party signatory?
           </Text>
           <TextInput
@@ -434,7 +434,7 @@ const Policy5 = ({list}) => {
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
             onChangeText={value => list[22](value)}
-          />
+          /> */}
 
           <Text style={styles.text_2}>
             On what date is the second party signing the contract?
