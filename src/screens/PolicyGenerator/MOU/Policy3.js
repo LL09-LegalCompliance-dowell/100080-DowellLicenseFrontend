@@ -106,7 +106,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[1]}
-            placeholder="  Select State"
+            placeholder=" State name"
             placeholderTextColor="gray"
             onChangeText={value => list[2](value)}
           />
@@ -116,7 +116,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[3]}
-            placeholder="  Select State"
+            placeholder=" State name"
             placeholderTextColor="gray"
             onChangeText={value => list[4](value)}
           />
@@ -191,6 +191,28 @@ const Policy3 = ({list}) => {
             containerStyle={styles.radio_hm}
           />
         </View>
+
+        <Text style={styles.text_2}>
+        Project name
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[19]}
+            placeholder=" Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[20](value)}
+          />
+
+<Text style={styles.text_2}>
+Project details
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[21]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[22](value)}
+          />
       </View>
 
 
