@@ -144,14 +144,14 @@ const Steps = () => {
       const inputs_2= [input1_2,input2_2,input3_2,input5_2,input7_2,input9_2]
       
       ///////////////////////////////////////////////////////3
-      const [input1_3, setInput1_3] = useState('');
-      const handle_input1_3 = (state)=> setInput1_3(state);
+      // const [input1_3, setInput1_3] = useState('');
+      // const handle_input1_3 = (state)=> setInput1_3(state);
     
 
-      const [error_3, setError_3] = useState(false);
-      const [empty_validationn_3, setempty_validation_3] = useState(true);
-      const states_3= [input1_3,handle_input1_3,empty_validationn_3]
-      const inputs_3= [input1_3,]
+      // const [error_3, setError_3] = useState(false);
+      // const [empty_validationn_3, setempty_validation_3] = useState(true);
+      // const states_3= [input1_3,handle_input1_3,empty_validationn_3]
+      // const inputs_3= [input1_3,]
 
 
       const freelancer_access=[]
@@ -199,7 +199,7 @@ const Steps = () => {
         what_is_the_charges_for_rush_work:  parseFloat(input7_2),
         what_is_the_charges_for_rush_work_currency:input8_2,
         whom_should_the_invoices_be_submitted_to: input9_2,
-        whom_should_the_invoices_be_submitted_to_department_name: "nil",
+        // whom_should_the_invoices_be_submitted_to_department_name: "nil",
         when_should_the_invoices_be_submitted:  generate_date(date2_2.toLocaleDateString()),
         when_will_the_invoices_be_payable_by_after_receipt:  generate_date(date3_2.toLocaleDateString())
     
@@ -252,7 +252,7 @@ const Steps = () => {
                   <Policy2 list={states_2}/>
                 </View>
               </ProgressStep>
-              <ProgressStep
+              {/* <ProgressStep
                 nextBtnStyle={nextButton}
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
                 previousBtnTextStyle={{color: '#489503', fontSize: 18}}
@@ -267,7 +267,7 @@ const Steps = () => {
                 <View >
                   <Policy3  list={states_3}/>
                 </View>
-              </ProgressStep>
+              </ProgressStep> */}
               <ProgressStep
                 nextBtnStyle={nextButton}
                 nextBtnTextStyle={{color: 'white', fontSize: 18}}
