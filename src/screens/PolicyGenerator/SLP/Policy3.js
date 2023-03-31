@@ -29,7 +29,9 @@ const Policy3 = ({list}) => {
         <Text style={styles.text_1}>Agreement:</Text>
 
         <View style={{position: 'relative', fontWeight: '400', paddingTop: 16}}>
-          <Text style={styles.text_3}>Clause 2: Credit ------------</Text>
+          <Text style={styles.text_3}>
+            Clause 2: Credit ------------------------------
+          </Text>
           <Text style={styles.text_3}>
             Clause: Free documents licensing warning
           </Text>
@@ -50,7 +52,10 @@ const Policy3 = ({list}) => {
               // layout="row"
             />
           </View>
-          <Text style={styles.text_3}>Clause 3: Term ------------</Text>
+
+          <Text style={styles.text_3}>
+            Clause 3: Term ----------------------------------
+          </Text>
           <Text style={styles.text_3}>Clause 3.2</Text>
           <Text style={styles.text_2}>
             Is the term of the contract indefinite, or will it come to an end
@@ -64,8 +69,39 @@ const Policy3 = ({list}) => {
               // layout="row"
             />
           </View>
+          <Text style={styles.text_2}>
+            Upon the occurrence of what event will the contract terminate?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[31]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[32](value)}
+          />
+
+          <Text style={styles.text_2}>Contract termination date?</Text>
+
+          <TextInput
+            style={styles.input_vm}
+            value={list[33].toLocaleDateString()}
+            placeholder="dd/mm/yyyy"
+            placeholderTextColor="gray"
+          />
+          <ModalDatePicker
+            button={
+              <View style={styles.calendarPosition}>
+                <EvilIcons name={'calendar'} size={35} color="gray" />
+              </View>
+            }
+            color="#489503"
+            onSelect={value => list[34](value)}
+            isHideOnSelect={true}
+            initialDate={new Date()}
+          />
+
           <Text style={styles.text_3}>
-            Clause 4: Supply of Software ------------
+            Clause 4: Supply of Software -----------------
           </Text>
           <Text style={styles.text_3}>Clause 4.1</Text>
           <Text style={styles.text_2}>
@@ -75,7 +111,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[5]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[6](value)}
           />
@@ -84,7 +120,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[7]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[8](value)}
           />
@@ -105,7 +141,7 @@ const Policy3 = ({list}) => {
               },
             ]}>
             <TextInput
-              // style={styles.input_vm}
+              style={{color: 'gray'}}
               value={list[9]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -115,19 +151,19 @@ const Policy3 = ({list}) => {
               <RadioGroup
                 radioButtons={list[11]}
                 onPress={data => list[12](data)}
-                // containerStyle={styles.radio_hm}
+                style={{color: 'gray'}}
                 layout="row"
               />
             </View>
           </View>
           <Text style={styles.text_3}>Clause 4.1</Text>
           <Text style={styles.text_2}>
-            What exactly did the Licensor supply to the License?
+            What exactly did the Licensor supply to the Licensee?
           </Text>
           <TextInput
             style={styles.input_vm}
             value={list[13]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[14](value)}
           />
@@ -141,7 +177,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[15]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[16](value)}
           />
@@ -152,7 +188,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[17]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[18](value)}
           />
@@ -193,7 +229,7 @@ const Policy3 = ({list}) => {
               },
             ]}>
             <TextInput
-              // style={styles.input_vm}
+              style={{color: 'gray'}}
               value={list[21]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -201,9 +237,9 @@ const Policy3 = ({list}) => {
             />
             <View>
               <RadioGroup
+                style={{color: 'gray'}}
                 radioButtons={list[23]}
                 onPress={data => list[24](data)}
-                // containerStyle={styles.radio_hm}
                 layout="row"
               />
             </View>
@@ -237,7 +273,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[27]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[28](value)}
           />
@@ -249,7 +285,7 @@ const Policy3 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[29]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[30](value)}
           />

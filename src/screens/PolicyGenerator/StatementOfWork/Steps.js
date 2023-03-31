@@ -146,13 +146,12 @@ const Steps = () => {
       ///////////////////////////////////////////////////////3
       const [input1_3, setInput1_3] = useState('');
       const handle_input1_3 = (state)=> setInput1_3(state);
-      const [input2_3, setInput2_3] = useState('');
-      const handle_input2_3 = (state)=> setInput2_3(state);
+    
 
       const [error_3, setError_3] = useState(false);
       const [empty_validationn_3, setempty_validation_3] = useState(true);
-      const states_3= [input1_3,handle_input1_3,input2_3,handle_input2_3,empty_validationn_3]
-      const inputs_3= [input1_3,input2_3]
+      const states_3= [input1_3,handle_input1_3,empty_validationn_3]
+      const inputs_3= [input1_3,]
 
 
       const freelancer_access=[]

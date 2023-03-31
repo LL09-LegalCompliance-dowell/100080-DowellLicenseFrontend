@@ -4,7 +4,6 @@ import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from '../Cookies/style'
 import SelectDropdown from 'react-native-select-dropdown'
 import { number_validation } from '../validations'
-import { SelectList } from 'react-native-dropdown-select-list'
 
 const Policy2 = ({list}) => {
   
@@ -51,17 +50,6 @@ const findcurrency=(cvalue)=>{
             }}
             />
             
-          {/* <SelectList 
-            defaultOption={{key:'0', value:list[11]}}
-            setSelected={(val) => list[2](val)} 
-            data={cuurency} 
-            save="value"
-            inputStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
-            dropdownTextStyles={{color:"#585858",fontSize:16,fontWeight:"300"}}
-            searchPlaceholder=""
-            search={false}
-            boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
-            /> */}
           <SelectDropdown
               data={cuurency}
               onSelect={(selectedItem, index) => {

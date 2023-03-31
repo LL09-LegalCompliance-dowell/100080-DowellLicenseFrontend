@@ -22,12 +22,11 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 const Policy4 = ({object}) => {
- 
   const [loading, setLoading] = useState(false);
   const [flag, setFlag] = useState('');
   const [html_link, setHtml_link] = useState('');
   const [link, setLink] = useState('');
-  const [policyName, setPolicyName] = useState('')
+  const [policyName, setPolicyName] = useState('');
   const navigation = useNavigation();
 
   const copyToClipboard = () => {
@@ -38,25 +37,24 @@ const Policy4 = ({object}) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      console.lo
-      console.log(object)
+      console.lo;
+      console.log(object);
       const result = await post_agreement_compliance(object);
       setHtml_link(result.data[0].agreement.html_doc_url);
+      console.log(result.data[0].agreement.html_doc_url)
       setPolicyName(result.data[0].agreement.agreement_compliance_type)
       setFlag(result.data[0].agreement.html_doc_url)
       setLoading(false);
     } catch (error) {
       //  console.error(error);
       setLoading(false);
-      alert('Something went wrong, please try again later')
-     
-      
+      alert('Something went wrong, please try again later');
     }
   };
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   return (
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -128,7 +126,9 @@ const Policy4 = ({object}) => {
                   marginTop: 10,
                   alignItems: 'center',
                 }}>
-                <Text numberOfLines={1} style={{marginHorizontal: 10}}>
+                <Text
+                  numberOfLines={1}
+                  style={{marginHorizontal: 10, color: 'gray'}}>
                   {flag}
                 </Text>
                 <TouchableOpacity

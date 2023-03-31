@@ -15,12 +15,12 @@ const generate_date = date => {
 };
 const Steps = () => {
   const navigation = useNavigation();
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -225,10 +225,18 @@ const Steps = () => {
     date2,
     handle_date2,
   ];
-  const inputs_2 = [input_1_2, input_2_2,input_3_2,input_4_2,input_5_2,input_6_2,input_7_2];
+  const inputs_2 = [
+    input_1_2,
+    input_2_2,
+    input_3_2,
+    input_4_2,
+    input_5_2,
+    input_6_2,
+    input_7_2,
+  ];
 
   const request_object = {
-    agreement_compliance_type: "employment-contract",
+    agreement_compliance_type: 'employment-contract',
     organization_id: orgId,
     company_name: input_1,
     company_address_line_1: input_2,
@@ -245,20 +253,18 @@ const Steps = () => {
     amount_currency: input_4_1,
     full_name_of_company_signatory: input_4_2,
     company_signatory_scanned_copy_detail: {
-        filename: input_5_2,
+      filename: input_5_2,
     },
     company_signatory_date: generate_date(date1.toLocaleDateString()),
     full_name_of_employee_signatory: input_6_2,
     employee_signatory_scanned_copy_detail: {
       filename: input_7_2,
     },
-    employee_signatory_date: null,
+    employee_signatory_date: generate_date(date2.toLocaleDateString()),
     jurisdiction: input_1_2,
     employee_state: input_2_2,
-    employee_country: input_3_2
-
-
-};
+    employee_country: input_3_2,
+  };
   return (
     <>
       <PolicyHeader title="Generator" />
@@ -313,7 +319,7 @@ const Steps = () => {
               setempty_validation_2(empty_validation([input_1_2]));
               const x = empty_validation(inputs_2);
               // const y = email_validation(input_1_2);
-              setError_3(!(x));
+              setError_3(!x);
             }}>
             <View>
               <Policy3 list={states_2} />

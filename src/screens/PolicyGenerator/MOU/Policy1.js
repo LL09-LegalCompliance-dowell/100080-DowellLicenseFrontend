@@ -145,7 +145,7 @@ const Policy1 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[15]}
-            placeholder=" Select State "
+            placeholder=" Enter State name"
             placeholderTextColor="gray"
             onChangeText={value => list[16](value)}
           />
@@ -181,7 +181,7 @@ const Policy1 = ({list}) => {
               },
             ]}>
             <TextInput
-              // style={styles.input_vm}
+              style={{color:'gray', fontSize:16}}
               value={list[19]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -220,8 +220,8 @@ const Policy1 = ({list}) => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={isPartyOneOpen ? {paddingHorizontal: 11} : styles.hide}>
-          <Text style={styles.text_2}>Entity Type:</Text>
+        <View style={isPartyTwoOpen ? {paddingHorizontal: 11} : styles.hide}>
+          <Text style={styles.text_2}>What is the nature of the entity of the party?  </Text>
           <View>
             <RadioGroup
               radioButtons={list[23]}
@@ -286,7 +286,7 @@ const Policy1 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[35]}
-            placeholder=" Select State "
+            placeholder=" Enter state name"
             placeholderTextColor="gray"
             onChangeText={value => list[36](value)}
           />
@@ -322,7 +322,7 @@ const Policy1 = ({list}) => {
               },
             ]}>
             <TextInput
-              // style={styles.input_vm}
+             style={{color:'gray', fontSize:16}}
               value={list[39]}
               placeholder="Enter number"
               placeholderTextColor="gray"

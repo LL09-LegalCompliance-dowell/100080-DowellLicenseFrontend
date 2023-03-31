@@ -1,12 +1,18 @@
 import React, {Fragment} from 'react';
-import {useState} from 'react';
-import {ScrollView, View, Text, TextInput, Pressable, Dimensions} from 'react-native';
+import {useState, useRef} from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import styles from '../Cookies/style';
-
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-import {SelectList} from 'react-native-dropdown-select-list';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -19,46 +25,55 @@ const windowHeight = Dimensions.get('window').height;
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
   const [isModal2Visible, setModal2Visible] = useState(false);
-
   const [scanedImage1, setScanedImage1] = useState(null);
   const [scanedImage2, setScanedImage2] = useState(null);
   const [loading, setLoading] = useState(false);
+  const refBottomSheet1 = useRef();
+  const refBottomSheet2 = useRef();
 
   return (
     <>
       {loading ? <AppLoader /> : null}
-
-      {/* Model start 1*/}
-      <Modal
-        // propagateSwipe
-        isVisible={isModal1Visible}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        coverScreen={false}
-        backdropColor="white"
-        backdropOpacity={1}
-        animationInTiming={700}
-        animationOutTiming={700}
-        avoidKeyboard={true}
-        backdropTransitionOutTiming={0}
-        onBackdropPress={() => setModal1Visible(false)}
-        onBackButtonPress={() => setModal1Visible(false)}>
-        <View style={{width: '100%', height:windowHeight}}>
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Pressable
-              onPress={async () => {
+      <RBSheet
+        ref={refBottomSheet1}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
+        <View
+          style={{
+            width: '100%',
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 25,
+            }}>
+            <TouchableOpacity
+              onPress={() => {
                 ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
                   includeBase64: true,
                 }).then(async image => {
-                  setLoading(true);
-                  console.log(image);
-                  setScanedImage1(image);
-                  list[4](image.data);
-                  setLoading(false);
-                  setModal1Visible(false);
+                  try {
+                    setLoading(true);
+                    console.log(image);
+                    setScanedImage1(image);
+                    list[6](image.data);
+                    setLoading(false);
+                    refBottomSheet1.current.close();
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
               }}
               style={{
@@ -71,21 +86,26 @@ const Policy5 = ({list}) => {
                 justifyContent: 'center',
               }}>
               <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => {
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={async () => {
                 ImagePicker.openPicker({
                   width: 300,
                   height: 400,
                   cropping: true,
                   includeBase64: true,
                 }).then(async image => {
-                  setLoading(true);
-                  console.log(image);
-                  setScanedImage1(image);
-                  list[6](image.data);
-                  setLoading(false);
-                  setModal1Visible(false);
+                  try {
+                    setLoading(true);
+                    console.log(image);
+                    setScanedImage1(image);
+                    list[6](image.data);
+                    setLoading(false);
+                    refBottomSheet1.current.close();
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
               }}
               style={{
@@ -100,58 +120,51 @@ const Policy5 = ({list}) => {
               <Text style={{color: 'white', fontSize: 16}}>
                 Choose from gallery
               </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => {
-                setModal1Visible(false);
-              }}
-              style={{
-                backgroundColor: colors.primary,
-                marginVertical: 10,
-                width: '70%',
-                borderRadius: 30,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>Cancel</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-      {/* Model 1 end */}
-
-      {/* Model start 2*/}
-      <Modal
-        propagateSwipe
-        isVisible={isModal2Visible}
-        animationIn="slideInUp"
-        animationOut="slideOutDown"
-        coverScreen={false}
-        backdropColor="white"
-        backdropOpacity={1}
-        animationInTiming={700}
-        animationOutTiming={700}
-        avoidKeyboard={true}
-        backdropTransitionOutTiming={0}
-        onBackdropPress={() => setModal2Visible(false)}
-        onBackButtonPress={() => setModal2Visible(false)}>
-        <View style={{height:windowHeight, width: '100%'}}>
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Pressable
-              onPress={async () => {
+      </RBSheet>
+      {/* Sheet  2 start */}
+      <RBSheet
+        ref={refBottomSheet2}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
+        <View
+          style={{
+            width: '100%',
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 25,
+            }}>
+            <TouchableOpacity
+              onPress={() => {
                 ImagePicker.openCamera({
                   width: 300,
                   height: 400,
                   cropping: true,
                   includeBase64: true,
                 }).then(async image => {
-                  setLoading(true);
-                  console.log(image);
-                  setScanedImage2(image);
-                  list[20](image.data);
-                  setLoading(false);
-                  setModal2Visible(false);
+                  try {
+                    setLoading(true);
+                    console.log(image);
+                    setScanedImage2(image);
+                    list[20](image.data);
+                    setLoading(false);
+                    refBottomSheet2.current.close();
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
               }}
               style={{
@@ -164,8 +177,9 @@ const Policy5 = ({list}) => {
                 justifyContent: 'center',
               }}>
               <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
-            </Pressable>
-            <Pressable
+            </TouchableOpacity>
+
+            <TouchableOpacity
               onPress={async () => {
                 ImagePicker.openPicker({
                   width: 300,
@@ -173,21 +187,17 @@ const Policy5 = ({list}) => {
                   cropping: true,
                   includeBase64: true,
                 }).then(async image => {
-                  setLoading(true);
-                  console.log(image);
-                  setScanedImage2(image);
-                  list[20](image.data);
-                  setLoading(false);
-                  setModal2Visible(false);
+                  try {
+                    setLoading(true);
+                    console.log(image);
+                    setScanedImage2(image);
+                    list[20](image.data);
+                    setLoading(false);
+                    refBottomSheet2.current.close();
+                  } catch (error) {
+                    console.log(error);
+                  }
                 });
-              }}>
-              <Text style={{color: 'white', fontSize: 16}}>
-                Choose from gallery
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => {
-                setModal2Visible(false);
               }}
               style={{
                 backgroundColor: colors.primary,
@@ -198,12 +208,13 @@ const Policy5 = ({list}) => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Text style={{color: 'white', fontSize: 16}}>Cancel</Text>
-            </Pressable>
+              <Text style={{color: 'white', fontSize: 16}}>
+                Choose from gallery
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-      {/* Model 2 end */}
+      </RBSheet>
 
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <Text
@@ -231,7 +242,6 @@ const Policy5 = ({list}) => {
               radioButtons={list[1]}
               onPress={data => list[2](data)}
               containerStyle={styles.radio_hm}
-              // layout="row"
             />
           </View>
           <TextInput
@@ -243,8 +253,8 @@ const Policy5 = ({list}) => {
           />
           {/* Scaned copy 1*/}
           <Pressable
-            onPress={async () => {
-              setModal1Visible(true);
+            onPress={() => {
+              refBottomSheet1.current.open();
             }}
             style={[
               styles.input_vm,
@@ -259,13 +269,12 @@ const Policy5 = ({list}) => {
               </Text>
             ) : (
               <Text style={{color: 'black', fontSize: 16, marginRight: 5}}>
-                Uploaded
+                Image selected
               </Text>
             )}
             {scanedImage1 == null ? (
               <>
                 <MaterialCommunityIcons
-                  // style={styles.userIcon}
                   name="image-plus"
                   size={35}
                   color="gray"
@@ -273,7 +282,6 @@ const Policy5 = ({list}) => {
               </>
             ) : (
               <MaterialCommunityIcons
-                // style={styles.userIcon}
                 name="check-bold"
                 size={25}
                 color={colors.primary}
@@ -281,7 +289,7 @@ const Policy5 = ({list}) => {
             )}
           </Pressable>
 
-          <Text style={styles.text_2}>
+          {/* <Text style={styles.text_2}>
             What is the full name of the first party signatory?
           </Text>
           <TextInput
@@ -290,7 +298,7 @@ const Policy5 = ({list}) => {
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
             onChangeText={value => list[8](value)}
-          />
+          /> */}
 
           <Text style={styles.text_2}>
             On what date is the first party signing the contract?
@@ -379,8 +387,8 @@ const Policy5 = ({list}) => {
 
           {/* Scaned copy 2*/}
           <Pressable
-            onPress={async () => {
-              setModal2Visible(true);
+            onPress={() => {
+              refBottomSheet2.current.open();
             }}
             style={[
               styles.input_vm,
@@ -417,7 +425,7 @@ const Policy5 = ({list}) => {
             )}
           </Pressable>
 
-          <Text style={styles.text_2}>
+          {/* <Text style={styles.text_2}>
             What is the full name of the second party signatory?
           </Text>
           <TextInput
@@ -426,7 +434,7 @@ const Policy5 = ({list}) => {
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray"
             onChangeText={value => list[22](value)}
-          />
+          /> */}
 
           <Text style={styles.text_2}>
             On what date is the second party signing the contract?

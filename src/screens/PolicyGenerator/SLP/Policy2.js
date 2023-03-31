@@ -62,7 +62,7 @@ const Policy2 = ({list}) => {
           <TextInput
             style={styles.input_vm}
             value={list[1]}
-            placeholder=" "
+            placeholder=" Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[2](value)}
           />
@@ -112,7 +112,7 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-            //  style={styles.input_vm}
+             style={{color: 'gray'}}
               value={list[7]}
               placeholder="Enter number"
               placeholderTextColor="gray"
@@ -166,7 +166,7 @@ const Policy2 = ({list}) => {
           <TextInput
            style={styles.input_vm}
             value={list[17]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[18](value)}
           />
@@ -201,7 +201,7 @@ const Policy2 = ({list}) => {
           <TextInput
            style={styles.input_vm}
             value={list[23]}
-            placeholder=""
+            placeholder="Enter here"
             placeholderTextColor="gray"
             onChangeText={value => list[24](value)}
           />
@@ -235,8 +235,8 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-            //  style={styles.input_vm}
-              value={list[27]}
+             style={{color: 'gray'}}
+             value={list[27]}
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[28](value)}
