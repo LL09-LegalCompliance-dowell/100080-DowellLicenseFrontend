@@ -64,7 +64,7 @@ const Steps = () => {
       const handle_input_6 = (state)=> setInput_6(state);
       const [input_7, setInput_7] = useState('');
       const handle_input_7 = (state)=> setInput_7(state);
-      const [input_8, setInput_8] = useState('');
+      const [input_8, setInput_8] = useState();
       const handle_input_8 = (state)=> setInput_8(state);
       const [input_9, setInput_9] = useState('');
       const handle_input_9 = (state)=> setInput_9(state);
@@ -105,11 +105,13 @@ const Steps = () => {
       const handle_input_4_1 = (state)=> setInput_4_1(state);
       const [input_5_1, setInput_5_1] = useState('');
       const handle_input_5_1 = (state)=> setInput_5_1(state);
+      const [input_6_1, setInput_6_1] = useState('EUR');
+      const handle_input_6_1 = (state)=> setInput_6_1(state);
       const [error_2, setError_2] = useState(false);
       const [empty_validationn_1, setempty_validation_1] = useState(true);
       const [valid_number , setValid_number]=useState(true);
       const handle_valid_number = (state)=> setValid_number(state);
-      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number]
+      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number,input_6_1,handle_input_6_1]
       const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1]
      //3
      const [date_2, setDate_2] = useState(new Date());

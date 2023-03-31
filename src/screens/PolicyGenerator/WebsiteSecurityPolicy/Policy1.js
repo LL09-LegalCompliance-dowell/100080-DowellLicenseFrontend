@@ -12,11 +12,11 @@ const Policy1 = ({list}) => {
 const [valid_email , setValid_email]=useState(true);
 const [valid_url , setValid_url]=useState(true);
 const Jurisdiction = [
-    'Jurisdiction option 1',
-    'Jurisdiction option 2',
-    'Jurisdiction option 3',
-    'Jurisdiction option 4',
-    'Jurisdiction option 5',
+    'India',
+    'United Arab Emirates',
+    'United Kingdom',
+    'United States',
+    'Australia',
     
 ]
 const findJurisdiction=(cvalue)=>{
