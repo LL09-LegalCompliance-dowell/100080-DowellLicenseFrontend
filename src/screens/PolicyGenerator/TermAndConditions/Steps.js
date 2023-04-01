@@ -40,6 +40,8 @@ const Steps = () => {
   const handle_input_4 = state => setInput_4(state);
   const [input_5, setInput_5] = useState('');
   const handle_input_5 = state => setInput_5(state);
+  const [input_6, setInput_6] = useState('');
+  const handle_input_6 = state => setInput_6(state);
   const [error_1, setError_1] = useState(false);
   const states = [
     empty_validationn,
@@ -55,7 +57,8 @@ const Steps = () => {
     handle_input_4,
     input_5,
     handle_input_5,
-    
+    input_6,
+    handle_input_6,
   ];
   const inputs = [
     input_1,
@@ -63,6 +66,7 @@ const Steps = () => {
     input_3,
     input_4,
     input_5,
+    input_6
   ];
 
 
@@ -99,8 +103,8 @@ const Steps = () => {
     company_name: input_2,
     website_or_app_name: input_3,
     website_url: input_4,
-    support_email: input_5
-
+    support_email: input_5,
+    jurisdiction: input_6
 }
 
 

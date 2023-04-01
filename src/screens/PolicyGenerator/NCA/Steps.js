@@ -17,12 +17,12 @@ const generate_date = date => {
 const Steps = () => {
   const navigation = useNavigation();
 
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -84,7 +84,7 @@ const Steps = () => {
     handle_input_6,
   ];
   const inputs = [input_1, input_2, input_3, input_4, input_5, input_6];
-  //2
+  ///////////////////////////////////----------------2
   const [radioButtons, setRadioButtons] = useState([
     {
       id: '1',
@@ -242,6 +242,9 @@ const Steps = () => {
   const [error_2, setError_2] = useState(false);
   const [valid_number, setValid_number] = useState(true);
   const handle_valid_number = state => setValid_number(state);
+  const [flag, setflag] = useState(false);
+  const handle_flag = state => setflag(state);
+
   const states_1 = [
     empty_validationn_1,
     radioButtons,
@@ -276,6 +279,22 @@ const Steps = () => {
   const handle_input_3_2 = state => setInput_3_2(state);
   const [input_4_2, setInput_4_2] = useState('');
   const handle_input_4_2 = state => setInput_4_2(state);
+  const [input_5_2, setInput_5_2] = useState('');
+  const handle_input_5_2 = state => setInput_5_2(state);
+  const [input_6_2, setInput_6_2] = useState('');
+  const handle_input_6_2 = state => setInput_6_2(state);
+  const [input_7_2, setInput_7_2] = useState('');
+  const handle_input_7_2 = state => setInput_7_2(state);
+  const [input_8_2, setInput_8_2] = useState('');
+  const handle_input_8_2 = state => setInput_8_2(state);
+  const [input_9_2, setInput_9_2] = useState('');
+  const handle_input_9_2 = state => setInput_9_2(state);
+  const [input_10_2, setInput_10_2] = useState('');
+  const handle_input_10_2 = state => setInput_10_2(state);
+  const [input_11_2, setInput_11_2] = useState('');
+  const handle_input_11_2 = state => setInput_11_2(state);
+  const [input_12_2, setInput_12_2] = useState('');
+  const handle_input_12_2 = state => setInput_12_2(state);
   const [error_3, setError_3] = useState(false);
   const states_2 = [
     empty_validationn_2,
@@ -286,9 +305,38 @@ const Steps = () => {
     input_3_2,
     handle_input_3_2,
     input_4_2,
-    handle_input_4_2
+    handle_input_4_2,
+    input_5_2,
+    handle_input_5_2,
+    input_6_2,
+    handle_input_6_2,
+    input_7_2,
+    handle_input_7_2,
+    input_8_2,
+    handle_input_8_2,
+    input_9_2,
+    handle_input_9_2,
+    input_10_2,
+    handle_input_10_2,
+    input_11_2,
+    handle_input_11_2,
+    input_12_2,
+    handle_input_12_2,
   ];
-  const inputs_2 = [input_1_2, input_2_2,input_3_2,input_4_2];
+  const inputs_2 = [
+    input_1_2,
+    input_2_2,
+    input_3_2,
+    input_4_2,
+    input_5_2,
+    input_6_2,
+    input_7_2,
+    input_8_2,
+    input_9_2,
+    input_10_2,
+    input_11_2,
+    input_12_2,
+  ];
 
   const request_object = {
     agreement_compliance_type: 'non-compete-agreement',
@@ -309,12 +357,27 @@ const Steps = () => {
     will_there_be_a_litigation_matter_in_case_of_dispute: z,
     which_state_should_abide_litigation_matter: input_4_1,
     will_electronic_notices_be_allowed: a,
-    name_of_witnesses: input_1_2,
-    signature_of_witnesses_detail: {
+    company_nature_of_work: input_3_2,
+    employee_job_title: input_4_2,
+
+    // additional fields
+    name_of_witnesse_1: input_1_2,
+    signature_of_witnesse_1_detail: {
       filename: input_2_2,
+      file_extension: 'png',
     },
-    company_nature_of_work: input_3_2 ,
-    employee_job_title: input_4_2
+    witnesse_1_address_line_1: input_5_2,
+    witnesse_1_address_line_2: input_6_2,
+    witnesse_1_address_line_3: input_7_2,
+
+    name_of_witnesse_2: input_8_2,
+    signature_of_witnesse_2_detail: {
+      filename: input_9_2,
+      file_extension: 'png',
+    },
+    witnesse_2_address_line_1: input_10_2,
+    witnesse_2_address_line_2: input_11_2,
+    witnesse_2_address_line_3: input_12_2,
   };
 
   return (

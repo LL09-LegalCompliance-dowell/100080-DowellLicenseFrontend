@@ -83,6 +83,15 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
+           <Text style={[styles.text_1, {fontSize: 15}]}>Which law will govern the document?</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[13]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[14](value)}
+          />
+
           <Text style={[styles.text_1, {fontSize: 15}]}>Website URL:</Text>
           <TextInput
             style={styles.input_vm}

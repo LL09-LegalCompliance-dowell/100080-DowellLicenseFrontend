@@ -101,7 +101,7 @@ const Policy2 = ({list}) => {
               },
             ]}>
             <TextInput
-              // style={styles.input_vm}
+              style={{color:'gray', fontSize:16}}
               value={list[9]}
               placeholder="Enter number"
               placeholderTextColor="gray"

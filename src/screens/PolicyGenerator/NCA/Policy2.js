@@ -14,7 +14,6 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import CountryPicker from 'react-native-country-picker-modal';
 
 const Policy2 = ({list}) => {
-
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -105,7 +104,7 @@ const Policy2 = ({list}) => {
             ]}>
             <TextInput
               value={list[7]}
-              keyboardType='numeric'
+              keyboardType="numeric"
               placeholder="Enter number"
               placeholderTextColor="gray"
               onChangeText={value => list[8](value)}
@@ -115,7 +114,7 @@ const Policy2 = ({list}) => {
                 radioButtons={list[9]}
                 onPress={data => list[10](data)}
                 // containerStyle={styles.radio_hm}
-                layout='row'
+                layout="row"
               />
             </View>
           </View>
@@ -145,7 +144,7 @@ const Policy2 = ({list}) => {
           <View>
             <RadioGroup
               radioButtons={list[13]}
-              onPress={(data)=>list[14](data)}
+              onPress={data => list[14](data)}
               containerStyle={styles.radio_hm}
             />
           </View>

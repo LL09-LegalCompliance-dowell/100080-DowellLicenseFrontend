@@ -6,14 +6,13 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {email_validation, url_validation} from '../validations';
 
-
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
   const [valid_url, setValid_url] = useState(true);
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text
+        <Text
           style={
             list[0]
               ? styles.hide
@@ -25,7 +24,7 @@ const Policy1 = ({list}) => {
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>Website Disclaimer Last updated:</Text>
           <TextInput
-            style={[styles.input, {marginHorizontal:0}]}
+            style={[styles.input, {marginHorizontal: 0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -40,6 +39,45 @@ const Policy1 = ({list}) => {
             onSelect={value => list[2](value)}
             isHideOnSelect={true}
             initialDate={new Date()}
+          />
+
+          <Text style={styles.text_2}>Website disclaimer effective date:</Text>
+          <TextInput
+            style={[styles.input, {marginHorizontal: 0}]}
+            value={list[9].toLocaleDateString()}
+            placeholder="dd/mm/yyyy"
+            placeholderTextColor="gray"
+          />
+          <ModalDatePicker
+            button={
+              <View style={styles.calendarPosition}>
+                <EvilIcons name={'calendar'} size={35} color="gray" />
+              </View>
+            }
+            color="#489503"
+            onSelect={value => list[10](value)}
+            isHideOnSelect={true}
+            initialDate={new Date()}
+          />
+
+          <Text style={[styles.text_2]}>
+            Which law will govern the document?
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[11]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[12](value)}
+          />
+
+          <Text style={styles.text_2}>Company Name:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[13]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[14](value)}
           />
 
           <Text style={styles.text_2}>Website Name:</Text>

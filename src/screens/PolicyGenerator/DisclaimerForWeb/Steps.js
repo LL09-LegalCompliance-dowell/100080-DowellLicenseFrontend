@@ -5,9 +5,8 @@ import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const generate_date = date => {
   const temp = date.split('/');
@@ -15,23 +14,29 @@ const generate_date = date => {
 };
 
 const Steps = () => {
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
-  const navigation = useNavigation()
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
+  const navigation = useNavigation();
 
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
+  const [date_1, setDate_1] = useState(new Date());
+  const handle_date_1 = state => setDate_1(state);
   const [input_1, setInput_1] = useState('');
   const handle_input_1 = state => setInput_1(state);
   const [input_2, setInput_2] = useState('');
   const handle_input_2 = state => setInput_2(state);
   const [input_3, setInput_3] = useState('');
   const handle_input_3 = state => setInput_3(state);
+  const [input_4, setInput_4] = useState('');
+  const handle_input_4 = state => setInput_4(state);
+  const [input_5, setInput_5] = useState('');
+  const handle_input_5 = state => setInput_5(state);
   const [error_1, setError_1] = useState(false);
   const states = [
     empty_validationn,
@@ -43,12 +48,14 @@ const Steps = () => {
     handle_input_2,
     input_3,
     handle_input_3,
+    date_1,
+    handle_date_1,
+    input_4,
+    handle_input_4,
+    input_5,
+    handle_input_5,
   ];
-  const inputs = [
-    input_1,
-    input_2,
-    input_3,
-  ];
+  const inputs = [input_1, input_2, input_3, input_4, input_5];
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -81,7 +88,10 @@ const Steps = () => {
     last_update: generate_date(date.toLocaleDateString()),
     website_name: input_1,
     website_url: input_2,
-    website_contact_email: input_3
+    website_contact_email: input_3,
+    effective_date: generate_date(date_1.toLocaleDateString()),
+    jurisdiction: input_4,
+    company_name: input_5,
   };
 
   return (
@@ -119,7 +129,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              navigation.navigate('HomeScreen')
+              navigation.navigate('HomeScreen');
               // const y = email_validation(input_1_4);
               // const z = !y;
               // if (z) {
