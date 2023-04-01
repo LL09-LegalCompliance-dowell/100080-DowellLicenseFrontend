@@ -19,11 +19,11 @@ const findcountries=(cvalue)=>{
   }
 }
 const Jurisdictional  = [
-  'Jurisdiction option 1',
-  'Jurisdiction option 2',
-  'Jurisdiction option 3',
-  'Jurisdiction option 4',
-  'Jurisdiction option 5',
+    'India',
+    'United Arab Emirates',
+    'United Kingdom',
+    'United States',
+    'Australia',
   
 ]
 const findJurisdictional=(cvalue)=>{
