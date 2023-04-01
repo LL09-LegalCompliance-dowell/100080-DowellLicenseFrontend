@@ -1485,7 +1485,7 @@ const Steps = () => {
     terms_of_contract_duration_unit: e,
     terms_of_contract_duration: 1,
     // //////////////////////////////////////////////////////// 3
-    is_inline_copy_right_remove: g,
+    is_inline_copy_right_remove: false,
     is_term_of_contract_indefinite: false,
     contract_termination_date: generate_date(date_2.toLocaleDateString()),
     events_that_will_cause_contract_to_be_terminated: input_10_2,
@@ -1751,3 +1751,6 @@ const Steps = () => {
 };
 
 export default Steps;
+
+
+
