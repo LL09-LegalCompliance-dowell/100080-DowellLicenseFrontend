@@ -8,7 +8,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Progress from 'react-native-progress';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -61,13 +61,19 @@ const LicenseCompatibility = ({navigation}) => {
   // Get organization ID from local storage
   const [orgId, setOrgId] = useState('');
   const [userId, setUserId] = useState('');
-  const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem('org_id');
-    const user_id = await AsyncStorage.getItem('user_id');
-    setOrgId(org_id);
-    setUserId(user_id);
-  };
-  useMemo(() => getOrgId(), []);
+  useEffect(() => {
+    const getOrgId = async () => {
+      try {
+        const org_id = await AsyncStorage.getItem('org_id');
+        const user_id = await AsyncStorage.getItem('user_id');
+        setOrgId(org_id);
+        setUserId(user_id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getOrgId();
+  }, []);
 
   // Display first 5 table resutls on main page
   let firstFive = comparison.slice(0, 5);
@@ -76,22 +82,25 @@ const LicenseCompatibility = ({navigation}) => {
   }
 
   //Fetching all licencses into the state
-  useMemo(async () => {
-    try {
-      setLoading(true);
-      const LicensesData = await axios.get(
-        'https://100080.pythonanywhere.com/api/licenses/',
-      );
-      if (LicensesData.data) {
-        setLicenses1(LicensesData.data.data);
-        setSearchedData1(LicensesData.data.data);
-        setLicenses2(LicensesData.data.data);
-        setSearchedData2(LicensesData.data.data);
-        setLoading(false);
+  useEffect(() => {
+    const FetchLicenses = async () => {
+      try {
+        setLoading(true);
+        const LicensesData = await axios.get(
+          'https://100080.pythonanywhere.com/api/licenses/',
+        );
+        if (LicensesData.data) {
+          setLicenses1(LicensesData.data.data);
+          setSearchedData1(LicensesData.data.data);
+          setLicenses2(LicensesData.data.data);
+          setSearchedData2(LicensesData.data.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    };
+    FetchLicenses();
   }, []);
 
   const handleSelectedLicense1 = async () => {
@@ -544,7 +553,13 @@ const LicenseCompatibility = ({navigation}) => {
                           }}
                         />
                         <View>
-                          <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              maxWidth: 140,
+                              textAlign: 'center',
+                            }}>
                             {licenseOne}
                           </Text>
                           <Text
@@ -565,7 +580,13 @@ const LicenseCompatibility = ({navigation}) => {
                           source={{uri: licenseLogo2}}
                         />
                         <View>
-                          <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
+                          <Text
+                            style={{
+                              paddingTop: 0,
+                              color: colors.textDark,
+                              maxWidth: 140,
+                              textAlign: 'center',
+                            }}>
                             {licenseTwo}
                           </Text>
                           <Text
@@ -623,8 +644,8 @@ const LicenseCompatibility = ({navigation}) => {
                           fontStyle: 'italic',
                           alignSelf: 'center',
                         }}>
-                        "Can {compatibiltyPercentage < 50 ? 'not' : null} be used
-                        together in a project"
+                        "Can {compatibiltyPercentage < 50 ? 'not' : null} be
+                        used together in a project"
                       </Text>
                     ) : null}
 
