@@ -62,7 +62,7 @@ const SoftwereLicense = ({navigation}) => {
     getOrgId();
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     const fetchLicenses = async () => {
       try {
         setLoading(true);
