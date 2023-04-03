@@ -544,7 +544,7 @@ const LicenseCompatibility = ({navigation}) => {
                           }}
                         />
                         <View>
-                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                          <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
                             {licenseOne}
                           </Text>
                           <Text
@@ -565,7 +565,7 @@ const LicenseCompatibility = ({navigation}) => {
                           source={{uri: licenseLogo2}}
                         />
                         <View>
-                          <Text style={{paddingTop: 0, color: colors.textDark}}>
+                          <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
                             {licenseTwo}
                           </Text>
                           <Text
@@ -623,7 +623,7 @@ const LicenseCompatibility = ({navigation}) => {
                           fontStyle: 'italic',
                           alignSelf: 'center',
                         }}>
-                        "Can {compatibiltyPercentage < 50 ? 'not' : null}be used
+                        "Can {compatibiltyPercentage < 50 ? 'not' : null} be used
                         together in a project"
                       </Text>
                     ) : null}

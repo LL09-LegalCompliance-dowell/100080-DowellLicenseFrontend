@@ -74,7 +74,7 @@ const ResultsDetailsScreen = ({route}) => {
                       }}
                     />
                     <View>
-                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                      <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
                         {licenseOne}
                       </Text>
                       <Text
@@ -95,7 +95,7 @@ const ResultsDetailsScreen = ({route}) => {
                       source={{uri: licenseLogo2}}
                     />
                     <View>
-                      <Text style={{paddingTop: 0, color: colors.textDark}}>
+                      <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
                         {licenseTwo}
                       </Text>
                       <Text
