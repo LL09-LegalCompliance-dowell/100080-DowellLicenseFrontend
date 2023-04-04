@@ -32,13 +32,13 @@ const EulaPolicyNav = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Policy3"
           component={Policy3}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
         <Stack.Screen
           name="Policy4"
           component={Policy4}

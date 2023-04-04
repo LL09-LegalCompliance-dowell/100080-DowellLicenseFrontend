@@ -107,12 +107,16 @@ const Steps = () => {
       const handle_input_5_1 = (state)=> setInput_5_1(state);
       const [input_6_1, setInput_6_1] = useState('EUR');
       const handle_input_6_1 = (state)=> setInput_6_1(state);
+      const [input_7_1, setInput_7_1] = useState('');
+      const handle_input_7_1 = (state)=> setInput_7_1(state);
+      const [input_8_1, setInput_8_1] = useState('');
+      const handle_input_8_1 = (state)=> setInput_8_1(state);
       const [error_2, setError_2] = useState(false);
       const [empty_validationn_1, setempty_validation_1] = useState(true);
       const [valid_number , setValid_number]=useState(true);
       const handle_valid_number = (state)=> setValid_number(state);
-      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number,input_6_1,handle_input_6_1]
-      const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1]
+      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number,input_6_1,handle_input_6_1,input_7_1,handle_input_7_1,input_8_1,handle_input_8_1]
+      const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1,input_7_1,input_8_1]
      //3
      const [date_2, setDate_2] = useState(new Date());
      const handle_date_2 = (state)=> setDate_2(state);
@@ -255,10 +259,11 @@ const Steps = () => {
       party_details_phone: input_9,
       party_details_email: input_10,
       company_details_nature_of_company: nature_of_company ,
-      software_product: "Sample 2",
+      software_product: input_7_1,
       software_product_license_name: input_1_1,
-      software_product_license_name_uc: "",
+      software_product_license_name_uc: input_8_1,
       liability_remedy_amount: parseFloat(input_2_1),
+      liability_remedy_amount_currency: input_6_1,
       state_law_applies:input_3_1,
       jurisdiction_city:input_5_1,
       jurisdiction_state: input_4_1,
