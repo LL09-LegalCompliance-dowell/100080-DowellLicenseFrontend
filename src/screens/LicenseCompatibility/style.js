@@ -183,6 +183,13 @@ const styles = StyleSheet.create({
     color: '#A7A7A7',
     marginBottom: 35,
   },
+  bottomSheetContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 300,
+  },
   imagesContainer: {
     alignItems: 'center',
     marginHorizontal: 15,
