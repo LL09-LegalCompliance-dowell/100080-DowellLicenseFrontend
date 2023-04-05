@@ -6,15 +6,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     backgroundColor: 'white',
-    marginTop:60
   },
 
-  // cardContainer styles
-  cardContainer: {
-    marginTop: 80,
-    marginBottom: 20,
-    marginHorizontal: 15,
-  },
+  // cardContainer: {
+  //   marginTop: 80,
+  //   marginBottom: 20,
+  //   marginHorizontal: 15,
+  // },
 
   // Below Slider
   miniContainer: {
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 2,
-    elevation: 10,
+    elevation: 5,
     marginRight: 15,
   },
   // Row1 starts here
@@ -186,13 +184,12 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto',
     paddingBottom:4
   },
-  // separator: {
-  //   width: '100%',
-  //   backgroundColor: colors.borderLight,
-  //   height: 1,
-  //   marginTop: 10,
-  //   // elevation: ,
-  // },
+  vsText: {
+    fontSize: 12,
+    color: '#A7A7A7',
+    // marginBottom: 35,
+    alignSelf:'center'
+  },
 });
 
 export default styles;

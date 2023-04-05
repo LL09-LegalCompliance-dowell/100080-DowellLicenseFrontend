@@ -11,7 +11,7 @@ const ApacheLicense = ({route}) => {
   return (
     <>
       <Header title={item.softwarelicense.license_name} />
-
+      {console.log(item)}
       <ScrollView style={styles.container}>
         {/* Upper Container */}
         <View style={styles.upperContainer}>
@@ -49,7 +49,7 @@ const ApacheLicense = ({route}) => {
             {item.softwarelicense?.other_links?.map((item1, index) => {
               return (
                 // console.log(item1)
-                <>
+                <View key={index}>
                   <Text key={index} style={styles.heading4}>
                     {item1?.description}
                   </Text>
@@ -58,7 +58,7 @@ const ApacheLicense = ({route}) => {
                     onPress={() => Linking.openURL(item1?.url)}>
                     {item1?.url}
                   </Text>
-                </>
+                </View>
               );
             })}
           </View>
@@ -113,9 +113,7 @@ const ApacheLicense = ({route}) => {
 
           {item.softwarelicense?.risk_for_choosing_license !== '' ? (
             <>
-              <Text style={styles.heading1}>
-                6.Risks for choosing Apache License 2.0
-              </Text>
+              <Text style={styles.heading1}>6.Risks for choosing</Text>
               <Text style={styles.heading2}>
                 {item.softwarelicense?.risk_for_choosing_license}
               </Text>
@@ -133,9 +131,11 @@ const ApacheLicense = ({route}) => {
             <>
               <Text style={styles.heading1}>7.Compatible Licenses</Text>
               {item.softwarelicense?.license_compatible_with_lookup.map(
-                compatibleLicense => {
+                (compatibleLicense, index) => {
                   return (
-                    <Text style={styles.heading2}>{compatibleLicense}</Text>
+                    <Text key={index} style={styles.heading2}>
+                      {compatibleLicense}
+                    </Text>
                   );
                 },
               )}
@@ -146,9 +146,11 @@ const ApacheLicense = ({route}) => {
             <>
               <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
               {item.softwarelicense?.license_not_compatible_with_lookup.map(
-                compatibleLicense => {
+                (compatibleLicense, index) => {
                   return (
-                    <Text style={styles.heading2}>{compatibleLicense}</Text>
+                    <Text key={index} style={styles.heading2}>
+                      {compatibleLicense}
+                    </Text>
                   );
                 },
               )}
