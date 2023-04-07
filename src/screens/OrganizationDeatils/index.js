@@ -12,10 +12,12 @@ import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
+import Popup from './popup';
 
 const Profile = () => {
   const [loading, setLoading] = useState();
   const [org, setOrg] = useState("")
+  const [modalVisible, setModalVisible] = useState(false);
 
   const getOrgDetails = async() => {
     try{
@@ -46,13 +48,17 @@ const Profile = () => {
         </Text>
         <View style={styles.separator1}></View>
 
-        <TouchableOpacity style={styles.itemContainer}>
+        <View>
+        <TouchableOpacity style={styles.itemContainer} onPress={() => setModalVisible(true)}>
           <Text style={styles.feildData2}>Software License Policy</Text>
           <View style={styles.counterContainer}>
             <Text style={styles.counterText}>5</Text>
           </View>
         </TouchableOpacity>
-        <View style={styles.separator1}></View>
+        <Popup modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+        </View>
+
+        {/* <View style={styles.separator1}></View>
         <TouchableOpacity style={styles.itemContainer}>
           <Text style={styles.feildData2}>EULA Policy</Text>
           <View style={styles.counterContainer}>
@@ -65,7 +71,7 @@ const Profile = () => {
           <View style={styles.counterContainer}>
             <Text style={styles.counterText}>2</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.separator1}></View>
       </View>
     </View>
