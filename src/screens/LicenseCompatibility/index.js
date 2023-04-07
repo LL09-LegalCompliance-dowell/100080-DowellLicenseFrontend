@@ -103,7 +103,7 @@ const LicenseCompatibility = ({navigation}) => {
         console.log(error);
       }
     };
-    // FetchLicenses();
+    FetchLicenses();
   }, []);
 
   const handleSelectedLicense1 = async () => {
