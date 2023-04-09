@@ -17,14 +17,14 @@ import {DrawerActions} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
-const Header = ({title, leftIcon, rightIcon}) => {
+const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
   const navigation = useNavigation();
 
   const opennDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
   const gotoProfile = () => {
-     navigation.navigate('ProfileHome');
+    navigation.navigate('ProfileHome');
     //  navigation.navigate('AuthNavigator', {screen: 'Profile'});
   };
   return (
@@ -69,6 +69,16 @@ const Header = ({title, leftIcon, rightIcon}) => {
             name="user-circle"
             size={25}
             color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        ''
+      )}
+      {historyIcon === 'history' ? (
+        <TouchableOpacity onPress={openHistory}>
+          <Image
+          style={{width:30, width:35, resizeMode:'contain', marginTop:8}}
+            source={require('../screens/LicenseCompatibility/images/SearchHistory.png')}
           />
         </TouchableOpacity>
       ) : (
