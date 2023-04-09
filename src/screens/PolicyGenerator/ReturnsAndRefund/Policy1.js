@@ -53,7 +53,7 @@ const findcurrency=(cvalue)=>{
                     color="#489503"
                     onSelect={value => list[1](value)}
                     isHideOnSelect={true}
-                    initialDate={new Date()}
+                    initialDate={list[0]}
                 />
             </View>
             <Text style={styles.text_2}>Website/App Name:</Text>
