@@ -62,12 +62,12 @@ return (
             value={list[2]}
             onChangeText={(value)=>list[3](value)}
       /> 
-      <Text style={styles.text_2}>Software Product License Name UC:</Text>
+      {/* <Text style={styles.text_2}>Software Product License Name UC:</Text>
       <TextInput
             style={styles.input_vm}
             value={list[19]}
             onChangeText={(value)=>list[20](value)}
-      /> 
+      />  */}
       <Text style={styles.text_3}>Remedies Under Limitation Of Liability</Text> 
       <Text style={styles.text_2}>What should be the liability remedy amount?</Text>
       <View style={{display:"flex",flexDirection:"row"}}>
