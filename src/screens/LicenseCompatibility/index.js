@@ -8,7 +8,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import React, {useState, useMemo, useEffect} from 'react';
+import React, {useState, useMemo, useEffect, useRef} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Progress from 'react-native-progress';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -22,6 +22,7 @@ import styles from './style';
 import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 import Image1 from './images/Compatibility1.jpg';
 import Image2 from './images/Compatibility2.jpg';
@@ -57,6 +58,8 @@ const LicenseCompatibility = ({navigation}) => {
   const [license1Version, setLicense1Version] = useState('');
   const [license2Version, setLicense2Version] = useState('');
   const [recommendation_details, setRecommendation_details] = useState('');
+
+  const refBottomSheet1 = useRef();
 
   // Get organization ID from local storage
   const [orgId, setOrgId] = useState('');
@@ -182,6 +185,7 @@ const LicenseCompatibility = ({navigation}) => {
         // console.log(recommendation_details);
         setResult(true);
         setLoading(false);
+
         // await AsyncStorage.removeItem('licenseEventId1');
         // await AsyncStorage.removeItem('licenseEventId2');
         // setFeild1('temp');
@@ -215,6 +219,11 @@ const LicenseCompatibility = ({navigation}) => {
         .includes(text.toLowerCase());
     });
     setSearchedData2(searchData);
+  };
+
+  /////////
+  const openHistory = () => {
+    refBottomSheet1.current.open();
   };
 
   return (
@@ -462,7 +471,11 @@ const LicenseCompatibility = ({navigation}) => {
       {feild1 && feild2 == 'temp' ? (
         <HowToIcon onPress={() => setHowto(true)} />
       ) : null}
-      <Header title="License Compatibility" />
+      <Header
+        title="License Compatibility"
+        historyIcon="history"
+        openHistory={openHistory}
+      />
       <View style={styles.container}>
         <Text style={styles.heading}>Check license compatibility below</Text>
         <View style={styles.inputsContainer}>
@@ -789,7 +802,7 @@ const LicenseCompatibility = ({navigation}) => {
             }}>
             <Text style={{fontSize: 18}}>DISCLAIMER</Text>
             <Text
-              style={{fontSize: 15, textAlign: 'justify', paddingBottom: 85}}>
+              style={{fontSize: 15, textAlign: 'justify', paddingBottom: 85, color:'#828282'}}>
               The information provided on this website does not, and is not
               intended to, constitute legal advice; all information, content,
               and materials available on this site are for general informational
@@ -811,6 +824,140 @@ const LicenseCompatibility = ({navigation}) => {
             </Text>
           </ScrollView>
         )}
+        <View style={styles.bottomSheetContainer}>
+          <RBSheet
+            ref={refBottomSheet1}
+            height={450}
+            closeOnDragDown={true}
+            closeOnPressMask={true}
+            customStyles={{
+              wrapper: {
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                opacity: 1,
+              },
+              draggableIcon: {
+                backgroundColor: '#000',
+              },
+              container: {
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                backgroundColor: 'white',
+                opacity:1
+              },
+            }}>
+            <View
+              style={{
+                width: '100%',
+                backgroundColor: 'white',
+              }}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingVertical: 5,
+                  backgroundColor: 'white',
+                }}>
+                <Text style={{color: 'black', fontSize:18, fontWeight:'600',  }}>
+                  Compatibilities you've searched
+                </Text>
+                <ScrollView style={{width: '100%'}}>
+                  <View style={styles.serchResultItemContainer}>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        Apache vs MIT
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        Mozila vs MIT
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        Apache vs MIT
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        2 minuts ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={async () => {}}>
+                      <Text style={styles.serchResultHeading}>
+                        MIT vs Mozila
+                      </Text>
+                      <Text numberOfLines={1} style={styles.serchResultDetails}>
+                        1 month ago
+                      </Text>
+                      <View style={styles.separator}></View>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
+              </View>
+            </View>
+          </RBSheet>
+        </View>
       </View>
     </>
   );
