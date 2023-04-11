@@ -331,7 +331,7 @@ const Policy3 = ({list}) => {
             color="#489503"
             onSelect={value => list[12](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[11]}
           />
         </View>
         <Text style={styles.text_1}>Execution Part (Employee):</Text>
@@ -404,7 +404,7 @@ const Policy3 = ({list}) => {
             color="#489503"
             onSelect={value => list[18](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[17]}
           />
         </View>
       </ScrollView>

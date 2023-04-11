@@ -320,7 +320,7 @@ const Policy5 = ({list}) => {
               color="#489503"
               onSelect={value => list[10](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[9]}
             />
           </View>
 
@@ -356,7 +356,7 @@ const Policy5 = ({list}) => {
               color="#489503"
               onSelect={value => list[14](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[13]}
             />
           </View>
 
@@ -456,7 +456,7 @@ const Policy5 = ({list}) => {
               color="#489503"
               onSelect={value => list[24](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[23]}
             />
           </View>
 
@@ -493,7 +493,7 @@ const Policy5 = ({list}) => {
               color="#489503"
               onSelect={value => list[28](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[27]}
             />
           </View>
         </View>

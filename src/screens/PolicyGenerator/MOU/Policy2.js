@@ -62,7 +62,7 @@ const Policy2 = ({list}) => {
             color="#489503"
             onSelect={value => list[6](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[5]}
           />
 
           <Text style={styles.text_2}>
@@ -83,7 +83,7 @@ const Policy2 = ({list}) => {
             color="#489503"
             onSelect={value => list[8](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[7]}
           />
           <Text style={styles.text_2}>
           What will be the period for notice in case of cancellation or amendment of this memorandum?
