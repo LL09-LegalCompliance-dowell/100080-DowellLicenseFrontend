@@ -79,6 +79,14 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[5](value)}
           />
+          <Text style={styles.text_2}>Website/App Name:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[23]}
+            placeholder="Enter here"
+            placeholderTextColor="gray" 
+            onChangeText={(value)=>list[24](value)}
+          />
           <Text style={styles.text_2}>Address of the company:</Text>
           <TextInput
             style={styles.input_vm}
