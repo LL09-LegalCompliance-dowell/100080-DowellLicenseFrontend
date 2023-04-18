@@ -17,6 +17,14 @@ const Policy2 = ({list}) => {
         <Text style={list[14]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
         <Text style={styles.text_1}>Other Details:</Text>
         <View style={{paddingHorizontal:11,paddingTop:16,position:"relative"}}>
+        <Text style={styles.text_2}>Website/App Name:</Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[15]}
+            placeholder="Enter here"
+            placeholderTextColor="gray" 
+            onChangeText={(value)=>list[16](value)}
+          />
           <Text style={styles.text_2}>What shall be the term of this agreement?</Text>
           <TextInput
             style={styles.input_vm}
@@ -37,7 +45,7 @@ const Policy2 = ({list}) => {
             maxLength={10}
           />
           <Text  style={valid_number? styles.hide: styles.text_warning}>Please Enter valid number</Text>
-          <View style ={{position:"absolute",top:63,left:120}} >
+          <View style ={{position:"absolute",top:165,left:120}} >
             <RadioGroup
               radioButtons={list[12]}
               onPress={(data)=>list[13](data)}
@@ -71,7 +79,7 @@ const Policy2 = ({list}) => {
               color="#489503"
               onSelect={value => list[11](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[10]}
             />
           </View>
         </View>

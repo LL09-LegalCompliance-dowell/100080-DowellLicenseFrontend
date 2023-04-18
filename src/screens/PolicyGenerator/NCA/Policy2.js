@@ -84,7 +84,7 @@ const Policy2 = ({list}) => {
             color="#489503"
             onSelect={value => list[6](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[5]}
           />
 
           <Text style={styles.text_2}>

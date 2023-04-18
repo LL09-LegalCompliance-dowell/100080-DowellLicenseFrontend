@@ -70,9 +70,11 @@ const Steps = () => {
       const handle_input_9 = (state)=> setInput_9(state);
       const [input_10, setInput_10] = useState('');
       const handle_input_10 = (state)=> setInput_10(state);
+      const [input_11, setInput_11] = useState('');
+      const handle_input_11 = (state)=> setInput_11(state);
       const [error_1, setError_1] = useState(false);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,input_5,handle_input_5,input_6,handle_input_6,input_7,handle_input_7,input_8,handle_input_8,input_9,handle_input_9,input_10,handle_input_10,empty_validationn]
+      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,input_5,handle_input_5,input_6,handle_input_6,input_7,handle_input_7,input_8,handle_input_8,input_9,handle_input_9,input_10,handle_input_10,empty_validationn,input_11,handle_input_11]
       const inputs= [input_1,input_2,input_3,input_4,input_5,input_6,input_7,input_8,input_9,input_10]
       //2
       const [radioButtons, setRadioButtons] = useState([{
@@ -248,6 +250,7 @@ const Steps = () => {
       agreement_compliance_type: "eula",
       organization_id: orgId,
       date_of_execution_of_document: generate_date(date.toLocaleDateString()),
+      website_or_app_name: input_11,
       party_details_full_name: input_1,
       party_details_company_name:input_2,
       party_details_address_line_1:input_3,

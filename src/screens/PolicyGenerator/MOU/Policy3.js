@@ -187,7 +187,7 @@ const Policy3 = ({list}) => {
             color="#489503"
             onSelect={value => list[12](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[11]}
           />
           <Text style={styles.text_2}>
             Should the parties agree to refrain from negotiating with any third

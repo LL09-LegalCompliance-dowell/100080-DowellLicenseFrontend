@@ -54,7 +54,7 @@ const Steps = () => {
       const states= [date,handle_date,input_1,handle_input_1,empty_validationn]
 
       ///////////////////////////////////////////////////////////////////////////4
-      
+      //website_or_app_name already implemented
       const request_object={
         agreement_compliance_type: "app-disclaimer",
         organization_id: orgId,

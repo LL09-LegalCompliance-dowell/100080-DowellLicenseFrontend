@@ -74,7 +74,8 @@ const Steps = () => {
           website_name: input_2,
           jurisdiction: input_3,
           website_url: input_4 ,
-          website_contact_email:input_5
+          website_contact_email:input_5,
+          website_or_app_name: input_2
       }
      
     return (
