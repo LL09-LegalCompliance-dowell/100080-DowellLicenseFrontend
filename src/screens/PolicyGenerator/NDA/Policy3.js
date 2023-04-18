@@ -56,7 +56,7 @@ const Policy3 = ({list}) => {
               color="#489503"
               onSelect={value => list[3](value)}
               isHideOnSelect={true}
-              initialDate={new Date()}
+              initialDate={list[2]}
             />
       </View>
       <Text style={styles.text_2}>Will the party be allowed to enter into similar arrangements with other parties while the non disclosure agreement subsits?(exclusive or not).</Text>
