@@ -31,6 +31,8 @@ const Steps = () => {
        const [input, setinput] = useState("");
        const handle_input = (state)=> setinput(state); 
      
+       const [w_n, setw_n] = useState("");
+       const handle_w_n = (state)=> setw_n(state); 
        const [radioButtons, setRadioButtons] = useState([{
          id: '1',
          label: 'Yes',
@@ -210,7 +212,7 @@ const Steps = () => {
        const [error_1, setError_1] = useState(false);
        const [empty_validationn, setempty_validation] = useState(true);
        const inputs_1=[name_entity,input]
-       const states= [date,handle_date,name_entity,handle_entity,radioButtons,handle_radiobuttons,handle_selected,selected,handle_selected_v2,input,handle_input,radioButtons1,handle_radiobuttons1,radioButtons2,handle_radiobuttons2,radioButtons3,handle_radiobuttons3,radioButtons4,handle_radiobuttons4,radioButtons5,handle_radiobuttons5,radioButtons6,handle_radiobuttons6,selected1,handle_selected1,handle_selected1_v2,empty_validationn]
+       const states= [date,handle_date,name_entity,handle_entity,radioButtons,handle_radiobuttons,handle_selected,selected,handle_selected_v2,input,handle_input,radioButtons1,handle_radiobuttons1,radioButtons2,handle_radiobuttons2,radioButtons3,handle_radiobuttons3,radioButtons4,handle_radiobuttons4,radioButtons5,handle_radiobuttons5,radioButtons6,handle_radiobuttons6,selected1,handle_selected1,handle_selected1_v2,empty_validationn,w_n,handle_w_n]
        ////////////////////////////////////////////////////////////2
        const [input_1, setInput_1] = useState("");
        const handle_input_1 = (state)=> setInput_1(state);
@@ -406,6 +408,7 @@ useEffect(()=>{
     }
   const request_object={
     agreement_compliance_type: "cookie-policy",
+    website_or_app_name: w_n,
     organization_id: orgId,
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_full_name: name_entity,

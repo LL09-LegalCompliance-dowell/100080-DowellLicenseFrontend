@@ -37,7 +37,7 @@ const Policy1 = ({list}) => {
             color="#489503"
             onSelect={value => list[1](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[0]}
           />
         </View>
         <Text style={styles.text_3_m_b}>Clause 3</Text>
@@ -48,6 +48,14 @@ const Policy1 = ({list}) => {
             placeholder="  Eg. John Smith Doe"
             placeholderTextColor="gray" 
             onChangeText={(value)=>list[3](value)}
+        />
+        <Text style={styles.text_2}>Website/App Name:</Text>
+        <TextInput
+          style={styles.input_vm}
+          value={list[11]}
+          placeholder="Enter here"
+          placeholderTextColor="gray" 
+          onChangeText={(value)=>list[12](value)}
         />
         <Text style={styles.text_2}>Website URL:</Text>
         <TextInput

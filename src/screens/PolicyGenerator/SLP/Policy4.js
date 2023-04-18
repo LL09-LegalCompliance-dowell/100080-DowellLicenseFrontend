@@ -249,7 +249,7 @@ const Policy4 = ({list}) => {
             color="#489503"
             onSelect={value => list[32](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[31]}
           />
 
           <Text style={styles.text_3}>Clause 12.3</Text>

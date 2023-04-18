@@ -75,7 +75,7 @@ const findcurrency=(cvalue)=>{
             color="#489503"
             onSelect={value => list[3](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[2]}
           />
 
           <Text style={[styles.text_1, {fontSize: 15}]}>
@@ -96,7 +96,7 @@ const findcurrency=(cvalue)=>{
             color="#489503"
             onSelect={value => list[5](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[4]}
           />
         </View>
 
@@ -274,7 +274,7 @@ const findcurrency=(cvalue)=>{
             color="#489503"
             onSelect={value => list[25](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[24]}
           />
            <Text style={[styles.text_1, {fontSize: 15}]}>
            When will the invoices be payable by after receipt?
@@ -294,7 +294,7 @@ const findcurrency=(cvalue)=>{
             color="#489503"
             onSelect={value => list[27](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[26]}
           />
         </View>
         
