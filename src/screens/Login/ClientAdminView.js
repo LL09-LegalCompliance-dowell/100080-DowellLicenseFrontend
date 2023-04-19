@@ -57,7 +57,7 @@ const ClientAdminView = ({navigation, route}) => {
         {key: session_id},
       );
       console.log('Portfolio Data', response.data);
-      //console.log("User Details",responseUser.data)
+      console.log("User Details",responseUser.data)
       const {username, email, first_name, id} = responseUser.data;
       id && (await AsyncStorage.setItem('user_id', id.toString()));
       username && (await AsyncStorage.setItem('username', username));
