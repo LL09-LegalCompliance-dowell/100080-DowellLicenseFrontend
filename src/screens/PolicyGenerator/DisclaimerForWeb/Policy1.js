@@ -38,7 +38,7 @@ const Policy1 = ({list}) => {
             color="#489503"
             onSelect={value => list[2](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[1]}
           />
 
           <Text style={styles.text_2}>Website disclaimer effective date:</Text>
@@ -57,7 +57,7 @@ const Policy1 = ({list}) => {
             color="#489503"
             onSelect={value => list[10](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[9]}
           />
 
           <Text style={[styles.text_2]}>

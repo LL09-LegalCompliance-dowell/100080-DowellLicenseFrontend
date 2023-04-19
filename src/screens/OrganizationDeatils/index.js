@@ -6,6 +6,7 @@ import {
   View,
   StatusBar,
   ScrollView,
+  
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
@@ -13,32 +14,69 @@ import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
 import Popup from './popup';
-
+import histpryApi from './histpryApi';
+import { FlatList } from 'react-native-gesture-handler';
+// <Popup modalVisible={modalVisible} setModalVisible={setModalVisible}/>
 const Profile = () => {
-  const [loading, setLoading] = useState();
-  const [org, setOrg] = useState("")
+  const [loading, setLoading] = useState(false);
+  const [org, setOrg] = useState("");
+  const [ orgId, setOrgId ] = useState("");
+  const [ data, setData ] = useState({});
+  const [ data_keys, setData_keys ] = useState([]);
+
+  const [numToRender, setNumToRender] = useState(30);
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const getOrgDetails = async() => {
     try{
+      setLoading(true);
       const org = await AsyncStorage.getItem("org_name")
+      const org_id = await AsyncStorage.getItem("org_id");
       org && setOrg(org)
+      setOrgId(org_id)
+    
+      const result = await histpryApi(orgId);
+      
+      
+      setData({...result.data})
+      setData_keys(Object.keys(result.data))
+      console.log(result)
+      
+      setLoading(false);
+      
     }catch(error){
-      console.log(error)
+      setLoading(false);
+      alert('Something went wrong, please try again later');
     }
   }
+  
 
   useEffect(() => {
     getOrgDetails()
+    
   }, [])
   
-
+  const renderItem = ({ item }) => {
+    return (
+      <View  >
+            <TouchableOpacity style={styles.itemContainer} >
+              <Text style={styles.feildData2}>{item}</Text>
+              <View style={styles.counterContainer}>
+                <Text style={styles.counterText}>{data[item].length}</Text>
+              </View>
+            </TouchableOpacity>
+            </View>
+    );
+  };
   return (
+    <View>
     <View style={styles.container}>
       {loading ? <AppLoader /> : null}
       <StatusBar color="white" />
       <Header title="Organization Details" />
       <View style={styles.innerContainer}>
+      
         <Image source={require('./orgIcon.png')} style={styles.profileIcon} />
         <Text style={styles.label}>Organization Name</Text>
         <Text style={styles.feildData}>{org}</Text>
@@ -46,34 +84,24 @@ const Profile = () => {
         <Text style={[styles.feildData1, {paddingTop: 50}]}>
           Agreement Compliance Policies:
         </Text>
-        <View style={styles.separator1}></View>
-
-        <View>
-        <TouchableOpacity style={styles.itemContainer} onPress={() => setModalVisible(true)}>
-          <Text style={styles.feildData2}>Software License Policy</Text>
-          <View style={styles.counterContainer}>
-            <Text style={styles.counterText}>5</Text>
-          </View>
-        </TouchableOpacity>
-        <Popup modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+        <View style={styles.separator1}></View>   
+        <View style={{height:"50%"}}>
+        <FlatList
+          data={data_keys}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          initialNumToRender={numToRender}
+          onEndReached={() => setNumToRender(numToRender + 30)}
+          onEndReachedThreshold={0.1}
+          
+        />
         </View>
-
-        {/* <View style={styles.separator1}></View>
-        <TouchableOpacity style={styles.itemContainer}>
-          <Text style={styles.feildData2}>EULA Policy</Text>
-          <View style={styles.counterContainer}>
-            <Text style={styles.counterText}>1</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={styles.separator1}></View>
-        <TouchableOpacity style={styles.itemContainer}>
-          <Text style={styles.feildData2}>GDPR Privacy Policy</Text>
-          <View style={styles.counterContainer}>
-            <Text style={styles.counterText}>2</Text>
-          </View>
-        </TouchableOpacity> */}
-        <View style={styles.separator1}></View>
+        
+        <Text> omair</Text>
+        
+        
       </View>
+    </View>
     </View>
   );
 };
@@ -144,6 +172,8 @@ const styles = StyleSheet.create({
     height: 0.8,
   },
   itemContainer: {
+    display:"flex",
+    flex:1,
     flexDirection: 'row',
   },
   counterContainer: {
@@ -158,4 +188,19 @@ const styles = StyleSheet.create({
   counterText: {
     color: 'white',
   },
+  wrapper: {
+    
+
+    width:"100%",
+    height:"100%",
+    margin: 20,
+    alignSelf: 'center',
+    padding: 20,
+    borderWidth: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    backgroundColor: 'lightblue'
+ 
+   
+  }
 });
