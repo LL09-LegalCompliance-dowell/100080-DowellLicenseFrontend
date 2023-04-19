@@ -1433,14 +1433,14 @@ const Steps = () => {
     handle_date_8,
   ];
   const inputs_4 = [
-    // input_1_4,
-    // input_2_4,
+    input_1_4,
+    input_2_4,
     // input_3_4,
-    // input_4_4,
-    // input_5_4,
-    // input_6_4,
+    input_4_4,
+    input_5_4,
+    input_6_4,
     // input_7_4,
-    // input_8_4,
+    input_8_4,
   ];
 
   const request_object = {
@@ -1484,45 +1484,52 @@ const Steps = () => {
     // terms_of_contract_duration: input_8_1,
     terms_of_contract_duration_unit: e,
     terms_of_contract_duration: 1,
-    // //////////////////////////////////////////////////////// 3
+    //   // //////////////////////////////////////////////////////// 3
     is_inline_copy_right_remove: false,
-    is_term_of_contract_indefinite: false,
+    is_term_of_contract_indefinite: 'Term is indefinite',
     contract_termination_date: generate_date(date_2.toLocaleDateString()),
     events_that_will_cause_contract_to_be_terminated: input_10_2,
-    // number_of_license_to_be_deliver: input_1_2,
+    //   // number_of_license_to_be_deliver: input_1_2,
     number_of_license_to_be_deliver: 4,
     number_of_license_to_be_deliver_unit: input_2_2,
     software_delivery_channel: input_2_2,
-    // within_what_period_must_software_be_delivered: input_3_2,
+    //   // within_what_period_must_software_be_delivered: input_3_2,
     within_what_period_must_software_be_delivered: 12,
     within_what_period_must_software_be_delivered_unit: i,
     what_did_licensor_supply_to_the_licensee: input_4_2,
     purpose_by_reference_to_which_sub_licensing_is_permitted: input_5_2,
     when_should_invoice_be_issued: input_6_2,
     invoicing_date: generate_date(date_3.toLocaleDateString()),
-    // period_for_payment_of_invoices: input_7_2,
+    //   // period_for_payment_of_invoices: input_7_2,
     period_for_payment_of_invoices: 85,
     period_for_payment_of_invoices_unit: j,
     effective_date_for_invoice_payment: generate_date(
       date_4.toLocaleDateString(),
     ),
     invoice_payment_method: input_8_2,
-    // interest_rate_apply_to_late_payment: input_9_2,
+    //   // interest_rate_apply_to_late_payment: input_9_2,
     interest_rate_apply_to_late_payment: 2450.55,
-    // //////////////////////////////////////4
+    //   // //////////////////////////////////////4
+    add_warranty_optional_element: false,
     optional_element: '',
-    is_warranty_relate_to_a_specific_period: true,
-    scope_of_warranty: 'Nil',
-    jurisdictional_coverage_of_warranty: 'Nil',
+    is_warranty_relate_to_a_specific_period: k,
+    // period_apply_to_warranty: input_2_3,
     period_apply_to_warranty: 3,
-    period_apply_to_warranty_unit: 'Months',
-    circumstances_in_which_licensor_may_exercise_its_rights: 'Nil',
-    should_there_be_an_express_requirement_for_licensor_to_act_reasonably: false,
+    period_apply_to_warranty_unit: l,
+    scope_of_warranty: input_4_3,
+    jurisdictional_coverage_of_warranty: input_5_3,
+    circumstances_in_which_licensor_may_exercise_its_rights: input_6_3,
+    should_there_be_an_express_requirement_for_licensor_to_act_reasonably: m,
+    // are_there_limitations_on_right_to_modify: n,
     are_there_limitations_on_right_to_modify: false,
+    // limitations_on_right_to_modify_specification: input_7_3,
     limitations_on_right_to_modify_specification: 'Nil',
+    // termination_notice_period_apply: input_8_3,
     termination_notice_period_apply: 3,
+    // termination_notice_period_apply_unit: o,
     termination_notice_period_apply_unit: 'Months',
     is_termination_period_expirable: false,
+    // is_termination_period_expirable: p,
     relevant_termination_period: 0,
     relevant_termination_period_unit: 'Days',
     relevant_termination_period_date: '2022-10-20',
@@ -1542,27 +1549,36 @@ const Steps = () => {
     law_governs_document: 'Nil',
     court_of_jurisdiction_which_has_exclusive_right_to_adjudicate_disputes_on_document:
       'Nil',
-    which_entity_will_sign_contract_on_behalf_of_party_1: 'Contractor',
+    //////////////////////////////5
+    which_entity_will_sign_contract_on_behalf_of_party_1: s,
+    full_name_of_party_1_signatory: input_1_4,
     party_1_signatory_scanned_copy_detail: {
-      filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
+      filename: input_2_4,
+      file_extension: 'png',
     },
-    full_name_of_party_1_signatory: 'party 1 name',
-    party_1_date_of_signing_contract: '2022-11-02',
-    full_name_of_the_person_sign_on_behalf_of_party_1: 'witness 1 name',
-    date_contract_was_sign_on_behalf_of_party_1: '2022-11-02',
-    which_entity_will_sign_contract_on_behalf_of_party_2: 'Contractor',
+    party_1_date_of_signing_contract: generate_date(
+      date_5.toLocaleDateString(),
+    ),
+    full_name_of_the_person_sign_on_behalf_of_party_1: input_4_4,
+    date_contract_was_sign_on_behalf_of_party_1: generate_date(
+      date_6.toLocaleDateString(),
+    ),
+    which_entity_will_sign_contract_on_behalf_of_party_2: t,
+    full_name_of_party_2_signatory: input_5_4,
     party_2_signatory_scanned_copy_detail: {
-      filename: 'img_47dbffd8-50c1-4f5c-af54-819db6d902ab.png',
+      filename: input_6_4,
+      file_extension: 'png',
     },
-    full_name_of_party_2_signatory: 'party 2 name',
-    party_2_date_of_signing_contract: '2022-11-05',
-    full_name_of_the_person_sign_on_behalf_of_party_2: 'witness 2 name',
-    date_contract_was_sign_on_behalf_of_party_2: '2022-11-05',
+    party_2_date_of_signing_contract: generate_date(
+      date_7.toLocaleDateString(),
+    ),
+    full_name_of_the_person_sign_on_behalf_of_party_2: input_8_4,
+    date_contract_was_sign_on_behalf_of_party_2: generate_date(
+      date_8.toLocaleDateString(),
+    ),
   };
 
   // const request_object = {
-
-  //
   //   is_inline_copy_right_remove: g,
   //   is_term_of_contract_indefinite: h,
   //   contract_termination_date: generate_date(date_2.toLocaleDateString()),
@@ -1751,6 +1767,3 @@ const Steps = () => {
 };
 
 export default Steps;
-
-
-
