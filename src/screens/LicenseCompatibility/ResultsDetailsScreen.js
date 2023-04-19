@@ -17,20 +17,29 @@ import * as Progress from 'react-native-progress';
 import colors from '../../../assets/colors/colors';
 
 const ResultsDetailsScreen = ({route}) => {
-  const {
-    comparison,
-    licenseLogo1,
-    licenseLogo2,
-    licenseOne,
-    licenseTwo,
-    compatibiltyPercentage,
-    isCompatible,
-    disclaimer,
-    recommendation_details,
-    license1Version,
-    license2Version,
-    recommendation,
-  } = route.params;
+  const {res, permissions, conditions} = route.params;
+  console.log(conditions);
+
+  console.log(res.license_1.limitations);
+
+  const limitation = [
+    {
+      action: 'Liability',
+      limitation1: res.license_1.limitations[0].permission,
+      limitation2: res.license_2.limitations[0].permission,
+    },
+    {
+      action: 'Warranty',
+      limitation1: res.license_1.limitations[1].permission,
+      limitation2: res.license_2.limitations[1].permission,
+    },
+    {
+      action: 'Trademark use',
+      limitation1: res.license_1.limitations[2].permission,
+      limitation2: res.license_2.limitations[2].permission,
+    },
+  ];
+
   return (
     <>
       <Header title="Full In-Depth Comparison" />
@@ -70,12 +79,18 @@ const ResultsDetailsScreen = ({route}) => {
                       resizeMode="contain"
                       style={styles.logoStyle}
                       source={{
-                        uri: licenseLogo1,
+                        uri: res?.license_1?.logo_detail?.url,
                       }}
                     />
                     <View>
-                      <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
-                        {licenseOne}
+                      <Text
+                        style={{
+                          paddingTop: 0,
+                          color: colors.textDark,
+                          maxWidth: 140,
+                          textAlign: 'center',
+                        }}>
+                        {res.license_1.license_name}
                       </Text>
                       <Text
                         style={{
@@ -83,7 +98,7 @@ const ResultsDetailsScreen = ({route}) => {
                           color: colors.textDark,
                           alignSelf: 'center',
                         }}>
-                        {license1Version}
+                        {res.license_1.version}
                       </Text>
                     </View>
                   </View>
@@ -92,11 +107,17 @@ const ResultsDetailsScreen = ({route}) => {
                     <Image
                       resizeMode="contain"
                       style={styles.logoStyle}
-                      source={{uri: licenseLogo2}}
+                      source={{uri: res?.license_2?.logo_detail?.url}}
                     />
                     <View>
-                      <Text style={{paddingTop: 0, color: colors.textDark, maxWidth:140, textAlign:'center'}}>
-                        {licenseTwo}
+                      <Text
+                        style={{
+                          paddingTop: 0,
+                          color: colors.textDark,
+                          maxWidth: 140,
+                          textAlign: 'center',
+                        }}>
+                        {res.license_2?.license_name}
                       </Text>
                       <Text
                         style={{
@@ -104,7 +125,7 @@ const ResultsDetailsScreen = ({route}) => {
                           color: colors.textDark,
                           alignSelf: 'center',
                         }}>
-                        {license2Version}
+                        {res.license_2.version}
                       </Text>
                     </View>
                   </View>
@@ -127,7 +148,7 @@ const ResultsDetailsScreen = ({route}) => {
                 <View style={styles.progressBarConatainer}>
                   <View>
                     <Progress.Bar
-                      progress={compatibiltyPercentage / 100}
+                      progress={res.percentage_of_compatibility / 100}
                       width={313}
                       height={20}
                       borderRadius={20}
@@ -137,75 +158,48 @@ const ResultsDetailsScreen = ({route}) => {
                     />
                   </View>
                   <Text style={styles.percentage}>
-                    {compatibiltyPercentage}%
+                    {res.percentage_of_compatibility}%
                   </Text>
                 </View>
-
-                {compatibiltyPercentage < 70 ? (
+                {res.percentage_of_compatibility < 70 ? (
                   <Text
                     style={{
                       paddingBottom: 10,
                       fontSize: 21,
                       color:
-                        compatibiltyPercentage > 50 ? colors.primary : 'red',
+                        res.percentage_of_compatibility > 50
+                          ? colors.primary
+                          : 'red',
                       fontWeight: 'bold',
                       fontStyle: 'italic',
                       alignSelf: 'center',
                     }}>
-                    "Can {compatibiltyPercentage < 50 ? 'not' : null}be used
-                    together in a project"
+                    "Can {res.percentage_of_compatibility < 50 ? 'not' : null}{' '}
+                    be used together in a project"
                   </Text>
                 ) : null}
 
-                {compatibiltyPercentage >= 70 ? (
+                {res.percentage_of_compatibility >= 70 ? (
                   <Text
                     style={{
                       paddingBottom: 10,
                       fontSize: 21,
                       color:
-                        compatibiltyPercentage > 50 ? colors.primary : 'red',
+                        res.percentage_of_compatibility > 50
+                          ? colors.primary
+                          : 'red',
                       fontWeight: 'bold',
                       fontStyle: 'italic',
                       alignSelf: 'center',
                     }}>
-                    "Highly recommended to use together in a project""
+                    "Highly recommended to use together in a project"
                   </Text>
                 ) : null}
-
-                {/* Recommendation Details */}
-
-                {recommendation_details ? (
-                  <>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '700',
-                          fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 10,
-                        },
-                      ]}>
-                      Recommendation Details
-                    </Text>
-                    <Text style={{color: 'black'}}>
-                      {recommendation_details}
-                    </Text>
-                  </>
-                ) : null}
-
                 <Text
-                  style={[
-                    styles.heading,
-                    {
-                      fontWeight: '700',
-                      fontFamily: 'roboto',
-                      fontSize: 20,
-                      paddingBottom: 10,
-                    },
-                  ]}>
-                  Comparison
+                  style={{color: 'black', paddingBottom: 7, paddingTop: 30}}>
+                  The Explanation is based on the below given table.
                 </Text>
+
                 {/* Table starts here */}
                 <View>
                   <View style={styles.tableHederConatainer}>
@@ -213,67 +207,726 @@ const ResultsDetailsScreen = ({route}) => {
                       <Text style={styles.tableHeaderText}>Category</Text>
                     </View>
                     <View style={styles.tableItemConatainer}>
-                      <Text style={styles.tableHeaderText}>{licenseOne}</Text>
+                      <Text style={styles.tableHeaderText}>
+                        {res.license_1.license_name}
+                      </Text>
                     </View>
                     <View
                       style={[
                         styles.tableItemConatainer,
                         {borderRightWidth: 0},
                       ]}>
-                      <Text style={styles.tableHeaderText}>{licenseTwo}</Text>
+                      <Text style={styles.tableHeaderText}>
+                        {res.license_2.license_name}
+                      </Text>
                     </View>
+                  </View>
+                  <View
+                    style={[
+                      styles.tableHederConatainer,
+                      {alignItems: 'center', justifyContent: 'center'},
+                    ]}>
+                    <Text
+                      style={[
+                        styles.heading,
+                        {
+                          fontWeight: '400',
+                          fontFamily: 'roboto',
+                          fontSize: 16,
+                          padding: 10,
+                          textAlign: 'center',
+                        },
+                      ]}>
+                      Permissions in Addition to Commercial Use, Distribution
+                      and Modification
+                    </Text>
                   </View>
                 </View>
               </View>
             }
             ListFooterComponent={
               <>
-                {recommendation ? (
-                  <>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '700',
+                <View
+                  style={[
+                    styles.tableHederConatainer,
+                    {alignItems: 'center', justifyContent: 'center'},
+                  ]}>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '400',
+                        fontFamily: 'roboto',
+                        fontSize: 16,
+                        padding: 10,
+                        textAlign: 'center',
+                      },
+                    ]}>
+                    Conditions
+                  </Text>
+                </View>
+                {conditions.map((item, index) => {
+                  return (
+                    <View key={index} style={styles.tableDataConatainer}>
+                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                        <Text style={{padding: 7, color: colors.textDark}}>
+                          {item?.action}
+                        </Text>
+                      </View>
+                      <View style={styles.tableItemConatainer}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item?.license_1_permission == 'Yes'
+                                  ? 'green'
+                                  : 'red',
+                            },
+                          ]}>
+                          {item?.license_1_permission}
+                        </Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.tableItemConatainer,
+                          {borderRightWidth: 0},
+                        ]}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item?.license_2_permission == 'Yes'
+                                  ? 'green'
+                                  : 'red',
+                            },
+                          ]}>
+                          {item?.license_2_permission}
+                        </Text>
+                      </View>
+                    </View>
+                  );
+                })}
+                <View
+                  style={[
+                    styles.tableHederConatainer,
+                    {alignItems: 'center', justifyContent: 'center'},
+                  ]}>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '400',
+                        fontFamily: 'roboto',
+                        fontSize: 16,
+                        padding: 10,
+                        textAlign: 'center',
+                      },
+                    ]}>
+                    Limitations/ Disclaimer
+                  </Text>
+                </View>
+                {limitation.map((item, index) => {
+                  return (
+                    <View key={index} style={styles.tableDataConatainer}>
+                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                        <Text style={{padding: 7, color: colors.textDark}}>
+                          {item?.action}
+                        </Text>
+                      </View>
+                      <View style={styles.tableItemConatainer}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item?.limitation1 == 'Yes' ? 'green' : 'red',
+                            },
+                          ]}>
+                          {item?.limitation1}
+                        </Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.tableItemConatainer,
+                          {borderRightWidth: 0},
+                        ]}>
+                        <Text
+                          style={[
+                            styles.tableDatarText,
+                            {
+                              color:
+                                item?.limitation1 == 'Yes' ? 'green' : 'red',
+                            },
+                          ]}>
+                          {item?.limitation1}
+                        </Text>
+                      </View>
+                    </View>
+                  );
+                })}
+                <Text
+                  style={[
+                    styles.tableHeaderText,
+                    {
+                      alignSelf: 'flex-start',
+                      paddingVertical: 15,
+                      paddingTop: 30,
+                      marginBottom: 0,
+                      fontSize: 20,
+                    },
+                  ]}>
+                  Warranty Disclaimer:
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '700',
+                    fontFamily: 'roboto',
+                    fontSize: 17,
+                    padding: 0,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                  }}>
+                  {`${res.license_1.license_name}`}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontFamily: 'roboto',
+                    fontSize: 15,
+                    padding: 0,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                  }}>
+                  {`${res.license_1.risk_for_choosing_license}`}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '700',
+                    fontFamily: 'roboto',
+                    fontSize: 17,
+                    padding: 0,
+                    marginTop: 10,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                  }}>
+                  {`${res.license_2.license_name}`}
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '400',
+                    fontFamily: 'roboto',
+                    fontSize: 15,
+                    padding: 0,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                  }}>
+                  {`${res.license_2.risk_for_choosing_license}`}
+                </Text>
+                {/* Permissions, Conditions & Limitations starts here */}
+                <Text
+                  style={[
+                    styles.tableHeaderText,
+                    {
+                      alignSelf: 'flex-start',
+                      paddingVertical: 15,
+                      paddingTop: 30,
+                      marginBottom: 0,
+                      fontSize: 20,
+                    },
+                  ]}>
+                  Permissions, Conditions & Limitations
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: '700',
+                    fontFamily: 'roboto',
+                    fontSize: 17,
+                    padding: 0,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                  }}>
+                  {`${res.license_1.license_name}`}
+                </Text>
+                {/* Tables */}
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: 15,
+                    justifyContent: 'space-between',
+                  }}>
+                  <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#078F04',
+                      height: 'auto',
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#078F04',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
                           fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 10,
-                        },
-                      ]}>
-                      Recommendation
-                    </Text>
-                    <Text style={{color: 'black'}}>{recommendation}</Text>
-                  </>
-                ) : null}
+                        }}>
+                        Permissions
+                      </Text>
+                    </View>
+                    {res.license_1.permissions.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#078F04',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#078F04',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
 
-                {disclaimer ? (
-                  <>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '700',
+                  <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#0079E3',
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#0079E3',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
                           fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 10,
-                        },
-                      ]}>
-                      Disclaimer
-                    </Text>
-                    <Text style={{color: 'black'}}>{disclaimer}</Text>
-                  </>
-                ) : null}
+                        }}>
+                        Conditions
+                      </Text>
+                    </View>
+                    {res.license_1.conditions.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#0079E3',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#0079E3',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
+                </View>
+
+                <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#EC1C24',
+                      height: 'auto',
+                      alignSelf:"center",
+                      marginTop:15
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#EC1C24',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
+                          fontFamily: 'roboto',
+                        }}>
+                        Limitations
+                      </Text>
+                    </View>
+                    {res.license_1.limitations.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#EC1C24',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#EC1C24',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
+
+
+          
+
+                  {/* License 2  */}
+
+                  <Text
+                  style={{
+                    fontWeight: '700',
+                    fontFamily: 'roboto',
+                    fontSize: 17,
+                    padding: 0,
+                    margin: 0,
+                    alignSelf: 'flex-start',
+                    color: 'black',
+                    marginTop:60
+                  }}>
+                  {`${res.license_2.license_name}`}
+                </Text>
+                {/* Tables */}
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: 15,
+                    justifyContent: 'space-between',
+                  }}>
+                  <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#078F04',
+                      height: 'auto',
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#078F04',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
+                          fontFamily: 'roboto',
+                        }}>
+                        Permissions
+                      </Text>
+                    </View>
+                    {res.license_2.permissions.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#078F04',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#078F04',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
+
+                  <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#0079E3',
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#0079E3',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
+                          fontFamily: 'roboto',
+                        }}>
+                        Conditions
+                      </Text>
+                    </View>
+                    {res.license_2.conditions.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#0079E3',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#0079E3',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
+                </View>
+
+                <View
+                    style={{
+                      width: '49%',
+                      borderWidth: 1,
+                      borderColor: '#EC1C24',
+                      height: 'auto',
+                      alignSelf:"center",
+                      marginTop:15
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#EC1C24',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          paddingVertical: 8,
+                          color: 'white',
+                          fontWeight: '500',
+                          fontSize: 18,
+                          fontFamily: 'roboto',
+                        }}>
+                        Limitations
+                      </Text>
+                    </View>
+                    {res.license_2.limitations.map((i, index) => {
+                      return (
+                        <>
+                          <View
+                            key={index}
+                            style={{
+                              flexDirection: 'row',
+                              padding: 4,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                width: '15%',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}>
+                              <View
+                                style={{
+                                  height: 13,
+                                  width: 13,
+                                  backgroundColor: '#EC1C24',
+                                  borderRadius: 13,
+                                }}></View>
+                            </View>
+                            <Text
+                              style={{
+                                color: 'black',
+                                fontWeight: '500',
+                                fontSize: 18,
+                                fontFamily: 'roboto',
+                                width: '80%',
+                              }}>
+                              {i.action}
+                            </Text>
+                          </View>
+                          <View
+                            style={{
+                              height: 1,
+                              backgroundColor: '#EC1C24',
+                              width: '100%',
+                            }}></View>
+                        </>
+                      );
+                    })}
+                  </View>
               </>
             }
             // scrollEnabled={false}
-            data={comparison}
-            keyExtractor={item => item._id}
+            data={permissions}
+            keyExtractor={item => item.action}
             showsVerticalScrollIndicator={false}
             renderItem={item => (
               <View style={styles.tableDataConatainer}>
                 <View style={[styles.tableItemConatainer, {flex: 2}]}>
                   <Text style={{padding: 7, color: colors.textDark}}>
-                    {item.item.category}
+                    {item.item.action}
                   </Text>
                 </View>
                 <View style={styles.tableItemConatainer}>
@@ -281,13 +934,10 @@ const ResultsDetailsScreen = ({route}) => {
                     style={[
                       styles.tableDatarText,
                       {
-                        color:
-                          item.item.licence_1.comparison_value == 'Yes'
-                            ? 'green'
-                            : 'red',
+                        color: item.item.permission1 == 'Yes' ? 'green' : 'red',
                       },
                     ]}>
-                    {item.item.licence_1.comparison_value}
+                    {item.item.permission1}
                   </Text>
                 </View>
                 <View
@@ -296,13 +946,10 @@ const ResultsDetailsScreen = ({route}) => {
                     style={[
                       styles.tableDatarText,
                       {
-                        color:
-                          item.item.licence_2.comparison_value == 'Yes'
-                            ? 'green'
-                            : 'red',
+                        color: item.item.permission2 == 'Yes' ? 'green' : 'red',
                       },
                     ]}>
-                    {item.item.licence_2.comparison_value}
+                    {item.item.permission2}
                   </Text>
                 </View>
               </View>
