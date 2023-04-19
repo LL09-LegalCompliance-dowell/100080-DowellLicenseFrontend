@@ -119,7 +119,7 @@ const SoftwereLicense = ({navigation}) => {
   return (
     <>
       {loading ? <AppLoader /> : null}
-      <Header title="Software Licenses" leftIcon="menu" rightIcon="user" />
+      <Header title="Software Licenses" leftIcon="" rightIcon="user" />
       <View
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
