@@ -31,6 +31,10 @@ import Image4 from './images/Compatibility4.jpg';
 import Image5 from './images/Compatibility5.jpg';
 
 const LicenseCompatibility = ({navigation}) => {
+  const [res, setRes] = useState(null);
+  const [permissions, setPermissions] = useState([]);
+  const [conditions, setConditions] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
   const [feild1, setFeild1] = useState('temp');
@@ -43,25 +47,11 @@ const LicenseCompatibility = ({navigation}) => {
 
   const [searchedData1, setSearchedData1] = useState(licenses1);
   const [searchedData2, setSearchedData2] = useState(licenses2);
-
-  const [isCompatible, setIsCompatible] = useState(false);
-  const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
-  const [disclaimer, setDisclaimer] = useState('');
-  const [recommendation, setRecommendation] = useState('');
-  const [licenseOne, setLicenseOne] = useState('');
-  const [licenseTwo, setLicenseTwo] = useState('');
-  const [licenseComaparison, setLicenseComaparison] = useState({});
-  const [tableLicenseTwo, setTableLicenseTwo] = useState('');
-  const [licenseLogo1, setLicenseLogo1] = useState('');
-  const [licenseLogo2, setLicenseLogo2] = useState('');
-  const [comparison, setComparison] = useState([]);
-  const [license1Version, setLicense1Version] = useState('');
-  const [license2Version, setLicense2Version] = useState('');
-  const [recommendation_details, setRecommendation_details] = useState('');
+  const [historyData, setHistoryData] = useState([]);
 
   const refBottomSheet1 = useRef();
 
-  // Get organization ID from local storage
+  // Get organization and User IDs from local storage
   const [orgId, setOrgId] = useState('');
   const [userId, setUserId] = useState('');
   useEffect(() => {
@@ -69,6 +59,7 @@ const LicenseCompatibility = ({navigation}) => {
       try {
         const org_id = await AsyncStorage.getItem('org_id');
         const user_id = await AsyncStorage.getItem('user_id');
+        console.log(await AsyncStorage.getItem('user_id'));
         setOrgId(org_id);
         setUserId(user_id);
       } catch (error) {
@@ -79,10 +70,10 @@ const LicenseCompatibility = ({navigation}) => {
   }, []);
 
   // Display first 5 table resutls on main page
-  let firstFive = comparison.slice(0, 5);
-  if (firstFive.length < 5) {
-    firstFive = comparison.slice(0, comparison.length);
-  }
+  // let firstFive = comparison.slice(0, 5);
+  // if (firstFive.length < 5) {
+  //   firstFive = comparison.slice(0, comparison.length);
+  // }
 
   //Fetching all licencses into the state
   useEffect(() => {
@@ -123,6 +114,7 @@ const LicenseCompatibility = ({navigation}) => {
     setLoading(true);
     const id1 = await AsyncStorage.getItem('licenseEventId1');
     const id2 = await AsyncStorage.getItem('licenseEventId2');
+    console.log(id1, id2, userId, orgId);
     try {
       const LicensesCompatibilityData = await axios.post(
         'https://100080.pythonanywhere.com/api/licenses/',
@@ -134,72 +126,74 @@ const LicenseCompatibility = ({navigation}) => {
           organization_id: orgId,
         },
       );
+      setPermissions([
+        {
+          action: 'Patent Use',
+          permission1:
+            LicensesCompatibilityData.data.license_1.permissions[0].permission,
+          permission2:
+            LicensesCompatibilityData.data.license_2.permissions[0].permission,
+        },
+        {
+          action: 'Patent Grant',
+          permission1:
+            LicensesCompatibilityData.data.license_1.permissions[1].permission,
+          permission2:
+            LicensesCompatibilityData.data.license_2.permissions[1].permission,
+        },
+      ]);
 
-      if (
-        Object.keys(LicensesCompatibilityData.data.license_comparison).length !=
-        0
-      ) {
-        // if (LicensesCompatibilityData.data.license_comparison)
-        setLicenseComaparison(
-          LicensesCompatibilityData.data.license_comparison,
-        );
-        setCompatibiltyPercentage(
-          LicensesCompatibilityData.data?.license_comparison
-            ?.percentage_of_compatibility,
-        );
+      setConditions([
+        {
+          action: 'Disclose Source',
+          license_1_permission:
+            LicensesCompatibilityData.data.license_1.conditions[0].permission,
+          license_2_permission:
+            LicensesCompatibilityData.data.license_2.conditions[0].permission,
+        },
 
-        setDisclaimer(
-          LicensesCompatibilityData.data?.license_comparison?.disclaimer,
-        );
-        setRecommendation(
-          LicensesCompatibilityData.data?.license_comparison?.recommendation,
-        );
-        setIsCompatible(LicensesCompatibilityData.data.is_compatible);
-        setLicenseOne(
-          LicensesCompatibilityData.data.license_comparison?.license_1_name,
-        );
-        setLicenseTwo(
-          LicensesCompatibilityData.data.license_comparison?.license_2_name,
-        );
-        setLicenseLogo1(
-          LicensesCompatibilityData.data.license_comparison?.license_1_logo_url,
-        );
-        setLicenseLogo2(
-          LicensesCompatibilityData.data.license_comparison?.license_2_logo_url,
-        );
-        setComparison(
-          LicensesCompatibilityData.data.license_comparison?.comparisons,
-        );
-        setLicense1Version(
-          LicensesCompatibilityData.data.license_comparison?.license_1_version,
-        );
-        setLicense2Version(
-          LicensesCompatibilityData.data.license_comparison?.license_2_version,
-        );
-        setRecommendation_details(
-          LicensesCompatibilityData.data.license_comparison
-            ?.recommendation_details,
-        );
-        // console.log(LicensesCompatibilityData.data);
+        {
+          action: 'Network Use is for Distribution',
+          license_1_permission:
+            LicensesCompatibilityData.data.license_1.conditions[1].permission,
+          license_2_permission:
+            LicensesCompatibilityData.data.license_2.conditions[1].permission,
+        },
+        {
+          action: 'Release Under Same License',
+          license_1_permission:
+            LicensesCompatibilityData.data.license_1.conditions[2].permission,
+          license_2_permission:
+            LicensesCompatibilityData.data.license_2.conditions[2].permission,
+        },
+        {
+          action: 'State Changes',
+          license_1_permission:
+            LicensesCompatibilityData.data.license_1.conditions[3].permission,
+          license_2_permission:
+            LicensesCompatibilityData.data.license_2.conditions[3].permission,
+        },
+        {
+          action: 'Code can be used in closed source project',
+          license_1_permission:
+            LicensesCompatibilityData.data.license_1.conditions[4].permission,
+          license_2_permission:
+            LicensesCompatibilityData.data.license_2.conditions[4].permission,
+        },
+      ]);
 
-        // console.log(recommendation_details);
-        setResult(true);
-        setLoading(false);
+      setRes(LicensesCompatibilityData.data);
 
-        // await AsyncStorage.removeItem('licenseEventId1');
-        // await AsyncStorage.removeItem('licenseEventId2');
-        // setFeild1('temp');
-        // setFeild2('temp');
-      } else {
-        setResult(false);
-        setLoading(false);
-        Alert.alert(
-          'Error message',
-          `Compatibility result for this pair is not available yet, you can try other licenses"`,
-        );
-      }
+      console.log(LicensesCompatibilityData.data.license_1.permissions);
+      setResult(true);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      Alert.alert(
+        'Error message',
+        `Compatibility result for this pair is not available yet, you can try other licenses"`,
+      );
     }
   };
   // Searching functionality is being handled here
@@ -222,8 +216,25 @@ const LicenseCompatibility = ({navigation}) => {
   };
 
   /////////
-  const openHistory = () => {
+  const openHistory = async () => {
     refBottomSheet1.current.open();
+    try {
+      console.log('started');
+      console.log(userId, orgId);
+
+      setLoading(true);
+      const HistoryData = await axios.get(
+        `https://100080.pythonanywhere.com/api/licenses/?collection_type=license-compatibility-history&user_id=${userId}&organization_id=${orgId}`,
+      );
+      if (HistoryData.data.length != 0) {
+        setHistoryData(HistoryData.data.data);
+        // console.log(HistoryData.data.data);
+        setLoading(false);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -246,11 +257,12 @@ const LicenseCompatibility = ({navigation}) => {
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="Search licence"
-              style={{paddingLeft: 10}}
+              style={{paddingLeft: 10, color: 'balck'}}
               marginVertical={3}
               placeholderTextColor="gray"
               onChangeText={text => searchLicensesFunction1(text)}
             />
+
             <ScrollView style={styles.serchResultContainer}>
               {searchedData1.map((item, index) => {
                 return (
@@ -308,7 +320,7 @@ const LicenseCompatibility = ({navigation}) => {
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="Search licence"
-              style={{paddingLeft: 10}}
+              style={{paddingLeft: 10, color: 'balck'}}
               marginVertical={3}
               placeholderTextColor="gray"
               onChangeText={text => searchLicensesFunction2(text)}
@@ -533,263 +545,254 @@ const LicenseCompatibility = ({navigation}) => {
         </TouchableOpacity>
         {result ? (
           <>
-            <>
-              <FlatList
-                ListHeaderComponent={
-                  <View styles={styles.resultsText}>
-                    <View
-                      style={{
-                        width: '100%',
-                        height: 1,
-                        backgroundColor: '#A7A7A7',
-                        marginBottom: 15,
-                      }}></View>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '400',
-                          alignSelf: 'center',
-                          textTransform: 'uppercase',
-                        },
-                      ]}>
-                      Compatibility Results
-                    </Text>
-                    {/* Logos */}
-                    <View style={styles.logosConatainer}>
-                      <View style={styles.imagesContainer}>
-                        <Image
-                          resizeMode="contain"
-                          style={styles.logoStyle}
-                          source={{
-                            uri: licenseLogo1,
-                          }}
-                        />
-                        <View>
-                          <Text
-                            style={{
-                              paddingTop: 0,
-                              color: colors.textDark,
-                              maxWidth: 140,
-                              textAlign: 'center',
-                            }}>
-                            {licenseOne}
-                          </Text>
-                          <Text
-                            style={{
-                              paddingTop: 0,
-                              color: colors.textDark,
-                              alignSelf: 'center',
-                            }}>
-                            {license1Version}
-                          </Text>
-                        </View>
-                      </View>
-                      <Text style={styles.vsText}>VS</Text>
-                      <View style={styles.imagesContainer}>
-                        <Image
-                          resizeMode="contain"
-                          style={styles.logoStyle}
-                          source={{uri: licenseLogo2}}
-                        />
-                        <View>
-                          <Text
-                            style={{
-                              paddingTop: 0,
-                              color: colors.textDark,
-                              maxWidth: 140,
-                              textAlign: 'center',
-                            }}>
-                            {licenseTwo}
-                          </Text>
-                          <Text
-                            style={{
-                              paddingTop: 0,
-                              color: colors.textDark,
-                              alignSelf: 'center',
-                            }}>
-                            {license2Version}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                    <Text
-                      style={[
-                        styles.heading,
-                        {
-                          fontWeight: '700',
-                          fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 0,
-                        },
-                      ]}>
-                      Recommendation Percentage
-                    </Text>
-                    <Text style={styles.lightColor}>
-                      *Numbers are Based on Attributions.
-                    </Text>
-                    <View style={styles.progressBarConatainer}>
+            <FlatList
+              ListHeaderComponent={
+                <View styles={styles.resultsText}>
+                  <View
+                    style={{
+                      width: '100%',
+                      height: 1,
+                      backgroundColor: '#A7A7A7',
+                      marginBottom: 15,
+                    }}></View>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '400',
+                        alignSelf: 'center',
+                        textTransform: 'uppercase',
+                      },
+                    ]}>
+                    Compatibility Results
+                  </Text>
+                  {/* Logos */}
+                  <View style={styles.logosConatainer}>
+                    <View style={styles.imagesContainer}>
+                      <Image
+                        resizeMode="contain"
+                        style={styles.logoStyle}
+                        source={{
+                          uri: res?.license_1?.logo_detail?.url,
+                        }}
+                      />
                       <View>
-                        <Progress.Bar
-                          progress={compatibiltyPercentage / 100}
-                          width={313}
-                          height={20}
-                          borderRadius={20}
-                          color={colors.primary}
-                          unfilledColor={'#D3D3D3'}
-                          borderColor={'#D3D3D3'}
-                        />
+                        <Text
+                          style={{
+                            paddingTop: 0,
+                            color: colors.textDark,
+                            maxWidth: 140,
+                            textAlign: 'center',
+                          }}>
+                          {res.license_1.license_name}
+                        </Text>
+                        <Text
+                          style={{
+                            paddingTop: 0,
+                            color: colors.textDark,
+                            alignSelf: 'center',
+                          }}>
+                          {res.license_1.version}
+                        </Text>
                       </View>
-                      <Text style={styles.percentage}>
-                        {compatibiltyPercentage}%
+                    </View>
+                    <Text style={styles.vsText}>VS</Text>
+                    <View style={styles.imagesContainer}>
+                      <Image
+                        resizeMode="contain"
+                        style={styles.logoStyle}
+                        source={{uri: res?.license_2?.logo_detail?.url}}
+                      />
+                      <View>
+                        <Text
+                          style={{
+                            paddingTop: 0,
+                            color: colors.textDark,
+                            maxWidth: 140,
+                            textAlign: 'center',
+                          }}>
+                          {res.license_2?.license_name}
+                        </Text>
+                        <Text
+                          style={{
+                            paddingTop: 0,
+                            color: colors.textDark,
+                            alignSelf: 'center',
+                          }}>
+                          {res.license_2.version}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <Text
+                    style={[
+                      styles.heading,
+                      {
+                        fontWeight: '700',
+                        fontFamily: 'roboto',
+                        fontSize: 20,
+                        paddingBottom: 0,
+                      },
+                    ]}>
+                    Recommendation Percentage
+                  </Text>
+                  <Text style={styles.lightColor}>
+                    *Numbers are Based on Attributions.
+                  </Text>
+                  <View style={styles.progressBarConatainer}>
+                    <View>
+                      <Progress.Bar
+                        progress={res.percentage_of_compatibility / 100}
+                        width={313}
+                        height={20}
+                        borderRadius={20}
+                        color={colors.primary}
+                        unfilledColor={'#D3D3D3'}
+                        borderColor={'#D3D3D3'}
+                      />
+                    </View>
+                    <Text style={styles.percentage}>
+                      {res.percentage_of_compatibility}%
+                    </Text>
+                  </View>
+                  {res.percentage_of_compatibility < 70 ? (
+                    <Text
+                      style={{
+                        paddingBottom: 10,
+                        fontSize: 21,
+                        color:
+                          res.percentage_of_compatibility > 50
+                            ? colors.primary
+                            : 'red',
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        alignSelf: 'center',
+                      }}>
+                      "Can {res.percentage_of_compatibility < 50 ? 'not' : null}{' '}
+                      be used together in a project"
+                    </Text>
+                  ) : null}
+
+                  {res.percentage_of_compatibility >= 70 ? (
+                    <Text
+                      style={{
+                        paddingBottom: 10,
+                        fontSize: 21,
+                        color:
+                          res.percentage_of_compatibility > 50
+                            ? colors.primary
+                            : 'red',
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        alignSelf: 'center',
+                      }}>
+                      "Highly recommended to use together in a project""
+                    </Text>
+                  ) : null}
+
+                  <Text
+                    style={{color: 'black', paddingBottom: 7, paddingTop: 30}}>
+                    The Explanation is based on the below given table.
+                  </Text>
+
+                  {/* Table starts here */}
+                  <View style={{flexDirection: 'column'}}>
+                    <View style={styles.tableHederConatainer}>
+                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                        <Text style={styles.tableHeaderText}>Category</Text>
+                      </View>
+                      <View style={styles.tableItemConatainer}>
+                        <Text style={styles.tableHeaderText}>
+                          {res.license_1.license_name}
+                        </Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.tableItemConatainer,
+                          {borderRightWidth: 0},
+                        ]}>
+                        <Text style={styles.tableHeaderText}>
+                          {res.license_2.license_name}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={styles.tableHederConatainer}>
+                      <Text
+                        style={[
+                          styles.heading,
+                          {
+                            fontWeight: '400',
+                            fontFamily: 'roboto',
+                            fontSize: 18,
+                            padding: 10,
+                            textAlign: 'center',
+                          },
+                        ]}>
+                        Permissions in Addition to Commercial Use, Distribution
+                        and Modification
                       </Text>
                     </View>
-                    {compatibiltyPercentage < 70 ? (
-                      <Text
-                        style={{
-                          paddingBottom: 10,
-                          fontSize: 21,
-                          color:
-                            compatibiltyPercentage > 50
-                              ? colors.primary
-                              : 'red',
-                          fontWeight: 'bold',
-                          fontStyle: 'italic',
-                          alignSelf: 'center',
-                        }}>
-                        "Can {compatibiltyPercentage < 50 ? 'not' : null} be
-                        used together in a project"
-                      </Text>
-                    ) : null}
-
-                    {compatibiltyPercentage >= 70 ? (
-                      <Text
-                        style={{
-                          paddingBottom: 10,
-                          fontSize: 21,
-                          color:
-                            compatibiltyPercentage > 50
-                              ? colors.primary
-                              : 'red',
-                          fontWeight: 'bold',
-                          fontStyle: 'italic',
-                          alignSelf: 'center',
-                        }}>
-                        "Highly recommended to use together in a project""
-                      </Text>
-                    ) : null}
-
+                  </View>
+                </View>
+              }
+              ListFooterComponent={
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('ResultsDetailsScreen', {
+                      res: res,
+                      permissions: permissions,
+                      conditions: conditions,
+                    })
+                  }
+                  style={styles.readMoreContainer}>
+                  <Text style={styles.readMoreText}>Read more</Text>
+                  <MaterialCommunityIcons
+                    style={styles.readMoreIcon}
+                    name="chevron-down"
+                    size={40}
+                    color={colors.primary}
+                  />
+                </TouchableOpacity>
+              }
+              // scrollEnabled={false}
+              data={permissions}
+              keyExtractor={item => item.action}
+              showsVerticalScrollIndicator={false}
+              renderItem={item => (
+                <View style={styles.tableDataConatainer}>
+                  <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                    <Text style={{padding: 7, color: colors.textDark}}>
+                      {item.item.action}
+                    </Text>
+                  </View>
+                  <View style={styles.tableItemConatainer}>
                     <Text
                       style={[
-                        styles.heading,
+                        styles.tableDatarText,
                         {
-                          fontWeight: '700',
-                          fontFamily: 'roboto',
-                          fontSize: 20,
-                          paddingBottom: 10,
+                          color:
+                            item.item.permission1 == 'Yes' ? 'green' : 'red',
                         },
                       ]}>
-                      Comparison
+                      {item.item.permission1}
                     </Text>
-                    {/* Table starts here */}
-                    <View>
-                      <View style={styles.tableHederConatainer}>
-                        <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                          <Text style={styles.tableHeaderText}>Category</Text>
-                        </View>
-                        <View style={styles.tableItemConatainer}>
-                          <Text style={styles.tableHeaderText}>
-                            {licenseOne}
-                          </Text>
-                        </View>
-                        <View
-                          style={[
-                            styles.tableItemConatainer,
-                            {borderRightWidth: 0},
-                          ]}>
-                          <Text style={styles.tableHeaderText}>
-                            {licenseTwo}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
                   </View>
-                }
-                ListFooterComponent={
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate('ResultsDetailsScreen', {
-                        comparison,
-                        licenseLogo1,
-                        licenseLogo2,
-                        licenseOne,
-                        licenseTwo,
-                        compatibiltyPercentage,
-                        isCompatible,
-                        disclaimer,
-                        recommendation_details,
-                        license1Version,
-                        license2Version,
-                        recommendation,
-                      })
-                    }
-                    style={styles.readMoreContainer}>
-                    <Text style={styles.readMoreText}>Read more</Text>
-                    <MaterialCommunityIcons
-                      style={styles.readMoreIcon}
-                      name="chevron-down"
-                      size={40}
-                      color={colors.primary}
-                    />
-                  </TouchableOpacity>
-                }
-                // scrollEnabled={false}
-                data={firstFive}
-                keyExtractor={item => item._id}
-                showsVerticalScrollIndicator={false}
-                renderItem={item => (
-                  <View style={styles.tableDataConatainer}>
-                    <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                      <Text style={{padding: 7, color: colors.textDark}}>
-                        {item.item.category}
-                      </Text>
-                    </View>
-                    <View style={styles.tableItemConatainer}>
-                      <Text
-                        style={[
-                          styles.tableDatarText,
-                          {
-                            color:
-                              item.item.licence_1.comparison_value == 'Yes'
-                                ? 'green'
-                                : 'red',
-                          },
-                        ]}>
-                        {item.item.licence_1.comparison_value}
-                      </Text>
-                    </View>
-                    <View
+                  <View
+                    style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+                    <Text
                       style={[
-                        styles.tableItemConatainer,
-                        {borderRightWidth: 0},
+                        styles.tableDatarText,
+                        {
+                          color:
+                            item.item.permission2 == 'Yes' ? 'green' : 'red',
+                        },
                       ]}>
-                      <Text
-                        style={[
-                          styles.tableDatarText,
-                          {
-                            color:
-                              item.item.licence_2.comparison_value == 'Yes'
-                                ? 'green'
-                                : 'red',
-                          },
-                        ]}>
-                        {item.item.licence_2.comparison_value}
-                      </Text>
-                    </View>
+                      {item.item.permission2}
+                    </Text>
                   </View>
-                )}
-              />
-            </>
+                </View>
+              )}
+            />
           </>
         ) : (
           <ScrollView
@@ -802,7 +805,12 @@ const LicenseCompatibility = ({navigation}) => {
             }}>
             <Text style={{fontSize: 18}}>DISCLAIMER</Text>
             <Text
-              style={{fontSize: 15, textAlign: 'justify', paddingBottom: 85, color:'#828282'}}>
+              style={{
+                fontSize: 15,
+                textAlign: 'justify',
+                paddingBottom: 85,
+                color: '#828282',
+              }}>
               The information provided on this website does not, and is not
               intended to, constitute legal advice; all information, content,
               and materials available on this site are for general informational
@@ -842,7 +850,7 @@ const LicenseCompatibility = ({navigation}) => {
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
                 backgroundColor: 'white',
-                opacity:1
+                opacity: 1,
               },
             }}>
             <View
@@ -857,101 +865,32 @@ const LicenseCompatibility = ({navigation}) => {
                   paddingVertical: 5,
                   backgroundColor: 'white',
                 }}>
-                <Text style={{color: 'black', fontSize:18, fontWeight:'600',  }}>
+                <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
                   Compatibilities you've searched
                 </Text>
                 <ScrollView style={{width: '100%'}}>
                   <View style={styles.serchResultItemContainer}>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        Apache vs MIT
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        Mozila vs MIT
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        Apache vs MIT
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        2 minuts ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {}}>
-                      <Text style={styles.serchResultHeading}>
-                        MIT vs Mozila
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        1 month ago
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
+                    {historyData.length != 0 ? (
+                      historyData.map(item => (
+                        <TouchableOpacity
+                          key={item._id}
+                          onPress={async () => {
+                            navigation.navigate('ResultsDetailsScreen');
+                          }}>
+                          <Text style={styles.serchResultDetails}>
+                            {`${item.license_compatibility_history.comparison_detail.license_1.license_name} vs ${item.license_compatibility_history.comparison_detail.license_comparison.license_2.license_name}`}
+                          </Text>
+                          {/* <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
+                          Mozila vs MIT
+                        </Text> */}
+                          <View style={styles.separator}></View>
+                        </TouchableOpacity>
+                      ))
+                    ) : (
+                      <Text style={styles.resultsText}>No history found</Text>
+                    )}
                   </View>
                 </ScrollView>
               </View>

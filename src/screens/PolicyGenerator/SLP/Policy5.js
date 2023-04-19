@@ -503,3 +503,5 @@ const Policy5 = ({list}) => {
 };
 
 export default Policy5;
+
+
