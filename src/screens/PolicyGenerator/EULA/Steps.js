@@ -70,9 +70,11 @@ const Steps = () => {
       const handle_input_9 = (state)=> setInput_9(state);
       const [input_10, setInput_10] = useState('');
       const handle_input_10 = (state)=> setInput_10(state);
+      const [input_11, setInput_11] = useState('');
+      const handle_input_11 = (state)=> setInput_11(state);
       const [error_1, setError_1] = useState(false);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,input_5,handle_input_5,input_6,handle_input_6,input_7,handle_input_7,input_8,handle_input_8,input_9,handle_input_9,input_10,handle_input_10,empty_validationn]
+      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,input_5,handle_input_5,input_6,handle_input_6,input_7,handle_input_7,input_8,handle_input_8,input_9,handle_input_9,input_10,handle_input_10,empty_validationn,input_11,handle_input_11]
       const inputs= [input_1,input_2,input_3,input_4,input_5,input_6,input_7,input_8,input_9,input_10]
       //2
       const [radioButtons, setRadioButtons] = useState([{
@@ -109,14 +111,14 @@ const Steps = () => {
       const handle_input_6_1 = (state)=> setInput_6_1(state);
       const [input_7_1, setInput_7_1] = useState('');
       const handle_input_7_1 = (state)=> setInput_7_1(state);
-      const [input_8_1, setInput_8_1] = useState('');
-      const handle_input_8_1 = (state)=> setInput_8_1(state);
+      // const [input_8_1, setInput_8_1] = useState('');
+      // const handle_input_8_1 = (state)=> setInput_8_1(state);
       const [error_2, setError_2] = useState(false);
       const [empty_validationn_1, setempty_validation_1] = useState(true);
       const [valid_number , setValid_number]=useState(true);
       const handle_valid_number = (state)=> setValid_number(state);
-      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number,input_6_1,handle_input_6_1,input_7_1,handle_input_7_1,input_8_1,handle_input_8_1]
-      const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1,input_7_1,input_8_1]
+      const states_1= [radioButtons,handle_radiobuttons,input_1_1,handle_input_1_1,input_2_1,handle_input_2_1,handle_input_3_1,handle_input_4_1,handle_input_5_1,input_3_1,input_4_1,input_5_1,empty_validationn_1,valid_number,handle_valid_number,input_6_1,handle_input_6_1,input_7_1,handle_input_7_1]
+      const inputs_1= [input_1_1,input_2_1,input_3_1,input_4_1,input_5_1,input_7_1]
      //3
      const [date_2, setDate_2] = useState(new Date());
      const handle_date_2 = (state)=> setDate_2(state);
@@ -248,6 +250,7 @@ const Steps = () => {
       agreement_compliance_type: "eula",
       organization_id: orgId,
       date_of_execution_of_document: generate_date(date.toLocaleDateString()),
+      website_or_app_name: input_11,
       party_details_full_name: input_1,
       party_details_company_name:input_2,
       party_details_address_line_1:input_3,
@@ -261,7 +264,7 @@ const Steps = () => {
       company_details_nature_of_company: nature_of_company ,
       software_product: input_7_1,
       software_product_license_name: input_1_1,
-      software_product_license_name_uc: input_8_1,
+      // software_product_license_name_uc: input_8_1,
       liability_remedy_amount: parseFloat(input_2_1),
       liability_remedy_amount_currency: input_6_1,
       state_law_applies:input_3_1,

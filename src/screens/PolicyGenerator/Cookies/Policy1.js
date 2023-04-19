@@ -52,7 +52,7 @@ const Policy1 = ({list}) => {
             color="#489503"
             onSelect={value => list[1](value)}
             isHideOnSelect={true}
-            initialDate={new Date()}
+            initialDate={list[0]}
           />
       </View>
       <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400"}}>Policy details:</Text>
@@ -196,11 +196,19 @@ const Policy1 = ({list}) => {
               }}
             buttonTextAfterSelection={()=> "Enter Here"}
             defaultButtonText="Enter Here"
-            buttonStyle={{backgroundColor: '#D8D8D8',borderRadius:15,width:"100%"}}
+            buttonStyle={{backgroundColor: '#D8D8D8',borderRadius:15,marginBottom:20,width:"100%"}}
             buttonTextStyle={{fontSize:18,color:"#585858",textAlign:"center"}}
             dropdownStyle={{borderRadius:15}}
           />
         </View>
+        <Text style={styles.text_2}>Website/App Name:</Text>
+        <TextInput
+            style={styles.input_vm}
+            value={list[27]}
+            placeholder="Enter here"
+            placeholderTextColor="gray" 
+            onChangeText={(value)=>list[28](value)}
+          />
       </View>
 
     </ScrollView>

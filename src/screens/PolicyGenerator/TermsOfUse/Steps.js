@@ -58,8 +58,10 @@ const Steps = () => {
       const handle_input_3 = (state)=> setInput_3(state);
       const [input_4, setInput_4] = useState("");
       const handle_input_4 = (state)=> setInput_4(state);
+      const [input_5, setInput_5] = useState("");
+      const handle_input_5 = (state)=> setInput_5(state);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,empty_validationn]
+      const states= [date,handle_date,input_1,handle_input_1,input_2,handle_input_2,input_3,handle_input_3,input_4,handle_input_4,empty_validationn,input_5,handle_input_5]
       const [error_1, setError_1] = useState(false);
       const inputs= [input_1,input_2,input_3,input_4]
       ////////////////////////////////////////////////////////////////////////////2
@@ -90,6 +92,7 @@ const Steps = () => {
       const request_object={
         agreement_compliance_type: "website-terms-of-use",
         organization_id: orgId,
+        website_or_app_name: input_5,
         terms_last_updated: generate_date(date.toLocaleDateString()),
         full_name_of_the_party: input_1,
         website_url: input_2,
