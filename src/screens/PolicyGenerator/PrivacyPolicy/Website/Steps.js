@@ -105,6 +105,7 @@ const Steps = () => {
 
   const request_object = {
     agreement_compliance_type: 'website-privacy-policy',
+    website_or_app_name: input_5,
     organization_id: orgId,
     last_updated: generate_date(date.toLocaleDateString()),
     company_name: input_1,

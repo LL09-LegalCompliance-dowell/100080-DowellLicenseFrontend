@@ -619,6 +619,8 @@ const Steps = () => {
   const handle_input_4_2 = state => setInput_4_2(state);
   const [input_5_2, setInput_5_2] = useState('');
   const handle_input_5_2 = state => setInput_5_2(state);
+  const [input_6_2, setInput_6_2] = useState('');
+  const handle_input_6_2 = state => setInput_6_2(state);
 
   const states_2 = [
     empty_validationn_2,
@@ -644,11 +646,14 @@ const Steps = () => {
     handle_input_4_2,
     input_5_2,
     handle_input_5_2,
+    input_6_2,
+    handle_input_6_2
   ];
   const inputs_2 = [input_1_2, input_2_2, input_3_2, input_4_2, input_5_2];
 
   const request_object = {
     agreement_compliance_type: 'mou',
+    website_or_app_name: input_6_2,
     organization_id: orgId,
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_1_entity_type: a,
