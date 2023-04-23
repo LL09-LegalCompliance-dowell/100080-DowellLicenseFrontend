@@ -31,9 +31,13 @@ import Image4 from './images/Compatibility4.jpg';
 import Image5 from './images/Compatibility5.jpg';
 
 const LicenseCompatibility = ({navigation}) => {
-  const [res, setRes] = useState(null);
+  const [res, setRes] = useState({});
+  const [historyRes, setHistoryRes] = useState({});
   const [permissions, setPermissions] = useState([]);
   const [conditions, setConditions] = useState([]);
+  const [historypermissions, historysetPermissions] = useState([]);
+  const [historyconditions, historysetConditions] = useState([]);
+  const [haveTable, setHaveTable] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(false);
@@ -68,12 +72,6 @@ const LicenseCompatibility = ({navigation}) => {
     };
     getOrgId();
   }, []);
-
-  // Display first 5 table resutls on main page
-  // let firstFive = comparison.slice(0, 5);
-  // if (firstFive.length < 5) {
-  //   firstFive = comparison.slice(0, comparison.length);
-  // }
 
   //Fetching all licencses into the state
   useEffect(() => {
@@ -126,65 +124,87 @@ const LicenseCompatibility = ({navigation}) => {
           organization_id: orgId,
         },
       );
-      setPermissions([
-        {
-          action: 'Patent Use',
-          permission1:
-            LicensesCompatibilityData.data.license_1.permissions[0].permission,
-          permission2:
-            LicensesCompatibilityData.data.license_2.permissions[0].permission,
-        },
-        {
-          action: 'Patent Grant',
-          permission1:
-            LicensesCompatibilityData.data.license_1.permissions[1].permission,
-          permission2:
-            LicensesCompatibilityData.data.license_2.permissions[1].permission,
-        },
-      ]);
+      // console.log(LicensesCompatibilityData.data);
+      if (
+        LicensesCompatibilityData?.data?.license_1?.permissions &&
+        LicensesCompatibilityData?.data?.license_2?.permissions
+      ) {
+        console.log('hello');
+        setHaveTable(true);
+        setPermissions([
+          {
+            action: 'Patent Use',
+            permission1:
+              LicensesCompatibilityData?.data?.license_1?.permissions[0]
+                ?.permission,
+            permission2:
+              LicensesCompatibilityData?.data?.license_2?.permissions[0]
+                ?.permission,
+          },
+          {
+            action: 'Patent Grant',
+            permission1:
+              LicensesCompatibilityData?.data?.license_1?.permissions[1]
+                ?.permission,
+            permission2:
+              LicensesCompatibilityData?.data?.license_2?.permissions[1]
+                ?.permission,
+          },
+        ]);
 
-      setConditions([
-        {
-          action: 'Disclose Source',
-          license_1_permission:
-            LicensesCompatibilityData.data.license_1.conditions[0].permission,
-          license_2_permission:
-            LicensesCompatibilityData.data.license_2.conditions[0].permission,
-        },
+        setConditions([
+          {
+            action: 'Disclose Source',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[0]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[0]
+                ?.permission,
+          },
 
-        {
-          action: 'Network Use is for Distribution',
-          license_1_permission:
-            LicensesCompatibilityData.data.license_1.conditions[1].permission,
-          license_2_permission:
-            LicensesCompatibilityData.data.license_2.conditions[1].permission,
-        },
-        {
-          action: 'Release Under Same License',
-          license_1_permission:
-            LicensesCompatibilityData.data.license_1.conditions[2].permission,
-          license_2_permission:
-            LicensesCompatibilityData.data.license_2.conditions[2].permission,
-        },
-        {
-          action: 'State Changes',
-          license_1_permission:
-            LicensesCompatibilityData.data.license_1.conditions[3].permission,
-          license_2_permission:
-            LicensesCompatibilityData.data.license_2.conditions[3].permission,
-        },
-        {
-          action: 'Code can be used in closed source project',
-          license_1_permission:
-            LicensesCompatibilityData.data.license_1.conditions[4].permission,
-          license_2_permission:
-            LicensesCompatibilityData.data.license_2.conditions[4].permission,
-        },
-      ]);
+          {
+            action: 'Network Use is for Distribution',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[1]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[1]
+                ?.permission,
+          },
+          {
+            action: 'Release Under Same License',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[2]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[2]
+                ?.permission,
+          },
+          {
+            action: 'State Changes',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[3]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[3]
+                ?.permission,
+          },
+          {
+            action: 'Code can be used in closed source project',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[4]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[4]
+                ?.permission,
+          },
+        ]);
+      }
 
-      setRes(LicensesCompatibilityData.data);
+      setRes(LicensesCompatibilityData?.data);
 
-      console.log(LicensesCompatibilityData.data.license_1.permissions);
+      // console.log(LicensesCompatibilityData.data.license_1.permissions);
       setResult(true);
       setLoading(false);
     } catch (error) {
@@ -192,7 +212,7 @@ const LicenseCompatibility = ({navigation}) => {
       setLoading(false);
       Alert.alert(
         'Error message',
-        `Compatibility result for this pair is not available yet, you can try other licenses"`,
+        `We apologize, but something seems to have gone wrong. Please try again later.`,
       );
     }
   };
@@ -234,6 +254,140 @@ const LicenseCompatibility = ({navigation}) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleHistoryDetails = async item => {
+    setLoading(true);
+
+    const id1 =
+      item?.license_compatibility_history?.comparison_detail
+        ?.license_1_event_id;
+
+    const id2 =
+      item?.license_compatibility_history?.comparison_detail
+        ?.license_2_event_id;
+    console.log(userId, orgId, id1, id2);
+    try {
+      const LicensesCompatibilityData = await axios.post(
+        'https://100080.pythonanywhere.com/api/licenses/',
+        {
+          action_type: 'check-compatibility',
+          license_event_id_one: id1,
+          license_event_id_two: id2,
+          user_id: userId,
+          organization_id: orgId,
+        },
+      );
+      console.log(LicensesCompatibilityData.data);
+      if (
+        LicensesCompatibilityData?.data?.license_1?.permissions &&
+        LicensesCompatibilityData?.data?.license_2?.permissions
+      ) {
+        console.log('hello');
+        // setHaveTable(true);
+        historysetPermissions([
+          {
+            action: 'Patent Use',
+            permission1:
+              LicensesCompatibilityData?.data?.license_1?.permissions[0]
+                ?.permission,
+            permission2:
+              LicensesCompatibilityData?.data?.license_2?.permissions[0]
+                ?.permission,
+          },
+          {
+            action: 'Patent Grant',
+            permission1:
+              LicensesCompatibilityData?.data?.license_1?.permissions[1]
+                ?.permission,
+            permission2:
+              LicensesCompatibilityData?.data?.license_2?.permissions[1]
+                ?.permission,
+          },
+        ]);
+
+        historysetConditions([
+          {
+            action: 'Disclose Source',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[0]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[0]
+                ?.permission,
+          },
+
+          {
+            action: 'Network Use is for Distribution',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[1]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[1]
+                ?.permission,
+          },
+          {
+            action: 'Release Under Same License',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[2]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[2]
+                ?.permission,
+          },
+          {
+            action: 'State Changes',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[3]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[3]
+                ?.permission,
+          },
+          {
+            action: 'Code can be used in closed source project',
+            license_1_permission:
+              LicensesCompatibilityData?.data?.license_1?.conditions[4]
+                ?.permission,
+            license_2_permission:
+              LicensesCompatibilityData?.data?.license_2?.conditions[4]
+                ?.permission,
+          },
+        ]);
+        setHistoryRes(LicensesCompatibilityData?.data);
+        console.log(historypermissions, historyconditions);
+        if (
+          historypermissions.length != 0 &&
+          historyconditions.length != 0 &&
+          LicensesCompatibilityData?.data?.license_1?.limitations.length != 0
+        ) {
+          navigation.navigate('ResultsDetailsScreen', {
+            res: historyRes,
+            permissions: historypermissions,
+            conditions: historyconditions,
+          });
+          refBottomSheet1.current.close();
+        }
+      } else {
+        Alert.alert(
+          'Error message',
+          `We apologize, but these licenses have not yielded results yet. Please try again later.`,
+        );
+        setLoading(false);
+      }
+
+      setHistoryRes(LicensesCompatibilityData?.data);
+
+      // console.log(LicensesCompatibilityData.data.license_1.permissions);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      Alert.alert(
+        'Error message',
+        `We apologize, but something seems to have gone wrong. Please try again later.`,
+      );
     }
   };
 
@@ -584,7 +738,7 @@ const LicenseCompatibility = ({navigation}) => {
                             maxWidth: 140,
                             textAlign: 'center',
                           }}>
-                          {res.license_1.license_name}
+                          {res?.license_1?.license_name}
                         </Text>
                         <Text
                           style={{
@@ -592,7 +746,7 @@ const LicenseCompatibility = ({navigation}) => {
                             color: colors.textDark,
                             alignSelf: 'center',
                           }}>
-                          {res.license_1.version}
+                          {res?.license_1?.version}
                         </Text>
                       </View>
                     </View>
@@ -619,7 +773,7 @@ const LicenseCompatibility = ({navigation}) => {
                             color: colors.textDark,
                             alignSelf: 'center',
                           }}>
-                          {res.license_2.version}
+                          {res?.license_2?.version}
                         </Text>
                       </View>
                     </View>
@@ -642,7 +796,7 @@ const LicenseCompatibility = ({navigation}) => {
                   <View style={styles.progressBarConatainer}>
                     <View>
                       <Progress.Bar
-                        progress={res.percentage_of_compatibility / 100}
+                        progress={res?.percentage_of_compatibility / 100}
                         width={313}
                         height={20}
                         borderRadius={20}
@@ -652,146 +806,186 @@ const LicenseCompatibility = ({navigation}) => {
                       />
                     </View>
                     <Text style={styles.percentage}>
-                      {res.percentage_of_compatibility}%
+                      {res?.percentage_of_compatibility}%
                     </Text>
                   </View>
-                  {res.percentage_of_compatibility < 70 ? (
+                  {res?.percentage_of_compatibility < 70 ? (
                     <Text
                       style={{
                         paddingBottom: 10,
                         fontSize: 21,
                         color:
-                          res.percentage_of_compatibility > 50
+                          res?.percentage_of_compatibility > 50
                             ? colors.primary
                             : 'red',
                         fontWeight: 'bold',
                         fontStyle: 'italic',
                         alignSelf: 'center',
                       }}>
-                      "Can {res.percentage_of_compatibility < 50 ? 'not' : null}{' '}
-                      be used together in a project"
+                      "Can{' '}
+                      {res?.percentage_of_compatibility < 50 ? 'not' : null} be
+                      used together in a project"
                     </Text>
                   ) : null}
 
-                  {res.percentage_of_compatibility >= 70 ? (
+                  {res?.percentage_of_compatibility >= 70 ? (
                     <Text
                       style={{
                         paddingBottom: 10,
                         fontSize: 21,
                         color:
-                          res.percentage_of_compatibility > 50
+                          res?.percentage_of_compatibility > 50
                             ? colors.primary
                             : 'red',
                         fontWeight: 'bold',
                         fontStyle: 'italic',
                         alignSelf: 'center',
                       }}>
-                      "Highly recommended to use together in a project""
+                      "Highly recommended to use together in a project"
                     </Text>
                   ) : null}
 
-                  <Text
-                    style={{color: 'black', paddingBottom: 7, paddingTop: 30}}>
-                    The Explanation is based on the below given table.
-                  </Text>
+                  {haveTable && (
+                    <Text
+                      style={{
+                        color: 'black',
+                        paddingBottom: 7,
+                        paddingTop: 30,
+                      }}>
+                      The Explanation is based on the below given table.
+                    </Text>
+                  )}
 
                   {/* Table starts here */}
-                  <View style={{flexDirection: 'column'}}>
-                    <View style={styles.tableHederConatainer}>
-                      <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                        <Text style={styles.tableHeaderText}>Category</Text>
+                  {haveTable && (
+                    <View style={{flexDirection: 'column'}}>
+                      <View style={styles.tableHederConatainer}>
+                        <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                          <Text style={styles.tableHeaderText}>Category</Text>
+                        </View>
+                        <View style={styles.tableItemConatainer}>
+                          <Text style={styles.tableHeaderText}>
+                            {res.license_1.license_name}
+                          </Text>
+                        </View>
+                        <View
+                          style={[
+                            styles.tableItemConatainer,
+                            {borderRightWidth: 0},
+                          ]}>
+                          <Text style={styles.tableHeaderText}>
+                            {res.license_2.license_name}
+                          </Text>
+                        </View>
                       </View>
-                      <View style={styles.tableItemConatainer}>
-                        <Text style={styles.tableHeaderText}>
-                          {res.license_1.license_name}
-                        </Text>
-                      </View>
-                      <View
-                        style={[
-                          styles.tableItemConatainer,
-                          {borderRightWidth: 0},
-                        ]}>
-                        <Text style={styles.tableHeaderText}>
-                          {res.license_2.license_name}
+                      <View style={styles.tableHederConatainer}>
+                        <Text
+                          style={[
+                            styles.heading,
+                            {
+                              fontWeight: '400',
+                              fontFamily: 'roboto',
+                              fontSize: 18,
+                              padding: 10,
+                              textAlign: 'center',
+                            },
+                          ]}>
+                          Permissions in Addition to Commercial Use,
+                          Distribution and Modification
                         </Text>
                       </View>
                     </View>
-                    <View style={styles.tableHederConatainer}>
-                      <Text
-                        style={[
-                          styles.heading,
-                          {
-                            fontWeight: '400',
-                            fontFamily: 'roboto',
-                            fontSize: 18,
-                            padding: 10,
-                            textAlign: 'center',
-                          },
-                        ]}>
-                        Permissions in Addition to Commercial Use, Distribution
-                        and Modification
-                      </Text>
-                    </View>
-                  </View>
+                  )}
                 </View>
               }
               ListFooterComponent={
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('ResultsDetailsScreen', {
-                      res: res,
-                      permissions: permissions,
-                      conditions: conditions,
-                    })
-                  }
-                  style={styles.readMoreContainer}>
-                  <Text style={styles.readMoreText}>Read more</Text>
-                  <MaterialCommunityIcons
-                    style={styles.readMoreIcon}
-                    name="chevron-down"
-                    size={40}
-                    color={colors.primary}
-                  />
-                </TouchableOpacity>
+                haveTable ? (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('ResultsDetailsScreen', {
+                        res: res,
+                        permissions: permissions,
+                        conditions: conditions,
+                      })
+                    }
+                    style={styles.readMoreContainer}>
+                    <Text style={styles.readMoreText}>Read more</Text>
+                    <MaterialCommunityIcons
+                      style={styles.readMoreIcon}
+                      name="chevron-down"
+                      size={40}
+                      color={colors.primary}
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        color: 'black',
+                        textAlign: 'center',
+                        paddingTop: 30,
+                      }}>
+                      IMPORTANT
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        textAlign: 'justify',
+                        paddingBottom: 85,
+                        color: 'black',
+                        textAlign: 'center',
+                      }}>
+                      We apologize, but these are not the final results.
+                      Legalzard's team is still working on comparing these
+                      licenses.
+                    </Text>
+                  </>
+                )
               }
               // scrollEnabled={false}
               data={permissions}
               keyExtractor={item => item.action}
               showsVerticalScrollIndicator={false}
-              renderItem={item => (
-                <View style={styles.tableDataConatainer}>
-                  <View style={[styles.tableItemConatainer, {flex: 2}]}>
-                    <Text style={{padding: 7, color: colors.textDark}}>
-                      {item.item.action}
-                    </Text>
-                  </View>
-                  <View style={styles.tableItemConatainer}>
-                    <Text
+              renderItem={item =>
+                haveTable && (
+                  <View style={styles.tableDataConatainer}>
+                    <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                      <Text style={{padding: 7, color: colors.textDark}}>
+                        {item.item.action}
+                      </Text>
+                    </View>
+                    <View style={styles.tableItemConatainer}>
+                      <Text
+                        style={[
+                          styles.tableDatarText,
+                          {
+                            color:
+                              item.item.permission1 == 'Yes' ? 'green' : 'red',
+                          },
+                        ]}>
+                        {item.item.permission1}
+                      </Text>
+                    </View>
+                    <View
                       style={[
-                        styles.tableDatarText,
-                        {
-                          color:
-                            item.item.permission1 == 'Yes' ? 'green' : 'red',
-                        },
+                        styles.tableItemConatainer,
+                        {borderRightWidth: 0},
                       ]}>
-                      {item.item.permission1}
-                    </Text>
+                      <Text
+                        style={[
+                          styles.tableDatarText,
+                          {
+                            color:
+                              item.item.permission2 == 'Yes' ? 'green' : 'red',
+                          },
+                        ]}>
+                        {item.item.permission2}
+                      </Text>
+                    </View>
                   </View>
-                  <View
-                    style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
-                    <Text
-                      style={[
-                        styles.tableDatarText,
-                        {
-                          color:
-                            item.item.permission2 == 'Yes' ? 'green' : 'red',
-                        },
-                      ]}>
-                      {item.item.permission2}
-                    </Text>
-                  </View>
-                </View>
-              )}
+                )
+              }
             />
           </>
         ) : (
@@ -803,7 +997,7 @@ const LicenseCompatibility = ({navigation}) => {
               marginVertical: 60,
               paddingHorizontal: 10,
             }}>
-            <Text style={{fontSize: 18}}>DISCLAIMER</Text>
+            <Text style={{fontSize: 18, color: '#828282'}}>DISCLAIMER</Text>
             <Text
               style={{
                 fontSize: 15,
@@ -853,6 +1047,8 @@ const LicenseCompatibility = ({navigation}) => {
                 opacity: 1,
               },
             }}>
+            {loading ? <AppLoader /> : null}
+
             <View
               style={{
                 width: '100%',
@@ -874,11 +1070,13 @@ const LicenseCompatibility = ({navigation}) => {
                       historyData.map(item => (
                         <TouchableOpacity
                           key={item._id}
-                          onPress={async () => {
-                            navigation.navigate('ResultsDetailsScreen');
-                          }}>
-                          <Text style={styles.serchResultDetails}>
-                            {`${item.license_compatibility_history.comparison_detail.license_1.license_name} vs ${item.license_compatibility_history.comparison_detail.license_comparison.license_2.license_name}`}
+                          onPress={() => handleHistoryDetails(item)}>
+                          <Text
+                            style={[
+                              styles.serchResultHeading,
+                              {paddingVertical: 10},
+                            ]}>
+                            {`${item?.license_compatibility_history?.comparison_detail?.license_1?.license_name} vs ${item?.license_compatibility_history?.comparison_detail?.license_2?.license_name}`}
                           </Text>
                           {/* <Text
                           numberOfLines={1}
@@ -889,7 +1087,13 @@ const LicenseCompatibility = ({navigation}) => {
                         </TouchableOpacity>
                       ))
                     ) : (
-                      <Text style={styles.resultsText}>No history found</Text>
+                      <Text
+                        style={[
+                          styles.resultsText,
+                          {textAlign: 'center', paddingTop: 30},
+                        ]}>
+                        Loading...
+                      </Text>
                     )}
                   </View>
                 </ScrollView>
