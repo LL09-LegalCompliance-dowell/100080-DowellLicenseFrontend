@@ -65,6 +65,8 @@ const Steps = () => {
   const handle_input_5 = state => setInput_5(state);
   const [input_6, setInput_6] = useState('');
   const handle_input_6 = state => setInput_6(state);
+  const [input_7, setInput_7] = useState('');
+  const handle_input_7 = state => setInput_7(state);
   const [error_1, setError_1] = useState(false);
   const states = [
     empty_validationn,
@@ -82,6 +84,8 @@ const Steps = () => {
     handle_input_5,
     input_6,
     handle_input_6,
+    input_7,
+    handle_input_7
   ];
   const inputs = [input_1, input_2, input_3, input_4, input_5, input_6];
   ///////////////////////////////////----------------2
@@ -341,6 +345,7 @@ const Steps = () => {
   const request_object = {
     agreement_compliance_type: 'non-compete-agreement',
     organization_id: orgId,
+    website_or_app_name: input_7,
     date_of_execution_of_document: generate_date(date.toLocaleDateString()),
     party_full_name: input_1,
     company_name: input_2,

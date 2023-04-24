@@ -111,6 +111,16 @@ const Policy1 = ({list}) => {
               onChangeText={value => list[5](value)}
             />
             <Text style={[styles.text_1, {fontSize: 15}]}>
+              Website/App Name?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[26]}
+              placeholder="Enter here"
+              placeholderTextColor="gray"
+              onChangeText={value => list[27](value)}
+            />
+            <Text style={[styles.text_1, {fontSize: 15}]}>
               When is the Effective Date?
             </Text>
           </View>
