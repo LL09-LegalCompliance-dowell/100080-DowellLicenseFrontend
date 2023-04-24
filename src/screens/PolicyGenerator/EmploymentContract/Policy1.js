@@ -40,6 +40,14 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[2](value)}
           />
+          <Text style={styles.text_2}>Reference name </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[19]}
+            placeholder="Enter here"
+            placeholderTextColor="gray"
+            onChangeText={value => list[20](value)}
+          />
           <Text style={[styles.text_2, {marginTop:25}]}>What is the Address of the Company?</Text>
           <TextInput
             style={styles.input_vm}
