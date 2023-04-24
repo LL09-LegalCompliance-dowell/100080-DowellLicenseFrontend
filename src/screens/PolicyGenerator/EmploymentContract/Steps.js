@@ -66,6 +66,8 @@ const Steps = () => {
   const handle_input_7 = state => setInput_7(state);
   const [input_8, setInput_8] = useState('');
   const handle_input_8 = state => setInput_8(state);
+  const [input_9, setInput_9] = useState('');
+  const handle_input_9 = state => setInput_9(state);
   const states = [
     empty_validationn,
     input_1,
@@ -86,6 +88,8 @@ const Steps = () => {
     handle_input_7,
     input_8,
     handle_input_8,
+    input_9,
+    handle_input_9
   ];
   const [error_1, setError_1] = useState(false);
   const inputs = [
@@ -237,6 +241,7 @@ const Steps = () => {
 
   const request_object = {
     agreement_compliance_type: 'employment-contract',
+    website_or_app_name: input_9,
     organization_id: orgId,
     company_name: input_1,
     company_address_line_1: input_2,

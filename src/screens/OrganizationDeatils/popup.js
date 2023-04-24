@@ -37,7 +37,7 @@ const popup = ({modalVisible,setModalVisible,policy_name,data,setSelectedItem}) 
                   {item.agreement.website_or_app_name ===""?<Text style={{fontSize:18 ,lineHeight:21.09 ,fontWeight:"400",fontFamily: 'roboto',color:"red"}}>No App Name</Text>:<Text style={{fontSize:18 ,lineHeight:21.09 ,fontWeight:"400",fontFamily: 'roboto',color:"black"}}>{item.agreement.website_or_app_name}</Text>}
                     <View>
                       <Text style={{fontSize:12 ,lineHeight:22  ,fontWeight:"300",fontFamily: 'roboto',color:"#585858"}}>Date generated:</Text>      
-                      <Text style={{fontSize:12 ,lineHeight:22  ,fontWeight:"300",fontFamily: 'roboto',color:"#585858"}}>{item.agreement.policy_created_datetime}</Text>    
+                      <Text style={{fontSize:12 ,lineHeight:22  ,fontWeight:"300",fontFamily: 'roboto',color:"#585858"}}>{item.agreement.policy_created_datetime?item.agreement.policy_created_datetime.slice(0,10):""}</Text>    
                     </View>
                       
                   </TouchableOpacity>
