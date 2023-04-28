@@ -73,7 +73,7 @@ const CustomSideBar = ({navigation}) => {
           <Text style={styles.title}>Other Legal compliance</Text>
         </TouchableOpacity> */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             navigation.navigate('Home');
           }}
@@ -82,7 +82,7 @@ const CustomSideBar = ({navigation}) => {
             <Image style={styles.icon} source={require(ICON7)} />
           </View>
           <Text style={styles.title}>Pricing</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           onPress={() => {

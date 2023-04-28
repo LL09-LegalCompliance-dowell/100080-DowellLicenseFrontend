@@ -32,12 +32,12 @@ const Policy1 = ({list}) => {
         </Text>
 
         <Text style={styles.text_1}>Date:</Text>
-        <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-          <Text style={[styles.text_1, {fontSize: 16}]}>
+        <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+          <Text style={[styles.text_2]}>
             Privacy Policy Last updated:
           </Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {width: '100%', marginLeft: 0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -56,7 +56,7 @@ const Policy1 = ({list}) => {
         </View>
         <Text style={styles.text_1}>Company information:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-          <Text style={[styles.text_1, {fontSize: 17}]}>Company Name:</Text>
+          <Text style={[styles.text_2]}>Company Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[3]}
@@ -65,7 +65,7 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[4](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 17}]}>Company Address:</Text>
+          <Text style={[styles.text_2]}>Company Address:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[5]}
@@ -74,7 +74,7 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[6](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 17}]}>
+          <Text style={[styles.text_2]}>
             Registration number:
           </Text>
           <TextInput
@@ -85,7 +85,7 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 17}]}>Country:</Text>
+          <Text style={[styles.text_2]}>Country:</Text>
           <View style={styles.input_vm}>
             {list[9] === '' ? (
               <CountryPicker
@@ -102,9 +102,10 @@ const Policy1 = ({list}) => {
               <Text style={[styles.text_1, {fontSize: 17}]}>{list[9]}</Text>
             )}
           </View>
-
-          <Text style={styles.text_1}>Details:</Text>
-          <Text style={[styles.text_1, {fontSize: 17}]}>Website Name:</Text>
+        </View>
+        <Text style={styles.text_1}>Details:</Text>
+        <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+          <Text style={[styles.text_2]}>Website Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[11]}
@@ -112,7 +113,7 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[12](value)}
           />
-          <Text style={[styles.text_1, {fontSize: 17}]}>Website URL:</Text>
+          <Text style={[styles.text_2]}>Website URL:</Text>
 
           <TextInput
             style={styles.input_vm}
@@ -133,7 +134,7 @@ const Policy1 = ({list}) => {
           <Text style={valid_url1 ? styles.hide : styles.text_warning}>
             Please enter valid website url
           </Text>
-          <Text style={[styles.text_1, {fontSize: 17}]}>
+          <Text style={[styles.text_2]}>
             Website Contact Page URL:
           </Text>
 
@@ -157,7 +158,7 @@ const Policy1 = ({list}) => {
             Please enter valid website url
           </Text>
 
-          <Text style={[styles.text_1, {fontSize: 17}]}>
+          <Text style={[styles.text_2]}>
             Website Contact Email:
           </Text>
 
