@@ -79,9 +79,11 @@ const Steps = () => {
       const handle_input7_22 = (state)=> {
         setInput7(input7.filter((item)=>item!==state))
       };
+      const [input8, setInput8] = useState('');
+      const handle_input8 = (state)=> setInput8(state);
       const [error_1, setError_1] = useState(false);
       const [empty_validationn, setempty_validation] = useState(true);
-      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,input7,handle_input7_1,handle_input7_22,empty_validationn]
+      const states= [input1,handle_input1,input2,handle_input2,input3,handle_input3,date,handle_date,input4,handle_input4,isPress1,handle_isPress1,isPress2,handle_isPress2,isPress3,handle_isPress3,isPress4,handle_isPress4,input5,handle_input5,input6,handle_input6,input7,handle_input7_1,handle_input7_22,empty_validationn,input8,handle_input8]
       const inputs= [input1,input2,input3,input4,input5]
 
       ///////////////////////////////////////////////////////2
@@ -179,6 +181,7 @@ const Steps = () => {
       {
         agreement_compliance_type: "statement-of-work",
         organization_id: orgId,
+        website_or_app_name: input8,
         client_full_name: input1,
         jurisdiction: input2,
         project_name: input3,

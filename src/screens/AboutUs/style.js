@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
-    height:"100%",
+    // height:"100%",
     paddingTop: 65,
     alignSelf:"center"
   },
