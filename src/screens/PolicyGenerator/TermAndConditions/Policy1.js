@@ -26,7 +26,7 @@ const Policy1 = ({list}) => {
         </Text>
         <Text style={styles.text_1}>Details:</Text>
         <View style={{marginHorizontal: 5}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+          <Text style={[styles.text_2]}>
             Terms and Conditions Last updated:
           </Text>
           <TextInput
@@ -47,7 +47,8 @@ const Policy1 = ({list}) => {
             initialDate={list[1]}
           />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Country:</Text>
+          <Text style={[styles.text_2]}>
+Country:</Text>
           <View style={styles.input_vm}>
             {list[3] === '' ? (
               <CountryPicker
@@ -65,7 +66,8 @@ const Policy1 = ({list}) => {
             )}
           </View>
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Company Name:</Text>
+                    <Text style={[styles.text_2]}>
+Company Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[5]}
@@ -74,7 +76,8 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[6](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Website/App Name:</Text>
+                    <Text style={[styles.text_2]}>
+Website/App Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[7]}
@@ -83,7 +86,8 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
-           <Text style={[styles.text_1, {fontSize: 15}]}>Which law will govern the document?</Text>
+                     <Text style={[styles.text_2]}>
+Which law will govern the document?</Text>
           <TextInput
             style={styles.input_vm}
             value={list[13]}
@@ -92,7 +96,8 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[14](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Website URL:</Text>
+                   <Text style={[styles.text_2]}>
+Website URL:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[9]}
@@ -113,7 +118,7 @@ const Policy1 = ({list}) => {
             Please enter valid website url
           </Text>
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+          <Text style={[styles.text_2]}>
             Enter your Support Email ID for contact us information:
           </Text>
           <TextInput

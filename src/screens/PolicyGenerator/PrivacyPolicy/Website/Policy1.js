@@ -1,12 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-} from 'react-native';
+import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
@@ -33,9 +27,7 @@ const Policy1 = ({list}) => {
 
         <Text style={styles.text_1}>Date:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-          <Text style={[styles.text_2]}>
-            Privacy Policy Last updated:
-          </Text>
+          <Text style={[styles.text_2]}>Privacy Policy Last updated:</Text>
           <TextInput
             style={[styles.input, {width: '100%', marginLeft: 0}]}
             value={list[1].toLocaleDateString()}
@@ -74,9 +66,7 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[6](value)}
           />
 
-          <Text style={[styles.text_2]}>
-            Registration number:
-          </Text>
+          <Text style={[styles.text_2]}>Registration number:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[7]}
@@ -134,9 +124,7 @@ const Policy1 = ({list}) => {
           <Text style={valid_url1 ? styles.hide : styles.text_warning}>
             Please enter valid website url
           </Text>
-          <Text style={[styles.text_2]}>
-            Website Contact Page URL:
-          </Text>
+          <Text style={[styles.text_2]}>Website Contact Page URL:</Text>
 
           <TextInput
             style={styles.input_vm}
@@ -158,9 +146,7 @@ const Policy1 = ({list}) => {
             Please enter valid website url
           </Text>
 
-          <Text style={[styles.text_2]}>
-            Website Contact Email:
-          </Text>
+          <Text style={[styles.text_2]}>Website Contact Email:</Text>
 
           <TextInput
             style={styles.input_vm}
