@@ -48,7 +48,9 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[20](value)}
           />
-          <Text style={[styles.text_2, {marginTop:25}]}>What is the Address of the Company?</Text>
+          <Text style={[styles.text_2, {marginTop: 25}]}>
+            What is the Address of the Company?
+          </Text>
           <TextInput
             style={styles.input_vm}
             value={list[3]}
@@ -83,8 +85,12 @@ const Policy1 = ({list}) => {
           <Text style={valid_email ? styles.hide : styles.text_warning}>
             Please enter valid email
           </Text>
+        </View>
+        <Text style={[styles.text_1, {marginTop: 25, marginBottom: 15}]}>
+          Description of Business:
+        </Text>
 
-          <Text style={[styles.text_1, {marginTop:25, marginBottom:15}]}>Description of Business:</Text>
+        <View style={{paddingHorizontal: 11}}>
           <Text style={styles.text_2}>
             What type of Business is the Company engaged in?
           </Text>
@@ -96,9 +102,12 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[12](value)}
           />
+        </View>
+        <Text style={[styles.text_1, {marginTop: 25, marginBottom: 15}]}>
+          Term:
+        </Text>
 
-         
-<Text style={[styles.text_1, {marginTop:25, marginBottom:15}]}>Term</Text>
+        <View style={{paddingHorizontal: 11}}>
           <Text style={styles.text_2}>
             When is the term commencement (Start Date)?
           </Text>
@@ -119,8 +128,11 @@ const Policy1 = ({list}) => {
             isHideOnSelect={true}
             initialDate={list[13]}
           />
-          
-          <Text style={[styles.text_1, {marginTop:25, marginBottom:15}]}>Applicable Law</Text>
+        </View>
+        <Text style={[styles.text_1, {marginTop: 25, marginBottom: 15}]}>
+          Applicable Law:
+        </Text>
+        <View style={{paddingHorizontal: 11}}>
           <Text style={styles.text_2}>
             Which State is the Company situated in?
           </Text>
