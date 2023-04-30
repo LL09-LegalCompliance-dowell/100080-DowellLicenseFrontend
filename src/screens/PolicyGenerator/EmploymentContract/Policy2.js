@@ -27,7 +27,7 @@ const Policy2 = ({list}) => {
           Please Check your inputs... You must fill all{' '}
         </Text>
 
-        <Text style={styles.text_2}>Exhibit A:</Text>
+        <Text style={styles.text_1}>Exhibit A:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={[styles.text_2, {paddingTop: 20}]}>
             What are the duties of the Employee?
@@ -39,8 +39,10 @@ const Policy2 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[2](value)}
           />
+        </View>
+        <Text style={styles.text_1}>Exhibit B:</Text>
 
-          <Text style={styles.text_2}>Exhibit B:</Text>
+        <View style={{paddingHorizontal: 11}}>
           <Text style={[styles.text_2, {paddingTop: 20}]}>
             What is the Time Frame of the Compensation?
           </Text>
