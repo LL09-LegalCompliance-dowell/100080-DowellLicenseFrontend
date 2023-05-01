@@ -118,6 +118,7 @@ const Steps = () => {
               paddingTop: 45,
               backgroundColor: 'white',
               paddingHorizontal:15,
+              marginBottom:-25
             }}>
             <ProgressSteps
               style={{width: '100px'}}

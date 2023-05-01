@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
-  Button
+  Button,
 } from 'react-native';
 import styles from '../Cookies/style';
 
@@ -15,13 +15,6 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 const Policy1 = ({list}) => {
-  
-  
-
- 
-  
-  
-
   var touchProps1 = {
     style: list[10] ? styles.Pressed : styles.Normal,
     onPress: () => list[11](true),
@@ -40,32 +33,37 @@ const Policy1 = ({list}) => {
     onPress: () => list[17](true),
   };
 
-  const onPress=()=>{
-    if(list[20]!==""){
-      let flag=true
+  const onPress = () => {
+    if (list[20] !== '') {
+      let flag = true;
       for (let index = 0; index < list[22].length; index++) {
-        if (list[20] ===list[22][index]){
-          flag=false
+        if (list[20] === list[22][index]) {
+          flag = false;
         }
       }
-      if (flag==true) {
-        list[23](list[20])
+      if (flag == true) {
+        list[23](list[20]);
       }
-      list[21]("")
-      
+      list[21]('');
     }
-    
-  }
+  };
 
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <Text style={list[list.length-1]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Check your inputs... You must fill all  </Text>
+        <Text
+          style={
+            list[list.length - 1]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Client details:</Text>
           {/* Details start here */}
           <View style={{marginHorizontal: 15}}>
-            <Text style={[styles.text_1, {fontSize: 15}]}>
+            <Text style={[styles.text_2, {paddingTop:9}]}>
               What is the Client’s full name?
             </Text>
             <TextInput
@@ -89,7 +87,7 @@ const Policy1 = ({list}) => {
               *Include Middle Name
             </Text>
 
-            <Text style={[styles.text_1, {fontSize: 15}]}>
+            <Text style={[styles.text_2]}>
               Where is the Jurisdiction?
             </Text>
             <TextInput
@@ -100,7 +98,7 @@ const Policy1 = ({list}) => {
               onChangeText={value => list[3](value)}
             />
 
-            <Text style={[styles.text_1, {fontSize: 15}]}>
+<Text style={[styles.text_2]}>
               What is the Project Name?
             </Text>
             <TextInput
@@ -110,7 +108,7 @@ const Policy1 = ({list}) => {
               placeholderTextColor="gray"
               onChangeText={value => list[5](value)}
             />
-            <Text style={[styles.text_1, {fontSize: 15}]}>
+            <Text style={[styles.text_2]}>
               Website/App Name?
             </Text>
             <TextInput
@@ -120,7 +118,7 @@ const Policy1 = ({list}) => {
               placeholderTextColor="gray"
               onChangeText={value => list[27](value)}
             />
-            <Text style={[styles.text_1, {fontSize: 15}]}>
+            <Text style={[styles.text_2]}>
               When is the Effective Date?
             </Text>
           </View>
@@ -147,7 +145,7 @@ const Policy1 = ({list}) => {
 
         <Text style={styles.text_1}>Purpose of Agreement:</Text>
         <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+        <Text style={[styles.text_2, {paddingTop:9}]}>
             What is the Freelancer’s full name?
           </Text>
           <TextInput
@@ -176,7 +174,7 @@ const Policy1 = ({list}) => {
 
         <Text style={styles.text_1}>Authorization:</Text>
         <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+        <Text style={[styles.text_2, {paddingTop:9, paddingBottom:5}]}>
             What can the Freelancer access?
           </Text>
           <TouchableHighlight {...touchProps1}>
@@ -187,7 +185,9 @@ const Policy1 = ({list}) => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Client’s web hosting account (AWS) </Text>
+              <Text style={{color: 'gray'}}>
+                Client’s web hosting account (AWS){' '}
+              </Text>
               <TouchableOpacity
                 style={list[10] ? {display: 'flex'} : {display: 'none'}}
                 onPress={() => list[11](false)}>
@@ -204,7 +204,9 @@ const Policy1 = ({list}) => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Client’s source code repository (GitHub)</Text>
+              <Text style={{color: 'gray'}}>
+                Client’s source code repository (GitHub)
+              </Text>
               <TouchableOpacity
                 style={list[12] ? {display: 'flex'} : {display: 'none'}}
                 onPress={() => list[13](false)}>
@@ -221,7 +223,9 @@ const Policy1 = ({list}) => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Client’s project management tool (Jira)</Text>
+              <Text style={{color: 'gray'}}>
+                Client’s project management tool (Jira)
+              </Text>
               <TouchableOpacity
                 style={list[14] ? {display: 'flex'} : {display: 'none'}}
                 onPress={() => list[15](false)}>
@@ -238,7 +242,9 @@ const Policy1 = ({list}) => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
               }}>
-              <Text style={{color: 'gray'}}>Client’s time management took (Everhour)</Text>
+              <Text style={{color: 'gray'}}>
+                Client’s time management took (Everhour)
+              </Text>
               <TouchableOpacity
                 style={list[16] ? {display: 'flex'} : {display: 'none'}}
                 onPress={() => list[17](false)}>
@@ -251,7 +257,7 @@ const Policy1 = ({list}) => {
         {/* Project scope starts here */}
         <Text style={styles.text_1}>Project Scope:</Text>
         <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+        <Text style={[styles.text_2, {paddingTop:9}]}>
             What is the goal of this project?
           </Text>
           <TextInput
@@ -262,68 +268,72 @@ const Policy1 = ({list}) => {
             onChangeText={value => list[19](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+<Text style={[styles.text_2, {paddingTop:9}]}>
             What are the deliverables expected in this scope of work?
           </Text>
-          <View style={{display:"flex",flexDirection:"row"}}>
+          <View style={{display: 'flex', flexDirection: 'row'}}>
             <TextInput
-                    value={list[20]}
-                    placeholder="Enter here"
-                    placeholderTextColor="gray"
-                    style = {{
-                      height: 51,
-                      marginVertical: 15,
-                      borderWidth: 1,
-                      borderRadius: 15,
-                      borderColor: '#C4C4C4',
-                      padding: 12,
-                      width:"75%",
-                      backgroundColor: '#D8D8D8',
-                      fontSize:16,
-                      color:"#585858"
-                      
-    
-                    }}
-                    onChangeText={value =>list[21](value)}
+              value={list[20]}
+              placeholder="Enter here"
+              placeholderTextColor="gray"
+              style={{
+                height: 51,
+                marginVertical: 15,
+                borderWidth: 1,
+                borderRadius: 15,
+                borderColor: '#C4C4C4',
+                padding: 12,
+                width: '75%',
+                backgroundColor: '#D8D8D8',
+                fontSize: 16,
+                color: '#585858',
+              }}
+              onChangeText={value => list[21](value)}
             />
-            <TouchableOpacity onPress={onPress} style = {{
-                      height: 51,
-                      marginVertical: 15,
-                      marginLeft:5,
-                      borderWidth: 1,
-                      borderRadius: 15,
-                      borderColor: '#C4C4C4',
-                      padding: 12,
-                      width:"20%",
-                      backgroundColor: '#D8D8D8',
-                      fontSize:16,
-                      
-                    }}>
-              <Text style={{color:"gray",padding:5}}>Add</Text>
-              
+            <TouchableOpacity
+              onPress={onPress}
+              style={{
+                height: 51,
+                marginVertical: 15,
+                marginLeft: 5,
+                borderWidth: 1,
+                borderRadius: 15,
+                borderColor: '#C4C4C4',
+                padding: 12,
+                width: '20%',
+                backgroundColor: '#D8D8D8',
+                fontSize: 16,
+              }}>
+              <Text style={{color: 'gray', padding: 5}}>Add</Text>
             </TouchableOpacity>
-            
-            
-          
-
           </View>
-          <View style={{flex:1 ,display:"flex",flexDirection:"column",marginVertical:5,marginHorizontal:30}}>
-                {list[22].map((item,index)=>{
-                  return<TouchableHighlight style={styles.Pressed}key={index}>
-                  <View style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10}}>
-                    <Text style={{width:"90%",color:"#585858"}}>{item}</Text>
-                    <TouchableOpacity  onPress={()=>list[24](item)}><Text style ={{color:"#585858"}}> x  </Text></TouchableOpacity>
+          <View
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              marginVertical: 5,
+              marginHorizontal: 30,
+            }}>
+            {list[22].map((item, index) => {
+              return (
+                <TouchableHighlight style={styles.Pressed} key={index}>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      padding: 10,
+                    }}>
+                    <Text style={{width: '90%', color: '#585858'}}>{item}</Text>
+                    <TouchableOpacity onPress={() => list[24](item)}>
+                      <Text style={{color: '#585858'}}> x </Text>
+                    </TouchableOpacity>
                   </View>
                 </TouchableHighlight>
-                }
-                )}
-                
-                 
-
-            </View>
-          
-                
-          
+              );
+            })}
+          </View>
         </View>
       </ScrollView>
     </>
