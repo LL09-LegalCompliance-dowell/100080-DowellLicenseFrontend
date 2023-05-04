@@ -38,7 +38,6 @@ const CustomSideBar = ({navigation}) => {
           </View>
           <Text style={styles.title}>Home</Text>
         </TouchableOpacity>
-        
 
         <TouchableOpacity
           onPress={() => {
@@ -75,13 +74,13 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('LicenseCompatibility');
           }}
           style={styles.item}>
           <View style={styles.iconConatainer}>
-            <Image style={styles.icon} source={require(ICON7)} />
+            <Image style={styles.icon} source={require(ICON6)} />
           </View>
-          <Text style={styles.title}>Pricing</Text>
+          <Text style={styles.title}>License compatibility</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

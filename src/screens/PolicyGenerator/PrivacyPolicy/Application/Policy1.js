@@ -30,12 +30,10 @@ const Policy1 = ({list}) => {
           Please Check your inputs... You must fill all{' '}
         </Text>
         <Text style={styles.text_1}>Date:</Text>
-        <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-          <Text style={[styles.text_1, {fontSize: 16}]}>
-            Privacy Policy Last updated:
-          </Text>
+        <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+          <Text style={[styles.text_2]}>Privacy Policy Last updated:</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, {width:"100%", marginLeft:0}]}
             value={list[1].toLocaleDateString()}
             placeholder="dd/mm/yyyy"
             placeholderTextColor="gray"
@@ -54,7 +52,7 @@ const Policy1 = ({list}) => {
         </View>
         <Text style={styles.text_1}>Company information:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-          <Text style={[styles.text_1, {fontSize: 17}]}>Company Name:</Text>
+          <Text style={[styles.text_2]}>Company Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[3]}
@@ -62,9 +60,13 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[4](value)}
           />
-          <Text style={styles.text_1}>Details:</Text>
+          
 
-          <Text style={[styles.text_1, {fontSize: 17}]}>App Name:</Text>
+          
+        </View>
+        <Text style={styles.text_1}>Details:</Text>
+        <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+        <Text style={[styles.text_2]}>App Name:</Text>
           <TextInput
             style={styles.input_vm}
             value={list[5]}
@@ -72,7 +74,7 @@ const Policy1 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[6](value)}
           />
-          <Text style={[styles.text_1, {fontSize: 17}]}>App URL:</Text>
+          <Text style={[styles.text_2]}>App URL:</Text>
 
           <TextInput
             style={styles.input_vm}
@@ -93,9 +95,7 @@ const Policy1 = ({list}) => {
           <Text style={valid_url1 ? styles.hide : styles.text_warning}>
             Please enter valid website url
           </Text>
-          <Text style={[styles.text_1, {fontSize: 17}]}>
-            Website Contact Page URL:
-          </Text>
+          <Text style={[styles.text_2]}>Website Contact Page URL:</Text>
 
           <TextInput
             style={styles.input_vm}
@@ -117,10 +117,7 @@ const Policy1 = ({list}) => {
             Please enter valid website url
           </Text>
 
-
-          <Text style={[styles.text_1, {fontSize: 17}]}>
-            Website Contact Email:
-          </Text>
+          <Text style={[styles.text_2]}>Website Contact Email:</Text>
 
           <TextInput
             style={styles.input_vm}

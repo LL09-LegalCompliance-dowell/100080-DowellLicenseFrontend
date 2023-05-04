@@ -8,17 +8,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
-    height:"100%",
-    paddingTop: 65,
+    // height:"100%",
+    paddingTop: 50,
     alignSelf:"center"
   },
 
   heading: {
-    fontSize: 18,
-    fontWeight: '400',
+    fontSize: 20,
+    fontWeight: 'bold',
     color: colors.textDark,
     paddingTop: 20,
-    paddingBottom: 15,
+    paddingBottom: 10,
     fontFamily:'roboto'
   },
   contactText:{

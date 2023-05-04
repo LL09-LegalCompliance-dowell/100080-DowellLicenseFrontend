@@ -107,10 +107,10 @@ const About = () => {
                         livinglabfinance@dowellrsearch.sg
                       </Text>
                     </View>
-                    <View style={styles.contactItem}>
+                    {/* <View style={styles.contactItem}>
                       <Feather name="phone" size={30} color={colors.primary} />
                       <Text style={styles.contactText}>65 6232 2314</Text>
-                    </View>
+                    </View> */}
                   </View>
                   <Text style={styles.heading}>Write to us</Text>
                   <Image
@@ -131,6 +131,7 @@ const About = () => {
                       value={values.fullname}
                       placeholderTextColor="gray"
                       height={50}
+                      style={{width: '100%'}}
                     />
                     {errors.fullname && touched.fullname && (
                       <Text style={styles.errors}>{errors.fullname}</Text>
@@ -146,6 +147,7 @@ const About = () => {
                       value={values.email}
                       placeholderTextColor="gray"
                       height={50}
+                      style={{width: '100%'}}
                     />
                     {errors.email && touched.email && (
                       <Text style={styles.errors}>{errors.email}</Text>
@@ -162,6 +164,7 @@ const About = () => {
                       height={200}
                       multiline={true}
                       placeholderTextColor="gray"
+                      style={{width: '100%'}}
                     />
                     {errors.message && touched.message && (
                       <Text style={styles.errors}>{errors.message}</Text>

@@ -9,6 +9,7 @@ import Policy4 from './Policy4';
 import Policy5 from './Policy5';
 import Policy6 from '../Cookies/Policy4';
 import {empty_validation, email_validation} from '../validations';
+import {useNavigation} from '@react-navigation/native';
 
 const generate_date = date => {
   const temp = date.split('/');
@@ -16,6 +17,7 @@ const generate_date = date => {
 };
 
 const Steps = () => {
+  const navigation = useNavigation();
   const nextButton = {
     backgroundColor: '#489503',
     paddingHorizontal: 5,
@@ -1378,7 +1380,7 @@ const Steps = () => {
   const [input_1_4, setInput_1_4] = useState('');
   const handle_input_1_4 = state => setInput_1_4(state);
   const [input_2_4, setInput_2_4] = useState('');
-  const handle_input_2_4 = state => setInput_1_4(state);
+  const handle_input_2_4 = state => setInput_2_4(state);
   const [input_3_4, setInput_3_4] = useState('');
   const handle_input_3_4 = state => setInput_3_4(state);
   const [date_5, setDate_5] = useState(new Date());
@@ -1532,30 +1534,32 @@ const Steps = () => {
     // is_termination_period_expirable: p,
     relevant_termination_period: 0,
     relevant_termination_period_unit: 'Days',
-    relevant_termination_period_date: '2022-10-20',
-    circumstances_in_which_a_party_may_terminate_for_breach: 'Nil',
+    relevant_termination_period_date: generate_date(
+      date20.toLocaleDateString(),
+    ),
+    circumstances_in_which_a_party_may_terminate_for_breach: input_10_3,
     time_frame_for_the_notice_period: 0,
     time_frame_for_the_notice_period_unit: 'Months',
-    sent_contractual_notices_to_the_licensor_name: 'Nil',
-    sent_contractual_notices_to_the_licensor_address_1: 'Nil',
-    sent_contractual_notices_to_the_licensor_address_2: 'Nil',
-    sent_contractual_notices_to_the_licensor_address_3: 'Nil',
-    sent_contractual_notices_to_the_licensor_contact_details: 'Nil',
-    sent_contractual_notices_to_the_licensee_name: 'Nil',
-    sent_contractual_notices_to_the_licensee_address_1: 'Nil',
-    sent_contractual_notices_to_the_licensee_address_2: 'Nil',
-    sent_contractual_notices_to_the_licensee_address_3: 'Nil',
-    sent_contractual_notices_to_the_licensee_contact_details: 'Nil',
-    law_governs_document: 'Nil',
+    sent_contractual_notices_to_the_licensor_name: input_12_3,
+    sent_contractual_notices_to_the_licensor_address_1: input_13_3,
+    sent_contractual_notices_to_the_licensor_address_2: input_14_3,
+    sent_contractual_notices_to_the_licensor_address_3: input_15_3,
+    sent_contractual_notices_to_the_licensor_contact_details: input_16_3,
+    sent_contractual_notices_to_the_licensee_name: input_17_3,
+    sent_contractual_notices_to_the_licensee_address_1: input_18_3,
+    sent_contractual_notices_to_the_licensee_address_2: input_19_3,
+    sent_contractual_notices_to_the_licensee_address_3: input_20_3,
+    sent_contractual_notices_to_the_licensee_contact_details: input_21_3,
+    law_governs_document: input_22_3,
     court_of_jurisdiction_which_has_exclusive_right_to_adjudicate_disputes_on_document:
-      'Nil',
+      input_23_3,
     //////////////////////////////5
     which_entity_will_sign_contract_on_behalf_of_party_1: s,
-    full_name_of_party_1_signatory: input_1_4,
     party_1_signatory_scanned_copy_detail: {
       filename: input_2_4,
       file_extension: 'png',
     },
+    full_name_of_party_1_signatory: 'input_1_4',
     party_1_date_of_signing_contract: generate_date(
       date_5.toLocaleDateString(),
     ),
@@ -1564,11 +1568,11 @@ const Steps = () => {
       date_6.toLocaleDateString(),
     ),
     which_entity_will_sign_contract_on_behalf_of_party_2: t,
-    full_name_of_party_2_signatory: input_5_4,
     party_2_signatory_scanned_copy_detail: {
       filename: input_6_4,
       file_extension: 'png',
     },
+    full_name_of_party_2_signatory: input_5_4,
     party_2_date_of_signing_contract: generate_date(
       date_7.toLocaleDateString(),
     ),
@@ -1741,7 +1745,8 @@ const Steps = () => {
               setempty_validation_4(empty_validation(inputs_4));
               const x = empty_validation(inputs_4);
               setError_5(!x);
-            }}>
+            }}
+          >
             <View>
               <Policy5 list={states_4} />
             </View>

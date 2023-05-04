@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 1,
     alevation: 2,
-    paddingBottom:20
+    paddingBottom: 20,
   },
   button: {
     display: 'flex',
@@ -166,11 +166,20 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.borderLight,
     height: 0.7,
-    // elevation: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   serchResultItemContainer: {
     paddingHorizontal: 17,
     paddingVertical: 3,
+    // marginVertical: 3,
     backgroundColor: 'white',
   },
   serchResultHeading: {
@@ -178,17 +187,18 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.textDark,
     fontFamily: 'roboto',
+    marginTop: 3,
   },
   serchResultDetails: {
     color: colors.textDark,
     fontFamily: 'roboto',
-    paddingBottom:4
+    paddingBottom: 7,
   },
   vsText: {
     fontSize: 12,
     color: '#A7A7A7',
     // marginBottom: 35,
-    alignSelf:'center'
+    alignSelf: 'center',
   },
 });
 

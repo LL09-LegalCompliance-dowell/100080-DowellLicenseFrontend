@@ -219,7 +219,7 @@ const Policy3 = ({list}) => {
         </Text>
         <Text style={styles.text_1}>Company Details:</Text>
         <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+        <Text style={styles.text_2}>
             Company nature of work:
           </Text>
           <TextInput
@@ -229,7 +229,7 @@ const Policy3 = ({list}) => {
             placeholderTextColor="gray"
             onChangeText={value => list[6](value)}
           />
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+          <Text style={styles.text_2}>
             Employee job title:
           </Text>
           <TextInput
@@ -240,7 +240,7 @@ const Policy3 = ({list}) => {
             onChangeText={value => list[8](value)}
           />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+<Text style={styles.text_2}>
             Name, address and signature of the witnesse 1
           </Text>
           <TextInput
@@ -312,7 +312,7 @@ const Policy3 = ({list}) => {
             onChangeText={value => list[14](value)}
           />
           {/* Fitness 2 */}
-          <Text style={[styles.text_1, {fontSize: 15}]}>
+          <Text style={styles.text_2}>
             Name, address and signature of the witnesse 2
           </Text>
           <TextInput
