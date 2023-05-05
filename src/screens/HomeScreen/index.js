@@ -5,6 +5,8 @@ import {
   Image,
   ScrollView,
   FlatList,
+  ImageBackground,
+  Pressable,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -18,15 +20,37 @@ import AppLoader from '../../components/AppLoader';
 import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
-import HelpBot from '../HelpBot';
+import Help from './Help';
+
+const data = [
+  {
+    id: '1',
+    title: 'Software License',
+    tagline:
+      'scroll through our list of software licenses curated just for you',
+    image: 'softwereLicenses',
+    route: 'Software License',
+  },
+  {
+    id: '2',
+    title: 'Agreement Compliance',
+    tagline: 'generate policies using our agreement compliance system',
+    image: 'legalAPIs',
+    route: 'Agreement Compliance',
+  },
+];
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
+  const helpHanlder=()=>{
+    setShowHelp(true)
+  }
+  const helpHanlderClose=()=>{
+    setShowHelp(false)
+  }
   return (
     <View style={styles.container}>
-      <HelpIcon style={styles.help} onPress={() => setShowHelp(true)}>
-        <HelpBot />
-      </HelpIcon>
+      
       {/* Header */}
       <Header leftIcon="menu" rightIcon="user" />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -38,65 +62,91 @@ const Home = ({navigation}) => {
         <View style={styles.miniContainer}>
           {/* Product and Services */}
           <Text style={styles.heading}>Products & Services</Text>
-          <View style={styles.productItemsContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Software License');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/carbon_cloud-satellite-services.png')}
-              />
-              <Text style={styles.itemText}>Software License</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Agreement Compliance');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group5.png')}
-              />
-              <Text style={styles.itemText}>Agreement Compliance</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group11.png')}
-              />
-              <Text style={styles.itemText}>Pricing</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Contact Us');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group8.png')}
-              />
-              <Text style={styles.itemText}>Contact us</Text>
-            </TouchableOpacity>
-          </View>
-          
+          <FlatList
+            data={data}
+            horizontal
+            renderItem={({item}) => {
+              return (
+                <ImageBackground
+                  source={require('./images/Gradient.png')}
+                  style={{
+                    height: 250,
+                    width: 188,
+                    marginRight: 7,
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: 6,
+                  }}>
+                  <View>
+                    {/* <Image
+                    source={require(`./images/softwereLicenses.png`)}
+                    style={{width: 20, height: 20, color:"black"}}
+                  /> */}
+                    <Text
+                      style={[
+                        styles.heading,
+                        {fontSize: 17, textAlign: 'center'},
+                      ]}>
+                      {item.title}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.aboutText,
+                        {fontSize: 14, textAlign: 'center'},
+                      ]}>
+                      {item.tagline}
+                    </Text>
+                  </View>
+                  <Pressable
+                    onPress={() => {
+                      navigation.navigate(`${item.route}`);
+                    }}
+                    style={{
+                      backgroundColor: 'black',
+                      height: 33,
+                      width: 114,
+                      marginBottom: 15,
+                      borderRadius: 20,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text style={{color: 'white', fontSize: 14}}>
+                      Explore Now
+                    </Text>
+                  </Pressable>
+                </ImageBackground>
+              );
+            }}
+            keyExtractor={item => item.id}
+          />
 
           {/* Quik Links */}
-          <Text style={styles.heading}>Quik Links</Text>
+          <Text style={styles.heading}>Most Visited</Text>
           <View style={styles.linkContainer}>
-            <Text style={styles.link}>Check compatibility</Text>
-            <Text style={styles.link}>Generate Policies</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('AuthNavigator', {screen:'PrivacyPolicy'} )}>
-              <Text style={styles.link}>View Privacy Policy</Text>
-            </TouchableOpacity>            
+            <View style={{flexDirection:"row", alignItems:"center", marginBottom:4}}>
+              <Image
+                source={require(`./images/1.png`)}
+                style={{width: 60, height: 60, color: 'black', marginRight:8}}
+              />
+              <Text style={styles.heading}>Apache vs MIT</Text>
+            </View>
+            <View style={{flexDirection:"row", alignItems:"center"}}>
+              <Image
+                source={require(`./images/2.png`)}
+                style={{width: 60, height: 60, color: 'black', marginRight:8}}
+              />
+              <Text style={styles.heading}>GNU GPL v 1.0</Text>
+            </View>
           </View>
           <Text
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
             Copyright &copy; 2022 UX Living Lab
           </Text>
         </View>
+        
+        <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
       </ScrollView>
+      <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
     </View>
   );
 };

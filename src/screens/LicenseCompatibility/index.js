@@ -1016,7 +1016,7 @@ const LicenseCompatibility = ({navigation}) => {
               with respect to the website or the information, products,
               services, or related graphics contained on the website for any
               purpose. Any reliance on such information is therefore strictly at
-              your own risk. Legalzard App (Dowell) reserves the right, in its
+              your own risk. Legalzard App (UXLivingLab) reserves the right, in its
               sole discretion, to correct any error or omission in any portion
               of the site. In no event will we be liable for any loss or damage
               including without limitation, indirect or consequential loss or
