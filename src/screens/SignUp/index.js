@@ -120,7 +120,7 @@ export default IntroductionScreen = ({navigation}) => {
 
                 <View style={styles.titlesWrapper}>
                   <Text style={styles.titlesTitle}>
-                    DoWell Research Services
+                    UXLivingLab
                   </Text>
                 </View>
 

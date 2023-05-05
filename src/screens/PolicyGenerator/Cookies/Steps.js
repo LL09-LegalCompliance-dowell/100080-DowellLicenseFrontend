@@ -440,10 +440,11 @@ useEffect(()=>{
           <PolicyHeader title="Generator" />
           <View
             style={{
-              flex: 1,
+              flex:1,
               paddingTop: 45,
               backgroundColor: 'white',
               paddingHorizontal:15,
+              marginBottom:-25
             }}>
             <ProgressSteps
               style={{width: '100px'}}
