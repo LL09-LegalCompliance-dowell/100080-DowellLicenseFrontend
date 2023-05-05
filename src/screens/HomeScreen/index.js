@@ -143,9 +143,10 @@ const Home = ({navigation}) => {
             Copyright &copy; 2022 UX Living Lab
           </Text>
         </View>
-        <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
+        
         <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
       </ScrollView>
+      <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
     </View>
   );
 };

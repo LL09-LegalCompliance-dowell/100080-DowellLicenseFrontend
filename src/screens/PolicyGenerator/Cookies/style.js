@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
       },
       calendarPosition: {
         position: 'absolute',
-        right: 30,
-        top: -50,
+        right: 12,
+        top: 50,
         elevation: 3,
       },
       radio_hm: {
