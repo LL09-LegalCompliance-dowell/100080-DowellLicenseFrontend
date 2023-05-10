@@ -6,9 +6,12 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { number_validation } from '../validations';
-
+import Date from '../Date';
 const Policy3 = ({list}) => {
- 
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
   
   
   const [valid_number,setValid_number]=useState(true)
@@ -41,23 +44,7 @@ const Policy3 = ({list}) => {
             <Text style={styles.text_2}>
             What will be the date for termination of this NDA?
             </Text>
-            <TextInput
-              style={styles.input_vm}
-              value={list[2].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray" 
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray"/>
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[3](value)}
-              isHideOnSelect={true}
-              initialDate={list[2]}
-            />
+            <Date date={list[2]} setDate = {list[3]} open ={open} openHandler={openHandler}/>
       </View>
       <Text style={styles.text_2}>Will the party be allowed to enter into similar arrangements with other parties while the non disclosure agreement subsits?(exclusive or not).</Text>
       <RadioGroup

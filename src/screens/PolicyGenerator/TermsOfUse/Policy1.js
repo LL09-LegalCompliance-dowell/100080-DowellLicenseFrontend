@@ -7,10 +7,17 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { email_validation,url_validation } from '../validations';
 
+import Date from '../Date';
+
 const Policy1 = ({list}) => {
   const [valid_email  , setValid_email ] =  useState(true);
   const [valid_email1 , setValid_email1] =  useState(true);
   const [valid_url , setValid_url]=useState(true);
+
+  const [open, setOpen] = useState(false)
+const openHandler=(state)=>{
+    setOpen(state)
+}
   return (
   <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -22,23 +29,7 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>
           When were the terms last updated?
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[0].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray" 
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray"/>
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[1](value)}
-            isHideOnSelect={true}
-            initialDate={list[0]}
-          />
+          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
         </View>
         <Text style={styles.text_3_m_b}>Clause 3</Text>
         <Text style={styles.text_2}>Enter your Full Legal Name of the Party</Text>

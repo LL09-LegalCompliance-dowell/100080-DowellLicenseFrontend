@@ -41,7 +41,7 @@ const Policy1 = ({list}) => {
           <Text style={{color: colors.textDark,fontSize:20}}>
           Date of execution of the document:
           </Text>
-          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
+          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler} margin={true}/>
           
       </View>
       <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400"}}>Policy details:</Text>

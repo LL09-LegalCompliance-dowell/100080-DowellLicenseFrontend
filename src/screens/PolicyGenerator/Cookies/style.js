@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         borderColor: '#C4C4C4',
-        padding: 10,
+        padding: 12,
         backgroundColor: '#D8D8D8',
         fontSize:16,
         color:"#585858"
@@ -150,6 +150,12 @@ const styles = StyleSheet.create({
       calendarPosition: {
         position: 'absolute',
         right: 10,
+        top: 28,
+       
+      },
+      calendarPositionMargin: {
+        position: 'absolute',
+        right: 25,
         top: 28,
        
       },

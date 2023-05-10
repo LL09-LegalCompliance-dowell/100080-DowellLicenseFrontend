@@ -8,8 +8,13 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import Date from '../Date';
 
 const Policy3 = ({list}) => {
+  const [open, setOpen] = useState(false)
+const openHandler=(state)=>{
+    setOpen(state)
+}
 
   
   // var touchProps1 = {                               
@@ -36,23 +41,8 @@ const Policy3 = ({list}) => {
           <Text style={styles.text_2}>
           What will be the commencement date?
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[0].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray" 
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray"/>
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[1](value)}
-            isHideOnSelect={true}
-            initialDate={list[0]}
-          />
+          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
+          
         </View>
         <Text style={styles.text_2}>Whether maintenance and support will be available for the app and will it be delivered over phone, via email or in person?</Text>
         <RadioForm
