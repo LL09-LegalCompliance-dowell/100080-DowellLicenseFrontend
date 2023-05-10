@@ -1,21 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
-import { ScrollView ,View,Text,TextInput, TouchableOpacity,} from 'react-native'
+import { ScrollView ,View,Text,TextInput} from 'react-native'
 import styles from '../Cookies/style'
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { email_validation,url_validation } from '../validations';
 import SelectDropdown from 'react-native-select-dropdown'
-import DatePicker from 'react-native-date-picker'
 
+import Date from '../Date';
 
 
 const Policy1 = ({list}) => {
 const [valid_email , setValid_email]=useState(true);
 const [valid_url , setValid_url]=useState(true);
 const [open, setOpen] = useState(false)
-const openHandler=()=>{
-    setOpen(true)
+const openHandler=(state)=>{
+    setOpen(state)
 }
 const Jurisdiction = [
     'India',
@@ -39,45 +37,11 @@ return (
     <Text style={valid_email?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Enter Valid Email  </Text>
     <Text style={styles.text_1}>Date:</Text>
     <View style={{paddingHorizontal:11,paddingTop:16}}>
-        <View >
-                <Text style={styles.text_2}>
+        <Text style={styles.text_2}>
                 Policy Last updated:
-                </Text>
-                <TextInput
-                    style={styles.input_vm}
-                    value={list[0].toLocaleDateString()}
-                    placeholder="dd/mm/yyyy"
-                    placeholderTextColor="gray" 
-                />
-                {/* <ModalDatePicker
-                    button={
-                    <View style={styles.calendarPosition}>
-                        <EvilIcons name={'calendar'} size={35} color="gray"/>
-                    </View>
-                    }
-                    color="#489503"
-                    onSelect={value => list[1](value)}
-                    isHideOnSelect={true}
-                    initialDate={list[0]}
-                /> */}
-                <TouchableOpacity style={styles.calendarPosition} onPress={openHandler}>
-                    <EvilIcons name={'calendar'} size={35} color="gray"/>
-                </TouchableOpacity>
-                <DatePicker
-                    modal
-                    mode="date"
-                    open={open}
-                    date={list[0]}
-                    onConfirm={(date) => {
-                    setOpen(false)
-                    list[1](date)
-                    }}
-                    onCancel={() => {
-                    setOpen(false)
-                    }}
-                />
-
-        </View>
+        </Text>
+        <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
+        
     </View>
     <Text style={styles.text_1}>Company information:</Text>
     <View style={{paddingHorizontal:11,paddingTop:16}}>
