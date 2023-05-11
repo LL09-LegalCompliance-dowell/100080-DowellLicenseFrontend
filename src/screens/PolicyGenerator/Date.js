@@ -3,15 +3,17 @@ import DatePicker from 'react-native-date-picker'
 import {  View,Text, TouchableOpacity,} from 'react-native'
 import styles from './Cookies/style';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-const Date = ({date,setDate,open,openHandler}) => {
+const Date = ({date,setDate,open,openHandler,margin}) => {
+    console.log(margin)
   return (
+    
     <View >
                 
         <TouchableOpacity onPress={()=>openHandler(true)}>
-            <Text style={styles.input_vm}>
+            <Text style={margin?styles.input:styles.input_vm}>
                 {date.toLocaleDateString()}
             </Text>
-            <EvilIcons style={styles.calendarPosition} name={'calendar'} size={35} color="gray"/>
+            <EvilIcons style={margin?styles.calendarPositionMargin:styles.calendarPosition} name={'calendar'} size={35} color="gray"/>
             <DatePicker
                 modal
                 mode="date"

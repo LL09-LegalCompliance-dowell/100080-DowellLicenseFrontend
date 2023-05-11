@@ -7,9 +7,14 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { number_validation } from '../validations';
 
+import Date from '../Date';
 const Policy2 = ({list}) => {
   const [valid_number,setValid_number]=useState(true)
   const [valid_number_1,setValid_number_1]=useState(true)
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
 
   return (
     <>
@@ -64,23 +69,7 @@ const Policy2 = ({list}) => {
             <Text style={styles.text_2}>
             Date for execution of this agreement.
             </Text>
-            <TextInput
-              style={styles.input_vm}
-              value={list[10].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray" 
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray"/>
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[11](value)}
-              isHideOnSelect={true}
-              initialDate={list[10]}
-            />
+            <Date date={list[10]} setDate = {list[11]} open ={open} openHandler={openHandler}/>
           </View>
         </View>
         <Text style={styles.text_1}>Witness Details:</Text>
