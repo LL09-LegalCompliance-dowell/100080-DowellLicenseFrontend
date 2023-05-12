@@ -7,8 +7,16 @@ import RadioGroup from 'react-native-radio-buttons-group';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Date from '../Date';
 const Policy2 = ({list}) => {
-
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+    setOpen(state)
+  }
+  const [open1, setOpen1] = useState(false)
+  const openHandler1=(state)=>{
+    setOpen1(state)
+  }
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -47,44 +55,12 @@ const Policy2 = ({list}) => {
           <Text style={styles.text_2}>
             What will be the date of commencement?
           </Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal:0}]}
-            value={list[5].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[6](value)}
-            isHideOnSelect={true}
-            initialDate={list[5]}
-          />
+          <Date date={list[5]} setDate = {list[6]} open ={open} openHandler={openHandler}/>
 
           <Text style={styles.text_2}>
             What will be the date for termination?
           </Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal:0}]}
-            value={list[7].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[8](value)}
-            isHideOnSelect={true}
-            initialDate={list[7]}
-          />
+          <Date date={list[7]} setDate = {list[8]} open ={open1} openHandler={openHandler1}/>
           <Text style={styles.text_2}>
           What will be the period for notice in case of cancellation or amendment of this memorandum?
           </Text>

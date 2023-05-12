@@ -13,11 +13,15 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import CountryPicker from 'react-native-country-picker-modal';
 import {email_validation, url_validation} from '../validations';
-
+import Date from '../Date';
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
   const [valid_email1, setValid_email1] = useState(true);
   const [valid_url, setValid_url] = useState(true);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
 
   return (
     <>
@@ -111,23 +115,7 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>
             When is the term commencement (Start Date)?
           </Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[13].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[14](value)}
-            isHideOnSelect={true}
-            initialDate={list[13]}
-          />
+          <Date date={list[13]} setDate = {list[14]} open ={open} openHandler={openHandler}/>
         </View>
         <Text style={[styles.text_1, {marginTop: 25, marginBottom: 15}]}>
           Applicable Law:

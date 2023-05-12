@@ -5,10 +5,18 @@ import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {email_validation, url_validation} from '../validations';
-
+import Date from '../Date';
 const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
   const [valid_url, setValid_url] = useState(true);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
+  const [open1, setOpen1] = useState(false)
+  const openHandler1=(state)=>{
+      setOpen1(state)
+  }
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -23,42 +31,10 @@ const Policy1 = ({list}) => {
         <Text style={styles.text_1}>Details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
           <Text style={styles.text_2}>Website Disclaimer Last updated:</Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[1].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[2](value)}
-            isHideOnSelect={true}
-            initialDate={list[1]}
-          />
+          <Date date={list[1]} setDate = {list[2]} open ={open} openHandler={openHandler}/>
 
           <Text style={styles.text_2}>Website disclaimer effective date:</Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[9].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[10](value)}
-            isHideOnSelect={true}
-            initialDate={list[9]}
-          />
+          <Date date={list[9]} setDate = {list[10]} open ={open1} openHandler={openHandler1}/>
 
           <Text style={[styles.text_2]}>
             Which law will govern the document?

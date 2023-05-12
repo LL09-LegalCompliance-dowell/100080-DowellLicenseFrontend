@@ -2,9 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight,TouchableOpacity} from 'react-native'
 import styles from '../Cookies/style'
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Date from '../Date';
 const Policy1 = ({list}) => {
+const [open, setOpen] = useState(false)
+const openHandler=(state)=>{
+    setOpen(state)
+}
   return (
     <>
     <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -15,23 +18,7 @@ const Policy1 = ({list}) => {
                 <Text style={styles.text_2}>
                 Privacy Policy Last updated:
                 </Text>
-                <TextInput
-                    style={styles.input_vm}
-                    value={list[0].toLocaleDateString()}
-                    placeholder="dd/mm/yyyy"
-                    placeholderTextColor="gray" 
-                />
-                <ModalDatePicker
-                    button={
-                    <View style={styles.calendarPosition}>
-                        <EvilIcons name={'calendar'} size={35} color="gray"/>
-                    </View>
-                    }
-                    color="#489503"
-                    onSelect={value => list[1](value)}
-                    isHideOnSelect={true}
-                    initialDate={list[0]}
-                />
+                <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
             </View>
         </View>
         <Text style={styles.text_1}>Details:</Text>

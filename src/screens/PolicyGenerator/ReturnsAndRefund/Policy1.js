@@ -7,12 +7,17 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { email_validation,number_validation,url_validation } from '../validations';
 import SelectDropdown from 'react-native-select-dropdown'
+import Date from '../Date';
 
 const Policy1 = ({list}) => {
   const [valid_email  , setValid_email ] =  useState(true);
   const [valid_number  ,  setValid_number ] =  useState(true); 
   const [valid_number1  , setValid_number1 ] =  useState(true); 
   const [valid_url , setValid_url]=useState(true);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+    setOpen(state)
+  }
   const cuurency = [
     'EUR',
     'GBP',
@@ -38,23 +43,8 @@ const findcurrency=(cvalue)=>{
                 <Text style={styles.text_2}>
                 Date:
                 </Text>
-                <TextInput
-                    style={styles.input_vm}
-                    value={list[0].toLocaleDateString()}
-                    placeholder="dd/mm/yyyy"
-                    placeholderTextColor="gray" 
-                />
-                <ModalDatePicker
-                    button={
-                    <View style={styles.calendarPosition}>
-                        <EvilIcons name={'calendar'} size={35} color="gray"/>
-                    </View>
-                    }
-                    color="#489503"
-                    onSelect={value => list[1](value)}
-                    isHideOnSelect={true}
-                    initialDate={list[0]}
-                />
+                <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler}/>
+               
             </View>
             <Text style={styles.text_2}>Website/App Name:</Text>
             <TextInput

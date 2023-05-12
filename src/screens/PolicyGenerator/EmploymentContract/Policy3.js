@@ -16,12 +16,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from '../../../../assets/colors/colors';
 import CountryPicker from 'react-native-country-picker-modal';
 import RBSheet from 'react-native-raw-bottom-sheet';
-
+import Date from '../Date';
 const Policy3 = ({list}) => {
   const [scanedImage, setScanedImage] = useState(null);
   const [scanedImage1, setScanedImage1] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
+  const [open1, setOpen1] = useState(false)
+  const openHandler1=(state)=>{
+      setOpen1(state)
+  }
   const refBottomSheet1 = useRef();
   const refBottomSheet2 = useRef();
 
@@ -316,23 +323,7 @@ const Policy3 = ({list}) => {
           </TouchableOpacity>
 
           <Text style={styles.text_2}>Date</Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[11].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[12](value)}
-            isHideOnSelect={true}
-            initialDate={list[11]}
-          />
+          <Date date={list[11]} setDate = {list[12]} open ={open} openHandler={openHandler}/>
         </View>
         <Text style={styles.text_1}>Execution Part (Employee):</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
@@ -389,23 +380,7 @@ const Policy3 = ({list}) => {
             )}
           </TouchableOpacity>
           <Text style={styles.text_2}>Date</Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[17].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[18](value)}
-            isHideOnSelect={true}
-            initialDate={list[17]}
-          />
+          <Date date={list[17]} setDate = {list[18]} open ={open1} openHandler={openHandler1}/>
         </View>
       </ScrollView>
     </>
