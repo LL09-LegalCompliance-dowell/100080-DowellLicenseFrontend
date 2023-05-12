@@ -18,86 +18,16 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel,
 } from 'react-native-simple-radio-button';
-
+import Date from '../Date';
 const Policy3 = ({list}) => {
   var [isPress1, setIsPress1] = useState(false);
   var [isPress2, setIsPress2] = useState(false);
   var [isPress3, setIsPress3] = useState(false);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+    setOpen(state)
+  }
 
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
-
-  const [value3Index, setvalue3Index] = useState(1);
-
-  const [radioButtons1, setRadioButtons1] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons2, setRadioButtons2] = useState([
-    {
-      id: '1',
-      label: 'When they download ',
-      value: 'When they download ',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'When they open the package',
-      value: 'When they open the package',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons3, setRadioButtons3] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  var touchProps1 = {
-    style: isPress1 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress1(true),
-  };
-  var touchProps2 = {
-    style: isPress2 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress2(true),
-  };
-  var touchProps3 = {
-    style: isPress3 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress3(true),
-  };
 
   return (
     <>
@@ -172,23 +102,7 @@ const Policy3 = ({list}) => {
           <Text style={styles.text_2}>
             Date for this legally binding definitive agreement.
           </Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal: 0}]}
-            value={list[11].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[12](value)}
-            isHideOnSelect={true}
-            initialDate={list[11]}
-          />
+          <Date date={list[11]} setDate = {list[12]} open ={open} openHandler={openHandler}/>
           <Text style={styles.text_2}>
             Should the parties agree to refrain from negotiating with any third
             parties while this MOU is in effect. (Will it be exclusive or non

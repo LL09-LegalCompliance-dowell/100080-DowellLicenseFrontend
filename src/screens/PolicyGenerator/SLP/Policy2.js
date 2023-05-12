@@ -10,12 +10,17 @@ import {
 import styles from '../Cookies/style';
 import RadioGroup from 'react-native-radio-buttons-group';
 
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
+
+import Date from '../Date';
 
 const Policy2 = ({list}) => {
   const [input1, setInput1] = useState('');
   const [input2, setInput2] = useState('');
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
 
   const [radioButtons, setRadioButtons] = useState([
     {
@@ -80,23 +85,7 @@ const Policy2 = ({list}) => {
           <Text style={styles.text_2}>
             When will the contract come into force?
           </Text>
-          <TextInput
-            style={[styles.input, {marginHorizontal:0}]}
-            value={list[5].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[6](value)}
-            isHideOnSelect={true}
-            initialDate={list[5]}
-          />
+          <Date date={list[5]} setDate = {list[6]} open ={open} openHandler={openHandler}/>
           <Text style={styles.text_3}>Definition of Minimum Term</Text>
           <Text style={styles.text_2}>What minimum term will apply?</Text>
           <View

@@ -4,7 +4,6 @@ import {  View,Text, TouchableOpacity,} from 'react-native'
 import styles from './Cookies/style';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 const Date = ({date,setDate,open,openHandler,margin}) => {
-    console.log(margin)
   return (
     
     <View >
