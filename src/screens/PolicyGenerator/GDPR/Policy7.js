@@ -5,6 +5,7 @@ import { email_validation, number_validation_1 ,url_validation} from '../validat
 import styles from '../Cookies/style';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Date from '../Date';
 const Policy7 = ({list}) => {
   const [valid_url , setValid_url]=useState(true);
   const [valid_url_1 , setValid_url_1]=useState(true);
@@ -12,6 +13,10 @@ const Policy7 = ({list}) => {
   const [valid_email , setvalid_email]=useState(true);
   const [valid_email_1 , setvalid_email_1]=useState(true);
   const [valid_email_2 , setvalid_email_2]=useState(true);
+  const [open, setOpen] = useState(false)
+const openHandler=(state)=>{
+    setOpen(state)
+}
   var touchProps1 = {                               
     style: list[12] ? styles.Pressed : styles.Normal, 
     onPress: () => list[13](true),                 
@@ -294,23 +299,7 @@ const Policy7 = ({list}) => {
             <Text style={styles.text_2}>
             Our Privacy Policy was last updated on:
             </Text>
-            <TextInput
-              style={styles.input_vm}
-              value={list[48].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray" 
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray"/>
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[49](value)}
-              isHideOnSelect={true}
-              initialDate={list[48]}
-            />
+            <Date date={list[48]} setDate = {list[49]} open ={open} openHandler={openHandler}/>
           </View>
           <Text style={styles.text_2}>website_or_app_name</Text>
           <TextInput
