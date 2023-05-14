@@ -3,17 +3,21 @@ import { useState } from 'react'
 import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
 import styles from './style'
 import colors from '../../../../assets/colors/colors';
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 import RadioGroup from 'react-native-radio-buttons-group';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import SelectDropdown from 'react-native-select-dropdown'
+import Date from '../Date';
 
 const Policy1 = ({list}) => {
   const [flag, setFlag] = useState(true);
   const [flag1, setFlag1] = useState(true);
   const data = ["IP Addresses", "Contact Details", "Address"]
   const data1 = ["IP Addresses", "User Behavior"]
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
   useEffect(()=>{
     if (list[4][0].selected=== true){
       setFlag(true)
@@ -37,23 +41,8 @@ const Policy1 = ({list}) => {
           <Text style={{color: colors.textDark,fontSize:20}}>
           Date of execution of the document:
           </Text>
-          <TextInput
-            style={styles.input}
-            value={list[0].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray" 
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray"/>
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[1](value)}
-            isHideOnSelect={true}
-            initialDate={list[0]}
-          />
+          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler} margin={true}/>
+          
       </View>
       <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400"}}>Policy details:</Text>
       <View style={{paddingHorizontal:11,paddingTop:16}}>

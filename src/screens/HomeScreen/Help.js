@@ -6,12 +6,43 @@ import {
     TouchableOpacity,TextInput
     
   } from 'react-native';
-  import React from 'react';
+  import React,{useEffect,useState} from 'react';
   import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
+  import AppLoader from '../../components/AppLoader';
+  import AsyncStorage from '@react-native-async-storage/async-storage';
+  import make_room_api from './HelpApi';
 
 const Help = ({showHelp,helpHanlderClose}) => {
+  const [loading, setLoading] = useState(false);
+
+  const make_room = async() => {
+    
+    try{
+      setLoading(true);
+      const session_id = await AsyncStorage.getItem("session_id");
+      
+    
+      const result = await make_room_api(session_id);
+      
+      console.log(session_id)
+      console.log(result)
+    
+       setLoading(false);
+      
+    }catch(error){
+      setLoading(false);
+      alert('Something went wrong, please try again later');
+    }
+  }
+  
+
+  useEffect(() => {
+    make_room()
+    
+  }, [])
   return (
    <Modal visible={showHelp} animationType ="slide" transparent={true} onRequestClose={helpHanlderClose}>
+        {loading ? <AppLoader /> : null}
         <View style={styles.modal}>
             <View style={{display :"flex",flexDirection:"row",alignItems:"center",padding:18}}>
                 <Text style={{fontSize:20 ,fontFamily:"Roboto",fontWeight:"500" ,color:"#FFFFFF",marginLeft:"38%"}}>HELPBOT</Text>
@@ -20,7 +51,7 @@ const Help = ({showHelp,helpHanlderClose}) => {
                 </TouchableOpacity>
             </View>
             <View style={{backgroundColor:"white",height:"100%",borderTopLeftRadius: 30,borderTopRightRadius:30}}>
-                <Text style={{color:"red",margin:20,fontSize:20}}>WAITING FOR API</Text>
+                <Text style={{color:"red",margin:20,fontSize:20}}></Text>
                 <View style={{display :"flex",flexDirection:"row",alignItems:"center",position:"absolute",bottom:70}}>
                     <TextInput
                         style={styles.input}

@@ -6,10 +6,15 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import { email_validation } from '../validations';
-import { CountryPicker, getAllCountries } from 'react-native-country-picker-modal';
+import Date from '../Date';
+
 const Policy1 = ({list}) => {
   
   const [valid_email , setValid_email]=useState(true);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
   const states = [
     {key:'1', value:'Maharashtra'},
     {key:'2', value:'Karnataka'},
@@ -30,23 +35,7 @@ const Policy1 = ({list}) => {
         <Text style={valid_email?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please Enter Valid Email  </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
-          <TextInput
-            style={styles.input}
-            value={list[0].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[1](value)}
-            isHideOnSelect={true}
-            initialDate={list[0]}
-          />
+          <Date date={list[0]} setDate = {list[1]} open ={open} openHandler={openHandler} margin={true}/>
         </View>
         <Text style={styles.text_1}>Party details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>

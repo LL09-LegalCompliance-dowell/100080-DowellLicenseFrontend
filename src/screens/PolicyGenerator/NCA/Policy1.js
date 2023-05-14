@@ -1,11 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-
+import Date from '../Date';
 const Policy1 = ({list}) => {
+  const [open, setOpen] = useState(false)
+const openHandler=(state)=>{
+    setOpen(state)
+}
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -19,23 +23,7 @@ const Policy1 = ({list}) => {
         </Text>
         <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
           <Text style={styles.text_1}>Date of execution of the document:</Text>
-          <TextInput
-            style={styles.input}
-            value={list[1].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[2](value)}
-            isHideOnSelect={true}
-            initialDate={list[1]}
-          />
+          <Date date={list[1]} setDate = {list[2]} open ={open} openHandler={openHandler} margin={true}/>
         </View>
         <Text style={styles.text_1}>Party details:</Text>
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
