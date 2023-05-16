@@ -20,7 +20,7 @@ import AppLoader from '../../components/AppLoader';
 import Card from './card';
 import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
-import HelpBot from '../HelpBot';
+import Help from './Help';
 
 const data = [
   {
@@ -42,11 +42,15 @@ const data = [
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
+  const helpHanlder=()=>{
+    setShowHelp(true)
+  }
+  const helpHanlderClose=()=>{
+    setShowHelp(false)
+  }
   return (
     <View style={styles.container}>
-      <HelpIcon style={styles.help} onPress={() => setShowHelp(true)}>
-        <HelpBot />
-      </HelpIcon>
+      
       {/* Header */}
       <Header leftIcon="menu" rightIcon="user" />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -139,7 +143,10 @@ const Home = ({navigation}) => {
             Copyright &copy; 2022 UX Living Lab
           </Text>
         </View>
+        
+        <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
       </ScrollView>
+      <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
     </View>
   );
 };

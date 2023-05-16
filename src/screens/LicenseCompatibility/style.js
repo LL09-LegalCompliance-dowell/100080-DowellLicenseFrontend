@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'roboto',
+    width: '100%',
   },
   SearchContainer: {
     paddingTop: 12,
@@ -104,6 +105,9 @@ const styles = StyleSheet.create({
     marginHorizontal: '1.5%',
     zIndex: 10,
     borderRadius: 15,
+    justifyContent:"flex-start",
+    alignItems:"flex-start"
+    
   },
   separator: {
     width: '100%',

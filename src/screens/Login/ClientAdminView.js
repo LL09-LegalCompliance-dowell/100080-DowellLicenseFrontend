@@ -56,8 +56,8 @@ const ClientAdminView = ({navigation, route}) => {
         'https://100014.pythonanywhere.com/api/profile/',
         {key: session_id},
       );
-      console.log('Portfolio Data', response.data);
-      console.log("User Details",responseUser.data)
+      // console.log('Portfolio Data', response.data);
+      // console.log("User Details",responseUser.data)
       const {username, email, first_name, id} = responseUser.data;
       id && (await AsyncStorage.setItem('user_id', id.toString()));
       username && (await AsyncStorage.setItem('username', username));
@@ -82,7 +82,7 @@ const ClientAdminView = ({navigation, route}) => {
       portfolio_name &&
         (await AsyncStorage.setItem('portfolio_name', portfolio_name));
       role && (await AsyncStorage.setItem('role', role));
-      navigation.navigate('RootNavigator');
+      navigation.replace('RootNavigator');
     } catch (error) {
       console.log('Getting portfolio Error!', error);
       setLoading(false);

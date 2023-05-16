@@ -46,7 +46,7 @@ export default IntroductionScreen = ({route, navigation}) => {
         </View>
 
         <View style={styles.titlesWrapper}>
-          <Text style={styles.titlesTitle}>DoWell Research Services</Text>
+          <Text style={styles.titlesTitle}>UXLivingLab Research Services</Text>
         </View>
 
         {/* Button */}

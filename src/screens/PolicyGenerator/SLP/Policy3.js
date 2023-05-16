@@ -1,18 +1,20 @@
-import React, {Fragment} from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
+
+import Date from '../Date';
 import {
   ScrollView,
   View,
   Text,
   TextInput,
+  TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
 import styles from '../Cookies/style';
-import colors from '../../../../assets/colors/colors';
+
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+
 
 const Policy3 = ({list}) => {
   return (

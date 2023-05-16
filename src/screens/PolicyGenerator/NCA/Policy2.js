@@ -12,8 +12,12 @@ import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 import CountryPicker from 'react-native-country-picker-modal';
-
+import Date from '../Date';
 const Policy2 = ({list}) => {
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -69,23 +73,7 @@ const Policy2 = ({list}) => {
           <Text style={styles.text_2}>
             What will be the date for termination?
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={list[5].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[6](value)}
-            isHideOnSelect={true}
-            initialDate={list[5]}
-          />
+          <Date date={list[5]} setDate = {list[6]} open ={open} openHandler={openHandler} />
 
           <Text style={styles.text_2}>
             What will be the duration for solicit:
