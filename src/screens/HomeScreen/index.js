@@ -144,9 +144,10 @@ const Home = ({navigation}) => {
           </Text>
         </View>
         
-        <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
+        
       </ScrollView>
       <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
+      <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
     </View>
   );
 };
