@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'roboto',
-    width: '100%',
   },
   SearchContainer: {
     paddingTop: 12,
