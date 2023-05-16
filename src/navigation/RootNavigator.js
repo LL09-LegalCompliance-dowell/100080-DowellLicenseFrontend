@@ -8,6 +8,7 @@ import {
 import {useColorScheme, Alert} from 'react-native';
 import LicenseCompatibility from '../screens/LicenseCompatibility';
 import ResultsDetailsScreen from '../screens/LicenseCompatibility/ResultsDetailsScreen';
+import SliderScreen from '../screens/LicenseCompatibility/SliderScreen';
 
 import ApacheLicense from '../screens/ApacheLicense';
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
@@ -238,6 +239,15 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
+         <Stack.Screen
+          name="SliderScreen"
+          component={SliderScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        
+
         
       </Stack.Navigator>
     </>

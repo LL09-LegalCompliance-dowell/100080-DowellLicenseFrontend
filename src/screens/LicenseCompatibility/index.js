@@ -1064,7 +1064,7 @@ const LicenseCompatibility = ({navigation}) => {
                 <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
                   Compatibilities you've searched
                 </Text>
-                <ScrollView style={{width: '100%'}}>
+                <ScrollView style={{width: '100%', marginBottom: 50}}>
                   <View style={styles.serchResultItemContainer}>
                     {historyData.length != 0 ? (
                       historyData.map(item => (
