@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   textStyle: {
     marginLeft: 20,
     paddingBottom: 30,
-    color:'black'
+    color: colors.textDark,
 
   },
 });
