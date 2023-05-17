@@ -13,7 +13,7 @@ const Card = ({}) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        navigation.navigate('LicenseCompatibility');
+        navigation.navigate('SliderScreen');
       }}>
       <View style={styles.row1}>
         <View style={{alignItems: 'center'}}>
@@ -34,7 +34,7 @@ const Card = ({}) => {
         <Text style={styles.row3Text}>T&C Apply</Text>
         <AppBotton
           onPress={() => {
-            navigation.navigate('LicenseCompatibility');
+            navigation.navigate('SliderScreen');
           }}
           title="Check Now"
           width="30%"

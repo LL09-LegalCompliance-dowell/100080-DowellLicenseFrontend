@@ -104,6 +104,9 @@ const styles = StyleSheet.create({
     marginHorizontal: '1.5%',
     zIndex: 10,
     borderRadius: 15,
+    justifyContent:"flex-start",
+    alignItems:"flex-start"
+    
   },
   separator: {
     width: '100%',
