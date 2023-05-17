@@ -3,8 +3,12 @@ import {View, Text, ScrollView} from 'react-native';
 
 import styles from './style';
 import Header from '../../components/Header';
-
-const AboutUs = () => {
+import ContactUsIcon from './ContactUsIcon';
+ 
+const AboutUs = ({navigation}) => {
+  const helpHandler = () => {
+    navigation.navigate("Contact Us")
+  }
   return (
     <>
       <Header title="About Us" />
@@ -32,6 +36,7 @@ const AboutUs = () => {
           {'\n'}– Finds and compares software licenses and Understands license data and its compatibility. Licenses can be filtered by one or several categories, license text, and a few key characteristics.
           Legalzard can also create the necessary legal agreements and policies for your online business Choose and Download your customized policies and manage Business workflows.
         </Text>
+        <ContactUsIcon helpHandler={helpHandler}/>
       </ScrollView>
     </>
   );
