@@ -104,7 +104,7 @@ const About = () => {
                     <View style={styles.contactItem}>
                       <AntDesign name="mail" size={30} color={colors.primary} />
                       <Text style={styles.contactText}>
-                        livinglabfinance@dowellrsearch.sg
+                        livinglabfinance@dowellresearch.sg
                       </Text>
                     </View>
                     {/* <View style={styles.contactItem}>

@@ -217,21 +217,19 @@ const SoftwereLicense = ({navigation}) => {
         <ScrollView style={styles.section4}>
           {searchedTerm.map((item, index) => {
             return (
-              <View style={styles.serchResultItemContainer} key={index}>
-                <TouchableOpacity
-                  style={{justifyContent: 'center'}}
-                  onPress={() => {
-                    navigation.navigate('ApacheLicense', {item});
-                  }}>
-                  <Text style={styles.serchResultHeading}>
-                    {item['softwarelicense']['license_name']}
-                  </Text>
-                  <Text numberOfLines={1} style={styles.serchResultDetails}>
-                    {item['softwarelicense']['description']}
-                  </Text>
-                  <View style={styles.separator}></View>
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity style={styles.serchResultItemContainer} key={index}
+                // style={{justifyContent: 'center'}}
+                onPress={() => {
+                  navigation.navigate('ApacheLicense', {item});
+                }}>
+                <Text style={styles.serchResultHeading}>
+                  {item['softwarelicense']['license_name']}
+                </Text>
+                <Text numberOfLines={1} style={styles.serchResultDetails}>
+                  {item['softwarelicense']['description']}
+                </Text>
+                <View style={styles.separator}></View>
+              </TouchableOpacity>
             );
           })}
         </ScrollView>
