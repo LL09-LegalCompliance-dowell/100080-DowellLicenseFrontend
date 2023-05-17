@@ -75,16 +75,16 @@ const ApacheLicense = ({route}) => {
               </Text>
             </>
           ) : null}
-          {item.softwarelicense?.license_attributes !== {} ? (
+          {/* {item.softwarelicense?.license_attributes !== {} ? (
             <>
               <Text style={styles.heading1}>4.Attributions</Text>
               <Text style={[styles.heading4, {paddingTop: 0, paddingLeft: 20}]}>
                 {item.softwarelicense?.license_attributes?.heading}
               </Text>
             </>
-          ) : null}
+          ) : null} */}
 
-          {item.softwarelicense?.license_attributes?.attributes.map(
+          {/* {item.softwarelicense?.license_attributes?.attributes.map(
             (attribute, index) => {
               return (
                 // console.log(item1)
@@ -100,17 +100,236 @@ const ApacheLicense = ({route}) => {
                 </>
               );
             },
+          )} */}
+          {item.softwarelicense.permissions.length && (
+            <>
+              <Text style={styles.heading1}>
+                5.Permissions, Conditions & Limitations:
+              </Text>
+
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  marginTop: 15,
+                  justifyContent: 'space-between',
+                }}>
+                <View
+                  style={{
+                    width: '49%',
+                    borderWidth: 1,
+                    borderColor: '#078F04',
+                    height: 'auto',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#078F04',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        paddingVertical: 8,
+                        color: 'white',
+                        fontWeight: '500',
+                        fontSize: 18,
+                        fontFamily: 'roboto',
+                      }}>
+                      Permissions
+                    </Text>
+                  </View>
+                  {item.softwarelicense.permissions.map((i, index) => {
+                    return (
+                      <>
+                        <View
+                          key={index}
+                          style={{
+                            flexDirection: 'row',
+                            padding: 4,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              width: '15%',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                height: 13,
+                                width: 13,
+                                backgroundColor: '#078F04',
+                                borderRadius: 13,
+                              }}></View>
+                          </View>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontWeight: '500',
+                              fontSize: 18,
+                              fontFamily: 'roboto',
+                              width: '80%',
+                            }}>
+                            {i.action}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            height: 1,
+                            backgroundColor: '#078F04',
+                            width: '100%',
+                          }}></View>
+                      </>
+                    );
+                  })}
+                </View>
+
+                <View
+                  style={{
+                    width: '49%',
+                    borderWidth: 1,
+                    borderColor: '#0079E3',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#0079E3',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        paddingVertical: 8,
+                        color: 'white',
+                        fontWeight: '500',
+                        fontSize: 18,
+                        fontFamily: 'roboto',
+                      }}>
+                      Conditions
+                    </Text>
+                  </View>
+                  {item.softwarelicense.conditions.map((i, index) => {
+                    return (
+                      <>
+                        <View
+                          key={index}
+                          style={{
+                            flexDirection: 'row',
+                            padding: 4,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              width: '15%',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                height: 13,
+                                width: 13,
+                                backgroundColor: '#0079E3',
+                                borderRadius: 13,
+                              }}></View>
+                          </View>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontWeight: '500',
+                              fontSize: 18,
+                              fontFamily: 'roboto',
+                              width: '80%',
+                            }}>
+                            {i.action}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            height: 1,
+                            backgroundColor: '#0079E3',
+                            width: '100%',
+                          }}></View>
+                      </>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View
+                style={{
+                  width: '49%',
+                  borderWidth: 1,
+                  borderColor: '#EC1C24',
+                  height: 'auto',
+                  alignSelf: 'center',
+                  marginTop: 15,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: '#EC1C24',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      paddingVertical: 8,
+                      color: 'white',
+                      fontWeight: '500',
+                      fontSize: 18,
+                      fontFamily: 'roboto',
+                    }}>
+                    Limitations
+                  </Text>
+                </View>
+                {item.softwarelicense.limitations.map((i, index) => {
+                  return (
+                    <>
+                      <View
+                        key={index}
+                        style={{
+                          flexDirection: 'row',
+                          padding: 4,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <View
+                          style={{
+                            width: '15%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              height: 13,
+                              width: 13,
+                              backgroundColor: '#EC1C24',
+                              borderRadius: 13,
+                            }}></View>
+                        </View>
+                        <Text
+                          style={{
+                            color: 'black',
+                            fontWeight: '500',
+                            fontSize: 18,
+                            fontFamily: 'roboto',
+                            width: '80%',
+                          }}>
+                          {i.action}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 1,
+                          backgroundColor: '#EC1C24',
+                          width: '100%',
+                        }}></View>
+                    </>
+                  );
+                })}
+              </View>
+            </>
           )}
-
-          <Text style={styles.heading1}>
-            5.Permissions, Conditions & Limitations:
-          </Text>
-          <Text style={styles.heading2}>
-            One thing to consider is that you cannot combine Apache License 2.0
-            with GPL v2 Another aspect to consider is that a “contributor can
-            modify the code and then sell it as proprietary software” .
-          </Text>
-
           {item.softwarelicense?.risk_for_choosing_license !== '' ? (
             <>
               <Text style={styles.heading1}>6.Risks for choosing</Text>
@@ -127,7 +346,7 @@ const ApacheLicense = ({route}) => {
               </Text>
             </>
           ) : null}
-          {item.softwarelicense?.license_compatible_with_lookup.length !== 0 ? (
+          {/* {item.softwarelicense?.license_compatible_with_lookup.length !== 0 ? (
             <>
               <Text style={styles.heading1}>7.Compatible Licenses</Text>
               {item.softwarelicense?.license_compatible_with_lookup.map(
@@ -140,8 +359,8 @@ const ApacheLicense = ({route}) => {
                 },
               )}
             </>
-          ) : null}
-          {item.softwarelicense?.license_not_compatible_with_lookup.length !=
+          ) : null} */}
+          {/* {item.softwarelicense?.license_not_compatible_with_lookup.length !=
           0 ? (
             <>
               <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
@@ -155,7 +374,7 @@ const ApacheLicense = ({route}) => {
                 },
               )}
             </>
-          ) : null}
+          ) : null} */}
           {item.softwarelicense?.limitation_of_liability !== '' ? (
             <>
               <Text style={styles.heading1}>9.Limitation of Liability.</Text>

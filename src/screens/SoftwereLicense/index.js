@@ -24,21 +24,6 @@ import listData from './sliderData.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SoftwereLicense = ({navigation}) => {
-  // const [isCompatible, setIsCompatible] = useState(false);
-  // const [compatibiltyPercentage, setCompatibiltyPercentage] = useState('');
-  // const [disclaimer, setDisclaimer] = useState('');
-  // const [recommendation, setRecommendation] = useState('');
-  // const [licenseOne, setLicenseOne] = useState('');
-  // const [licenseTwo, setLicenseTwo] = useState('');
-  // const [licenseComaparison, setLicenseComaparison] = useState({});
-  // const [tableLicenseTwo, setTableLicenseTwo] = useState('');
-  // const [licenseLogo1, setLicenseLogo1] = useState('');
-  // const [licenseLogo2, setLicenseLogo2] = useState('');
-  // const [comparison, setComparison] = useState([]);
-  // const [license1Version, setLicense1Version] = useState('');
-  // const [license2Version, setLicense2Version] = useState('');
-  // const [recommendation_details, setRecommendation_details] = useState('');
-
   const [loading, setLoading] = useState(false);
   const [licenses, setLicenses] = useState([]);
   const [searchedTerm, setSearchedTerm] = useState([]);
@@ -214,33 +199,6 @@ const SoftwereLicense = ({navigation}) => {
             styles.miniContainer,
             {paddingTop: isKeyboardVisible ? 60 : 0},
           ]}>
-          {/* section 2 */}
-          <View style={styles.section2}>
-            <Text style={styles.heading}>
-              Check your license compatibility now
-            </Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                navigation.navigate('LicenseCompatibility');
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcons
-                  name="arrow-up-bold"
-                  size={20}
-                  color={'white'}
-                />
-                <MaterialCommunityIcons
-                  style={styles.downIcontyle}
-                  name="arrow-down-bold"
-                  size={20}
-                  color={'white'}
-                />
-              </View>
-              <Text style={styles.buttonText}>Check here!</Text>
-            </TouchableOpacity>
-          </View>
-
           {/* section 3 */}
           <View style={styles.setion3}>
             <View style={styles.searchInput}>
@@ -263,10 +221,6 @@ const SoftwereLicense = ({navigation}) => {
                 <TouchableOpacity
                   style={{justifyContent: 'center'}}
                   onPress={() => {
-                    const id = item['_id'];
-                    const eventId = item['eventId'];
-                    const licenseNname =
-                      item['softwarelicense']['license_name'];
                     navigation.navigate('ApacheLicense', {item});
                   }}>
                   <Text style={styles.serchResultHeading}>
