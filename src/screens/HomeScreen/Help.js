@@ -11,9 +11,16 @@ import {
   import AppLoader from '../../components/AppLoader';
   import AsyncStorage from '@react-native-async-storage/async-storage';
   import make_room_api from './HelpApi';
+  import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+  import Message from './Message';
+  import LanguageSelect from './LanguageSelect';
 
 const Help = ({showHelp,helpHanlderClose}) => {
   const [loading, setLoading] = useState(false);
+  const [language,setlangauge]=useState("")
+  const language_handler=(language)=>{
+    setlangauge(language)
+  }
 
   const make_room = async() => {
     
@@ -37,7 +44,7 @@ const Help = ({showHelp,helpHanlderClose}) => {
   
 
   useEffect(() => {
-    make_room()
+    // make_room()
     
   }, [])
   return (
@@ -50,21 +57,31 @@ const Help = ({showHelp,helpHanlderClose}) => {
                     <Text style={{fontSize:25 ,fontFamily:"Roboto",fontWeight:"500" ,color:"#FFFFFF",marginLeft:"55%"}}>x</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{backgroundColor:"white",height:"100%",borderTopLeftRadius: 30,borderTopRightRadius:30}}>
-                <Text style={{color:"red",margin:20,fontSize:20}}></Text>
-                <View style={{display :"flex",flexDirection:"row",alignItems:"center",position:"absolute",bottom:70}}>
-                    <TextInput
-                        style={styles.input}
-                    
-                        placeholder="  Type your message here..."
-                        placeholderTextColor="gray"            
-                        
-                    />
-                    <TouchableOpacity>
-                        <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
-                    </TouchableOpacity>
-
+            <View style={{backgroundColor:"white",height:"100%",borderTopLeftRadius: 30,borderTopRightRadius:30,paddingVertical:20,paddingHorizontal:5}}>
+              <View style={{display:"flex",flexDirection:"row"}}>
+                <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                <View>
+                  <Message Message="Hi, we’re here to help you." customer_app ="app"/>
+                  <Message Message="please select your preferred language." customer_app ="app"/>
                 </View>
+              </View>
+              {language==="" && <LanguageSelect language_handler={language_handler}/>}
+              {language!=="" && <Message Message={language} customer_app ="customer"/>}
+
+                
+              <View style={{display :"flex",flexDirection:"row",alignItems:"center",position:"absolute",bottom:70}}>
+                  <TextInput
+                      style={styles.input}
+                  
+                      placeholder="  Type your message here..."
+                      placeholderTextColor="gray"            
+                      
+                  />
+                  <TouchableOpacity>
+                      <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
+                  </TouchableOpacity>
+
+              </View>
                 
 
 
