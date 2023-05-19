@@ -14,12 +14,17 @@ import {
   import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
   import Message from './Message';
   import LanguageSelect from './LanguageSelect';
+  import Queryselect from './Queryselect';
 
 const Help = ({showHelp,helpHanlderClose}) => {
   const [loading, setLoading] = useState(false);
   const [language,setlangauge]=useState("")
   const language_handler=(language)=>{
     setlangauge(language)
+  }
+  const [query,setquery]=useState("")
+  const query_handler=(language)=>{
+    setquery(language)
   }
 
   const make_room = async() => {
@@ -61,12 +66,23 @@ const Help = ({showHelp,helpHanlderClose}) => {
               <View style={{display:"flex",flexDirection:"row"}}>
                 <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                 <View>
-                  <Message Message="Hi, we’re here to help you." customer_app ="app"/>
+                  <Message Message="Hi, we're here to help you." customer_app ="app"/>
                   <Message Message="please select your preferred language." customer_app ="app"/>
                 </View>
               </View>
               {language==="" && <LanguageSelect language_handler={language_handler}/>}
-              {language!=="" && <Message Message={language} customer_app ="customer"/>}
+              {language!=="" && <Message Message={language} customer_app ="customer" top={120}/>}
+              {(language!=="" ) &&  (
+              <View style={{display:"flex",flexDirection:"row",marginTop:50}}>
+                <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                <View>
+                  <Message Message="Select your query." customer_app ="app"/>
+                </View>
+              </View>
+              )}
+              {(query ==="" && language!=="") && <Queryselect query_handler={query_handler}/>}
+              {query!=="" && <Message Message={query} customer_app ="customer" top={220}/>}
+
 
                 
               <View style={{display :"flex",flexDirection:"row",alignItems:"center",position:"absolute",bottom:70}}>
