@@ -69,7 +69,7 @@ const SliderScreen = ({navigation}) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
         <View style={styles.cardContainer}>
-       <FlatList
+          <FlatList
             data={listData}
             ketExtractor={item => item.id}
             horizontal
@@ -137,7 +137,7 @@ const SliderScreen = ({navigation}) => {
                               organizationId: orgId,
                             });
                           }}
-                          style={{fontSize: 11, margin: 0, color:"white"}}>
+                          style={{fontSize: 11, margin: 0, color: 'white'}}>
                           Learn More
                         </Text>
                       </Pressable>
@@ -147,9 +147,9 @@ const SliderScreen = ({navigation}) => {
               </View>
             )}
           />
-      </View>
+        </View>
 
-      <View style={[styles.miniContainer, {height: '100%'}]}>
+        <View style={[styles.miniContainer, {height: '100%'}]}>
           <View style={styles.section2}>
             <Text style={styles.heading}>
               Check your license compatibility now
