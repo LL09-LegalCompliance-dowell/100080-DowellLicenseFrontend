@@ -1,12 +1,35 @@
-import {FlatList, Image, Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppLoader from '../../components/AppLoader';
 import colors from '../../../assets/colors/colors';
-import listData from './../SoftwereLicense/sliderData.json';
+import listData from './sliderData.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './../SoftwereLicense/style';
+
+const data = [
+  {
+    id: 1,
+    des: 'lorem1 par',
+  },
+  {
+    id: 2,
+    des: 'lorem1 par',
+  },
+  {
+    id: 3,
+    des: 'lorem1 par',
+  },
+];
 
 const SliderScreen = ({navigation}) => {
   // Get organization ID from local storage
@@ -30,16 +53,36 @@ const SliderScreen = ({navigation}) => {
   return (
     <>
       <Header title="License Compatibility" />
-      <View style={styles.container}>
+      {/* <FlatList
+        keyExtractor={item => item.id.toString()} // Corrected spelling mistake
+        data={data}
+        horizontal
+        renderItem={({item}) => (
+          <View style={{backgroundColor: 'red'}}>
+
+            <Text style={{color: 'white'}}>{item.des}</Text>
+          </View>
+        )}
+      /> */}
+
+      <View
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
         <View style={styles.cardContainer}>
-          <FlatList
+       <FlatList
             data={listData}
             ketExtractor={item => item.id}
             horizontal
             // showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
+            // showsHorizontalScrollIndicator={false}
             renderItem={({item, index, separators}) => (
-              <View style={styles.cardContainer1} key={item.key}>
+              <View
+                style={styles.cardContainer1}
+                key={index}
+                // onPress={() => this._onPress(item)}
+                // onShowUnderlay={separators.highlight}
+                // onHideUnderlay={separators.unhighlight}
+              >
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                   <View style={{flex: 3.5}}>
                     <Image
@@ -93,14 +136,8 @@ const SliderScreen = ({navigation}) => {
                               userId: userId,
                               organizationId: orgId,
                             });
-                            console.log(
-                              item.eventId_1,
-                              item.eventId_2,
-                              userId,
-                              orgId,
-                            );
                           }}
-                          style={{fontSize: 11, margin: 0}}>
+                          style={{fontSize: 11, margin: 0, color:"white"}}>
                           Learn More
                         </Text>
                       </Pressable>
@@ -110,10 +147,9 @@ const SliderScreen = ({navigation}) => {
               </View>
             )}
           />
-        </View>
+      </View>
 
-        <View style={[styles.miniContainer, {height:'100%'}]}>
-          {/* section 2 */}
+      <View style={[styles.miniContainer, {height: '100%'}]}>
           <View style={styles.section2}>
             <Text style={styles.heading}>
               Check your license compatibility now
@@ -146,4 +182,3 @@ const SliderScreen = ({navigation}) => {
 };
 
 export default SliderScreen;
-

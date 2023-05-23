@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   //section 4
   section4: {
     backgroundColor: 'white',
+    flex:1
   },
   section4Container: {
     marginHorizontal: 25,

@@ -28,7 +28,6 @@ const SoftwereLicense = ({navigation}) => {
   const [licenses, setLicenses] = useState([]);
   const [searchedTerm, setSearchedTerm] = useState([]);
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
-
   // Get organization ID from local storage
   const [orgId, setOrgId] = useState('');
   const [userId, setUserId] = useState('');
@@ -101,6 +100,24 @@ const SoftwereLicense = ({navigation}) => {
     setSearchedTerm(searchData);
   };
 
+  // Slider api request methods
+  const fetchSliderData = async eventId => {
+    try {
+      // console.log(eventId)
+      setLoading(true);
+      const res = await axios.get(
+        `https://100080.pythonanywhere.com/api/licenses/${eventId}`,
+      );
+      if (res.data) {
+        navigation.navigate('ApacheLicense', {item: res.data.data[0]});
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {loading ? <AppLoader /> : null}
@@ -128,7 +145,12 @@ const SoftwereLicense = ({navigation}) => {
                   // onHideUnderlay={separators.unhighlight}
                 >
                   <View style={{display: 'flex', flexDirection: 'row'}}>
-                    <View style={{flex: 3.5}}>
+                    <View
+                      style={{
+                        flex: 3.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
                       <Image
                         resizeMode="contain"
                         style={{
@@ -136,20 +158,7 @@ const SoftwereLicense = ({navigation}) => {
                           width: 90,
                         }}
                         source={{
-                          uri: item.image1,
-                        }}
-                      />
-
-                      <Text style={styles.vsText}>VS</Text>
-
-                      <Image
-                        resizeMode="contain"
-                        style={{
-                          height: 60,
-                          width: 90,
-                        }}
-                        source={{
-                          uri: item.image2,
+                          uri: item.image,
                         }}
                       />
                     </View>
@@ -158,10 +167,19 @@ const SoftwereLicense = ({navigation}) => {
                         paddingHorizontal: 15,
                         alignItems: 'center',
                         flex: 6.5,
+                        // backgroundColor:"red"
                       }}>
-                      <Text style={styles.heading}>{item.titel}</Text>
-                      <Text style={{color: 'black', textAlign: 'center'}}>
-                        {item.recommendation}
+                      <Text
+                        style={[
+                          styles.heading,
+                          {textAlign: 'center', fontSize: 16},
+                        ]}>
+                        {item.titel}
+                      </Text>
+                      <Text
+                        numberOfLines={2}
+                        style={{color: 'black', textAlign: 'center'}}>
+                        {item.des}
                       </Text>
                       <View
                         style={{
@@ -169,19 +187,12 @@ const SoftwereLicense = ({navigation}) => {
                           paddingHorizontal: 10,
                           paddingVertical: 3,
                           borderRadius: 15,
-                          marginTop: 30,
+                          marginTop: 20,
+                          marginBottom: 8,
                         }}>
-                        <Pressable>
-                          <Text
-                            onPress={() => {
-                              navigation.navigate('SliderItemDetails', {
-                                eventId_1: item.eventId_1,
-                                eventId_2: item.eventId_2,
-                                userId: userId,
-                                organizationId: orgId,
-                              });
-                            }}
-                            style={{fontSize: 11, margin: 0}}>
+                        <Pressable
+                          onPress={() => fetchSliderData(item.eventId)}>
+                          <Text style={{fontSize: 11, margin: 0, color:"white"}}>
                             Learn More
                           </Text>
                         </Pressable>
@@ -214,8 +225,32 @@ const SoftwereLicense = ({navigation}) => {
         </View>
 
         {/* Section 4 */}
-        <ScrollView style={styles.section4}>
-          {searchedTerm.map((item, index) => {
+        <View style={styles.section4}>
+          <FlatList
+            initialNumToRender={15}
+            data={searchedTerm}
+            renderItem={({item}) => {
+              return (
+                <View style={styles.serchResultItemContainer}>
+                  <TouchableOpacity
+                    style={{justifyContent: 'center'}}
+                    onPress={() => {
+                      navigation.navigate('ApacheLicense', {item});
+                    }}>
+                    <Text style={styles.serchResultHeading}>
+                      {item['softwarelicense']['license_name']}
+                    </Text>
+                    <Text numberOfLines={1} style={styles.serchResultDetails}>
+                      {item['softwarelicense']['description']}
+                    </Text>
+                    <View style={styles.separator}></View>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+          />
+
+          {/* {searchedTerm.map((item, index) => {
             return (
               <View style={styles.serchResultItemContainer} key={index}>
                 <TouchableOpacity
@@ -233,8 +268,8 @@ const SoftwereLicense = ({navigation}) => {
                 </TouchableOpacity>
               </View>
             );
-          })}
-        </ScrollView>
+          })} */}
+        </View>
       </View>
     </>
   );
