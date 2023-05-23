@@ -77,7 +77,11 @@ const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
       {historyIcon === 'history' ? (
         <TouchableOpacity onPress={openHistory}>
           <Image
-          style={{width:30, width:35, resizeMode:'contain', marginTop:8}}
+            style={{
+              width: 35,
+              resizeMode: 'contain',
+              marginTop: Platform.OS === 'ios' ? 40 : 8,
+            }}
             source={require('../screens/LicenseCompatibility/images/SearchHistory.png')}
           />
         </TouchableOpacity>
@@ -93,9 +97,9 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: 60,
+    height: Platform.OS === 'ios' ? 90 : 89,
     width: '100%',
-    paddingHorizontal: 18,
+    paddingHorizontal: 12,
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
@@ -131,7 +135,9 @@ const styles = StyleSheet.create({
 
   menuIcon: {
     marginTop: 'auto',
-    marginBottom: 10,
+    paddingTop: 20,
+    marginBottom: 9,
+    justifyContent: 'space-around',
   },
 
   userIcon: {

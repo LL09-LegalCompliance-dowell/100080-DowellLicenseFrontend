@@ -149,7 +149,7 @@ const ResultsDetailsScreen = ({route}) => {
                   <View>
                     <Progress.Bar
                       progress={res?.percentage_of_compatibility / 100}
-                      width={313}
+                      width={250}
                       height={20}
                       borderRadius={20}
                       color={colors.primary}
@@ -428,7 +428,6 @@ const ResultsDetailsScreen = ({route}) => {
                   {`${res.license_2.risk_for_choosing_license}`}
                 </Text>
                 {/* Permissions, Conditions & Limitations starts here */}
-                
               </>
             }
             // scrollEnabled={false}
@@ -447,7 +446,8 @@ const ResultsDetailsScreen = ({route}) => {
                     style={[
                       styles.tableDatarText,
                       {
-                        color: item?.item?.permission1 == 'Yes' ? 'green' : 'red',
+                        color:
+                          item?.item?.permission1 == 'Yes' ? 'green' : 'red',
                       },
                     ]}>
                     {item?.item?.permission1}
@@ -459,7 +459,8 @@ const ResultsDetailsScreen = ({route}) => {
                     style={[
                       styles.tableDatarText,
                       {
-                        color: item?.item?.permission2 == 'Yes' ? 'green' : 'red',
+                        color:
+                          item?.item?.permission2 == 'Yes' ? 'green' : 'red',
                       },
                     ]}>
                     {item?.item?.permission2}
@@ -475,7 +476,6 @@ const ResultsDetailsScreen = ({route}) => {
 };
 
 export default ResultsDetailsScreen;
-
 
 // <Text
 //                   style={[

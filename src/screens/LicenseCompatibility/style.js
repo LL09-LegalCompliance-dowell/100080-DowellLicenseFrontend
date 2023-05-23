@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    paddingHorizontal: 12,
+    paddingHorizontal: Platform.OS === 'ios' ? 18 : 2,
     width: '100%',
-    paddingTop: 60,
+    paddingTop: Platform.OS === 'ios' ? 90 : 18,
   },
 
   heading: {
@@ -30,14 +30,15 @@ const styles = StyleSheet.create({
   downIcontyle: {
     paddingLeft: 22,
     marginTop: -24,
-    elevation: 15,
+    elevation: Platform.OS === 'ios' ? 15 : 16,
   },
 
   iconContainer: {
     marginRight: 10,
     position: 'absolute',
     right: 25,
-    top: 159,
+    top: Platform.OS === 'ios' ? 188 : 159,
+    // bottom: Platform.OS === 'ios' ? 100 : 20,
   },
 
   buttonContainer: {
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   readMoreContainer: {
     alignSelf: 'center',
     paddingHorizontal: 20,
-    paddingTop: 25,
+    // paddingTop: 25,
     borderRadius: 30,
   },
   readMoreText: {
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
   vsText: {
     fontSize: 12,
     color: '#A7A7A7',
-    marginBottom: 35,
+    marginBottom: Platform.OS === 'ios' ? 48 : 35,
   },
   bottomSheetContainer: {
     position: 'absolute',
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   },
   progressBarConatainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     marginBottom: 15,
   },

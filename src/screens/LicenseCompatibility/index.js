@@ -7,6 +7,7 @@ import {
   Alert,
   Image,
   FlatList,
+  Platform,
 } from 'react-native';
 import React, {useState, useMemo, useEffect, useRef} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -797,7 +798,7 @@ const LicenseCompatibility = ({navigation}) => {
                     <View>
                       <Progress.Bar
                         progress={res?.percentage_of_compatibility / 100}
-                        width={313}
+                        width={Platform.OS === 'ios' ? 290 : 313}
                         height={20}
                         borderRadius={20}
                         color={colors.primary}
@@ -901,13 +902,13 @@ const LicenseCompatibility = ({navigation}) => {
               ListFooterComponent={
                 haveTable ? (
                   <TouchableOpacity
-                    onPress={() =>
+                    onPress={() => {
                       navigation.navigate('ResultsDetailsScreen', {
                         res: res,
                         permissions: permissions,
                         conditions: conditions,
-                      })
-                    }
+                      });
+                    }}
                     style={styles.readMoreContainer}>
                     <Text style={styles.readMoreText}>Read more</Text>
                     <MaterialCommunityIcons
@@ -1016,13 +1017,13 @@ const LicenseCompatibility = ({navigation}) => {
               with respect to the website or the information, products,
               services, or related graphics contained on the website for any
               purpose. Any reliance on such information is therefore strictly at
-              your own risk. Legalzard App (UXLivingLab) reserves the right, in its
-              sole discretion, to correct any error or omission in any portion
-              of the site. In no event will we be liable for any loss or damage
-              including without limitation, indirect or consequential loss or
-              damage, or any loss or damage whatsoever arising from loss of data
-              or profits arising out of, or in connection with, the use of this
-              website.
+              your own risk. Legalzard App (UXLivingLab) reserves the right, in
+              its sole discretion, to correct any error or omission in any
+              portion of the site. In no event will we be liable for any loss or
+              damage including without limitation, indirect or consequential
+              loss or damage, or any loss or damage whatsoever arising from loss
+              of data or profits arising out of, or in connection with, the use
+              of this website.
             </Text>
           </ScrollView>
         )}

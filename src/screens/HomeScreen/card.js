@@ -1,4 +1,11 @@
-import {StyleSheet, TouchableOpacity, Text, View, Image} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  Platform,
+} from 'react-native';
 import React from 'react';
 import Octicons from 'react-native-vector-icons/Octicons';
 import {useNavigation} from '@react-navigation/native';
@@ -22,7 +29,6 @@ const Card = ({}) => {
         </View>
         <Image
           source={require('../../../assets/images/CompatibilityLogo.png')}
-          
         />
       </View>
 
@@ -60,6 +66,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 2,
     elevation: 10,
+    marginTop: Platform.OS === 'ios' ? 45 : 18,
+    height: 210,
   },
   // Row1 starts here
   row1: {
