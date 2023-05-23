@@ -2,12 +2,14 @@ import React from 'react'
 import { View,StyleSheet,Text,TouchableOpacity } from 'react-native'
 
 
-const Queryselect = ({query_handler}) => {
+const Queryselect = ({handler,items}) => {
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={()=>query_handler("Agreement Compliance")}><Text style={styles.Text}>Agreement Compliance</Text></TouchableOpacity>
-        <TouchableOpacity onPress={()=>query_handler("License Compatibility")}><Text style={styles.Text}>License Compatibility</Text></TouchableOpacity>
-        <TouchableOpacity onPress={()=>query_handler("Software License")}><Text style={styles.Text}>Software License</Text></TouchableOpacity>
+      {items.map((item, index)=>{
+        return (
+          <TouchableOpacity key={index} onPress={()=>handler(item)}><Text style={styles.Text}>{item}</Text></TouchableOpacity>
+        )
+      } )}
     </View>
   )
 }
@@ -21,15 +23,15 @@ const styles = StyleSheet.create({
         paddingBottom: 25,
         paddingLeft:38,
         paddingRight: 38,
-        width:271,
-        height:170,
+        
+        maxWidth:"85%",
         marginLeft:"auto",
         marginRight:"auto",
         marginTop:32,
         display: "flex",
         flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center"
+       
+        
 
 
           
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
     },
     Text:{
         fontSize:16,
+        alignSelf:'center',
         fontWeight: "400",
         lineHeight:18.75,
         color:"#078F04",
