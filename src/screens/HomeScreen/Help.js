@@ -96,8 +96,12 @@ const Help = ({showHelp,helpHanlderClose}) => {
                   <View style={{display:"flex",flexDirection:"row",marginTop:74}}>
                     <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                     <Message Message="identify your query from these options." customer_app ="app"/>
+                   
                   </View>
-                  <Queryselect handler={license_compatibility_handler} items={["What is License Compatibility?","How to check the compatibility of two licenses?","What is recommendation percentage?","How much accurate is recommendation percentage?","Do I need to pay to check license compatibility","Can I compare any two licenses?"]}/>
+                  
+                  {license_compatibility==="" &&<Queryselect handler={license_compatibility_handler} items={["What is License Compatibility?","How to check the compatibility of two licenses?","What is recommendation percentage?","How much accurate is recommendation percentage?","Do I need to pay to check license compatibility","Can I compare any two licenses?"]}/>}
+                 
+                  {license_compatibility!=="" &&<Message Message={license_compatibility} customer_app ="customer" top={300} />}
                 </>
                 )}
 
