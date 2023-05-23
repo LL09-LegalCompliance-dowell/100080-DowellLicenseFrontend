@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 2,
     elevation: 10,
-    marginTop: Platform.OS === 'ios' ? 45 : 18,
+    ...Platform.select({ios: {marginTop: 30}}),
     height: 210,
   },
   // Row1 starts here

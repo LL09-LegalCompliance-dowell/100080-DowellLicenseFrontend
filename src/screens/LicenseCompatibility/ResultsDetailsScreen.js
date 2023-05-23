@@ -48,6 +48,7 @@ const ResultsDetailsScreen = ({route}) => {
           backgroundColor: 'white',
           paddingHorizontal: 10,
           paddingBottom: 30,
+          marginTop: Platform.OS === 'ios' ? 22 : 0,
         }}>
         {/* {comparison ? ( */}
         <>
@@ -149,7 +150,7 @@ const ResultsDetailsScreen = ({route}) => {
                   <View>
                     <Progress.Bar
                       progress={res?.percentage_of_compatibility / 100}
-                      width={250}
+                      width={Platform.OS === 'ios' ? 290 : 313}
                       height={20}
                       borderRadius={20}
                       color={colors.primary}

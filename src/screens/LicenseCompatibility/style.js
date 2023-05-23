@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    paddingHorizontal: Platform.OS === 'ios' ? 18 : 2,
+    paddingHorizontal: Platform.OS === 'ios' ? 18 : 12,
     width: '100%',
-    paddingTop: Platform.OS === 'ios' ? 90 : 18,
+    paddingTop: Platform.OS === 'ios' ? 90 : 60,
   },
 
   heading: {
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   readMoreContainer: {
     alignSelf: 'center',
     paddingHorizontal: 20,
-    // paddingTop: 25,
+    paddingVertical: 20,
     borderRadius: 30,
   },
   readMoreText: {
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    zIndex: -1,
     height: 300,
   },
   imagesContainer: {
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
   },
   progressBarConatainer: {
     flexDirection: 'row',
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
   },
