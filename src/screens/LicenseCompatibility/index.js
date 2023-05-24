@@ -1055,6 +1055,9 @@ const LicenseCompatibility = ({navigation}) => {
             <View
               style={{
                 width: '100%',
+                // marginTop: 10,
+                // paddingVertical: 8,
+                marginBottom: 19,
                 backgroundColor: 'white',
               }}>
               <View

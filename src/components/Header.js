@@ -81,7 +81,7 @@ const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
             style={{
               width: 35,
               resizeMode: 'contain',
-              // marginTop: Platform.OS === 'ios' ? 40 : 8,
+              // marginBottom: Platform.OS === 'ios' ? 12 : 11,
             }}
             source={require('../screens/LicenseCompatibility/images/SearchHistory.png')}
           />
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: Platform.OS === 'ios' ? 90 : 60,
     width: '100%',
-    paddingHorizontal: 12,
+    paddingHorizontal: Platform.OS === 'ios' ? 12 : 18,
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
@@ -136,5 +136,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 
-  userIcon: {},
+  userIcon: {
+    // marginTop: 'auto',
+    // marginBottom: 14,
+  },
 });
