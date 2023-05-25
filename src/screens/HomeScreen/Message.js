@@ -7,7 +7,7 @@ import {
   } from 'react-native';
   
 
-const Message = ({Message,customer_app,top}) => {
+const Message = ({Message,customer_app}) => {
   const styles = StyleSheet.create({
     message_app:{
         backgroundColor:"#078F04",
@@ -17,10 +17,11 @@ const Message = ({Message,customer_app,top}) => {
         paddingBottom:10,
         paddingLeft:24,
         marginHorizontal:10,
-        marginVertical:5,
+        marginVertical:7,
         borderTopRightRadius:125,
         borderBottomRightRadius:125,
-        borderBottomLeftRadius:200,
+        borderBottomLeftRadius:180,
+        maxWidth:"92%"
         
     },
     text_app:{
@@ -40,15 +41,13 @@ const Message = ({Message,customer_app,top}) => {
         paddingBottom:10,
         paddingLeft:24,
       
-        marginVertical:8,
+        margin:12,
       
         borderTopRightRadius:200,
         borderBottomRightRadius:0,
         borderBottomLeftRadius:125,
         borderTopLeftRadius:125,
-        position:"absolute",
-        top:top,
-        right:43
+        
   
     },
     text_customer:{

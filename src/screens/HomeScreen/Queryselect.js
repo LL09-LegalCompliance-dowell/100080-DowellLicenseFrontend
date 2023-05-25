@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         maxWidth:"85%",
         marginLeft:"auto",
         marginRight:"auto",
-        marginTop:32,
+        marginTop:22,
         display: "flex",
         flexDirection:"column",
        
