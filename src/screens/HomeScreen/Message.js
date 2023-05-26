@@ -34,7 +34,7 @@ const Message = ({Message,customer_app}) => {
       backgroundColor:"white",
         alignSelf:"flex-start",
         borderStyle:"solid",
-        borderWidth:0.5,
+        borderWidth:0.9,
         borderColor:"#078F04",
         paddingTop:10,
         paddingRight:24,
