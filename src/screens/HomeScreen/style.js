@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
   },
 
   // cardContainer styles
