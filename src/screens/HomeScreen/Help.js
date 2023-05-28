@@ -8,9 +8,8 @@ import {
   ScrollView,Image
   
 } from 'react-native';
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
@@ -18,10 +17,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
 import Queryselect from './HelpComponents/Queryselect';
-
-
-const Help = ({navigation,helpHanlderClose}) => {
-
+import RBSheet from "react-native-raw-bottom-sheet";
+import LanguageSlider from './HelpComponents/LanguageSlider';
+const Help = ({navigation}) => {
+  const refRBSheet = useRef();
+  const[flag,setFlag]=useState(false)
 
 const [loading, setLoading] = useState(false);
 const [language,setlangauge]=useState("")
@@ -61,8 +61,8 @@ useEffect(()=>{
     set_moreq("")
   }
   else if (moreq ==="No"){
-    helpHanlderClose()
     set_moreq("")
+    navigation.navigate("HomeScreen")
   }
 },[moreq])
 
@@ -91,20 +91,29 @@ useEffect(() => {
   // make_room()
   
 }, [])
-return (        
-      <View style={styles.modal}>
-        {loading ? <AppLoader /> : null}
-          <View style={{display :"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingTop:40,paddingBottom:0,paddingHorizontal:8}}>
+
+return (
+  <>
+      
+    <View style={styles.modal}>
+          {flag && <View style={styles.overlay} />}
+          {loading ? <AppLoader /> : null}
+          <View style={{display :"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingTop:40,paddingBottom:0,paddingHorizontal:8,backgroundColor:"#078F04"}}>
               <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")}>
                     <IoniMaterialCommunityIconscons name="arrowleft" size={45} color="white" />
               </TouchableOpacity>
               <Text style={{fontSize:26 ,fontFamily:"Roboto",fontWeight:"400" ,color:"#FFFFFF"}}>HELPBOT</Text>
-              <TouchableOpacity onPress={() => this._panel.show()}>
+              <TouchableOpacity  onPress={() => {
+                setFlag(true)
+                refRBSheet.current.open()
+                }}>
                 <Image
                   style={{height: 50, width: 50, resizeMode: 'contain'}}
                   source={require('./images/clarity_language-solid.png')}
                 />
               </TouchableOpacity>
+              
+              
           </View>
           <View style={{backgroundColor:"white",flex:1,paddingVertical:20,paddingHorizontal:5}}>
             <View style={{height:"90%"}}>
@@ -303,18 +312,36 @@ return (
                 <TouchableOpacity>
                     <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
                 </TouchableOpacity>
-            </View>
-            
-                 
-          </View>
-           
-           
-              
-
-
-         
+            </View>      
+          </View>    
+    </View> 
+    
+     
+    <RBSheet
+      ref={refRBSheet}
+      closeOnDragDown={true}
+      closeOnPressMask={true}
+      onClose={()=>setFlag(false)}
+      height={330}
+      customStyles={{
+        wrapper: {
+          backgroundColor: "transparent",
           
-      </View> 
+        },
+        container:{
+          borderTopLeftRadius:40,
+          borderTopRightRadius:40,
+          padding:10
+        },
+        draggableIcon: {
+          backgroundColor: "#000",
+          width:100
+        },
+      }}
+      >
+      <LanguageSlider/>
+    </RBSheet>
+  </>
 
   
 )
@@ -323,14 +350,20 @@ return (
 export default Help
 const styles = StyleSheet.create({
     modal: {
-      backgroundColor: '#078F04',
-      position:"absolute",
-      bottom:0,
-      width:"100%",
-      height:"100%",
-      padding: 0,
-    
+      flex:1,
+       
+     
     },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      backgroundColor: 'black',zIndex: 100,
+      opacity:0.4
+      
+    }  ,
     input: {
       height: 51,
       width:"87%",
