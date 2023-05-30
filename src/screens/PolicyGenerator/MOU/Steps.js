@@ -647,7 +647,7 @@ const Steps = () => {
     input_5_2,
     handle_input_5_2,
     input_6_2,
-    handle_input_6_2
+    handle_input_6_2,
   ];
   const inputs_2 = [input_1_2, input_2_2, input_3_2, input_4_2, input_5_2];
 
@@ -714,7 +714,7 @@ const Steps = () => {
           paddingTop: 45,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
         }}>
         <ProgressSteps
           style={{width: '100px'}}

@@ -18,10 +18,10 @@ const Policy1 = ({list}) => {
   const [valid_email, setValid_email] = useState(true);
   const [valid_email1, setValid_email1] = useState(true);
   const [valid_url, setValid_url] = useState(true);
-  const [open, setOpen] = useState(false)
-  const openHandler=(state)=>{
-      setOpen(state)
-  }
+  const [open, setOpen] = useState(false);
+  const openHandler = state => {
+    setOpen(state);
+  };
 
   return (
     <>
@@ -115,7 +115,12 @@ const Policy1 = ({list}) => {
           <Text style={styles.text_2}>
             When is the term commencement (Start Date)?
           </Text>
-          <Date date={list[13]} setDate = {list[14]} open ={open} openHandler={openHandler}/>
+          <Date
+            date={list[13]}
+            setDate={list[14]}
+            open={open}
+            openHandler={openHandler}
+          />
         </View>
         <Text style={[styles.text_1, {marginTop: 25, marginBottom: 15}]}>
           Applicable Law:

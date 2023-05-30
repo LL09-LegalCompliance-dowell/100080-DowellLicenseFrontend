@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  Platform,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState, useEffect} from 'react';
@@ -19,6 +20,7 @@ import AppLoader from '../../../components/AppLoader';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 const Policy4 = ({object}) => {
@@ -36,19 +38,44 @@ const Policy4 = ({object}) => {
 
   const fetchData = async () => {
     setLoading(true);
+    //   try {
+    //     console.log(object);
+    //     const result = await post_agreement_compliance(object);
+    //     if (result) {
+    //       console.log('result', result);
+    //       setHtml_link(result.data[0].agreement.html_doc_url);
+    //       console.log(result.data[0].agreement.html_doc_url);
+    //       setPolicyName(result.data[0].agreement.agreement_compliance_type);
+    //       setFlag(result.data[0].agreement.html_doc_url);
+    //     }
+    //     setLoading(false);
+    //   } catch (error) {
+    //     //  console.error(error);
+    //     setLoading(false);
+    //     console.error(error);
+    //   }
+    // };
     try {
-      console.lo;
       console.log(object);
       const result = await post_agreement_compliance(object);
-      setHtml_link(result.data[0].agreement.html_doc_url);
-      console.log(result.data[0].agreement.html_doc_url)
-      setPolicyName(result.data[0].agreement.agreement_compliance_type)
-      setFlag(result.data[0].agreement.html_doc_url)
+      if (result && result.data) {
+        if (result.data.length > 0) {
+          console.log('result', result);
+          setHtml_link(result.data[0].agreement.html_doc_url);
+          console.log(result.data[0].agreement.html_doc_url);
+          setPolicyName(result.data[0].agreement.agreement_compliance_type);
+          setFlag(result.data[0].agreement.html_doc_url);
+        } else {
+          throw new Error('Invalid response data');
+        }
+      } else {
+        throw new Error('Invalid response data');
+      }
       setLoading(false);
     } catch (error) {
-      //  console.error(error);
+      console.error(error);
       setLoading(false);
-      alert('Something went wrong, please try again later');
+      throw new Error('Failed to fetch agreement compliance');
     }
   };
 
@@ -125,10 +152,17 @@ const Policy4 = ({object}) => {
                   marginBottom: 30,
                   marginTop: 10,
                   alignItems: 'center',
+                  // alignSelf: 'center',
                 }}>
                 <Text
                   numberOfLines={1}
-                  style={{marginHorizontal: 10, color: 'gray'}}>
+                  // style={{marginHorizontal: 10, color: 'gray'}}>
+                  style={{
+                    flex: 1,
+                    marginLeft: 10,
+                    color: 'gray',
+                    fontSize: 12,
+                  }}>
                   {flag}
                 </Text>
                 <TouchableOpacity
@@ -139,11 +173,13 @@ const Policy4 = ({object}) => {
                     // alignSelf: 'center',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginHorizontal: 15,
+                    marginHorizontal: Platform.OS === 'ios' ? 3 : 15,
+                    marginEnd: Platform.OS === 'ios' ? 12 : 15,
+                    marginInlineEnd: 8,
                   }}
                   onPress={copyToClipboard}>
                   {link === '' ? (
-                    <Fontisto name="copy" size={20} color="black" />
+                    <Icon name="copy" size={20} color="black" />
                   ) : (
                     <Text style={{color: colors.primary, fontFamily: 'roboto'}}>
                       Copied

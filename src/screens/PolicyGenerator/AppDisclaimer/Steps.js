@@ -4,13 +4,33 @@ import {View} from 'react-native';
 import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../Cookies/Policy4';
+import moment from 'moment';
 import {empty_validation, email_validation, get_org_id} from '../validations';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// const generate_date = date => {
+//   const temp = date.split('/');
+//   return temp[4] + '-' + temp[0] + '-' + temp[1]; // Handle invalid date case according to your needs
+// };
 const generate_date = date => {
   const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+  const year = temp[2];
+  const month = temp[0];
+  const day = temp[1];
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  if (moment(formattedDate, 'YYYY-MM-DD', true).isValid()) {
+    if (Platform.OS === 'ios') {
+      return formattedDate.substring(2); // Remove '20' prefix for iOS
+    } else {
+      return formattedDate; // Keep the original formatted date for other platforms
+    }
+  } else {
+    // Handle invalid date case according to your needs
+    return null;
+  }
 };
 const Steps = () => {
   const navigation = useNavigation();
@@ -22,6 +42,7 @@ const Steps = () => {
   useMemo(() => getOrgId(), []);
   const nextButton = {
     backgroundColor: '#489503',
+    backgroundColor: 'red',
     paddingHorizontal: 5,
     borderRadius: 15,
     width: 100,

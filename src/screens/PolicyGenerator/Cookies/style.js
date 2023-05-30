@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: '#D8D8D8',
     fontSize: 16,
+    overflow: 'hidden',
     color: '#585858',
   },
   input_vm: {
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#C4C4C4',
     padding: 12,
-
+    overflow: 'hidden',
     backgroundColor: '#D8D8D8',
     fontSize: 16,
     color: '#585858',
