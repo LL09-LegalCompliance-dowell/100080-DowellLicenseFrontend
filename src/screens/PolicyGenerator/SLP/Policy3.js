@@ -1,14 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Date from '../Date';
 import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../Cookies/style';
 
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
 
 const Policy3 = ({list}) => {
+  const [open, setOpen] = useState(false);
+  const openHandler = state => {
+    setOpen(state);
+  };
+  const [open1, setOpen1] = useState(false);
+  const openHandler1 = state => {
+    setOpen1(state);
+  };
+  const [open2, setOpen2] = useState(false);
+  const openHandler2 = state => {
+    setOpen2(state);
+  };
   return (
     <>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -77,22 +87,11 @@ const Policy3 = ({list}) => {
 
           <Text style={styles.text_2}>Contract termination date?</Text>
 
-          <TextInput
-            style={styles.input_vm}
-            value={list[33].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[34](value)}
-            isHideOnSelect={true}
-            initialDate={list[33]}
+          <Date
+            date={list[33]}
+            setDate={list[34]}
+            open={open}
+            openHandler={openHandler}
           />
 
           <Text style={styles.text_3}>
@@ -189,22 +188,11 @@ const Policy3 = ({list}) => {
           />
           <Text style={styles.text_2}>Specify invoicing dates.</Text>
 
-          <TextInput
-            style={styles.input_vm}
-            value={list[19].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[20](value)}
-            isHideOnSelect={true}
-            initialDate={list[19]}
+          <Date
+            date={list[19]}
+            setDate={list[20]}
+            open={open1}
+            openHandler={openHandler1}
           />
 
           <Text style={styles.text_2}>
@@ -243,22 +231,11 @@ const Policy3 = ({list}) => {
             When does the period for payment of an invoice begin to run?
           </Text>
 
-          <TextInput
-            style={styles.input_vm}
-            value={list[25].toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => list[26](value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
+          <Date
+            date={list[25]}
+            setDate={list[26]}
+            open={open2}
+            openHandler={openHandler2}
           />
 
           <Text style={styles.text_3}>Clause 8.3</Text>

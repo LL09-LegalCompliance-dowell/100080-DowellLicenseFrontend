@@ -21,6 +21,7 @@ import AppLoader from '../../../components/AppLoader';
 import RBSheet from 'react-native-raw-bottom-sheet';
 
 const windowHeight = Dimensions.get('window').height;
+import Date from '../Date';
 
 const Policy5 = ({list}) => {
   const [isModal1Visible, setModal1Visible] = useState(false);
@@ -28,6 +29,22 @@ const Policy5 = ({list}) => {
   const [scanedImage1, setScanedImage1] = useState(null);
   const [scanedImage2, setScanedImage2] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false)
+  const openHandler=(state)=>{
+      setOpen(state)
+  }
+  const [open1, setOpen1] = useState(false)
+  const openHandler1=(state)=>{
+      setOpen1(state)
+  }
+  const [open2, setOpen2] = useState(false)
+  const openHandler2=(state)=>{
+      setOpen2(state)
+  }
+  const [open3, setOpen3] = useState(false)
+  const openHandler3=(state)=>{
+      setOpen3(state)
+  }
   const refBottomSheet1 = useRef();
   const refBottomSheet2 = useRef();
 
@@ -303,26 +320,7 @@ const Policy5 = ({list}) => {
           <Text style={styles.text_2}>
             On what date is the first party signing the contract?
           </Text>
-          <View
-            style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-            <TextInput
-              style={styles.input}
-              value={list[9].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray"
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray" />
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[10](value)}
-              isHideOnSelect={true}
-              initialDate={list[9]}
-            />
-          </View>
+          <Date date={list[9]} setDate = {list[10]} open ={open} openHandler={openHandler}/>
 
           <Text style={styles.text_2}>
             Add the full name of the person who will sign the document on behalf
@@ -339,26 +337,7 @@ const Policy5 = ({list}) => {
             On what date is the contract being signed on behalf of the first
             party?
           </Text>
-          <View
-            style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-            <TextInput
-              style={styles.input}
-              value={list[13].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray"
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray" />
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[14](value)}
-              isHideOnSelect={true}
-              initialDate={list[13]}
-            />
-          </View>
+          <Date date={list[13]} setDate = {list[14]} open ={open1} openHandler={openHandler1}/>
 
           <Text style={styles.text_3}>
             Subsection: Execution of contract by a second party (individual,
@@ -439,26 +418,7 @@ const Policy5 = ({list}) => {
           <Text style={styles.text_2}>
             On what date is the second party signing the contract?
           </Text>
-          <View
-            style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-            <TextInput
-              style={styles.input}
-              value={list[23].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray"
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray" />
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[24](value)}
-              isHideOnSelect={true}
-              initialDate={list[23]}
-            />
-          </View>
+          <Date date={list[23]} setDate = {list[24]} open ={open2} openHandler={openHandler2}/>
 
           <Text style={styles.text_2}>
             Add the full name of the person who will sign the document on behalf
@@ -476,26 +436,7 @@ const Policy5 = ({list}) => {
             On what date is the contract being signed on behalf of the second
             party?
           </Text>
-          <View
-            style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-            <TextInput
-              style={styles.input}
-              value={list[27].toLocaleDateString()}
-              placeholder="dd/mm/yyyy"
-              placeholderTextColor="gray"
-            />
-            <ModalDatePicker
-              button={
-                <View style={styles.calendarPosition}>
-                  <EvilIcons name={'calendar'} size={35} color="gray" />
-                </View>
-              }
-              color="#489503"
-              onSelect={value => list[28](value)}
-              isHideOnSelect={true}
-              initialDate={list[27]}
-            />
-          </View>
+          <Date date={list[27]} setDate = {list[28]} open ={open3} openHandler={openHandler3}/>
         </View>
       </ScrollView>
     </>
