@@ -39,6 +39,10 @@ export const empty_validation = inputs => {
   }
   return flag;
 };
+
+//
+
+//
 export const number_validation = number => {
   return !isNaN(number);
 };

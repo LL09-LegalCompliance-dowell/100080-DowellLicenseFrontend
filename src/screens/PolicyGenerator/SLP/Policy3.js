@@ -1,20 +1,12 @@
 import React from 'react';
 
 import Date from '../Date';
-import {
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  
-
-} from 'react-native';
+import {ScrollView, View, Text, TextInput} from 'react-native';
 import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-
 
 const Policy3 = ({list}) => {
   return (
@@ -78,6 +70,7 @@ const Policy3 = ({list}) => {
             style={styles.input_vm}
             value={list[31]}
             placeholder="Enter here"
+            autoCapitalize="none"
             placeholderTextColor="gray"
             onChangeText={value => list[32](value)}
           />
