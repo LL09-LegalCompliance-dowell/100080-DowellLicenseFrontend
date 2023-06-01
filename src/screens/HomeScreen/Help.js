@@ -30,8 +30,18 @@ const Help = ({showHelp,helpHanlderClose}) => {
   }
 
   const [license_compatibility,set_license_compatibility]=useState("")
-  const license_compatibility_handler=(question)=>{
-    set_license_compatibility(question)
+  const license_compatibility_handler=(state)=>{
+    set_license_compatibility(state)
+  }
+
+  const [agreement_compliance,set_agreement_compliance]=useState("")
+  const agreement_compliance_handler=(state)=>{
+    set_agreement_compliance(state)
+  }
+
+  const [software_license,set_software_license]=useState("")
+  const software_license_handler=(state)=>{
+    set_software_license(state)
   }
 
   const [moreq,set_moreq]=useState("")
@@ -42,6 +52,8 @@ const Help = ({showHelp,helpHanlderClose}) => {
     if(moreq ==="Yes"){
       setquery("")
       set_license_compatibility("")
+      set_agreement_compliance("")
+      set_software_license("")
       set_moreq("")
     }
     else if (moreq ==="No"){
@@ -188,6 +200,77 @@ const Help = ({showHelp,helpHanlderClose}) => {
 
 
                       {license_compatibility!=="" && (
+                        <>
+                        <View style={{display:"flex",flexDirection:"row"}}>
+                          <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                          <Message Message="DO you need more questions? " customer_app ="app"/>
+                        </View>
+                        <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
+                        </>)}
+                    </>
+                    )}
+                    {query === "Agreement Compliance" && (
+                    <>
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                        <Message Message="identify your query from these options." customer_app ="app"/>
+                      
+                      </View>
+                      
+                      {agreement_compliance==="" &&<Queryselect handler={agreement_compliance_handler} items={["How to generate a agreement compliance?","Is agreement compliance policy same for All website and apps?"]}/>}
+                      {agreement_compliance!=="" &&<View style={{alignSelf:'flex-end'}}><Message Message={agreement_compliance} customer_app ="customer" /></View>}
+                      {agreement_compliance==="How to generate a agreement compliance?" && (
+                        <View style={{display:"flex",flexDirection:"row"}}>
+                          <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                          <View>
+                            <Message Message="First step is select the policy you want to generate then click on Start generating button" customer_app ="app"/>
+                            <Message Message="Then fill the input fields and click on next button and download or share the agreement through link." customer_app ="app"/>
+                          </View>
+                        </View>
+                      )}
+
+                      {agreement_compliance==="Is agreement compliance policy same for All website and apps?" && (
+                        <View style={{display:"flex",flexDirection:"row"}}>
+                          <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                          <View>
+                            <Message Message="Yes agreement compliance policy is same for All websites and apps" customer_app ="app"/>
+                          </View>
+                        </View>
+                      )}
+
+                      
+
+
+                      {agreement_compliance!=="" && (
+                        <>
+                        <View style={{display:"flex",flexDirection:"row"}}>
+                          <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                          <Message Message="DO you need more questions? " customer_app ="app"/>
+                        </View>
+                        <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
+                        </>)}
+                    </>
+                    )}
+                    {query === "Software License" && (
+                    <>
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                        <Message Message="identify your query from these options." customer_app ="app"/>
+                      
+                      </View>
+                      
+                      {software_license==="" &&<Queryselect handler={software_license_handler} items={["What is software license?"]}/>}
+                      {software_license!=="" &&<View style={{alignSelf:'flex-end'}}><Message Message={software_license} customer_app ="customer" /></View>}
+                      {software_license==="What is software license?" && (
+                        <View style={{display:"flex",flexDirection:"row"}}>
+                          <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                          <View>
+                            <Message Message="A software license is a document that provides legally binding guidelines for the use and distribution of software." customer_app ="app"/>
+                          </View>
+                        </View>
+                      )}
+
+                      {software_license!=="" && (
                         <>
                         <View style={{display:"flex",flexDirection:"row"}}>
                           <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
