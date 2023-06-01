@@ -9,7 +9,7 @@ import colors from '../../../../assets/colors/colors';
 const C1 = ({navigation}) => {
   return (
     <>
-      <Header title="Softwere License Policy" />
+      <Header title="Software License Policy" />
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Text style={styles.text}>
@@ -51,7 +51,7 @@ const C1 = ({navigation}) => {
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
             navigation.navigate('FAQ', {
-              header: 'Softwere License Policy',
+              header: 'Software License Policy',
               data: [
                 {
                   question: 'What is the Software License Policy?',
