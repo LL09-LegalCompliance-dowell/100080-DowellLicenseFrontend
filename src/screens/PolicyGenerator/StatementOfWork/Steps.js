@@ -8,15 +8,22 @@ import Policy3 from './Policy3';
 import Policy4 from '../Cookies/Policy4';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import moment from 'moment';
 
 import {
   empty_validation,
   email_validation,
   number_validation,
 } from '../validations';
+// const generate_date = date => {
+//   const temp = date.split('/');
+//   return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+// };
 const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+  const formattedDate = date;
+  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
+  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
+  return formattedMomentDate;
 };
 const Steps = () => {
   const navigation = useNavigation();
@@ -286,6 +293,7 @@ const Steps = () => {
           backgroundColor: 'white',
           paddingHorizontal: 15,
           marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}

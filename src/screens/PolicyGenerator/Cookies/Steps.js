@@ -6,6 +6,8 @@ import Policy1 from './Policy1';
 import Policy2 from './Policy2';
 import Policy3 from './Policy3';
 import Policy4 from './Policy4';
+import moment from 'moment';
+
 import {
   empty_validation,
   email_validation,
@@ -14,9 +16,15 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// const generate_date = date => {
+//   const temp = date.split('/');
+//   return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+// };
 const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+  const formattedDate = date;
+  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
+  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
+  return formattedMomentDate;
 };
 
 const Steps = () => {
@@ -367,7 +375,7 @@ const Steps = () => {
       setSelected1([]);
     }
   }, [radioButtons6]);
-  const extButton = {
+  const nextButton = {
     backgroundColor: '#489503',
     paddingHorizontal: 5,
     borderRadius: 15,
@@ -500,11 +508,12 @@ const Steps = () => {
           backgroundColor: 'white',
           paddingHorizontal: 15,
           marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
           marginBottom={15}
-          nextBtnTextStyle={{color: 'red', fontSize: 18}}>
+          nextBtnTextStyle={{color: 'white', fontSize: 18}}>
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}

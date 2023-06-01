@@ -3,6 +3,8 @@ import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
 import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
+import moment from 'moment';
+
 import Policy4 from '../Cookies/Policy4';
 import {
   empty_validation,
@@ -12,9 +14,16 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// const generate_date = date => {
+//   const temp = date.split('/');
+//   return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+// };
 const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
+  // using momentjs
+  const formattedDate = date;
+  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
+  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
+  return formattedMomentDate;
 };
 
 const Steps = () => {
@@ -108,6 +117,7 @@ const Steps = () => {
           backgroundColor: 'white',
           paddingHorizontal: 15,
           marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}

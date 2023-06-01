@@ -106,7 +106,7 @@ const Steps = () => {
           backgroundColor: 'white',
           paddingHorizontal: 15,
           marginBottom: -25,
-          // marginTop: Platform.OS === 'ios' ? 40 : 0,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}

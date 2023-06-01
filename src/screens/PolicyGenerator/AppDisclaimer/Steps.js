@@ -14,23 +14,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //   return temp[4] + '-' + temp[0] + '-' + temp[1]; // Handle invalid date case according to your needs
 // };
 const generate_date = date => {
-  const temp = date.split('/');
-  const year = temp[2];
-  const month = temp[0];
-  const day = temp[1];
-
-  const formattedDate = `${year}-${month}-${day}`;
-
-  if (moment(formattedDate, 'YYYY-MM-DD', true).isValid()) {
-    if (Platform.OS === 'ios') {
-      return formattedDate.substring(2); // Remove '20' prefix for iOS
-    } else {
-      return formattedDate; // Keep the original formatted date for other platforms
-    }
-  } else {
-    // Handle invalid date case according to your needs
-    return null;
-  }
+  const formattedDate = date;
+  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
+  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
+  return formattedMomentDate;
 };
 const Steps = () => {
   const navigation = useNavigation();
@@ -99,6 +86,7 @@ const Steps = () => {
           backgroundColor: 'white',
           paddingHorizontal: 15,
           marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
