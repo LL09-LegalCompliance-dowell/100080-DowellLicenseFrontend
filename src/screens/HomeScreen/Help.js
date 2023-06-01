@@ -71,13 +71,9 @@ const make_room = async() => {
   try{
     setLoading(true);
     const session_id = await AsyncStorage.getItem("session_id");
-    
-  
+
     const result = await make_room_api(session_id);
-    
-    console.log(session_id)
-    console.log(result)
-  
+ 
      setLoading(false);
     
   }catch(error){
@@ -88,7 +84,7 @@ const make_room = async() => {
 
 
 useEffect(() => {
-  // make_room()
+  make_room()
   
 }, [])
 
