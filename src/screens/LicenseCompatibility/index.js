@@ -818,7 +818,7 @@ const LicenseCompatibility = ({navigation}) => {
                     <View>
                       <Progress.Bar
                         progress={res?.percentage_of_compatibility / 100}
-                        width={313}
+                        width={Platform.OS === 'ios' ? 290 : 309}
                         height={20}
                         borderRadius={20}
                         color={colors.primary}
@@ -860,7 +860,7 @@ const LicenseCompatibility = ({navigation}) => {
                             : 'red',
                         fontWeight: 'bold',
                         fontStyle: 'italic',
-                        alignSelf: 'center',
+                        alignSelf: Platform.OS === 'ios' ? 'stretch' : 'center',
                       }}>
                       "Highly recommended to use together in a project"
                     </Text>
@@ -922,13 +922,13 @@ const LicenseCompatibility = ({navigation}) => {
               ListFooterComponent={
                 haveTable ? (
                   <TouchableOpacity
-                    onPress={() =>
+                    onPress={() => {
                       navigation.navigate('ResultsDetailsScreen', {
                         res: res,
                         permissions: permissions,
                         conditions: conditions,
-                      })
-                    }
+                      });
+                    }}
                     style={styles.readMoreContainer}>
                     <Text style={styles.readMoreText}>Read more</Text>
                     <MaterialCommunityIcons
@@ -1011,8 +1011,10 @@ const LicenseCompatibility = ({navigation}) => {
           </>
         ) : (
           <ScrollView
-            showsVerticalScrollIndicator={false}
+            style={{flex: 1}}
+            showsVerticalScrollIndicator={true}
             contentContainerStyle={{
+              flexGrow: 1,
               alignItems: 'center',
               justifyContent: 'center',
               marginVertical: 60,
@@ -1051,6 +1053,7 @@ const LicenseCompatibility = ({navigation}) => {
           <RBSheet
             ref={refBottomSheet1}
             height={450}
+            index={1}
             closeOnDragDown={true}
             closeOnPressMask={true}
             customStyles={{
@@ -1073,6 +1076,9 @@ const LicenseCompatibility = ({navigation}) => {
             <View
               style={{
                 width: '100%',
+                // marginTop: 10,
+                // paddingVertical: 8,
+                marginBottom: 19,
                 backgroundColor: 'white',
               }}>
               <View
@@ -1085,38 +1091,40 @@ const LicenseCompatibility = ({navigation}) => {
                 <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
                   Compatibilities you've searched
                 </Text>
-                <ScrollView style={{width: '100%', marginBottom: 50}}>
-                  <View style={styles.serchResultItemContainer}>
-                    {historyData.length != 0 ? (
-                      historyData.map(item => (
-                        <TouchableOpacity
-                          key={item._id}
-                          onPress={() => handleHistoryDetails(item)}>
-                          <Text
-                            style={[
-                              styles.serchResultHeading,
-                              {paddingVertical: 10},
-                            ]}>
-                            {`${item?.license_compatibility_history?.comparison_detail?.license_1?.license_name} vs ${item?.license_compatibility_history?.comparison_detail?.license_2?.license_name}`}
-                          </Text>
-                          {/* <Text
+                <ScrollView style={{width: '100%'}}>
+                  <TouchableOpacity activeOpacity={1}>
+                    <View style={styles.serchResultItemContainer}>
+                      {historyData.length != 0 ? (
+                        historyData.map(item => (
+                          <TouchableOpacity
+                            key={item._id}
+                            onPress={() => handleHistoryDetails(item)}>
+                            <Text
+                              style={[
+                                styles.serchResultHeading,
+                                {paddingVertical: 10},
+                              ]}>
+                              {`${item?.license_compatibility_history?.comparison_detail?.license_1?.license_name} vs ${item?.license_compatibility_history?.comparison_detail?.license_2?.license_name}`}
+                            </Text>
+                            {/* <Text
                           numberOfLines={1}
                           style={styles.serchResultDetails}>
                           Mozila vs MIT
                         </Text> */}
-                          <View style={styles.separator}></View>
-                        </TouchableOpacity>
-                      ))
-                    ) : (
-                      <Text
-                        style={[
-                          styles.resultsText,
-                          {textAlign: 'center', paddingTop: 30},
-                        ]}>
-                        Loading...
-                      </Text>
-                    )}
-                  </View>
+                            <View style={styles.separator}></View>
+                          </TouchableOpacity>
+                        ))
+                      ) : (
+                        <Text
+                          style={[
+                            styles.resultsText,
+                            {textAlign: 'center', paddingTop: 30},
+                          ]}>
+                          Loading...
+                        </Text>
+                      )}
+                    </View>
+                  </TouchableOpacity>
                 </ScrollView>
               </View>
             </View>
