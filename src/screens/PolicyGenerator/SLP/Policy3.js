@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import styles from '../Cookies/style';
 
-// import {ModalDatePicker} from 'react-native-material-date-picker';
-// import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 import RadioGroup from 'react-native-radio-buttons-group';
 
 

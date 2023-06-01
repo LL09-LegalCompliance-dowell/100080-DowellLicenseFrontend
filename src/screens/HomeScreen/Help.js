@@ -3,7 +3,9 @@ import {
     StyleSheet,
     View,
     Modal,
-    TouchableOpacity,TextInput
+    TouchableOpacity,
+    TextInput,
+    ScrollView
     
   } from 'react-native';
   import React,{useEffect,useState} from 'react';
@@ -14,6 +16,7 @@ import {
   import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
   import Message from './Message';
   import LanguageSelect from './LanguageSelect';
+  import Queryselect from './Queryselect';
 
 const Help = ({showHelp,helpHanlderClose}) => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +24,16 @@ const Help = ({showHelp,helpHanlderClose}) => {
   const language_handler=(language)=>{
     setlangauge(language)
   }
+  const [query,setquery]=useState("")
+  const query_handler=(query)=>{
+    setquery(query)
+  }
+
+  const [license_compatibility,set_license_compatibility]=useState("")
+  const license_compatibility_handler=(question)=>{
+    set_license_compatibility(question)
+  }
+
 
   const make_room = async() => {
     
@@ -57,19 +70,40 @@ const Help = ({showHelp,helpHanlderClose}) => {
                     <Text style={{fontSize:25 ,fontFamily:"Roboto",fontWeight:"500" ,color:"#FFFFFF",marginLeft:"55%"}}>x</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{backgroundColor:"white",height:"100%",borderTopLeftRadius: 30,borderTopRightRadius:30,paddingVertical:20,paddingHorizontal:5}}>
-              <View style={{display:"flex",flexDirection:"row"}}>
-                <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                <View>
-                  <Message Message="Hi, we’re here to help you." customer_app ="app"/>
-                  <Message Message="please select your preferred language." customer_app ="app"/>
+            <View style={{backgroundColor:"white",height:"93%",borderTopLeftRadius: 30,borderTopRightRadius:30,paddingVertical:20,paddingHorizontal:5}}>
+              <ScrollView >
+                <View style={{display:"flex",flexDirection:"row"}}>
+                  <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                  <View>
+                    <Message Message="Hi, we're here to help you." customer_app ="app"/>
+                    <Message Message="please select your preferred language." customer_app ="app"/>
+                  </View>
                 </View>
-              </View>
-              {language==="" && <LanguageSelect language_handler={language_handler}/>}
-              {language!=="" && <Message Message={language} customer_app ="customer"/>}
+                {language==="" && <LanguageSelect language_handler={language_handler}/>}
+                {language!=="" && <Message Message={language} customer_app ="customer" top={103}/>}
+                {(language!=="" ) &&  (
+                <View style={{display:"flex",flexDirection:"row",marginTop:55}}>
+                  <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                  <View>
+                    <Message Message="Select your query." customer_app ="app"/>
+                  </View>
+                </View>
+                )}
+                {(query ==="" && language!=="") && <Queryselect handler={query_handler} items={["Agreement Compliance","License Compatibility","Software License"]}/>}
+                {query!=="" && <Message Message={query} customer_app ="customer" top={211}/>}
+                {query === "License Compatibility" && (
+                <>
+                  <View style={{display:"flex",flexDirection:"row",marginTop:74}}>
+                    <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                    <Message Message="identify your query from these options." customer_app ="app"/>
+                  </View>
+                  <Queryselect handler={license_compatibility_handler} items={["What is License Compatibility?","How to check the compatibility of two licenses?","What is recommendation percentage?","How much accurate is recommendation percentage?","Do I need to pay to check license compatibility","Can I compare any two licenses?"]}/>
+                </>
+                )}
 
-                
-              <View style={{display :"flex",flexDirection:"row",alignItems:"center",position:"absolute",bottom:70}}>
+
+              </ScrollView>  
+              <View style={{display :"flex",flexDirection:"row",alignItems:"center",backgroundColor:"white",width:"100%",paddingVertical:12}}>
                   <TextInput
                       style={styles.input}
                   
@@ -80,12 +114,14 @@ const Help = ({showHelp,helpHanlderClose}) => {
                   <TouchableOpacity>
                       <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
                   </TouchableOpacity>
-
               </View>
+            </View>
+             
+            
                 
 
 
-            </View>
+           
             
                     
         </View> 
@@ -110,7 +146,7 @@ const styles = StyleSheet.create({
         height: 51,
         width:"87%",
         marginLeft: 15,
-        marginVertical:20,
+        marginVertical:0,
         marginRight:4,
         borderWidth: 1,
         borderRadius: 15,

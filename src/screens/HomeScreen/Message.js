@@ -3,25 +3,12 @@ import {
     Text,
     StyleSheet,
     View,
-    Modal,
-    TouchableOpacity,TextInput
     
   } from 'react-native';
   
 
-const Message = ({Message,customer_app}) => {
-  return (
-    <View style={customer_app==="app"? styles.message_app : styles.message_customer}>
-        <Text style={customer_app === "app" ?styles.text_app : styles.text_customer}>
-            {Message}
-        </Text>
-    
-    </View>
-  )
-}
-
-export default Message
-const styles = StyleSheet.create({
+const Message = ({Message,customer_app,top}) => {
+  const styles = StyleSheet.create({
     message_app:{
         backgroundColor:"#078F04",
         alignSelf:"flex-start",
@@ -37,10 +24,10 @@ const styles = StyleSheet.create({
         
     },
     text_app:{
-       fontSize:16,
-       fontWeight:"400",
-       lineHeight:19,
-       color:"#ffffff"
+      fontSize:16,
+      fontWeight:"400",
+      lineHeight:19,
+      color:"#ffffff"
     },
     message_customer:{
       backgroundColor:"white",
@@ -53,19 +40,37 @@ const styles = StyleSheet.create({
         paddingBottom:10,
         paddingLeft:24,
       
-        marginVertical:5,
+        marginVertical:8,
+      
         borderTopRightRadius:200,
         borderBottomRightRadius:0,
         borderBottomLeftRadius:125,
         borderTopLeftRadius:125,
-        position:"relative",
-        left:"68%"
-
+        position:"absolute",
+        top:top,
+        right:43
+  
     },
     text_customer:{
       fontSize:16,
-       fontWeight:"400",
-       lineHeight:19,
-       color:"#078F04"
+      fontWeight:"400",
+      lineHeight:19,
+      color:"#078F04"
     }
-})
+  })
+
+  
+
+  return (
+    <View style={customer_app==="app"? styles.message_app : styles.message_customer}>
+        <Text style={customer_app === "app" ?styles.text_app : styles.text_customer}>
+            {Message}
+        </Text>
+    
+    </View>
+  )
+  
+}
+
+export default Message
+
