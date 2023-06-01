@@ -50,7 +50,21 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Softwere License Policy',
+              data: [
+                {
+                  question: 'What is the Software License Policy?',
+                  answer:
+                    'Software License Policy is an agreement which is between the software creator and customers which are to use that software. It has a legal binding effect on both the parties with specific guidelines for the use and distribution of the software.',
+                },
+                {
+                  question: 'How does the Software License Agreement work?',
+                  answer:
+                    'A software license grants the licensee, which could be a company or a customer, the permission to use the software in such a way that does not involve infringement of the software developer’s copyrights.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>

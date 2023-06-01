@@ -50,7 +50,21 @@ const EC = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Disclaimer for Website',
+              data: [
+                {
+                  question: 'Why are disclaimers required?',
+                  answer:
+                    'A disclaimer is very crucial for protecting  your business against legal liability by clearly stating that you won’t be held liable in case of any breach for how the public use the website or damages suffered by anybody as a result of content.',
+                },
+                {
+                  question: 'Where should you put the disclaimer?',
+                  answer:
+                    'You should always put the disclaimer in visible places of the website or app. It has to be visible to visitors or users for you to be excused by any legal liability. Some visible locations to put your disclaimer include your website footer, product description pages, and within your terms and conditions.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>

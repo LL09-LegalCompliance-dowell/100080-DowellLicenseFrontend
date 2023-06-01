@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import P1 from './P1';
 import PrivacyPolicyNav from './PrivacyPolicyNav';
 import LicenseImage from './LicenseImage';
+import FAQ from '../../FAQ';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,13 @@ const PPA = () => {
       <Stack.Screen
         name="license_image"
         component={LicenseImage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
         options={{
           headerShown: false,
         }}

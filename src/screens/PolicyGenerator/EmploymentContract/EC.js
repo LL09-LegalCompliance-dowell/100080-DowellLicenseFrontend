@@ -13,10 +13,11 @@ const EC = ({navigation}) => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View>
           <Text style={styles.text}>
-          We help with the legal requirements, so you can focus on the business. 
+            We help with the legal requirements, so you can focus on the
+            business.
           </Text>
           <Text style={styles.text}>
-          Below is the sample for Employment Contract Policy Template. 
+            Below is the sample for Employment Contract Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
@@ -49,7 +50,22 @@ const EC = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Employment Contract',
+              data: [
+                {
+                  question: 'What is an Employment contract?',
+                  answer:
+                    'The Employment Contract is between employer and employee, it safeguards the rights of employee and employer both. This agreement protects parties involved in any conflicts by acting as a source of legalities to which both parties must adhere. It shall have the writing of rights and responsibilities of both the employer and employee.',
+                },
+                {
+                  question:
+                    'What happens in case any employee refuses to sign the Employment Contract?',
+                  answer:
+                    'The offer letter offered to the employee can be withdrawn if the specific employee refuses to sign it and refuses to agree with the terms of agreement. However, in case of any problems related to a specific clause of the Employment Contract should be tried to be resolved with the help of a formal discussion.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>
