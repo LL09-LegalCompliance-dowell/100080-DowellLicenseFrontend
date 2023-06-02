@@ -13,6 +13,7 @@ import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign'
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
+import { send_message } from './HelpApi';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
@@ -20,10 +21,13 @@ import Queryselect from './HelpComponents/Queryselect';
 import RBSheet from "react-native-raw-bottom-sheet";
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
-  const refRBSheet = useRef();
-  const[flag,setFlag]=useState(false)
-
+const refRBSheet = useRef();
+const[flag,setFlag]=useState(false)
+const[message_flag,setMessageFlag]=useState(0)
 const [loading, setLoading] = useState(false);
+const [data, setdata] = useState("");
+const [room_pk, set_room_pk] = useState();
+const [user_id, set_user_id] = useState();
 const [language,setlangauge]=useState("")
 const language_handler=(language)=>{
   setlangauge(language)
@@ -73,14 +77,15 @@ const make_room = async() => {
     const session_id = await AsyncStorage.getItem("session_id");
 
     const result = await make_room_api(session_id);
- 
+    set_room_pk(result.room_pk);
+    set_user_id(result.portfolio)
      setLoading(false);
     
   }catch(error){
-    setLoading(false);
+    navigation.navigate("HomeScreen")
     alert('Something went wrong, please try again later');
   }
-}
+} 
 
 
 useEffect(() => {
@@ -294,18 +299,42 @@ return (
                       </>)}
                   </>
                   )}
+                  {
+                    message_flag===1 && (
+                      <View style={{display:"flex",flexDirection:"row",marginTop:10}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                        <View>
+                          <Message Message="Your message was sent successfully" customer_app ="app"/>
+                        </View>
+                      </View>
+                    )
+                  }
                 </View>
               </ScrollView>  
             </View>
             <View style={{display :"flex",flexDirection:"row",alignItems:"center",width:"100%",paddingVertical:12}}>
                 <TextInput
                     style={styles.input}
-                
+                    value={data}
+                    onChangeText={value => setdata(value)}
                     placeholder="  Type your message here..."
                     placeholderTextColor="gray"            
                     
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={async()=>{
+                  setLoading(true);
+                  const status=await send_message(room_pk,user_id.toString(),data)
+                  if(status===200){
+                    setdata("")
+                    setLoading(false);
+                    setMessageFlag(1)
+                  }
+                  else{
+                    alert("Error while sending message")
+                    setLoading(false);
+                    setMessageFlag(0)
+                  }
+                  }}>
                     <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
                 </TouchableOpacity>
             </View>      
