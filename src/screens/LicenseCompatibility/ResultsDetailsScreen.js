@@ -48,6 +48,7 @@ const ResultsDetailsScreen = ({route}) => {
           backgroundColor: 'white',
           paddingHorizontal: 10,
           paddingBottom: 30,
+          marginTop: Platform.OS === 'ios' ? 60 : 30,
         }}>
         {/* {comparison ? ( */}
         <>
@@ -61,7 +62,7 @@ const ResultsDetailsScreen = ({route}) => {
                     backgroundColor: '#A7A7A7',
                     marginBottom: 15,
                   }}></View>
-                <Text
+                {/* <Text
                   style={[
                     styles.heading,
                     {
@@ -71,7 +72,7 @@ const ResultsDetailsScreen = ({route}) => {
                     },
                   ]}>
                   Compatibility Results
-                </Text>
+                </Text> */}
                 {/* Logos */}
                 <View style={styles.logosConatainer}>
                   <View style={styles.imagesContainer}>
@@ -149,7 +150,7 @@ const ResultsDetailsScreen = ({route}) => {
                   <View>
                     <Progress.Bar
                       progress={res?.percentage_of_compatibility / 100}
-                      width={313}
+                      width={Platform.OS === 'ios' ? 290 : 313}
                       height={20}
                       borderRadius={20}
                       color={colors.primary}
@@ -476,3 +477,4 @@ const ResultsDetailsScreen = ({route}) => {
 };
 
 export default ResultsDetailsScreen;
+

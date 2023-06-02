@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Alert,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -77,7 +78,11 @@ const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
       {historyIcon === 'history' ? (
         <TouchableOpacity onPress={openHistory}>
           <Image
-          style={{width:30, width:35, resizeMode:'contain', marginTop:8}}
+            style={{
+              width: 35,
+              resizeMode: 'contain',
+              // marginBottom: Platform.OS === 'ios' ? 12 : 11,
+            }}
             source={require('../screens/LicenseCompatibility/images/SearchHistory.png')}
           />
         </TouchableOpacity>
@@ -93,9 +98,9 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: 60,
+    height: Platform.OS === 'ios' ? 90 : 60,
     width: '100%',
-    paddingHorizontal: 18,
+    paddingHorizontal: Platform.OS === 'ios' ? 12 : 18,
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
@@ -105,6 +110,8 @@ const styles = StyleSheet.create({
     elevation: 8,
     position: 'absolute',
     zIndex: 1,
+    alignItems: 'center',
+    ...Platform.select({ios: {paddingTop: 33}}),
   },
 
   logo: {
@@ -113,15 +120,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     // aspectRatio: 3.8,
     marginRight: 'auto',
-    marginTop: 'auto',
-    marginBottom: 5,
     marginLeft: 5,
   },
 
   heading: {
     marginRight: 'auto',
-    marginTop: 'auto',
-    marginBottom: 10,
     marginLeft: 15,
     fontSize: 18,
     fontWeight: '400',
@@ -130,12 +133,11 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    marginTop: 'auto',
-    marginBottom: 10,
+    justifyContent: 'space-around',
   },
 
   userIcon: {
-    marginTop: 'auto',
-    marginBottom: 14,
+    // marginTop: 'auto',
+    // marginBottom: 14,
   },
 });

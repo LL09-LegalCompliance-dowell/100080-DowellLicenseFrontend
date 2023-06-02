@@ -41,9 +41,9 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
-    backgroundColor:'white',
-    flex:1
+    paddingTop: Platform.OS === 'ios' ? 90 : 60,
+    backgroundColor: 'white',
+    flex: 1,
   },
   heading: {
     fontFamily: 'roboto',
