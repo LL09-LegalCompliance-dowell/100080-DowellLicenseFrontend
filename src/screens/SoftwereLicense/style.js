@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
   },
 
-  // cardContainer: {
-  //   marginTop: 80,
-  //   marginBottom: 20,
-  //   marginHorizontal: 15,
-  // },
+  cardContainer: {
+    marginTop: 80,
+    marginBottom: 20,
+    marginHorizontal: 15,
+  },
 
   // Below Slider
   miniContainer: {
