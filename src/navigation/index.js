@@ -20,6 +20,7 @@ const index = () => {
       const username = await AsyncStorage.getItem('username');
       const email = await AsyncStorage.getItem('email');
       const session_id = await AsyncStorage.getItem('session_id');
+      console.log( session_id )
       const org = await AsyncStorage.getItem('org_name');
       const org_id = await AsyncStorage.getItem('org_id');
       const portfolio = await AsyncStorage.getItem('portfolio_name');
