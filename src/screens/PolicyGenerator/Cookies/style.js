@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   wrapper: {
+    // scrollbarWidth: 'none',
     display: 'flex',
     marginVertical: 10,
     flex: 1,

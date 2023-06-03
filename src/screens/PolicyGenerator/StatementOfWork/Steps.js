@@ -347,6 +347,7 @@ const Steps = () => {
                   <Policy3  list={states_3}/>
                 </View>
               </ProgressStep> */}
+
           <ProgressStep
             nextBtnStyle={nextButton}
             nextBtnTextStyle={{color: 'white', fontSize: 18}}
@@ -354,13 +355,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              const y = email_validation(input_1_4);
-              const z = !y;
-              if (z) {
-                alert('please enter valid email');
-              } else {
-                navigation.navigate('HomeScreen');
-              }
+              navigation.navigate('HomeScreen');
             }}>
             <View>
               <Policy4 object={request_object} />

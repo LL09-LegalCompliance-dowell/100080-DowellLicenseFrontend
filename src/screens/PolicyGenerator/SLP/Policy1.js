@@ -35,7 +35,13 @@ const Policy1 = ({list}) => {
   return (
     <>
       <KeyboardAwareScrollView style={{flex: 1}}>
-        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          style={styles.wrapper}
+          showsVerticalScrollIndicator={false}
+          // automaticallyAdjustContentInsets={
+          //   Platform.OS === 'ios' ? false : true
+          // }
+        >
           <Text
             style={
               list[0]
@@ -44,6 +50,7 @@ const Policy1 = ({list}) => {
             }>
             Please Check your inputs... You must fill all{' '}
           </Text>
+
           <View
             style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
             <Text style={styles.text_1}>

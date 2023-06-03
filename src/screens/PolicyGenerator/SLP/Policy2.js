@@ -81,6 +81,7 @@ const Policy2 = ({list}) => {
             <TextInput
               style={styles.input_vm}
               value={list[3]}
+              autoCapitalize="none"
               onChangeText={value => list[4](value)}
             />
             <Text style={styles.text_3}>Definition of Effective Date</Text>
