@@ -10,16 +10,8 @@ import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {empty_validation, email_validation} from '../validations';
 import moment from 'moment';
-// const generate_date = date => {
-//   const temp = date.split('/');
-//   return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-// };
-const generate_date = date => {
-  const formattedDate = date;
-  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
-  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
-  return formattedMomentDate;
-};
+import {generate_date} from '../../../utils/dateUtils';
+
 const Steps = () => {
   const navigation = useNavigation();
   const [orgId, setOrgId] = useState('');

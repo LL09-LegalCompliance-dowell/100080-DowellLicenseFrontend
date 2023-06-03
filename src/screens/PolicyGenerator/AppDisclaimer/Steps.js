@@ -8,17 +8,8 @@ import moment from 'moment';
 import {empty_validation, email_validation, get_org_id} from '../validations';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {generate_date} from '../../../utils/dateUtils';
 
-// const generate_date = date => {
-//   const temp = date.split('/');
-//   return temp[4] + '-' + temp[0] + '-' + temp[1]; // Handle invalid date case according to your needs
-// };
-const generate_date = date => {
-  const formattedDate = date;
-  const momentDate = moment(formattedDate, 'MM/DD/YYYY');
-  const formattedMomentDate = momentDate.format('YYYY-MM-DD');
-  return formattedMomentDate;
-};
 const Steps = () => {
   const navigation = useNavigation();
   const [orgId, setOrgId] = useState('');
@@ -26,6 +17,7 @@ const Steps = () => {
     const org_id = await AsyncStorage.getItem('org_id');
     setOrgId(org_id);
   };
+
   useMemo(() => getOrgId(), []);
   const nextButton = {
     backgroundColor: '#489503',
