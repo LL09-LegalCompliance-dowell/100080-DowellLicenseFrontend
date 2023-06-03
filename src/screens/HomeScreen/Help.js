@@ -23,7 +23,7 @@ import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
 const refRBSheet = useRef();
 const[flag,setFlag]=useState(false)
-const[message_flag,setMessageFlag]=useState(0)
+const[messages,setMessages]=useState([])
 const [loading, setLoading] = useState(false);
 const [data, setdata] = useState("");
 const [room_pk, set_room_pk] = useState();
@@ -56,6 +56,10 @@ const [moreq,set_moreq]=useState("")
 const moreq_handler=(state)=>{
   set_moreq(state)
 }
+const add_message_handler=(message)=>{
+  setMessages([...messages, message])
+}
+
 useEffect(()=>{
   if(moreq ==="Yes"){
     setquery("")
@@ -300,13 +304,21 @@ return (
                   </>
                   )}
                   {
-                    message_flag===1 && (
-                      <View style={{display:"flex",flexDirection:"row",marginTop:10}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Your message was sent successfully" customer_app ="app"/>
-                        </View>
-                      </View>
+                    messages.length>0 && (
+                      messages.map((item,index) =>{
+                        return(
+                          <View key={index} style={{marginTop:10}}>
+                            <View style={{alignSelf:'flex-end'}}><Message Message={item} customer_app ="customer" /></View>
+                            <View style={{display:"flex",flexDirection:"row",marginTop:5}}>
+                              <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                              <View>
+                                <Message Message="We have received your message, Our customer support team will respond to you within next 24 hours" customer_app ="app"/>
+                              </View>
+                            </View>      
+                          </View>
+                        )
+                      }
+                      )
                     )
                   }
                 </View>
@@ -326,13 +338,13 @@ return (
                   const status=await send_message(room_pk,user_id.toString(),data)
                   if(status===200){
                     setdata("")
+                    add_message_handler(data)
                     setLoading(false);
-                    setMessageFlag(1)
+                    
                   }
                   else{
                     alert("Error while sending message")
                     setLoading(false);
-                    setMessageFlag(0)
                   }
                   }}>
                     <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
