@@ -44,9 +44,12 @@ const C1 = ({navigation}) => {
           
           <TouchableOpacity
           style={{display:'flex',flexDirection:"row"}}
-           onPress={() => {
-             navigation.navigate('FAQsPrivacyPolicy');
-           }}>
+          onPress={() => {
+            navigation.navigate('FAQ',{
+             questions:["What are cookies?","Why do you need consent to use cookies?"],
+             answers:["Cookies are small pieces of text sent to your browser by the websites you visit. It helps the website to remember a few information of users when they visit the website again. It allows the site to display the selected setting and targeted contents for the users.","Cookies can process personal information and identifiable information of visitors on the website or users of the website.To protect the privacy policies of such users and visitors, the option to refuse the cookies policies is also available. As per the GDPR and ePrivacy Directive guidelines a website must ask for cookies consent from users. The cookies collect personal data of users and it is unlawful to collect personal data of users without their consent."]
+            });
+          }}>
             <EvilIcons name='question'  size={24} style={styles.faq1}/>
             <Text style={styles.faq}>Generator FAQs</Text>
           </TouchableOpacity>
