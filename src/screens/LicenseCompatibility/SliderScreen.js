@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppLoader from '../../components/AppLoader';
 import colors from '../../../assets/colors/colors';
-import listData from './../SoftwereLicense/sliderData.json';
+import listData from './sliderData.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './../SoftwereLicense/style';
 

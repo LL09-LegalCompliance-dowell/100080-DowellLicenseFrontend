@@ -128,7 +128,12 @@ const SoftwereLicense = ({navigation}) => {
                   // onHideUnderlay={separators.unhighlight}
                 >
                   <View style={{display: 'flex', flexDirection: 'row'}}>
-                    <View style={{flex: 3.5}}>
+                    <View
+                      style={{
+                        flex: 3.5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
                       <Image
                         resizeMode="contain"
                         style={{
@@ -136,20 +141,7 @@ const SoftwereLicense = ({navigation}) => {
                           width: 90,
                         }}
                         source={{
-                          uri: item.image1,
-                        }}
-                      />
-
-                      <Text style={styles.vsText}>VS</Text>
-
-                      <Image
-                        resizeMode="contain"
-                        style={{
-                          height: 60,
-                          width: 90,
-                        }}
-                        source={{
-                          uri: item.image2,
+                          uri: item.image,
                         }}
                       />
                     </View>
@@ -158,10 +150,19 @@ const SoftwereLicense = ({navigation}) => {
                         paddingHorizontal: 15,
                         alignItems: 'center',
                         flex: 6.5,
+                        // backgroundColor:"red"
                       }}>
-                      <Text style={styles.heading}>{item.titel}</Text>
-                      <Text style={{color: 'black', textAlign: 'center'}}>
-                        {item.recommendation}
+                      <Text
+                        style={[
+                          styles.heading,
+                          {textAlign: 'center', fontSize: 16},
+                        ]}>
+                        {item.titel}
+                      </Text>
+                      <Text
+                        numberOfLines={2}
+                        style={{color: 'black', textAlign: 'center'}}>
+                        {item.des}
                       </Text>
                       <View
                         style={{
@@ -169,19 +170,13 @@ const SoftwereLicense = ({navigation}) => {
                           paddingHorizontal: 10,
                           paddingVertical: 3,
                           borderRadius: 15,
-                          marginTop: 30,
+                          marginTop: 20,
+                          marginBottom: 8,
                         }}>
-                        <Pressable>
+                        <Pressable
+                          onPress={() => fetchSliderData(item.eventId)}>
                           <Text
-                            onPress={() => {
-                              navigation.navigate('SliderItemDetails', {
-                                eventId_1: item.eventId_1,
-                                eventId_2: item.eventId_2,
-                                userId: userId,
-                                organizationId: orgId,
-                              });
-                            }}
-                            style={{fontSize: 11, margin: 0}}>
+                            style={{fontSize: 11, margin: 0, color: 'white'}}>
                             Learn More
                           </Text>
                         </Pressable>
