@@ -1,24 +1,30 @@
+// import {
+//   // FlatList,
+//   Image,
+//   Pressable,
+//   StyleSheet,
+//   Text,
+//   View,
+//   TouchableOpacity,
+// } from 'react-native';
+// import {FlatList} from 'react-native-gesture-handler';
 import {
-  // FlatList,
+  FlatList,
   Image,
   Pressable,
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
 } from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AppLoader from '../../components/AppLoader';
 import colors from '../../../assets/colors/colors';
-import listData from './../SoftwereLicense/sliderData.json';
+import listData from './sliderData.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './../SoftwereLicense/style';
 
 const SliderScreen = ({navigation}) => {
-  // Get organization ID from local storage
   const [orgId, setOrgId] = useState('');
   const [userId, setUserId] = useState('');
 
@@ -43,12 +49,12 @@ const SliderScreen = ({navigation}) => {
         <View style={styles.cardContainer}>
           <FlatList
             data={listData}
-            ketExtractor={item => item.id}
+            // ketExtractor={item => item.id}
             horizontal
             // showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index, separators}) => (
-              <View style={styles.cardContainer1} key={item.key}>
+              <View style={styles.cardContainer1} key={index}>
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                   <View style={{flex: 3.5}}>
                     <Image
@@ -109,7 +115,7 @@ const SliderScreen = ({navigation}) => {
                               orgId,
                             );
                           }}
-                          style={{fontSize: 11, margin: 0}}>
+                          style={{fontSize: 11, margin: 0, color: 'white'}}>
                           Learn More
                         </Text>
                       </Pressable>

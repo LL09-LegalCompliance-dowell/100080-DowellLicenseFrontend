@@ -260,7 +260,7 @@ const AgreementComplience = ({navigation}) => {
             <View style={styles.iconContainer}>
               <Image source={Image3} />
             </View>
-            <Text style={styles.listHeading}>Softwere License Policy</Text>
+            <Text style={styles.listHeading}>Software License Policy</Text>
           </TouchableOpacity>
           <View style={styles.separator}></View>
 

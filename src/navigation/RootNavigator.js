@@ -30,11 +30,11 @@ import NonCompetAgreement from '../screens/PolicyGenerator/NCA';
 import TermsAndConditions from '../screens/PolicyGenerator/TermAndConditions';
 import MOU from '../screens/PolicyGenerator/MOU';
 import SLP from '../screens/PolicyGenerator/SLP';
-import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
-import PolicyWebView from '../screens/PolicyGenerator/PolicyWebView'
-import OrgDetails from '../screens/OrganizationDeatils'
-import ProfileHome from '../screens/OrganizationDeatils/Home'
-import SliderItemDetails from '../screens/SoftwereLicense/SliderItemDetails'
+import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer';
+import PolicyWebView from '../screens/PolicyGenerator/PolicyWebView';
+import OrgDetails from '../screens/OrganizationDeatils';
+import ProfileHome from '../screens/OrganizationDeatils/Home';
+import SliderItemDetails from '../screens/SoftwereLicense/SliderItemDetails';
 
 const Stack = createStackNavigator();
 
@@ -225,7 +225,7 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="ProfileHome"
           component={ProfileHome}
           options={{
@@ -239,15 +239,13 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="SliderScreen"
           component={SliderScreen}
           options={{
             headerShown: false,
           }}
         />
-        
-
         
       </Stack.Navigator>
     </>
