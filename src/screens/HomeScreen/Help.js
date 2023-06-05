@@ -20,21 +20,21 @@ import Queryselect from './HelpComponents/Queryselect';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
-  const refRBSheet = useRef();
-  const [flag, setFlag] = useState(false);
-  const [message_flag, setMessageFlag] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [data, setdata] = useState('');
-  const [room_pk, set_room_pk] = useState();
-  const [user_id, set_user_id] = useState();
-  const [language, setlangauge] = useState('');
-  const language_handler = language => {
-    setlangauge(language);
-  };
-  const [query, setquery] = useState('');
-  const query_handler = query => {
-    setquery(query);
-  };
+const refRBSheet = useRef();
+const[flag,setFlag]=useState(false)
+const[message_flag,setMessageFlag]=useState(0)
+const [loading, setLoading] = useState(false);
+const [data, setdata] = useState("");
+const [room_pk, set_room_pk] = useState();
+const [user_id, set_user_id] = useState();
+const [language,setlangauge]=useState("")
+const language_handler=(language)=>{
+  setlangauge(language)
+}
+const [query,setquery]=useState("")
+const query_handler=(query)=>{
+  setquery(query)
+}
 
   const [license_compatibility, set_license_compatibility] = useState('');
   const license_compatibility_handler = state => {
@@ -51,27 +51,29 @@ const Help = ({navigation}) => {
     set_software_license(state);
   };
 
-  const [moreq, set_moreq] = useState('');
-  const moreq_handler = state => {
-    set_moreq(state);
-  };
-  useEffect(() => {
-    if (moreq === 'Yes') {
-      setquery('');
-      set_license_compatibility('');
-      set_agreement_compliance('');
-      set_software_license('');
-      set_moreq('');
-    } else if (moreq === 'No') {
-      set_moreq('');
-      navigation.navigate('HomeScreen');
-    }
-  }, [moreq]);
+const [moreq,set_moreq]=useState("")
+const moreq_handler=(state)=>{
+  set_moreq(state)
+}
+useEffect(()=>{
+  if(moreq ==="Yes"){
+    setquery("")
+    set_license_compatibility("")
+    set_agreement_compliance("")
+    set_software_license("")
+    set_moreq("")
+  }
+  else if (moreq ==="No"){
+    set_moreq("")
+    navigation.navigate("HomeScreen")
+  }
+},[moreq])
 
-  const make_room = async () => {
-    try {
-      setLoading(true);
-      const session_id = await AsyncStorage.getItem('session_id');
+const make_room = async() => {
+  
+  try{
+    setLoading(true);
+    const session_id = await AsyncStorage.getItem("session_id");
 
       const result = await make_room_api(session_id);
       set_room_pk(result.room_pk);
@@ -565,101 +567,81 @@ const Help = ({navigation}) => {
                       </>
                     )}
                   </>
-                )}
-                {message_flag === 1 && (
-                  <View
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      marginTop: 10,
-                    }}>
-                    <MaterialCommunityIcons
-                      name="android"
-                      size={25}
-                      backgroundColor="#078F04"
-                      color="#078F04"
-                    />
-                    <View>
-                      <Message
-                        Message="Your message was sent successfully"
-                        customer_app="app"
-                      />
-                    </View>
-                  </View>
-                )}
-              </View>
-            </ScrollView>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              width: '100%',
-              paddingVertical: 12,
-            }}>
-            <TextInput
-              style={styles.input}
-              value={data}
-              onChangeText={value => setdata(value)}
-              placeholder="  Type your message here..."
-              placeholderTextColor="gray"
-            />
-            <TouchableOpacity
-              onPress={async () => {
-                setLoading(true);
-                const status = await send_message(
-                  room_pk,
-                  user_id.toString(),
-                  data,
-                );
-                if (status === 200) {
-                  setdata('');
-                  setLoading(false);
-                  setMessageFlag(1);
-                } else {
-                  alert('Error while sending message');
-                  setLoading(false);
-                  setMessageFlag(0);
-                }
-              }}>
-              <IoniMaterialCommunityIconscons
-                name="caretright"
-                size={25}
-                color="#078F04"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+                  )}
+                  {
+                    message_flag===1 && (
+                      <View style={{display:"flex",flexDirection:"row",marginTop:10}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                        <View>
+                          <Message Message="Your message was sent successfully" customer_app ="app"/>
+                        </View>
+                      </View>
+                    )
+                  }
+                </View>
+              </ScrollView>  
+            </View>
+            <View style={{display :"flex",flexDirection:"row",alignItems:"center",width:"100%",paddingVertical:12}}>
+                <TextInput
+                    style={styles.input}
+                    value={data}
+                    onChangeText={value => setdata(value)}
+                    placeholder="  Type your message here..."
+                    placeholderTextColor="gray"            
+                    
+                />
+                <TouchableOpacity onPress={async()=>{
+                  setLoading(true);
+                  const status=await send_message(room_pk,user_id.toString(),data)
+                  if(status===200){
+                    setdata("")
+                    setLoading(false);
+                    setMessageFlag(1)
+                  }
+                  else{
+                    alert("Error while sending message")
+                    setLoading(false);
+                    setMessageFlag(0)
+                  }
+                  }}>
+                    <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
+                </TouchableOpacity>
+            </View>      
+          </View>    
+    </View> 
+    
+     
+    <RBSheet
+      ref={refRBSheet}
+      closeOnDragDown={true}
+      closeOnPressMask={true}
+      onClose={()=>setFlag(false)}
+      height={330}
+      customStyles={{
+        wrapper: {
+          backgroundColor: "transparent",
+          
+        },
+        container:{
+          borderTopLeftRadius:40,
+          borderTopRightRadius:40,
+          padding:10
+        },
+        draggableIcon: {
+          backgroundColor: "#000",
+          width:100
+        },
+      }}
+      >
+      <LanguageSlider/>
+    </RBSheet>
+  </>
 
-      <RBSheet
-        ref={refRBSheet}
-        closeOnDragDown={true}
-        closeOnPressMask={true}
-        onClose={() => setFlag(false)}
-        height={330}
-        customStyles={{
-          wrapper: {
-            backgroundColor: 'transparent',
-          },
-          container: {
-            borderTopLeftRadius: 40,
-            borderTopRightRadius: 40,
-            padding: 10,
-          },
-          draggableIcon: {
-            backgroundColor: '#000',
-            width: 100,
-          },
-        }}>
-        <LanguageSlider />
-      </RBSheet>
-    </>
-  );
-};
+  
+)
+}
 
-export default Help;
+export default Help
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
