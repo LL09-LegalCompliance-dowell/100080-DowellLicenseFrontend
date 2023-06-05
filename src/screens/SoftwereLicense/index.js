@@ -115,7 +115,7 @@ const SoftwereLicense = ({navigation}) => {
           <View style={styles.cardContainer}>
             <FlatList
               data={listData}
-              ketExtractor={item => item.id}
+              keyExtractor={item => item.id}
               horizontal
               // showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}

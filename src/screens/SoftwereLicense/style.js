@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto',
     marginTop: 3,
   },
+
   serchResultDetails: {
     color: colors.textDark,
     fontFamily: 'roboto',

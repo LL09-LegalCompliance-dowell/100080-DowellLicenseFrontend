@@ -1,4 +1,13 @@
-import {FlatList, Image, Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  // FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -112,7 +121,7 @@ const SliderScreen = ({navigation}) => {
           />
         </View>
 
-        <View style={[styles.miniContainer, {height:'100%'}]}>
+        <View style={[styles.miniContainer, {height: '100%'}]}>
           {/* section 2 */}
           <View style={styles.section2}>
             <Text style={styles.heading}>
@@ -146,4 +155,3 @@ const SliderScreen = ({navigation}) => {
 };
 
 export default SliderScreen;
-
