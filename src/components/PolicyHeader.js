@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Alert,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -29,32 +30,32 @@ const Header = ({title, leftIcon, rightIcon}) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      
-        <TouchableOpacity
-          onPress={() => {
-            Alert.alert(
-              'Important',
-              'Are you sure you want to go back? By clicking "Yes", you will lose the work you have done so far.',
-              [
-                {
-                  text: 'No',
-                  onPress: () => console.log('User clicked No'),
-                  style: 'cancel',
-                },
-                {
-                  text: 'Yes',
-                  onPress: () => navigation.goBack(),
-                },
-              ],
-            );
-          }}>
-          <MaterialIcons
-            style={styles.menuIcon}
-            name="keyboard-backspace"
-            size={30}
-            color={colors.textDark}
-          />
-        </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => {
+          Alert.alert(
+            'Important',
+            'Are you sure you want to go back? By clicking "Yes", you will lose the work you have done so far.',
+            [
+              {
+                text: 'No',
+                onPress: () => console.log('User clicked No'),
+                style: 'cancel',
+              },
+              {
+                text: 'Yes',
+                onPress: () => navigation.goBack(),
+              },
+            ],
+          );
+        }}>
+        <MaterialIcons
+          style={styles.menuIcon}
+          name="keyboard-backspace"
+          size={30}
+          color={colors.textDark}
+        />
+      </TouchableOpacity>
 
       {title ? (
         <Text numberOfLines={1} style={styles.heading}>
@@ -77,6 +78,7 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    marginTop: Platform.OS === 'ios' ? 40 : 0,
     height: 60,
     width: '100%',
     paddingHorizontal: 18,

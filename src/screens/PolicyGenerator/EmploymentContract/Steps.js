@@ -9,10 +9,9 @@ import Policy4 from '../Cookies/Policy4';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {empty_validation, email_validation} from '../validations';
-const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-};
+import moment from 'moment';
+import {generate_date} from '../../../utils/dateUtils';
+
 const Steps = () => {
   const navigation = useNavigation();
   const [orgId, setOrgId] = useState('');
@@ -89,7 +88,7 @@ const Steps = () => {
     input_8,
     handle_input_8,
     input_9,
-    handle_input_9
+    handle_input_9,
   ];
   const [error_1, setError_1] = useState(false);
   const inputs = [
@@ -279,7 +278,8 @@ const Steps = () => {
           paddingTop: 45,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}

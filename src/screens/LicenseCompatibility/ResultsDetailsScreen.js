@@ -477,4 +477,3 @@ const ResultsDetailsScreen = ({route}) => {
 };
 
 export default ResultsDetailsScreen;
-

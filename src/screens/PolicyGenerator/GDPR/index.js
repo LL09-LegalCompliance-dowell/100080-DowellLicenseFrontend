@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import G1 from './G1';
 import GDBRPolicyNav from './GDBRPolicyNav';
 import LicenseImage from './LicenseImage';
+import FAQ from '../FAQ';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,13 @@ const GDPR = () => {
       <Stack.Screen
         name="license_image"
         component={LicenseImage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
         options={{
           headerShown: false,
         }}

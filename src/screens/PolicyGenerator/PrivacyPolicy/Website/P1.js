@@ -50,7 +50,21 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Website Privacy Policy',
+              data: [
+                {
+                  question: 'What is Privacy Policy?',
+                  answer:
+                    'A Privacy Policy is a legal agreement designed to let visitors to your website or users of your app know what personal information you gather about them, how you use this information and how you keep it safe. A Privacy Policy for a website or app generally covers: 1-The types of information collected by the website or app 2-The purpose of this data collection 3-Data storage, security and access 4-Details of data transfers 5-Affiliated websites or organizations 6-Cookies',
+                },
+                {
+                  question: 'Do you need a privacy policy?',
+                  answer:
+                    'You are legally bound to have a privacy policy if you collect, store or sort any personal information of customers or even visitors who visit your website or use the app or website. Personal information includes: 1-Name  2-Address 3-Date of Birth 4-Bank Details 5-Social Security Number 6-Phone/ Mobile numbers',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>

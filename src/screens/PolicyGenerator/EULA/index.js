@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import E1 from './E1';
 import EulaPolicyNav from './EulaPolicyNav';
 import LicenseImage from './LicenseImage';
-
+import FAQ from '../FAQ';
 const Stack = createNativeStackNavigator();
 
 const Eula = () => {
@@ -26,6 +26,13 @@ const Eula = () => {
       <Stack.Screen
         name="license_image"
         component={LicenseImage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
         options={{
           headerShown: false,
         }}
