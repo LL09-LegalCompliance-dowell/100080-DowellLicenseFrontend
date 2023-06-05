@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-
     width: '100%',
+    marginTop: Platform.OS === 'ios' ? 30 : 0,
   },
 
   heading: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 10,
     marginRight: 15,
-    flex:1
+    flex: 1,
   },
 
   listContainer: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: colors.textDark,
     fontFamily: 'roboto',
-    flex:11
+    flex: 11,
   },
 
   separator: {

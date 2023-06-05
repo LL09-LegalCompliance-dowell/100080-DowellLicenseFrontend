@@ -10,7 +10,9 @@ const EC = ({navigation}) => {
     <>
       <Header title="Employment Contract" />
 
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
         <View>
           <Text style={styles.text}>
             We help with the legal requirements, so you can focus on the

@@ -9,6 +9,8 @@ import Policy4 from '../Cookies/Policy4';
 import Policy5 from './Policy5';
 import Policy6 from './Policy6';
 import Policy7 from './Policy7';
+import moment from 'moment';
+
 import {
   empty_validation,
   email_validation,
@@ -17,10 +19,8 @@ import {
 } from '../validations';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-};
+import {generate_date} from '../../../utils/dateUtils';
+
 const Steps = () => {
   const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
@@ -2280,7 +2280,8 @@ const Steps = () => {
           paddingTop: 45,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
