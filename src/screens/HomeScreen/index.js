@@ -41,13 +41,6 @@ const data = [
 ];
 
 const Home = ({navigation}) => {
-  const [showHelp, setShowHelp] = useState(false);
-  const helpHanlder=()=>{
-    setShowHelp(true)
-  }
-  const helpHanlderClose=()=>{
-    setShowHelp(false)
-  }
   return (
     <View style={styles.container}>
       
@@ -144,9 +137,9 @@ const Home = ({navigation}) => {
           </Text>
         </View>
         
-        <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
+        
       </ScrollView>
-      <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
+      <HelpIcon style={styles.help} onPress={()=>navigation.navigate("Help")} />
     </View>
   );
 };

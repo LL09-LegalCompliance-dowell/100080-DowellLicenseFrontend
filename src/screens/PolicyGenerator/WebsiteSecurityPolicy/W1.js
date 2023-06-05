@@ -45,7 +45,10 @@ const W1 = ({navigation}) => {
               <TouchableOpacity
               style={{display:'flex',flexDirection:"row"}}
                onPress={() => {
-                 navigation.navigate('FAQsPrivacyPolicy');
+                 navigation.navigate('FAQ',{
+                  questions:["What is a Website Security Policy?","What are the important aspects under Website Security Policy?"],
+                  answers:["Website Security Policy protects websites from cyber threats, malware and vulnerabilities. It casts a wide net to protect users from any and all kinds of malicious emails, hijacking etc. It makes sure that website data is not exposed to cyber criminals or to prevent exploitation of the website in any way.","There are mainly three aspects under Website Security Policy which are confidentiality, integrity and availability."]
+                 });
                }}>
                 <EvilIcons name='question'  size={24} style={styles.faq1}/>
                 <Text style={styles.faq}>Generator FAQs</Text>

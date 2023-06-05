@@ -3,30 +3,27 @@ import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import {View} from 'react-native';
 import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
+import moment from 'moment';
+
 import Policy4 from '../Cookies/Policy4';
-import {empty_validation, email_validation, url_validation} from '../validations';
-import { useNavigation } from '@react-navigation/native';
+import {
+  empty_validation,
+  email_validation,
+  url_validation,
+} from '../validations';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-
-const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-};
-
+import {generate_date} from '../../../utils/dateUtils';
 
 const Steps = () => {
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
 
-
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
@@ -60,15 +57,7 @@ const Steps = () => {
     input_6,
     handle_input_6,
   ];
-  const inputs = [
-    input_1,
-    input_2,
-    input_3,
-    input_4,
-    input_5,
-    input_6
-  ];
-
+  const inputs = [input_1, input_2, input_3, input_4, input_5, input_6];
 
   const nextButton = {
     backgroundColor: '#489503',
@@ -95,8 +84,8 @@ const Steps = () => {
     alignSelf: 'center',
   };
 
- const request_object = {
-    agreement_compliance_type: "terms-and-conditions",
+  const request_object = {
+    agreement_compliance_type: 'terms-and-conditions',
     organization_id: orgId,
     last_update: generate_date(date.toLocaleDateString()),
     country_name: input_1,
@@ -104,9 +93,8 @@ const Steps = () => {
     website_or_app_name: input_3,
     website_url: input_4,
     support_email: input_5,
-    jurisdiction: input_6
-}
-
+    jurisdiction: input_6,
+  };
 
   return (
     <>
@@ -114,10 +102,11 @@ const Steps = () => {
       <View
         style={{
           flex: 1,
-          paddingTop: 45,
+          paddingTop: 95,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
@@ -145,7 +134,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              navigation.navigate('HomeScreen')
+              navigation.navigate('HomeScreen');
               // const y = email_validation(input_1_4);
               // const z = !y;
               // if (z) {

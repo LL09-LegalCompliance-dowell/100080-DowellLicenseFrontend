@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/drawer';
 import {useNavigation} from '@react-navigation/native';
 
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen/Navigator';
 import AboutUs from '../screens/AboutUs';
 import ActualAboutUs from '../screens/AboutUs/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';

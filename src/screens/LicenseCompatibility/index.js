@@ -401,7 +401,7 @@ const LicenseCompatibility = ({navigation}) => {
           animationIn="slideInDown"
           animationOut="slideOutUp"
           animationInTiming={1000}
-          animationOutTiming={1000}
+          animationOutTiming={200}
           avoidKeyboard={true}
           backdropTransitionOutTiming={0}
           onBackdropPress={() => setModal1Visible(false)}
@@ -411,48 +411,56 @@ const LicenseCompatibility = ({navigation}) => {
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="Search licence"
-              style={{paddingLeft: 10, color: 'balck'}}
+              style={{paddingLeft: 10, color: 'black', fontSize: 16}}
               marginVertical={3}
               placeholderTextColor="gray"
               onChangeText={text => searchLicensesFunction1(text)}
             />
 
-            <ScrollView style={styles.serchResultContainer}>
-              {searchedData1.map((item, index) => {
-                return (
-                  <View style={styles.serchResultItemContainer} key={index}>
-                    <TouchableOpacity
-                      onPress={async () => {
-                        const id_1 = item['_id'];
-                        const eventId_1 = item['eventId'];
-                        const licenseNname_1 =
-                          item['softwarelicense']['license_name'];
-                        await AsyncStorage.setItem(
-                          'licenseId1',
-                          JSON.stringify(id_1),
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseEventId1',
-                          eventId_1,
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseNname1',
-                          licenseNname_1,
-                        );
-                        handleSelectedLicense1();
-                      }}>
-                      <Text style={styles.serchResultHeading}>
-                        {item['softwarelicense']['license_name']}
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        {item['softwarelicense']['description']}
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </ScrollView>
+            <View style={styles.serchResultContainer}>
+              <FlatList
+                initialNumToRender={10}
+                data={searchedData1}
+                renderItem={(i, index) => {
+                  return (
+                    <View
+                      style={styles.serchResultItemContainer}
+                      keyExtractor={index}>
+                      <TouchableOpacity
+                        onPress={async () => {
+                          const id_1 = i.item['_id'];
+                          const eventId_1 = i.item['eventId'];
+                          const licenseNname_1 =
+                            i.item['softwarelicense']['license_name'];
+                          await AsyncStorage.setItem(
+                            'licenseId1',
+                            JSON.stringify(id_1),
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseEventId1',
+                            eventId_1,
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseNname1',
+                            licenseNname_1,
+                          );
+                          handleSelectedLicense1();
+                        }}>
+                        <Text style={styles.serchResultHeading}>
+                          {i.item['softwarelicense']['license_name']}
+                        </Text>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
+                          {i.item['softwarelicense']['description']}
+                        </Text>
+                        <View style={styles.separator}></View>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                }}
+              />
+            </View>
           </View>
         </Modal>
         {/* First Modal ends here */}
@@ -464,7 +472,7 @@ const LicenseCompatibility = ({navigation}) => {
           animationIn="slideInDown"
           animationOut="slideOutUp"
           animationInTiming={1000}
-          animationOutTiming={1000}
+          animationOutTiming={200}
           avoidKeyboard={true}
           backdropTransitionOutTiming={0}
           onBackdropPress={() => setModal2Visible(false)}
@@ -474,47 +482,60 @@ const LicenseCompatibility = ({navigation}) => {
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="Search licence"
-              style={{paddingLeft: 10, color: 'balck'}}
+              style={{paddingLeft: 10, color: 'black', fontSize: 16}}
               marginVertical={3}
               placeholderTextColor="gray"
               onChangeText={text => searchLicensesFunction2(text)}
             />
-            <ScrollView style={styles.serchResultContainer}>
-              {searchedData2.map((item, index) => {
-                return (
-                  <View key={index} style={styles.serchResultItemContainer}>
-                    <TouchableOpacity
-                      onPress={async () => {
-                        const id_2 = item['_id'];
-                        const eventId_2 = item['eventId'];
-                        const licenseNname_2 =
-                          item['softwarelicense']['license_name'];
-                        await AsyncStorage.setItem(
-                          'licenseId2',
-                          JSON.stringify(id_2),
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseEventId2',
-                          eventId_2,
-                        );
-                        await AsyncStorage.setItem(
-                          'licenseNname2',
-                          licenseNname_2,
-                        );
-                        handleSelectedLicense2();
-                      }}>
-                      <Text style={styles.serchResultHeading}>
-                        {item['softwarelicense']['license_name']}
-                      </Text>
-                      <Text numberOfLines={1} style={styles.serchResultDetails}>
-                        {item['softwarelicense']['description']}
-                      </Text>
-                      <View style={styles.separator}></View>
-                    </TouchableOpacity>
-                  </View>
-                );
-              })}
-            </ScrollView>
+            <View style={styles.serchResultContainer}>
+              <FlatList
+                data={searchedData2}
+                renderItem={(i, index) => {
+                  return (
+                    <View
+                      initialNumToRender={10}
+                      keyExtractor={index}
+                      style={styles.serchResultItemContainer}>
+                      <TouchableOpacity
+                        onPress={async () => {
+                          const id_2 = i.item['_id'];
+                          const eventId_2 = i.item['eventId'];
+                          const licenseNname_2 =
+                            i.item['softwarelicense']['license_name'];
+                          await AsyncStorage.setItem(
+                            'licenseId2',
+                            JSON.stringify(id_2),
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseEventId2',
+                            eventId_2,
+                          );
+                          await AsyncStorage.setItem(
+                            'licenseNname2',
+                            licenseNname_2,
+                          );
+                          handleSelectedLicense2();
+                        }}>
+                        <Text style={styles.serchResultHeading}>
+                          {i.item['softwarelicense']['license_name']}
+                        </Text>
+                        <Text
+                          numberOfLines={1}
+                          style={styles.serchResultDetails}>
+                          {i.item['softwarelicense']['description']}
+                        </Text>
+                        <View style={styles.separator}></View>
+                      </TouchableOpacity>
+                    </View>
+                  );
+                }}
+              />
+              {/* {searchedData2.length === 0 && (
+                <View>
+                  <Text style={styles.heading}>No result found</Text>
+                </View>
+              )} */}
+            </View>
           </View>
         </Modal>
         {/* Second Modal ends here */}

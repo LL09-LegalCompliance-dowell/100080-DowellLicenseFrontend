@@ -1,27 +1,24 @@
 import React, {useMemo, useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import {View} from 'react-native';
+import {Platform, View} from 'react-native';
 import PolicyHeader from '../../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy4 from '../../Cookies/Policy4';
+import moment from 'moment';
 import {empty_validation, email_validation} from '../../validations';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-};
+import {generate_date} from '../../../../utils/dateUtils';
 
 const Steps = () => {
-  const [ orgId, setOrgId ] = useState("");
+  const [orgId, setOrgId] = useState('');
   const getOrgId = async () => {
-    const org_id = await AsyncStorage.getItem("org_id");
-    setOrgId(org_id)
-  }
-  useMemo(()=>getOrgId(),[])
+    const org_id = await AsyncStorage.getItem('org_id');
+    setOrgId(org_id);
+  };
+  useMemo(() => getOrgId(), []);
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [empty_validationn, setempty_validation] = useState(true);
   const [date, setDate] = useState(new Date());
   const handle_date = state => setDate(state);
@@ -117,7 +114,6 @@ const Steps = () => {
     website_contact_page_url: input_7,
     website_contact_email: input_8,
   };
-
   return (
     <>
       <PolicyHeader title="Generator" />
@@ -127,7 +123,8 @@ const Steps = () => {
           paddingTop: 45,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
+          marginTop: Platform.OS === 'ios' ? 40 : 0,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
@@ -154,7 +151,7 @@ const Steps = () => {
             finishBtnText="Done"
             previousBtnStyle={previousButton}
             onSubmit={() => {
-              navigation.navigate('HomeScreen')
+              navigation.navigate('HomeScreen');
               // const y = email_validation(input_1_4);
               // const z = !y;
               // if (z) {

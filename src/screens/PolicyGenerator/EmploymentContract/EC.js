@@ -10,13 +10,16 @@ const EC = ({navigation}) => {
     <>
       <Header title="Employment Contract" />
 
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
         <View>
           <Text style={styles.text}>
-          We help with the legal requirements, so you can focus on the business. 
+            We help with the legal requirements, so you can focus on the
+            business.
           </Text>
           <Text style={styles.text}>
-          Below is the sample for Employment Contract Policy Template. 
+            Below is the sample for Employment Contract Policy Template.
           </Text>
         </View>
         <View style={styles.viewSampleContainer}>
