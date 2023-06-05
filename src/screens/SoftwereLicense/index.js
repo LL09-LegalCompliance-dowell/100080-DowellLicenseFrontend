@@ -126,13 +126,12 @@ const SoftwereLicense = ({navigation}) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
         {/* Header */}
-
         {/* section 1 */}
         {!isKeyboardVisible && (
           <View style={styles.cardContainer}>
             <FlatList
               data={listData}
-              ketExtractor={item => item.id}
+              keyExtractor={item => item.id}
               horizontal
               // showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
@@ -236,6 +235,7 @@ const SoftwereLicense = ({navigation}) => {
                   <TouchableOpacity
                     style={{justifyContent: 'center'}}
                     onPress={() => {
+                      // console.log(JSON.stringify(item));
                       navigation.navigate('ApacheLicense', {item});
                     }}>
                     <Text style={styles.serchResultHeading}>

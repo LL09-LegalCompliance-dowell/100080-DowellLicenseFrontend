@@ -76,7 +76,7 @@ const ApacheLicense = ({route}) => {
             </>
           ) : null}
 
-          {item?.softwarelicense?.permissions?.length && (
+          {item?.softwarelicense?.permissions?.length > 0 && (
             <>
               <Text style={styles.heading1}>
                 5.Permissions, Conditions & Limitations:
