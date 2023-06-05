@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import C1 from './C1';
 import CookiesPolicyNav from './CookiesPolicyNav';
 import PolicyImage from './PolicyImage';
-
+import FAQ from '../FAQ';
 const Stack = createNativeStackNavigator() ;
 
 
@@ -31,6 +31,13 @@ const CookiesPolicy = () => {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+            name="FAQ"
+            component={FAQ}
+            options={{
+              headerShown: false,
+            }}
       />
       
 
