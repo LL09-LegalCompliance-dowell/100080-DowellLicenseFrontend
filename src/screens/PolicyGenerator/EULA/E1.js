@@ -50,9 +50,20 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQ',{
-             questions:["What is EULA?","Is EULA required by law?"],
-             answers:["EULA is a legal binding document. You cannot legally use the software, content or any services without entering into an EULA first. Under an EULA certain terms and conditions are set out which are in accordance with the license which permits users to use software, conditions and services. When you purchase software, you are buying the right, or getting a license, to use the software in accordance with the EULA. EULA can help in explaining the use and restrictions on the software that you purchase. It states about both actions and penalties.","EULA is not legally required by law. However EULA is of great help when the business faces legal hurdles and in case you don't have EULA you or your business might face more legal hurdles. "]
+            navigation.navigate('FAQ', {
+              header: 'End User License Agreement',
+              data: [
+                {
+                  question: 'What is EULA?',
+                  answer:
+                    'EULA is a legal binding document. You cannot legally use the software, content or any services without entering into an EULA first. Under an EULA certain terms and conditions are set out which are in accordance with the license which permits users to use software, conditions and services. When you purchase software, you are buying the right, or getting a license, to use the software in accordance with the EULA. EULA can help in explaining the use and restrictions on the software that you purchase. It states about both actions and penalties..',
+                },
+                {
+                  question: 'Is EULA required by law?',
+                  answer:
+                    'EULA is not legally required by law. However EULA is of great help when the business faces legal hurdles and in case you do not have EULA you or your business might face more legal hurdles.',
+                },
+              ],
             });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
