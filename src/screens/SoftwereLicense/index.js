@@ -192,7 +192,8 @@ const SoftwereLicense = ({navigation}) => {
                         }}>
                         <Pressable
                           onPress={() => fetchSliderData(item.eventId)}>
-                          <Text style={{fontSize: 11, margin: 0, color:"white"}}>
+                          <Text
+                            style={{fontSize: 11, margin: 0, color: 'white'}}>
                             Learn More
                           </Text>
                         </Pressable>

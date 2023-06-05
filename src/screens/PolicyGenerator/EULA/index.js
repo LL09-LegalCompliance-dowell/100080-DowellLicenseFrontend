@@ -31,11 +31,11 @@ const Eula = () => {
         }}
       />
       <Stack.Screen
-            name="FAQ"
-            component={FAQ}
-            options={{
-              headerShown: false,
-            }}
+        name="FAQ"
+        component={FAQ}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );
