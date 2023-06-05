@@ -1,21 +1,21 @@
-// import {
-//   // FlatList,
-//   Image,
-//   Pressable,
-//   StyleSheet,
-//   Text,
-//   View,
-//   TouchableOpacity,
-// } from 'react-native';
-// import {FlatList} from 'react-native-gesture-handler';
 import {
-  FlatList,
+  // FlatList,
   Image,
   Pressable,
+  StyleSheet,
   Text,
   View,
   TouchableOpacity,
 } from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+// import {
+//   FlatList,
+//   Image,
+//   Pressable,
+//   Text,
+//   View,
+//   TouchableOpacity,
+// } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

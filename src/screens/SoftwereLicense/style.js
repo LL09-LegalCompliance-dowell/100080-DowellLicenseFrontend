@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   //   section 1
 
   cardContainer: {
-    marginTop: 80,
+    marginTop: Platform.OS === 'ios' ? 100 : 80,
     marginBottom: 20,
     paddingHorizontal: 15,
     width: '100%',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   //section 4
   section4: {
     backgroundColor: 'white',
-    flex:1
+    flex: 1,
   },
   section4Container: {
     marginHorizontal: 25,

@@ -126,7 +126,6 @@ const SoftwereLicense = ({navigation}) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
         {/* Header */}
-
         {/* section 1 */}
         {!isKeyboardVisible && (
           <View style={styles.cardContainer}>
@@ -192,7 +191,8 @@ const SoftwereLicense = ({navigation}) => {
                         }}>
                         <Pressable
                           onPress={() => fetchSliderData(item.eventId)}>
-                          <Text style={{fontSize: 11, margin: 0, color:"white"}}>
+                          <Text
+                            style={{fontSize: 11, margin: 0, color: 'white'}}>
                             Learn More
                           </Text>
                         </Pressable>
@@ -235,6 +235,7 @@ const SoftwereLicense = ({navigation}) => {
                   <TouchableOpacity
                     style={{justifyContent: 'center'}}
                     onPress={() => {
+                      // console.log(JSON.stringify(item));
                       navigation.navigate('ApacheLicense', {item});
                     }}>
                     <Text style={styles.serchResultHeading}>
