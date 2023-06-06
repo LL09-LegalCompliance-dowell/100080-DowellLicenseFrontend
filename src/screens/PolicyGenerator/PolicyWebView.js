@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {WebView} from 'react-native-webview';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 5,
     flexDirection: 'row',
+    marginTop: Platform.OS === 'ios' ? 42 : 0,
   },
   heading: {
     fontSize: 18,

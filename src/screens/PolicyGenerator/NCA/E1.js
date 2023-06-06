@@ -50,7 +50,22 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Non Compete Agreement',
+              data: [
+                {
+                  question: 'What are Non Compete Agreements?',
+                  answer:
+                    'A Non-Compete Agreement is a contract between the employee and the company where the employee is prohibited to work for another competing company after leaving the job. It is a time and place (geographical) specific bound contract.',
+                },
+                {
+                  question:
+                    'Can an employer withhold employees wages if they don’t comply with a Non- Compete Agreement?',
+                  answer:
+                    'The simple answer is no for the above question. The employee is supposed to be paid for his/her work performance regardless of the Non Compete Agreement. Employers can file a lawsuit to collect monetary damages from the employee who has violated his/ her terms of Non- Compete Agreement.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>

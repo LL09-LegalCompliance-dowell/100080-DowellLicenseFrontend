@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
-import {View} from 'react-native';
+import {Platform, View} from 'react-native';
 import PolicyHeader from '../../../components/PolicyHeader';
 import Policy1 from './Policy1';
 import Policy2 from './Policy2';
@@ -8,13 +8,11 @@ import Policy3 from './Policy3';
 import Policy4 from './Policy4';
 import Policy5 from './Policy5';
 import Policy6 from '../Cookies/Policy4';
+import moment from 'moment';
+
 import {empty_validation, email_validation} from '../validations';
 import {useNavigation} from '@react-navigation/native';
-
-const generate_date = date => {
-  const temp = date.split('/');
-  return '20' + temp[2] + '-' + temp[0] + '-' + temp[1];
-};
+import {generate_date} from '../../../utils/dateUtils';
 
 const Steps = () => {
   const navigation = useNavigation();
@@ -296,7 +294,7 @@ const Steps = () => {
     },
   ]);
   let z;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_1[0].selected === true) {
     z = 'days';
   } else if (radioButtons[1].selected === true) {
     z = 'months';
@@ -330,7 +328,7 @@ const Steps = () => {
     },
   ]);
   let a;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_2[0].selected === true) {
     a = 'Yes';
   } else {
     a = 'No';
@@ -362,7 +360,7 @@ const Steps = () => {
     },
   ]);
   let b;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_3[0].selected === true) {
     b = 'Yes';
   } else {
     b = 'No';
@@ -394,7 +392,7 @@ const Steps = () => {
     },
   ]);
   let c;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_4[0].selected === true) {
     c = 'Yes';
   } else {
     c = 'No';
@@ -425,7 +423,7 @@ const Steps = () => {
     },
   ]);
   let d;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_5_2[0].selected === true) {
     d = 'Yes';
   } else {
     d = 'No';
@@ -467,7 +465,7 @@ const Steps = () => {
     },
   ]);
   let e;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_6_2[0].selected === true) {
     e = 'days';
   } else if (radioButtons[1].selected === true) {
     e = 'months';
@@ -500,7 +498,7 @@ const Steps = () => {
     },
   ]);
   let f;
-  if (radioButtons[0].selected === true) {
+  if (radioButtons_7_2[0].selected === true) {
     f = 'Yes';
   } else {
     f = 'No';
@@ -1671,10 +1669,10 @@ const Steps = () => {
       <View
         style={{
           flex: 1,
-          paddingTop: 45,
+          paddingTop: Platform.OS === 'ios' ? 90 : 45,
           backgroundColor: 'white',
           paddingHorizontal: 15,
-          marginBottom:-25
+          marginBottom: -25,
         }}>
         <ProgressSteps
           style={{width: '100px'}}
@@ -1745,8 +1743,7 @@ const Steps = () => {
               setempty_validation_4(empty_validation(inputs_4));
               const x = empty_validation(inputs_4);
               setError_5(!x);
-            }}
-          >
+            }}>
             <View>
               <Policy5 list={states_4} />
             </View>

@@ -16,9 +16,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import styles from './style';
 import Header from '../../components/Header';
-import AppLoader from '../../components/AppLoader';
 import Card from './card';
-import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
 import Help from './Help';
 
@@ -42,15 +40,14 @@ const data = [
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
-  const helpHanlder=()=>{
-    setShowHelp(true)
-  }
-  const helpHanlderClose=()=>{
-    setShowHelp(false)
-  }
+  const helpHanlder = () => {
+    setShowHelp(true);
+  };
+  const helpHanlderClose = () => {
+    setShowHelp(false);
+  };
   return (
     <View style={styles.container}>
-      
       {/* Header */}
       <Header leftIcon="menu" rightIcon="user" />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -63,6 +60,7 @@ const Home = ({navigation}) => {
           {/* Product and Services */}
           <Text style={styles.heading}>Products & Services</Text>
           <FlatList
+            showsHorizontalScrollIndicator={false}
             data={data}
             horizontal
             renderItem={({item}) => {
@@ -123,17 +121,22 @@ const Home = ({navigation}) => {
           {/* Quik Links */}
           <Text style={styles.heading}>Most Visited</Text>
           <View style={styles.linkContainer}>
-            <View style={{flexDirection:"row", alignItems:"center", marginBottom:4}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 4,
+              }}>
               <Image
                 source={require(`./images/1.png`)}
-                style={{width: 60, height: 60, color: 'black', marginRight:8}}
+                style={{width: 60, height: 60, color: 'black', marginRight: 8}}
               />
               <Text style={styles.heading}>Apache vs MIT</Text>
             </View>
-            <View style={{flexDirection:"row", alignItems:"center"}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={require(`./images/2.png`)}
-                style={{width: 60, height: 60, color: 'black', marginRight:8}}
+                style={{width: 60, height: 60, color: 'black', marginRight: 8}}
               />
               <Text style={styles.heading}>GNU GPL v 1.0</Text>
             </View>
@@ -143,11 +146,8 @@ const Home = ({navigation}) => {
             Copyright &copy; 2022 UX Living Lab
           </Text>
         </View>
-        
-        
       </ScrollView>
-      <HelpIcon style={styles.help} helpHanlder={helpHanlder}/>
-      <Help  showHelp={showHelp} helpHanlderClose={helpHanlderClose}/>
+      <HelpIcon style={styles.help} onPress={()=>navigation.navigate("Help")} />
     </View>
   );
 };
