@@ -591,7 +591,7 @@ const Help = ({navigation}) => {
                           />
                           <View>
                             <Message
-                              Message="We have received your message, Our customer support team will respond to you within next 24 hours"
+                              Message="We have received your message. We will get back to you soonest possible"
                               customer_app="app"
                             />
                           </View>
