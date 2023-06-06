@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import DFW from './DFW';
 import DFWPolicyNav from './DFWPolicyNav';
 import LicenseImage from './LicenseImage';
+import FAQ from '../FAQ';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,13 @@ const DisclaimerForWeb = () => {
       <Stack.Screen
         name="license_image"
         component={LicenseImage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="FAQ"
+        component={FAQ}
         options={{
           headerShown: false,
         }}

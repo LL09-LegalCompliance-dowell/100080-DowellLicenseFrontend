@@ -50,7 +50,22 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Terms and Conditions',
+              data: [
+                {
+                  question:
+                    'Are Terms and Conditions legally binding if not signed?',
+                  answer:
+                    "Terms and Conditions don't have to be 'signed' in order to be legally binding. However, there has to be some evidence that the customer has accepted the Terms and Conditions. If you display your Terms and Conditions on your website, app, or software, you should obtain acceptance of your Terms and Conditions via a 'clickwrap' prompt.",
+                },
+                {
+                  question: 'Why are Terms and Conditions important?',
+                  answer:
+                    'Terms and conditions are not a compulsory legal requirement, they are optional but the Terms and Conditions are important for several reasons. The Terms and Conditions set rules and regulations for how customers can use and pay for the product or services. The rules set under the Terms and Conditions can help you to allow it to be enforced in court. In case of any mistakes the amount for any liability can be limited in case you have to pay for those damages.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>
