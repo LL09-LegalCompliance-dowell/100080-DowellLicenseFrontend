@@ -3,8 +3,12 @@ import {View, Text, ScrollView, Platform} from 'react-native';
 
 import styles from './style';
 import Header from '../../components/Header';
-
-const AboutUs = () => {
+import ContactUsIcon from './ContactUsIcon';
+ 
+const AboutUs = ({navigation}) => {
+  const helpHandler = () => {
+    navigation.navigate("Contact Us")
+  }
   return (
     <>
       <Header title="About Us" />
@@ -50,6 +54,7 @@ const AboutUs = () => {
           online business Choose and Download your customized policies and
           manage Business workflows.
         </Text>
+        <ContactUsIcon helpHandler={helpHandler}/>
       </ScrollView>
     </>
   );
