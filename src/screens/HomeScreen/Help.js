@@ -13,6 +13,7 @@ import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign'
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
+import { send_message } from './HelpApi';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
@@ -20,10 +21,13 @@ import Queryselect from './HelpComponents/Queryselect';
 import RBSheet from "react-native-raw-bottom-sheet";
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
-  const refRBSheet = useRef();
-  const[flag,setFlag]=useState(false)
-
+const refRBSheet = useRef();
+const[flag,setFlag]=useState(false)
+const[messages,setMessages]=useState([])
 const [loading, setLoading] = useState(false);
+const [data, setdata] = useState("");
+const [room_pk, set_room_pk] = useState();
+const [user_id, set_user_id] = useState();
 const [language,setlangauge]=useState("")
 const language_handler=(language)=>{
   setlangauge(language)
@@ -52,6 +56,10 @@ const [moreq,set_moreq]=useState("")
 const moreq_handler=(state)=>{
   set_moreq(state)
 }
+const add_message_handler=(message)=>{
+  setMessages([...messages, message])
+}
+
 useEffect(()=>{
   if(moreq ==="Yes"){
     setquery("")
@@ -71,24 +79,21 @@ const make_room = async() => {
   try{
     setLoading(true);
     const session_id = await AsyncStorage.getItem("session_id");
-    
-  
+
     const result = await make_room_api(session_id);
-    
-    console.log(session_id)
-    console.log(result)
-  
+    set_room_pk(result.room_pk);
+    set_user_id(result.portfolio)
      setLoading(false);
     
   }catch(error){
-    setLoading(false);
+    navigation.navigate("HomeScreen")
     alert('Something went wrong, please try again later');
   }
-}
+} 
 
 
 useEffect(() => {
-  // make_room()
+  make_room()
   
 }, [])
 
@@ -298,18 +303,50 @@ return (
                       </>)}
                   </>
                   )}
+                  {
+                    messages.length>0 && (
+                      messages.map((item,index) =>{
+                        return(
+                          <View key={index} style={{marginTop:10}}>
+                            <View style={{alignSelf:'flex-end'}}><Message Message={item} customer_app ="customer" /></View>
+                            <View style={{display:"flex",flexDirection:"row",marginTop:5}}>
+                              <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                              <View>
+                                <Message Message="We have received your message, Our customer support team will respond to you within next 24 hours" customer_app ="app"/>
+                              </View>
+                            </View>      
+                          </View>
+                        )
+                      }
+                      )
+                    )
+                  }
                 </View>
               </ScrollView>  
             </View>
             <View style={{display :"flex",flexDirection:"row",alignItems:"center",width:"100%",paddingVertical:12}}>
                 <TextInput
                     style={styles.input}
-                
+                    value={data}
+                    onChangeText={value => setdata(value)}
                     placeholder="  Type your message here..."
                     placeholderTextColor="gray"            
                     
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress={async()=>{
+                  setLoading(true);
+                  const status=await send_message(room_pk,user_id.toString(),data)
+                  if(status===200){
+                    setdata("")
+                    add_message_handler(data)
+                    setLoading(false);
+                    
+                  }
+                  else{
+                    alert("Error while sending message")
+                    setLoading(false);
+                  }
+                  }}>
                     <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
                 </TouchableOpacity>
             </View>      

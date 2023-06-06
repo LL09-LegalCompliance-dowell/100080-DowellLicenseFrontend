@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import R1 from './R1';
 import LicenseImage from './LicenseImage';
 import ReturnAndRefundPolicyNav from './ReturnAndRefundPolicyNav';
+import FAQ from '../FAQ';
 const Stack = createNativeStackNavigator() ;
 const ReturnsAndRefund = () => {
     return (
@@ -24,6 +25,13 @@ const ReturnsAndRefund = () => {
           <Stack.Screen
             name="license_image"
             component={LicenseImage}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="FAQ"
+            component={FAQ}
             options={{
               headerShown: false,
             }}
