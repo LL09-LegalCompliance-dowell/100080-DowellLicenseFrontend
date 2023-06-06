@@ -4,6 +4,7 @@ import R1 from './R1';
 import LicenseImage from './LicenseImage';
 import ReturnAndRefundPolicyNav from './ReturnAndRefundPolicyNav';
 import FAQ from '../FAQ';
+
 const Stack = createNativeStackNavigator();
 const ReturnsAndRefund = () => {
   return (
