@@ -23,12 +23,12 @@ import Header from '../../components/Header';
 import HowToIcon from './HowToIcon';
 import AppLoader from '../../components/AppLoader';
 import RBSheet from 'react-native-raw-bottom-sheet';
-
 import Image1 from './images/Compatibility1.jpg';
 import Image2 from './images/Compatibility2.jpg';
 import Image3 from './images/Compatibility3.jpg';
 import Image4 from './images/Compatibility4.jpg';
 import Image5 from './images/Compatibility5.jpg';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 const LicenseCompatibility = ({navigation}) => {
   const [res, setRes] = useState({});
@@ -640,11 +640,11 @@ const LicenseCompatibility = ({navigation}) => {
                     ]}>
                     Video Tutorial for all the above given steps{' '}
                   </Text>
-                  <Octicons
-                    name="image"
-                    size={170}
-                    color={colors.textDark}
-                    style={{alignSelf: 'center'}}
+                  <YoutubePlayer
+                    height={300}
+                    play={true}
+                    videoId={'fFoWepg85qc'}
+                    // onChangeState={onStateChange}
                   />
                 </View>
               </ScrollView>

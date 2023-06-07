@@ -4,13 +4,14 @@ import {
   ScrollView,
   TouchableOpacity,
   Pressable,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import Modal from 'react-native-modal';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Header from '../../components/Header';
 import styles from './style';
+import YoutubePlayer from 'react-native-youtube-iframe';
 import Octicons from 'react-native-vector-icons/Octicons';
 import colors from '../../../assets/colors/colors';
 // images
@@ -58,119 +59,119 @@ const AgreementComplience = ({navigation}) => {
     <>
       {/* How to Overlay starts here */}
       <View>
-      <Modal
-        propagateSwipe
-        isVisible={isModal1Visible}
-        animationIn="slideInRight"
-        animationOut="slideOutRight"
-        animationInTiming={500}
-        animationOutTiming={500}
-        avoidKeyboard={true}
-        onBackdropPress={() => setHowto(false)}
-        onBackButtonPress={() => setHowto(false)}
-        backdropTransitionOutTiming={0}
-        onSwipeComplete={() => setHowto(false)}
-        swipeDirection="right">
-        <View
-          style={{
-            backgroundColor: 'white',
-            height: 370,
-            width: '100%',
-            padding: 5,
-            borderRadius: 10,
-          }}>
-          <Text
-            style={{
-              color: 'black',
-              alignSelf: 'center',
-              paddingTop: 20,
-              fontSize: 17,
-              fontFamily: 'roboto',
-              fontWeight: '700',
-            }}>
-            Notice
-          </Text>
-          <Text
-            style={{
-              color: 'black',
-              alignSelf: 'center',
-              paddingTop: 20,
-              fontSize: 16,
-              fontFamily: 'roboto',
-              textAlign: 'justify',
-            }}>
-            We and selected third parties use cookies or similar technologies
-            for technical purposes and, with your consent, for other purposes as
-            specified in the cookie policy.
-          </Text>
-          <Text
-            style={{
-              color: 'black',
-              alignSelf: 'center',
-              paddingTop: 20,
-              fontSize: 16,
-              fontFamily: 'roboto',
-              textAlign: 'justify',
-            }}>
-            You can consent to the use of such technologies by using the
-            "Accept" button. By closing this notice, you continue without
-            accepting.
-          </Text>
+        <Modal
+          propagateSwipe
+          isVisible={isModal1Visible}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          animationInTiming={500}
+          animationOutTiming={500}
+          avoidKeyboard={true}
+          onBackdropPress={() => setHowto(false)}
+          onBackButtonPress={() => setHowto(false)}
+          backdropTransitionOutTiming={0}
+          onSwipeComplete={() => setHowto(false)}
+          swipeDirection="right">
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 50,
-              marginTop: 90,
-              borderTopColor: '#959595',
-              borderTopWidth: 1,
+              backgroundColor: 'white',
+              height: 370,
+              width: '100%',
+              padding: 5,
+              borderRadius: 10,
             }}>
-            <Pressable
+            <Text
               style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: 40,
-              }}
-              onPress={async () => {
-                // setAgreeDisclaimer('agree');
-                await AsyncStorage.setItem('agree', "agree");
-                setModal1Visible(false);
+                color: 'black',
+                alignSelf: 'center',
+                paddingTop: 20,
+                fontSize: 17,
+                fontFamily: 'roboto',
+                fontWeight: '700',
               }}>
-              <Text
-                style={{
-                  fontSize: 17,
-                  fontFamily: 'roboto',
-                  color: 'red',
-                  paddingTop: 5,
-                }}>
-                Close
-              </Text>
-            </Pressable>
-            <Pressable
+              Notice
+            </Text>
+            <Text
               style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: 40,
-              }}
-              onPress={async () => {
-                // setAgreeDisclaimer('agree');
-                await AsyncStorage.setItem('agree', "agree");
-                setModal1Visible(false);
+                color: 'black',
+                alignSelf: 'center',
+                paddingTop: 20,
+                fontSize: 16,
+                fontFamily: 'roboto',
+                textAlign: 'justify',
               }}>
-              <Text
+              We and selected third parties use cookies or similar technologies
+              for technical purposes and, with your consent, for other purposes
+              as specified in the cookie policy.
+            </Text>
+            <Text
+              style={{
+                color: 'black',
+                alignSelf: 'center',
+                paddingTop: 20,
+                fontSize: 16,
+                fontFamily: 'roboto',
+                textAlign: 'justify',
+              }}>
+              You can consent to the use of such technologies by using the
+              "Accept" button. By closing this notice, you continue without
+              accepting.
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 50,
+                marginTop: 90,
+                borderTopColor: '#959595',
+                borderTopWidth: 1,
+              }}>
+              <Pressable
                 style={{
-                  fontSize: 17,
-                  fontFamily: 'roboto',
-                  color: 'green',
-                  paddingTop: 5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 40,
+                }}
+                onPress={async () => {
+                  // setAgreeDisclaimer('agree');
+                  await AsyncStorage.setItem('agree', 'agree');
+                  setModal1Visible(false);
                 }}>
-                Accept
-              </Text>
-            </Pressable>
+                <Text
+                  style={{
+                    fontSize: 17,
+                    fontFamily: 'roboto',
+                    color: 'red',
+                    paddingTop: 5,
+                  }}>
+                  Close
+                </Text>
+              </Pressable>
+              <Pressable
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 40,
+                }}
+                onPress={async () => {
+                  // setAgreeDisclaimer('agree');
+                  await AsyncStorage.setItem('agree', 'agree');
+                  setModal1Visible(false);
+                }}>
+                <Text
+                  style={{
+                    fontSize: 17,
+                    fontFamily: 'roboto',
+                    color: 'green',
+                    paddingTop: 5,
+                  }}>
+                  Accept
+                </Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
-      <Modal
+        </Modal>
+        <Modal
           propagateSwipe
           isVisible={isHowto}
           animationIn="slideInRight"
@@ -195,53 +196,85 @@ const AgreementComplience = ({navigation}) => {
                 onPress={() => setHowto(false)}>
                 <Entypo name="cross" size={40} color="darkgray" />
               </TouchableOpacity>
-              <ScrollView showsVerticalScrollIndicator={false} >
+              <ScrollView showsVerticalScrollIndicator={false}>
                 <View flex={1} onStartShouldSetResponder={() => true}>
-                <Text style={ {fontSize: 26, alignSelf: 'center',margin:20,color:"#000000"}}>
-                  How to generate a Policy
-                </Text>
-                <View style={{margin:5}}>
-                  <Text style={{fontSize:18,color:"#000000",}} >
+                  <Text
+                    style={{
+                      fontSize: 26,
+                      alignSelf: 'center',
+                      margin: 20,
+                      color: '#000000',
+                    }}>
+                    How to generate a Policy
+                  </Text>
+                  <View style={{margin: 5}}>
+                    <Text style={{fontSize: 18, color: '#000000'}}>
                       1.Select the policy you want to generate
-                  </Text>
-                  <Image
+                    </Text>
+                    <Image
                       source={Image13}
-                      style={{width: '100%',alignSelf:"center",marginTop:20}}
-                  />
-                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
-                      2.You can view a sample of each generated policy from this button
-                  </Text>
-                  <Image
+                      style={{
+                        width: '100%',
+                        alignSelf: 'center',
+                        marginTop: 20,
+                      }}
+                    />
+                    <Text
+                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
+                      2.You can view a sample of each generated policy from this
+                      button
+                    </Text>
+                    <Image
                       source={Image14}
-                      style={{ width: '80%',alignSelf:"center",marginTop:20}}
-                  />
-                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
+                      style={{width: '80%', alignSelf: 'center', marginTop: 20}}
+                    />
+                    <Text
+                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
                       3.You can find frequently asked questions from here
-                  </Text>
-                  <Image
+                    </Text>
+                    <Image
                       source={Image15}
-                      style={{ width: '80%',alignSelf:"center",marginTop:10}}
-                  />
-                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
-                      4.You can start generating policy from here and then fill each input 
-                  </Text>
-                  <Image
+                      style={{width: '80%', alignSelf: 'center', marginTop: 10}}
+                    />
+                    <Text
+                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
+                      4.You can start generating policy from here and then fill
+                      each input
+                    </Text>
+                    <Image
                       source={Image16}
-                      style={{ width: '80%',alignSelf:"center",marginTop:10}}
-                  /> 
-                  <Text style={{fontSize:18,color:"#000000",marginTop:20}} >
-                      5.After you click on "done" you have 2 options either to download policy or preview in app, you will aslo have a link to the generated policy 
-                  </Text>
-                  <Image
+                      style={{width: '80%', alignSelf: 'center', marginTop: 10}}
+                    />
+                    <Text
+                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
+                      5.After you click on "done" you have 2 options either to
+                      download policy or preview in app, you will aslo have a
+                      link to the generated policy
+                    </Text>
+                    <Image
                       source={Image17}
-                      style={{ resizeMode:'contain',alignSelf:"center",marginTop:10}}
-                  /> 
+                      style={{
+                        resizeMode: 'contain',
+                        alignSelf: 'center',
+                        marginTop: 10,
+                      }}
+                    />
+
+                    <View
+                      style={{
+                        height: 2,
+                        width: '100%',
+                        backgroundColor: 'gray',
+                        marginVertical: 30,
+                      }}></View>
+                    <YoutubePlayer
+                      height={300}
+                      play={true}
+                      videoId={'ClTSnRoiRB8'}
+                    />
+                  </View>
                 </View>
-                </View>
-                
               </ScrollView>
-              
-              
             </View>
           </>
         </Modal>
