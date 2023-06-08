@@ -80,7 +80,7 @@ const CustomSideBar = ({navigation}) => {
           <View style={styles.iconConatainer}>
             <Image style={styles.icon} source={require(ICON6)} />
           </View>
-          <Text style={styles.title}>License compatibility</Text>
+          <Text style={styles.title}>Open Source License compatibility</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'black',
-    fontSize: 21,
+    fontSize: 16,
     fontWeight: '400',
     marginTop: 16,
   },
