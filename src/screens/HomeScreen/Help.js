@@ -28,7 +28,7 @@ const [loading, setLoading] = useState(false);
 const [data, setdata] = useState("");
 const [room_pk, set_room_pk] = useState();
 const [user_id, set_user_id] = useState();
-const [language,setlangauge]=useState("")
+const [language,setlangauge]=useState("English")
 const language_handler=(language)=>{
   setlangauge(language)
 }
@@ -107,8 +107,8 @@ return (
               <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")}>
                     <IoniMaterialCommunityIconscons name="arrowleft" size={45} color="white" />
               </TouchableOpacity>
-              <Text style={{fontSize:26 ,fontFamily:"Roboto",fontWeight:"400" ,color:"#FFFFFF"}}>HELPBOT</Text>
-              <TouchableOpacity  onPress={() => {
+              <Text style={{fontSize:26 ,fontFamily:"Roboto",fontWeight:"400" ,color:"#FFFFFF",marginRight:125}}>HELPBOT</Text>
+              {/* <TouchableOpacity  onPress={() => {
                 setFlag(true)
                 refRBSheet.current.open()
                 }}>
@@ -116,7 +116,7 @@ return (
                   style={{height: 50, width: 50, resizeMode: 'contain'}}
                   source={require('./images/clarity_language-solid.png')}
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               
               
           </View>
@@ -127,12 +127,12 @@ return (
                   <View style={{display:"flex",flexDirection:"row"}}>
                     <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                     <View>
-                      <Message Message="Hi, we're here to help you." customer_app ="app"/>
-                      <Message Message="please select your preferred language." customer_app ="app"/>
+                      <Message Message="Hi, we 're here to help you." customer_app ="app"/>
+                      {/* <Message Message="please select your preferred language." customer_app ="app"/> */}
                     </View>
                   </View>
                   {language==="" && <LanguageSelect language_handler={language_handler}/>}
-                  {language!=="" && <View style={{alignSelf:'flex-end'}}><Message Message={language} customer_app ="customer" /></View>}
+                  {/* {language!=="" && <View style={{alignSelf:'flex-end'}}><Message Message={language} customer_app ="customer" /></View>} */}
                   {(language!=="" ) &&  (
                   <View style={{display:"flex",flexDirection:"row"}}>
                     <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
@@ -147,7 +147,7 @@ return (
                   <>
                     <View style={{display:"flex",flexDirection:"row"}}>
                       <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="identify your query from these options." customer_app ="app"/>
+                      <Message Message="Identify your query from these options." customer_app ="app"/>
                     
                     </View>
                     
@@ -226,7 +226,7 @@ return (
                       <>
                       <View style={{display:"flex",flexDirection:"row"}}>
                         <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="DO you need more questions? " customer_app ="app"/>
+                        <Message Message="Do you need more questions? " customer_app ="app"/>
                       </View>
                       <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
                       </>)}
@@ -236,27 +236,27 @@ return (
                   <>
                     <View style={{display:"flex",flexDirection:"row"}}>
                       <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="identify your query from these options." customer_app ="app"/>
+                      <Message Message="Identify your query from these options." customer_app ="app"/>
                     
                     </View>
                     
-                    {agreement_compliance==="" &&<Queryselect handler={agreement_compliance_handler} items={["How to generate a agreement compliance?","Is agreement compliance policy same for All website and apps?"]}/>}
+                    {agreement_compliance==="" &&<Queryselect handler={agreement_compliance_handler} items={["How to generate an agreement compliance?","Is agreement compliance policy same for all website and apps?"]}/>}
                     {agreement_compliance!=="" &&<View style={{alignSelf:'flex-end'}}><Message Message={agreement_compliance} customer_app ="customer" /></View>}
-                    {agreement_compliance==="How to generate a agreement compliance?" && (
+                    {agreement_compliance==="How to generate an agreement compliance?" && (
                       <View style={{display:"flex",flexDirection:"row"}}>
                         <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message Message="First step is select the policy you want to generate then click on Start generating button" customer_app ="app"/>
+                          <Message Message="First step is select the policy you want to generate then click on start generating button" customer_app ="app"/>
                           <Message Message="Then fill the input fields and click on next button and download or share the agreement through link." customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {agreement_compliance==="Is agreement compliance policy same for All website and apps?" && (
+                    {agreement_compliance==="Is agreement compliance policy same for all website and apps?" && (
                       <View style={{display:"flex",flexDirection:"row"}}>
                         <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message Message="Yes agreement compliance policy is same for All websites and apps" customer_app ="app"/>
+                          <Message Message="Yes agreement compliance policy is same for all websites and apps" customer_app ="app"/>
                         </View>
                       </View>
                     )}
@@ -268,7 +268,7 @@ return (
                       <>
                       <View style={{display:"flex",flexDirection:"row"}}>
                         <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="DO you need more questions? " customer_app ="app"/>
+                        <Message Message="Do you need more questions? " customer_app ="app"/>
                       </View>
                       <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
                       </>)}
@@ -278,7 +278,7 @@ return (
                   <>
                     <View style={{display:"flex",flexDirection:"row"}}>
                       <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="identify your query from these options." customer_app ="app"/>
+                      <Message Message="Identify your query from these options." customer_app ="app"/>
                     
                     </View>
                     
@@ -297,7 +297,7 @@ return (
                       <>
                       <View style={{display:"flex",flexDirection:"row"}}>
                         <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="DO you need more questions? " customer_app ="app"/>
+                        <Message Message="Do you need more questions? " customer_app ="app"/>
                       </View>
                       <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
                       </>)}
@@ -334,21 +334,28 @@ return (
                     
                 />
                 <TouchableOpacity onPress={async()=>{
-                  setLoading(true);
-                  const status=await send_message(room_pk,user_id.toString(),data)
-                  if(status===200){
-                    setdata("")
-                    add_message_handler(data)
-                    setLoading(false);
-                    
+                  if (data!=="") {
+                    setLoading(true);
+                    const status=await send_message(room_pk,user_id.toString(),data)
+                    if(status===200){
+                      setdata("")
+                      add_message_handler(data)
+                      setLoading(false);
+                      
+                    }
+                    else{
+                      alert("Error while sending message")
+                      setLoading(false);
+                    }
                   }
-                  else{
-                    alert("Error while sending message")
-                    setLoading(false);
-                  }
+                  
                   }}>
-                    <IoniMaterialCommunityIconscons name="caretright" size={25} color="#078F04" />
+                  <Image
+                  style={{height: 40, width: 35, resizeMode: 'contain'}}
+                  source={require('./images/Vector.png')} 
+                  />
                 </TouchableOpacity>
+                
             </View>      
           </View>    
     </View> 
