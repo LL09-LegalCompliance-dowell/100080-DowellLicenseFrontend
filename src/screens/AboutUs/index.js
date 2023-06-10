@@ -41,6 +41,7 @@ const About = () => {
   const handleForm = async (values, formikActions) => {
     try {
       setLoading(true);
+      console.log(values);
       const url = 'http://100080.pythonanywhere.com/api/contacts/';
       const res = await axios.post(url, {
         full_name: values.fullname,
@@ -49,6 +50,9 @@ const About = () => {
       });
 
       if (res.data) {
+        values.fullname = '';
+        values.email = '';
+        values.message = '';
         setLoading(false);
         Alert.alert('Submitted successfully', 'Thanks for your feedback');
       }
@@ -104,19 +108,15 @@ const About = () => {
                     <View style={styles.contactItem}>
                       <AntDesign name="mail" size={30} color={colors.primary} />
                       <Text style={styles.contactText}>
-                        livinglabfinance@dowellrsearch.sg
+                        livinglabfinance@dowellresearch.sg
                       </Text>
                     </View>
-                    {/* <View style={styles.contactItem}>
-                      <Feather name="phone" size={30} color={colors.primary} />
-                      <Text style={styles.contactText}>65 6232 2314</Text>
-                    </View> */}
                   </View>
                   <Text style={styles.heading}>Write to us</Text>
-                  <Image
+                  {/* <Image
                     source={require('../../../assets/images/TheLittleThingsWorking.png')}
                     style={styles.imageStyle}
-                  />
+                  /> */}
 
                   <View style={styles.inputsContainer}>
                     {/* Input starts here */}

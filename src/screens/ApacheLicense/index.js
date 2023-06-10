@@ -7,33 +7,32 @@ import Header from '../../components/Header';
 
 const ApacheLicense = ({route}) => {
   const {item} = route.params;
-
   return (
     <>
-      <Header title={item.softwarelicense.license_name} />
+      <Header title={item?.softwarelicense?.license_name} />
       {console.log(item)}
       <ScrollView style={styles.container}>
         {/* Upper Container */}
         <View style={styles.upperContainer}>
-          {item.softwarelicense?.logo_detail?.url !== '' ? (
+          {item?.softwarelicense?.logo_detail?.url !== '' ? (
             <Image
               style={{height: 100, width: 100, resizeMode: 'contain'}}
-              source={{uri: item.softwarelicense?.logo_detail?.url}}
+              source={{uri: item?.softwarelicense?.logo_detail?.url}}
             />
           ) : null}
-          {item.softwarelicense?.license_name ? (
+          {item?.softwarelicense?.license_name ? (
             <Text style={styles.heading}>
-              {item.softwarelicense?.license_name}
+              {item?.softwarelicense?.license_name}
             </Text>
           ) : null}
-          {item.softwarelicense?.description ? (
+          {item?.softwarelicense?.description ? (
             <Text style={[styles.heading1, {marginHorizontal: 40}]}>
-              {item.softwarelicense?.description}
+              {item?.softwarelicense?.description}
             </Text>
           ) : null}
-          {item.softwarelicense?.short_description ? (
+          {item?.softwarelicense?.short_description ? (
             <Text style={{textAlign: 'justify', color: 'gray'}}>
-              {item.softwarelicense?.short_description}
+              {item?.softwarelicense?.short_description}
             </Text>
           ) : null}
         </View>
@@ -42,11 +41,11 @@ const ApacheLicense = ({route}) => {
           <Text style={styles.heading1}>1.Text Version</Text>
           <Text
             style={styles.link}
-            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
-            {item.softwarelicense.license_url}
+            onPress={() => Linking.openURL(item?.softwarelicense?.license_url)}>
+            {item?.softwarelicense?.license_url}
           </Text>
           <View style={{paddingHorizontal: 20, paddingBottom: 25}}>
-            {item.softwarelicense?.other_links?.map((item1, index) => {
+            {item?.softwarelicense?.other_links?.map((item1, index) => {
               return (
                 // console.log(item1)
                 <View key={index}>
@@ -65,43 +64,19 @@ const ApacheLicense = ({route}) => {
 
           <Text style={styles.heading1}>2.Category</Text>
           <Text style={styles.heading2}>
-            {item.softwarelicense?.type_of_license}
+            {item?.softwarelicense?.type_of_license}
           </Text>
-          {item.softwarelicense?.disclaimer !== '' ? (
+
+          {item?.softwarelicense?.disclaimer !== '' ? (
             <>
               <Text style={styles.heading1}>3.Disclaimer</Text>
               <Text style={styles.heading2}>
-                {item.softwarelicense?.disclaimer}
+                {item?.softwarelicense?.disclaimer}
               </Text>
             </>
           ) : null}
-          {/* {item.softwarelicense?.license_attributes !== {} ? (
-            <>
-              <Text style={styles.heading1}>4.Attributions</Text>
-              <Text style={[styles.heading4, {paddingTop: 0, paddingLeft: 20}]}>
-                {item.softwarelicense?.license_attributes?.heading}
-              </Text>
-            </>
-          ) : null} */}
 
-          {/* {item.softwarelicense?.license_attributes?.attributes.map(
-            (attribute, index) => {
-              return (
-                // console.log(item1)
-                <>
-                  <Text
-                    key={index}
-                    style={[
-                      styles.heading4,
-                      {paddingLeft: 20, flex: 1, paddingTop: 4},
-                    ]}>
-                    {`${index + 1})  ${attribute}`}
-                  </Text>
-                </>
-              );
-            },
-          )} */}
-          {item.softwarelicense.permissions.length && (
+          {item?.softwarelicense?.permissions?.length > 0 && (
             <>
               <Text style={styles.heading1}>
                 5.Permissions, Conditions & Limitations:
@@ -138,11 +113,10 @@ const ApacheLicense = ({route}) => {
                       Permissions
                     </Text>
                   </View>
-                  {item.softwarelicense.permissions.map((i, index) => {
+                  {item?.softwarelicense?.permissions?.map((i, index) => {
                     return (
-                      <>
+                      <View key={index}>
                         <View
-                          key={index}
                           style={{
                             flexDirection: 'row',
                             padding: 4,
@@ -180,7 +154,7 @@ const ApacheLicense = ({route}) => {
                             backgroundColor: '#078F04',
                             width: '100%',
                           }}></View>
-                      </>
+                      </View>
                     );
                   })}
                 </View>
@@ -208,11 +182,10 @@ const ApacheLicense = ({route}) => {
                       Conditions
                     </Text>
                   </View>
-                  {item.softwarelicense.conditions.map((i, index) => {
+                  {item?.softwarelicense?.conditions?.map((i, index) => {
                     return (
-                      <>
+                      <View key={index}>
                         <View
-                          key={index}
                           style={{
                             flexDirection: 'row',
                             padding: 4,
@@ -250,7 +223,7 @@ const ApacheLicense = ({route}) => {
                             backgroundColor: '#0079E3',
                             width: '100%',
                           }}></View>
-                      </>
+                      </View>
                     );
                   })}
                 </View>
@@ -282,11 +255,10 @@ const ApacheLicense = ({route}) => {
                     Limitations
                   </Text>
                 </View>
-                {item.softwarelicense.limitations.map((i, index) => {
+                {item?.softwarelicense?.limitations?.map((i, index) => {
                   return (
-                    <>
+                    <View key={index}>
                       <View
-                        key={index}
                         style={{
                           flexDirection: 'row',
                           padding: 4,
@@ -324,66 +296,38 @@ const ApacheLicense = ({route}) => {
                           backgroundColor: '#EC1C24',
                           width: '100%',
                         }}></View>
-                    </>
+                    </View>
                   );
                 })}
               </View>
             </>
           )}
-          {item.softwarelicense?.risk_for_choosing_license !== '' ? (
+          {item?.softwarelicense?.risk_for_choosing_license !== '' ? (
             <>
               <Text style={styles.heading1}>6.Risks for choosing</Text>
               <Text style={styles.heading2}>
-                {item.softwarelicense?.risk_for_choosing_license}
+                {item?.softwarelicense?.risk_for_choosing_license}
               </Text>
             </>
           ) : null}
-          {item.softwarelicense?.recommendation !== '' ? (
+          {item?.softwarelicense?.recommendation !== '' ? (
             <>
               <Text style={styles.heading1}>6.Recommendations (%)</Text>
               <Text style={styles.heading2}>
-                {item.softwarelicense?.recommendation}
+                {item?.softwarelicense?.recommendation}
               </Text>
             </>
           ) : null}
-          {/* {item.softwarelicense?.license_compatible_with_lookup.length !== 0 ? (
-            <>
-              <Text style={styles.heading1}>7.Compatible Licenses</Text>
-              {item.softwarelicense?.license_compatible_with_lookup.map(
-                (compatibleLicense, index) => {
-                  return (
-                    <Text key={index} style={styles.heading2}>
-                      {compatibleLicense}
-                    </Text>
-                  );
-                },
-              )}
-            </>
-          ) : null} */}
-          {/* {item.softwarelicense?.license_not_compatible_with_lookup.length !=
-          0 ? (
-            <>
-              <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
-              {item.softwarelicense?.license_not_compatible_with_lookup.map(
-                (compatibleLicense, index) => {
-                  return (
-                    <Text key={index} style={styles.heading2}>
-                      {compatibleLicense}
-                    </Text>
-                  );
-                },
-              )}
-            </>
-          ) : null} */}
-          {item.softwarelicense?.limitation_of_liability !== '' ? (
+
+          {item?.softwarelicense?.limitation_of_liability !== '' ? (
             <>
               <Text style={styles.heading1}>9.Limitation of Liability.</Text>
               <Text style={styles.heading2}>
-                {item.softwarelicense?.limitation_of_liability}
+                {item?.softwarelicense?.limitation_of_liability}
               </Text>
             </>
           ) : null}
-          {item.softwarelicense?.license_url !== '' ? (
+          {item?.softwarelicense?.license_url !== '' ? (
             <>
               <Text style={styles.heading1}>
                 For more details visit the below link:
@@ -391,9 +335,9 @@ const ApacheLicense = ({route}) => {
               <Text
                 style={[styles.link, {marginHorizontal: 15}]}
                 onPress={() =>
-                  Linking.openURL(item.softwarelicense?.license_url)
+                  Linking.openURL(item?.softwarelicense?.license_url)
                 }>
-                {item.softwarelicense?.license_url}
+                {item?.softwarelicense?.license_url}
               </Text>
             </>
           ) : null}

@@ -3,7 +3,6 @@ import {Dimensions, View} from 'react-native';
 import Header from '../../../../components/Header';
 import Pdf from 'react-native-pdf';
 
-
 const PolicyImage = () => {
   const source = {
     uri: 'https://100080.pythonanywhere.com/media/doc/app-privacy-policy.pdf',
@@ -11,13 +10,13 @@ const PolicyImage = () => {
   };
   return (
     <>
-    <Header title="Policy Template" />
+      <Header title="Policy Template" />
       <View
         style={{
           flex: 1,
           justifyContent: 'flex-start',
           alignItems: 'center',
-          marginTop: 60,
+          marginTop: Platform.OS === 'ios' ? 90 : 60,
         }}>
         <Pdf
           trustAllCerts={false}
