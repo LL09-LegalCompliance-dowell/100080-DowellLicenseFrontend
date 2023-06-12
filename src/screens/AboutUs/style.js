@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
@@ -10,7 +10,10 @@ const styles = StyleSheet.create({
     width: '100%',
     // height:"100%",
     paddingTop: 50,
-    alignSelf:"center"
+    alignSelf: 'center',
+    flexGrow: 1,
+    paddingHorizontal: 16,
+    paddingTop: Platform.OS === 'ios' ? 90 : 50,
   },
 
   heading: {
@@ -19,13 +22,13 @@ const styles = StyleSheet.create({
     color: colors.textDark,
     paddingTop: 20,
     paddingBottom: 10,
-    fontFamily:'roboto'
+    fontFamily: 'roboto',
   },
-  contactText:{
+  contactText: {
     fontSize: 18,
     fontWeight: '400',
     color: colors.textDark,
-    marginHorizontal:20,
+    marginHorizontal: 20,
   },
   // Contact Container
   contactContainer: {
@@ -81,10 +84,10 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     marginLeft: 10,
   },
-  aboutText:{
+  aboutText: {
     color: colors.textDark,
-    fontFamily:'roboto'
-  }
+    fontFamily: 'roboto',
+  },
 });
 
 export default styles;

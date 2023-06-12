@@ -21,7 +21,6 @@ const Steps = () => {
   useMemo(() => getOrgId(), []);
   const nextButton = {
     backgroundColor: '#489503',
-    backgroundColor: 'red',
     paddingHorizontal: 5,
     borderRadius: 15,
     width: 100,
