@@ -22,9 +22,18 @@ const MyTextInput = ({
         {marginVertical: marginVertical},
         {height: height},
       ]}>
-      <TextInput placeholderTextColor='gray' style={styles.InputText} {...otherProps} />
+      <TextInput
+        placeholderTextColor="gray"
+        style={styles.InputText}
+        {...otherProps}
+      />
       {icon && (
-        <FontAwesome name={icon} size={iconSize} color={colors.textDark} />
+        <FontAwesome
+          name={icon}
+          size={iconSize}
+          color={colors.textDark}
+          style={{position: 'absolute', right: 7, top: 5}}
+        />
       )}
     </View>
   );
@@ -36,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#D9D9D9',
     borderColor: '#33585858',
-    borderWidth: 1,
+    borderWidth: 3,
     borderRadius: 15,
     width: '100%',
     height: 50,
@@ -48,6 +57,8 @@ const styles = StyleSheet.create({
   },
   InputText: {
     fontSize: 16,
+    height: 40,
+    width: '90%',
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
     color: colors.textDark,
   },
