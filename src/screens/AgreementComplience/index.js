@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
   TouchableWithoutFeedback,
+  StyleSheet
 } from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import Modal from 'react-native-modal';
@@ -27,11 +28,11 @@ import Image9 from './images/9.png';
 import Image10 from './images/10.png';
 import Image11 from './images/11.png';
 import Image12 from './images/12.png';
-import Image13 from './images/howto_1.png';
-import Image14 from './images/howto_2.png';
-import Image15 from './images/howto_3.png';
-import Image16 from './images/howto_4.png';
-import Image17 from './images/howto_5.png';
+import Image13 from './images/13.png';
+import Image14 from './images/14.png';
+import Image15 from './images/15.png';
+import Image16 from './images/16.png';
+import Image17 from './images/17.png';
 import {Image} from 'react-native';
 
 import HowToIcon from '../../screens/LicenseCompatibility/HowToIcon';
@@ -194,70 +195,73 @@ const AgreementComplience = ({navigation}) => {
               <TouchableOpacity
                 style={{marginLeft: 'auto'}}
                 onPress={() => setHowto(false)}>
-                <Entypo name="cross" size={40} color="darkgray" />
+                <Entypo name="cross" size={40} color="black"  />
               </TouchableOpacity>
               <ScrollView showsVerticalScrollIndicator={false}>
                 <View flex={1} onStartShouldSetResponder={() => true}>
                   <Text
                     style={{
-                      fontSize: 26,
+                      fontSize: 24,
                       alignSelf: 'center',
                       margin: 20,
                       color: '#000000',
+                      fontWeight:"600"
                     }}>
                     How to generate a Policy
                   </Text>
                   <View style={{margin: 5}}>
-                    <Text style={{fontSize: 18, color: '#000000'}}>
-                      1.Select the policy you want to generate
+                    <Text style={styles1.text_1}>
+                      1. Select the Agreement
+                    </Text>
+                    <Text style={styles1.text_2_center}>
+                      From the given options select the agreement that you want to generate the policy for.
                     </Text>
                     <Image
                       source={Image13}
-                      style={{
-                        width: '100%',
-                        alignSelf: 'center',
-                        marginTop: 20,
-                      }}
+                      style={{alignSelf:"center",marginBottom:24}}
+                      resizeMode='contain'
                     />
                     <Text
-                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
-                      2.You can view a sample of each generated policy from this
-                      button
+                      style={styles1.text_1}>
+                      2. Start Generating
                     </Text>
-                    <Image
+                    <Text style={styles1.text_2}>Click the start generating button to start the policy generation process.
+                      You can also view the sample template before generating the policy by clicking the view sample option.
+                      You can also check the FAQs.
+                    </Text>
+                      <Image
                       source={Image14}
-                      style={{width: '80%', alignSelf: 'center', marginTop: 20}}
+                      style={{alignSelf:"center",marginBottom:24}}
+                      resizeMode='contain'
                     />
                     <Text
-                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
-                      3.You can find frequently asked questions from here
+                      style={styles1.text_1}>
+                      3. Fill in the form details
                     </Text>
+                    <Text style={styles1.text_2}>Start filling in the form details of the provided questions. These questions are provided on the basis of the policy that is to be generated.</Text>
                     <Image
                       source={Image15}
-                      style={{width: '80%', alignSelf: 'center', marginTop: 10}}
+                      style={{alignSelf:"center",marginBottom:24}}
+                      resizeMode='contain'
                     />
                     <Text
-                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
-                      4.You can start generating policy from here and then fill
-                      each input
+                      style={styles1.text_1}>
+                     4. Finish Up
+                    </Text>
+                    <Text style={styles1.text_2}>
+                      After filling up the details you need to buy a subscription plan to view and download the generated policy.
+                      You can select the plan and go through the payment process.
+                      After buying the subscription you are eligible to view or download the generated policy. You can also provide your email for receiving the policy.
                     </Text>
                     <Image
                       source={Image16}
-                      style={{width: '80%', alignSelf: 'center', marginTop: 10}}
+                      style={{alignSelf:"center",marginBottom:24}}
+                      resizeMode='contain'
                     />
-                    <Text
-                      style={{fontSize: 18, color: '#000000', marginTop: 20}}>
-                      5.After you click on "done" you have 2 options either to
-                      download policy or preview in app, you will aslo have a
-                      link to the generated policy
-                    </Text>
                     <Image
                       source={Image17}
-                      style={{
-                        resizeMode: 'contain',
-                        alignSelf: 'center',
-                        marginTop: 10,
-                      }}
+                      style={{alignSelf:"center",marginBottom:24}}
+                      resizeMode='contain'
                     />
 
                     <View
@@ -267,6 +271,9 @@ const AgreementComplience = ({navigation}) => {
                         backgroundColor: 'gray',
                         marginVertical: 30,
                       }}></View>
+                      <Text style={styles1.text_3}>OR</Text>
+                      <Text style={styles1.text_1}>You can also check are video tutorial for how to generate agreement</Text>
+                      <View style={{marginBottom:30}}></View>
                     <YoutubePlayer
                       height={300}
                       play={true}
@@ -505,3 +512,32 @@ const AgreementComplience = ({navigation}) => {
 };
 
 export default AgreementComplience;
+const styles1 = StyleSheet.create({
+ text_1:{
+  color: '#000000',
+  fontSize: 20,
+  fontWeight: "600",
+  textAlign: "center"
+ },
+ text_2:{
+  color: '#000000',
+  fontSize: 18,
+  fontWeight: "400",
+  marginVertical:24
+ },
+ text_2_center:{
+  color: '#000000',
+  fontSize: 18,
+  fontWeight: "400",
+  marginVertical:24,
+  textAlign:"center"
+ },
+ text_3:{
+  color: '#000000',
+  fontSize: 20,
+  fontWeight: "400",
+  textAlign: "center",
+  marginBottom:24
+ }
+});
+
