@@ -572,7 +572,7 @@ const LicenseCompatibility = ({navigation}) => {
                       styles.heading,
                       {fontSize: 24, alignSelf: 'center'},
                     ]}>
-                    How to check license compatibility
+                    How to check for open source license compatibility
                   </Text>
                   <Text style={[styles.heading]}>
                     1. Search and select the license
