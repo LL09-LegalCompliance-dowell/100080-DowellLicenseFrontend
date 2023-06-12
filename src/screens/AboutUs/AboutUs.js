@@ -8,15 +8,7 @@ const AboutUs = () => {
   return (
     <>
       <Header title="About Us" />
-      <ScrollView
-        contentContainerStyle={[
-          styles.container,
-          {
-            flex: 1,
-            // paddingHorizontal: 50,
-            paddingTop: Platform.OS === 'ios' ? 90 : 50,
-          },
-        ]}>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* About Company */}
         <Text style={styles.heading}>About Legalzard and Company</Text>
         <Text style={styles.aboutText}>
