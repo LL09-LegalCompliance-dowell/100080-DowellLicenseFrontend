@@ -59,7 +59,7 @@ const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
         <TouchableWithoutFeedback>
           <Image
             style={styles.logo}
-            source={require('../../assets/images/logo.png')}
+            source={require('../../assets/images/home-logo.png')}
           />
         </TouchableWithoutFeedback>
       )}
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height: 54,
-    width: 65,
+    height: 45,
+    width: '50%',
     resizeMode: 'contain',
     // aspectRatio: 3.8,
     marginRight: 'auto',
