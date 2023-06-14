@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Image,
+  Keyboard,
 } from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
@@ -20,21 +21,22 @@ import Queryselect from './HelpComponents/Queryselect';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
-const refRBSheet = useRef();
-const[flag,setFlag]=useState(false)
-const[messages,setMessages]=useState([])
-const [loading, setLoading] = useState(false);
-const [data, setdata] = useState("");
-const [room_pk, set_room_pk] = useState();
-const [user_id, set_user_id] = useState();
-const [language,setlangauge]=useState("English")
-const language_handler=(language)=>{
-  setlangauge(language)
-}
-const [query,setquery]=useState("")
-const query_handler=(query)=>{
-  setquery(query)
-}
+  const refRBSheet = useRef();
+  const [flag, setFlag] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setdata] = useState('');
+  const [room_pk, set_room_pk] = useState();
+  const [user_id, set_user_id] = useState();
+  const [show_picker, set_show_picker] = useState(true);
+  const [language, setlangauge] = useState('English');
+  const language_handler = language => {
+    setlangauge(language);
+  };
+  const [query, setquery] = useState('');
+  const query_handler = query => {
+    setquery(query);
+  };
 
   const [license_compatibility, set_license_compatibility] = useState('');
   const license_compatibility_handler = state => {
@@ -58,6 +60,15 @@ const query_handler=(query)=>{
   const add_message_handler = message => {
     setMessages([...messages, message]);
   };
+  const keyboardShowListener = Keyboard.addListener('keyboardDidShow', () => {
+    set_show_picker(false);
+  });
+  // const keyboardHideListener = Keyboard.addListener(
+  //     'keyboardDidHide',
+  //     () => {
+
+  //     }
+  // );
 
   useEffect(() => {
     if (moreq === 'Yes') {
@@ -87,23 +98,44 @@ const query_handler=(query)=>{
     }
   };
 
-useEffect(() => {
-  make_room()
-  
-}, [])
+  useEffect(() => {
+    make_room();
+  }, []);
 
-return (
-  <>
-      
-    <View style={styles.modal}>
-          {flag && <View style={styles.overlay} />}
-          {loading ? <AppLoader /> : null}
-          <View style={{display :"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",paddingTop:20,paddingBottom:0,paddingHorizontal:8,backgroundColor:"#078F04"}}>
-              <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")}>
-                    <IoniMaterialCommunityIconscons name="arrowleft" size={45} color="white" />
-              </TouchableOpacity>
-              <Text style={{fontSize:26 ,fontFamily:"Roboto",fontWeight:"400" ,color:"#FFFFFF",marginRight:125}}>HELPBOT</Text>
-              {/* <TouchableOpacity  onPress={() => {
+  return (
+    <>
+      <View style={styles.modal}>
+        {flag && <View style={styles.overlay} />}
+        {loading ? <AppLoader /> : null}
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingTop: 20,
+            paddingBottom: 0,
+            paddingHorizontal: 8,
+            backgroundColor: '#078F04',
+          }}>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <IoniMaterialCommunityIconscons
+              name="arrowleft"
+              size={45}
+              color="white"
+            />
+          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: 26,
+              fontFamily: 'Roboto',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              marginRight: 125,
+            }}>
+            HELPBOT
+          </Text>
+          {/* <TouchableOpacity  onPress={() => {
                 setFlag(true)
                 refRBSheet.current.open()
                 }}>
@@ -112,25 +144,44 @@ return (
                   source={require('./images/clarity_language-solid.png')}
                 />
               </TouchableOpacity> */}
-              
-              
-          </View>
-          <View style={{backgroundColor:"white",flex:1,paddingVertical:20,paddingHorizontal:5}}>
-            <View style={{height:"90%"}}>
-              <ScrollView  >
-                <View style={{minHeight:500}}>
-                  <View style={{display:"flex",flexDirection:"row"}}>
-                    <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                    <View>
-                      <Message Message="Hi, we 're here to help you." customer_app ="app"/>
-                      {/* <Message Message="please select your preferred language." customer_app ="app"/> */}
-                    </View>
+        </View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            flex: 1,
+            paddingTop: 10,
+            paddingHorizontal: 5,
+          }}>
+          <View style={{height: '100%'}}>
+            <ScrollView>
+              <View style={{minHeight: 600}}>
+                <View style={{display: 'flex', flexDirection: 'row'}}>
+                  <MaterialCommunityIcons
+                    name="android"
+                    size={25}
+                    backgroundColor="#078F04"
+                    color="#078F04"
+                  />
+                  <View>
+                    <Message
+                      Message="Hi, we 're here to help you."
+                      customer_app="app"
+                    />
+                    {/* <Message Message="please select your preferred language." customer_app ="app"/> */}
                   </View>
-                  {language==="" && <LanguageSelect language_handler={language_handler}/>}
-                  {/* {language!=="" && <View style={{alignSelf:'flex-end'}}><Message Message={language} customer_app ="customer" /></View>} */}
-                  {(language!=="" ) &&  (
-                  <View style={{display:"flex",flexDirection:"row"}}>
-                    <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
+                </View>
+                {language === '' && (
+                  <LanguageSelect language_handler={language_handler} />
+                )}
+                {/* {language!=="" && <View style={{alignSelf:'flex-end'}}><Message Message={language} customer_app ="customer" /></View>} */}
+                {language !== '' && (show_picker || query !== '') && (
+                  <View style={{display: 'flex', flexDirection: 'row'}}>
+                    <MaterialCommunityIcons
+                      name="android"
+                      size={25}
+                      backgroundColor="#078F04"
+                      color="#078F04"
+                    />
                     <View>
                       <Message
                         Message="Select your query."
@@ -139,8 +190,23 @@ return (
                     </View>
                   </View>
                 )}
-                {query === '' && language !== '' && (
+                {query === '' && language !== '' && show_picker && (
                   <Queryselect
+                    style={{
+                      backgroundColor: '#078F04',
+                      borderRadius: 40,
+                      paddingTop: 25,
+                      paddingBottom: 25,
+                      paddingLeft: 38,
+                      paddingRight: 38,
+                      maxWidth: '85%',
+                      marginLeft: '14%',
+                      marginRight: 'auto',
+                      position: 'absolute',
+                      bottom: 10,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
                     handler={query_handler}
                     items={[
                       'Agreement Compliance',
@@ -156,13 +222,22 @@ return (
                 )}
                 {query === 'License Compatibility' && (
                   <>
-                    <View style={{display:"flex",flexDirection:"row"}}>
-                      <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="Identify your query from these options." customer_app ="app"/>
-                    
-                    </View>
+                    {(show_picker || license_compatibility !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
+                      </View>
+                    )}
 
-                    {license_compatibility === '' && (
+                    {license_compatibility === '' && show_picker && (
                       <Queryselect
                         handler={license_compatibility_handler}
                         items={[
@@ -332,65 +407,171 @@ return (
                       </View>
                     )}
 
-                    {license_compatibility !== '' && (
+                    {license_compatibility !== '' && show_picker &&(
                       <>
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="Do you need more questions? " customer_app ="app"/>
-                      </View>
-                      <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
-                      </>)}
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                          <MaterialCommunityIcons
+                            name="android"
+                            size={25}
+                            backgroundColor="#078F04"
+                            color="#078F04"
+                          />
+                          <Message
+                            Message="Do you need more questions? "
+                            customer_app="app"
+                          />
+                        </View>
+                        <Queryselect
+                          handler={moreq_handler}
+                          items={['Yes', 'No']}
+                        />
+                      </>
+                    )}
                   </>
                 )}
                 {query === 'Agreement Compliance' && (
                   <>
-                    <View style={{display:"flex",flexDirection:"row"}}>
-                      <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="Identify your query from these options." customer_app ="app"/>
-                    
-                    </View>
-                    
-                    {agreement_compliance==="" &&<Queryselect handler={agreement_compliance_handler} items={["How to generate an agreement compliance?","Is agreement compliance policy same for all website and apps?"]}/>}
-                    {agreement_compliance!=="" &&<View style={{alignSelf:'flex-end'}}><Message Message={agreement_compliance} customer_app ="customer" /></View>}
-                    {agreement_compliance==="How to generate an agreement compliance?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="First step is select the policy you want to generate then click on start generating button" customer_app ="app"/>
-                          <Message Message="Then fill the input fields and click on next button and download or share the agreement through link." customer_app ="app"/>
-                        </View>
+                    {(show_picker || agreement_compliance !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
                       </View>
                     )}
 
-                    {agreement_compliance==="Is agreement compliance policy same for all website and apps?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Yes agreement compliance policy is same for all websites and apps" customer_app ="app"/>
-                        </View>
-                      </View>
+                    {agreement_compliance === '' && show_picker && (
+                      <Queryselect
+                        style={{
+                          backgroundColor: '#078F04',
+                          borderRadius: 40,
+                          paddingTop: 25,
+                          paddingBottom: 25,
+                          paddingLeft: 38,
+                          paddingRight: 38,
+                          maxWidth: '85%',
+                          marginLeft: '9%',
+                          marginRight: 'auto',
+                          position: 'absolute',
+                          bottom: 10,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                        handler={agreement_compliance_handler}
+                        items={[
+                          'How to generate an agreement compliance?',
+                          'Is agreement compliance policy same for all website and apps?',
+                        ]}
+                      />
                     )}
-
                     {agreement_compliance !== '' && (
-                      <>
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="Do you need more questions? " customer_app ="app"/>
+                      <View style={{alignSelf: 'flex-end'}}>
+                        <Message
+                          Message={agreement_compliance}
+                          customer_app="customer"
+                        />
                       </View>
-                      <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
-                      </>)}
+                    )}
+                    {agreement_compliance ===
+                      'How to generate an agreement compliance?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View>
+                          <Message
+                            Message="First step is select the policy you want to generate then click on start generating button"
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="Then fill the input fields and click on next button and download or share the agreement through link."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      'Is agreement compliance policy same for all website and apps?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View>
+                          <Message
+                            Message="Yes agreement compliance policy is same for all websites and apps"
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance !== '' && show_picker && (
+                      <>
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                          <MaterialCommunityIcons
+                            name="android"
+                            size={25}
+                            backgroundColor="#078F04"
+                            color="#078F04"
+                          />
+                          <Message
+                            Message="Do you need more questions? "
+                            customer_app="app"
+                          />
+                        </View>
+                        <Queryselect
+                          handler={moreq_handler}
+                          items={['Yes', 'No']}
+                        />
+                      </>
+                    )}
                   </>
                 )}
                 {query === 'Software License' && (
                   <>
-                    <View style={{display:"flex",flexDirection:"row"}}>
-                      <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                      <Message Message="Identify your query from these options." customer_app ="app"/>
-                    
-                    </View>
+                    {(show_picker || software_license !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
+                      </View>
+                    )}
 
-                    {software_license === '' && (
+                    {software_license === '' && show_picker && (
                       <Queryselect
+                        style={{
+                          backgroundColor: '#078F04',
+                          borderRadius: 40,
+                          paddingTop: 25,
+                          paddingBottom: 25,
+                          paddingLeft: 38,
+                          paddingRight: 38,
+                          maxWidth: '85%',
+                          marginLeft: '13%',
+                          marginRight: 'auto',
+                          position: 'absolute',
+                          bottom: 10,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
                         handler={software_license_handler}
                         items={['What is software license?']}
                       />
@@ -420,104 +601,138 @@ return (
                       </View>
                     )}
 
-                    {software_license !== '' && (
+                    {software_license !== '' && show_picker && (
                       <>
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <Message Message="Do you need more questions? " customer_app ="app"/>
-                      </View>
-                      <Queryselect handler={moreq_handler} items={["Yes", "No"]}/>
-                      </>)}
+                        <View style={{display: 'flex', flexDirection: 'row'}}>
+                          <MaterialCommunityIcons
+                            name="android"
+                            size={25}
+                            backgroundColor="#078F04"
+                            color="#078F04"
+                          />
+                          <Message
+                            Message="Do you need more questions? "
+                            customer_app="app"
+                          />
+                        </View>
+                        <Queryselect
+                          handler={moreq_handler}
+                          items={['Yes', 'No']}
+                        />
+                      </>
+                    )}
                   </>
-                  )}
-                  {
-                    messages.length>0 && (
-                      messages.map((item,index) =>{
-                        return(
-                          <View key={index} style={{marginTop:10}}>
-                            <View style={{alignSelf:'flex-end'}}><Message Message={item} customer_app ="customer" /></View>
-                            <View style={{display:"flex",flexDirection:"row",marginTop:5}}>
-                              <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                              <View>
-                                <Message Message="We have received your message, Our customer support team will respond to you within next 24 hours" customer_app ="app"/>
-                              </View>
-                            </View>      
+                )}
+                {messages.length > 0 && !show_picker &&
+                  messages.map((item, index) => {
+                    return (
+                      <View key={index} style={{marginTop: 10}}>
+                        <View style={{alignSelf: 'flex-end'}}>
+                          <Message Message={item} customer_app="customer" />
+                        </View>
+                        <View
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            marginTop: 5,
+                          }}>
+                          <MaterialCommunityIcons
+                            name="android"
+                            size={25}
+                            backgroundColor="#078F04"
+                            color="#078F04"
+                          />
+                          <View>
+                            <Message
+                              Message="We have received your message, Our customer support team will respond to you within next 24 hours"
+                              customer_app="app"
+                            />
                           </View>
-                        )
-                      }
-                      )
-                    )
-                  }
-                </View>
-              </ScrollView>  
-            </View>
-            <View style={{display :"flex",flexDirection:"row",alignItems:"center",width:"100%",paddingVertical:12}}>
-                <TextInput
-                    style={styles.input}
-                    value={data}
-                    onChangeText={value => setdata(value)}
-                    placeholder="  Type your message here..."
-                    placeholderTextColor="gray"            
-                    
-                />
-                <TouchableOpacity onPress={async()=>{
-                  if (data!=="") {
-                    setLoading(true);
-                    const status=await send_message(room_pk,user_id.toString(),data)
-                    if(status===200){
-                      setdata("")
-                      add_message_handler(data)
-                      setLoading(false);
-                      
-                    }
-                    else{
-                      alert("Error while sending message")
-                      setLoading(false);
-                    }
-                  }
-                  
-                  }}>
-                    <Image
-                      style={{height: 40, width: 35, resizeMode: 'contain'}}
-                      source={require('./images/Vector.png')}
-                    />
-                </TouchableOpacity>
-            </View>      
-          </View>    
-    </View> 
-    
-     
-    <RBSheet
-      ref={refRBSheet}
-      closeOnDragDown={true}
-      closeOnPressMask={true}
-      onClose={()=>setFlag(false)}
-      height={330}
-      customStyles={{
-        wrapper: {
-          backgroundColor: "transparent",
-          
-        },
-        container:{
-          borderTopLeftRadius:40,
-          borderTopRightRadius:40,
-          padding:10
-        },
-        draggableIcon: {
-          backgroundColor: "#000",
-          width:100
-        },
-      }}
-      >
-      <LanguageSlider/>
-    </RBSheet>
-  </>
+                        </View>
+                      </View>
+                    );
+                  })}
+              </View>
+            </ScrollView>
+          </View>
+        </View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '100%',
+            paddingVertical: 12,
+            backgroundColor:"white"
+           
+          }}>
+          <TouchableOpacity onPress={() => {set_show_picker(true)}}>
+            <Image
+              style={{height: 40, width: 40, resizeMode: 'contain'}}
+              source={require('./images/Vector_1.png')}
+            />
+          </TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            value={data}
+            onChangeText={value => setdata(value)}
+            placeholder="  Type your message here..."
+            placeholderTextColor="gray"
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              if (data !== '') {
+                setLoading(true);
+                const status = await send_message(
+                  room_pk,
+                  user_id.toString(),
+                  data,
+                );
+                if (status === 200) {
+                  setdata('');
+                  add_message_handler(data);
+                  setLoading(false);
+                } else {
+                  alert('Error while sending message');
+                  setLoading(false);
+                }
+              }
+            }}>
+            <Image
+              style={{height: 40, width: 35, resizeMode: 'contain'}}
+              source={require('./images/Vector.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
 
-  
-)
-}
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        onClose={() => setFlag(false)}
+        height={330}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          container: {
+            borderTopLeftRadius: 40,
+            borderTopRightRadius: 40,
+            padding: 10,
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+            width: 100,
+          },
+        }}>
+        <LanguageSlider />
+      </RBSheet>
+    </>
+  );
+};
 
-export default Help
+export default Help;
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
@@ -534,8 +749,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 51,
-    width: '87%',
-    marginLeft: 15,
+    width: '79%',
+    marginLeft: 4,
     marginVertical: 0,
     marginRight: 4,
     borderWidth: 1,

@@ -2,9 +2,9 @@ import React from 'react'
 import { View,StyleSheet,Text,TouchableOpacity } from 'react-native'
 
 
-const Queryselect = ({handler,items}) => {
+const Queryselect = ({handler,items,style}) => {
   return (
-    <View style={styles.container}>
+    <View style={style?style:styles.container}>
       {items.map((item, index)=>{
         return (
           <TouchableOpacity key={index} onPress={()=>handler(item)}><Text style={styles.Text}>{item}</Text></TouchableOpacity>
@@ -30,19 +30,11 @@ const styles = StyleSheet.create({
         marginTop:22,
         display: "flex",
         flexDirection:"column",
-       
-        
-
-
-          
-      
-      
-
-       
+ 
     },
     Text:{
         fontSize:16,
-        alignSelf:'center',
+        textAlign:"center",
         fontWeight: "400",
         lineHeight:18.75,
         color:"#078F04",
