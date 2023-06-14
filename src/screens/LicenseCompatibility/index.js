@@ -644,7 +644,6 @@ const LicenseCompatibility = ({navigation}) => {
                     height={300}
                     play={true}
                     videoId={'fFoWepg85qc'}
-                    // onChangeState={onStateChange}
                   />
                 </View>
               </ScrollView>
