@@ -46,7 +46,10 @@ const styles = StyleSheet.create({
   },
 
   aboutText: {
-    marginLeft: 20,
+    marginHorizontal: 20,
+    lineHeight: 22,
+    color: "#36454F",
+    textAlign: "justify"
   },
 
   inputsContainer: {
@@ -83,10 +86,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 3,
     marginLeft: 10,
-  },
-  aboutText: {
-    color: colors.textDark,
-    fontFamily: 'roboto',
   },
 });
 
