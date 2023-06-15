@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    height: 45,
-    width: '50%',
+    height: 90,
+    width: 150,
     resizeMode: 'contain',
     // aspectRatio: 3.8,
     marginRight: 'auto',

@@ -25,8 +25,8 @@ const CustomSideBar = ({navigation}) => {
       contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.topSection}>
         <Image
-          style={{height: 80, width: 80, resizeMode: 'contain'}}
-          source={require('./images/logo.jpg')}
+          style={{height: 90, width: 90, resizeMode: 'contain'}}
+          source={require('./images/navigation_logo_7.png')}
         />
       </View>
       <View style={styles.middleSection}>
