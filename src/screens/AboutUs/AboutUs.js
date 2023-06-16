@@ -43,11 +43,7 @@ const AboutUs = ({navigation}) => {
           data and its compatibility. Licenses can be filtered by one or several
           categories, license text, and a few key characteristics. Legalzard can
           also create the necessary legal agreements and policies for your
-<<<<<<< HEAD
-          online business. Choose and Download your customized policies and
-=======
           online business.{'\n'}Choose and Download your customized policies and
->>>>>>> 964fd97a13b2be0434dc4bcf370bc3ac0eb03d91
           manage Business workflows.
         </Text>
       </ScrollView>
