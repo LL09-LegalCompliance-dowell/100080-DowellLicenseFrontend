@@ -19,7 +19,7 @@ import {useEffect} from 'react';
 export default IntroductionScreen = ({route, navigation}) => {
   const [agree, setAgree] = useState(false);
   const [date, setDate] = useState(null);
-  
+
   const fetchdata = async () => {
     const data = await AsyncStorage.getItem('previouslyAgreedDate');
     const iAgree = JSON.parse(await AsyncStorage.getItem('iAgree'));
@@ -61,10 +61,10 @@ export default IntroductionScreen = ({route, navigation}) => {
             },
           ]}
           //disabled={!agree}
-          >
+        >
           <Text style={styles.getStartedText}>Login</Text>
         </TouchableOpacity>
-        
+
         {/* Policy statrts here */}
         <View style={[styles.policyWrapper, {marginTop: 50}]}>
           {/* <CheckBox
@@ -85,7 +85,7 @@ export default IntroductionScreen = ({route, navigation}) => {
             Agree to the{' '}
             <Text
               style={styles.policyTextLink}
-              onPress={() => navigation.navigate('PrivacyPolicy') }>
+              onPress={() => navigation.navigate('PrivacyPolicy')}>
               privacy policy and terms & conditions
             </Text>
           </Text>
