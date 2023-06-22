@@ -1,4 +1,5 @@
 import {
+
   Text,
   StyleSheet,
   View,
@@ -6,18 +7,19 @@ import {
   TextInput,
   ScrollView,
   Image,
+  Keyboard,
 } from 'react-native';
-import React, {useEffect, useState, useRef} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
-import {send_message} from './HelpApi';
+import { send_message } from './HelpApi';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
 import Queryselect from './HelpComponents/Queryselect';
-import RBSheet from 'react-native-raw-bottom-sheet';
+import RBSheet from "react-native-raw-bottom-sheet";
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
   const refRBSheet = useRef();
@@ -27,7 +29,8 @@ const Help = ({navigation}) => {
   const [data, setdata] = useState('');
   const [room_pk, set_room_pk] = useState();
   const [user_id, set_user_id] = useState();
-  const [language, setlangauge] = useState('');
+  const [show_picker, set_show_picker] = useState(true);
+  const [language, setlangauge] = useState('English');
   const language_handler = language => {
     setlangauge(language);
   };
@@ -36,20 +39,20 @@ const Help = ({navigation}) => {
     setquery(query);
   };
 
-  const [license_compatibility, set_license_compatibility] = useState('');
-  const license_compatibility_handler = state => {
-    set_license_compatibility(state);
-  };
+const [license_compatibility,set_license_compatibility]=useState("")
+const license_compatibility_handler=(state)=>{
+  set_license_compatibility(state)
+}
 
-  const [agreement_compliance, set_agreement_compliance] = useState('');
-  const agreement_compliance_handler = state => {
-    set_agreement_compliance(state);
-  };
+const [agreement_compliance,set_agreement_compliance]=useState("")
+const agreement_compliance_handler=(state)=>{
+  set_agreement_compliance(state)
+}
 
-  const [software_license, set_software_license] = useState('');
-  const software_license_handler = state => {
-    set_software_license(state);
-  };
+const [software_license,set_software_license]=useState("")
+const software_license_handler=(state)=>{
+  set_software_license(state)
+}
 
   const [moreq, set_moreq] = useState('');
   const moreq_handler = state => {
@@ -58,6 +61,15 @@ const Help = ({navigation}) => {
   const add_message_handler = message => {
     setMessages([...messages, message]);
   };
+  const keyboardShowListener = Keyboard.addListener('keyboardDidShow', () => {
+    set_show_picker(false);
+  });
+  // const keyboardHideListener = Keyboard.addListener(
+  //     'keyboardDidHide',
+  //     () => {
+
+  //     }
+  // );
 
   useEffect(() => {
     if (moreq === 'Yes') {
@@ -77,15 +89,16 @@ const Help = ({navigation}) => {
       setLoading(true);
       const session_id = await AsyncStorage.getItem('session_id');
 
-      const result = await make_room_api(session_id);
-      set_room_pk(result.room_pk);
-      set_user_id(result.portfolio);
-      setLoading(false);
-    } catch (error) {
-      navigation.navigate('HomeScreen');
-      alert('Something went wrong, please try again later');
-    }
-  };
+    const result = await make_room_api(session_id);
+    set_room_pk(result.room_pk);
+    set_user_id(result.portfolio)
+     setLoading(false);
+    
+  }catch(error){
+    navigation.navigate("HomeScreen")
+    alert('Something went wrong, please try again later');
+  }
+} 
 
   useEffect(() => {
     make_room();
@@ -102,7 +115,7 @@ const Help = ({navigation}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingTop: 40,
+            paddingTop: 20,
             paddingBottom: 0,
             paddingHorizontal: 8,
             backgroundColor: '#078F04',
@@ -120,30 +133,30 @@ const Help = ({navigation}) => {
               fontFamily: 'Roboto',
               fontWeight: '400',
               color: '#FFFFFF',
+              marginRight: 125,
             }}>
             HELPBOT
           </Text>
-          <TouchableOpacity
-            onPress={() => {
-              setFlag(true);
-              refRBSheet.current.open();
-            }}>
-            <Image
-              style={{height: 50, width: 50, resizeMode: 'contain'}}
-              source={require('./images/clarity_language-solid.png')}
-            />
-          </TouchableOpacity>
+          {/* <TouchableOpacity  onPress={() => {
+                setFlag(true)
+                refRBSheet.current.open()
+                }}>
+                <Image
+                  style={{height: 50, width: 50, resizeMode: 'contain'}}
+                  source={require('./images/clarity_language-solid.png')}
+                />
+              </TouchableOpacity> */}
         </View>
         <View
           style={{
             backgroundColor: 'white',
             flex: 1,
-            paddingVertical: 20,
+            paddingTop: 10,
             paddingHorizontal: 5,
           }}>
-          <View style={{height: '90%'}}>
+          <View style={{height: '100%'}}>
             <ScrollView>
-              <View style={{minHeight: 500}}>
+              <View style={{minHeight: 600}}>
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                   <MaterialCommunityIcons
                     name="android"
@@ -153,24 +166,17 @@ const Help = ({navigation}) => {
                   />
                   <View>
                     <Message
-                      Message="Hi, we're here to help you."
+                      Message="Hi, we 're here to help you."
                       customer_app="app"
                     />
-                    <Message
-                      Message="please select your preferred language."
-                      customer_app="app"
-                    />
+                    {/* <Message Message="please select your preferred language." customer_app ="app"/> */}
                   </View>
                 </View>
                 {language === '' && (
                   <LanguageSelect language_handler={language_handler} />
                 )}
-                {language !== '' && (
-                  <View style={{alignSelf: 'flex-end'}}>
-                    <Message Message={language} customer_app="customer" />
-                  </View>
-                )}
-                {language !== '' && (
+                {/* {language!=="" && <View style={{alignSelf:'flex-end'}}><Message Message={language} customer_app ="customer" /></View>} */}
+                {language !== '' && (show_picker || query !== '') && (
                   <View style={{display: 'flex', flexDirection: 'row'}}>
                     <MaterialCommunityIcons
                       name="android"
@@ -179,15 +185,27 @@ const Help = ({navigation}) => {
                       color="#078F04"
                     />
                     <View>
-                      <Message
-                        Message="Select your query."
-                        customer_app="app"
-                      />
+                      <Message Message="Select your query." customer_app ="app"/>
                     </View>
                   </View>
                 )}
-                {query === '' && language !== '' && (
+                {query === '' && language !== '' && show_picker && (
                   <Queryselect
+                    style={{
+                      backgroundColor: '#078F04',
+                      borderRadius: 40,
+                      paddingTop: 25,
+                      paddingBottom: 25,
+                      paddingLeft: 38,
+                      paddingRight: 38,
+                      maxWidth: '85%',
+                      marginLeft: '14%',
+                      marginRight: 'auto',
+                      position: 'absolute',
+                      bottom: 10,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
                     handler={query_handler}
                     items={[
                       'Agreement Compliance',
@@ -203,20 +221,22 @@ const Help = ({navigation}) => {
                 )}
                 {query === 'License Compatibility' && (
                   <>
-                    <View style={{display: 'flex', flexDirection: 'row'}}>
-                      <MaterialCommunityIcons
-                        name="android"
-                        size={25}
-                        backgroundColor="#078F04"
-                        color="#078F04"
-                      />
-                      <Message
-                        Message="identify your query from these options."
-                        customer_app="app"
-                      />
-                    </View>
+                    {(show_picker || license_compatibility !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
+                      </View>
+                    )}
 
-                    {license_compatibility === '' && (
+                    {license_compatibility === '' && show_picker && (
                       <Queryselect
                         handler={license_compatibility_handler}
                         items={[
@@ -250,143 +270,71 @@ const Help = ({navigation}) => {
                           color="#078F04"
                         />
                         <View>
-                          <Message
-                            Message="License Compatibility is a compatibility test between two licenses."
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="It gives you a test result where it shows whether you can use those two compared licenses in your application."
-                            customer_app="app"
-                          />
+                          <Message Message="License Compatibility is a compatibility test between two licenses." customer_app ="app"/>
+                          <Message Message="It gives you a test result where it shows whether you can use those two compared licenses in your application." customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'How to check the compatibility of two licenses?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="How to check the compatibility of two licenses?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="You can find a tutorial on how to check compatibility on the compatibility test page"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="We have described it in step by step manner"
-                            customer_app="app"
-                          />
+                          <Message Message="You can find a tutorial on how to check compatibility on the compatibility test page" customer_app ="app"/>
+                          <Message Message="We have described it in step by step manner" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'What is recommendation percentage?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="What is recommendation percentage?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="Recommendation percentage is a approximate number of how much compatible are those licenses"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="Also it checks whether you can use them in your application"
-                            customer_app="app"
-                          />
+                          <Message Message="Recommendation percentage is a approximate number of how much compatible are those licenses" customer_app ="app"/>
+                          <Message Message="Also it checks whether you can use them in your application" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'How much accurate is recommendation percentage?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="How much accurate is recommendation percentage?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc."
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="So considering these factors recommendation percentage is pretty accurate"
-                            customer_app="app"
-                          />
+                          <Message Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc." customer_app ="app"/>
+                          <Message Message="So considering these factors recommendation percentage is pretty accurate" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'Do I need to pay to check license compatibility?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="Do I need to pay to check license compatibility?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="No, license compatibility is totally free to use. You do not need to pay anything"
-                            customer_app="app"
-                          />
+                          <Message Message="No, license compatibility is totally free to use. You do not need to pay anything" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'Would I be able to know why licenses are compatible or not?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="Would I be able to know why licenses are compatible or not?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="Full in depth comparison is provided after the results from the check are displayed"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="Click on “read more” below the result to find out"
-                            customer_app="app"
-                          />
+                          <Message Message="Full in depth comparison is provided after the results from the check are displayed" customer_app ="app"/>
+                          <Message Message="Click on “read more” below the result to find out" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility ===
-                      'Can I use this Legalzard for my organization or company?' && (
-                      <View style={{display: 'flex', flexDirection: 'row'}}>
-                        <MaterialCommunityIcons
-                          name="android"
-                          size={25}
-                          backgroundColor="#078F04"
-                          color="#078F04"
-                        />
+                    {license_compatibility==="Can I use this Legalzard for my organization or company?" && (
+                      <View style={{display:"flex",flexDirection:"row"}}>
+                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
                         <View>
-                          <Message
-                            Message="Yes. You can set up a personal account or an account for your organization"
-                            customer_app="app"
-                          />
+                          <Message Message="Yes. You can set up a personal account or an account for your organization" customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility !== '' && (
+                    {license_compatibility !== '' && show_picker &&(
                       <>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                           <MaterialCommunityIcons
@@ -396,7 +344,7 @@ const Help = ({navigation}) => {
                             color="#078F04"
                           />
                           <Message
-                            Message="DO you need more questions? "
+                            Message="Do you need more questions? "
                             customer_app="app"
                           />
                         </View>
@@ -407,28 +355,45 @@ const Help = ({navigation}) => {
                       </>
                     )}
                   </>
-                )}
-                {query === 'Agreement Compliance' && (
+                  )}
+                  {query === "Agreement Compliance" && (
                   <>
-                    <View style={{display: 'flex', flexDirection: 'row'}}>
-                      <MaterialCommunityIcons
-                        name="android"
-                        size={25}
-                        backgroundColor="#078F04"
-                        color="#078F04"
-                      />
-                      <Message
-                        Message="identify your query from these options."
-                        customer_app="app"
-                      />
-                    </View>
+                    {(show_picker || agreement_compliance !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
+                      </View>
+                    )}
 
-                    {agreement_compliance === '' && (
+                    {agreement_compliance === '' && show_picker && (
                       <Queryselect
+                        style={{
+                          backgroundColor: '#078F04',
+                          borderRadius: 40,
+                          paddingTop: 25,
+                          paddingBottom: 25,
+                          paddingLeft: 38,
+                          paddingRight: 38,
+                          maxWidth: '85%',
+                          marginLeft: '9%',
+                          marginRight: 'auto',
+                          position: 'absolute',
+                          bottom: 10,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
                         handler={agreement_compliance_handler}
                         items={[
-                          'How to generate a agreement compliance?',
-                          'Is agreement compliance policy same for All website and apps?',
+                          'How to generate an agreement compliance?',
+                          'Is agreement compliance policy same for all website and apps?',
                         ]}
                       />
                     )}
@@ -441,7 +406,7 @@ const Help = ({navigation}) => {
                       </View>
                     )}
                     {agreement_compliance ===
-                      'How to generate a agreement compliance?' && (
+                      'How to generate an agreement compliance?' && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
@@ -451,7 +416,7 @@ const Help = ({navigation}) => {
                         />
                         <View>
                           <Message
-                            Message="First step is select the policy you want to generate then click on Start generating button"
+                            Message="First step is select the policy you want to generate then click on start generating button"
                             customer_app="app"
                           />
                           <Message
@@ -461,9 +426,8 @@ const Help = ({navigation}) => {
                         </View>
                       </View>
                     )}
-
                     {agreement_compliance ===
-                      'Is agreement compliance policy same for All website and apps?' && (
+                      'Is agreement compliance policy same for all website and apps?' && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
@@ -473,14 +437,13 @@ const Help = ({navigation}) => {
                         />
                         <View>
                           <Message
-                            Message="Yes agreement compliance policy is same for All websites and apps"
+                            Message="Yes agreement compliance policy is same for all websites and apps"
                             customer_app="app"
                           />
                         </View>
                       </View>
                     )}
-
-                    {agreement_compliance !== '' && (
+                    {agreement_compliance !== '' && show_picker && (
                       <>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                           <MaterialCommunityIcons
@@ -490,7 +453,7 @@ const Help = ({navigation}) => {
                             color="#078F04"
                           />
                           <Message
-                            Message="DO you need more questions? "
+                            Message="Do you need more questions? "
                             customer_app="app"
                           />
                         </View>
@@ -501,24 +464,41 @@ const Help = ({navigation}) => {
                       </>
                     )}
                   </>
-                )}
-                {query === 'Software License' && (
+                  )}
+                  {query === "Software License" && (
                   <>
-                    <View style={{display: 'flex', flexDirection: 'row'}}>
-                      <MaterialCommunityIcons
-                        name="android"
-                        size={25}
-                        backgroundColor="#078F04"
-                        color="#078F04"
-                      />
-                      <Message
-                        Message="identify your query from these options."
-                        customer_app="app"
-                      />
-                    </View>
+                    {(show_picker || software_license !== '') && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <Message
+                          Message="Identify your query from these options."
+                          customer_app="app"
+                        />
+                      </View>
+                    )}
 
-                    {software_license === '' && (
+                    {software_license === '' && show_picker && (
                       <Queryselect
+                        style={{
+                          backgroundColor: '#078F04',
+                          borderRadius: 40,
+                          paddingTop: 25,
+                          paddingBottom: 25,
+                          paddingLeft: 38,
+                          paddingRight: 38,
+                          maxWidth: '85%',
+                          marginLeft: '13%',
+                          marginRight: 'auto',
+                          position: 'absolute',
+                          bottom: 10,
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
                         handler={software_license_handler}
                         items={['What is software license?']}
                       />
@@ -540,15 +520,12 @@ const Help = ({navigation}) => {
                           color="#078F04"
                         />
                         <View>
-                          <Message
-                            Message="A software license is a document that provides legally binding guidelines for the use and distribution of software."
-                            customer_app="app"
-                          />
+                          <Message Message="A software license is a document that provides legally binding guidelines for the use and distribution of software." customer_app ="app"/>
                         </View>
                       </View>
                     )}
 
-                    {software_license !== '' && (
+                    {software_license !== '' && show_picker && (
                       <>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                           <MaterialCommunityIcons
@@ -558,7 +535,7 @@ const Help = ({navigation}) => {
                             color="#078F04"
                           />
                           <Message
-                            Message="DO you need more questions? "
+                            Message="Do you need more questions? "
                             customer_app="app"
                           />
                         </View>
@@ -570,7 +547,7 @@ const Help = ({navigation}) => {
                     )}
                   </>
                 )}
-                {messages.length > 0 &&
+                {messages.length > 0 && !show_picker &&
                   messages.map((item, index) => {
                     return (
                       <View key={index} style={{marginTop: 10}}>
@@ -591,7 +568,7 @@ const Help = ({navigation}) => {
                           />
                           <View>
                             <Message
-                              Message="We have received your message. We will get back to you soonest possible"
+                              Message="We have received your message, Our customer support team will respond to you within next 24 hours"
                               customer_app="app"
                             />
                           </View>
@@ -602,23 +579,33 @@ const Help = ({navigation}) => {
               </View>
             </ScrollView>
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              width: '100%',
-              paddingVertical: 12,
-            }}>
-            <TextInput
-              style={styles.input}
-              value={data}
-              onChangeText={value => setdata(value)}
-              placeholder="  Type your message here..."
-              placeholderTextColor="gray"
+        </View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '100%',
+            paddingVertical: 12,
+            backgroundColor:"white"
+           
+          }}>
+          <TouchableOpacity onPress={() => {set_show_picker(true)}}>
+            <Image
+              style={{height: 40, width: 40, resizeMode: 'contain'}}
+              source={require('./images/Vector_1.png')}
             />
-            <TouchableOpacity
-              onPress={async () => {
+          </TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            value={data}
+            onChangeText={value => setdata(value)}
+            placeholder="  Type your message here..."
+            placeholderTextColor="gray"
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              if (data !== '') {
                 setLoading(true);
                 const status = await send_message(
                   room_pk,
@@ -633,14 +620,13 @@ const Help = ({navigation}) => {
                   alert('Error while sending message');
                   setLoading(false);
                 }
-              }}>
-              <IoniMaterialCommunityIconscons
-                name="caretright"
-                size={25}
-                color="#078F04"
-              />
-            </TouchableOpacity>
-          </View>
+              }
+            }}>
+            <Image
+              style={{height: 40, width: 35, resizeMode: 'contain'}}
+              source={require('./images/Vector.png')}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -687,8 +673,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 51,
-    width: '87%',
-    marginLeft: 15,
+    width: '79%',
+    marginLeft: 4,
     marginVertical: 0,
     marginRight: 4,
     borderWidth: 1,

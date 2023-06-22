@@ -23,9 +23,9 @@ import Help from './Help';
 const data = [
   {
     id: '1',
-    title: 'Software License',
+    title: 'Open Source Software License',
     tagline:
-      'scroll through our list of software licenses curated just for you',
+      'scroll through our list of open source software licenses curated just for you',
     image: 'softwereLicenses',
     route: 'Software License',
   },
@@ -147,7 +147,10 @@ const Home = ({navigation}) => {
           </Text>
         </View>
       </ScrollView>
-      <HelpIcon style={styles.help} onPress={()=>navigation.navigate("Help")} />
+      <HelpIcon
+        style={styles.help}
+        onPress={() => navigation.navigate('Help')}
+      />
     </View>
   );
 };
