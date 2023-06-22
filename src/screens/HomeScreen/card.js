@@ -20,7 +20,7 @@ const Card = ({}) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        navigation.navigate('Contact Us');
+        navigation.navigate('SliderScreen');
       }}>
       <View style={styles.row1}>
         <View style={{alignItems: 'center'}}>
