@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
   Text,
@@ -6,7 +7,11 @@ import {
   View,
   ScrollView,
   Image,
+  Modal,
+  Alert,
+  Pressable
 } from 'react-native';
+import colors from '../../assets/colors/colors';
 
 const ICON1 = require('./images/home.png');
 const ICON2 = require('./images/anoutUs.png');
@@ -19,10 +24,47 @@ const ICON8 = require('./images/contactUs.png');
 const ICON9 = require('./images/Logout.png');
 
 const CustomSideBar = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const logout = () => {
+    setModalVisible(true);
+  }
+  const exitModal = () => {
+    setModalVisible(false);
+    navigation.navigate("Home")
+  }
+  const confirmLogout = async() => {
+    AsyncStorage.clear();
+    navigation.navigate("AuthNavigator")
+    Alert.alert("Logged out successfully!")
+  }
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.scrollViewContainer}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Are you sure you want to Log out?</Text>
+            <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={exitModal}>
+                <Text style={styles.textStyle}>No</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={confirmLogout}
+                >
+                <Text style={styles.textStyle}>Yes</Text>
+              </Pressable>
+            </View>
+          </View>            
+      </Modal> 
       <View style={styles.topSection}>
         <Image
           style={{height: 90, width: 90, resizeMode: 'contain'}}
@@ -43,13 +85,13 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Agreement Compliance');
+            navigation.navigate('SliderScreen');
           }}
           style={styles.item}>
           <View style={styles.iconContainer}>
             <Image style={styles.icon} source={ICON4} />
           </View>
-          <Text style={styles.title}>Agreement Compliance</Text>
+          <Text style={styles.title}>License compatibility</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -97,9 +139,7 @@ const CustomSideBar = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Logout');
-        }}
+        onPress={logout}
         style={styles.logoutButton}>
         <View style={styles.iconContainer}>
           <Image style={[styles.icon, styles.logoutIcon]} source={ICON9} />
@@ -147,8 +187,6 @@ const styles = StyleSheet.create({
     height: 30,
   },
   icon: {
-    // width: 24,
-    // height: 24,
     margin: 12,
   },
   logoutButton: {
@@ -158,9 +196,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginVertical: 7,
     paddingHorizontal: 8,
-    // marginVertical: 7,
-    // paddingVertical: 10,
-    // paddingHorizontal: 16,
   },
   logoutText: {
     color: 'red',
@@ -168,202 +203,40 @@ const styles = StyleSheet.create({
   logoutIcon: {
     tintColor: 'red',
   },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    marginHorizontal: 30,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonClose: {
+    backgroundColor: colors.primary,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color: "#000"
+  }
 });
 
 export default CustomSideBar;
-// import {
-//   StyleSheet,
-//   Text,
-//   TouchableOpacity,
-//   View,
-//   ScrollView,
-// } from 'react-native';
-// import * as React from 'react';
-// import {Image} from 'react-native';
-
-// const ICON1 = './images/home.png';
-// const ICON2 = './images/anoutUs.png';
-// const ICON3 = './images/softwereLicenses.png';
-// const ICON4 = './images/legalAPIs.png';
-// const ICON5 = './images/legalAPIs.png';
-// const ICON6 = './images/Group.png';
-// const ICON7 = './images/pricing.png';
-// const ICON8 = './images/contactUs.png';
-// const ICON9 = './images/Logout.png';
-
-// const CustomSideBar = ({navigation}) => {
-//   return (
-//     <ScrollView style={styles.container}>
-//       <View style={styles.topSection}>
-//         <Image
-//           style={{height: 80, width: 80, resizeMode: 'contain'}}
-//           source={require('./images/logo.jpg')}
-//         />
-//       </View>
-//       <View style={styles.middleSection}>
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Home');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON1)} />
-//           </View>
-//           <Text style={styles.title}>Home</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Agreement Compliance');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON4)} />
-//           </View>
-//           <Text style={styles.title}>Agreement Compliance</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Software License');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON3)} />
-//           </View>
-//           <Text style={styles.title}>Software license</Text>
-//         </TouchableOpacity>
-//         {/* <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Home');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON6)} />
-//           </View>
-//           <Text style={styles.title}>Other Legal compliance</Text>
-//         </TouchableOpacity> */}
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('LicenseCompatibility');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON6)} />
-//           </View>
-//           <Text style={styles.title}>Open Source License compatibility</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('ActualAboutUs');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON2)} />
-//           </View>
-//           <Text style={styles.title}>About Us</Text>
-//         </TouchableOpacity>
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Contact Us');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON8)} />
-//           </View>
-//           <Text style={styles.title}>Contact us</Text>
-//         </TouchableOpacity>
-//         {/* <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Logout');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconConatainer}>
-//             <Image style={styles.icon} source={require(ICON9)} />
-//           </View>
-//           <Text style={styles.title}>Logout</Text>
-//         </TouchableOpacity> */}
-
-//         <TouchableOpacity
-//           onPress={() => {
-//             navigation.navigate('Logout');
-//           }}
-//           style={styles.item}>
-//           <View style={styles.iconContainer}>
-//             <Image
-//               style={[styles.icon, styles.logoutIcon]}
-//               source={require(ICON9)}
-//             />
-//           </View>
-//           <Text style={[styles.title, styles.logoutText]}>Logout</Text>
-//         </TouchableOpacity>
-//       </View>
-//       {/* <View style={styles.bottomSection}></View> */}
-//     </ScrollView>
-//   );
-// };
-
-// export default CustomSideBar;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     display: 'flex',
-//     flex: 1,
-//     backgroundColor: 'white',
-//   },
-
-//   scrollViewContainer: {
-//     flexGrow: 1,
-//   },
-//   topSection: {
-//     display: 'flex',
-//     flex: 0.5,
-//     flexDirection: 'row',
-//     alignContent: 'flex-end',
-//     justifyContent: 'flex-end',
-//     padding: 10,
-//   },
-//   middleSection: {
-//     flex: 8.4,
-//   },
-//   bottomSection: {
-//     display: 'flex',
-//     flex: 1.1,
-//   },
-//   title: {
-//     color: 'black',
-//     fontSize: 16,
-//     fontWeight: '400',
-//     marginTop: 16,
-//   },
-//   item: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     marginVertical: 7,
-//   },
-//   icon: {
-//     margin: 12,
-//   },
-
-//   iconConatainer: {
-//     width: 50,
-//     height: 30,
-//   },
-//   logoutText: {
-//     color: 'red',
-//   },
-//   logoutIcon: {
-//     tintColor: 'red',
-//   },
-//   logoutButton: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     textAlign: 'center',
-//     marginBottom: 20,
-//     // marginVertical: 7,
-//     paddingHorizontal: 10,
-//     // marginVertical: 7,
-//     // paddingVertical: 10,
-//     // paddingHorizontal: 16,
-//   },
-// });
