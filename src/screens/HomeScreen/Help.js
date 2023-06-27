@@ -9,7 +9,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Dimensions,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
@@ -36,7 +36,6 @@ const Help = ({navigation}) => {
   const [user_id, set_user_id] = useState();
   const [show_picker, set_show_picker] = useState(true);
   const [language, setlangauge] = useState('English');
-
 
   const language_handler = language => {
     setlangauge(language);
@@ -112,10 +111,11 @@ const Help = ({navigation}) => {
     try {
       setLoading(true);
       const session_id = await AsyncStorage.getItem('session_id');
-
+      console.log(session_id);
       const result = await make_room_api(session_id);
 
       setMessages_api(result.messages);
+      console.log(result.messages);
       set_room_pk(result.room_pk);
       set_user_id(result.portfolio);
       setLoading(false);
@@ -149,7 +149,7 @@ const Help = ({navigation}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingTop: 20,
+            paddingTop: 10,
             paddingBottom: 0,
             paddingHorizontal: 8,
             backgroundColor: '#078F04',
@@ -167,19 +167,20 @@ const Help = ({navigation}) => {
               fontFamily: 'Roboto',
               fontWeight: '400',
               color: '#FFFFFF',
-              marginRight: 125,
             }}>
             HELPBOT
           </Text>
-          {/* <TouchableOpacity  onPress={() => {
-                setFlag(true)
-                refRBSheet.current.open()
-                }}>
-                <Image
-                  style={{height: 50, width: 50, resizeMode: 'contain'}}
-                  source={require('./images/clarity_language-solid.png')}
-                />
-              </TouchableOpacity> */}
+          <TouchableOpacity
+          // onPress={() => {
+          //   setFlag(true);
+          //   refRBSheet.current.open();
+          // }}
+          >
+            {/* <Image
+              style={{height: 50, width: 50, resizeMode: 'contain'}}
+              source={require('./images/clarity_language-solid.png')}
+            /> */}
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -197,11 +198,21 @@ const Help = ({navigation}) => {
               <View>
                 {messages_api.map((item, index) => {
                   return item.read === true ? (
-                    <Message
-                      key={index}
-                      Message={item.message}
-                      customer_app="app"
-                    />
+                    <View style={{display: 'flex', flexDirection: 'row'}}>
+                      <MaterialCommunityIcons
+                        name="android"
+                        size={25}
+                        backgroundColor="#078F04"
+                        color="#078F04"
+                      />
+                      <View>
+                      <Message
+                        key={index}
+                        Message={item.message}
+                        customer_app="app"
+                      />
+                      </View>
+                    </View>
                   ) : (
                     <View key={index} style={{alignSelf: 'flex-end'}}>
                       <Message Message={item.message} customer_app="customer" />
@@ -260,10 +271,12 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
+                        <View>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
                         />
+                        </View>
                       </View>
                     )}
 
@@ -446,10 +459,12 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
+                          <View>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
                           />
+                          </View>
                         </View>
                         <Queryselect
                           handler={moreq_handler}
@@ -469,10 +484,12 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
+                        <View>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
                         />
+                        </View>
                       </View>
                     )}
 
@@ -531,10 +548,12 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
+                          <View>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
                           />
+                          </View>
                         </View>
                         <Queryselect
                           handler={moreq_handler}
@@ -554,10 +573,12 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
+                        <View>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
                         />
+                        </View>
                       </View>
                     )}
 
@@ -595,10 +616,12 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
+                          <View>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
                           />
+                          </View>
                         </View>
                         <Queryselect
                           handler={moreq_handler}
@@ -644,7 +667,7 @@ const Help = ({navigation}) => {
         </View>
 
         {!full_height && (
-          <View  >
+          <View>
             <ScrollView
               style={
                 query === 'Software License'
@@ -653,14 +676,14 @@ const Help = ({navigation}) => {
                       paddingVertical: 10,
                       width: '100%',
                       height: '14%',
-                      minHeight:"14%"
+                      minHeight: '14%',
                     }
                   : {
                       backgroundColor: 'white',
                       paddingVertical: 10,
                       width: '100%',
                       height: '26%',
-                      minHeight:"14%"
+                      minHeight: '14%',
                     }
               }>
               <View>
@@ -674,7 +697,7 @@ const Help = ({navigation}) => {
                       paddingLeft: 38,
                       paddingRight: 38,
                       maxWidth: '85%',
-                      marginLeft: '14%',
+                      marginLeft: 'auto',
                       marginRight: 'auto',
 
                       display: 'flex',
@@ -700,7 +723,7 @@ const Help = ({navigation}) => {
                         paddingLeft: 38,
                         paddingRight: 38,
                         maxWidth: '85%',
-                        marginLeft: '13%',
+                        marginLeft: 'auto',
                         marginRight: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
@@ -721,7 +744,7 @@ const Help = ({navigation}) => {
                         paddingLeft: 38,
                         paddingRight: 38,
                         maxWidth: '85%',
-                        marginLeft: '9%',
+                        marginLeft: 'auto',
                         marginRight: 'auto',
                         display: 'flex',
                         flexDirection: 'column',
@@ -735,7 +758,6 @@ const Help = ({navigation}) => {
                   )}
               </View>
             </ScrollView>
-           
           </View>
         )}
 
@@ -743,6 +765,7 @@ const Help = ({navigation}) => {
           style={{
             display: 'flex',
             flexDirection: 'row',
+            
             alignItems: 'center',
             width: '100%',
             paddingVertical: 12,
@@ -767,7 +790,6 @@ const Help = ({navigation}) => {
             placeholder="  Type your message here..."
             placeholderTextColor="gray"
           />
-
 
           <TouchableOpacity
             onPress={async () => {
@@ -839,7 +861,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 51,
-    width: '79%',
+    flex:2,
+    
     marginLeft: 4,
     marginVertical: 0,
     marginRight: 4,
