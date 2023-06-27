@@ -21,7 +21,7 @@ const Message = ({Message,customer_app}) => {
         borderTopRightRadius:125,
         borderBottomRightRadius:125,
         borderBottomLeftRadius:180,
-        maxWidth:"92%"
+        width:"100%"
         
     },
     text_app:{
