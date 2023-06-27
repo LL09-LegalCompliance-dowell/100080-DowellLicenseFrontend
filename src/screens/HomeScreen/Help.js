@@ -8,6 +8,9 @@ import {
   ScrollView,
   Image,
   Keyboard,
+  KeyboardAvoidingView,
+  Dimensions,
+  SafeAreaView
 } from 'react-native';
 import React,{useEffect,useState,useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
@@ -23,14 +26,19 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
   const refRBSheet = useRef();
+  const scrollViewRef = useRef();
   const [flag, setFlag] = useState(false);
+  const [full_height, setfull_height] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [messages_api, setMessages_api] = useState([]);
   const [loading, setLoading] = useState(false);
   const [data, setdata] = useState('');
   const [room_pk, set_room_pk] = useState();
   const [user_id, set_user_id] = useState();
   const [show_picker, set_show_picker] = useState(true);
   const [language, setlangauge] = useState('English');
+
+
   const language_handler = language => {
     setlangauge(language);
   };
@@ -61,9 +69,7 @@ const software_license_handler=(state)=>{
   const add_message_handler = message => {
     setMessages([...messages, message]);
   };
-  const keyboardShowListener = Keyboard.addListener('keyboardDidShow', () => {
-    set_show_picker(false);
-  });
+
   // const keyboardHideListener = Keyboard.addListener(
   //     'keyboardDidHide',
   //     () => {
@@ -83,25 +89,54 @@ const software_license_handler=(state)=>{
       navigation.navigate('HomeScreen');
     }
   }, [moreq]);
+  useEffect(() => {
+    if (
+      agreement_compliance !== '' ||
+      software_license !== '' ||
+      license_compatibility !== '' ||
+      query === 'License Compatibility' ||
+      show_picker === false
+    ) {
+      setfull_height(true);
+    } else {
+      setfull_height(false);
+    }
+  }, [
+    agreement_compliance,
+    software_license,
+    license_compatibility,
+    query,
+    show_picker,
+  ]);
 
   const make_room = async () => {
     try {
       setLoading(true);
       const session_id = await AsyncStorage.getItem('session_id');
 
-    const result = await make_room_api(session_id);
-    set_room_pk(result.room_pk);
-    set_user_id(result.portfolio)
-     setLoading(false);
-    
-  }catch(error){
-    navigation.navigate("HomeScreen")
-    alert('Something went wrong, please try again later');
-  }
-} 
+      const result = await make_room_api(session_id);
+
+      setMessages_api(result.messages);
+      set_room_pk(result.room_pk);
+      set_user_id(result.portfolio);
+      setLoading(false);
+    } catch (error) {
+      navigation.navigate('HomeScreen');
+      alert('Something went wrong, please try again later');
+    }
+  };
 
   useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        set_show_picker(false);
+        scrollViewRef.current.scrollToEnd({animated: true});
+      },
+    );
+
     make_room();
+    return () => keyboardDidShowListener.remove();
   }, []);
 
   return (
@@ -150,13 +185,31 @@ const software_license_handler=(state)=>{
         <View
           style={{
             backgroundColor: 'white',
-            flex: 1,
+            flex: 2.2,
             paddingTop: 10,
             paddingHorizontal: 5,
           }}>
-          <View style={{height: '100%'}}>
-            <ScrollView>
-              <View style={{minHeight: 600}}>
+          <View style={{height: '98%', backgroundColor: 'white'}}>
+            <ScrollView
+              ref={scrollViewRef}
+              onContentSizeChange={() =>
+                scrollViewRef.current.scrollToEnd({animated: true})
+              }>
+              <View>
+                {messages_api.map((item, index) => {
+                  return item.read === true ? (
+                    <Message
+                      key={index}
+                      Message={item.message}
+                      customer_app="app"
+                    />
+                  ) : (
+                    <View key={index} style={{alignSelf: 'flex-end'}}>
+                      <Message Message={item.message} customer_app="customer" />
+                    </View>
+                  );
+                })}
+
                 <View style={{display: 'flex', flexDirection: 'row'}}>
                   <MaterialCommunityIcons
                     name="android"
@@ -189,31 +242,7 @@ const software_license_handler=(state)=>{
                     </View>
                   </View>
                 )}
-                {query === '' && language !== '' && show_picker && (
-                  <Queryselect
-                    style={{
-                      backgroundColor: '#078F04',
-                      borderRadius: 40,
-                      paddingTop: 25,
-                      paddingBottom: 25,
-                      paddingLeft: 38,
-                      paddingRight: 38,
-                      maxWidth: '85%',
-                      marginLeft: '14%',
-                      marginRight: 'auto',
-                      position: 'absolute',
-                      bottom: 10,
-                      display: 'flex',
-                      flexDirection: 'column',
-                    }}
-                    handler={query_handler}
-                    items={[
-                      'Agreement Compliance',
-                      'License Compatibility',
-                      'Software License',
-                    ]}
-                  />
-                )}
+
                 {query !== '' && (
                   <View style={{alignSelf: 'flex-end'}}>
                     <Message Message={query} customer_app="customer" />
@@ -334,7 +363,7 @@ const software_license_handler=(state)=>{
                       </View>
                     )}
 
-                    {license_compatibility !== '' && show_picker &&(
+                    {license_compatibility !== '' && show_picker && (
                       <>
                         <View style={{display: 'flex', flexDirection: 'row'}}>
                           <MaterialCommunityIcons
@@ -373,30 +402,6 @@ const software_license_handler=(state)=>{
                       </View>
                     )}
 
-                    {agreement_compliance === '' && show_picker && (
-                      <Queryselect
-                        style={{
-                          backgroundColor: '#078F04',
-                          borderRadius: 40,
-                          paddingTop: 25,
-                          paddingBottom: 25,
-                          paddingLeft: 38,
-                          paddingRight: 38,
-                          maxWidth: '85%',
-                          marginLeft: '9%',
-                          marginRight: 'auto',
-                          position: 'absolute',
-                          bottom: 10,
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }}
-                        handler={agreement_compliance_handler}
-                        items={[
-                          'How to generate an agreement compliance?',
-                          'Is agreement compliance policy same for all website and apps?',
-                        ]}
-                      />
-                    )}
                     {agreement_compliance !== '' && (
                       <View style={{alignSelf: 'flex-end'}}>
                         <Message
@@ -482,27 +487,6 @@ const software_license_handler=(state)=>{
                       </View>
                     )}
 
-                    {software_license === '' && show_picker && (
-                      <Queryselect
-                        style={{
-                          backgroundColor: '#078F04',
-                          borderRadius: 40,
-                          paddingTop: 25,
-                          paddingBottom: 25,
-                          paddingLeft: 38,
-                          paddingRight: 38,
-                          maxWidth: '85%',
-                          marginLeft: '13%',
-                          marginRight: 'auto',
-                          position: 'absolute',
-                          bottom: 10,
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }}
-                        handler={software_license_handler}
-                        items={['What is software license?']}
-                      />
-                    )}
                     {software_license !== '' && (
                       <View style={{alignSelf: 'flex-end'}}>
                         <Message
@@ -547,10 +531,11 @@ const software_license_handler=(state)=>{
                     )}
                   </>
                 )}
-                {messages.length > 0 && !show_picker &&
+                {messages.length > 0 &&
+                  !show_picker &&
                   messages.map((item, index) => {
                     return (
-                      <View key={index} style={{marginTop: 10}}>
+                      <View key={index} style={{marginTop: 0}}>
                         <View style={{alignSelf: 'flex-end'}}>
                           <Message Message={item} customer_app="customer" />
                         </View>
@@ -580,6 +565,103 @@ const software_license_handler=(state)=>{
             </ScrollView>
           </View>
         </View>
+
+        {!full_height && (
+          <View  >
+            <ScrollView
+              style={
+                query === 'Software License'
+                  ? {
+                      backgroundColor: 'white',
+                      paddingVertical: 10,
+                      width: '100%',
+                      height: '14%',
+                      minHeight:"14%"
+                    }
+                  : {
+                      backgroundColor: 'white',
+                      paddingVertical: 10,
+                      width: '100%',
+                      height: '26%',
+                      minHeight:"14%"
+                    }
+              }>
+              <View>
+                {query === '' && language !== '' && show_picker && (
+                  <Queryselect
+                    style={{
+                      backgroundColor: '#078F04',
+                      borderRadius: 40,
+                      paddingTop: 25,
+                      paddingBottom: 25,
+                      paddingLeft: 38,
+                      paddingRight: 38,
+                      maxWidth: '85%',
+                      marginLeft: '14%',
+                      marginRight: 'auto',
+
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                    handler={query_handler}
+                    items={[
+                      'Agreement Compliance',
+                      'License Compatibility',
+                      'Software License',
+                    ]}
+                  />
+                )}
+                {query === 'Software License' &&
+                  software_license === '' &&
+                  show_picker && (
+                    <Queryselect
+                      style={{
+                        backgroundColor: '#078F04',
+                        borderRadius: 40,
+                        paddingTop: 25,
+                        paddingBottom: 25,
+                        paddingLeft: 38,
+                        paddingRight: 38,
+                        maxWidth: '85%',
+                        marginLeft: '13%',
+                        marginRight: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                      handler={software_license_handler}
+                      items={['What is software license?']}
+                    />
+                  )}
+                {query === 'Agreement Compliance' &&
+                  agreement_compliance === '' &&
+                  show_picker && (
+                    <Queryselect
+                      style={{
+                        backgroundColor: '#078F04',
+                        borderRadius: 40,
+                        paddingTop: 25,
+                        paddingBottom: 25,
+                        paddingLeft: 38,
+                        paddingRight: 38,
+                        maxWidth: '85%',
+                        marginLeft: '9%',
+                        marginRight: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                      handler={agreement_compliance_handler}
+                      items={[
+                        'How to generate an agreement compliance?',
+                        'Is agreement compliance policy same for all website and apps?',
+                      ]}
+                    />
+                  )}
+              </View>
+            </ScrollView>
+           
+          </View>
+        )}
+
         <View
           style={{
             display: 'flex',
@@ -587,15 +669,20 @@ const software_license_handler=(state)=>{
             alignItems: 'center',
             width: '100%',
             paddingVertical: 12,
-            backgroundColor:"white"
-           
+            backgroundColor: 'white',
+            height: 75,
           }}>
-          <TouchableOpacity onPress={() => {set_show_picker(true)}}>
+          <TouchableOpacity
+            onPress={() => {
+              Keyboard.dismiss();
+              set_show_picker(true);
+            }}>
             <Image
               style={{height: 40, width: 40, resizeMode: 'contain'}}
               source={require('./images/Vector_1.png')}
             />
           </TouchableOpacity>
+
           <TextInput
             style={styles.input}
             value={data}
@@ -603,6 +690,8 @@ const software_license_handler=(state)=>{
             placeholder="  Type your message here..."
             placeholderTextColor="gray"
           />
+
+
           <TouchableOpacity
             onPress={async () => {
               if (data !== '') {
