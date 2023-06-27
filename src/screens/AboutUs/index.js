@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import {Formik} from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './style';
 import Header from '../../components/Header';
@@ -32,11 +33,22 @@ const ValidationSchema = yup.object().shape({
     .string()
     .min(5, 'Mesaage should be of 2 chars minimum')
     .max(500, 'Maximum 100 characters allowed')
-    .required('Mesasage is required'),
+    .required('Message is required'),
 });
 
 const About = () => {
   const [loading, setLoading] = useState();
+  const [userName, setName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
+  const getUserDeatils = async () => {
+    const asyncusername = await AsyncStorage.getItem('username');
+    const asyncemail = await AsyncStorage.getItem('email');
+    setName(asyncusername);
+    setUserEmail(asyncemail);
+  };
+
+  useMemo(() => getUserDeatils(), []);
 
   const handleForm = async (values, formikActions) => {
     try {
@@ -71,7 +83,7 @@ const About = () => {
   return (
     <>
       <Formik
-        initialValues={{fullname: '', email: '', message: ''}}
+        initialValues={{fullname: userName, email: userEmail, message: ''}}
         validateOnMount={true}
         validationSchema={ValidationSchema}
         onSubmit={handleForm}>
