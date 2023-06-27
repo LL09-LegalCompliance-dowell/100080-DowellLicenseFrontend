@@ -198,14 +198,14 @@ const Help = ({navigation}) => {
               <View>
                 {messages_api.map((item, index) => {
                   return item.read === true ? (
-                    <View style={{display: 'flex', flexDirection: 'row'}}>
+                    <View key={index} style={{display: 'flex', flexDirection: 'row'}}>
                       <MaterialCommunityIcons
                         name="android"
                         size={25}
                         backgroundColor="#078F04"
                         color="#078F04"
                       />
-                      <View>
+                      <View  style={{width:"90%"}}>
                       <Message
                         key={index}
                         Message={item.message}
@@ -227,7 +227,7 @@ const Help = ({navigation}) => {
                     backgroundColor="#078F04"
                     color="#078F04"
                   />
-                  <View>
+                  <View  style={{width:"90%"}}>
                     <Message
                       Message="Hi, we 're here to help you."
                       customer_app="app"
@@ -247,7 +247,7 @@ const Help = ({navigation}) => {
                       backgroundColor="#078F04"
                       color="#078F04"
                     />
-                    <View>
+                    <View  style={{width:"90%"}}>
                       <Message
                         Message="Select your query."
                         customer_app="app"
@@ -271,7 +271,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -313,7 +313,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View style={{width:"90%"}}>
                           <Message
                             Message="License Compatibility is a compatibility test between two licenses."
                             customer_app="app"
@@ -335,7 +335,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="You can find a tutorial on how to check compatibility on the compatibility test page"
                             customer_app="app"
@@ -357,7 +357,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Recommendation percentage is a approximate number of how much compatible are those licenses"
                             customer_app="app"
@@ -379,7 +379,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc."
                             customer_app="app"
@@ -401,7 +401,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="No, license compatibility is totally free to use. You do not need to pay anything"
                             customer_app="app"
@@ -419,7 +419,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Full in depth comparison is provided after the results from the check are displayed"
                             customer_app="app"
@@ -441,7 +441,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Yes. You can set up a personal account or an account for your organization"
                             customer_app="app"
@@ -459,7 +459,7 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -484,7 +484,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -510,7 +510,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="First step is select the policy you want to generate then click on start generating button"
                             customer_app="app"
@@ -531,7 +531,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Yes agreement compliance policy is same for all websites and apps"
                             customer_app="app"
@@ -548,7 +548,7 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -573,7 +573,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -598,7 +598,7 @@ const Help = ({navigation}) => {
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="A software license is a document that provides legally binding guidelines for the use and distribution of software."
                             customer_app="app"
@@ -616,7 +616,7 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -651,7 +651,7 @@ const Help = ({navigation}) => {
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                             <Message
                               Message="We have received your message, Our customer support team will respond to you within next 24 hours"
                               customer_app="app"
