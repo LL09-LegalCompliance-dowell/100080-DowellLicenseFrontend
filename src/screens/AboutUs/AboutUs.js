@@ -12,15 +12,7 @@ const AboutUs = ({navigation}) => {
   return (
     <>
       <Header title="About Us" />
-      <ScrollView
-        contentContainerStyle={[
-          styles.container,
-          {
-            flex: 1,
-            // paddingHorizontal: 50,
-            paddingTop: Platform.OS === 'ios' ? 90 : 50,
-          },
-        ]}>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* About Company */}
         <Text style={styles.heading}>About Legalzard and Company</Text>
         <Text style={styles.aboutText}>
@@ -51,11 +43,11 @@ const AboutUs = ({navigation}) => {
           data and its compatibility. Licenses can be filtered by one or several
           categories, license text, and a few key characteristics. Legalzard can
           also create the necessary legal agreements and policies for your
-          online business Choose and Download your customized policies and
+          online business.{'\n'}Choose and Download your customized policies and
           manage Business workflows.
         </Text>
-        <ContactUsIcon helpHandler={helpHandler}/>
       </ScrollView>
+      <ContactUsIcon helpHandler={helpHandler}/>
     </>
   );
 };

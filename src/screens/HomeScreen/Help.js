@@ -1,4 +1,5 @@
 import {
+
   Text,
   StyleSheet,
   View,
@@ -11,17 +12,17 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import React, {useEffect, useState, useRef} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
-import {send_message} from './HelpApi';
+import { send_message } from './HelpApi';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
 import Queryselect from './HelpComponents/Queryselect';
-import RBSheet from 'react-native-raw-bottom-sheet';
+import RBSheet from "react-native-raw-bottom-sheet";
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
   const refRBSheet = useRef();
@@ -45,20 +46,20 @@ const Help = ({navigation}) => {
     setquery(query);
   };
 
-  const [license_compatibility, set_license_compatibility] = useState('');
-  const license_compatibility_handler = state => {
-    set_license_compatibility(state);
-  };
+const [license_compatibility,set_license_compatibility]=useState("")
+const license_compatibility_handler=(state)=>{
+  set_license_compatibility(state)
+}
 
-  const [agreement_compliance, set_agreement_compliance] = useState('');
-  const agreement_compliance_handler = state => {
-    set_agreement_compliance(state);
-  };
+const [agreement_compliance,set_agreement_compliance]=useState("")
+const agreement_compliance_handler=(state)=>{
+  set_agreement_compliance(state)
+}
 
-  const [software_license, set_software_license] = useState('');
-  const software_license_handler = state => {
-    set_software_license(state);
-  };
+const [software_license,set_software_license]=useState("")
+const software_license_handler=(state)=>{
+  set_software_license(state)
+}
 
   const [moreq, set_moreq] = useState('');
   const moreq_handler = state => {
@@ -473,8 +474,8 @@ const Help = ({navigation}) => {
                       </>
                     )}
                   </>
-                )}
-                {query === 'Agreement Compliance' && (
+                  )}
+                  {query === "Agreement Compliance" && (
                   <>
                     {(show_picker || agreement_compliance !== '') && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -562,8 +563,8 @@ const Help = ({navigation}) => {
                       </>
                     )}
                   </>
-                )}
-                {query === 'Software License' && (
+                  )}
+                  {query === "Software License" && (
                   <>
                     {(show_picker || software_license !== '') && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>

@@ -147,7 +147,10 @@ const Home = ({navigation}) => {
           </Text>
         </View>
       </ScrollView>
-      <HelpIcon style={styles.help} onPress={()=>navigation.navigate("Help")} />
+      <HelpIcon
+        style={styles.help}
+        onPress={() => navigation.navigate('Help')}
+      />
     </View>
   );
 };
