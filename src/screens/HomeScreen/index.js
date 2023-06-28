@@ -7,6 +7,8 @@ import {
   FlatList,
   ImageBackground,
   Pressable,
+  Platform,
+  Dimensions,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -40,6 +42,8 @@ const data = [
 
 const Home = ({navigation}) => {
   const [showHelp, setShowHelp] = useState(false);
+  const {width, height} = Dimensions.get('window');
+
   const helpHanlder = () => {
     setShowHelp(true);
   };

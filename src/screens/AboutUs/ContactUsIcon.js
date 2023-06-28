@@ -5,9 +5,13 @@ import colors from '../../../assets/colors/colors';
 
 const ContactUsIcon = ({helpHandler}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={helpHandler} >
+    <TouchableOpacity style={styles.container} onPress={helpHandler}>
       <View style={styles.miniContainer}>
-        <IoniMaterialCommunityIconscons name="help" size={25} color={colors.primary} />
+        <IoniMaterialCommunityIconscons
+          name="help"
+          size={25}
+          color={colors.primary}
+        />
       </View>
       <Text style={styles.text}>Contact</Text>
       <Text style={styles.text}>Us</Text>
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     paddingTop: 0,
-    lineHeight:15,
+    lineHeight: 15,
     fontSize: 12,
   },
 });

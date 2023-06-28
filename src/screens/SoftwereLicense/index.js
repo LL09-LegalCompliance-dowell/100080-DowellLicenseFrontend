@@ -183,8 +183,8 @@ const SoftwereLicense = ({navigation}) => {
                       <View
                         style={{
                           backgroundColor: colors.primary,
-                          paddingHorizontal: 10,
-                          paddingVertical: 3,
+                          paddingHorizontal: 13,
+                          paddingVertical: 7,
                           borderRadius: 15,
                           marginTop: 20,
                           marginBottom: 8,
