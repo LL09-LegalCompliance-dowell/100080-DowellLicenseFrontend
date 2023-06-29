@@ -41,6 +41,8 @@ const data = [
 ];
 
 const Home = ({navigation}) => {
+  const [orgId, setOrgId] = useState('');
+  const [userId, setUserId] = useState('');
   const [showHelp, setShowHelp] = useState(false);
   const {width, height} = Dimensions.get('window');
 
@@ -50,6 +52,21 @@ const Home = ({navigation}) => {
   const helpHanlderClose = () => {
     setShowHelp(false);
   };
+
+  React.useEffect(() => {
+    const getOrgId = async () => {
+      try {
+        const org_id = await AsyncStorage.getItem('org_id');
+        const user_id = await AsyncStorage.getItem('user_id');
+        setOrgId(org_id);
+        setUserId(user_id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getOrgId();
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -125,7 +142,15 @@ const Home = ({navigation}) => {
           {/* Quik Links */}
           <Text style={styles.heading}>Most Visited</Text>
           <View style={styles.linkContainer}>
-            <View
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SliderItemDetails', {
+                  eventId_1: "FB1010000000166184126356826496",
+                  eventId_2: "FB1010000000016618417215307426",
+                  userId: userId,
+                  organizationId: orgId,
+                });
+              }}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -136,14 +161,23 @@ const Home = ({navigation}) => {
                 style={{width: 60, height: 60, color: 'black', marginRight: 8}}
               />
               <Text style={styles.heading}>Apache vs MIT</Text>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SliderItemDetails', {
+                  eventId_1: "FB1010000000166184145150015366",
+                  eventId_2: "FB1010000000167525869052204814",
+                  userId: userId,
+                  organizationId: orgId,
+                });
+              }}
+              style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={require(`./images/2.png`)}
                 style={{width: 60, height: 60, color: 'black', marginRight: 8}}
               />
-              <Text style={styles.heading}>GNU GPL v 1.0</Text>
-            </View>
+              <Text style={styles.heading}>GNU vs GPL v 1.0</Text>
+            </Pressable>
           </View>
           <Text
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
