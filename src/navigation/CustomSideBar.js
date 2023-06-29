@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
   Text,
@@ -6,7 +7,11 @@ import {
   View,
   ScrollView,
   Image,
+  Modal,
+  Alert,
+  Pressable
 } from 'react-native';
+import colors from '../../assets/colors/colors';
 
 const ICON1 = require('./images/home.png');
 const ICON2 = require('./images/anoutUs.png');
@@ -19,10 +24,47 @@ const ICON8 = require('./images/contactUs.png');
 const ICON9 = require('./images/Logout.png');
 
 const CustomSideBar = ({navigation}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const logout = () => {
+    setModalVisible(true);
+  }
+  const exitModal = () => {
+    setModalVisible(false);
+    navigation.navigate("Home")
+  }
+  const confirmLogout = async() => {
+    AsyncStorage.clear();
+    navigation.navigate("AuthNavigator")
+    Alert.alert("Logged out successfully!")
+  }
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.scrollViewContainer}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Are you sure you want to Log out?</Text>
+            <View style={{flexDirection:"row", justifyContent:"space-between"}}>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={exitModal}>
+                <Text style={styles.textStyle}>No</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={confirmLogout}
+                >
+                <Text style={styles.textStyle}>Yes</Text>
+              </Pressable>
+            </View>
+          </View>            
+      </Modal> 
       <View style={styles.topSection}>
         <Image
           style={{height: 90, width: 90, resizeMode: 'contain'}}
@@ -97,9 +139,7 @@ const CustomSideBar = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Logout');
-        }}
+        onPress={logout}
         style={styles.logoutButton}>
         <View style={styles.iconContainer}>
           <Image style={[styles.icon, styles.logoutIcon]} source={ICON9} />
@@ -147,8 +187,6 @@ const styles = StyleSheet.create({
     height: 30,
   },
   icon: {
-    // width: 24,
-    // height: 24,
     margin: 12,
   },
   logoutButton: {
@@ -158,9 +196,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginVertical: 7,
     paddingHorizontal: 8,
-    // marginVertical: 7,
-    // paddingVertical: 10,
-    // paddingHorizontal: 16,
   },
   logoutText: {
     color: 'red',
@@ -168,6 +203,40 @@ const styles = StyleSheet.create({
   logoutIcon: {
     tintColor: 'red',
   },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    marginHorizontal: 30,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonClose: {
+    backgroundColor: colors.primary,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color: "#000"
+  }
 });
 
 export default CustomSideBar;
