@@ -183,8 +183,8 @@ const SoftwereLicense = ({navigation}) => {
                       <View
                         style={{
                           backgroundColor: colors.primary,
-                          paddingHorizontal: 10,
-                          paddingVertical: 3,
+                          paddingHorizontal: 13,
+                          paddingVertical: 7,
                           borderRadius: 15,
                           marginTop: 20,
                           marginBottom: 8,
@@ -192,7 +192,7 @@ const SoftwereLicense = ({navigation}) => {
                         <Pressable
                           onPress={() => fetchSliderData(item.eventId)}>
                           <Text
-                            style={{fontSize: 11, margin: 0, color: 'white'}}>
+                            style={{fontSize: 11, margin: 0, color: 'white', paddingHorizontal:10, paddingVertical:4}}>
                             Learn More
                           </Text>
                         </Pressable>

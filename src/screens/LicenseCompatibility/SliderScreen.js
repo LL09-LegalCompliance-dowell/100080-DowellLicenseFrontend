@@ -115,7 +115,7 @@ const SliderScreen = ({navigation}) => {
                               orgId,
                             );
                           }}
-                          style={{fontSize: 11, margin: 0, color: 'white'}}>
+                          style={{fontSize: 11, margin: 0, color: 'white', paddingHorizontal:10, paddingVertical:4}}>
                           Learn More
                         </Text>
                       </Pressable>

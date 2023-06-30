@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
   TouchableWithoutFeedback,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import React, {useEffect, useMemo, useState} from 'react';
 import Modal from 'react-native-modal';
@@ -56,6 +56,7 @@ const AgreementComplience = ({navigation}) => {
     useState(false);
   const [showDisclaimerOptions, setDisclaimerShowOptions] = useState(false);
   const [isHowto, setHowto] = useState(false);
+
   return (
     <>
       {/* How to Overlay starts here */}
@@ -195,7 +196,7 @@ const AgreementComplience = ({navigation}) => {
               <TouchableOpacity
                 style={{marginLeft: 'auto'}}
                 onPress={() => setHowto(false)}>
-                <Entypo name="cross" size={40} color="black"  />
+                <Entypo name="cross" size={40} color="black" />
               </TouchableOpacity>
               <ScrollView showsVerticalScrollIndicator={false}>
                 <View flex={1} onStartShouldSetResponder={() => true}>
@@ -205,63 +206,64 @@ const AgreementComplience = ({navigation}) => {
                       alignSelf: 'center',
                       margin: 20,
                       color: '#000000',
-                      fontWeight:"600"
+                      fontWeight: '600',
                     }}>
                     How to generate a Policy
                   </Text>
-                  <View style={{margin: 5}}>
-                    <Text style={styles1.text_1}>
-                      1. Select the Agreement
-                    </Text>
+                  <View style={{margin: 5, marginBottom: 20}}>
+                    <Text style={styles1.text_1}>1. Select the Agreement</Text>
                     <Text style={styles1.text_2_center}>
-                      From the given options select the agreement that you want to generate the policy for.
+                      From the given options select the agreement that you want
+                      to generate the policy for.
                     </Text>
                     <Image
                       source={Image13}
-                      style={{alignSelf:"center",marginBottom:24}}
-                      resizeMode='contain'
+                      style={{alignSelf: 'center', marginBottom: 24}}
+                      resizeMode="contain"
                     />
-                    <Text
-                      style={styles1.text_1}>
-                      2. Start Generating
+                    <Text style={styles1.text_1}>2. Start Generating</Text>
+                    <Text style={styles1.text_2}>
+                      Click the start generating button to start the policy
+                      generation process. You can also view the sample template
+                      before generating the policy by clicking the view sample
+                      option. You can also check the FAQs.
                     </Text>
-                    <Text style={styles1.text_2}>Click the start generating button to start the policy generation process.
-                      You can also view the sample template before generating the policy by clicking the view sample option.
-                      You can also check the FAQs.
-                    </Text>
-                      <Image
+                    <Image
                       source={Image14}
-                      style={{alignSelf:"center",marginBottom:24}}
-                      resizeMode='contain'
+                      style={{alignSelf: 'center', marginBottom: 24}}
+                      resizeMode="contain"
                     />
-                    <Text
-                      style={styles1.text_1}>
+                    <Text style={styles1.text_1}>
                       3. Fill in the form details
                     </Text>
-                    <Text style={styles1.text_2}>Start filling in the form details of the provided questions. These questions are provided on the basis of the policy that is to be generated.</Text>
+                    <Text style={styles1.text_2}>
+                      Start filling in the form details of the provided
+                      questions. These questions are provided on the basis of
+                      the policy that is to be generated.
+                    </Text>
                     <Image
                       source={Image15}
-                      style={{alignSelf:"center",marginBottom:24}}
-                      resizeMode='contain'
+                      style={{alignSelf: 'center', marginBottom: 24}}
+                      resizeMode="contain"
                     />
-                    <Text
-                      style={styles1.text_1}>
-                     4. Finish Up
-                    </Text>
+                    <Text style={styles1.text_1}>4. Finish Up</Text>
                     <Text style={styles1.text_2}>
-                      After filling up the details you need to buy a subscription plan to view and download the generated policy.
-                      You can select the plan and go through the payment process.
-                      After buying the subscription you are eligible to view or download the generated policy. You can also provide your email for receiving the policy.
+                      After filling up the details you need to buy a
+                      subscription plan to view and download the generated
+                      policy. You can select the plan and go through the payment
+                      process. After buying the subscription you are eligible to
+                      view or download the generated policy. You can also
+                      provide your email for receiving the policy.
                     </Text>
                     <Image
                       source={Image16}
-                      style={{alignSelf:"center",marginBottom:24}}
-                      resizeMode='contain'
+                      style={{alignSelf: 'center', marginBottom: 24}}
+                      resizeMode="contain"
                     />
                     <Image
                       source={Image17}
-                      style={{alignSelf:"center",marginBottom:24}}
-                      resizeMode='contain'
+                      style={{alignSelf: 'center', marginBottom: 24}}
+                      resizeMode="contain"
                     />
 
                     <View
@@ -271,13 +273,21 @@ const AgreementComplience = ({navigation}) => {
                         backgroundColor: 'gray',
                         marginVertical: 30,
                       }}></View>
-                      <Text style={styles1.text_3}>OR</Text>
-                      <Text style={styles1.text_1}>You can also check are video tutorial for how to generate agreement</Text>
-                      <View style={{marginBottom:30}}></View>
+                    <Text style={styles1.text_3}>OR</Text>
+                    <Text style={styles1.text_1}>
+                      You can also check are video tutorial for how to generate
+                      agreement
+                    </Text>
+                    <View style={{marginBottom: 30}}></View>
                     <YoutubePlayer
                       height={300}
                       play={true}
-                      videoId={'ClTSnRoiRB8'}
+                      videoId={'BswxQLx2GaI'}
+                    />
+                    <YoutubePlayer
+                      height={300}
+                      play={true}
+                      videoId={'LLoZzSS9Rmg'}
                     />
                   </View>
                 </View>
@@ -513,31 +523,30 @@ const AgreementComplience = ({navigation}) => {
 
 export default AgreementComplience;
 const styles1 = StyleSheet.create({
- text_1:{
-  color: '#000000',
-  fontSize: 20,
-  fontWeight: "600",
-  textAlign: "center"
- },
- text_2:{
-  color: '#000000',
-  fontSize: 18,
-  fontWeight: "400",
-  marginVertical:24
- },
- text_2_center:{
-  color: '#000000',
-  fontSize: 18,
-  fontWeight: "400",
-  marginVertical:24,
-  textAlign:"center"
- },
- text_3:{
-  color: '#000000',
-  fontSize: 20,
-  fontWeight: "400",
-  textAlign: "center",
-  marginBottom:24
- }
+  text_1: {
+    color: '#000000',
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  text_2: {
+    color: '#000000',
+    fontSize: 18,
+    fontWeight: '400',
+    marginVertical: 24,
+  },
+  text_2_center: {
+    color: '#000000',
+    fontSize: 18,
+    fontWeight: '400',
+    marginVertical: 24,
+    textAlign: 'center',
+  },
+  text_3: {
+    color: '#000000',
+    fontSize: 20,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
 });
-
