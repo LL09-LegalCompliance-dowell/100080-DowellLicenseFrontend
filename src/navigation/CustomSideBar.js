@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
@@ -9,7 +9,7 @@ import {
   Image,
   Modal,
   Alert,
-  Pressable
+  Pressable,
 } from 'react-native';
 import colors from '../../assets/colors/colors';
 
@@ -27,16 +27,16 @@ const CustomSideBar = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const logout = () => {
     setModalVisible(true);
-  }
+  };
   const exitModal = () => {
     setModalVisible(false);
-    navigation.navigate("Home")
-  }
-  const confirmLogout = async() => {
+    navigation.navigate('Home');
+  };
+  const confirmLogout = async () => {
     AsyncStorage.clear();
-    navigation.navigate("AuthNavigator")
-    Alert.alert("Logged out successfully!")
-  }
+    navigation.navigate('AuthNavigator');
+    Alert.alert('Logged out successfully!');
+  };
   return (
     <ScrollView
       style={styles.container}
@@ -48,23 +48,24 @@ const CustomSideBar = ({navigation}) => {
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Are you sure you want to Log out?</Text>
-            <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={exitModal}>
-                <Text style={styles.textStyle}>No</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={confirmLogout}
-                >
-                <Text style={styles.textStyle}>Yes</Text>
-              </Pressable>
-            </View>
-          </View>            
-      </Modal> 
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>
+            Are you sure you want to Log out?
+          </Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={exitModal}>
+              <Text style={styles.textStyle}>No</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={confirmLogout}>
+              <Text style={styles.textStyle}>Yes</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <View style={styles.topSection}>
         <Image
           style={{height: 90, width: 90, resizeMode: 'contain'}}
@@ -83,15 +84,17 @@ const CustomSideBar = ({navigation}) => {
           <Text style={styles.title}>Home</Text>
         </TouchableOpacity>
 
+        
+
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('SliderScreen');
           }}
           style={styles.item}>
           <View style={styles.iconContainer}>
-            <Image style={styles.icon} source={ICON4} />
+            <Image style={styles.icon} source={ICON6} />
           </View>
-          <Text style={styles.title}>License compatibility</Text>
+          <Text style={styles.title}>Open Source License Compatibility</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -107,13 +110,13 @@ const CustomSideBar = ({navigation}) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('LicenseCompatibility');
+            navigation.navigate('Agreement Compliance');
           }}
           style={styles.item}>
           <View style={styles.iconContainer}>
-            <Image style={styles.icon} source={ICON6} />
+            <Image style={styles.icon} source={ICON4} />
           </View>
-          <Text style={styles.title}>Open Source License Compatibility</Text>
+          <Text style={styles.title}>Agreement Compliance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -138,9 +141,7 @@ const CustomSideBar = ({navigation}) => {
           <Text style={styles.title}>Contact Us</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={logout}
-        style={styles.logoutButton}>
+      <TouchableOpacity onPress={logout} style={styles.logoutButton}>
         <View style={styles.iconContainer}>
           <Image style={[styles.icon, styles.logoutIcon]} source={ICON9} />
         </View>
@@ -235,8 +236,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
-    color: "#000"
-  }
+    color: '#000',
+  },
 });
 
 export default CustomSideBar;

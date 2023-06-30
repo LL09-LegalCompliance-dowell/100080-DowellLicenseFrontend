@@ -199,14 +199,14 @@ const software_license_handler=(state)=>{
               <View>
                 {messages_api.map((item, index) => {
                   return item.read === true ? (
-                    <View style={{display: 'flex', flexDirection: 'row'}}>
+                    <View key={index} style={{display: 'flex', flexDirection: 'row'}}>
                       <MaterialCommunityIcons
                         name="android"
                         size={25}
                         backgroundColor="#078F04"
                         color="#078F04"
                       />
-                      <View>
+                      <View  style={{width:"90%"}}>
                       <Message
                         key={index}
                         Message={item.message}
@@ -228,7 +228,7 @@ const software_license_handler=(state)=>{
                     backgroundColor="#078F04"
                     color="#078F04"
                   />
-                  <View>
+                  <View  style={{width:"90%"}}>
                     <Message
                       Message="Hi, we 're here to help you."
                       customer_app="app"
@@ -248,8 +248,11 @@ const software_license_handler=(state)=>{
                       backgroundColor="#078F04"
                       color="#078F04"
                     />
-                    <View>
-                      <Message Message="Select your query." customer_app ="app"/>
+                    <View  style={{width:"90%"}}>
+                      <Message
+                        Message="Select your query."
+                        customer_app="app"
+                      />
                     </View>
                   </View>
                 )}
@@ -269,7 +272,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -311,67 +314,139 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
-                          <Message Message="License Compatibility is a compatibility test between two licenses." customer_app ="app"/>
-                          <Message Message="It gives you a test result where it shows whether you can use those two compared licenses in your application." customer_app ="app"/>
+                        <View style={{width:"90%"}}>
+                          <Message
+                            Message="License Compatibility is a compatibility test between two licenses."
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="It gives you a test result where it shows whether you can use those two compared licenses in your application."
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="How to check the compatibility of two licenses?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="You can find a tutorial on how to check compatibility on the compatibility test page" customer_app ="app"/>
-                          <Message Message="We have described it in step by step manner" customer_app ="app"/>
+                    {license_compatibility ===
+                      'How to check the compatibility of two licenses?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="You can find a tutorial on how to check compatibility on the compatibility test page"
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="We have described it in step by step manner"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="What is recommendation percentage?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Recommendation percentage is a approximate number of how much compatible are those licenses" customer_app ="app"/>
-                          <Message Message="Also it checks whether you can use them in your application" customer_app ="app"/>
+                    {license_compatibility ===
+                      'What is recommendation percentage?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="Recommendation percentage is a approximate number of how much compatible are those licenses"
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="Also it checks whether you can use them in your application"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="How much accurate is recommendation percentage?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc." customer_app ="app"/>
-                          <Message Message="So considering these factors recommendation percentage is pretty accurate" customer_app ="app"/>
+                    {license_compatibility ===
+                      'How much accurate is recommendation percentage?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc."
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="So considering these factors recommendation percentage is pretty accurate"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="Do I need to pay to check license compatibility?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="No, license compatibility is totally free to use. You do not need to pay anything" customer_app ="app"/>
+                    {license_compatibility ===
+                      'Do I need to pay to check license compatibility?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="No, license compatibility is totally free to use. You do not need to pay anything"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="Would I be able to know why licenses are compatible or not?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Full in depth comparison is provided after the results from the check are displayed" customer_app ="app"/>
-                          <Message Message="Click on “read more” below the result to find out" customer_app ="app"/>
+                    {license_compatibility ===
+                      'Would I be able to know why licenses are compatible or not?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="Full in depth comparison is provided after the results from the check are displayed"
+                            customer_app="app"
+                          />
+                          <Message
+                            Message="Click on “read more” below the result to find out"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
 
-                    {license_compatibility==="Can I use this Legalzard for my organization or company?" && (
-                      <View style={{display:"flex",flexDirection:"row"}}>
-                        <MaterialCommunityIcons name="android" size={25} backgroundColor="#078F04" color="#078F04" />
-                        <View>
-                          <Message Message="Yes. You can set up a personal account or an account for your organization" customer_app ="app"/>
+                    {license_compatibility ===
+                      'Can I use this Legalzard for my organization or company?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="Yes. You can set up a personal account or an account for your organization"
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
@@ -385,7 +460,7 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -410,7 +485,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -436,7 +511,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="First step is select the policy you want to generate then click on start generating button"
                             customer_app="app"
@@ -457,7 +532,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                           <Message
                             Message="Yes agreement compliance policy is same for all websites and apps"
                             customer_app="app"
@@ -474,7 +549,7 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -499,7 +574,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
+                        <View  style={{width:"90%"}}>
                         <Message
                           Message="Identify your query from these options."
                           customer_app="app"
@@ -524,8 +599,11 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View>
-                          <Message Message="A software license is a document that provides legally binding guidelines for the use and distribution of software." customer_app ="app"/>
+                        <View  style={{width:"90%"}}>
+                          <Message
+                            Message="A software license is a document that provides legally binding guidelines for the use and distribution of software."
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
@@ -539,7 +617,7 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                           <Message
                             Message="Do you need more questions? "
                             customer_app="app"
@@ -574,7 +652,7 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View>
+                          <View  style={{width:"90%"}}>
                             <Message
                               Message="We have received your message, Our customer support team will respond to you within next 24 hours"
                               customer_app="app"

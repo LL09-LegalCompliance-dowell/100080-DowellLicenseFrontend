@@ -1,5 +1,9 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../../assets/colors/colors';
+const {width, height} = Dimensions.get('window');
+const aspectRatio = height / width;
+
+const isTablet = aspectRatio < 1.6;
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
+    paddingBottom: isTablet ? 310 : 0,
   },
 
   heading: {

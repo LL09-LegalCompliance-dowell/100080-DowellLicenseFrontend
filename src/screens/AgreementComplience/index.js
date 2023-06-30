@@ -282,9 +282,12 @@ const AgreementComplience = ({navigation}) => {
                     <YoutubePlayer
                       height={300}
                       play={true}
-                      videoId={'ClTSnRoiRB8'}
-                      // webViewStyle={{alignSelf: 'stretch', height:"100%", backgroundColor:"red"}}
-                      // aspectRatio={4 / 3}
+                      videoId={'BswxQLx2GaI'}
+                    />
+                    <YoutubePlayer
+                      height={300}
+                      play={true}
+                      videoId={'LLoZzSS9Rmg'}
                     />
                   </View>
                 </View>
