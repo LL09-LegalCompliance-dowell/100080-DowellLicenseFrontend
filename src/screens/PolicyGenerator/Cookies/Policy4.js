@@ -70,10 +70,10 @@ const Policy4 = ({object}) => {
           directory: 'Documents',
         };
         let file = await RNHTMLtoPDF.convert(options);
-        Alert.alert('PDF saved to the following location:', filePath);
+        Alert.alert('PDF saved to the following location:', file.filePath);
       }
       if (Platform.OS === 'android') {
-        let filePath = `${RNFS.ExternalDirectoryPath}/${policyName}.pdf`;
+        let filePath = `${RNFS.DownloadDirectoryPath}/${policyName}.pdf`;
         await RNFS.writeFile(filePath, res.data);
         Alert.alert('PDF saved to following location', filePath);
       }
