@@ -13,16 +13,15 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState, useEffect} from 'react';
-import {email_validation} from '../validations';
 import {post_agreement_compliance} from '../Api';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import AppLoader from '../../../components/AppLoader';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const Policy4 = ({object}) => {
   const [loading, setLoading] = useState(false);
@@ -39,23 +38,6 @@ const Policy4 = ({object}) => {
 
   const fetchData = async () => {
     setLoading(true);
-    //   try {
-    //     console.log(object);
-    //     const result = await post_agreement_compliance(object);
-    //     if (result) {
-    //       console.log('result', result);
-    //       setHtml_link(result.data[0].agreement.html_doc_url);
-    //       console.log(result.data[0].agreement.html_doc_url);
-    //       setPolicyName(result.data[0].agreement.agreement_compliance_type);
-    //       setFlag(result.data[0].agreement.html_doc_url);
-    //     }
-    //     setLoading(false);
-    //   } catch (error) {
-    //     //  console.error(error);
-    //     setLoading(false);
-    //     console.error(error);
-    //   }
-    // };
     try {
       console.log(object);
       const result = await post_agreement_compliance(object);
@@ -195,9 +177,23 @@ const Policy4 = ({object}) => {
                   let options = {
                     html: res.data,
                     fileName: policyName,
-                    directory: 'Documents',
+                    directory: 'Downloads',
+                    base64: true,
                   };
                   let file = await RNHTMLtoPDF.convert(options);
+                  let filePath =
+                    RNFetchBlob.fs.dirs.DownloadDir + `/${policyName}`;
+                  console.log(RNFetchBlob.fs.dirs.DownloadDir);
+
+                  RNFetchBlob.fs
+                    .writeFile(filePath, file.base64, 'base64')
+                    .then(response => {
+                      console.log('Success log', response );
+                    })
+                    .catch(error => {
+                      console.log('Error log', error);
+                    });
+
                   setLoading(false);
                   Alert.alert('PDF saved to following location', file.filePath);
                 } catch (error) {
