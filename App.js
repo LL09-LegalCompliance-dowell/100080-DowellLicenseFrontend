@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import {useColorScheme} from 'react-native';
-import { NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import Navigation from './src/navigation/index';
 
 const App = () => {

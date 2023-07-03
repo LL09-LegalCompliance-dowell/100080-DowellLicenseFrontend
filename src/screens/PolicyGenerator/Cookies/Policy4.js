@@ -1,3 +1,4 @@
+// export default Policy4;
 import React from 'react';
 import styles from './style';
 import colors from '../../../../assets/colors/colors';
@@ -13,15 +14,17 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState, useEffect} from 'react';
+import {email_validation} from '../validations';
 import {post_agreement_compliance} from '../Api';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import AppLoader from '../../../components/AppLoader';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
 
 const Policy4 = ({object}) => {
   const [loading, setLoading] = useState(false);
@@ -39,12 +42,9 @@ const Policy4 = ({object}) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      console.log(object);
       const result = await post_agreement_compliance(object);
-      console.log(`result ${Platform.OS}`, result);
       if (result.data.length > 0) {
         setHtml_link(result.data[0].agreement.html_doc_url);
-        console.log(result.data[0].agreement.html_doc_url);
         setPolicyName(result.data[0].agreement.agreement_compliance_type);
         setFlag(result.data[0].agreement.html_doc_url);
       }
@@ -60,51 +60,40 @@ const Policy4 = ({object}) => {
     fetchData();
   }, []);
 
+  const downloadPolicy = async () => {
+    try {
+      let res = await axios.get(html_link);
+      if (Platform.OS === 'ios') {
+        let options = {
+          html: res.data,
+          fileName: policyName,
+          directory: 'Documents',
+        };
+        let file = await RNHTMLtoPDF.convert(options);
+        Alert.alert('PDF saved to the following location:', filePath);
+      }
+      if (Platform.OS === 'android') {
+        let filePath = `${RNFS.ExternalDirectoryPath}/${policyName}.pdf`;
+        await RNFS.writeFile(filePath, res.data);
+        Alert.alert('PDF saved to following location', filePath);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+  };
+
   return (
     <KeyboardAwareScrollView style={{flex: 1}}>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         {loading ? <AppLoader /> : null}
-        {/* <Text
-        style={{
-          color: colors.textDark,
-          fontSize: 20,
-          fontWeight: '400',
-          marginTop: 20,
-        }}>
-        Finish Up:
-      </Text> */}
         <View style={{paddingHorizontal: 11, paddingTop: 16}}>
-          {/* <Text style={{color: colors.textDark, fontSize: 18, fontWeight: '400'}}>
-          Enter Your Email address to receive the policy:
-        </Text>
-        <TextInput
-          style={styles.input}
-          value={list[0]}
-          placeholder="Eg. johndoe@mail.com"
-          placeholderTextColor="gray"
-          onChangeText={value => {
-            if (value === '') {
-              setValid_email(true);
-            } else {
-              email_validation(value)
-                ? setValid_email(true)
-                : setValid_email(false);
-            }
-            list[1](value);
-          }}
-        />
-        <Text style={valid_email ? styles.hide : styles.text_warning}>
-          Please Enter valid email
-        </Text>
-        <Text style={{color: '#585858', fontSize: 18, fontWeight: '300'}}>
-          You will receive the policy to the entered email.
-        </Text> */}
           <View style={{alignItems: 'center', marginVertical: 30}}>
             <Image
               source={require('../../../../assets/images/TheLittleThingsWorking.png')}
               style={styles.blurImage}
             />
-
             {flag === '' ? null : (
               <>
                 <Text
@@ -130,11 +119,9 @@ const Policy4 = ({object}) => {
                     marginBottom: 30,
                     marginTop: 10,
                     alignItems: 'center',
-                    // alignSelf: 'center',
                   }}>
                   <Text
                     numberOfLines={1}
-                    // style={{marginHorizontal: 10, color: 'gray'}}>
                     style={{
                       flex: 1,
                       marginLeft: 10,
@@ -145,10 +132,6 @@ const Policy4 = ({object}) => {
                   </Text>
                   <TouchableOpacity
                     style={{
-                      // borderLeftColor: '585858',
-                      // borderLeftWidth: 0.9,
-                      // padding: 6,
-                      // alignSelf: 'center',
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginHorizontal: Platform.OS === 'ios' ? 3 : 15,
@@ -168,39 +151,7 @@ const Policy4 = ({object}) => {
                 </View>
               </>
             )}
-
-            <TouchableOpacity
-              onPress={async () => {
-                setLoading(true);
-                try {
-                  let res = await axios.get(html_link);
-                  let options = {
-                    html: res.data,
-                    fileName: policyName,
-                    directory: 'Downloads',
-                    base64: true,
-                  };
-                  let file = await RNHTMLtoPDF.convert(options);
-                  let filePath =
-                    RNFetchBlob.fs.dirs.DownloadDir + `/${policyName}`;
-                  console.log(RNFetchBlob.fs.dirs.DownloadDir);
-
-                  RNFetchBlob.fs
-                    .writeFile(filePath, file.base64, 'base64')
-                    .then(response => {
-                      console.log('Success log', response );
-                    })
-                    .catch(error => {
-                      console.log('Error log', error);
-                    });
-
-                  setLoading(false);
-                  Alert.alert('PDF saved to following location', file.filePath);
-                } catch (error) {
-                  console.error(error);
-                }
-              }}
-              style={styles.button_p4}>
+            <TouchableOpacity onPress={downloadPolicy} style={styles.button_p4}>
               <AntDesign name="download" size={24} color={colors.primary} />
               <Text style={styles.text_b_p4}>Download Policy</Text>
             </TouchableOpacity>

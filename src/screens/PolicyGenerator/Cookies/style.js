@@ -1,7 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {color} from 'react-native-reanimated';
 import colors from '../../../../assets/colors/colors';
 const w = '70%';
+const {width, height} = Dimensions.get('window');
+const aspectRatio = height / width;
+const isTablet = aspectRatio < 1.8;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,6 +17,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     paddingTop: 80,
+    paddingBottom: isTablet ? 460 : 0,
     marginVertical: Platform.OS === 'ios' ? 26 : 0,
   },
   text: {

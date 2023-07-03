@@ -33,6 +33,7 @@
     "react-native-dropdown-autocomplete-textinput": "^1.0.1",
     "react-native-dropdown-menu": "^2.0.0",
     "react-native-dropdown-select-list": "^2.0.4",
+    "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-heroicons": "^3.2.0",
     "react-native-html-to-pdf": "^0.12.0",
