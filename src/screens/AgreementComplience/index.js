@@ -289,6 +289,7 @@ const AgreementComplience = ({navigation}) => {
                       play={true}
                       videoId={'LLoZzSS9Rmg'}
                     />
+                    
                   </View>
                 </View>
               </ScrollView>

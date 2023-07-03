@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Alert,
   Platform,
+  PermissionsAndroid,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState, useEffect} from 'react';
@@ -73,9 +74,24 @@ const Policy4 = ({object}) => {
         Alert.alert('PDF saved to the following location:', file.filePath);
       }
       if (Platform.OS === 'android') {
-        let filePath = `${RNFS.DownloadDirectoryPath}/${policyName}.pdf`;
-        await RNFS.writeFile(filePath, res.data);
-        Alert.alert('PDF saved to following location', filePath);
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'File Access Permission',
+            message: 'Your app needs permission.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          let filePath = `${RNFS.DownloadDirectoryPath}/${policyName}.pdf`;
+          await RNFS.writeFile(filePath, res.data);
+          Alert.alert('PDF saved to following location', filePath);
+        } else {
+          console.log('Camera permission denied');
+          return false;
+        }
       }
       setLoading(false);
     } catch (error) {
