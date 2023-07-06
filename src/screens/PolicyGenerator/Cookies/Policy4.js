@@ -60,21 +60,17 @@ const Policy4 = ({object}) => {
   const downloadPolicy = async () => {
     setLoading(true);
     try {
-      let filePath = '';
-
       if (Platform.OS === 'ios') {
         let res = await axios.get(html_link);
 
         let options = {
           html: res.data,
-          fileName: 'Policy',
+          fileName: policyName,
           directory: 'Documents',
         };
 
         let file = await RNHTMLtoPDF.convert(options);
-        // console.log(file.filePath);
         setLoading(false);
-        // alert(file.filePath);
         Alert.alert('PDF saved to following location', file.filePath);
       } else if (Platform.OS === 'android') {
         const granted = await PermissionsAndroid.request(
@@ -89,41 +85,39 @@ const Policy4 = ({object}) => {
         );
 
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          const {DownloadDir} = RNFetchBlob.fs.dirs;
-          filePath = `${DownloadDir}/${policyName}.pdf`;
-          const config = {
-            fileCache: true,
-            appendExt: 'pdf',
-            addAndroidDownloads: {
-              useDownloadManager: true,
-              notification: true,
-              title: policyName,
-              description: 'File downloaded by download manager.',
-              mime: 'application/pdf',
-              path: filePath,
-              mediaScannable: true,
-            },
-          };
-          await RNFetchBlob.config(config)
-            .fetch('GET', html_link)
-            .then(res => {
-              console.log('File downloaded:', res.path());
-            })
-            .catch(error => {
-              console.error('Error downloading file:', error);
-            });
-          setLoading(false);
-          console.log('File downloaded:', filePath);
-          Alert.alert(
-            'File Downloaded',
-            `The file has been saved to: ${filePath}`,
+          let fileNumber = 0;
+          let fileName = policyName;
+          let destinationDirectory = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
+
+          while (await RNFS.exists(destinationDirectory)) {
+            fileNumber += 1;
+            fileName = `${policyName}_${fileNumber}`;
+            destinationDirectory = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
+          }
+          let res = await axios.get(html_link);
+          const isDirectoryExists = await RNFetchBlob.fs.exists(
+            destinationDirectory,
           );
+          if (!isDirectoryExists) {
+            await RNFetchBlob.fs.mkdir(destinationDirectory);
+          }
+          let options = {
+            html: res.data,
+            fileName: 'Policy',
+            directory: 'Documents',
+          };
+
+          let file = await RNHTMLtoPDF.convert(options);
+          await RNFS.moveFile(file.filePath, destinationDirectory);
+          setLoading(false);
+          Alert.alert('PDF saved to following location', destinationDirectory);
         } else {
           Alert.alert(
             'Permission Denied',
             'Storage permission is required to download the file.',
           );
           console.log('File downloaded:', filePath);
+          setLoading(false);
           return;
         }
       }
