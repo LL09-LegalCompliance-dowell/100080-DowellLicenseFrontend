@@ -63,8 +63,19 @@ const Policy4 = ({object}) => {
       let filePath = '';
 
       if (Platform.OS === 'ios') {
-        const {path} = await RNFetchBlob.fs.dirs.DocumentDir;
-        filePath = `${path}/${policyName}.pdf`;
+        let res = await axios.get(html_link);
+
+        let options = {
+          html: res.data,
+          fileName: 'Policy',
+          directory: 'Documents',
+        };
+
+        let file = await RNHTMLtoPDF.convert(options);
+        // console.log(file.filePath);
+        setLoading(false);
+        // alert(file.filePath);
+        Alert.alert('PDF saved to following location', file.filePath);
       } else if (Platform.OS === 'android') {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
