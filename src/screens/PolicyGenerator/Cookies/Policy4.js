@@ -108,7 +108,7 @@ const Policy4 = ({object}) => {
           };
 
           let file = await RNHTMLtoPDF.convert(options);
-          await RNFS.moveFile(file.filePath, destinationDirectory);
+          await RNFS.copyFile(file.filePath, destinationDirectory);
           setLoading(false);
           Alert.alert('PDF saved to following location', destinationDirectory);
         } else {
