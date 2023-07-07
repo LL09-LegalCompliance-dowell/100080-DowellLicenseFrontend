@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Alert,
   Platform,
+  PermissionsAndroid,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useState, useEffect} from 'react';
@@ -25,6 +26,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import RNFS from 'react-native-fs';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const Policy4 = ({object}) => {
   const [loading, setLoading] = useState(false);
@@ -55,34 +57,75 @@ const Policy4 = ({object}) => {
       throw new Error('Failed to fetch agreement compliance');
     }
   };
+  const downloadPolicy = async () => {
+    setLoading(true);
+    try {
+      let filePath = '';
+
+      if (Platform.OS === 'ios') {
+        const {path} = await RNFetchBlob.fs.dirs.DocumentDir;
+        filePath = `${path}/${policyName}.pdf`;
+      } else if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission',
+            message: 'App needs access to your storage to download the file.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          const {DownloadDir} = RNFetchBlob.fs.dirs;
+          filePath = `${DownloadDir}/${policyName}.pdf`;
+          const config = {
+            fileCache: true,
+            appendExt: 'pdf',
+            addAndroidDownloads: {
+              useDownloadManager: true,
+              notification: true,
+              title: policyName,
+              description: 'File downloaded by download manager.',
+              mime: 'application/pdf',
+              path: filePath,
+              mediaScannable: true,
+            },
+          };
+          await RNFetchBlob.config(config)
+            .fetch('GET', html_link)
+            .then(res => {
+              console.log('File downloaded:', res.path());
+            })
+            .catch(error => {
+              console.error('Error downloading file:', error);
+            });
+          setLoading(false);
+          console.log('File downloaded:', filePath);
+          Alert.alert(
+            'File Downloaded',
+            `The file has been saved to: ${filePath}`,
+          );
+        } else {
+          Alert.alert(
+            'Permission Denied',
+            'Storage permission is required to download the file.',
+          );
+          console.log('File downloaded:', filePath);
+          return;
+        }
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      Alert.alert('Download Error');
+    }
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  const downloadPolicy = async () => {
-    try {
-      let res = await axios.get(html_link);
-      if (Platform.OS === 'ios') {
-        let options = {
-          html: res.data,
-          fileName: policyName,
-          directory: 'Documents',
-        };
-        let file = await RNHTMLtoPDF.convert(options);
-        Alert.alert('PDF saved to the following location:', filePath);
-      }
-      if (Platform.OS === 'android') {
-        let filePath = `${RNFS.ExternalDirectoryPath}/${policyName}.pdf`;
-        await RNFS.writeFile(filePath, res.data);
-        Alert.alert('PDF saved to following location', file.filePath);
-      }
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-    }
-  };
 
   return (
     <KeyboardAwareScrollView style={{flex: 1}}>
