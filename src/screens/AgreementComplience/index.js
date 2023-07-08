@@ -282,13 +282,9 @@ const AgreementComplience = ({navigation}) => {
                     <YoutubePlayer
                       height={300}
                       play={true}
-                      videoId={'BswxQLx2GaI'}
+                      videoId={'FmmBs76ZjJw'}
                     />
-                    <YoutubePlayer
-                      height={300}
-                      play={true}
-                      videoId={'LLoZzSS9Rmg'}
-                    />
+                    
                   </View>
                 </View>
               </ScrollView>
