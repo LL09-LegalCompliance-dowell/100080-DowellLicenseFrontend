@@ -26,7 +26,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import RNFS from 'react-native-fs';
-import RNFetchBlob from 'rn-fetch-blob';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 const Policy4 = ({object}) => {
   const [loading, setLoading] = useState(false);
@@ -57,110 +57,139 @@ const Policy4 = ({object}) => {
       throw new Error('Failed to fetch agreement compliance');
     }
   };
-  // const downloadPolicy = async () => {
-  //   setLoading(true);
-  //   try {
-  //     if (Platform.OS === 'ios') {
-  //       let res = await axios.get(html_link);
-
-  //       let options = {
-  //         html: res.data,
-  //         fileName: policyName,
-  //         directory: 'Documents',
-  //       };
-
-  //       let file = await RNHTMLtoPDF.convert(options);
-  //       setLoading(false);
-  //       Alert.alert('PDF saved to following location', file.filePath);
-  //     } else if (Platform.OS === 'android') {
-  //       const granted = await PermissionsAndroid.request(
-  //         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-  //         {
-  //           title: 'Storage Permission',
-  //           message: 'App needs access to your storage to download the file.',
-  //           buttonNeutral: 'Ask Me Later',
-  //           buttonNegative: 'Cancel',
-  //           buttonPositive: 'OK',
-  //         },
-  //       );
-
-  //       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //         let fileNumber = 0;
-  //         let fileName = policyName;
-  //         let destinationDirectory = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
-
-  //         while (await RNFS.exists(destinationDirectory)) {
-  //           fileNumber += 1;
-  //           fileName = `${policyName}_${fileNumber}`;
-  //           destinationDirectory = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
-  //         }
-  //         let res = await axios.get(html_link);
-  //         const isDirectoryExists = await RNFetchBlob.fs.exists(
-  //           destinationDirectory,
-  //         );
-  //         if (!isDirectoryExists) {
-  //           await RNFetchBlob.fs.mkdir(destinationDirectory);
-  //         }
-  //         let options = {
-  //           html: res.data,
-  //           fileName: 'Policy',
-  //           directory: 'Documents',
-  //         };
-
-  //         let file = await RNHTMLtoPDF.convert(options);
-  //         await RNFS.copyFile(file.filePath, destinationDirectory);
-  //         setLoading(false);
-  //         Alert.alert('PDF saved to following location', destinationDirectory);
-  //       } else {
-  //         Alert.alert(
-  //           'Permission Denied',
-  //           'Storage permission is required to download the file.',
-  //         );
-  //         console.log('File downloaded:', filePath);
-  //         setLoading(false);
-  //         return;
-  //       }
-  //     }
-  //   } catch (error) {
-  //     setLoading(false);
-  //     console.error(error);
-  //     Alert.alert('Download Error');
-  //   }
-  // };
   const downloadPolicy = async () => {
     setLoading(true);
     try {
-      let fileNumber = 0;
-      let fileName = policyName;
-      let destinationFile = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
+      if (Platform.OS === 'ios') {
+        let res = await axios.get(html_link);
 
-      while (await RNFS.exists(destinationFile)) {
-        fileNumber += 1;
-        fileName = `${policyName}_${fileNumber}`;
-        destinationFile = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
+        let options = {
+          html: res.data,
+          fileName: policyName,
+          directory: 'Documents',
+        };
+
+        let file = await RNHTMLtoPDF.convert(options);
+        setLoading(false);
+        Alert.alert('PDF saved to following location', file.filePath);
+      } else if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission',
+            message: 'App needs access to your storage to download the file.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          let fileNumber = 0;
+          let fileName = policyName;
+          let destinationFile = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+
+          while (await RNFS.exists(destinationFile)) {
+            fileNumber += 1;
+            fileName = `${policyName}_${fileNumber}`;
+            destinationFile = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+          }
+
+          let res = await axios.get(html_link);
+
+          let options = {
+            html: res.data,
+            fileName: fileName,
+            directory: ReactNativeBlobUtil.fs.dirs.DownloadDir,
+          };
+
+          let file = await RNHTMLtoPDF.convert(options);
+
+          let destinationFilePath = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+          await RNFS.copyFile(file.filePath, destinationFilePath);
+
+          setLoading(false);
+          Alert.alert(
+            'PDF saved to the following location',
+            destinationFilePath,
+          );
+
+          // let fileNumber = 0;
+          // let fileName = policyName;
+          // let destinationDirectory = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+
+          // while (await RNFS.exists(destinationDirectory)) {
+          //   fileNumber += 1;
+          //   fileName = `${policyName}_${fileNumber}`;
+          //   destinationDirectory = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+          // }
+          // let res = await axios.get(html_link);
+          // const isDirectoryExists = await ReactNativeBlobUtil.fs.exists(
+          //   destinationDirectory,
+          // );
+          // if (!isDirectoryExists) {
+          //   await ReactNativeBlobUtil.fs.mkdir(destinationDirectory);
+          // }
+          // let options = {
+          //   html: res.data,
+          //   fileName: 'Policy',
+          //   directory: 'Documents',
+          // };
+
+          // let file = await RNHTMLtoPDF.convert(options);
+          // await RNFS.copyFile(file.filePath, destinationDirectory);
+          // setLoading(false);
+          // Alert.alert('PDF saved to following location', destinationDirectory);
+        } else {
+          Alert.alert(
+            'Permission Denied',
+            'Storage permission is required to download the file.',
+          );
+          console.log('File downloaded:', filePath);
+          setLoading(false);
+          return;
+        }
       }
-
-      let res = await axios.get(html_link);
-
-      let options = {
-        html: res.data,
-        fileName: fileName,
-        directory: RNFetchBlob.fs.dirs.DownloadDir,
-      };
-
-      let file = await RNHTMLtoPDF.convert(options);
-
-      let destinationFilePath = `${RNFetchBlob.fs.dirs.DownloadDir}/${fileName}.pdf`;
-      await RNFS.copyFile(file.filePath, destinationFilePath);
-
-      setLoading(false);
-      Alert.alert('PDF saved to the following location', destinationFilePath);
     } catch (error) {
       setLoading(false);
       console.error(error);
       Alert.alert('Download Error');
     }
   };
+  // const downloadPolicy = async () => {
+  //   setLoading(true);
+  //   try {
+  //     let fileNumber = 0;
+  //     let fileName = policyName;
+  //     let destinationFile = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+
+  //     while (await RNFS.exists(destinationFile)) {
+  //       fileNumber += 1;
+  //       fileName = `${policyName}_${fileNumber}`;
+  //       destinationFile = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+  //     }
+
+  //     let res = await axios.get(html_link);
+
+  //     let options = {
+  //       html: res.data,
+  //       fileName: fileName,
+  //       directory: ReactNativeBlobUtil.fs.dirs.DownloadDir,
+  //     };
+
+  //     let file = await RNHTMLtoPDF.convert(options);
+
+  //     let destinationFilePath = `${ReactNativeBlobUtil.fs.dirs.DownloadDir}/${fileName}.pdf`;
+  //     await RNFS.copyFile(file.filePath, destinationFilePath);
+
+  //     setLoading(false);
+  //     Alert.alert('PDF saved to the following location', destinationFilePath);
+  //   } catch (error) {
+  //     setLoading(false);
+  //     console.error(error);
+  //     Alert.alert('Download Error');
+  //   }
+  // };
   useEffect(() => {
     fetchData();
   }, []);
