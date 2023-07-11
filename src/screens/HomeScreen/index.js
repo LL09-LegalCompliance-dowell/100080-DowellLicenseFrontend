@@ -71,7 +71,7 @@ const Home = ({navigation}) => {
     <View style={styles.container}>
       {/* Header */}
       <Header leftIcon="menu" rightIcon="user" />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
         {/* Card Component */}
         <TouchableOpacity style={styles.cardContainer}>
           <Card />
