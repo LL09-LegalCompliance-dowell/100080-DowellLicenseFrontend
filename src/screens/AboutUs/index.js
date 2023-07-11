@@ -23,17 +23,17 @@ import MyTextInput from '../../components/MyTextInput';
 import AppLoader from '../../components/AppLoader';
 
 const ValidationSchema = yup.object().shape({
-  fullname: yup
-    .string()
-    .min(2, 'Name should be of 2 chars minimum')
-    .max(30, 'Maximum 30 characters')
-    .required('Name is required'),
-  email: yup.string().required('Email is required.'),
+  // fullname: yup
+  //   .string()
+  //   .min(2, 'Name should be of 2 chars minimum')
+  //   .max(30, 'Maximum 30 characters')
+  //   .required('Name is required'),
+  // email: yup.string().required('Email is required.'),
   message: yup
     .string()
-    .min(5, 'Mesaage should be of 2 chars minimum')
+    .min(1, 'Mesaage should be of 1 chars minimum')
     .max(500, 'Maximum 100 characters allowed')
-    .required('Message is required'),
+    .required(''),
 });
 
 const About = () => {
@@ -46,6 +46,7 @@ const About = () => {
     const asyncemail = await AsyncStorage.getItem('email');
     setName(asyncusername);
     setUserEmail(asyncemail);
+    console.log('userName', userName, 'userEmail', userEmail);
   };
 
   useMemo(() => getUserDeatils(), []);
@@ -56,8 +57,8 @@ const About = () => {
       console.log(values);
       const url = 'http://100080.pythonanywhere.com/api/contacts/';
       const res = await axios.post(url, {
-        full_name: values.fullname,
-        email: values.email,
+        full_name: values.fullname || userName,
+        email: values.email || userEmail,
         message: values.message,
       });
 
@@ -92,9 +93,9 @@ const About = () => {
           handleBlur,
           handleSubmit,
           values,
+          isValid,
           touched,
           errors,
-          isValid,
           isSubmitting,
         }) => {
           return (
@@ -140,7 +141,7 @@ const About = () => {
                       paddingHorizontal={17}
                       onChangeText={handleChange('fullname')}
                       onBlur={handleBlur('fullname')}
-                      value={values.fullname}
+                      value={values.fullname || userName}
                       placeholderTextColor="gray"
                       height={50}
                       style={{width: '100%'}}
@@ -156,7 +157,7 @@ const About = () => {
                       paddingHorizontal={13}
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
-                      value={values.email}
+                      value={values.email || userEmail}
                       placeholderTextColor="gray"
                       height={50}
                       style={{width: '100%'}}
@@ -170,8 +171,8 @@ const About = () => {
                       autoCorrect={false}
                       placeholder="Your message..."
                       paddingHorizontal={17}
-                      onChangeText={handleChange('message')}
-                      onBlur={handleBlur('message')}
+                      onChangeText={handleChange('message')} // <-- Update this line
+                      onBlur={handleBlur('message')} // <-- Update this line
                       value={values.message}
                       height={200}
                       multiline={true}
@@ -192,7 +193,8 @@ const About = () => {
                       onPress={() => {
                         handleSubmit();
                       }}
-                      disabled={!isValid}>
+                      disabled={!isValid}
+                    >
                       <Text style={styles.text}>Submit</Text>
                     </TouchableOpacity>
                   </View>

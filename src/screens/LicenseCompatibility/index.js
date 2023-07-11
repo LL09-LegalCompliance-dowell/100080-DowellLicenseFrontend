@@ -643,7 +643,7 @@ const LicenseCompatibility = ({navigation}) => {
                   <YoutubePlayer
                     height={300}
                     play={true}
-                    videoId={'fFoWepg85qc'}
+                    videoId={'txXEPQ_Dgdk'}
                   />
                 </View>
               </ScrollView>

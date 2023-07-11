@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
-    // height:"100%",
+    height:"100%",
     paddingTop: 50,
     alignSelf: 'center',
     flexGrow: 1,
