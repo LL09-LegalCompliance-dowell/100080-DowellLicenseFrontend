@@ -279,20 +279,16 @@ const AgreementComplience = ({navigation}) => {
                       agreement
                     </Text>
                     <View style={{marginBottom: 30}}></View>
-                 
-                      <YoutubePlayer
-                        height={300}
-                
-                        play={true}
-                        videoId={'ClTSnRoiRB8'}
-                        // webViewStyle={{
-                        //   alignSelf: 'stretch',
-                        //   height: 50,
-                        //   ,
-                        // }}
-                        // aspectRatio={4 / 3}
-                      />
-                    
+                    <YoutubePlayer
+                      height={300}
+                      play={true}
+                      videoId={'BswxQLx2GaI'}
+                    />
+                    <YoutubePlayer
+                      height={300}
+                      play={true}
+                      videoId={'LLoZzSS9Rmg'}
+                    />
                   </View>
                 </View>
               </ScrollView>
