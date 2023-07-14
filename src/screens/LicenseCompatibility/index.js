@@ -112,8 +112,8 @@ const LicenseCompatibility = ({navigation}) => {
     setLoading(true);
     const id1 = await AsyncStorage.getItem('licenseEventId1');
     const id2 = await AsyncStorage.getItem('licenseEventId2');
-    console.log(id1, id2, userId, orgId);
     try {
+      console.log(id1, id2, userId, orgId);
       const LicensesCompatibilityData = await axios.post(
         'https://100080.pythonanywhere.com/api/licenses/',
         {
@@ -129,7 +129,7 @@ const LicenseCompatibility = ({navigation}) => {
         LicensesCompatibilityData?.data?.license_1?.permissions &&
         LicensesCompatibilityData?.data?.license_2?.permissions
       ) {
-        console.log('hello');
+        // console.log('hello');
         setHaveTable(true);
         setPermissions([
           {
@@ -239,7 +239,7 @@ const LicenseCompatibility = ({navigation}) => {
   const openHistory = async () => {
     refBottomSheet1.current.open();
     try {
-      console.log('started');
+      // console.log('started');
       console.log(userId, orgId);
 
       setLoading(true);

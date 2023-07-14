@@ -55,7 +55,7 @@ const About = () => {
     try {
       setLoading(true);
       console.log(values);
-      const url = 'http://100080.pythonanywhere.com/api/contacts/';
+      const url = 'https://100080.pythonanywhere.com/api/contacts/';
       const res = await axios.post(url, {
         full_name: values.fullname || userName,
         email: values.email || userEmail,
