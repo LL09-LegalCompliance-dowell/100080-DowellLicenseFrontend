@@ -171,7 +171,7 @@ const SliderItemDetails = ({route}) => {
   return (
     <>
       {loading ? <AppLoader /> : null}
-      <Header title="Full In-Depth Comparison" />
+      <Header title="Full In-Depth Comparison"/>
       <View
         style={{
           height: results === false ? '100%' : 'auto',
