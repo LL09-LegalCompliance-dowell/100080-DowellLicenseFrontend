@@ -26,15 +26,15 @@ const ApacheLicense = ({route}) => {
             </Text>
           ) : null}
           {item?.softwarelicense?.description ? (
-            <Text style={[styles.heading1, {marginHorizontal: 40}]}>
+            <Text style={{textAlign: 'justify', color: 'gray',fontWeight:"300",fontSize:14}}>
               {item?.softwarelicense?.description}
             </Text>
           ) : null}
-          {item?.softwarelicense?.short_description ? (
+          {/* {item?.softwarelicense?.short_description ? (
             <Text style={{textAlign: 'justify', color: 'gray'}}>
               {item?.softwarelicense?.short_description}
             </Text>
-          ) : null}
+          ) : null} */}
         </View>
         {/* Lower Container */}
         <View style={styles.middleContainer}>
