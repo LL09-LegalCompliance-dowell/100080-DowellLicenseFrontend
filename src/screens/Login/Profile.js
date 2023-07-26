@@ -1,11 +1,12 @@
-import {StyleSheet, Image, Text, View, StatusBar, Button} from 'react-native';
+import {StyleSheet, Image, Text, View, StatusBar, Modal,TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
 
-const Profile = () => {
+
+const Profile = ({navigation}) => {
   const [loading, setLoading] = useState();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,6 +16,38 @@ const Profile = () => {
   const [role, setRole] = useState('');
   const [profile_image, setProfileImage] = useState('');
   const [data_type, setData_type] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+  const [action, setAction] = useState('');
+
+  const pressHandler = async () => {
+    console.log(username)
+    console.log(action)
+    try {
+      const response = await fetch(
+        `https://100014.pythonanywhere.com/api/removeaccount/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({username: username, status: action}),
+        },
+      );
+      const parseResponse = await response.json();
+
+      if (!response.ok) {
+        throw new Error(parseResponse);
+      } else {
+        // no errors
+        AsyncStorage.clear();
+        navigation.navigate('AuthNavigator');
+
+        console.log(parseResponse);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getDetails = async () => {
     const username = await AsyncStorage.getItem('username');
@@ -40,8 +73,42 @@ const Profile = () => {
     getDetails();
   }, []);
   console.log(profile_image);
+  console.log(isVisible);
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isVisible}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Are you sure you want to {action} your account</Text>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => {
+                  pressHandler()
+                  setIsVisible(false);
+                }}>
+                <Text style={styles.textstyle}>Yes</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => {
+                  setIsVisible(false);
+                }}>
+                <Text style={styles.textstyle}>No</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       {loading ? <AppLoader /> : null}
       <StatusBar color="white" />
       <Header title="Account Details" />
@@ -78,6 +145,29 @@ const Profile = () => {
         <Text style={styles.label}>Data Type</Text>
         <Text style={styles.feildData}>{data_type}</Text>
         <View style={styles.separator}></View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              setAction('disable');
+              setIsVisible(true);
+            }}>
+            <Text style={styles.textstyle}>Disable</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              setAction('delete');
+              setIsVisible(true);
+            }}>
+            <Text style={styles.textstyle}>Delete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -114,7 +204,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     fontFamily: 'roboto',
     color: 'black',
-
   },
   feildData: {
     paddingLeft: 17,
@@ -129,4 +218,38 @@ const styles = StyleSheet.create({
     backgroundColor: '585858',
     height: 0.9,
   },
+  buttonContainer: {
+    backgroundColor: colors.primary,
+    height: 50,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+  },
+  textstyle: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '400',
+  },
+  modalContainer: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    width: '80%',
+  },
+  modalText:{
+    color:"black",
+    fontSize:18,
+    fontWeight:"500",
+    marginBottom:20,
+    textAlign:"center"
+  }
 });
