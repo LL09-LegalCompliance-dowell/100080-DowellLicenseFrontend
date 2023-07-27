@@ -1,5 +1,4 @@
 import {
-
   Text,
   StyleSheet,
   View,
@@ -12,17 +11,17 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import React,{useEffect,useState,useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import IoniMaterialCommunityIconscons from 'react-native-vector-icons/AntDesign';
 import AppLoader from '../../components/AppLoader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import make_room_api from './HelpApi';
-import { send_message } from './HelpApi';
+import {send_message} from './HelpApi';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Message from './HelpComponents/Message';
 import LanguageSelect from './HelpComponents/LanguageSelect';
 import Queryselect from './HelpComponents/Queryselect';
-import RBSheet from "react-native-raw-bottom-sheet";
+import RBSheet from 'react-native-raw-bottom-sheet';
 import LanguageSlider from './HelpComponents/LanguageSlider';
 const Help = ({navigation}) => {
   const refRBSheet = useRef();
@@ -46,20 +45,20 @@ const Help = ({navigation}) => {
     setquery(query);
   };
 
-const [license_compatibility,set_license_compatibility]=useState("")
-const license_compatibility_handler=(state)=>{
-  set_license_compatibility(state)
-}
+  const [license_compatibility, set_license_compatibility] = useState('');
+  const license_compatibility_handler = state => {
+    set_license_compatibility(state);
+  };
 
-const [agreement_compliance,set_agreement_compliance]=useState("")
-const agreement_compliance_handler=(state)=>{
-  set_agreement_compliance(state)
-}
+  const [agreement_compliance, set_agreement_compliance] = useState('');
+  const agreement_compliance_handler = state => {
+    set_agreement_compliance(state);
+  };
 
-const [software_license,set_software_license]=useState("")
-const software_license_handler=(state)=>{
-  set_software_license(state)
-}
+  const [software_license, set_software_license] = useState('');
+  const software_license_handler = state => {
+    set_software_license(state);
+  };
 
   const [moreq, set_moreq] = useState('');
   const moreq_handler = state => {
@@ -107,16 +106,30 @@ const software_license_handler=(state)=>{
     query,
     show_picker,
   ]);
+  function convertTo12HourFormat(timestampString) {
+    const date = new Date(timestampString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    return `${date.toLocaleDateString("en-UK", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })}  ${formattedHours}:${formattedMinutes} ${period}`;
+  }
 
   const make_room = async () => {
     try {
       setLoading(true);
       const session_id = await AsyncStorage.getItem('session_id');
-      console.log(session_id);
+      
       const result = await make_room_api(session_id);
-
-      setMessages_api(result.messages);
       console.log(result.messages);
+      setMessages_api(result.messages);
+
+      // convertTo12HourFormat(result.messages[0].timestamp);
       set_room_pk(result.room_pk);
       set_user_id(result.portfolio);
       setLoading(false);
@@ -198,26 +211,36 @@ const software_license_handler=(state)=>{
               }>
               <View>
                 {messages_api.map((item, index) => {
+                  console.log(item.timestamp)
                   return item.read === true ? (
-                    <View key={index} style={{display: 'flex', flexDirection: 'row'}}>
-                      <MaterialCommunityIcons
-                        name="android"
-                        size={25}
-                        backgroundColor="#078F04"
-                        color="#078F04"
-                      />
-                      <View  style={{width:"90%"}}>
-                      <Message
-                        key={index}
-                        Message={item.message}
-                        customer_app="app"
-                      />
+                    <View key={index}>
+                      <View
+                        
+                        style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            key={index}
+                            Message={item.message}
+                            customer_app="app"
+                          />
+                        </View>
                       </View>
+                      <Text style={{textAlign:"left"}}>{convertTo12HourFormat(item.timestamp)}</Text>
                     </View>
                   ) : (
+                    <>
                     <View key={index} style={{alignSelf: 'flex-end'}}>
                       <Message Message={item.message} customer_app="customer" />
+                      
                     </View>
+                    <Text style={{textAlign:"right"}}>{convertTo12HourFormat(item.timestamp)}</Text>
+                    </>
                   );
                 })}
 
@@ -228,7 +251,7 @@ const software_license_handler=(state)=>{
                     backgroundColor="#078F04"
                     color="#078F04"
                   />
-                  <View  style={{width:"90%"}}>
+                  <View style={{width: '90%'}}>
                     <Message
                       Message="Hi, we 're here to help you."
                       customer_app="app"
@@ -248,7 +271,7 @@ const software_license_handler=(state)=>{
                       backgroundColor="#078F04"
                       color="#078F04"
                     />
-                    <View  style={{width:"90%"}}>
+                    <View style={{width: '90%'}}>
                       <Message
                         Message="Select your query."
                         customer_app="app"
@@ -272,11 +295,11 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View style={{width:"90%"}}>
-                        <Message
-                          Message="Identify your query from these options."
-                          customer_app="app"
-                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Identify your query from these options."
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
@@ -314,7 +337,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="License Compatibility is a compatibility test between two licenses."
                             customer_app="app"
@@ -336,7 +359,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="You can find a tutorial on how to check compatibility on the compatibility test page"
                             customer_app="app"
@@ -358,7 +381,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="Recommendation percentage is a approximate number of how much compatible are those licenses"
                             customer_app="app"
@@ -380,7 +403,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc."
                             customer_app="app"
@@ -402,7 +425,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="No, license compatibility is totally free to use. You do not need to pay anything"
                             customer_app="app"
@@ -420,7 +443,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="Full in depth comparison is provided after the results from the check are displayed"
                             customer_app="app"
@@ -442,7 +465,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="Yes. You can set up a personal account or an account for your organization"
                             customer_app="app"
@@ -460,11 +483,11 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View  style={{width:"90%"}}>
-                          <Message
-                            Message="Do you need more questions? "
-                            customer_app="app"
-                          />
+                          <View style={{width: '90%'}}>
+                            <Message
+                              Message="Do you need more questions? "
+                              customer_app="app"
+                            />
                           </View>
                         </View>
                         <Queryselect
@@ -474,8 +497,8 @@ const software_license_handler=(state)=>{
                       </>
                     )}
                   </>
-                  )}
-                  {query === "Agreement Compliance" && (
+                )}
+                {query === 'Agreement Compliance' && (
                   <>
                     {(show_picker || agreement_compliance !== '') && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -485,11 +508,11 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
-                        <Message
-                          Message="Identify your query from these options."
-                          customer_app="app"
-                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Identify your query from these options."
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
@@ -511,7 +534,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="First step is select the policy you want to generate then click on start generating button"
                             customer_app="app"
@@ -532,7 +555,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="Yes agreement compliance policy is same for all websites and apps"
                             customer_app="app"
@@ -549,11 +572,11 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View  style={{width:"90%"}}>
-                          <Message
-                            Message="Do you need more questions? "
-                            customer_app="app"
-                          />
+                          <View style={{width: '90%'}}>
+                            <Message
+                              Message="Do you need more questions? "
+                              customer_app="app"
+                            />
                           </View>
                         </View>
                         <Queryselect
@@ -563,8 +586,8 @@ const software_license_handler=(state)=>{
                       </>
                     )}
                   </>
-                  )}
-                  {query === "Software License" && (
+                )}
+                {query === 'Software License' && (
                   <>
                     {(show_picker || software_license !== '') && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -574,11 +597,11 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
-                        <Message
-                          Message="Identify your query from these options."
-                          customer_app="app"
-                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Identify your query from these options."
+                            customer_app="app"
+                          />
                         </View>
                       </View>
                     )}
@@ -599,7 +622,7 @@ const software_license_handler=(state)=>{
                           backgroundColor="#078F04"
                           color="#078F04"
                         />
-                        <View  style={{width:"90%"}}>
+                        <View style={{width: '90%'}}>
                           <Message
                             Message="A software license is a document that provides legally binding guidelines for the use and distribution of software."
                             customer_app="app"
@@ -617,11 +640,11 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View  style={{width:"90%"}}>
-                          <Message
-                            Message="Do you need more questions? "
-                            customer_app="app"
-                          />
+                          <View style={{width: '90%'}}>
+                            <Message
+                              Message="Do you need more questions? "
+                              customer_app="app"
+                            />
                           </View>
                         </View>
                         <Queryselect
@@ -652,7 +675,7 @@ const software_license_handler=(state)=>{
                             backgroundColor="#078F04"
                             color="#078F04"
                           />
-                          <View  style={{width:"90%"}}>
+                          <View style={{width: '90%'}}>
                             <Message
                               Message="We have received your message, Our customer support team will respond to you within next 24 hours"
                               customer_app="app"
@@ -766,7 +789,7 @@ const software_license_handler=(state)=>{
           style={{
             display: 'flex',
             flexDirection: 'row',
-            
+
             alignItems: 'center',
             width: '100%',
             paddingVertical: 12,
@@ -862,8 +885,8 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 51,
-    flex:2,
-    
+    flex: 2,
+
     marginLeft: 4,
     marginVertical: 0,
     marginRight: 4,
