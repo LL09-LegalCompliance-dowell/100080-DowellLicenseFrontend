@@ -1,12 +1,21 @@
-import {StyleSheet, Image, Text, View, StatusBar, Modal,TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  StatusBar,
+  Modal,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
 import colors from '../../../assets/colors/colors';
 import AppLoader from '../../components/AppLoader';
 import Header from '../../components/Header';
+import {useNavigation} from '@react-navigation/native';
 
-
-const Profile = ({navigation}) => {
+const Profile = () => {
   const [loading, setLoading] = useState();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -18,11 +27,13 @@ const Profile = ({navigation}) => {
   const [data_type, setData_type] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState('');
+  const navigation = useNavigation();
 
   const pressHandler = async () => {
-    console.log(username)
-    console.log(action)
+    // console.log(username);
+    // console.log(action);
     try {
+      setLoading(true);
       const response = await fetch(
         `https://100014.pythonanywhere.com/api/removeaccount/`,
         {
@@ -38,14 +49,15 @@ const Profile = ({navigation}) => {
       if (!response.ok) {
         throw new Error(parseResponse);
       } else {
-        // no errors
         AsyncStorage.clear();
-        navigation.navigate('AuthNavigator');
-
-        console.log(parseResponse);
+        navigation.navigate('AuthNavigator', {screen: 'IntroductionScreen'});
+        // console.log(parseResponse);
+        setLoading(false);
       }
+
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -76,14 +88,12 @@ const Profile = ({navigation}) => {
   console.log(isVisible);
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={isVisible}
-      >
+      <Modal animationType="fade" transparent={true} visible={isVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Are you sure you want to {action} your account</Text>
+            <Text style={styles.modalText}>
+              Are you sure you want to {action} your account
+            </Text>
             <View
               style={{
                 display: 'flex',
@@ -93,7 +103,7 @@ const Profile = ({navigation}) => {
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
-                  pressHandler()
+                  pressHandler();
                   setIsVisible(false);
                 }}>
                 <Text style={styles.textstyle}>Yes</Text>
@@ -245,11 +255,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '80%',
   },
-  modalText:{
-    color:"black",
-    fontSize:18,
-    fontWeight:"500",
-    marginBottom:20,
-    textAlign:"center"
-  }
+  modalText: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: '500',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
 });
