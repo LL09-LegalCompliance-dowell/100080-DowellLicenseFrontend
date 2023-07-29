@@ -1,234 +1,185 @@
-import React, { Fragment } from 'react'
-import { useState } from 'react'
-import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
-import styles from '../Cookies/style'
-import colors from '../../../../assets/colors/colors'
+import React, {Fragment} from 'react';
+import {useState} from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+} from 'react-native';
+import styles from '../Cookies/style';
+import colors from '../../../../assets/colors/colors';
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import RadioGroup from 'react-native-radio-buttons-group';
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const Policy3 = () => {
-
-  var [ isPress1, setIsPress1 ] = useState(false);
-  var [ isPress2, setIsPress2 ] = useState(false);
-  var [ isPress3, setIsPress3 ] = useState(false);
-
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState("");
-
-  const [value3Index, setvalue3Index] = useState(1);
-
-  const [radioButtons1, setRadioButtons1] = useState([{
-    id: '1',
-    label: 'Yes',
-    value: 'Yes',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    
-  },{
-  id: '2',
-  label: 'No',
-  value: 'No',
-  size: 18,
-  color: '#489503',
-  borderColor: '#C4C4C4',
-  selected: true
-  }]);
-  const [radioButtons2, setRadioButtons2] = useState([{
-    id: '1',
-    label: 'When they download ',
-    value: 'When they download ',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    
-  },{
-  id: '2',
-  label: 'When they open the package',
-  value: 'When they open the package',
-  size: 18,
-  color: '#489503',
-  borderColor: '#C4C4C4',
-  selected: true
-  }]);
-  const [radioButtons3, setRadioButtons3] = useState([{
-    id: '1',
-    label: 'Yes',
-    value: 'Yes',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    
-  },{
-  id: '2',
-  label: 'No',
-  value: 'No',
-  size: 18,
-  color: '#489503',
-  borderColor: '#C4C4C4',
-  selected: true,
-  
-  }]);
-  var touchProps1 = {                               
-    style: isPress1 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress1(true),                 
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel,
+} from 'react-native-simple-radio-button';
+import Date from '../Date';
+const Policy3 = ({list}) => {
+  var [isPress1, setIsPress1] = useState(false);
+  var [isPress2, setIsPress2] = useState(false);
+  var [isPress3, setIsPress3] = useState(false);
+  const [open, setOpen] = useState(false);
+  const openHandler = state => {
+    setOpen(state);
   };
-  var touchProps2 = {                               
-    style: isPress2 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress2(true),                 
-  };
-  var touchProps3 = {                               
-    style: isPress3 ? styles.Pressed : styles.Normal, 
-    onPress: () => setIsPress3(true),                 
-  };  
-
 
   return (
     <>
-    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-      <Text style={styles.text_1}>Company Details:</Text>
-      <View style={{paddingHorizontal:11,paddingTop:16}}>
-        <View style={{position: 'relative',fontWeight:"400"}}>
-          <Text style={styles.text_2}>
-          Which state of laws will be used as the governing laws?
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text
+            style={
+              list[0]
+                ? styles.hide
+                : {color: 'red', textAlign: 'center', fontSize: 20}
+            }>
+            Please Check your inputs... You must fill all{' '}
           </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray" 
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray"/>
-              </View>
-            }
-            color="#489503"
-            onSelect={value => setDate(value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
-          />
-        </View>
-        <Text style={styles.text_2}>Should this MOU include a confidentiality clause?</Text>
-        <RadioForm
-          formHorizontal={false}
-          animation={true}
-          style={{marginHorizontal:27,marginVertical:7}}
-        >
-   
-              <RadioButton labelHorizontal={true} key={0} style={value3Index ===0? {marginBottom:20}:{marginBottom:4}} >
-                {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                <RadioButtonInput
-                  obj={{label: 'Yes', value: 0 }}
-                  index={0}
-                  isSelected={value3Index === 0}
-                  onPress={()=>setvalue3Index(0)}
-                  borderWidth={1}
-                  buttonInnerColor={colors.primary}
-                  buttonOuterColor={"#C4C4C4"}
-                  buttonSize={9}
-                  buttonOuterSize={18}
-                  buttonWrapStyle={{marginLeft: 10}}
-                />
-                <RadioButtonLabel
-                  obj={{label: 'Yes', value: 0 }}
-                  index={0}
-                  labelHorizontal={true}
-                  onPress={()=>setvalue3Index(0)}
-                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
-                />
-              </RadioButton>
-              {value3Index===0 && <View style={{flex:1 ,display:"flex",flexDirection:"row",}}>
-              <TouchableHighlight {...touchProps1}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Over phone</Text>
-                  <TouchableOpacity  style={isPress1 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress1(false)}><Text > x  </Text></TouchableOpacity>
-                </View>
-                
-              </TouchableHighlight>
-              
-              <TouchableHighlight {...touchProps2}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>Via Email </Text>
-                  <TouchableOpacity style={isPress2 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress2(false)}><Text> x  </Text></TouchableOpacity>
-                </View>
-              </TouchableHighlight>
+          <Text style={styles.text_1}>Company Details:</Text>
+          <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+            <View style={{position: 'relative', fontWeight: '400'}}>
+              <Text style={styles.text_2}>
+                Which state of laws will be used as the governing laws?
+              </Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[1]}
+                placeholder=" State name"
+                autoCapitalize="none"
+                placeholderTextColor="gray"
+                onChangeText={value => list[2](value)}
+              />
+              <Text style={styles.text_2}>
+                Which state laws shall be the governing laws in case of
+                reimbursement?
+              </Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[3]}
+                autoCapitalize="none"
+                placeholder=" State name"
+                placeholderTextColor="gray"
+                onChangeText={value => list[4](value)}
+              />
+              <Text style={styles.text_2}>
+                How many parties will enter this MOU?
+              </Text>
+              <TextInput
+                style={styles.input_vm}
+                autoCapitalize="none"
+                value={list[5]}
+                placeholder="  Enter here"
+                placeholderTextColor="gray"
+                onChangeText={value => list[6](value)}
+                keyboardType="numeric"
+              />
+            </View>
+            <Text style={styles.text_2}>
+              Should this MOU include a confidentiality clause?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[7]}
+                onPress={data => list[8](data)}
+                containerStyle={styles.radio_hm}
+              />
+            </View>
 
-              <TouchableHighlight {...touchProps3}>
-                <View style={{display:"flex",flexDirection:"row"}}>
-                  <Text>In-person</Text>
-                  <TouchableOpacity style={isPress3 ? {display:"flex"} : {display:"none"}} onPress={()=>setIsPress3(false)}><Text> x  </Text></TouchableOpacity>
-                </View>
-              </TouchableHighlight>
+            <Text style={styles.text_2}>
+              Does this MOU restrict working with competitors for an ascertain
+              period of time after leaving this project? If yes, then what is
+              the period?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[9]}
+                onPress={data => list[10](data)}
+                containerStyle={styles.radio_hm}
+              />
+            </View>
+            <Text style={styles.text_2}>
+              Date for this legally binding definitive agreement.
+            </Text>
+            <Date
+              date={list[11]}
+              setDate={list[12]}
+              open={open}
+              openHandler={openHandler}
+            />
+            <Text style={styles.text_2}>
+              Should the parties agree to refrain from negotiating with any
+              third parties while this MOU is in effect. (Will it be exclusive
+              or non exclusive?)
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[13]}
+                onPress={data => list[14](data)}
+                containerStyle={styles.radio_hm}
+              />
+            </View>
+            <Text style={styles.text_2}>
+              Will this MOU agreement be terminated in case of force majeure?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[15]}
+                onPress={data => list[16](data)}
+                containerStyle={styles.radio_hm}
+              />
+            </View>
+            <Text style={styles.text_2}>
+              Are there any other contracts entered between the parties together
+              with this MOU?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[17]}
+                onPress={data => list[18](data)}
+                containerStyle={styles.radio_hm}
+              />
+            </View>
 
-              </View> }
+            <Text style={styles.text_2}>Project name</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[19]}
+              placeholder=" Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[20](value)}
+            />
 
-              <RadioButton labelHorizontal={true} key={1} style={value3Index ===0? {marginTop:20}:{marginTop:4}} >
-                {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                <RadioButtonInput
-                  obj={{label: 'Not Available', value: 1 }}
-                  index={1}
-                  isSelected={value3Index === 1}
-                  onPress={()=>setvalue3Index(1)}
-  
-                  borderWidth={1}
-                  buttonInnerColor={colors.primary}
-                  buttonOuterColor={"#C4C4C4"}
-                  buttonSize={9}
-                  buttonOuterSize={18}
-                  buttonWrapStyle={{marginLeft: 10}}
-                />
-                <RadioButtonLabel
-                  obj={{label: 'Not Available', value: 1 }}
-                  index={1}
-                  labelHorizontal={true}
-                  onPress={()=>setvalue3Index(1)}
-                  labelStyle={{fontSize:14, color: '#585858',fontWeight:"300",lineHeight:18.75}}
-                />
-              </RadioButton>
-
-        </RadioForm>
-
-        <Text style={styles.text_2}>Will it state how often maintenance will occur and on what schedule?</Text>
-        <View >
-          <RadioGroup
-            radioButtons={radioButtons1}
-            onPress={(data)=>setRadioButtons1(data)}
-            containerStyle={styles.radio_hm}
-          />
-        </View>
-        <Text style={styles.text_2}>What will be the start date for the users to be bound by the terms and conditions?</Text>
-        <View >
-          <RadioGroup
-            radioButtons={radioButtons2}
-            onPress={(data)=>setRadioButtons2(data)}
-            containerStyle={styles.radio_hm}
-          />
-        </View>
-        <Text style={styles.text_2}>Will the user be able to install the software on more than one device?</Text> 
-        <View >
-          <RadioGroup
-            radioButtons={radioButtons3}
-            onPress={(data)=>setRadioButtons3(data)}
-            containerStyle={styles.radio_hm}
-          />
-        </View>
-        <Text style={styles.text_2}>What violations give the software provider the rights to cancel the agreement?</Text>
-        <TextInput
-            style={styles.input_vm}
-            value={input1}
-            onChangeText={(value)=>setInput1(value)}
-        /> 
-      </View>
-
-
-    </ScrollView>
+            <Text style={styles.text_2}>Project details</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[21]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[22](value)}
+            />
+            <Text style={styles.text_2}>Website/App name</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[23]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[24](value)}
+            />
+          </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </>
-  )
-}
+  );
+};
 
-export default Policy3
+export default Policy3;

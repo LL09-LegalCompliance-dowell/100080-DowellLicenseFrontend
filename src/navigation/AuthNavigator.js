@@ -11,11 +11,13 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 // import FullSignUp from '../screens/SignUp/FullSignUp';
 import Loading from '../screens/PrivacyPolicy/Loading';
 import EmbededLogin from '../screens/Login/EmbededLogin';
-import WebView from '../screens/Login/WebView';
+import ClientAdminView from '../screens/Login/ClientAdminView';
+import LoginWebView from "../screens/Login/LoginWebView"
 import RootNavigator from './RootNavigator';
 import Saving from "../screens/Login/Saving"
 import CreatePortfolio from "../screens/Login/CreatePortfolio"
 import NoPortfolio from "../screens/Login/NoPortfolio"
+import Profile from "../screens/Login/Profile"
 
 Loading;
 const Auth = createStackNavigator();
@@ -65,8 +67,15 @@ const AuthNavigator = () => {
           }}
         />
         <Auth.Screen
-          name="WebView"
-          component={WebView}
+          name="LoginWebView"
+          component={LoginWebView}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="ClientAdminView"
+          component={ClientAdminView}
           options={{
             headerShown: false,
           }}
@@ -88,6 +97,13 @@ const AuthNavigator = () => {
          <Auth.Screen
           name="CreatePortfolio"
           component={CreatePortfolio}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Auth.Screen
+          name="Profile"
+          component={Profile}
           options={{
             headerShown: false,
           }}

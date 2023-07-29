@@ -1,109 +1,269 @@
-import React, { Fragment } from 'react'
-import { useState } from 'react'
-import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
-import styles from '../Cookies/style'
-
-
+import React, {Fragment} from 'react';
+import {useState} from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Alert,
+  TouchableHighlight,
+} from 'react-native';
+import styles from '../Cookies/style';
 import RadioGroup from 'react-native-radio-buttons-group';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Date from '../Date';
 
-import { SelectList } from 'react-native-dropdown-select-list'
+const Policy2 = ({list}) => {
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
+  const [open, setOpen] = useState(false);
+  const openHandler = state => {
+    setOpen(state);
+  };
 
-const Policy2 = () => {
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
-  const [input3, setInput3] = useState("");
-  const [input4, setInput4] = useState("");
-  const [input5, setInput5] = useState("");
+  const [radioButtons, setRadioButtons] = useState([
+    {
+      id: '1',
+      label: 'Individual',
+      value: 'Individual',
+      size: 18,
+      color: '#489503',
+      borderColor: '#C4C4C4',
+      selected: true,
+    },
+    {
+      id: '2',
+      label: 'Entity',
+      value: 'Entity',
+      size: 18,
+      color: '#489503',
+      borderColor: '#C4C4C4',
+    },
+  ]);
 
-const cities = [
-    {key:'1', value:'Mumbai'},
-    {key:'2', value:'Kolkata'},
-    {key:'3', value:'Banglore'},
-    {key:'4', value:'Delhi'}
-]
-const states = [
-  {key:'1', value:'Maharashtra'},
-  {key:'2', value:'Karnataka'},
-  {key:'3', value:'Goa'},
-  {key:'4', value:'Gujarat'}
-]
-  
-const [radioButtons, setRadioButtons] = useState([{
-    id: '1',
-    label: 'Individual',
-    value: 'Individual',
-    size: 18,
-    color: '#489503',
-    borderColor: '#C4C4C4',
-    selected: true
-  },{
-  id: '2',
-  label: 'Entity',
-  value: 'Entity',
-  size: 18,
-  color: '#489503',
-  borderColor: '#C4C4C4',
-}]);
-return (  
-<>
-    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-    <Text style={styles.text_1}>Company Details:</Text>
-    <View style={{paddingHorizontal:11,paddingTop:16}}>
-      <Text style={styles.text_2}>Nature of the company :</Text>
-      <View >
-          <RadioGroup
-            radioButtons={radioButtons}
-            onPress={(data)=>setRadioButtons(data)}
-            containerStyle={styles.radio_hm}
-          />
-      </View>
-      <Text style={styles.text_2}>Software Product License Name:</Text>
-      <TextInput
-            style={styles.input_vm}
-            value={input1}
-            onChangeText={(value)=>setInput1(value)}
-      /> 
-      <Text style={styles.text_3}>Remedies Under Limitation Of Liability</Text> 
-      <Text style={styles.text_2}>Which state laws will apply for this EULA?</Text>
-      <TextInput
-            style={styles.input_vm}
-            value={input2}
-            placeholder="  Enter Amount(₹)"
-            placeholderTextColor="gray"
-            onChangeText={(value)=>setInput2(value)}
-      />
-      <Text style={styles.text_3}>Applicable Law</Text>
-      <Text style={styles.text_2}>Which state laws will apply for this EULA?</Text>
-      <SelectList 
-      setSelected={(val) => setInput3(val)} 
-      data={states} 
-      save="value"
-      placeholder="Select State"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
-      />
-      <Text style={styles.text_3}>Conflict</Text>
-      <Text style={styles.text_2}>What will be the Jurisdiction State?</Text>
-      <SelectList 
-      setSelected={(val) => setInput4(val)} 
-      data={states} 
-      save="value"
-      placeholder="Select State"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
-      />
-      <Text style={styles.text_2}>What will be the Jurisdiction city?</Text>
-      <SelectList 
-      setSelected={(val) => setInput5(val)} 
-      data={cities} 
-      save="value"
-      placeholder="Select City"
-      boxStyles={{backgroundColor:"#D9D9D9",marginVertical:12,color:"#585858",fontSize:16,fontWeight:"300",borderWidth: 1,borderRadius: 15,borderColor: '#C4C4C4',height: 51}}
-      />
-    </View>
-   </ScrollView> 
+  return (
+    <Fragment>
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text
+            style={
+              list[0]
+                ? styles.hide
+                : {color: 'red', textAlign: 'center', fontSize: 20}
+            }>
+            Please Check your inputs... You must fill all{' '}
+          </Text>
+          <Text style={styles.text_1}>Agreement:</Text>
+          <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+            <Text style={styles.text_3}>
+              Clause 1: Definitions --------------
+            </Text>
+            <Text style={styles.text_3}>Clause 1.1</Text>
 
+            <Text style={styles.text_3}>Definition of Charges</Text>
 
-</>)
-  
-}
+            <Text style={styles.text_2}>
+              What charges are payable under this document?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[1]}
+              placeholder=" Enter here"
+              placeholderTextColor="gray"
+              autoCapitalize="none"
+              onChangeText={value => list[2](value)}
+            />
+            <Text style={styles.text_3}>Definition of Documentation</Text>
 
-export default Policy2
+            <Text style={styles.text_2}>
+              How should the software documentation be identified?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[3]}
+              autoCapitalize="none"
+              onChangeText={value => list[4](value)}
+            />
+            <Text style={styles.text_3}>Definition of Effective Date</Text>
+            <Text style={styles.text_2}>
+              When will the contract come into force?
+            </Text>
+            <Date
+              date={list[5]}
+              setDate={list[6]}
+              open={open}
+              openHandler={openHandler}
+              margin={true}
+            />
+            <Text style={styles.text_3}>Definition of Minimum Term</Text>
+            <Text style={styles.text_2}>What minimum term will apply?</Text>
+            <View
+              style={[
+                styles.input_vm,
+                {
+                  margin: 0,
+                  padding: 0,
+                  paddingLeft: 5,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                },
+              ]}>
+              <TextInput
+                style={{color: 'gray'}}
+                value={list[7]}
+                placeholder="Enter number"
+                placeholderTextColor="gray"
+                autoCapitalize="none"
+                onChangeText={value => list[8](value)}
+                keyboardType="numeric"
+              />
+              <View>
+                <RadioGroup
+                  radioButtons={list[9]}
+                  onPress={data => list[10](data)}
+                  // containerStyle={styles.radio_hm}
+                  layout="row"
+                  // radioButtons={radioButtons}
+                  // onPress={handleRadioPress}
+                  // layout="row"
+                />
+              </View>
+            </View>
+            <Text style={styles.text_3}>Definition of Software</Text>
+            <Text style={styles.text_2}>
+              Should the form of the software be specified?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[11]}
+                onPress={data => list[12](data)}
+                containerStyle={styles.radio_hm}
+                // layout="row"
+              />
+            </View>
+            <TextInput
+              style={styles.input_vm}
+              value={list[13]}
+              autoCapitalize="none"
+              placeholder="Specify here"
+              placeholderTextColor="gray"
+              onChangeText={value => list[14](value)}
+            />
+            <Text style={styles.text_3}>Definition of Software Defect</Text>
+            <Text style={styles.text_2}>
+              Will non-material defects count as software defects for the
+              purposes of this definition?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[15]}
+                onPress={data => list[16](data)}
+                containerStyle={styles.radio_hm}
+                // layout="row"
+              />
+            </View>
+            <Text style={styles.text_2}>
+              In what ways may a relevant defect affect the software?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[17]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[18](value)}
+            />
+            <Text style={styles.text_2}>
+              Should a set of general exclusions from this definition be
+              included?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[19]}
+                onPress={data => list[20](data)}
+                autoCapitalize="none"
+                containerStyle={styles.radio_hm}
+                layout="row"
+              />
+            </View>
+            <TextInput
+              style={styles.input_vm}
+              value={list[21]}
+              placeholder="Enter exclusions to be applied"
+              placeholderTextColor="gray"
+              autoCapitalize="none"
+              onChangeText={value => list[22](value)}
+            />
+
+            <Text style={styles.text_3}>
+              Definition of Software Specification
+            </Text>
+            <Text style={styles.text_2}>
+              Define "Software Specification". NB in many cases it will not be
+              appropriate to include a reference to documentation in this
+              definition.
+            </Text>
+
+            <TextInput
+              style={styles.input_vm}
+              value={list[23]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[24](value)}
+            />
+
+            <Text style={styles.text_2}>
+              May the specification for the software be varied by the written
+              agreement of the parties?
+            </Text>
+            <View>
+              <RadioGroup
+                radioButtons={list[25]}
+                onPress={data => list[26](data)}
+                containerStyle={styles.radio_hm}
+                // layout='row'
+              />
+            </View>
+            <Text style={styles.text_3}>Definition of Term</Text>
+            <Text style={styles.text_2}>
+              Define "Term", the period during which the contract will subsist.
+            </Text>
+            <View
+              style={[
+                styles.input_vm,
+                {
+                  margin: 0,
+                  padding: 0,
+                  paddingLeft: 5,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                },
+              ]}>
+              <TextInput
+                style={{color: 'gray'}}
+                value={list[27]}
+                placeholder="Enter number"
+                autoCapitalize="none"
+                placeholderTextColor="gray"
+                onChangeText={value => list[28](value)}
+              />
+              <View>
+                <RadioGroup
+                  radioButtons={list[29]}
+                  onPress={data => list[30](data)}
+                  // containerStyle={styles.radio_hm}
+                  layout="row"
+                />
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
+    </Fragment>
+  );
+};
+
+export default Policy2;

@@ -1,19 +1,28 @@
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const Loading = ({navigation, route}) => {
+  const [loading, setLoading] = useState(false)
   const session_id = route.params.session_id;
   const fetchIAgree = async () => {
-    const res = await axios.get(
-      `https://100087.pythonanywhere.com/api/legalpolicies/${session_id}/iagreestatus/`
-    );
-    console.log("API response",res.data.data[0])
-    const {i_agree, isSuccess, policy_request_id, log_datetime} = res.data.data[0];
-    await AsyncStorage.setItem('previouslyAgreedDate', log_datetime);
-    await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
-    navigation.navigate('IntroductionScreen');
+    setLoading(true)
+    try{
+      const res = await axios.get(
+        `https://100087.pythonanywhere.com/api/legalpolicies/${session_id}/iagreestatus/`
+      );
+      console.log("API response",res.data.data)
+      const {i_agree, legal_policy_type, i_agreed_datetime} = res.data.data.filter((item) => item.legal_policy_type === "app-privacy-policy" )[0];
+      await AsyncStorage.setItem('previouslyAgreedDate', i_agreed_datetime);
+      await AsyncStorage.setItem('iAgree', JSON.stringify(i_agree));
+      navigation.navigate('RootNavigator');
+      setLoading(false)
+    }catch(error){
+      console.log("Error!", error)
+      setLoading(false)
+      navigation.navigate('RootNavigator');
+    }
   
   }
 
@@ -22,7 +31,9 @@ const Loading = ({navigation, route}) => {
   });
   return (
     <View style={styles.container}>
-      <ActivityIndicator style={styles.indicator} size="large" color="#00ff00" />
+      {
+        loading && <ActivityIndicator style={styles.indicator} size="large" color="#00ff00" />
+      }      
     </View>
   );
 };

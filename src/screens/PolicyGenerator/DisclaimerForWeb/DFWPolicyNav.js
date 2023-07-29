@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NavIndex from './NavIndex';
 import Policy1 from './Policy1';
-import Policy4 from './Policy4';
+import Policy4 from '../Cookies/Policy4';
 const Stack = createNativeStackNavigator();
 
 const DFWPolicyNav = () => {

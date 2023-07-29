@@ -5,94 +5,142 @@ import styles from '../Cookies/style';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {email_validation, url_validation} from '../validations';
+import CountryPicker from 'react-native-country-picker-modal';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
-  const [input5, setInput5] = useState('');
-  const [input6, setInput6] = useState('');
-  const [input7, setInput7] = useState('');
-  const [input8, setInput8] = useState('');
-  const [input9, setInput9] = useState('');
-  const [input10, setInput10] = useState('');
+import Date from '../Date';
 
+const Policy1 = ({list}) => {
+  const [valid_email, setValid_email] = useState(true);
+  const [valid_url, setValid_url] = useState(true);
+  const [valid_url1, setValid_url1] = useState(true);
+  const [open, setOpen] = useState(false);
+  const openHandler = state => {
+    setOpen(state);
+  };
   return (
     <>
-      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <Text style={styles.text_1}>Details:</Text>
-        <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            Terms and Conditions Last updated:
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text
+            style={
+              list[0]
+                ? styles.hide
+                : {color: 'red', textAlign: 'center', fontSize: 20}
+            }>
+            Please Check your inputs... You must fill all{' '}
           </Text>
-          <TextInput
-            style={styles.input}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
-              </View>
-            }
-            color="#489503"
-            onSelect={value => setDate(value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
-          />
+          <Text style={styles.text_1}>Details:</Text>
+          <View style={{marginHorizontal: 5}}>
+            <Text style={[styles.text_2]}>
+              Terms and Conditions Last updated:
+            </Text>
+            <Date
+              date={list[1]}
+              setDate={list[2]}
+              open={open}
+              openHandler={openHandler}
+            />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Country:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+            <Text style={[styles.text_2]}>Country:</Text>
+            <View style={styles.input_vm}>
+              {list[3] === '' ? (
+                <CountryPicker
+                  // countryCode={country}
+                  withFilter
+                  withFlag
+                  withCountryNameButton={list[3]}
+                  withCallingCode
+                  onSelect={value => {
+                    list[4](value.name);
+                  }}
+                />
+              ) : (
+                <Text style={[styles.text_1, {fontSize: 17}]}>{list[3]}</Text>
+              )}
+            </View>
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Company Name:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+            <Text style={[styles.text_2]}>Company Name:</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[5]}
+              autoCapitalize="none"
+              placeholder="Enter here"
+              placeholderTextColor="gray"
+              onChangeText={value => list[6](value)}
+            />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Website/App Name:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+            <Text style={[styles.text_2]}>Website/App Name:</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[7]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[8](value)}
+            />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>Website URL:</Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+            <Text style={[styles.text_2]}>
+              Which law will govern the document?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[13]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[14](value)}
+            />
 
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            Enter your Support Email ID for contact us information:
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="johndoe@gmail.com"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
-        </View>
-      </ScrollView>
+            <Text style={[styles.text_2]}>Website URL:</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[9]}
+              placeholder="Enter here"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => {
+                if (value === '') {
+                  setValid_url(true);
+                } else {
+                  url_validation(value)
+                    ? setValid_url(true)
+                    : setValid_url(false);
+                }
+                list[10](value);
+              }}
+            />
+            <Text style={valid_url ? styles.hide : styles.text_warning}>
+              Please enter valid website url
+            </Text>
+
+            <Text style={[styles.text_2]}>
+              Enter your Support Email ID for contact us information:
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[11]}
+              placeholder="johndoe@gmail.com"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => {
+                if (value === '') {
+                  setValid_email(true);
+                } else {
+                  email_validation(value)
+                    ? setValid_email(true)
+                    : setValid_email(false);
+                }
+                list[12](value);
+              }}
+            />
+            <Text style={valid_email ? styles.hide : styles.text_warning}>
+              Please enter valid email
+            </Text>
+          </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

@@ -1,13 +1,12 @@
-import {StyleSheet, Dimensions} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {StyleSheet, Dimensions, Alert} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {useNavigation} from '@react-navigation/native';
 
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen/Navigator';
 import AboutUs from '../screens/AboutUs';
+import ActualAboutUs from '../screens/AboutUs/AboutUs';
 import SoftwereLicense from '../screens/SoftwereLicense';
 import AgreementComplience from '../screens/AgreementComplience';
 import CustomSideBar from './CustomSideBar';
@@ -15,12 +14,6 @@ import CustomSideBar from './CustomSideBar';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = ({Navigation}) => {
-  const navigation = useNavigation();
-  const Logout = () => {
-    AsyncStorage.clear();
-    //navigation.navigate("Home")
-  };
-
   return (
     <>
       <Drawer.Navigator
@@ -54,26 +47,19 @@ const DrawerNavigation = ({Navigation}) => {
             headerShown: false,
           }}
         />
-        {/* <Drawer.Screen
-          name="Generate Policies"
-          component={PolicyNavigator}
+        <Drawer.Screen
+          name="ActualAboutUs"
+          component={ActualAboutUs}
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
 
         <Drawer.Screen
           name="Contact Us"
           component={AboutUs}
           options={{
             headerShown: false,
-          }}
-        />
-        <Drawer.Screen
-          name="Logout"
-          component={Logout}
-          options={{
-            headerShown: true,
           }}
         />
       </Drawer.Navigator>

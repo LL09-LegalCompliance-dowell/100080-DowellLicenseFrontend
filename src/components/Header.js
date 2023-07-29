@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   StatusBar,
   TouchableWithoutFeedback,
+  Alert,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -16,13 +18,16 @@ import {DrawerActions} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
-const Header = ({title, leftIcon, rightIcon}) => {
+const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
   const navigation = useNavigation();
 
   const opennDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
-
+  const gotoProfile = () => {
+    navigation.navigate('ProfileHome');
+    //  navigation.navigate('AuthNavigator', {screen: 'Profile'});
+  };
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -36,10 +41,7 @@ const Header = ({title, leftIcon, rightIcon}) => {
           />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <MaterialIcons
             style={styles.menuIcon}
             name="keyboard-backspace"
@@ -50,22 +52,38 @@ const Header = ({title, leftIcon, rightIcon}) => {
       )}
 
       {title ? (
-        <Text numberOfLines={1} style={styles.heading}>{title}</Text>
+        <Text numberOfLines={1} style={styles.heading}>
+          {title}
+        </Text>
       ) : (
         <TouchableWithoutFeedback>
           <Image
             style={styles.logo}
-            source={require('../../assets/images/logo.png')}
+            source={require('../../assets/images/home-logo.png')}
           />
         </TouchableWithoutFeedback>
       )}
       {rightIcon === 'user' ? (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={gotoProfile}>
           <FontAwesome
             style={styles.userIcon}
             name="user-circle"
             size={25}
             color={colors.textDark}
+          />
+        </TouchableOpacity>
+      ) : (
+        ''
+      )}
+      {historyIcon === 'history' ? (
+        <TouchableOpacity onPress={openHistory}>
+          <Image
+            style={{
+              width: 35,
+              resizeMode: 'contain',
+              // marginBottom: Platform.OS === 'ios' ? 12 : 11,
+            }}
+            source={require('../screens/LicenseCompatibility/images/SearchHistory.png')}
           />
         </TouchableOpacity>
       ) : (
@@ -80,9 +98,9 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: 60,
+    height: Platform.OS === 'ios' ? 90 : 60,
     width: '100%',
-    paddingHorizontal: 18,
+    paddingHorizontal: Platform.OS === 'ios' ? 12 : 18,
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row',
@@ -92,23 +110,21 @@ const styles = StyleSheet.create({
     elevation: 8,
     position: 'absolute',
     zIndex: 1,
+    alignItems: 'center',
+    ...Platform.select({ios: {paddingTop: 33}}),
   },
 
   logo: {
-    height: 54,
-    width: 65,
+    height: 90,
+    width: 150,
     resizeMode: 'contain',
     // aspectRatio: 3.8,
     marginRight: 'auto',
-    marginTop: 'auto',
-    marginBottom: 5,
     marginLeft: 5,
   },
 
   heading: {
     marginRight: 'auto',
-    marginTop: 'auto',
-    marginBottom: 10,
     marginLeft: 15,
     fontSize: 18,
     fontWeight: '400',
@@ -117,12 +133,11 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    marginTop: 'auto',
-    marginBottom: 10,
+    justifyContent: 'space-around',
   },
 
   userIcon: {
-    marginTop: 'auto',
-    marginBottom: 14,
+    // marginTop: 'auto',
+    // marginBottom: 14,
   },
 });

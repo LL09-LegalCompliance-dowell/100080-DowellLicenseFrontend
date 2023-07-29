@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import styles from './style';
-import {StackActions} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const IntroductionScreen = ({navigation}) => {
   return (
@@ -29,7 +28,7 @@ const IntroductionScreen = ({navigation}) => {
           </SafeAreaView>
 
           <View style={styles.titlesWrapper}>
-            <Text style={styles.titlesTitle}>DoWell Research Services</Text>
+            <Text style={styles.titlesTitle}>Legalzard Services</Text>
             <Text style={styles.titlesSubtitle}>
               App info, scanner and other related information
             </Text>
@@ -37,7 +36,7 @@ const IntroductionScreen = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.dispatch(StackActions.replace('EmbededLogin', {}));
+              navigation.navigate('LoginWebView', {});
             }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Get Started</Text>

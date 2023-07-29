@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import W1 from './W1';
 import LicenseImage from './LicenseImage';
 import WebsiteSecurityPolicyNav from './WebsiteSecurityPolicyNav';
+import FAQ from '../FAQ';
 const Stack = createNativeStackNavigator() ;
 const WebsiteSecurityPolicy = () => {
     return (
@@ -24,6 +25,13 @@ const WebsiteSecurityPolicy = () => {
           <Stack.Screen
             name="license_image"
             component={LicenseImage}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="FAQ"
+            component={FAQ}
             options={{
               headerShown: false,
             }}

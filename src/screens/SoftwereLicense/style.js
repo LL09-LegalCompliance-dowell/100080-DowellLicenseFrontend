@@ -1,13 +1,13 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import colors from '../../../assets/colors/colors';
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flex: 1,
+    backgroundColor: 'lightgray',
   },
 
-  // cardContainer styles
   cardContainer: {
     marginTop: 80,
     marginBottom: 20,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   //   section 1
 
   cardContainer: {
-    marginTop: 80,
+    marginTop: Platform.OS === 'ios' ? 100 : 80,
     marginBottom: 20,
     paddingHorizontal: 15,
     width: '100%',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 2,
-    elevation: 10,
+    elevation: 5,
     marginRight: 15,
   },
   // Row1 starts here
@@ -98,11 +98,12 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   section2: {
-    marginTop: 10,
+    marginTop: 20,
     alignItems: 'center',
     borderBottomColor: colors.borderLight,
     borderBottomWidth: 1,
     alevation: 2,
+    paddingBottom: 20,
   },
   button: {
     display: 'flex',
@@ -146,6 +147,7 @@ const styles = StyleSheet.create({
   //section 4
   section4: {
     backgroundColor: 'white',
+    flex: 1,
   },
   section4Container: {
     marginHorizontal: 25,
@@ -164,12 +166,21 @@ const styles = StyleSheet.create({
   separator: {
     width: '100%',
     backgroundColor: colors.borderLight,
-    height: 1,
-    elevation: 1,
+    height: 0.7,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   serchResultItemContainer: {
     paddingHorizontal: 17,
-    paddingVertical: 12,
+    paddingVertical: 3,
+    // marginVertical: 3,
     backgroundColor: 'white',
   },
   serchResultHeading: {
@@ -177,18 +188,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.textDark,
     fontFamily: 'roboto',
+    marginTop: 3,
   },
+
   serchResultDetails: {
     color: colors.textDark,
     fontFamily: 'roboto',
+    paddingBottom: 7,
   },
-  // separator: {
-  //   width: '100%',
-  //   backgroundColor: colors.borderLight,
-  //   height: 1,
-  //   marginTop: 10,
-  //   // elevation: ,
-  // },
+  vsText: {
+    fontSize: 12,
+    color: '#A7A7A7',
+    // marginBottom: 35,
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

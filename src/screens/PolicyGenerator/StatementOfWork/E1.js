@@ -50,7 +50,21 @@ const C1 = ({navigation}) => {
         <TouchableOpacity
           style={{display: 'flex', flexDirection: 'row'}}
           onPress={() => {
-            navigation.navigate('FAQsPrivacyPolicy');
+            navigation.navigate('FAQ', {
+              header: 'Statement of Work',
+              data: [
+                {
+                  question: 'What is a Statement of Work?',
+                  answer:
+                    'Statement of Work is a document which provides a description of a given project. It includes project details, timeline of that specific project, work location and payment details. It is mainly used to understand the requirements of the project by fixing the pricing for that project under a given timeline. It answers the four major W’s (who, what, where, when) of the provided work.',
+                },
+                {
+                  question: 'What does the Statement of Work do?',
+                  answer:
+                    'It is an important project management tool that outlines the project’s work requirement. Statement of Work helps maintain the transparency between the company and the client. It also ensures that the key parties involved in the project know exactly what are the bounds and responsibilities of the parties. It sets clear expectations for project deliverables, expected outcome, communications on both sides.',
+                },
+              ],
+            });
           }}>
           <EvilIcons name="question" size={24} style={styles.faq1} />
           <Text style={styles.faq}>Generator FAQs</Text>

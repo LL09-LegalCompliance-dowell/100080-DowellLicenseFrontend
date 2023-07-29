@@ -1,4 +1,4 @@
-import {View, Text, Image,  ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import React from 'react';
 import {Linking} from 'react-native';
 
@@ -7,138 +7,340 @@ import Header from '../../components/Header';
 
 const ApacheLicense = ({route}) => {
   const {item} = route.params;
-
   return (
     <>
-      <Header title={item.softwarelicense.license_name} />
-
+      <Header title={item?.softwarelicense?.license_name} />
+      {console.log(item)}
       <ScrollView style={styles.container}>
         {/* Upper Container */}
         <View style={styles.upperContainer}>
-          <Image
-            style={{height: 150, width: 150, resizeMode: 'contain'}}
-            source={{uri: item.softwarelicense?.logo_detail?.url}}
-          />
-          {item.softwarelicense?.license_name ? (
+          {item?.softwarelicense?.logo_detail?.url !== '' ? (
+            <Image
+              style={{height: 100, width: 100, resizeMode: 'contain'}}
+              source={{uri: item?.softwarelicense?.logo_detail?.url}}
+            />
+          ) : null}
+          {item?.softwarelicense?.license_name ? (
             <Text style={styles.heading}>
-              {item.softwarelicense?.license_name}
+              {item?.softwarelicense?.license_name}
             </Text>
           ) : null}
-          {item.softwarelicense?.description ? (
-            <Text style={[styles.heading1, {marginHorizontal: 40}]}>
-              {item.softwarelicense?.description}
+          {item?.softwarelicense?.description ? (
+            <Text style={{textAlign: 'justify', color: 'gray',fontWeight:"300",fontSize:14}}>
+              {item?.softwarelicense?.description}
             </Text>
           ) : null}
-          {item.softwarelicense?.short_description ? (
-            <Text>{item.softwarelicense?.short_description}</Text>
-          ) : null}
+          {/* {item?.softwarelicense?.short_description ? (
+            <Text style={{textAlign: 'justify', color: 'gray'}}>
+              {item?.softwarelicense?.short_description}
+            </Text>
+          ) : null} */}
         </View>
         {/* Lower Container */}
         <View style={styles.middleContainer}>
           <Text style={styles.heading1}>1.Text Version</Text>
           <Text
             style={styles.link}
-            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
-            {item.softwarelicense.license_url}
+            onPress={() => Linking.openURL(item?.softwarelicense?.license_url)}>
+            {item?.softwarelicense?.license_url}
           </Text>
           <View style={{paddingHorizontal: 20, paddingBottom: 25}}>
-            {item.softwarelicense?.other_links?.map((item1, index) => {
+            {item?.softwarelicense?.other_links?.map((item1, index) => {
               return (
                 // console.log(item1)
-                <>
-                  <Text key={index} style={styles.heading4}>{item1?.description}</Text>
+                <View key={index}>
+                  <Text key={index} style={styles.heading4}>
+                    {item1?.description}
+                  </Text>
                   <Text
                     style={[styles.link, {marginLeft: 20}]}
                     onPress={() => Linking.openURL(item1?.url)}>
                     {item1?.url}
                   </Text>
-                </>
+                </View>
               );
             })}
           </View>
 
           <Text style={styles.heading1}>2.Category</Text>
           <Text style={styles.heading2}>
-            {item.softwarelicense?.type_of_license}
+            {item?.softwarelicense?.type_of_license}
           </Text>
 
-          <Text style={styles.heading1}>3.Disclaimer</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.disclaimer}
-          </Text>
+          {item?.softwarelicense?.disclaimer !== '' ? (
+            <>
+              <Text style={styles.heading1}>3.Disclaimer</Text>
+              <Text style={styles.heading2}>
+                {item?.softwarelicense?.disclaimer}
+              </Text>
+            </>
+          ) : null}
 
-          <Text style={styles.heading1}>4.Attributions</Text>
-          <Text style={[styles.heading4, {paddingTop:0, paddingLeft:20}]}> {item.softwarelicense?.license_attributes?.heading}</Text>
-          <Text style={styles.heading2}>
-           
-            {item.softwarelicense?.license_attributes?.attributes.map(
-              (attribute, index) => {
-                return (
-                  // console.log(item1)
-                  <>
-                    <View>
-                      <Text
-                      key={index}
-                        style={[
-                          styles.heading4,
-                          {marginLeft: 20},
-                        ]}>
-                        {attribute}
-                      </Text>
+          {item?.softwarelicense?.permissions?.length > 0 && (
+            <>
+              <Text style={styles.heading1}>
+                5.Permissions, Conditions & Limitations:
+              </Text>
+
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  marginTop: 15,
+                  justifyContent: 'space-between',
+                }}>
+                <View
+                  style={{
+                    width: '49%',
+                    borderWidth: 1,
+                    borderColor: '#078F04',
+                    height: 'auto',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#078F04',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        paddingVertical: 8,
+                        color: 'white',
+                        fontWeight: '500',
+                        fontSize: 18,
+                        fontFamily: 'roboto',
+                      }}>
+                      Permissions
+                    </Text>
+                  </View>
+                  {item?.softwarelicense?.permissions?.map((i, index) => {
+                    return (
+                      <View key={index}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            padding: 4,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              width: '15%',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                height: 13,
+                                width: 13,
+                                backgroundColor: '#078F04',
+                                borderRadius: 13,
+                              }}></View>
+                          </View>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontWeight: '500',
+                              fontSize: 18,
+                              fontFamily: 'roboto',
+                              width: '80%',
+                            }}>
+                            {i.action}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            height: 1,
+                            backgroundColor: '#078F04',
+                            width: '100%',
+                          }}></View>
+                      </View>
+                    );
+                  })}
+                </View>
+
+                <View
+                  style={{
+                    width: '49%',
+                    borderWidth: 1,
+                    borderColor: '#0079E3',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#0079E3',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        paddingVertical: 8,
+                        color: 'white',
+                        fontWeight: '500',
+                        fontSize: 18,
+                        fontFamily: 'roboto',
+                      }}>
+                      Conditions
+                    </Text>
+                  </View>
+                  {item?.softwarelicense?.conditions?.map((i, index) => {
+                    return (
+                      <View key={index}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            padding: 4,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              width: '15%',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                            <View
+                              style={{
+                                height: 13,
+                                width: 13,
+                                backgroundColor: '#0079E3',
+                                borderRadius: 13,
+                              }}></View>
+                          </View>
+                          <Text
+                            style={{
+                              color: 'black',
+                              fontWeight: '500',
+                              fontSize: 18,
+                              fontFamily: 'roboto',
+                              width: '80%',
+                            }}>
+                            {i.action}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            height: 1,
+                            backgroundColor: '#0079E3',
+                            width: '100%',
+                          }}></View>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View
+                style={{
+                  width: '49%',
+                  borderWidth: 1,
+                  borderColor: '#EC1C24',
+                  height: 'auto',
+                  alignSelf: 'center',
+                  marginTop: 15,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: '#EC1C24',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      paddingVertical: 8,
+                      color: 'white',
+                      fontWeight: '500',
+                      fontSize: 18,
+                      fontFamily: 'roboto',
+                    }}>
+                    Limitations
+                  </Text>
+                </View>
+                {item?.softwarelicense?.limitations?.map((i, index) => {
+                  return (
+                    <View key={index}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          padding: 4,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <View
+                          style={{
+                            width: '15%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                          <View
+                            style={{
+                              height: 13,
+                              width: 13,
+                              backgroundColor: '#EC1C24',
+                              borderRadius: 13,
+                            }}></View>
+                        </View>
+                        <Text
+                          style={{
+                            color: 'black',
+                            fontWeight: '500',
+                            fontSize: 18,
+                            fontFamily: 'roboto',
+                            width: '80%',
+                          }}>
+                          {i.action}
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          height: 1,
+                          backgroundColor: '#EC1C24',
+                          width: '100%',
+                        }}></View>
                     </View>
-                  </>
-                );
-              },
-            )}
-          </Text>
-
-          <Text style={styles.heading1}>
-            5.Permissions, Conditions & Limitations:
-          </Text>
-          <Text style={styles.heading2}>
-            One thing to consider is that you cannot combine Apache License 2.0
-            with GPL v2 Another aspect to consider is that a “contributor can
-            modify the code and then sell it as proprietary software” .
-          </Text>
-
-          <Text style={styles.heading1}>
-            6.Risks for choosing Apache License 2.0
-          </Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.risk_for_choosing_license}
-          </Text>
-
-          <Text style={styles.heading1}>6.Recommendations (%)</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.recommendation}
-          </Text>
-
-          <Text style={styles.heading1}>7.Compatible Licenses</Text>
-          {item.softwarelicense?.license_compatible_with_lookup.map(
-            compatibleLicense => {
-              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
-            },
+                  );
+                })}
+              </View>
+            </>
           )}
+          {item?.softwarelicense?.risk_for_choosing_license !== '' ? (
+            <>
+              <Text style={styles.heading1}>6.Risks for choosing</Text>
+              <Text style={styles.heading2}>
+                {item?.softwarelicense?.risk_for_choosing_license}
+              </Text>
+            </>
+          ) : null}
+          {item?.softwarelicense?.recommendation !== '' ? (
+            <>
+              <Text style={styles.heading1}>6.Recommendations (%)</Text>
+              <Text style={styles.heading2}>
+                {item?.softwarelicense?.recommendation}
+              </Text>
+            </>
+          ) : null}
 
-          <Text style={styles.heading1}>8.Non- Compatible Licenses</Text>
-          {item.softwarelicense?.license_not_compatible_with_lookup.map(
-            compatibleLicense => {
-              return <Text style={styles.heading2}>{compatibleLicense}</Text>;
-            },
-          )}
-
-          <Text style={styles.heading1}>9.Limitation of Liability.</Text>
-          <Text style={styles.heading2}>
-            {item.softwarelicense?.limitation_of_liability}
-          </Text>
-          <Text style={styles.heading1}>
-            For more details visit the below link:
-          </Text>
-          <Text
-            style={[styles.link, {marginHorizontal: 15}]}
-            onPress={() => Linking.openURL(item.softwarelicense?.license_url)}>
-            {item.softwarelicense?.license_url}
-          </Text>
+          {item?.softwarelicense?.limitation_of_liability !== '' ? (
+            <>
+              <Text style={styles.heading1}>9.Limitation of Liability.</Text>
+              <Text style={styles.heading2}>
+                {item?.softwarelicense?.limitation_of_liability}
+              </Text>
+            </>
+          ) : null}
+          {item?.softwarelicense?.license_url !== '' ? (
+            <>
+              <Text style={styles.heading1}>
+                For more details visit the below link:
+              </Text>
+              <Text
+                style={[styles.link, {marginHorizontal: 15}]}
+                onPress={() =>
+                  Linking.openURL(item?.softwarelicense?.license_url)
+                }>
+                {item?.softwarelicense?.license_url}
+              </Text>
+            </>
+          ) : null}
         </View>
         <View style={styles.bottomContainer}>
           <Text
@@ -202,7 +404,6 @@ const ApacheLicense = ({route}) => {
             and distribution of the Work otherwise complies with the conditions
             stated in this License.
           </Text>
-
         </View>
       </ScrollView>
     </>

@@ -7,58 +7,153 @@ import {
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import styles from '../Cookies/style';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {ModalDatePicker} from 'react-native-material-date-picker';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const Policy1 = () => {
-  const [date, setDate] = useState(new Date());
-  var [isPress1, setIsPress1] = useState(false);
-  var [isPress2, setIsPress2] = useState(false);
-  var [isPress3, setIsPress3] = useState(false);
-
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
-  const [input5, setInput5] = useState('');
-  const [input6, setInput6] = useState('');
-  const [input7, setInput7] = useState('');
-  const [input8, setInput8] = useState('');
-  const [input9, setInput9] = useState('');
-  const [input10, setInput10] = useState('');
-
+const Policy1 = ({list}) => {
   var touchProps1 = {
-    style: isPress1 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress1(true),
+    style: list[10] ? styles.Pressed : styles.Normal,
+    onPress: () => list[11](true),
   };
   var touchProps2 = {
-    style: isPress2 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress2(true),
+    style: list[12] ? styles.Pressed : styles.Normal,
+    onPress: () => list[13](true),
   };
   var touchProps3 = {
-    style: isPress3 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress3(true),
+    style: list[14] ? styles.Pressed : styles.Normal,
+    onPress: () => list[15](true),
+  };
+
+  var touchProps4 = {
+    style: list[16] ? styles.Pressed : styles.Normal,
+    onPress: () => list[17](true),
+  };
+
+  const onPress = () => {
+    if (list[20] !== '') {
+      let flag = true;
+      for (let index = 0; index < list[22].length; index++) {
+        if (list[20] === list[22][index]) {
+          flag = false;
+        }
+      }
+      if (flag == true) {
+        list[23](list[20]);
+      }
+      list[21]('');
+    }
   };
 
   return (
     <>
-      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <View style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
-          <Text style={styles.text_1}>Client details:</Text>
-          {/* Details start here */}
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text
+            style={
+              list[list.length - 1]
+                ? styles.hide
+                : {color: 'red', textAlign: 'center', fontSize: 20}
+            }>
+            Please Check your inputs... You must fill all{' '}
+          </Text>
+          <View
+            style={{position: 'relative', marginTop: 20, fontWeight: '400'}}>
+            <Text style={styles.text_1}>Client details:</Text>
+            {/* Details start here */}
+            <View style={{marginHorizontal: 15}}>
+              <Text style={[styles.text_2, {paddingTop: 9}]}>
+                What is the Client’s full name?
+              </Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[0]}
+                autoCapitalize="none"
+                placeholder="  Eg. John Smith Doe"
+                placeholderTextColor="gray"
+                onChangeText={value => list[1](value)}
+              />
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '300',
+                  color: '#585858',
+                  lineHeight: 14,
+                  position: 'relative',
+                  right: -220,
+                  marginTop: 6,
+                  marginBottom: 20,
+                }}>
+                *Include Middle Name
+              </Text>
+
+              <Text style={[styles.text_2]}>Where is the Jurisdiction?</Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[2]}
+                placeholder="Enter here"
+                autoCapitalize="none"
+                placeholderTextColor="gray"
+                onChangeText={value => list[3](value)}
+              />
+
+              <Text style={[styles.text_2]}>What is the Project Name?</Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[4]}
+                placeholder="Enter here"
+                autoCapitalize="none"
+                placeholderTextColor="gray"
+                onChangeText={value => list[5](value)}
+              />
+              <Text style={[styles.text_2]}>Website/App Name?</Text>
+              <TextInput
+                style={styles.input_vm}
+                value={list[26]}
+                placeholder="Enter here"
+                autoCapitalize="none"
+                placeholderTextColor="gray"
+                onChangeText={value => list[27](value)}
+              />
+              <Text style={[styles.text_2]}>When is the Effective Date?</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              value={list[6].toLocaleDateString()}
+              placeholder="dd/mm/yyyy"
+              placeholderTextColor="gray"
+            />
+            <ModalDatePicker
+              button={
+                <View style={styles.calendarPosition}>
+                  <EvilIcons name={'calendar'} size={35} color="gray" />
+                </View>
+              }
+              color="#489503"
+              onSelect={value => list[7](value)}
+              isHideOnSelect={true}
+              initialDate={list[6]}
+            />
+          </View>
+
+          {/* Party details start here */}
+
+          <Text style={styles.text_1}>Purpose of Agreement:</Text>
           <View style={{marginHorizontal: 15}}>
-            <Text style={[styles.text_1, {fontSize: 15}]}>
-              What is the Client’s full name?
+            <Text style={[styles.text_2, {paddingTop: 9}]}>
+              What is the Freelancer’s full name?
             </Text>
             <TextInput
               style={styles.input_vm}
-              value={input1}
-              placeholder="  Eg. John Smith Doe"
+              value={list[8]}
+              placeholder="Eg. John Smith Doe"
+              autoCapitalize="none"
               placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
+              onChangeText={value => list[9](value)}
             />
             <Text
               style={{
@@ -73,165 +168,179 @@ const Policy1 = () => {
               }}>
               *Include Middle Name
             </Text>
-
-            <Text style={[styles.text_1, {fontSize: 15}]}>
-              Where is the Jurisdiction?
-            </Text>
-            <TextInput
-              style={styles.input_vm}
-              value={input1}
-              placeholder="Enter here"
-              placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
-            />
-
-            <Text style={[styles.text_1, {fontSize: 15}]}>
-              What is the Project Name?
-            </Text>
-            <TextInput
-              style={styles.input_vm}
-              value={input1}
-              placeholder="Enter here"
-              placeholderTextColor="gray"
-              onChangeText={value => setInput1(value)}
-            />
-            <Text style={[styles.text_1, {fontSize: 15}]}>
-              When is the Effective Date?
-            </Text>
           </View>
-          <TextInput
-            style={styles.input}
-            value={date.toLocaleDateString()}
-            placeholder="dd/mm/yyyy"
-            placeholderTextColor="gray"
-          />
-          <ModalDatePicker
-            button={
-              <View style={styles.calendarPosition}>
-                <EvilIcons name={'calendar'} size={35} color="gray" />
+
+          {/* Authorization starts here */}
+
+          <Text style={styles.text_1}>Authorization:</Text>
+          <View style={{marginHorizontal: 15}}>
+            <Text style={[styles.text_2, {paddingTop: 9, paddingBottom: 5}]}>
+              What can the Freelancer access?
+            </Text>
+            <TouchableHighlight {...touchProps1}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginVertical: 10,
+                }}>
+                <Text style={{color: 'gray'}}>
+                  Client’s web hosting account (AWS){' '}
+                </Text>
+                <TouchableOpacity
+                  style={list[10] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => list[11](false)}>
+                  <Text> x </Text>
+                </TouchableOpacity>
               </View>
-            }
-            color="#489503"
-            onSelect={value => setDate(value)}
-            isHideOnSelect={true}
-            initialDate={new Date()}
-          />
-        </View>
+            </TouchableHighlight>
 
-        {/* Party details start here */}
+            <TouchableHighlight {...touchProps2}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginVertical: 10,
+                }}>
+                <Text style={{color: 'gray'}}>
+                  Client’s source code repository (GitHub)
+                </Text>
+                <TouchableOpacity
+                  style={list[12] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => list[13](false)}>
+                  <Text> x </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
 
-        <Text style={styles.text_1}>Purpose of Agreement:</Text>
-        <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            What is the Freelancer’s full name?
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Eg. John Smith Doe"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
-          <Text
-            style={{
-              fontSize: 12,
-              fontWeight: '300',
-              color: '#585858',
-              lineHeight: 14,
-              position: 'relative',
-              right: -220,
-              marginTop: 6,
-              marginBottom: 20,
-            }}>
-            *Include Middle Name
-          </Text>
-        </View>
+            <TouchableHighlight {...touchProps3}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginVertical: 10,
+                }}>
+                <Text style={{color: 'gray'}}>
+                  Client’s project management tool (Jira)
+                </Text>
+                <TouchableOpacity
+                  style={list[14] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => list[15](false)}>
+                  <Text> x </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
 
-        {/* Authorization starts here */}
+            <TouchableHighlight {...touchProps4}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginVertical: 10,
+                }}>
+                <Text style={{color: 'gray'}}>
+                  Client’s time management took (Everhour)
+                </Text>
+                <TouchableOpacity
+                  style={list[16] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => list[17](false)}>
+                  <Text> x </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
+          </View>
 
-        <Text style={styles.text_1}>Authorization:</Text>
-        <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            What can the Freelancer access?
-          </Text>
-          <TouchableHighlight {...touchProps1}>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginVertical: 10,
-              }}>
-              <Text style={{color: 'gray'}}>Via Website Chat Services </Text>
+          {/* Project scope starts here */}
+          <Text style={styles.text_1}>Project Scope:</Text>
+          <View style={{marginHorizontal: 15}}>
+            <Text style={[styles.text_2, {paddingTop: 9}]}>
+              What is the goal of this project?
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[18]}
+              placeholder="Enter here"
+              placeholderTextColor="gray"
+              autoCapitalize="none"
+              onChangeText={value => list[19](value)}
+            />
+
+            <Text style={[styles.text_2, {paddingTop: 9}]}>
+              What are the deliverables expected in this scope of work?
+            </Text>
+            <View style={{display: 'flex', flexDirection: 'row'}}>
+              <TextInput
+                value={list[20]}
+                placeholder="Enter here"
+                placeholderTextColor="gray"
+                autoCapitalize="none"
+                style={{
+                  height: 51,
+                  marginVertical: 15,
+                  borderWidth: 1,
+                  borderRadius: 15,
+                  borderColor: '#C4C4C4',
+                  padding: 12,
+                  width: '75%',
+                  backgroundColor: '#D8D8D8',
+                  fontSize: 16,
+                  color: '#585858',
+                }}
+                onChangeText={value => list[21](value)}
+              />
               <TouchableOpacity
-                style={isPress1 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress1(false)}>
-                <Text> x </Text>
+                onPress={onPress}
+                style={{
+                  height: 51,
+                  marginVertical: 15,
+                  marginLeft: 5,
+                  borderWidth: 1,
+                  borderRadius: 15,
+                  borderColor: '#C4C4C4',
+                  padding: 12,
+                  width: '20%',
+                  backgroundColor: '#D8D8D8',
+                  fontSize: 16,
+                }}>
+                <Text style={{color: 'gray', padding: 5}}>Add</Text>
               </TouchableOpacity>
             </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight {...touchProps2}>
             <View
               style={{
+                flex: 1,
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginVertical: 10,
+                flexDirection: 'column',
+                marginVertical: 5,
+                marginHorizontal: 30,
               }}>
-              <Text style={{color: 'gray'}}>Via Email </Text>
-              <TouchableOpacity
-                style={isPress2 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress2(false)}>
-                <Text> x </Text>
-              </TouchableOpacity>
+              {list[22].map((item, index) => {
+                return (
+                  <TouchableHighlight style={styles.Pressed} key={index}>
+                    <View
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        padding: 10,
+                      }}>
+                      <Text style={{width: '90%', color: '#585858'}}>
+                        {item}
+                      </Text>
+                      <TouchableOpacity onPress={() => list[24](item)}>
+                        <Text style={{color: '#585858'}}> x </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </TouchableHighlight>
+                );
+              })}
             </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight {...touchProps3}>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginVertical: 10,
-              }}>
-              <Text style={{color: 'gray'}}>Via Email </Text>
-              <TouchableOpacity
-                style={isPress3 ? {display: 'flex'} : {display: 'none'}}
-                onPress={() => setIsPress3(false)}>
-                <Text> x </Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableHighlight>
-        </View>
-
-        {/* Project scope starts here */}
-        <Text style={styles.text_1}>Project Scope:</Text>
-        <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            What is the goal of this project?
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
-
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            What are the deliverables expected in this scope of work?
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="Enter here"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
-        </View>
-      </ScrollView>
+          </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

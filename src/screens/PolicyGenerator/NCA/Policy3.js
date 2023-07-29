@@ -1,129 +1,400 @@
 import React, {Fragment} from 'react';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {
   ScrollView,
   View,
   Text,
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
+
 import styles from '../Cookies/style';
 import colors from '../../../../assets/colors/colors';
-import {ModalDatePicker} from 'react-native-material-date-picker';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import RadioGroup from 'react-native-radio-buttons-group';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel,
-} from 'react-native-simple-radio-button';
+import ImagePicker from 'react-native-image-crop-picker';
+import AppLoader from '../../../components/AppLoader';
+import Modal from 'react-native-modal';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const Policy3 = () => {
-  var [isPress1, setIsPress1] = useState(false);
-  var [isPress2, setIsPress2] = useState(false);
-  var [isPress3, setIsPress3] = useState(false);
+import RBSheet from 'react-native-raw-bottom-sheet';
 
-  const [date, setDate] = useState(new Date());
-  const [input1, setInput1] = useState('');
-
-  const [value3Index, setvalue3Index] = useState(1);
-
-  const [radioButtons1, setRadioButtons1] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons2, setRadioButtons2] = useState([
-    {
-      id: '1',
-      label: 'When they download ',
-      value: 'When they download ',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'When they open the package',
-      value: 'When they open the package',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  const [radioButtons3, setRadioButtons3] = useState([
-    {
-      id: '1',
-      label: 'Yes',
-      value: 'Yes',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-    },
-    {
-      id: '2',
-      label: 'No',
-      value: 'No',
-      size: 18,
-      color: '#489503',
-      borderColor: '#C4C4C4',
-      selected: true,
-    },
-  ]);
-  var touchProps1 = {
-    style: isPress1 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress1(true),
-  };
-  var touchProps2 = {
-    style: isPress2 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress2(true),
-  };
-  var touchProps3 = {
-    style: isPress3 ? styles.Pressed : styles.Normal,
-    onPress: () => setIsPress3(true),
-  };
-
+const Policy3 = ({list}) => {
+  const [isModal1Visible, setModal1Visible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [scanedImage, setScanedImage] = useState(null);
+  const [scanedImage1, setScanedImage1] = useState(null);
+  const refBottomSheet1 = useRef();
+  const refBottomSheet2 = useRef();
   return (
     <>
-      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-        <Text style={styles.text_1}>Company Details:</Text>
-        <View style={{marginHorizontal: 15}}>
-          <Text style={[styles.text_1, {fontSize: 15}]}>
-            Name and signature of the witnesses:
-          </Text>
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder=" Name of signatory"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        {loading ? <AppLoader /> : null}
+        <RBSheet
+          ref={refBottomSheet1}
+          closeOnDragDown={true}
+          closeOnPressMask={false}
+          customStyles={{
+            wrapper: {
+              backgroundColor: 'transparent',
+            },
+            draggableIcon: {
+              backgroundColor: '#000',
+            },
+          }}>
+          <View
+            style={{
+              width: '100%',
+            }}>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 25,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  ImagePicker.openCamera({
+                    width: 300,
+                    height: 400,
+                    cropping: true,
+                    includeBase64: true,
+                  }).then(async image => {
+                    try {
+                      setLoading(true);
+                      console.log(image);
+                      setScanedImage(image);
+                      list[4](image.data);
+                      setLoading(false);
+                      refBottomSheet1.current.close();
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  });
+                }}
+                style={{
+                  backgroundColor: colors.primary,
+                  marginVertical: 10,
+                  width: '70%',
+                  borderRadius: 30,
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
+              </TouchableOpacity>
 
-          <TextInput
-            style={styles.input_vm}
-            value={input1}
-            placeholder="E-signature scanned copy"
-            placeholderTextColor="gray"
-            onChangeText={value => setInput1(value)}
-          />
-        </View>
-      </ScrollView>
+              <TouchableOpacity
+                onPress={async () => {
+                  ImagePicker.openPicker({
+                    width: 300,
+                    height: 400,
+                    cropping: true,
+                    includeBase64: true,
+                  }).then(async image => {
+                    try {
+                      setLoading(true);
+                      console.log(image);
+                      setScanedImage(image);
+                      list[4](image.data);
+                      setLoading(false);
+                      refBottomSheet1.current.close();
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  });
+                }}
+                style={{
+                  backgroundColor: colors.primary,
+                  marginVertical: 10,
+                  width: '70%',
+                  borderRadius: 30,
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 16}}>
+                  Choose from gallery
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </RBSheet>
+
+        <RBSheet
+          ref={refBottomSheet2}
+          closeOnDragDown={true}
+          closeOnPressMask={false}
+          customStyles={{
+            wrapper: {
+              backgroundColor: 'transparent',
+            },
+            draggableIcon: {
+              backgroundColor: '#000',
+            },
+          }}>
+          <View
+            style={{
+              width: '100%',
+            }}>
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 25,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  ImagePicker.openCamera({
+                    width: 300,
+                    height: 400,
+                    cropping: true,
+                    includeBase64: true,
+                  }).then(async image => {
+                    try {
+                      setLoading(true);
+                      console.log(image);
+                      setScanedImage1(image);
+                      list[18](image.data);
+                      setLoading(false);
+                      refBottomSheet2.current.close();
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  });
+                }}
+                style={{
+                  backgroundColor: colors.primary,
+                  marginVertical: 10,
+                  width: '70%',
+                  borderRadius: 30,
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 16}}>Camera</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={async () => {
+                  ImagePicker.openPicker({
+                    width: 300,
+                    height: 400,
+                    cropping: true,
+                    includeBase64: true,
+                  }).then(async image => {
+                    try {
+                      setLoading(true);
+                      console.log(image);
+                      setScanedImage1(image);
+                      list[18](image.data);
+                      setLoading(false);
+                      refBottomSheet2.current.close();
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  });
+                }}
+                style={{
+                  backgroundColor: colors.primary,
+                  marginVertical: 10,
+                  width: '70%',
+                  borderRadius: 30,
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: 'white', fontSize: 16}}>
+                  Choose from gallery
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </RBSheet>
+
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+          <Text
+            style={
+              list[0]
+                ? styles.hide
+                : {color: 'red', textAlign: 'center', fontSize: 20}
+            }>
+            Please Check your inputs... You must fill all{' '}
+          </Text>
+          <Text style={styles.text_1}>Company Details:</Text>
+          <View style={{marginHorizontal: 15}}>
+            <Text style={styles.text_2}>Company nature of work:</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[5]}
+              placeholder="Enter here "
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[6](value)}
+            />
+            <Text style={styles.text_2}>Employee job title:</Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[7]}
+              placeholder="Enter here "
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[8](value)}
+            />
+
+            <Text style={styles.text_2}>
+              Name, address and signature of the witnesse 1
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              autoCapitalize="none"
+              value={list[1]}
+              placeholder=" Name of signatory"
+              placeholderTextColor="gray"
+              onChangeText={value => list[2](value)}
+            />
+
+            {/* Scaned copy 1*/}
+            <TouchableOpacity
+              onPress={() => {
+                refBottomSheet1.current.open();
+              }}
+              style={[
+                styles.input_vm,
+                {
+                  flexDirection: 'row',
+                  justifyContent: scanedImage == null ? 'space-between' : null,
+                },
+              ]}>
+              {scanedImage == null ? (
+                <Text style={{color: 'gray', fontSize: 16}}>
+                  E-signature scanned copy
+                </Text>
+              ) : (
+                <Text style={{color: 'black', fontSize: 16, marginRight: 5}}>
+                  Uploaded
+                </Text>
+              )}
+              {scanedImage == null ? (
+                <>
+                  <MaterialCommunityIcons
+                    // style={styles.userIcon}
+                    name="image-plus"
+                    size={35}
+                    color="gray"
+                  />
+                </>
+              ) : (
+                <MaterialCommunityIcons
+                  // style={styles.userIcon}
+                  name="check-bold"
+                  size={25}
+                  color={colors.primary}
+                />
+              )}
+            </TouchableOpacity>
+            <TextInput
+              style={styles.input_vm}
+              value={list[9]}
+              placeholder="  Address Line 1"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[10](value)}
+            />
+            <TextInput
+              style={styles.input_vm}
+              value={list[11]}
+              placeholder="  Address Line 2"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[12](value)}
+            />
+            <TextInput
+              style={styles.input_vm}
+              value={list[13]}
+              placeholder="  Address Line 3"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[14](value)}
+            />
+            {/* Fitness 2 */}
+            <Text style={styles.text_2}>
+              Name, address and signature of the witnesse 2
+            </Text>
+            <TextInput
+              style={styles.input_vm}
+              value={list[15]}
+              autoCapitalize="none"
+              placeholder=" Name of signatory"
+              placeholderTextColor="gray"
+              onChangeText={value => list[16](value)}
+            />
+            {/* Scaned copy 1*/}
+            <TouchableOpacity
+              onPress={async () => {
+                refBottomSheet2.current.open();
+              }}
+              style={[
+                styles.input_vm,
+                {
+                  flexDirection: 'row',
+                  justifyContent: scanedImage1 == null ? 'space-between' : null,
+                },
+              ]}>
+              {scanedImage1 == null ? (
+                <Text style={{color: 'gray', fontSize: 16}}>
+                  E-signature scanned copy
+                </Text>
+              ) : (
+                <Text style={{color: 'black', fontSize: 16, marginRight: 5}}>
+                  Uploaded
+                </Text>
+              )}
+              {scanedImage1 == null ? (
+                <>
+                  <MaterialCommunityIcons
+                    // style={styles.userIcon}
+                    name="image-plus"
+                    size={35}
+                    color="gray"
+                  />
+                </>
+              ) : (
+                <MaterialCommunityIcons
+                  // style={styles.userIcon}
+                  name="check-bold"
+                  size={25}
+                  color={colors.primary}
+                />
+              )}
+            </TouchableOpacity>
+
+            <TextInput
+              style={styles.input_vm}
+              value={list[19]}
+              placeholder="  Address Line 1"
+              autoCapitalize="none"
+              placeholderTextColor="gray"
+              onChangeText={value => list[20](value)}
+            />
+            <TextInput
+              style={styles.input_vm}
+              value={list[21]}
+              autoCapitalize="none"
+              placeholder="  Address Line 2"
+              placeholderTextColor="gray"
+              onChangeText={value => list[22](value)}
+            />
+            <TextInput
+              style={styles.input_vm}
+              value={list[23]}
+              autoCapitalize="none"
+              placeholder="  Address Line 3"
+              placeholderTextColor="gray"
+              onChangeText={value => list[24](value)}
+            />
+          </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

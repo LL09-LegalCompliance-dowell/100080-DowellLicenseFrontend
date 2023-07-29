@@ -1,40 +1,171 @@
-import React from 'react'
-import styles from './style'
+import React, {useEffect} from 'react';
+import styles from './style';
 import colors from '../../../../assets/colors/colors';
-import { ScrollView ,View,Text,TextInput,TouchableHighlight} from 'react-native'
-import { useState } from 'react'
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native';
+import {useState} from 'react';
+import RadioGroup from 'react-native-radio-buttons-group';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
+import {email_validation, url_validation} from '../validations';
 
 const Policy2 = ({list}) => {
+  const [valid_email, setValid_email] = useState(true);
+  const [valid_url, setValid_url] = useState(true);
+  var touchProps1 = {
+    style: list[4] ? styles.Pressed : styles.Normal,
+    onPress: () => list[5](true),
+  };
+  var touchProps2 = {
+    style: list[6] ? styles.Pressed : styles.Normal,
+    onPress: () => list[7](true),
+  };
   return (
-    <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
-          <Text style={list[6]?styles.hide:{color:"red",textAlign:"center",fontSize:20}}>Please provide the situations </Text>
-          <Text style={{color: colors.textDark,fontSize:20,fontWeight:"400", marginTop: 20}}>
+    <KeyboardAwareScrollView style={{flex: 1}}>
+      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
+        <Text
+          style={
+            list[14]
+              ? styles.hide
+              : {color: 'red', textAlign: 'center', fontSize: 20}
+          }>
+          Please Check your inputs... You must fill all{' '}
+        </Text>
+        <Text
+          style={{
+            color: colors.textDark,
+            fontSize: 20,
+            fontWeight: '400',
+            marginTop: 20,
+          }}>
           Other Details:
-          </Text>
-          <View style={{paddingHorizontal:11,paddingTop:16}}>
-            <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>List the types of personal information which may be obtained and stored and why?</Text>
-            <TextInput
-            style={styles.input_um}
-            value={list[0]}
-            onChangeText={(value)=>list[1](value)}
-            /> 
-            <Text style={styles.textoptional}>*Optional</Text>
-            <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>List the name and location of all privacy documents which the website holds for example the privacy policy and privacy notice.</Text>
-            <TextInput
-            style={styles.input_um}
-            value={list[2]}
-            onChangeText={(value)=>list[3](value)}
-            /> 
-            <Text style={styles.textoptional}>*Optional</Text>
-            <Text style={{color: colors.textDark,fontSize:18,fontWeight:"400"}}>Provide the situations where cookies may be collected without the consent of website users.</Text>
-            <TextInput
-            style={styles.input_vm}
-            value={list[4]}
-            onChangeText={(value)=>list[5](value)}
-            /> 
+        </Text>
+        <View style={{paddingHorizontal: 11, paddingTop: 16}}>
+          <Text style={styles.text_2}>Does your website/app show ads?</Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[0]}
+              onPress={data => {
+                list[1](data);
+              }}
+              containerStyle={styles.radio_hm}
+            />
           </View>
-    </ScrollView>
-  )
-}
+          <Text style={styles.text_2}>
+            Does the website uses other similar Technologies to perform some of
+            the functions which are usually achieved via cookie use?
+          </Text>
+          <View>
+            <RadioGroup
+              radioButtons={list[2]}
+              onPress={data => {
+                list[3](data);
+              }}
+              containerStyle={styles.radio_hm}
+            />
+          </View>
+          <Text style={styles.text_2}>
+            Describe how users of the website can raise questions regarding the
+            website use of cookies options.
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 20,
+            }}>
+            <TouchableHighlight {...touchProps1}>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <Text style={{color: '#585858'}}>Via Email</Text>
+                <TouchableOpacity
+                  style={list[4] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => {
+                    list[5](false);
+                    setValid_email(true);
+                  }}>
+                  <Text style={{color: '#585858'}}> x </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
 
-export default Policy2
+            <TouchableHighlight {...touchProps2}>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <Text style={{color: '#585858'}}>
+                  Via website chat services
+                </Text>
+                <TouchableOpacity
+                  style={list[6] ? {display: 'flex'} : {display: 'none'}}
+                  onPress={() => {
+                    list[7](false);
+                    setValid_url(true);
+                  }}>
+                  <Text style={{color: '#585858'}}> x </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
+          </View>
+          <TextInput
+            style={list[4] ? styles.input_vm : styles.hide}
+            value={list[8]}
+            placeholder="Enter Email here"
+            autoCapitalize="none"
+            placeholderTextColor="gray"
+            onChangeText={value => {
+              if (value === '') {
+                setValid_email(true);
+              } else {
+                email_validation(value)
+                  ? setValid_email(true)
+                  : setValid_email(false);
+              }
+              list[9](value);
+            }}
+          />
+          <Text style={valid_email ? styles.hide : styles.text_warning}>
+            Please Enter valid email
+          </Text>
+          <TextInput
+            style={list[6] ? styles.input_vm : styles.hide}
+            value={list[10]}
+            placeholder="Enter Website Chat URL here"
+            placeholderTextColor="gray"
+            autoCapitalize="none"
+            onChangeText={value => {
+              if (value === '') {
+                setValid_url(true);
+              } else {
+                url_validation(value)
+                  ? setValid_url(true)
+                  : setValid_url(false);
+              }
+              list[11](value);
+            }}
+          />
+          <Text style={valid_url ? styles.hide : styles.text_warning}>
+            Please Enter valid URL
+          </Text>
+          <Text style={styles.text_2}>
+            Provide the situations where cookies may be collected without the
+            consent of website users.
+          </Text>
+          <TextInput
+            style={styles.input_vm}
+            value={list[12]}
+            autoCapitalize="none"
+            placeholderTextColor="gray"
+            onChangeText={value => list[13](value)}
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAwareScrollView>
+  );
+};
+
+export default Policy2;

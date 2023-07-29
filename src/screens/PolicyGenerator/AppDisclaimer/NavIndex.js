@@ -1,13 +1,13 @@
-import React from 'react'
-import { View } from 'react-native'
+import React from 'react';
+import {View} from 'react-native';
 import Steps from './Steps';
 const NavIndex = () => {
-    return (
-        <>
-          <Steps />
-          <View style={{display: 'flex', backgroundColor: 'white'}}></View>
-        </>
-      );
-}
+  return (
+    <>
+      <Steps />
+      <View style={{display: 'flex', backgroundColor: 'white'}}></View>
+    </>
+  );
+};
 
-export default NavIndex
+export default NavIndex;

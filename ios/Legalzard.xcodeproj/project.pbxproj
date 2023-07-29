@@ -12,16 +12,16 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		662762B55C914F3D96A45981 /* InriaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-Legalzard-LegalzardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Legalzard-LegalzardTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F9FDA75EC1D048D78A621C3A /* InriaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */; };
-		662762B55C914F3D96A45981 /* InriaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */; };
-		EA709F4941F740DBA365BE22 /* InriaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */; };
-		E704423DE5C74A78B1372333 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */; };
-		F12BC3CF886D40F48014843D /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */; };
-		B17D358617A946958C4654CE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */; };
 		9FB20C0468DA4A1A9B03E87A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304EC1AC5F264A98A57A8511 /* Roboto-Regular.ttf */; };
 		A687EFAB890940A289294531 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B1F66C3F9F040FA92321041 /* Roboto-Thin.ttf */; };
+		B17D358617A946958C4654CE /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */; };
+		E704423DE5C74A78B1372333 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */; };
+		EA709F4941F740DBA365BE22 /* InriaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */; };
+		F12BC3CF886D40F48014843D /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */; };
+		F9FDA75EC1D048D78A621C3A /* InriaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,21 +45,21 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Legalzard/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Legalzard/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Legalzard-LegalzardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Legalzard-LegalzardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		304EC1AC5F264A98A57A8511 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Legalzard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Legalzard.debug.xcconfig"; path = "Target Support Files/Pods-Legalzard/Pods-Legalzard.debug.xcconfig"; sourceTree = "<group>"; };
+		4B1F66C3F9F040FA92321041 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Legalzard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Legalzard.release.xcconfig"; path = "Target Support Files/Pods-Legalzard/Pods-Legalzard.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Legalzard-LegalzardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Legalzard-LegalzardTests.debug.xcconfig"; path = "Target Support Files/Pods-Legalzard-LegalzardTests/Pods-Legalzard-LegalzardTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Legalzard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Legalzard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InriaSans-Regular.ttf"; path = "../assets/fonts/InriaSans-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Legalzard/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InriaSans-Bold.ttf"; path = "../assets/fonts/InriaSans-Bold.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Legalzard-LegalzardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Legalzard-LegalzardTests.release.xcconfig"; path = "Target Support Files/Pods-Legalzard-LegalzardTests/Pods-Legalzard-LegalzardTests.release.xcconfig"; sourceTree = "<group>"; };
+		C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "InriaSans-Light.ttf"; path = "../assets/fonts/InriaSans-Light.ttf"; sourceTree = "<group>"; };
+		CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
+		EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */ = {isa = PBXFileReference; name = "InriaSans-Bold.ttf"; path = "../assets/fonts/InriaSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */ = {isa = PBXFileReference; name = "InriaSans-Light.ttf"; path = "../assets/fonts/InriaSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */ = {isa = PBXFileReference; name = "InriaSans-Regular.ttf"; path = "../assets/fonts/InriaSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */ = {isa = PBXFileReference; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		304EC1AC5F264A98A57A8511 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4B1F66C3F9F040FA92321041 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +97,21 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0413F14F8BEE419284900E9B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */,
+				C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */,
+				73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */,
+				5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */,
+				CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */,
+				EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */,
+				304EC1AC5F264A98A57A8511 /* Roboto-Regular.ttf */,
+				4B1F66C3F9F040FA92321041 /* Roboto-Thin.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* Legalzard */ = {
@@ -164,22 +179,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		0413F14F8BEE419284900E9B /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				86C57648C3F145128F9B4128 /* InriaSans-Bold.ttf */,
-				C90933A946F34DE58C9996DD /* InriaSans-Light.ttf */,
-				73E1CF1E63524D419CE71AA3 /* InriaSans-Regular.ttf */,
-				5CD7CB000597407E8C671500 /* Roboto-Bold.ttf */,
-				CBFB62A2FBAB4F6E89774920 /* Roboto-Light.ttf */,
-				EA8D3A80096B4FA1A3920CC8 /* Roboto-Medium.ttf */,
-				304EC1AC5F264A98A57A8511 /* Roboto-Regular.ttf */,
-				4B1F66C3F9F040FA92321041 /* Roboto-Thin.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -474,6 +473,7 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-Legalzard-LegalzardTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7JN4KMV73Z;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -502,6 +502,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = JN4LX2GF9Q;
 				INFOPLIST_FILE = LegalzardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -526,8 +527,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = JN4LX2GF9Q;
 				ENABLE_BITCODE = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Legalzard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -538,8 +543,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.legalzard.policies;
 				PRODUCT_NAME = Legalzard;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -552,7 +558,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = JN4LX2GF9Q;
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Legalzard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,8 +573,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.legalzard.policies;
 				PRODUCT_NAME = Legalzard;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -601,12 +612,13 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -637,6 +649,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -676,7 +689,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -700,6 +713,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

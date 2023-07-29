@@ -5,6 +5,10 @@ import {
   Image,
   ScrollView,
   FlatList,
+  ImageBackground,
+  Pressable,
+  Platform,
+  Dimensions,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -14,22 +18,60 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import styles from './style';
 import Header from '../../components/Header';
-import AppLoader from '../../components/AppLoader';
 import Card from './card';
-import colors from '../../../assets/colors/colors';
 import HelpIcon from './HelpIcon';
-import HelpBot from '../HelpBot';
+import Help from './Help';
+
+const data = [
+  {
+    id: '1',
+    title: 'Open Source Software License',
+    tagline:
+      'scroll through our list of open source software licenses curated just for you',
+    image: 'softwereLicenses',
+    route: 'Software License',
+  },
+  {
+    id: '2',
+    title: 'Agreement Compliance',
+    tagline: 'generate policies using our agreement compliance system',
+    image: 'legalAPIs',
+    route: 'Agreement Compliance',
+  },
+];
 
 const Home = ({navigation}) => {
+  const [orgId, setOrgId] = useState('');
+  const [userId, setUserId] = useState('');
   const [showHelp, setShowHelp] = useState(false);
+  const {width, height} = Dimensions.get('window');
+
+  const helpHanlder = () => {
+    setShowHelp(true);
+  };
+  const helpHanlderClose = () => {
+    setShowHelp(false);
+  };
+
+  React.useEffect(() => {
+    const getOrgId = async () => {
+      try {
+        const org_id = await AsyncStorage.getItem('org_id');
+        const user_id = await AsyncStorage.getItem('user_id');
+        setOrgId(org_id);
+        setUserId(user_id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getOrgId();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <HelpIcon style={styles.help} onPress={() => setShowHelp(true)}>
-        <HelpBot />
-      </HelpIcon>
       {/* Header */}
       <Header leftIcon="menu" rightIcon="user" />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
         {/* Card Component */}
         <TouchableOpacity style={styles.cardContainer}>
           <Card />
@@ -38,88 +80,104 @@ const Home = ({navigation}) => {
         <View style={styles.miniContainer}>
           {/* Product and Services */}
           <Text style={styles.heading}>Products & Services</Text>
-          <View style={styles.productItemsContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Software License');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/carbon_cloud-satellite-services.png')}
-              />
-              <Text style={styles.itemText}>Software License</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Agreement Compliance');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group5.png')}
-              />
-              <Text style={styles.itemText}>Agreement Compliance</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group11.png')}
-              />
-              <Text style={styles.itemText}>Pricing</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Contact Us');
-              }}
-              style={styles.singleItemContainer}>
-              <Image
-                style={styles.itemImage}
-                source={require('./images/Group8.png')}
-              />
-              <Text style={styles.itemText}>Contact us</Text>
-            </TouchableOpacity>
-          </View>
-          {/* About Company */}
-          <Text style={styles.heading}>About Company</Text>
-          <Text style={styles.aboutText}>
-            Here we can matter for company. We can give in-depth information
-            about company. If required we can also provied information about the
-            services and products which we provide
-          </Text>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            data={data}
+            horizontal
+            renderItem={({item}) => {
+              return (
+                <ImageBackground
+                  source={require('./images/Gradient.png')}
+                  style={{
+                    height: 250,
+                    width: 188,
+                    marginRight: 7,
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: 6,
+                  }}>
+                  <View>
+                    {/* <Image
+                    source={require(`./images/softwereLicenses.png`)}
+                    style={{width: 20, height: 20, color:"black"}}
+                  /> */}
+                    <Text
+                      style={[
+                        styles.heading,
+                        {fontSize: 17, textAlign: 'center'},
+                      ]}>
+                      {item.title}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.aboutText,
+                        {fontSize: 14, textAlign: 'center'},
+                      ]}>
+                      {item.tagline}
+                    </Text>
+                  </View>
+                  <Pressable
+                    onPress={() => {
+                      navigation.navigate(`${item.route}`);
+                    }}
+                    style={{
+                      backgroundColor: 'black',
+                      height: 33,
+                      width: 114,
+                      marginBottom: 15,
+                      borderRadius: 20,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text style={{color: 'white', fontSize: 14}}>
+                      Explore Now
+                    </Text>
+                  </Pressable>
+                </ImageBackground>
+              );
+            }}
+            keyExtractor={item => item.id}
+          />
 
           {/* Quik Links */}
-          <Text style={styles.heading}>Quik Links</Text>
+          <Text style={styles.heading}>Most Visited</Text>
           <View style={styles.linkContainer}>
-            <Text style={styles.link}>Quik link 1 with the label</Text>
-            <Text style={styles.link}>Quik link 1 with the label</Text>
-            <Text style={styles.link}>Quik link 1 with the label</Text>
-            <Text style={styles.link}>Quik link 1 with the label</Text>
-          </View>
-
-          {/* Contact Info */}
-          <Text style={styles.heading}>Contact Info</Text>
-          <View style={styles.contactContainer}>
-            <View style={styles.contactItem}>
-              <Ionicons
-                name="location-outline"
-                size={30}
-                color={colors.primary}
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SliderItemDetails', {
+                  eventId_1: "FB1010000000166184126356826496",
+                  eventId_2: "FB1010000000016618417215307426",
+                  userId: userId,
+                  organizationId: orgId,
+                });
+              }}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 4,
+              }}>
+              <Image
+                source={require(`./images/1.png`)}
+                style={{width: 60, height: 60, color: 'black', marginRight: 8}}
               />
-              <Text style={styles.contactText}>
-                Level 42, Six Battery Road Singapore-049909
-              </Text>
-            </View>
-            <View style={styles.contactItem}>
-              <AntDesign name="mail" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>
-                livinglabfinance@dowellrsearch.sg
-              </Text>
-            </View>
-            <View style={styles.contactItem}>
-              <Feather name="phone" size={30} color={colors.primary} />
-              <Text style={styles.contactText}>65 6232 2314</Text>
-            </View>
+              <Text style={styles.heading}>Apache vs MIT</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('SliderItemDetails', {
+                  eventId_1: "FB1010000000166184145150015366",
+                  eventId_2: "FB1010000000167525869052204814",
+                  userId: userId,
+                  organizationId: orgId,
+                });
+              }}
+              style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Image
+                source={require(`./images/2.png`)}
+                style={{width: 60, height: 60, color: 'black', marginRight: 8}}
+              />
+              <Text style={styles.heading}>GNU vs GPL v 1.0</Text>
+            </Pressable>
           </View>
           <Text
             style={{alignSelf: 'center', marginVertical: 30, color: '#d3d3d3'}}>
@@ -127,6 +185,10 @@ const Home = ({navigation}) => {
           </Text>
         </View>
       </ScrollView>
+      <HelpIcon
+        style={styles.help}
+        onPress={() => navigation.navigate('Help')}
+      />
     </View>
   );
 };

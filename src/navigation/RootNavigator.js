@@ -8,10 +8,12 @@ import {
 import {useColorScheme, Alert} from 'react-native';
 import LicenseCompatibility from '../screens/LicenseCompatibility';
 import ResultsDetailsScreen from '../screens/LicenseCompatibility/ResultsDetailsScreen';
+import SliderScreen from '../screens/LicenseCompatibility/SliderScreen';
 
 import ApacheLicense from '../screens/ApacheLicense';
 import FAQsPrivacyPolicy from '../screens/FAQsPrivacyPolicy';
 import DrawerNavigator from './DrawerNavigator';
+import AuthNavigator from './AuthNavigator';
 import CookiesPolicy from '../screens/PolicyGenerator/Cookies';
 import Eula from '../screens/PolicyGenerator/EULA';
 import TermsOfUse from '../screens/PolicyGenerator/TermsOfUse';
@@ -19,6 +21,7 @@ import EmploymentContract from '../screens/PolicyGenerator/EmploymentContract';
 import DisclaimerForWeb from '../screens/PolicyGenerator/DisclaimerForWeb';
 import NDA from '../screens/PolicyGenerator/NDA';
 import ReturnsAndRefund from '../screens/PolicyGenerator/ReturnsAndRefund';
+import GDPR from '../screens/PolicyGenerator/GDPR';
 import WebsiteSecurityPolicy from '../screens/PolicyGenerator/WebsiteSecurityPolicy';
 import PPA from '../screens/PolicyGenerator/PrivacyPolicy/Application';
 import PPW from '../screens/PolicyGenerator/PrivacyPolicy/Website';
@@ -27,7 +30,12 @@ import NonCompetAgreement from '../screens/PolicyGenerator/NCA';
 import TermsAndConditions from '../screens/PolicyGenerator/TermAndConditions';
 import MOU from '../screens/PolicyGenerator/MOU';
 import SLP from '../screens/PolicyGenerator/SLP';
-import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer'
+import AppDisclaimer from '../screens/PolicyGenerator/AppDisclaimer';
+import PolicyWebView from '../screens/PolicyGenerator/PolicyWebView';
+import OrgDetails from '../screens/OrganizationDeatils';
+import ProfileHome from '../screens/OrganizationDeatils/Home';
+import SliderItemDetails from '../screens/SoftwereLicense/SliderItemDetails';
+
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -44,6 +52,13 @@ const RootNavigator = () => {
         <Stack.Screen
           name="HomeScreen"
           component={DrawerNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AuthNavigator"
+          component={AuthNavigator}
           options={{
             headerShown: false,
           }}
@@ -176,6 +191,13 @@ const RootNavigator = () => {
           }}
         />
         <Stack.Screen
+          name="GDPR"
+          component={GDPR}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="ReturnsAndRefund"
           component={ReturnsAndRefund}
           options={{
@@ -189,6 +211,42 @@ const RootNavigator = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="PolicyWebView"
+          component={PolicyWebView}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="OrgDetails"
+          component={OrgDetails}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ProfileHome"
+          component={ProfileHome}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SliderItemDetails"
+          component={SliderItemDetails}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SliderScreen"
+          component={SliderScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        
       </Stack.Navigator>
     </>
   );

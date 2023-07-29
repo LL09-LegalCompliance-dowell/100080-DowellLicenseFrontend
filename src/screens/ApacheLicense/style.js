@@ -20,28 +20,26 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   heading: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '600',
     color: colors.textDark,
-    paddingTop: 20,
+    paddingTop: 7,
     paddingBottom: 15,
     fontFamily:'roboto',
   },
 
   heading1: {
-    fontSize: 19,
+    fontSize: 17,
     fontWeight: '600',
     color: colors.textDark,
     paddingTop: 2,
-    paddingBottom: 5,
     fontFamily:'roboto',
-    letterSpacing: 1.2,
-
+    letterSpacing: 0.5,
+    textAlign:'justify'
   },
 
   heading2: {
-    letterSpacing: 1.4,
-
+    textAlign:'justify',
     fontSize: 15,
     fontWeight: '400',
     color: colors.textDark,
@@ -53,7 +51,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   heading4: {
-    letterSpacing: 1.5,
     fontSize: 15,
     fontFamily:'roboto',
     fontWeight: '400',
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
 
   link: {
     color: colors.primary,
-    fontSize: 18,
+    fontSize: 15,
     textDecorationLine: 'underline',
   },
 
@@ -88,6 +85,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 20,
     fontFamily:'roboto',
+    color:'gray',
+    textAlign:'justify'
   },
   separator: {
     width: '100%',
