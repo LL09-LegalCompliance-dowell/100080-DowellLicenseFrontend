@@ -44,7 +44,7 @@ const SliderScreen = ({navigation}) => {
 
   return (
     <>
-      <Header title="Open Source License Compatibility" />
+      <Header leftIcon="menu" title="Open Source License Compatibility" />
       <View style={styles.container}>
         <View style={styles.cardContainer}>
           <FlatList

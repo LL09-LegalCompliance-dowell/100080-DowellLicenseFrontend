@@ -18,7 +18,7 @@ import {DrawerActions} from '@react-navigation/native';
 
 import colors from '../../assets/colors/colors';
 
-const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory}) => {
+const Header = ({title, leftIcon, rightIcon, historyIcon, openHistory }) => {
   const navigation = useNavigation();
 
   const opennDrawer = () => {
