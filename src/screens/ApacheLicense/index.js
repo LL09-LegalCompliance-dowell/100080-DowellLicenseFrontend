@@ -4,6 +4,7 @@ import {Linking} from 'react-native';
 
 import styles from './style';
 import Header from '../../components/Header';
+import colors from '../../../assets/colors/colors';
 
 const ApacheLicense = ({route}) => {
   const {item} = route.params;
@@ -26,7 +27,13 @@ const ApacheLicense = ({route}) => {
             </Text>
           ) : null}
           {item?.softwarelicense?.description ? (
-            <Text style={{textAlign: 'justify', color: 'gray',fontWeight:"300",fontSize:14}}>
+            <Text
+              style={{
+                textAlign: 'justify',
+                color: 'gray',
+                fontWeight: '300',
+                fontSize: 14,
+              }}>
               {item?.softwarelicense?.description}
             </Text>
           ) : null}
@@ -302,9 +309,160 @@ const ApacheLicense = ({route}) => {
               </View>
             </>
           )}
+
+          {/* Teable starts here */}
+
+          <View style={[styles.tableHederConatainer, {marginTop: 50}]}>
+            <View style={[styles.tableItemConatainer, {flex: 2}]}>
+              <Text style={styles.tableHeaderText}>Permission</Text>
+            </View>
+            <View style={styles.tableItemConatainer}>
+            <Text style={styles.tableHeaderText}>YES/NO</Text>
+            </View>
+            <View style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+              <Text style={styles.tableHeaderText}>
+                Conditions
+              </Text>
+            </View>
+          </View>
+          {item?.softwarelicense?.permissions?.map((item, index) => {
+            return (
+              <View key={index} style={styles.tableDataConatainer}>
+                <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                  <Text style={{padding: 7, color: colors.textDark}}>
+                    {item?.action}
+                  </Text>
+                </View>
+                <View style={styles.tableItemConatainer}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color: item?.permission == 'Yes' ? 'green' : 'red',
+                      },
+                    ]}>
+                    {item?.permission}
+                  </Text>
+                </View>
+                <View
+                  style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color:
+                          item?.has_other_condition == false ? 'red' : 'green',
+                      },
+                    ]}>
+                    {item?.has_other_condition ? 'YES' : 'NO'}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+
+          <View style={[styles.tableHederConatainer, {marginTop: 25}]}>
+            <View style={[styles.tableItemConatainer, {flex: 2}]}>
+              <Text style={styles.tableHeaderText}>Conditions for license</Text>
+            </View>
+            <View style={styles.tableItemConatainer}>
+            <Text style={styles.tableHeaderText}>YES/NO</Text>
+            </View>
+            <View style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+              <Text style={styles.tableHeaderText}>
+                Conditions
+              </Text>
+            </View>
+          </View>
+          {item?.softwarelicense?.conditions?.map((item, index) => {
+            return (
+              <View key={index} style={styles.tableDataConatainer}>
+                <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                  <Text style={{padding: 7, color: colors.textDark}}>
+                    {item?.action}
+                  </Text>
+                </View>
+                <View style={styles.tableItemConatainer}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color: item?.permission == 'Yes' ? 'green' : 'red',
+                      },
+                    ]}>
+                    {item?.permission}
+                  </Text>
+                </View>
+                <View
+                  style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color:
+                          item?.has_other_condition == false ? 'red' : 'green',
+                      },
+                    ]}>
+                    {item?.has_other_condition ? 'YES' : 'NO'}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+
+          <View style={[styles.tableHederConatainer, {marginTop: 25}]}>
+            <View style={[styles.tableItemConatainer, {flex: 2}]}>
+              <Text style={styles.tableHeaderText}>Limitations</Text>
+            </View>
+            <View style={styles.tableItemConatainer}>
+            <Text style={styles.tableHeaderText}>YES/NO</Text>
+            </View>
+            <View style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+              <Text style={styles.tableHeaderText}>
+                Conditions
+              </Text>
+            </View>
+          </View>
+          {item?.softwarelicense?.limitations?.map((item, index) => {
+            return (
+              <View key={index} style={styles.tableDataConatainer}>
+                <View style={[styles.tableItemConatainer, {flex: 2}]}>
+                  <Text style={{padding: 7, color: colors.textDark}}>
+                    {item?.action}
+                  </Text>
+                </View>
+                <View style={styles.tableItemConatainer}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color: item?.permission == 'Yes' ? 'green' : 'red',
+                      },
+                    ]}>
+                    {item?.permission}
+                  </Text>
+                </View>
+                <View
+                  style={[styles.tableItemConatainer, {borderRightWidth: 0}]}>
+                  <Text
+                    style={[
+                      styles.tableDatarText,
+                      {
+                        color:
+                          item?.has_other_condition == false ? 'red' : 'green',
+                      },
+                    ]}>
+                    {item?.has_other_condition ? 'YES' : 'NO'}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+
+          {/* Teable ends here */}
           {item?.softwarelicense?.risk_for_choosing_license !== '' ? (
             <>
-              <Text style={styles.heading1}>6.Risks for choosing</Text>
+              <Text style={[styles.heading1, {marginTop:40}]}>6.Risks for choosing</Text>
               <Text style={styles.heading2}>
                 {item?.softwarelicense?.risk_for_choosing_license}
               </Text>
@@ -321,7 +479,7 @@ const ApacheLicense = ({route}) => {
 
           {item?.softwarelicense?.limitation_of_liability !== '' ? (
             <>
-              <Text style={styles.heading1}>9.Limitation of Liability.</Text>
+              <Text style={styles.heading1}>7.Limitation of Liability.</Text>
               <Text style={styles.heading2}>
                 {item?.softwarelicense?.limitation_of_liability}
               </Text>
