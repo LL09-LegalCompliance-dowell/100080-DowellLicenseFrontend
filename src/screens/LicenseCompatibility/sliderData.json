@@ -13,7 +13,7 @@
     "image1": "https://100080.pythonanywhere.com/media/img/img_11630806-873b-4cc3-aa0d-9a302f7955bd.png",
     "image2": "https://100080.pythonanywhere.com/media/img/img_7e32118d-5b71-4e25-a82b-d60c574e6431.png",
     "titel": "Apache vs BSD",
-    "recommendation": "Can be used together in a project",
+    "recommendation": "Highly recommended to use together in a project",
     "eventId_1": "FB1010000000166184126356826496",
     "eventId_2": "FB1010000000166123835456631894"
   },
@@ -22,7 +22,7 @@
     "image1": "https://100080.pythonanywhere.com/media/img/img_866bce69-2a13-4f8a-8104-2dd9d0776793.png",
     "image2": "https://100080.pythonanywhere.com/media/img/img_63b73325-71e7-4c4a-a23b-a3cfbe6bbab9.png",
     "titel": "MIT vs GNU",
-    "recommendation": "Can be used together in a project",
+    "recommendation": "Highly recommended to use together in a project",
     "eventId_1": "FB1010000000016618417215307426",
     "eventId_2": "FB1010000000016618415375095863"
   },
@@ -31,7 +31,7 @@
     "image1": "https://100080.pythonanywhere.com/media/img/img_7e32118d-5b71-4e25-a82b-d60c574e6431.png",
     "image2": "https://100080.pythonanywhere.com/media/img/img_63b73325-71e7-4c4a-a23b-a3cfbe6bbab9.png",
     "titel": "BSD vs GNU",
-    "recommendation": "Can not be used together in a project",
+    "recommendation": "Highly recommended to use together in a project",
     "eventId_1": "FB1010000000166123835456631894",
     "eventId_2": "FB1010000000016618415375095863"
   },
