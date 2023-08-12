@@ -93,6 +93,41 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     height: 1,
   },
+  // ///////////////////////////////
+  tableHederConatainer: {
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 1,
+  },
+  tableItemConatainer: {
+    borderColor: 'black',
+    borderRightWidth: 1,
+    flex: 1,
+    justifyContent: 'center',
+  },
+  tableDataConatainer: {
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderTopWidth: 0,
+    flex: 1,
+  },
+  tableHeaderText: {
+    fontWeight: '700',
+    alignSelf: 'center',
+    margin: 2,
+    fontFamily: 'roboto',
+    color: colors.textDark,
+    fontSize: 17,
+  },
+  tableDatarText: {
+    fontWeight: '500',
+    alignSelf: 'center',
+    // marginVertical: 10,
+    fontSize: 16,
+    fontFamily: 'roboto',
+  },
+
 });
 
 export default styles;

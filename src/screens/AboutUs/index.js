@@ -100,7 +100,7 @@ const About = () => {
         }) => {
           return (
             <>
-              <KeyboardAvoidingView>
+              <KeyboardAvoidingView style={{height: '100%'}}>
                 <Header title="Contact Us" />
                 {loading ? <AppLoader /> : null}
 
@@ -193,8 +193,7 @@ const About = () => {
                       onPress={() => {
                         handleSubmit();
                       }}
-                      disabled={!isValid}
-                    >
+                      disabled={!isValid}>
                       <Text style={styles.text}>Submit</Text>
                     </TouchableOpacity>
                   </View>
