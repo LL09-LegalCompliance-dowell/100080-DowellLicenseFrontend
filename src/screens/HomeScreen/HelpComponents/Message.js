@@ -12,15 +12,15 @@ const Message = ({Message,customer_app}) => {
     message_app:{
         backgroundColor:"#078F04",
         alignSelf:"flex-start",
-        paddingTop:10,
+        paddingTop:15,
         paddingRight:24,
-        paddingBottom:10,
+        paddingBottom:15,
         paddingLeft:24,
         marginHorizontal:10,
         marginVertical:7,
-        borderTopRightRadius:125,
-        borderBottomRightRadius:125,
-        borderBottomLeftRadius:180,
+        borderTopRightRadius:50,
+        borderBottomRightRadius:50,
+        borderBottomLeftRadius:50,
         maxWidth:"100%"
         
     },

@@ -74,7 +74,7 @@ const Help = ({navigation}) => {
 
   //     }
   // );
-
+  console.log(full_height);
   useEffect(() => {
     if (moreq === 'Yes') {
       setquery('');
@@ -93,6 +93,8 @@ const Help = ({navigation}) => {
       software_license !== '' ||
       license_compatibility !== '' ||
       query === 'License Compatibility' ||
+      query === 'Agreement Compliance' ||
+      query === 'Software License' ||
       show_picker === false
     ) {
       setfull_height(true);
@@ -113,10 +115,10 @@ const Help = ({navigation}) => {
     const period = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
     const formattedMinutes = minutes.toString().padStart(2, '0');
-    return `${date.toLocaleDateString("en-UK", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
+    return `${date.toLocaleDateString('en-UK', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
     })}  ${formattedHours}:${formattedMinutes} ${period}`;
   }
 
@@ -124,7 +126,7 @@ const Help = ({navigation}) => {
     try {
       setLoading(true);
       const session_id = await AsyncStorage.getItem('session_id');
-      
+
       const result = await make_room_api(session_id);
       console.log(result.messages);
       setMessages_api(result.messages);
@@ -211,12 +213,10 @@ const Help = ({navigation}) => {
               }>
               <View>
                 {messages_api.map((item, index) => {
-                  console.log(item.timestamp)
+                  console.log(item.timestamp);
                   return item.read === true ? (
                     <View key={index}>
-                      <View
-                        
-                        style={{display: 'flex', flexDirection: 'row'}}>
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
                           size={25}
@@ -231,15 +231,21 @@ const Help = ({navigation}) => {
                           />
                         </View>
                       </View>
-                      <Text style={{textAlign:"left"}}>{convertTo12HourFormat(item.timestamp)}</Text>
+                      <Text style={{textAlign: 'left'}}>
+                        {convertTo12HourFormat(item.timestamp)}
+                      </Text>
                     </View>
                   ) : (
                     <>
-                    <View key={index} style={{alignSelf: 'flex-end'}}>
-                      <Message Message={item.message} customer_app="customer" />
-                      
-                    </View>
-                    <Text style={{textAlign:"right"}}>{convertTo12HourFormat(item.timestamp)}</Text>
+                      <View key={index} style={{alignSelf: 'flex-end'}}>
+                        <Message
+                          Message={item.message}
+                          customer_app="customer"
+                        />
+                      </View>
+                      <Text style={{textAlign: 'right'}}>
+                        {convertTo12HourFormat(item.timestamp)}
+                      </Text>
                     </>
                   );
                 })}
@@ -339,11 +345,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="License Compatibility is a compatibility test between two licenses."
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="It gives you a test result where it shows whether you can use those two compared licenses in your application."
+                            Message="It ensures that different software licenses can coexist within the same project or distribution without violating their terms. This is crucial for open-source developers and users aiming to integrate various components. Compatible licenses have harmonious requirements, enabling smooth integration, while incompatible ones may impose contradictory conditions, hindering code combination. Understanding compatibility ensures legal compliance, respects intellectual property, and fosters collaboration in the open-source community"
                             customer_app="app"
                           />
                         </View>
@@ -361,11 +363,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="You can find a tutorial on how to check compatibility on the compatibility test page"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="We have described it in step by step manner"
+                            Message="To check the compatibility of the two licenses, you need to compare their terms and conditions carefully. Look for any conflicting or contradictory clauses that may prevent their combination. If the licenses have compatible terms and do not impose restrictions on each other, they are likely to be compatible. You can also refer to resources or tools that provide license compatibility information to ensure a smooth integration of open-source components in your project. Always seek legal advice if you are uncertain about license compatibility to avoid potential legal issues."
                             customer_app="app"
                           />
                         </View>
@@ -383,11 +381,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="Recommendation percentage is a approximate number of how much compatible are those licenses"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="Also it checks whether you can use them in your application"
+                            Message="The recommendation percentage for comparing licenses indicates their compatibility. A higher percentage signals strong compatibility, allowing smooth integration. A lower percentage suggests potential conflicts and limitations, requiring careful evaluation. This percentage aids users in making informed decisions for compliance with open-source software requirements."
                             customer_app="app"
                           />
                         </View>
@@ -405,11 +399,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="Recommendation percentage is calculated by using different parameters i.e. versions, limitations, permissions, conditions, warranty disclaimers, etc."
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="So considering these factors recommendation percentage is pretty accurate"
+                            Message="The recommendation percentage is meticulously calculated by our experts for accuracy and reliability. With a database of 500+ licenses, our platform ensures a seamless user experience. Comprehensive information, from descriptions to disclaimers, is presented in a user-friendly manner, eliminating confusion in your licensing journey. Our mission is to simplify and empower your open-source software experience."
                             customer_app="app"
                           />
                         </View>
@@ -427,7 +417,25 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="No, license compatibility is totally free to use. You do not need to pay anything"
+                            Message="You can freely check license compatibility up to a specific threshold. Our basic compatibility checking is offered at no charge. For more advanced features or extensive use, premium options may be available, offering extra advantages. We aim to cater to diverse user needs while ensuring access to vital compatibility information."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+
+                    {license_compatibility ===
+                      'Can I compare any two licenses?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Yes, you can compare any two licenses using our platform. Simply enter the names or types of the licenses you want to compare, and our system will provide you with insights into their compatibility and recommendations. This enables you to make informed decisions about using different licenses in your projects."
                             customer_app="app"
                           />
                         </View>
@@ -445,11 +453,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="Full in depth comparison is provided after the results from the check are displayed"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="Click on “read more” below the result to find out"
+                            Message="Certainly! Our platform offers both the compatibility percentage and detailed insights into why licenses are compatible or not. You'll understand specific conditions, permissions, and limitations influencing compatibility, aiding informed decision-making for your projects."
                             customer_app="app"
                           />
                         </View>
@@ -467,7 +471,7 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="Yes. You can set up a personal account or an account for your organization"
+                            Message="Absolutely! Our platform not only provides you with the compatibility percentage between two licenses but also offers detailed information about why licenses are considered compatible or not. You'll receive insights into the specific conditions, permissions, and limitations that contribute to their compatibility status. This transparency allows you to understand the intricacies of license compatibility and make well-informed choices for your projects."
                             customer_app="app"
                           />
                         </View>
@@ -516,7 +520,20 @@ const Help = ({navigation}) => {
                         </View>
                       </View>
                     )}
-
+                    {agreement_compliance === '' && show_picker && (
+                      <Queryselect
+                        handler={agreement_compliance_handler}
+                        items={[
+                          'What is agreement compliance?',
+                          'Why is agreement compliance important for businesses?',
+                          "Are all websites' agreement compliance the same?",
+                          'How can businesses ensure agreement compliance?',
+                          'Can agreement compliance minimize risks for businesses?',
+                          'What are the consequences of non-compliance with agreements?',
+                          'How can businesses streamline agreement compliance?',
+                        ]}
+                      />
+                    )}
                     {agreement_compliance !== '' && (
                       <View style={{alignSelf: 'flex-end'}}>
                         <Message
@@ -605,6 +622,16 @@ const Help = ({navigation}) => {
                         </View>
                       </View>
                     )}
+                    {software_license === '' && show_picker && (
+                      <Queryselect
+                        handler={software_license_handler}
+                        items={[
+                          'What is software licensing?',
+                          'How Open software licensing will empower users?',
+                          'Why is it important for software people?',
+                        ]}
+                      />
+                    )}
 
                     {software_license !== '' && (
                       <View style={{alignSelf: 'flex-end'}}>
@@ -614,7 +641,7 @@ const Help = ({navigation}) => {
                         />
                       </View>
                     )}
-                    {software_license === 'What is software license?' && (
+                    {software_license === 'What is software licensing?' && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
@@ -624,7 +651,43 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="A software license is a document that provides legally binding guidelines for the use and distribution of software."
+                            Message="Software licensing is a formal and legally binding agreement between a user and a software provider, outlining the granted authority to utilize the software with specific privileges. This license serves as a comprehensive guide for users to adhere to, preventing any violations of copyrights and other intellectual property rights."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+
+                    {software_license ===
+                      'How Open software licensing will empower users?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Open-source software licensing empowers users through free access, modification, and distribution of source code, encouraging customization and collaboration. It enables contribution, avoids IP issues, promotes transparency, and spurs innovation. Users can tailor the software to their needs."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+
+                    {software_license ===
+                      'Why is it important for software people?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Software licensing will ensure that the software is being used legally and that every business is paying for the tools that they are using. It will also ensure that your business is protected from cyber threats and unethical operations."
                             customer_app="app"
                           />
                         </View>
@@ -735,7 +798,7 @@ const Help = ({navigation}) => {
                     ]}
                   />
                 )}
-                {query === 'Software License' &&
+                {/* {query === 'Software License' &&
                   software_license === '' &&
                   show_picker && (
                     <Queryselect
@@ -753,10 +816,14 @@ const Help = ({navigation}) => {
                         flexDirection: 'column',
                       }}
                       handler={software_license_handler}
-                      items={['What is software license?']}
+                      items={[
+                        'What is software licensing?',
+                        'How Open software licensing will users?',
+                        'Why is it important for software people?',
+                      ]}
                     />
-                  )}
-                {query === 'Agreement Compliance' &&
+                  )} */}
+                {/* {query === 'Agreement Compliance' &&
                   agreement_compliance === '' &&
                   show_picker && (
                     <Queryselect
@@ -775,11 +842,16 @@ const Help = ({navigation}) => {
                       }}
                       handler={agreement_compliance_handler}
                       items={[
-                        'How to generate an agreement compliance?',
-                        'Is agreement compliance policy same for all website and apps?',
+                        'What is agreement compliance?',
+                        'Why is agreement compliance important for businesses?',
+                        "Are all websites' agreement compliance the same?",
+                        'How can businesses ensure agreement compliance?',
+                        'Can agreement compliance minimize risks for businesses?',
+                        'What are the consequences of non-compliance with agreements?',
+                        'How can businesses streamline agreement compliance?',
                       ]}
                     />
-                  )}
+                  )} */}
               </View>
             </ScrollView>
           </View>
