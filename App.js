@@ -3,6 +3,7 @@ import * as React from 'react';
 import {useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from './src/navigation/index';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
   const scheme = useColorScheme();
@@ -11,6 +12,7 @@ const App = () => {
     // <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
     <NavigationContainer>
       <Navigation />
+      <Toast />
     </NavigationContainer>
   );
 };
