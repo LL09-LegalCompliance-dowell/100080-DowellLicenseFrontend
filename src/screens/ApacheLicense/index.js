@@ -468,14 +468,6 @@ const ApacheLicense = ({route}) => {
               </Text>
             </>
           ) : null}
-          {item?.softwarelicense?.recommendation !== '' ? (
-            <>
-              <Text style={styles.heading1}>6.Recommendations (%)</Text>
-              <Text style={styles.heading2}>
-                {item?.softwarelicense?.recommendation}
-              </Text>
-            </>
-          ) : null}
 
           {item?.softwarelicense?.limitation_of_liability !== '' ? (
             <>
