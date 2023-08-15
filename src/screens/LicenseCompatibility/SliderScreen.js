@@ -8,14 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-// import {
-//   FlatList,
-//   Image,
-//   Pressable,
-//   Text,
-//   View,
-//   TouchableOpacity,
-// } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/Header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -44,7 +36,7 @@ const SliderScreen = ({navigation}) => {
 
   return (
     <>
-      <Header title="Open Source License Compatibility" leftIcon="menu"/>
+      <Header leftIcon="menu" title="Open Source License Compatibility" />
       <View style={styles.container}>
         <View style={styles.cardContainer}>
           <FlatList
@@ -126,7 +118,6 @@ const SliderScreen = ({navigation}) => {
             )}
           />
         </View>
-
         <View style={[styles.miniContainer, {height: '100%'}]}>
           {/* section 2 */}
           <View style={styles.section2}>
