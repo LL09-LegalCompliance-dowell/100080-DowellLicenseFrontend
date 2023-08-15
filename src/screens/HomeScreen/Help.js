@@ -543,7 +543,7 @@ const Help = ({navigation}) => {
                       </View>
                     )}
                     {agreement_compliance ===
-                      'How to generate an agreement compliance?' && (
+                      'What is agreement compliance?' && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
@@ -553,18 +553,14 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="First step is select the policy you want to generate then click on start generating button"
-                            customer_app="app"
-                          />
-                          <Message
-                            Message="Then fill the input fields and click on next button and download or share the agreement through link."
+                            Message="Agreement compliance refers to adhering to the terms and conditions set forth in agreements, contracts, or legal documents between parties. It ensures that all involved parties fulfill their obligations and responsibilities as per the agreed-upon terms."
                             customer_app="app"
                           />
                         </View>
                       </View>
                     )}
                     {agreement_compliance ===
-                      'Is agreement compliance policy same for all website and apps?' && (
+                      'Why is agreement compliance important for businesses?' && (
                       <View style={{display: 'flex', flexDirection: 'row'}}>
                         <MaterialCommunityIcons
                           name="android"
@@ -574,7 +570,92 @@ const Help = ({navigation}) => {
                         />
                         <View style={{width: '90%'}}>
                           <Message
-                            Message="Yes agreement compliance policy is same for all websites and apps"
+                            Message="Agreement compliance is crucial for businesses as it helps mitigate risks, maintain trust with clients and partners, and ensure smooth operations. Non-compliance may lead to legal consequences, financial penalties, and damaged business relationships."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      "Are all websites' agreement compliance the same?" && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="No, agreement compliance varies for each website based on their services, user interactions, and legal requirements in different jurisdictions. Websites may have different terms of use, privacy policies, and licensing agreements."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      'How can businesses ensure agreement compliance?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Businesses can ensure compliance by incorporating effective and lawful contract terms, creating a rigorous compliance framework, conducting periodic reviews of agreements, and embracing technology like cloud-based contract lifecycle management solutions."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      'Can agreement compliance minimize risks for businesses?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Yes, effective agreement compliance can significantly reduce risks for businesses by ensuring they meet their contractual obligations, protect their interests, and avoid potential fines and penalties."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      'What are the consequences of non-compliance with agreements?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Non-compliance with agreements can result in legal disputes, reputational damage, financial losses, and strained relationships with clients and partners."
+                            customer_app="app"
+                          />
+                        </View>
+                      </View>
+                    )}
+                    {agreement_compliance ===
+                      'How can businesses streamline agreement compliance?' && (
+                      <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <MaterialCommunityIcons
+                          name="android"
+                          size={25}
+                          backgroundColor="#078F04"
+                          color="#078F04"
+                        />
+                        <View style={{width: '90%'}}>
+                          <Message
+                            Message="Businesses can enhance agreement compliance through practical contract management tools, frequent audits, and fostering a culture of agreement awareness within the organization. Regular reviews are pivotal; they ensure ongoing compliance with active contracts, and maintaining obligations as a product or service provider. Safeguard your organization's reputation and productivity by prioritizing agreement compliance, preventing penalties, nurturing client relations, and upholding commitments."
                             customer_app="app"
                           />
                         </View>
