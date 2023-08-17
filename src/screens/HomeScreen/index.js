@@ -41,7 +41,6 @@ const data = [
 const Home = ({navigation}) => {
   const [orgId, setOrgId] = useState('');
   const [userId, setUserId] = useState('');
-  const [apiKey, setApiKey] = useState('')
   const [showHelp, setShowHelp] = useState(false);
   const {width, height} = Dimensions.get('window');
 
@@ -55,9 +54,8 @@ const Home = ({navigation}) => {
     try {
       const response = await axios.get(`https://100105.pythonanywhere.com/api/v3/user/?type=get_api_key&workspace_id=${id}`)
       const {api_key, services} = response.data.data
-      // console.log("API KEY: ", api_key)
-      setApiKey(apiKey)
-      apiKey && (await AsyncStorage.setItem('api_key', api_key));
+      console.log("API KEY: ", api_key)
+      api_key && (await AsyncStorage.setItem('api_key', api_key));
       // console.log("Services: ", services)
       const service = services.filter((s) => s.service_id === "DOWELL10029")
       console.log("Service: ", service)
