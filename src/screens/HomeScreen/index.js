@@ -53,9 +53,11 @@ const Home = ({navigation}) => {
   const getAPIKey = async(id) => {
     try {
       const response = await axios.get(`https://100105.pythonanywhere.com/api/v3/user/?type=get_api_key&workspace_id=${id}`)
-      const {api_key, services} = response.data.data
-      console.log("API KEY: ", api_key)
+      const {api_key, services, is_paid, total_credits} = response.data.data
+      console.log("API KEY: ", is_paid)
       api_key && (await AsyncStorage.setItem('api_key', api_key));
+      is_paid && (await AsyncStorage.setItem('is_paid', "True"));
+      total_credits && (await AsyncStorage.setItem('total_credits', total_credits.toString()));
       // console.log("Services: ", services)
       const service = services.filter((s) => s.service_id === "DOWELL10029")
       console.log("Service: ", service)

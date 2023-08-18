@@ -124,8 +124,9 @@ const LicenseCompatibility = ({navigation}) => {
       )
       // console.log("API KEY DATA: ", apiKeyData.status)
       const { success, message, remaining_credits } = apiKeyData.data
-      console.log("Remaining Credits: ", remaining_credits)
-      if(remaining_credits <= 5){
+      // console.log("Remaining Credits: ", remaining_credits)
+      await AsyncStorage.setItem('total_credits', remaining_credits)
+      if(remaining_credits < 0){
         Toast.show({
           type: 'error',
           text1: `You do not have enough Credits. You need to buy some more`,

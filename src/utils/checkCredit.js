@@ -5,7 +5,7 @@ const checkCredits = async() => {
     try {
         const apiKey = await AsyncStorage.getItem("api_key")
         if(!apiKey){
-            return "No API KEY"
+            throw new Error("No API KEY")
         }
         const apiKeyData = await axios.post(`https://100105.pythonanywhere.com/api/v3/process-services/?type=product_service&api_key=${apiKey}`,
             {
@@ -16,7 +16,8 @@ const checkCredits = async() => {
           // console.log("API KEY DATA: ", apiKeyData.status)
           const { success, message, remaining_credits } = apiKeyData.data
           console.log("Remaining Credits: ", remaining_credits)
-          if(remaining_credits <= 20){
+          await AsyncStorage.setItem('total_credits', remaining_credits.toString())
+          if(remaining_credits < 0){
             throw new Error("Inadequate credits. Please Recharge or update")
           }else{
             return "OK"
