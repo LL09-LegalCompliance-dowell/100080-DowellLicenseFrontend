@@ -5,7 +5,22 @@ import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
+import Toast from 'react-native-toast-message';
+import checkCredits from '../../../utils/checkCredit';
+
 const T1 = ({navigation}) => {
+  const goToTOU = async() => {
+    try {
+      await checkCredits()
+      navigation.navigate('terms_of_use_policy_nav');
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+    }    
+  }
   return (
     <>
       <Header title="Website Terms of Use" />
@@ -39,9 +54,7 @@ const T1 = ({navigation}) => {
         <Text style={styles.heading}>Disclaimer or Statement</Text>
 
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('terms_of_use_policy_nav');
-          }}>
+          onPress={goToTOU}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Start Generating</Text>
           </View>

@@ -5,7 +5,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
 import Header from '../../../components/Header';
+import Toast from 'react-native-toast-message';
+import checkCredits from '../../../utils/checkCredit';
+
 const EC = ({navigation}) => {
+  const goToWebDisclaimer = async() => {
+    try {
+      await checkCredits()
+      navigation.navigate('license_image');
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+    }    
+  }
   return (
     <>
       <Header title="Disclaimer for Website" />
@@ -23,9 +38,7 @@ const EC = ({navigation}) => {
         <View style={styles.viewSampleContainer}>
           <TouchableOpacity
             style={styles.viewSample}
-            onPress={() => {
-              navigation.navigate('license_image');
-            }}>
+            onPress={goToWebDisclaimer}>
             <Ionicons name="md-eye-sharp" size={24} color={colors.primary} />
             <Text style={styles.faqq}>View Sample</Text>
           </TouchableOpacity>

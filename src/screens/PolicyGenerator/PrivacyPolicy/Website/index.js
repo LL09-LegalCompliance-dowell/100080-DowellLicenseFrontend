@@ -18,7 +18,7 @@ const PPA = () => {
         }}
       />
       <Stack.Screen
-        name="eula_policy_nav"
+        name="web_policy_nav"
         component={PrivacyPolicyNav}
         options={{
           headerShown: false,

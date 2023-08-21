@@ -5,7 +5,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
 import Header from '../../../components/Header';
+import Toast from 'react-native-toast-message';
+import checkCredits from '../../../utils/checkCredit';
+
 const EC = ({navigation}) => {
+  const goToEmploymentContract = async() => {
+    try {
+      await checkCredits()
+      navigation.navigate('ec_policy_nav');
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+    }    
+  }
   return (
     <>
       <Header title="Employment Contract" />
@@ -41,9 +56,7 @@ const EC = ({navigation}) => {
         <Text style={styles.heading}>Disclaimer or Statement</Text>
 
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('ec_policy_nav');
-          }}>
+          onPress={goToEmploymentContract}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Start Generating</Text>
           </View>

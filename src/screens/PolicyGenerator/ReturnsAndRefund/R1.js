@@ -5,7 +5,22 @@ import styles from '../Cookies/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import colors from '../../../../assets/colors/colors';
+import Toast from 'react-native-toast-message';
+import checkCredits from '../../../utils/checkCredit';
+
 const R1 = ({navigation}) => {
+  const goToReturnsAndRefund = async() => {
+    try {
+      await checkCredits()
+      navigation.navigate('return_and_refund_policy_nav');
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+    }    
+  }
   return (
     <>
       <Header title="Return and Refund" />
@@ -39,9 +54,7 @@ const R1 = ({navigation}) => {
         <Text style={styles.heading}>Disclaimer or Statement</Text>
 
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('return_and_refund_policy_nav');
-          }}>
+          onPress={goToReturnsAndRefund}>
           <View style={styles.getStarted}>
             <Text style={styles.getStartedText}>Start Generating</Text>
           </View>

@@ -125,7 +125,7 @@ const LicenseCompatibility = ({navigation}) => {
       // console.log("API KEY DATA: ", apiKeyData.status)
       const { success, message, remaining_credits } = apiKeyData.data
       // console.log("Remaining Credits: ", remaining_credits)
-      await AsyncStorage.setItem('total_credits', remaining_credits)
+      remaining_credits && await AsyncStorage.setItem('total_credits', remaining_credits.toString())
       if(remaining_credits < 0){
         Toast.show({
           type: 'error',

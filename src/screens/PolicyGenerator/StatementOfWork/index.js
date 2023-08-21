@@ -18,7 +18,7 @@ const Eula = () => {
         }}
       />
       <Stack.Screen
-        name="eula_policy_nav"
+        name="sow_policy_nav"
         component={EulaPolicyNav}
         options={{
           headerShown: false,
