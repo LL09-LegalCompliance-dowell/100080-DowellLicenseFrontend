@@ -485,7 +485,7 @@ const Help = ({navigation}) => {
                           />
                           <View style={{width: '90%'}}>
                             <Message
-                              Message="Do you need more questions? "
+                              Message="Do you have any more question(s)? "
                               customer_app="app"
                             />
                           </View>
@@ -574,7 +574,7 @@ const Help = ({navigation}) => {
                           />
                           <View style={{width: '90%'}}>
                             <Message
-                              Message="Do you need more questions? "
+                              Message="Do you have any more question(s)? "
                               customer_app="app"
                             />
                           </View>
@@ -642,7 +642,7 @@ const Help = ({navigation}) => {
                           />
                           <View style={{width: '90%'}}>
                             <Message
-                              Message="Do you need more questions? "
+                              Message="Do you have any more question(s)? "
                               customer_app="app"
                             />
                           </View>
