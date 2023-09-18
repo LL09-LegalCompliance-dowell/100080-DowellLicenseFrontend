@@ -18,7 +18,7 @@ const GDPR = () => {
         }}
       />
       <Stack.Screen
-        name="GDBR_Policy_Nav"
+        name="GDPR_Policy_Nav"
         component={GDBRPolicyNav}
         options={{
           headerShown: false,

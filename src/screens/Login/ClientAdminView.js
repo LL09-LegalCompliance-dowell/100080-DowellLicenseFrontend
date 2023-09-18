@@ -5,36 +5,30 @@ import axios from 'axios';
 import {WebView} from 'react-native-webview';
 import Loading from '../../components/Loading';
 
-const ClientAdminView = ({navigation, route}) => {
-  const {session_id} = route.params;
-  console.log('client admin view', session_id);
+const ClientAdminView = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
-  const URL = `https://100093.pythonanywhere.com/?session_id=${session_id}`;
-  console.log('URL', URL);
+  const [session_id, setSession_id] = useState('')
+  const mainURL = "https://100014.pythonanywhere.com/";
 
   const webViewRef = useRef();
   const NavigationHandler = async ({url}) => {
     console.log(url);
+    const urlPrefix = "https://ll09-legalcompliance-dowell.github.io/100080-dowelllegalzardWeb/?"
     try {
       if (
-        url === 'https://100093.pythonanywhere.com/' ||
-        url === 'https://100093.pythonanywhere.com/home' ||
-        url === 'https://100093.pythonanywhere.com/admintest/'
-      ) {
-        if (!session_id) {
-          Alert.alert('Some Error Occured. Try Again!');
-          navigation.navigate('IntroductionScreen');
-        }
-      }
-      if (
-        url.startsWith(
-          'https://play.google.com/store/apps/details?id=com.legalzard.policies',
-        )
+        url.startsWith(urlPrefix)
       ) {
         setLoading(true);
-        if (session_id) {
-          getPortfolio();
+        const params = url.replace(urlPrefix, '');
+        const sessionParam = params.split("&")[0]
+        const sess_id = sessionParam.replace("session_id=", "")
+        console.log("session ID: ", sess_id)
+        setSession_id(sess_id)
+        setLoading(true);
+        if (session_id || sess_id) {
+          console.log("session_id: ", session_id)
+          getPortfolio(sess_id);
         } else {
           Alert.alert('Some Error Occured. Try Again!');
           navigation.navigate('IntroductionScreen');
@@ -46,15 +40,15 @@ const ClientAdminView = ({navigation, route}) => {
     }
   };
 
-  const getPortfolio = async () => {
+  const getPortfolio = async (sess_id) => {
     try {
       const response = await axios.post(
         'https://100093.pythonanywhere.com/api/userinfo/',
-        {session_id: session_id},
+        {session_id: session_id || sess_id},
       );
       const responseUser = await axios.post(
         'https://100014.pythonanywhere.com/api/profile/',
-        {key: session_id},
+        {key: session_id || sess_id},
       );
       // console.log('Portfolio Data', response.data);
       // console.log("User Details",responseUser.data)
@@ -99,8 +93,8 @@ const ClientAdminView = ({navigation, route}) => {
           style={{flex: 1}}
           ref={webViewRef}
           renderLoading={<Loading />}
-          //Loading URL
-          source={{uri: URL}}
+          //Loading mainURL
+          source={{uri: mainURL}}
           onNavigationStateChange={NavigationHandler}
           onLoadStart={() => setVisible(true)}
           onLoad={() => setVisible(false)}

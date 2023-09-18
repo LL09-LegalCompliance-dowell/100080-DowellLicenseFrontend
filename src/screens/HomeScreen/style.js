@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 12,
     width: '100%',
-    paddingBottom: isTablet ? 310 : 0,
+    paddingBottom: isTablet ? 310 : 10,
   },
 
   heading: {

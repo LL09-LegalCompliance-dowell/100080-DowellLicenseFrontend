@@ -36,7 +36,7 @@ const IntroductionScreen = ({navigation}) => {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('LoginWebView', {});
+              navigation.navigate('ClientAdminView', {});
             }}>
             <View style={styles.getStarted}>
               <Text style={styles.getStartedText}>Get Started</Text>

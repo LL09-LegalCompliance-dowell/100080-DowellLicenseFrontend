@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import {
   View,
   KeyboardAvoidingView,
@@ -117,6 +118,36 @@ const SoftwereLicense = ({navigation}) => {
       console.log(error);
     }
   };
+  const goToLicense = async(item) => {
+    try {
+      const apiKey = await AsyncStorage.getItem("api_key")
+      const apiKeyData = await axios.post(`https://100105.pythonanywhere.com/api/v3/process-services/?type=product_service&api_key=${apiKey}`,
+          {
+            "sub_service_ids": ["DOWELL100292"],
+            "service_id": "DOWELL10029"
+          }
+        )
+        // console.log("API KEY DATA: ", apiKeyData.status)
+        const { success, message, remaining_credits } = apiKeyData.data
+        console.log("Remaining Credits: ", remaining_credits)
+        await AsyncStorage.setItem('total_credits', remaining_credits.toString())
+        if(remaining_credits < 0){
+          Toast.show({
+            type: 'error',
+            text1: `You do not have enough Credits. You need to buy some more`,
+            text2: `You do not have enough Credits. You need to buy some more`,
+          })
+          return
+        }
+      navigation.navigate('ApacheLicense', {item});
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+    }
+  }
 
   return (
     <>
@@ -234,10 +265,8 @@ const SoftwereLicense = ({navigation}) => {
                 <View style={styles.serchResultItemContainer}>
                   <TouchableOpacity
                     style={{justifyContent: 'center'}}
-                    onPress={() => {
-                      // console.log(JSON.stringify(item));
-                      navigation.navigate('ApacheLicense', {item});
-                    }}>
+                    onPress={() => goToLicense(item) }
+                  >
                     <Text style={styles.serchResultHeading}>
                       {item['softwarelicense']['license_name']}
                     </Text>
@@ -250,7 +279,6 @@ const SoftwereLicense = ({navigation}) => {
               );
             }}
           />
-
           {/* {searchedTerm.map((item, index) => {
             return (
               <TouchableOpacity style={styles.serchResultItemContainer} key={index}

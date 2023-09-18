@@ -1,6 +1,6 @@
 {
   "name": "legalzard",
-  "version": "1.6.1",
+  "version": "1.6.3",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -61,6 +61,7 @@
     "react-native-svg": "^13.6.0",
     "react-native-swiper": "^1.6.0",
     "react-native-table-component": "^1.2.2",
+    "react-native-toast-message": "^2.1.6",
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^11.23.1",
     "react-native-youtube-iframe": "^2.2.2",

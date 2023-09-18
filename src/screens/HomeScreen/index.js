@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import {
   View,
   Text,
@@ -10,17 +11,14 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import * as React from 'react';
-import {useState} from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './style';
 import Header from '../../components/Header';
 import Card from './card';
 import HelpIcon from './HelpIcon';
-import Help from './Help';
+import axios from 'axios';
 
 const data = [
   {
@@ -52,16 +50,47 @@ const Home = ({navigation}) => {
   const helpHanlderClose = () => {
     setShowHelp(false);
   };
+  const getAPIKey = async(id) => {
+    try {
+      const response = await axios.get(`https://100105.pythonanywhere.com/api/v3/user/?type=get_api_key&workspace_id=${id}`)
+      const {api_key, services, is_paid, total_credits} = response.data.data
+      console.log("API KEY: ", is_paid)
+      api_key && (await AsyncStorage.setItem('api_key', api_key));
+      is_paid && (await AsyncStorage.setItem('is_paid', "True"));
+      total_credits && (await AsyncStorage.setItem('total_credits', total_credits.toString()));
+      // console.log("Services: ", services)
+      const service = services.filter((s) => s.service_id === "DOWELL10029")
+      console.log("Service: ", service)
+      Toast.show({
+        type: 'success',
+        text1: `API Key Obtained successfully`,
+        text2: `API Key Obtained successfully`,
+      });
+    } catch (error) {
+      console.log(error)
+      Toast.show({
+        type: 'error',
+        text1: `Error Getting your API Key: ${error.message}`,
+        text2: `Error Getting your API Key: ${error.message}`,
+      });
+    }
+  }
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getOrgId = async () => {
       try {
         const org_id = await AsyncStorage.getItem('org_id');
         const user_id = await AsyncStorage.getItem('user_id');
         setOrgId(org_id);
         setUserId(user_id);
+        org_id && getAPIKey(org_id)
       } catch (error) {
         console.log(error);
+        Toast.show({
+          type: 'error',
+          text1: `Error Getting your API Key: ${error.message}`,
+          text2: `Error Getting your API Key: ${error.message}`,
+        });
       }
     };
     getOrgId();

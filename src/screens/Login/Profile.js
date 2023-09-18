@@ -6,7 +6,7 @@ import {
   StatusBar,
   Modal,
   TouchableOpacity,
-  Alert,
+  ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState, useEffect} from 'react';
@@ -28,6 +28,8 @@ const Profile = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [action, setAction] = useState('');
   const navigation = useNavigation();
+  const [credits, setCredits] = useState("")
+  const [isPaid, setIsPaid] = useState(false)
 
   const pressHandler = async () => {
     // console.log(username);
@@ -68,6 +70,10 @@ const Profile = () => {
     const portfolio = await AsyncStorage.getItem('portfolio_name');
     const role = await AsyncStorage.getItem('role');
     const data_type = await AsyncStorage.getItem('data_type');
+    const total_credits = await AsyncStorage.getItem('total_credits');
+    const is_paid = await AsyncStorage.getItem('is_paid');
+    console.log("Is Paid", is_paid)
+    
 
     const profile_image = await AsyncStorage.getItem('profile_image');
     setUsername(username);
@@ -77,6 +83,8 @@ const Profile = () => {
     setPortfolio(portfolio);
     setRole(role);
     setData_type(data_type);
+    setCredits(total_credits)
+    setIsPaid(is_paid)
     profile_image && setProfileImage(profile_image);
   };
 
@@ -86,7 +94,7 @@ const Profile = () => {
   console.log(profile_image);
   console.log(isVisible);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Modal animationType="fade" transparent={true} visible={isVisible}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
@@ -127,6 +135,7 @@ const Profile = () => {
           source={require('./profileIcon.png')}
           style={styles.profileIcon}
         />
+      
         <Text style={styles.label}>Username</Text>
         <Text style={styles.feildData}>{username}</Text>
         <View style={styles.separator}></View>
@@ -154,11 +163,22 @@ const Profile = () => {
         <Text style={styles.label}>Data Type</Text>
         <Text style={styles.feildData}>{data_type}</Text>
         <View style={styles.separator}></View>
+
+        <Text style={styles.label}>Remaining credits</Text>
+        <Text style={styles.feildData}>{credits}</Text>
+        <View style={styles.separator}></View>
+
+        <Text style={styles.label}>Paid</Text>
+        <Text style={styles.feildData}>{isPaid? isPaid : "False"}</Text>
+        <View style={styles.separator}></View>
+
         <View
           style={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            marginBottom: 100,
+            marginTop: 20
           }}>
           <TouchableOpacity
             style={styles.buttonContainer}
@@ -178,7 +198,7 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

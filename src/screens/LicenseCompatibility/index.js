@@ -1,3 +1,4 @@
+import Toast from 'react-native-toast-message';
 import {
   View,
   Text,
@@ -112,8 +113,28 @@ const LicenseCompatibility = ({navigation}) => {
     setLoading(true);
     const id1 = await AsyncStorage.getItem('licenseEventId1');
     const id2 = await AsyncStorage.getItem('licenseEventId2');
+    const apiKey = await AsyncStorage.getItem("api_key")
+    console.log("API Key: ", apiKey)
     try {
-      console.log(id1, id2, userId, orgId);
+      const apiKeyData = await axios.post(`https://100105.pythonanywhere.com/api/v3/process-services/?type=product_service&api_key=${apiKey}`,
+        {
+          "sub_service_ids": ["DOWELL100291"],
+          "service_id": "DOWELL10029"
+        }
+      )
+      // console.log("API KEY DATA: ", apiKeyData.status)
+      const { success, message, remaining_credits } = apiKeyData.data
+      // console.log("Remaining Credits: ", remaining_credits)
+      remaining_credits && await AsyncStorage.setItem('total_credits', remaining_credits.toString())
+      if(remaining_credits < 0){
+        Toast.show({
+          type: 'error',
+          text1: `You do not have enough Credits. You need to buy some more`,
+          text2: `You do not have enough Credits. You need to buy some more`,
+        })
+        return
+      }
+      // console.log(id1, id2, userId, orgId);
       const LicensesCompatibilityData = await axios.post(
         'https://100080.pythonanywhere.com/api/licenses/',
         {
@@ -203,17 +224,18 @@ const LicenseCompatibility = ({navigation}) => {
       }
 
       setRes(LicensesCompatibilityData?.data);
-
       // console.log(LicensesCompatibilityData.data.license_1.permissions);
       setResult(true);
       setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
-      Alert.alert(
-        'Error message',
-        `We apologize, but something seems to have gone wrong. Please try again later.`,
-      );
+      Toast.show({
+        type: 'error',
+        text1: `Error: You need to Activate legalzard Service before using`,
+        text2: `We apologize, but something seems to have gone wrong. Please try again later.`,
+      });
+      // Alert.alert(error.message)
     }
   };
   // Searching functionality is being handled here
